@@ -1,0 +1,3 @@
+[submodule "WeCenterMobile/External/Msr"]
+	path = WeCenterMobile/External/Msr
+	url = https://github.com/Msr-B/Msr.LibSwift.git
