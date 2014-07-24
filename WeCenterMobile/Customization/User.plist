@@ -3,6 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>URL</key>
-	<string></string>
+	<dict>
+		<key>Base</key>
+		<string>http://w.hihwei.com/</string>
+		<key>Login</key>
+		<string>?/api/account/login_process/</string>
+		<key>Register</key>
+		<string>?/api/account/register_process/</string>
+	</dict>
 </dict>
 </plist>

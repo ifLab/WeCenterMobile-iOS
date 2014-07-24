@@ -20,12 +20,6 @@ class WelcomeViewController: UIViewController {
         welcomeView.loginButton.addTarget(self, action: "showLoginView", forControlEvents: .TouchUpInside)
         view = welcomeView
         view.addSubview(loginView)
-        typealias AlertAction = Msr.UI.AlertAction
-        loginView.addAction(AlertAction(title: "A", style: .Cancel, handler: { action in }))
-        loginView.addAction(AlertAction(title: "B", style: .Default, handler: { action in }))
-        loginView.addAction(AlertAction(title: "C", style: .Destructive, handler: { action in }))
-//        loginView.addAction(AlertAction(title: "D", style: .Default, handler: { action in }))
-//        loginView.addAction(AlertAction(title: "E", style: .Cancel, handler: { action in }))
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

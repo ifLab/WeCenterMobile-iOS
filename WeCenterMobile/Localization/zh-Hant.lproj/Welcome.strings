@@ -14,3 +14,9 @@
 
 /* Username placeholder */
 "Username" = "用戶名";
+
+/* Password placeholder */
+"Password" = "密碼";
+
+/* Cancel button title */
+"Cancel" = "取消";

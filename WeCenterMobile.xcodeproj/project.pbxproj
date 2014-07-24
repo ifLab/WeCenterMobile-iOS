@@ -10,17 +10,19 @@
 		953B857F1974113400970A0C /* Namespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953B85771974113400970A0C /* Namespace.swift */; };
 		953B85811974113400970A0C /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953B857A1974113400970A0C /* Sidebar.swift */; };
 		953B859A1974300A00970A0C /* Welcome.strings in Resources */ = {isa = PBXBuildFile; fileRef = 953B859C1974300A00970A0C /* Welcome.strings */; };
-		95685659197A3D9E00E34DE4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95685658197A3D9E00E34DE4 /* User.swift */; };
 		9568565D197A5E5500E34DE4 /* User.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9568565C197A5E5500E34DE4 /* User.plist */; };
 		956E24501973D780006BB970 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956E244F1973D780006BB970 /* AppDelegate.swift */; };
 		956E24531973D780006BB970 /* WeCenterMobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 956E24511973D780006BB970 /* WeCenterMobile.xcdatamodeld */; };
 		956E245A1973D780006BB970 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 956E24591973D780006BB970 /* Images.xcassets */; };
 		957B35B6197E555C00C698A1 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957B35B5197E555C00C698A1 /* Topic.swift */; };
 		95B28553197F94EA0084522E /* Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B28552197F94EA0084522E /* Rectangle.swift */; };
+		95C6493819811E27009B935F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C6493719811E27009B935F /* HomeViewController.swift */; };
 		95C99ABA197951B20027AA67 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C99AB9197951B20027AA67 /* LoginView.swift */; };
 		95CD364B197BFBDD00F2FFEA /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CD364A197BFBDD00F2FFEA /* Property.swift */; };
 		95CD364F197BFDBD00F2FFEA /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CD364E197BFDBD00F2FFEA /* Localization.swift */; };
 		95CD3651197C05A900F2FFEA /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CD3650197C05A900F2FFEA /* AlertView.swift */; };
+		95DC2D9B1980DACD009E0964 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC2D9A1980DACD009E0964 /* Model.swift */; };
+		95DC2D9D19810B3B009E0964 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC2D9C19810B3B009E0964 /* User.swift */; };
 		95E8501D197CF14900064FF0 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E84FF9197CF14900064FF0 /* AFNetworkActivityIndicatorManager.m */; };
 		95E8501E197CF14900064FF0 /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E84FFB197CF14900064FF0 /* UIActivityIndicatorView+AFNetworking.m */; };
 		95E8501F197CF14900064FF0 /* UIAlertView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E84FFD197CF14900064FF0 /* UIAlertView+AFNetworking.m */; };
@@ -66,7 +68,6 @@
 		953B859B1974300A00970A0C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Welcome.strings; sourceTree = "<group>"; };
 		953B859D1974301300970A0C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Welcome.strings"; sourceTree = "<group>"; };
 		953B859E1974302300970A0C /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Welcome.strings"; sourceTree = "<group>"; };
-		95685658197A3D9E00E34DE4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9568565C197A5E5500E34DE4 /* User.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = User.plist; sourceTree = "<group>"; };
 		956E244A1973D780006BB970 /* WeCenterMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeCenterMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		956E244E1973D780006BB970 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -77,10 +78,13 @@
 		956E246F1973D7BB006BB970 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		957B35B5197E555C00C698A1 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		95B28552197F94EA0084522E /* Rectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rectangle.swift; sourceTree = "<group>"; };
+		95C6493719811E27009B935F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		95C99AB9197951B20027AA67 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		95CD364A197BFBDD00F2FFEA /* Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
 		95CD364E197BFDBD00F2FFEA /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		95CD3650197C05A900F2FFEA /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		95DC2D9A1980DACD009E0964 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		95DC2D9C19810B3B009E0964 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		95E84FF8197CF14900064FF0 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
 		95E84FF9197CF14900064FF0 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
 		95E84FFA197CF14900064FF0 /* UIActivityIndicatorView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActivityIndicatorView+AFNetworking.h"; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				95F0BFEF19743A8F0018928B /* Welcome */,
+				95C6493719811E27009B935F /* HomeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 		953B857B1974113400970A0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				95DC2D9A1980DACD009E0964 /* Model.swift */,
 				957B35B4197E555C00C698A1 /* Topic */,
 				95C99AB619794F8B0027AA67 /* User */,
 			);
@@ -274,7 +280,7 @@
 		95C99AB619794F8B0027AA67 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				95685658197A3D9E00E34DE4 /* User.swift */,
+				95DC2D9C19810B3B009E0964 /* User.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -470,6 +476,7 @@
 				95E8502A197CF14900064FF0 /* AFURLConnectionOperation.m in Sources */,
 				953B85811974113400970A0C /* Sidebar.swift in Sources */,
 				95E85021197CF14900064FF0 /* UIImageView+AFNetworking.m in Sources */,
+				95C6493819811E27009B935F /* HomeViewController.swift in Sources */,
 				95E85033197D109600064FF0 /* AlertAction.swift in Sources */,
 				95CD364F197BFDBD00F2FFEA /* Localization.swift in Sources */,
 				957B35B6197E555C00C698A1 /* Topic.swift in Sources */,
@@ -477,7 +484,9 @@
 				956E24531973D780006BB970 /* WeCenterMobile.xcdatamodeld in Sources */,
 				95E85031197D060000064FF0 /* UIView+KeyboardUtility.swift in Sources */,
 				95E85022197CF14900064FF0 /* UIProgressView+AFNetworking.m in Sources */,
+				95DC2D9B1980DACD009E0964 /* Model.swift in Sources */,
 				95CD364B197BFBDD00F2FFEA /* Property.swift in Sources */,
+				95DC2D9D19810B3B009E0964 /* User.swift in Sources */,
 				95E85029197CF14900064FF0 /* AFSecurityPolicy.m in Sources */,
 				95E85025197CF14900064FF0 /* AFHTTPRequestOperation.m in Sources */,
 				95CD3651197C05A900F2FFEA /* AlertView.swift in Sources */,
@@ -499,7 +508,6 @@
 				95C99ABA197951B20027AA67 /* LoginView.swift in Sources */,
 				95E85028197CF14900064FF0 /* AFNetworkReachabilityManager.m in Sources */,
 				95E8502C197CF14900064FF0 /* AFURLResponseSerialization.m in Sources */,
-				95685659197A3D9E00E34DE4 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
