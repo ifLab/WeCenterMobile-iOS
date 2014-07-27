@@ -59,7 +59,8 @@ class UserMainViewController: UIViewController ,UITableViewDelegate, UITableView
     
     func setupLeftBarButtonItem()
     {
-        var leftBarButton = UIBarButtonItem(title: "EEE", style: UIBarButtonItemStyle.Plain, target: self, action: "leftBarButtonItemClicked" )
+        var leftBarButton = UIBarButtonItem(image: UIImage(named: "Category"), style: UIBarButtonItemStyle.Plain, target: self, action:"leftBarButtonItemClicked" )
+//        var leftBarButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: self, action: "leftBarButtonItemClicked" )
         self.navigationItem!.leftBarButtonItem = leftBarButton
     }
     

@@ -11,8 +11,9 @@ import Foundation
 class User {
     var uid: String?
 
+    var job:Int = 0
     var photoURLString:String = "7"
-    
+    var birthday = NSDate()
     var gender: Int = 0
     var topicNumber: Int = 0
     var iCareNumber: Int = 0
@@ -21,7 +22,7 @@ class User {
     var gratitudeNumber: Int = 0
 //    var prestigeNumber: Int = 0
     var collectionNumber: Int = 0
-    var shortIntroduction: String = " "
+//    var shortIntroduction: String = " "
     var introduction: String = " "
     
     private(set) var name: String?

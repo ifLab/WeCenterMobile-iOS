@@ -14,11 +14,13 @@ class UserEditListViewController:UIViewController, UITableViewDelegate, UITableV
     var photo :UIImageView?
     var user:User?
     func items1() ->Array<Array<String>>{
-        return [["姓名","性别"],["一句话介绍"],["个人介绍"],["居住","教育","行业","工作"]]
+//        return [["姓名","性别"],["生日"],["个人介绍"],["居住","教育","行业","工作"]]
+        return [["姓名","性别"],["生日"],["个人介绍"],["行业"]]
+
     }
     
     func items2() ->Array<String>{
-        return ["","一句话介绍","个人介绍","其他资料"]
+        return ["","生日","个人介绍","其他资料"]
     }
     
     override func viewDidLoad() {
@@ -34,7 +36,7 @@ class UserEditListViewController:UIViewController, UITableViewDelegate, UITableV
         body.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
         
         
-        self.tableView = UITableView(frame:CGRectMake(0, 80, 320, 600) , style: UITableViewStyle.Grouped)
+        self.tableView = UITableView(frame:CGRectMake(0, 80, 320, 500) , style: UITableViewStyle.Grouped)
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
         self.tableView!.scrollEnabled = false
@@ -142,7 +144,7 @@ class UserEditListViewController:UIViewController, UITableViewDelegate, UITableV
             }
             break
         case 1:
-            cell1.textLabel.text = user?.shortIntroduction
+            cell1.textLabel.text = user?.birthday.description
             break
         case 2:
             cell1.textLabel.text = user?.introduction

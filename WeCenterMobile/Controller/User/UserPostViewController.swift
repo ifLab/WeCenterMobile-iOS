@@ -9,7 +9,7 @@
 import UIKit
 
 class UserPostViewController :UIViewController {
-    
+    let user:User?
     let headerTitle:String
     var textField:UITextField?
     var textView:UITextView?
@@ -19,6 +19,7 @@ class UserPostViewController :UIViewController {
     let cancelButton:UIBarButtonItem?
     init(style:String , title:String){
         headerTitle = title
+        
         super.init(nibName: nil, bundle: NSBundle.mainBundle())
         postButton = UIBarButtonItem(title: "发布", style: UIBarButtonItemStyle.Done, target: self , action: "postData" )
         cancelButton = UIBarButtonItem(title: "取消", style: UIBarButtonItemStyle.Done, target: self, action: "turnBack")
@@ -29,16 +30,18 @@ class UserPostViewController :UIViewController {
         if headerTitle == "" {
             headerTitle = "姓名"
             setTextField()
+            textField!.text = user?.name
             bodyView!.addSubview(textField)
             bodyView!.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
         }
-        if headerTitle == "一句话介绍" {
+        if headerTitle == "生日" {
             setTextField()
             bodyView!.addSubview(textField)
             bodyView!.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
         }
         
         if headerTitle == "个人介绍"{
+//            textView!.text = user?.introduction
             setTextView()
             bodyView!.addSubview(textView)
             

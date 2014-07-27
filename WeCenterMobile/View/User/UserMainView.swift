@@ -53,11 +53,12 @@ class UserMainView: UIView{
         name.sizeToFit()
         bodyView.addSubview(name)
         
-        shortIntroduction = UILabel(frame: CGRectMake(name.frame.origin.x + name.frame.width , name.frame.origin.y, 300 - name.frame.origin.x - name.frame.width - 5, 20))
-        shortIntroduction!.textColor = UIColor.blackColor()
-        shortIntroduction!.text = ", " + user.shortIntroduction
-        shortIntroduction!.font = UIFont.systemFontOfSize(16)
-        bodyView.addSubview(shortIntroduction)
+//        shortIntroduction = UILabel(frame: CGRectMake(name.frame.origin.x + name.frame.width , name.frame.origin.y, 300 - name.frame.origin.x - name.frame.width - 5, 20))
+//        shortIntroduction!.textColor = UIColor.blackColor()
+////        user.birthday.
+//        shortIntroduction!.text = ", " + user.birthday.description
+//        shortIntroduction!.font = UIFont.systemFontOfSize(16)
+//        bodyView.addSubview(shortIntroduction)
         
         topic.setTitle("我的话题", forState: .Normal)
         topic.titleLabel.font = UIFont.systemFontOfSize(10)
