@@ -9,13 +9,51 @@
 import Foundation
 
 class User {
-    var uid: Int?
+    var uid: String?
+
+    var photoURLString:String = "7"
+    
+    var gender: Int = 0
+    var topicNumber: Int = 0
+    var iCareNumber: Int = 0
+    var careMeNumber: Int = 0
+    var praiseNumber: Int = 0
+    var gratitudeNumber: Int = 0
+//    var prestigeNumber: Int = 0
+    var collectionNumber: Int = 0
+    var shortIntroduction: String = " "
+    var introduction: String = " "
+    
     private(set) var name: String?
     private(set) var loggedIn: Bool
     let model = Model(module: "User", bundle: NSBundle.mainBundle())
     init() {
         loggedIn = false
     }
+    
+    func fetchInformation(
+        success: ((AFHTTPRequestOperation, Msr.Data.Property) -> Void)?,
+        failure: ((AFHTTPRequestOperation, NSError) -> Void)?) {
+        model.GET(model.URLStrings["Information"]!,
+            parameters: ["uid": uid!],
+            success: {
+                [weak self] operation, property in
+                 println(property)
+//                self!.photoURLString = property["用户头像URL"] .asString()
+//                self!.name = property["用户名"] .asString()
+//                self!.topicNumber = property["我的话题数"].asInt()
+//                self!.iCareNumber = property["我关注的人数"].asInt()
+//                self!.careMeNumber = property["关注我的人数"].asInt()
+//                self!.praiseNumber = property["赞同我的次数"].asInt()
+//                self!.gratitudeNumber = property["感谢我的次数"].asInt()
+//                self!.collectionNumber = property["答案被收藏次数"].asInt()
+                return
+            }, failure: {
+                operation, error in
+                return
+            })
+    }
+    
     class func loginWithCookieInStorage(
         #success: ((User) -> Void)?,
         failure: (() -> Void)?) {
@@ -58,6 +96,9 @@ class User {
                         let user = User()
                         user.name = name
                         user.loggedIn = true
+//                        user.uid = property["rsm"]["uid"].asString()
+                        
+
                         success?(user)
                     }
                     return

@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        User.clearCookies()
+//        User.clearCookies()
         User.loginWithCookieInStorage(
             success: {
                 [weak self] user in
@@ -126,8 +126,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let homeViewController = HomeViewController(nibName: nil, bundle: NSBundle.mainBundle())
         let navigationController = UINavigationController(rootViewController: homeViewController)
         navigationController.view.addSubview(Msr.UI.Sidebar(width: 200, blurEffectStyle: .Light))
+        navigationController.interactivePopGestureRecognizer.enabled = false
         return navigationController
     }
+    //    func generateRootViewController() -> UIViewController {
+    //        let homeViewController = HomeViewController(nibName: nil, bundle: NSBundle.mainBundle())
+    //        let navigationController = Msr.UI.NavigationController()
+    //        navigationController.pushViewController(homeViewController, animated: false, completion: nil)
+    //        navigationController.view.addSubview(Msr.UI.Sidebar(width: 200, blurEffectStyle: .Light))
+    //        //        navigationController.interactivePopGestureRecognizer.enabled = false
+    //        return navigationController
+    //    }
+    //
+
 
 }
 
