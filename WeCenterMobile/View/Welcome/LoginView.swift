@@ -48,27 +48,5 @@ class LoginView: Msr.UI.AlertView {
         contentView.bounds = CGRect(origin: CGPointZero, size: CGSize(width: contentView.bounds.width, height: 120))
         contentView.addSubview(usernameField)
         contentView.addSubview(passwordField)
-        typealias AlertAction = Msr.UI.AlertAction
-        addAction(AlertAction(title: strings["Cancel"], style: .Cancel) { action in })
-        addAction(AlertAction(title: strings["Login"], style: .Default) {
-            [weak self] action in
-            User.loginWithName(self!.usernameField.text,
-                password: self!.passwordField.text,
-                success: {
-                    user in
-                    println("USER HAS SUCCESSFULLY LOGGED IN WITH NAME & PASSWORD.")
-                    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-                    let newRootController = appDelegate.generateRootViewController()
-                    newRootController.modalTransitionStyle = .CrossDissolve
-                    appDelegate.window!.rootViewController.presentViewController(newRootController, animated: true, completion: nil)
-                },
-                failure: {
-                    networkError, serverError in
-                    println("USER HAS FAILED TO LOG IN WITH NAME & PASSWORD.")
-                    println(networkError)
-                    println(serverError)
-                })
-            return
-        })
     }
 }

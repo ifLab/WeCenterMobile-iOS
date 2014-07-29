@@ -8,6 +8,8 @@
 
 import UIKit
 
+/*
+
 class UserMainView: UIView{
     var photo:UIImageView
     var name:UILabel
@@ -162,3 +164,5 @@ class UserMainView: UIView{
         self.addSubview(bodyView)
     }
 }
+
+*/

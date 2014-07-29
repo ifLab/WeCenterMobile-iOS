@@ -6,8 +6,6 @@
 	<dict>
 		<key>Base</key>
 		<string>http://w.hihwei.com/</string>
-		<key>Information</key>
-		<string>api/user.php</string>
 		<key>Login</key>
 		<string>?/api/account/login_process/</string>
 		<key>Register</key>

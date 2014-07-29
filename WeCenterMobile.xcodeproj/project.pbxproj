@@ -13,6 +13,8 @@
 		956E24531973D780006BB970 /* WeCenterMobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 956E24511973D780006BB970 /* WeCenterMobile.xcdatamodeld */; };
 		956E245A1973D780006BB970 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 956E24591973D780006BB970 /* Images.xcassets */; };
 		957B35B6197E555C00C698A1 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957B35B5197E555C00C698A1 /* Topic.swift */; };
+		9594BB0719863BEE005AE507 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9594BB0619863BEE005AE507 /* MainViewController.swift */; };
+		95C4B13A198655150013AF2D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C4B139198655150013AF2D /* UIImage+Resize.swift */; };
 		95C6493819811E27009B935F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C6493719811E27009B935F /* HomeViewController.swift */; };
 		95C99ABA197951B20027AA67 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C99AB9197951B20027AA67 /* LoginView.swift */; };
 		95DC2D9B1980DACD009E0964 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC2D9A1980DACD009E0964 /* Model.swift */; };
@@ -43,7 +45,6 @@
 		BE1E89E81983D73A007D65F9 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E89D81983D73A007D65F9 /* Property.swift */; };
 		BE1E89E91983D73A007D65F9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = BE1E89D91983D73A007D65F9 /* LICENSE */; };
 		BE1E89EA1983D73A007D65F9 /* Namespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E89DA1983D73A007D65F9 /* Namespace.swift */; };
-		BE1E89EB1983D73A007D65F9 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = BE1E89DB1983D73A007D65F9 /* README.md */; };
 		BE1E89EC1983D73A007D65F9 /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E89DD1983D73A007D65F9 /* AlertAction.swift */; };
 		BE1E89ED1983D73A007D65F9 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E89DE1983D73A007D65F9 /* AlertView.swift */; };
 		BE1E89EE1983D73A007D65F9 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E89DF1983D73A007D65F9 /* NavigationController.swift */; };
@@ -53,10 +54,6 @@
 		BE1E89F21983D73A007D65F9 /* UIColor+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E89E31983D73A007D65F9 /* UIColor+Random.swift */; };
 		BE1E89F31983D73A007D65F9 /* UIView+KeyboardUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E89E41983D73A007D65F9 /* UIView+KeyboardUtility.swift */; };
 		BE3CAB1B198256CE00AE9FB4 /* UserGenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3CAB1A198256CE00AE9FB4 /* UserGenderCell.swift */; };
-		BE3CAB2219828D7800AE9FB4 /* UserEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3CAB2019828D7800AE9FB4 /* UserEditViewController.swift */; };
-		BE3CAB2319828D7800AE9FB4 /* UserMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3CAB2119828D7800AE9FB4 /* UserMainViewController.swift */; };
-		BE3CAB2519828DA500AE9FB4 /* UserPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3CAB2419828DA500AE9FB4 /* UserPostViewController.swift */; };
-		BE92E9C119821B230061648A /* UserMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE92E9C019821B230061648A /* UserMainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +79,8 @@
 		956E245F1973D780006BB970 /* WeCenterMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeCenterMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		956E246F1973D7BB006BB970 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		957B35B5197E555C00C698A1 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
+		9594BB0619863BEE005AE507 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		95C4B139198655150013AF2D /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		95C6493719811E27009B935F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		95C99AB9197951B20027AA67 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		95DC2D9A1980DACD009E0964 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -171,9 +170,10 @@
 		953B85721974113400970A0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9594BB0619863BEE005AE507 /* MainViewController.swift */,
+				95C6493719811E27009B935F /* HomeViewController.swift */,
 				BE92E9BF198207110061648A /* User */,
 				95F0BFEF19743A8F0018928B /* Welcome */,
-				95C6493719811E27009B935F /* HomeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -357,10 +357,10 @@
 			isa = PBXGroup;
 			children = (
 				BE1E89D41983D73A007D65F9 /* .gitignore */,
-				BE1E89D51983D73A007D65F9 /* Data */,
 				BE1E89D91983D73A007D65F9 /* LICENSE */,
 				BE1E89DA1983D73A007D65F9 /* Namespace.swift */,
 				BE1E89DB1983D73A007D65F9 /* README.md */,
+				BE1E89D51983D73A007D65F9 /* Data */,
 				BE1E89DC1983D73A007D65F9 /* UI */,
 			);
 			path = Msr;
@@ -387,6 +387,7 @@
 				BE1E89E21983D73A007D65F9 /* Sidebar.swift */,
 				BE1E89E31983D73A007D65F9 /* UIColor+Random.swift */,
 				BE1E89E41983D73A007D65F9 /* UIView+KeyboardUtility.swift */,
+				95C4B139198655150013AF2D /* UIImage+Resize.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -459,6 +460,7 @@
 				TargetAttributes = {
 					956E24491973D780006BB970 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = ZRU9NS7944;
 					};
 					956E245E1973D780006BB970 = {
 						CreatedOnToolsVersion = 6.0;
@@ -521,12 +523,10 @@
 				95C6493819811E27009B935F /* HomeViewController.swift in Sources */,
 				957B35B6197E555C00C698A1 /* Topic.swift in Sources */,
 				95E8502D197CF14900064FF0 /* AFURLSessionManager.m in Sources */,
-				BE1E89EB1983D73A007D65F9 /* README.md in Sources */,
 				956E24531973D780006BB970 /* WeCenterMobile.xcdatamodeld in Sources */,
 				95E85022197CF14900064FF0 /* UIProgressView+AFNetworking.m in Sources */,
 				BE1E89EA1983D73A007D65F9 /* Namespace.swift in Sources */,
 				95DC2D9B1980DACD009E0964 /* Model.swift in Sources */,
-				BE92E9C119821B230061648A /* UserMainView.swift in Sources */,
 				95DC2D9D19810B3B009E0964 /* User.swift in Sources */,
 				95E85029197CF14900064FF0 /* AFSecurityPolicy.m in Sources */,
 				BE1E89EF1983D73A007D65F9 /* Rectangle.swift in Sources */,
@@ -537,7 +537,7 @@
 				95E85023197CF14900064FF0 /* UIRefreshControl+AFNetworking.m in Sources */,
 				95E85027197CF14900064FF0 /* AFHTTPSessionManager.m in Sources */,
 				95E85024197CF14900064FF0 /* UIWebView+AFNetworking.m in Sources */,
-				BE3CAB2319828D7800AE9FB4 /* UserMainViewController.swift in Sources */,
+				9594BB0719863BEE005AE507 /* MainViewController.swift in Sources */,
 				BE1E89E81983D73A007D65F9 /* Property.swift in Sources */,
 				BE1E89EC1983D73A007D65F9 /* AlertAction.swift in Sources */,
 				956E24501973D780006BB970 /* AppDelegate.swift in Sources */,
@@ -547,9 +547,8 @@
 				95E85026197CF14900064FF0 /* AFHTTPRequestOperationManager.m in Sources */,
 				BE1E89E71983D73A007D65F9 /* Localization.swift in Sources */,
 				BE1E89F31983D73A007D65F9 /* UIView+KeyboardUtility.swift in Sources */,
-				BE3CAB2219828D7800AE9FB4 /* UserEditViewController.swift in Sources */,
 				95F0BFF519743B060018928B /* WelcomeView.swift in Sources */,
-				BE3CAB2519828DA500AE9FB4 /* UserPostViewController.swift in Sources */,
+				95C4B13A198655150013AF2D /* UIImage+Resize.swift in Sources */,
 				95E8501D197CF14900064FF0 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				95F0BFF719743B180018928B /* WelcomeViewController.swift in Sources */,
 				BE1E89EE1983D73A007D65F9 /* NavigationController.swift in Sources */,
@@ -679,6 +678,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = WeCenterMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -692,6 +692,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = WeCenterMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

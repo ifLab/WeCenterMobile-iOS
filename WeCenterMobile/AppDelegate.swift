@@ -13,6 +13,9 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             
     var window: UIWindow?
+    let welcomeViewController = WelcomeViewController()
+    var mainViewController: MainViewController!
+    var currentUser: User?
     
 //    func insert() {
 //        let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: managedObjectContext)
@@ -37,16 +40,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window!.rootViewController = welcomeViewController
+        mainViewController = MainViewController()
+        mainViewController.modalTransitionStyle = .CrossDissolve
 //        User.clearCookies()
         User.loginWithCookieInStorage(
             success: {
                 [weak self] user in
-                self!.window!.rootViewController = self!.generateRootViewController()
                 self!.window!.makeKeyAndVisible()
+                self!.welcomeViewController.presentViewController(self!.mainViewController, animated: true, completion: nil)
                 println("USER HAS SUCCESSFULLY LOGGED IN WITH COOKIE IN STORAGE.")
             }, failure: {
                 [weak self] in
-                self!.window!.rootViewController = WelcomeViewController()
                 self!.window!.makeKeyAndVisible()
                 println("USER HAS FAILED TO LOG IN WITH COOKIE IN STORAGE.")
             })
@@ -122,23 +127,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return urls[urls.count - 1] as NSURL
     }
     
-    func generateRootViewController() -> UIViewController {
-        let homeViewController = HomeViewController(nibName: nil, bundle: NSBundle.mainBundle())
-        let navigationController = UINavigationController(rootViewController: homeViewController)
-        navigationController.view.addSubview(Msr.UI.Sidebar(width: 200, blurEffectStyle: .Light))
-        navigationController.interactivePopGestureRecognizer.enabled = false
-        return navigationController
-    }
-    //    func generateRootViewController() -> UIViewController {
-    //        let homeViewController = HomeViewController(nibName: nil, bundle: NSBundle.mainBundle())
-    //        let navigationController = Msr.UI.NavigationController()
-    //        navigationController.pushViewController(homeViewController, animated: false, completion: nil)
-    //        navigationController.view.addSubview(Msr.UI.Sidebar(width: 200, blurEffectStyle: .Light))
-    //        //        navigationController.interactivePopGestureRecognizer.enabled = false
-    //        return navigationController
-    //    }
-    //
-
-
 }
 
+let appDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
