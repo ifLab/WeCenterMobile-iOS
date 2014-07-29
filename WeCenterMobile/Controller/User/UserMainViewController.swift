@@ -8,13 +8,12 @@
 
 import UIKit
 
-class UserMainViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource
-{
-    var tableView : UITableView?
-    var items : NSMutableArray?
-    var mainview : UserMainView?
-    var user:User?
-    func items1() ->Array<Array<String>>{
+class UserMainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    var tableView: UITableView?
+    var items: NSMutableArray?
+    var mainview: UserMainView?
+    var user: User?
+    func items1() -> [[String]] {
         return [["发问","回复","文章","关注","动态"]]
     }
     
@@ -38,21 +37,20 @@ class UserMainViewController: UIViewController ,UITableViewDelegate, UITableView
         user = User()
 //        user?.fetchInformation(nil, failure: nil)
         mainview = UserMainView(frame: CGRectMake(0, 0, 320, 150), user: user!)
-        let body = UIScrollView(frame: self.view.frame)
+        view = UIScrollView(frame: self.view.frame)
+        (view as UIScrollView).alwaysBounceVertical = true
         mainview!.sizeToFit()
         mainview!.frame = CGRectMake(0, 0, mainview!.frame.width, mainview!.like.frame.origin.y + mainview!.like.frame.height + 10)
         
-        body.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
-        body.addSubview(mainview)
+        view.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
+        view.addSubview(mainview)
         self.tableView = UITableView(frame:CGRectMake(0, mainview!.frame.height , 320, 310) , style: UITableViewStyle.Grouped)
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
         self.tableView!.scrollEnabled = false
         self.tableView!.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        body.addSubview(self.tableView)
-        body.sizeToFit()
-        body.contentSize = CGSizeMake(self.view.frame.width, mainview!.frame.height + tableView!.frame.height)
-        self.view.addSubview(body)
+        view.addSubview(self.tableView)
+        view.sizeToFit()
         self.mainview?.topic.addTarget(self, action: "pushTableView", forControlEvents: UIControlEvents.TouchUpInside)
         self.mainview?.careMe.addTarget(self, action: "pushTableView", forControlEvents: UIControlEvents.TouchUpInside)
         self.mainview?.iCare.addTarget(self, action: "pushTableView", forControlEvents: UIControlEvents.TouchUpInside)
@@ -73,20 +71,20 @@ class UserMainViewController: UIViewController ,UITableViewDelegate, UITableView
     
     func pushTableView(){
         let tableview1 = UITableViewController()
-        self.navigationController.pushViewController(tableview1, animated: true)
+        msrNavigationController.pushViewController(tableview1, animated: true) { finished in }
     }
     
     func rightBarButtonItemClicked()
     {
         var userEditView = UserEditListViewController()
         userEditView.user = user
-        self.navigationController.pushViewController(userEditView, animated: true)
+        msrNavigationController.pushViewController(userEditView, animated: true) { finished in }
     }
     
     func leftBarButtonItemClicked()
     {
-        var sidebar = self.navigationController.view.subviews[2] as Msr.UI.Sidebar
-        sidebar.show(completion: nil, animated: true)
+        var sidebar = appDelegate.mainViewController.sidebar
+        sidebar.toggleShow(animated: true, completion: nil)
     }
     
     
@@ -120,7 +118,7 @@ class UserMainViewController: UIViewController ,UITableViewDelegate, UITableView
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
     {
         let tableview1 = UITableViewController()
-        self.navigationController.pushViewController(tableview1, animated: true)
+        msrNavigationController.pushViewController(tableview1, animated: true) { finished in }
         self.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
     }
     

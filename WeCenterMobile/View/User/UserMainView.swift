@@ -8,9 +8,7 @@
 
 import UIKit
 
-/*
-
-class UserMainView: UIView{
+class UserMainView: UIView {
     var photo:UIImageView
     var name:UILabel
     var topic:UIButton
@@ -71,7 +69,7 @@ class UserMainView: UIView{
         topicNum = UILabel(frame: CGRectMake(12, 10, 56, 13))
         topicNum!.font = UIFont.systemFontOfSize(13)
         topicNum!.textColor = UIColor.darkTextColor()
-        topicNum!.text = "\(user.topicNumber)"
+        topicNum!.text = "\(0))"
         topic.addSubview(topicNum)
         bodyView.addSubview(topic)
         
@@ -84,7 +82,7 @@ class UserMainView: UIView{
         iCareNum = UILabel(frame: CGRectMake(7, 10, 60, 13))
         iCareNum!.font = UIFont.systemFontOfSize(13)
         iCareNum!.textColor = UIColor.darkTextColor()
-        iCareNum!.text = "\(user.iCareNumber)"
+        iCareNum!.text = "\(0)"
         iCare.addSubview(iCareNum)
         bodyView.addSubview(iCare)
         
@@ -97,7 +95,7 @@ class UserMainView: UIView{
         careMeNum = UILabel(frame: CGRectMake(8, 10, 60, 13))
         careMeNum!.font = UIFont.systemFontOfSize(13)
         careMeNum!.textColor = UIColor.darkTextColor()
-        careMeNum!.text = "\(user.careMeNumber)"
+        careMeNum!.text = "\(0)"
         careMe.addSubview(careMeNum)
         bodyView.addSubview(careMe)
         
@@ -105,7 +103,7 @@ class UserMainView: UIView{
         introduction!.frame.origin = CGPoint(x: photo.frame.origin.x, y: photo.frame.origin.y + photo.frame.height + 5)
         introduction!.font = UIFont.systemFontOfSize(13)
         introduction!.textColor = UIColor.darkTextColor()
-        introduction!.text = "\(user.introduction)"
+        introduction!.text = "\(0)"
         introduction!.frame = CGRectMake(  photo.frame.origin.x, photo.frame.origin.y + photo.frame.height + 5, 300, 20)
         introduction!.lineBreakMode = NSLineBreakMode.ByWordWrapping
         introduction!.numberOfLines = 0;
@@ -123,7 +121,7 @@ class UserMainView: UIView{
         prestigeNum = UILabel(frame: CGRectMake(prestige.frame.origin.x + 21, line4.frame.origin.y + 9, 30, 18))
         prestigeNum!.font = UIFont.systemFontOfSize(13)
         prestigeNum!.textColor = UIColor.grayColor()
-        prestigeNum!.text = "\(user.collectionNumber)"
+        prestigeNum!.text = "\(0)"
         prestigeNum!.sizeToFit()
         bodyView.addSubview(prestigeNum)
         
@@ -134,7 +132,7 @@ class UserMainView: UIView{
         praiseNum = UILabel(frame: CGRectMake(praise.frame.origin.x + praise.frame.width + 3 , line4.frame.origin.y + 9, 30, 18))
         praiseNum!.font = UIFont.systemFontOfSize(13)
         praiseNum!.textColor = UIColor.grayColor()
-        praiseNum!.text = "\(user.praiseNumber)"
+        praiseNum!.text = "\(0)"
         praiseNum!.sizeToFit()
         bodyView.addSubview(praiseNum)
         
@@ -145,7 +143,7 @@ class UserMainView: UIView{
         likeNum = UILabel(frame: CGRectMake(like.frame.origin.x + 21, line4.frame.origin.y + 9, 30, 18))
         likeNum!.font = UIFont.systemFontOfSize(13)
         likeNum!.textColor = UIColor.grayColor()
-        likeNum!.text = "\(user.gratitudeNumber)"
+        likeNum!.text = "\(0)"
         likeNum!.sizeToFit()
         bodyView.addSubview(likeNum)
         
@@ -164,5 +162,3 @@ class UserMainView: UIView{
         self.addSubview(bodyView)
     }
 }
-
-*/

@@ -22,7 +22,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         "Bookmark",
         "Message"
     ]
-    var viewControllers = [
+    var viewControllers: [UIViewController] = [
         HomeViewController(statusBarStyle: .Default),
         HomeViewController(statusBarStyle: .LightContent),
         HomeViewController(statusBarStyle: .Default),
@@ -78,7 +78,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
 //        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         sidebar.hide(animated: true, completion: nil)
-        contentViewController.setViewControllers([viewControllers[indexPath.row]], animated: true, completion: nil)
+        if indexPath.section == 0 {
+            contentViewController.setViewControllers([UserMainViewController()], animated: true, completion: nil)
+        } else {
+            contentViewController.setViewControllers([viewControllers[indexPath.row]], animated: true, completion: nil)
+        }
     }
     func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
         if indexPath.section == 0 {

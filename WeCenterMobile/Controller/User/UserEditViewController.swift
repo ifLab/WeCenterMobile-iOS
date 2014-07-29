@@ -139,15 +139,15 @@ class UserEditListViewController:UIViewController, UITableViewDelegate, UITableV
             if indexPath.row == 0{
                 cell1.textLabel.text = user?.name
             }else{
-                cell1 = UserGenderCell(gender: user!.gender)
+                cell1 = UserGenderCell(gender: 0)
                 cell1.selectionStyle = UITableViewCellSelectionStyle.None
             }
             break
         case 1:
-            cell1.textLabel.text = user?.birthday.description
+            cell1.textLabel.text = ""
             break
         case 2:
-            cell1.textLabel.text = user?.introduction
+            cell1.textLabel.text = ""
             break
         case 3:
             

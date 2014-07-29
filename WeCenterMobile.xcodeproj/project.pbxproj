@@ -53,6 +53,10 @@
 		BE1E89F11983D73A007D65F9 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E89E21983D73A007D65F9 /* Sidebar.swift */; };
 		BE1E89F21983D73A007D65F9 /* UIColor+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E89E31983D73A007D65F9 /* UIColor+Random.swift */; };
 		BE1E89F31983D73A007D65F9 /* UIView+KeyboardUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E89E41983D73A007D65F9 /* UIView+KeyboardUtility.swift */; };
+		BE3B2E3B19877D02008E3AB0 /* UserMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE92E9C019821B230061648A /* UserMainView.swift */; };
+		BE3B2E3C19877D02008E3AB0 /* UserMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3CAB2119828D7800AE9FB4 /* UserMainViewController.swift */; };
+		BE3B2E3D19877D02008E3AB0 /* UserEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3CAB2019828D7800AE9FB4 /* UserEditViewController.swift */; };
+		BE3B2E3E19877D02008E3AB0 /* UserPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3CAB2419828DA500AE9FB4 /* UserPostViewController.swift */; };
 		BE3CAB1B198256CE00AE9FB4 /* UserGenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3CAB1A198256CE00AE9FB4 /* UserGenderCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -516,6 +520,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE3B2E3B19877D02008E3AB0 /* UserMainView.swift in Sources */,
+				BE3B2E3C19877D02008E3AB0 /* UserMainViewController.swift in Sources */,
+				BE3B2E3D19877D02008E3AB0 /* UserEditViewController.swift in Sources */,
+				BE3B2E3E19877D02008E3AB0 /* UserPostViewController.swift in Sources */,
 				95E8502B197CF14900064FF0 /* AFURLRequestSerialization.m in Sources */,
 				BE1E89ED1983D73A007D65F9 /* AlertView.swift in Sources */,
 				95E8502A197CF14900064FF0 /* AFURLConnectionOperation.m in Sources */,
