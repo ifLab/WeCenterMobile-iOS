@@ -9,6 +9,7 @@
 import UIKit
 
 class UserPostViewController :UIViewController {
+    
     let user:User?
     let headerTitle:String
     var textField:UITextField?
@@ -17,9 +18,10 @@ class UserPostViewController :UIViewController {
     let tip:UILabel?
     let postButton:UIBarButtonItem?
     let cancelButton:UIBarButtonItem?
+    var datePicker:UIDatePicker?
+    let model = Model(module: "User", bundle: NSBundle.mainBundle())
     init(style:String , title:String){
         headerTitle = title
-        
         super.init(nibName: nil, bundle: NSBundle.mainBundle())
         postButton = UIBarButtonItem(title: "发布", style: UIBarButtonItemStyle.Done, target: self , action: "postData" )
         cancelButton = UIBarButtonItem(title: "取消", style: UIBarButtonItemStyle.Done, target: self, action: "turnBack")
@@ -35,8 +37,8 @@ class UserPostViewController :UIViewController {
             bodyView!.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
         }
         if headerTitle == "生日" {
-            setTextField()
-            bodyView!.addSubview(textField)
+            setDatePicker()
+            bodyView!.addSubview(datePicker)
             bodyView!.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
         }
         
@@ -51,20 +53,90 @@ class UserPostViewController :UIViewController {
             bodyView!.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
         }
         self.title = "修改" + headerTitle
-      
-
-      
-
-       
         self.view.addSubview(bodyView)
     }
     func postData() {
+        if headerTitle == "生日" {
+            let date:NSDate = datePicker!.date
+            let time:Int = Int(date.timeIntervalSince1970)
+            model.POST(model.URLStrings["profile_setting"]!,
+                parameters: [
+                    //                    "uid": user!.uid
+                    "uid": "9",
+                    "user_name": "eric",
+                    "birthday": time
+                    //                    "user_name": name,
+                    //                    "password": password
+                ],
+                success: {
+                    operation, property in
+                    println("success")
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    return
+                },
+                failure: {
+                    operation, error in
+                    println(error.userInfo)
+                    return
+                })
+
+        }
+        if headerTitle == "个人介绍"{
+            model.POST(model.URLStrings["profile_setting"]!,
+                parameters: [
+                    //                    "uid": user!.uid
+                    "uid": "9",
+                    "user_name": "eric",
+                    "signature": textView!.text
+                    //                    "user_name": name,
+                    //                    "password": password
+                ],
+                success: {
+                    operation, property in
+                    println("success")
+                     self.dismissViewControllerAnimated(true, completion: nil)
+                    return
+                },
+                failure: {
+                    operation, error in
+                    println(error.userInfo)
+                    return
+                })
+        }else if headerTitle == "其他资料"{
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+            
+        }else {
+            if textField?.text == nil {
+                return
+            }
+            model.POST(model.URLStrings["profile_setting"]!,
+                parameters: [
+//                    "uid": user!.uid
+                    "uid": "9",
+                    "user_name": textField!.text
+                    
+//                    "user_name": name,
+//                    "password": password
+                ],
+                success: {
+                    operation, property in
+                    println("success")
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    return
+                },
+                failure: {
+                    operation, error in
+                    println(error.userInfo)
+                    return
+                })
+        }
+       
     }
+    
     func turnBack() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
     func setTextView() {
         textView = UITextView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height - 57))
         textView!.autoresizingMask = UIViewAutoresizing.FlexibleHeight
@@ -77,6 +149,10 @@ class UserPostViewController :UIViewController {
         textField!.keyboardAppearance = UIKeyboardAppearance.Default
         textField!.keyboardType = UIKeyboardType.Default
         textField!.clearButtonMode = .WhileEditing
+    }
+    func setDatePicker() {
+        datePicker = UIDatePicker(frame: CGRectMake(2, 3, self.view.frame.width - 4, 100))
+        datePicker!.datePickerMode = UIDatePickerMode.Date
     }
 }
 

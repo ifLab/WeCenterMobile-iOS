@@ -10,6 +10,12 @@
 		<string>?/api/account/login_process/</string>
 		<key>Register</key>
 		<string>?/api/account/register_process/</string>
+		<key>avatar_upload</key>
+		<string>?/api/account/avatar_upload/</string>
+		<key>profile_setting</key>
+		<string>api/profile_setting.php</string>
+		<key>profile</key>
+		<string>api/profile.php</string>
 	</dict>
 </dict>
 </plist>
