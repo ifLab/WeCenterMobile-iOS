@@ -46,13 +46,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        User.clearCookies()
         User.loginWithCookieInStorage(
             success: {
-                [weak self] user in
-                self!.window!.makeKeyAndVisible()
-                self!.welcomeViewController.presentViewController(self!.mainViewController, animated: true, completion: nil)
-                println("USER HAS SUCCESSFULLY LOGGED IN WITH COOKIE IN STORAGE.")
+                user in
+                self.currentUser = user
+                println("COOKIE HAS BEEN FOUND.")
+                user.fetchUID(
+                    success: {
+                        println("USER HAS SUCCESSFULLY LOGGED IN WITH COOKIE IN STORAGE.")
+                        println("\(user.uid)")
+                        self.window!.makeKeyAndVisible()
+                        self.welcomeViewController.presentViewController(self.mainViewController, animated: true, completion: nil)
+                    },
+                    failure: {
+                        error in
+                        self.window!.makeKeyAndVisible()
+                        println("USER HAS FAILED TO LOG IN WITH COOKIE IN STORAGE.")
+                    })
             }, failure: {
-                [weak self] in
-                self!.window!.makeKeyAndVisible()
+                self.window!.makeKeyAndVisible()
                 println("USER HAS FAILED TO LOG IN WITH COOKIE IN STORAGE.")
             })
         return true

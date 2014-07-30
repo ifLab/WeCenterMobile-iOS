@@ -10,6 +10,8 @@
 		<string>?/api/account/login_process/</string>
 		<key>Register</key>
 		<string>?/api/account/register_process/</string>
+		<key>Get UID</key>
+		<string>?/api/account/get_uid/</string>
 	</dict>
 </dict>
 </plist>
