@@ -78,4 +78,20 @@ class User {
         NSUserDefaults.standardUserDefaults().synchronize()
         NSURLCache.sharedURLCache().removeAllCachedResponses()
     }
+    func fetchUID(
+        #success: (() -> Void)?,
+        failure: ((NSError) -> Void)?) {
+        model.GET(model.URLStrings["Get UID"]!,
+            parameters: nil,
+            success: {
+                operation, property in
+                self.uid = property["rsm"]["uid"].asInt()
+                success?()
+                return
+            }, failure: {
+                operation, error in
+                failure?(error)
+                return
+            })
+    }
 }
