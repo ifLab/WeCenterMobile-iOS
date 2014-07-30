@@ -14,7 +14,7 @@ class UserMainViewController: UIViewController, UITableViewDelegate, UITableView
     var mainview: UserMainView?
     var user: User?
     func items1() -> [[String]] {
-        return [["发问","回复","文章","关注","动态"]]
+        return [["发问","回复","文章"],["动态"],["查找好友"]]
     }
     
     override func viewDidLoad() {
@@ -44,7 +44,7 @@ class UserMainViewController: UIViewController, UITableViewDelegate, UITableView
         
         view.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
         view.addSubview(mainview)
-        self.tableView = UITableView(frame:CGRectMake(0, mainview!.frame.height , 320, 310) , style: UITableViewStyle.Grouped)
+        self.tableView = UITableView(frame:CGRectMake(0, mainview!.frame.height , 320, 500) , style: UITableViewStyle.Grouped)
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
         self.tableView!.scrollEnabled = false
