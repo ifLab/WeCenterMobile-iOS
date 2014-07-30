@@ -16,6 +16,8 @@ class User {
     init() {
         loggedIn = false
     }
+    
+
     class func loginWithCookieInStorage(
         #success: ((User) -> Void)?,
         failure: (() -> Void)?) {

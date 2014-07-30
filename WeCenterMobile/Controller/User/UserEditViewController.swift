@@ -8,11 +8,12 @@
 
 import UIKit
 
-class UserEditListViewController:UIViewController, UITableViewDelegate, UITableViewDataSource,UIActionSheetDelegate ,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDelegate, UITableViewDataSource,UIActionSheetDelegate ,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
     var tableView : UITableView?
     var photo :UIImageView?
     var user:User?
+    let model = Model(module: "User", bundle: NSBundle.mainBundle())
     func items1() ->Array<Array<String>>{
 //        return [["姓名","性别"],["生日"],["个人介绍"],["居住","教育","行业","工作"]]
         return [["姓名","性别"],["生日"],["个人介绍"],["行业"]]
@@ -101,11 +102,35 @@ class UserEditListViewController:UIViewController, UITableViewDelegate, UITableV
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
         picker.dismissViewControllerAnimated(true, completion: nil)
         let image = info[UIImagePickerControllerEditedImage] as UIImage
-        photo!.image = image
-        photo!.backgroundColor = UIColor.clearColor()
-        
+        postPhoto(image)
     }
     
+    func postPhoto(image:UIImage){
+        var imageData = NSData()
+        imageData = UIImageJPEGRepresentation(image, 0.5)
+        let manager = model.manager
+        manager.POST(model.URLStrings["avatar_upload"],
+            parameters: nil,
+            constructingBodyWithBlock: {
+                data in
+                
+                data.appendPartWithFileData(imageData, name: "user_avatar", fileName: "image.jpg", mimeType: "image/jpeg")
+            },
+            success: {
+                operation, response in
+                println("success")
+                self.photo!.image = image
+                self.photo!.backgroundColor = UIColor.clearColor()
+                return
+            },
+            failure: {
+                operation, error in
+                println("failure")
+                println(error.userInfo)
+                return
+            })
+        
+    }
     
     func actionSheet(actionSheet: UIActionSheet!, didDismissWithButtonIndex buttonIndex: Int) {
         
@@ -139,8 +164,10 @@ class UserEditListViewController:UIViewController, UITableViewDelegate, UITableV
             if indexPath.row == 0{
                 cell1.textLabel.text = user?.name
             }else{
-                cell1 = UserGenderCell(gender: 0)
-                cell1.selectionStyle = UITableViewCellSelectionStyle.None
+                var cell2 = UserGenderCell(gender: 1)
+                cell2.selectionStyle = UITableViewCellSelectionStyle.None
+                cell2.delegate = self
+                return cell2
             }
             break
         case 1:
@@ -192,6 +219,28 @@ class UserEditListViewController:UIViewController, UITableViewDelegate, UITableV
         //        self.navigationController.pushViewController(tableview1, animated: true)
         //        self.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    
-    
+    func GenderSellect(controller: UserGenderCell, theGender: Int) {
+//        println(theGender)
+        model.POST(model.URLStrings["profile_setting"]!,
+            parameters: [
+                //                    "uid": user!.uid
+                "uid": "9",
+                "user_name": "eric",
+                "sex": theGender
+                
+                //                    "user_name": name,
+                //                    "password": password
+            ],
+            success: {
+                operation, property in
+                println("success")
+                return
+            },
+            failure: {
+                operation, error in
+                println(error.userInfo)
+                return
+            })
+    }
+
 }

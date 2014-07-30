@@ -60,20 +60,24 @@ class UserMainView: UIView {
 //        shortIntroduction!.font = UIFont.systemFontOfSize(16)
 //        bodyView.addSubview(shortIntroduction)
         
-        topic.setTitle("我的话题", forState: .Normal)
-        topic.titleLabel.font = UIFont.systemFontOfSize(10)
-        topic.setTitleColor(UIColor.grayColor(), forState: .Normal)
-        topic.frame = CGRectMake(100, 45, 65, 65)
+//        topic.setTitle("我的话题", forState: .Normal)
+        let label = UILabel(frame: CGRectMake(0, 17, 65, 30))
+        label.text = "我的话题"
+        label.textAlignment = NSTextAlignment.Left
+        label.font = UIFont.systemFontOfSize(10)
+        label.textColor = UIColor.grayColor()
+        topic.addSubview(label)
+        topic.frame = CGRectMake(96, 45, 60, 65)
         topic.backgroundColor = UIColor.whiteColor()
         
-        topicNum = UILabel(frame: CGRectMake(12, 10, 56, 13))
+        topicNum = UILabel(frame: CGRectMake(0, 10, 56, 13))
         topicNum!.font = UIFont.systemFontOfSize(13)
         topicNum!.textColor = UIColor.darkTextColor()
-        topicNum!.text = "\(0))"
+        topicNum!.text = "0"
         topic.addSubview(topicNum)
         bodyView.addSubview(topic)
         
-        iCare.frame = CGRectMake(170, 45, 65, 65)
+        iCare.frame = CGRectMake(163, 45, 65, 65)
         iCare.setTitle("我关注的人", forState: UIControlState.Normal)
         iCare.setTitleColor(UIColor.grayColor(), forState: .Normal)
         iCare.titleLabel.font = UIFont.systemFontOfSize(10)
@@ -86,7 +90,7 @@ class UserMainView: UIView {
         iCare.addSubview(iCareNum)
         bodyView.addSubview(iCare)
         
-        careMe.frame = CGRectMake(240, 45, 65, 65)
+        careMe.frame = CGRectMake(239, 45, 65, 65)
         careMe.setTitleColor(UIColor.grayColor(), forState:  .Normal)
         careMe.setTitle("关注我的人", forState: .Normal)
         careMe.titleLabel.font = UIFont.systemFontOfSize(10)
@@ -111,7 +115,7 @@ class UserMainView: UIView {
         bodyView.addSubview(introduction)
         
         let line4 = UIView(frame: CGRectMake(0, introduction!.frame.origin.y + introduction!.frame.height + 5, 320, 1))
-        line4.backgroundColor = UIColor.grayColor()
+        line4.backgroundColor = UIColor.lightGrayColor()
         bodyView.addSubview(line4)
         
         prestige = UIImageView(frame: CGRectMake(10, line4.frame.origin.y + 9, 18, 18))
@@ -125,7 +129,7 @@ class UserMainView: UIView {
         prestigeNum!.sizeToFit()
         bodyView.addSubview(prestigeNum)
         
-        praise = UIImageView(frame: CGRectMake(prestigeNum!.frame.origin.x + prestigeNum!.frame.width + 3, line4.frame.origin.y + 9, 18, 18))
+        praise = UIImageView(frame: CGRectMake(prestigeNum!.frame.origin.x + prestigeNum!.frame.width + 21, line4.frame.origin.y + 9, 18, 18))
         praise.backgroundColor = UIColor.grayColor()
         bodyView.addSubview(praise)
         
@@ -136,7 +140,7 @@ class UserMainView: UIView {
         praiseNum!.sizeToFit()
         bodyView.addSubview(praiseNum)
         
-        like = UIImageView(frame: CGRectMake(praiseNum!.frame.origin.x + praiseNum!.frame.width + 3, line4.frame.origin.y + 9, 18, 18))
+        like = UIImageView(frame: CGRectMake(praiseNum!.frame.origin.x + praiseNum!.frame.width + 21, line4.frame.origin.y + 9, 18, 18))
         like.backgroundColor = UIColor.grayColor()
         bodyView.addSubview(like)
         
@@ -147,15 +151,15 @@ class UserMainView: UIView {
         likeNum!.sizeToFit()
         bodyView.addSubview(likeNum)
         
-        let line1 = UIView(frame: CGRectMake(96, 38, 200, 1))
-        line1.backgroundColor = UIColor.grayColor()
+        let line1 = UIView(frame: CGRectMake(96, 38, 226, 1))
+        line1.backgroundColor = UIColor.lightGrayColor()
         bodyView.addSubview(line1)
         let line2 = UIView()
-        line2.backgroundColor = UIColor.grayColor()
+        line2.backgroundColor = UIColor.lightGrayColor()
         let line3 = UIView()
-        line3.backgroundColor = UIColor.grayColor()
-        line2.frame = CGRectMake(careMe.frame.origin.x - 3, careMe.frame.origin.y, 1, 45)
-        line3.frame = CGRectMake(iCare.frame.origin.x - 3, iCare.frame.origin.y, 1, 45)
+        line3.backgroundColor = UIColor.lightGrayColor()
+        line2.frame = CGRectMake(topic.frame.origin.x + topic.frame.width , iCare.frame.origin.y, 1, 45)
+        line3.frame = CGRectMake(iCare.frame.origin.x + iCare.frame.width + 6, iCare.frame.origin.y, 1, 45)
         bodyView.addSubview(line2)
         bodyView.addSubview(line3)
         
