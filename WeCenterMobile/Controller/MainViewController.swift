@@ -12,6 +12,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     let contentViewController: Msr.UI.NavigationController
     let sidebar = Msr.UI.Sidebar(width: 200, blurEffectStyle: .Dark)
     let tableView: UITableView
+//    let model = Model(module: "User", bundle: NSBundle.mainBundle())
+
     var user: User? {
         return appDelegate.currentUser
     }
@@ -41,8 +43,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.dataSource = self
         tableView.separatorColor = UIColor.clearColor()
         tableView.separatorStyle = .SingleLineEtched
-        sidebar.contentView.addSubview(tableView)
-        tableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1), animated: false, scrollPosition: .None)
+        sidebar.contentView.addSubview(tableView)                
     }
     func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
         return 2

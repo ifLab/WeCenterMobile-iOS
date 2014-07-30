@@ -52,7 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 user.fetchUID(
                     success: {
                         println("USER HAS SUCCESSFULLY LOGGED IN WITH COOKIE IN STORAGE.")
-                        println("\(user.uid)")
                         self.window!.makeKeyAndVisible()
                         self.welcomeViewController.presentViewController(self.mainViewController, animated: true, completion: nil)
                     },

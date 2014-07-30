@@ -9,7 +9,17 @@
 import Foundation
 
 class User {
+
     var uid: Int?
+    var photoURLString:String?
+    var topicFocusCount:Int?
+    var friendCount:Int?
+    var fansCount:Int?
+    
+    var agreeCount:Int?
+    var thanksCount:Int?
+    var answerFavoriteCount:Int?
+    
     private(set) var name: String?
     private(set) var loggedIn: Bool
     let model = Model(module: "User", bundle: NSBundle.mainBundle())
@@ -77,6 +87,38 @@ class User {
         NSUserDefaults.standardUserDefaults().removeObjectForKey("Cookies")
         NSUserDefaults.standardUserDefaults().synchronize()
         NSURLCache.sharedURLCache().removeAllCachedResponses()
+    }
+    func fetchUserInformation(
+        #success: (() -> Void)?,
+        failure: ((NSError) -> Void)?) {
+        fetchUID(
+            success: {
+                self.model.GET(self.model.URLStrings["user_information"]!,
+                    parameters: ["uid": self.uid!],
+                    success: {
+                        operation, property in
+                        self.name = property["rsm"]["user_name"].asString()
+                        self.photoURLString = property["rsm"]["avatar_file"].asString()
+                        self.topicFocusCount = property["rsm"]["topic_focus_count"].asInt()
+                        self.friendCount = property["rsm"]["friend_count"].asInt()
+                        self.fansCount = property["rsm"]["fans_count"].asInt()
+                        self.agreeCount = property["rsm"]["agree_count"].asInt()
+                        self.thanksCount = property["rsm"]["thanks_count"].asInt()
+                        self.topicFocusCount = property["rsm"]["topic_focus_count"].asInt()
+                        success?()
+                        return
+                    },
+                    failure: {
+                        operation,error in
+                        failure?(error)
+                        return
+                    })
+                return
+            }, failure: {
+                error in
+                failure?(error)
+                return
+            })
     }
     func fetchUID(
         #success: (() -> Void)?,

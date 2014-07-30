@@ -55,7 +55,7 @@ class UserMainView: UIView {
         
 //        shortIntroduction = UILabel(frame: CGRectMake(name.frame.origin.x + name.frame.width , name.frame.origin.y, 300 - name.frame.origin.x - name.frame.width - 5, 20))
 //        shortIntroduction!.textColor = UIColor.blackColor()
-////        user.birthday.
+//        user.birthday.
 //        shortIntroduction!.text = ", " + user.birthday.description
 //        shortIntroduction!.font = UIFont.systemFontOfSize(16)
 //        bodyView.addSubview(shortIntroduction)

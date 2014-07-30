@@ -13,6 +13,8 @@ class UserMainViewController: UIViewController, UITableViewDelegate, UITableView
     var items: NSMutableArray?
     var mainview: UserMainView?
     var user: User?
+    let model = Model(module: "User", bundle: NSBundle.mainBundle())
+
     func items1() -> [[String]] {
         return [["发问","回复","文章"],["动态"],["查找好友"]]
     }
@@ -25,17 +27,31 @@ class UserMainViewController: UIViewController, UITableViewDelegate, UITableView
         self.items = NSMutableArray()
         // self.items?.addObject("1","2")
         // Do any additional setup after loading the view, typically from a nib.
-        
-        setupViews()
-        setupRightBarButtonItem()
-        setupLeftBarButtonItem()
-        
+        user = User()
+        user?.fetchUID(success: {
+            operation in
+            
+            self.model.GET(self.model.URLStrings["user_information"]!, parameters: ["uid":self.user!.uid!], success: {
+                operation, property in
+//                self.user!.userName = property["rsm"]["user_name"].asString()
+//                println(self.user?.userName)
+                
+                self.setupViews()
+                self.setupRightBarButtonItem()
+                self.setupLeftBarButtonItem()
+                return
+                }, failure: {
+                    operation,error in
+                    return
+                })
+            
+            return
+            }, failure: nil)
+
     }
     
     func setupViews()
     {
-        user = User()
-//        user?.fetchInformation(nil, failure: nil)
         mainview = UserMainView(frame: CGRectMake(0, 0, 320, 150), user: user!)
         view = UIScrollView(frame: self.view.frame)
         (view as UIScrollView).alwaysBounceVertical = true

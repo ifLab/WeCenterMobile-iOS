@@ -12,6 +12,8 @@
 		<string>?/api/account/register_process/</string>
 		<key>Get UID</key>
 		<string>?/api/account/get_uid/</string>
+		<key>user_information</key>
+		<string>api/user.php</string>
 		<key>avatar_upload</key>
 		<string>?/api/account/avatar_upload/</string>
 		<key>profile_setting</key>
