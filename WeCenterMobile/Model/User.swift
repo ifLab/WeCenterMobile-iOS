@@ -52,8 +52,7 @@ class User: NSManagedObject {
     }
     
     private class func fetchUserUsingNetworkByID(id: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
-        let model = Model(module: "User", bundle: NSBundle.mainBundle())
-        model.GET(model.URLStrings["Information"]!,
+        UserModel.GET(UserModel.URLStrings["Information"]!,
             parameters: ["uid": id], success: {
                 property in
                 self.fetchUserUsingCacheByID(id,
@@ -114,7 +113,6 @@ class User: NSManagedObject {
     class func loginWithCookieAndCacheInStorage(
         #success: ((User) -> Void)?,
         failure: ((NSError) -> Void)?) {
-            let model = Model(module: "User", bundle: NSBundle.mainBundle())
             let data = NSUserDefaults.standardUserDefaults().objectForKey("Cookies") as? NSData
             if !data {
                 failure?(NSError()) // Needs specification
@@ -124,7 +122,7 @@ class User: NSManagedObject {
                 for cookie in cookies {
                     storage.setCookie(cookie)
                 }
-                model.GET(model.URLStrings["Get UID"]!,
+                UserModel.GET(UserModel.URLStrings["Get UID"]!,
                     parameters: nil,
                     success: {
                         property in
@@ -141,8 +139,7 @@ class User: NSManagedObject {
         password: String,
         success: ((User) -> Void)?,
         failure: ((NSError) -> Void)?) {
-            let model = Model(module: "User", bundle: NSBundle.mainBundle())
-            model.POST(model.URLStrings["Login"]!,
+            UserModel.POST(UserModel.URLStrings["Login"]!,
                 parameters: [
                     "user_name": name,
                     "password": password
