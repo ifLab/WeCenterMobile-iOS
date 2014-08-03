@@ -1,20 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6208.6" systemVersion="14A298i" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Entity" syncable="YES"/>
-    <entity name="Topic" representedClassName="Topic" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+    <entity name="Activity" representedClassName="WeCenterMobile.Activity" syncable="YES">
+        <attribute name="addedTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="viewCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
-    <entity name="User" representedClassName="User" syncable="YES">
-        <attribute name="avatar" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="Activity_Topic" representedClassName="WeCenterMobile.Activity_Topic" syncable="YES">
+        <attribute name="activityID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="topicID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="ArticalActivity" representedClassName="WeCenterMobile.ArticalActivity" parentEntity="Activity" syncable="YES">
+        <attribute name="commentCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="QuestionActivity" representedClassName="WeCenterMobile.QuestionActivity" parentEntity="Activity" syncable="YES">
+        <attribute name="answerContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="answerCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="answerUserID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="focusCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastUpdatedTime" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="QuestionActivity_Topic" representedClassName="WeCenterMobile.QuestionActivity_Topic" syncable="YES">
+        <attribute name="questionActivityID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="topicID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Topic" representedClassName="WeCenterMobile.Topic" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="WeCenterMobile.User" syncable="YES">
+        <attribute name="agreementCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="answerCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="answerFavoriteCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="avatarURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="followerCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="followingCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="friendCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="markCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="questionCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="thankCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="topicFocusCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
+    <fetchRequest name="Activity_Topic_By_ActivityID" entity="Activity_Topic" predicateString="activityID == $ACTIVITY_ID"/>
+    <fetchRequest name="Topic_By_ID" entity="Topic" predicateString="id == $ID"/>
+    <fetchRequest name="User_By_ID" entity="User" predicateString="id == $ID"/>
     <elements>
-        <element name="Topic" positionX="-63" positionY="9" width="128" height="88"/>
-        <element name="User" positionX="-243" positionY="9" width="128" height="103"/>
-        <element name="Entity" positionX="126" positionY="11" width="128" height="43"/>
+        <element name="Activity" positionX="-227" positionY="99" width="128" height="103"/>
+        <element name="Activity_Topic" positionX="-108" positionY="189" width="128" height="75"/>
+        <element name="ArticalActivity" positionX="-63" positionY="162" width="128" height="58"/>
+        <element name="QuestionActivity" positionX="-63" positionY="-63" width="128" height="133"/>
+        <element name="Topic" positionX="117" positionY="-63" width="128" height="73"/>
+        <element name="User" positionX="-369" positionY="272" width="128" height="238"/>
+        <element name="QuestionActivity_Topic" positionX="-162" positionY="90" width="128" height="73"/>
     </elements>
 </model>

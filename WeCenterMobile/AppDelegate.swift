@@ -6,6 +6,7 @@
 //  Copyright (c) 2014年 ifLab. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import CoreData
 
@@ -44,24 +45,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mainViewController = MainViewController()
         mainViewController.modalTransitionStyle = .CrossDissolve
 //        User.clearCookies()
-        User.loginWithCookieInStorage(
+        User.loginWithCookieAndCacheInStorage(
             success: {
                 user in
                 self.currentUser = user
-                println("COOKIE HAS BEEN FOUND.")
-                user.fetchUID(
-                    success: {
-                        println("USER HAS SUCCESSFULLY LOGGED IN WITH COOKIE IN STORAGE.")
-                        println("\(user.uid)")
-                        self.window!.makeKeyAndVisible()
-                        self.welcomeViewController.presentViewController(self.mainViewController, animated: true, completion: nil)
-                    },
-                    failure: {
-                        error in
-                        self.window!.makeKeyAndVisible()
-                        println("USER HAS FAILED TO LOG IN WITH COOKIE IN STORAGE.")
-                    })
+                println("USER HAS SUCCESSFULLY LOGGED IN WITH COOKIE IN STORAGE.")
+                self.window!.makeKeyAndVisible()
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.welcomeViewController.presentViewController(self.mainViewController, animated: true, completion: nil)
+                }
             }, failure: {
+                error in
                 self.window!.makeKeyAndVisible()
                 println("USER HAS FAILED TO LOG IN WITH COOKIE IN STORAGE.")
             })
@@ -108,11 +102,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var persistentStoreCoordinator: NSPersistentStoreCoordinator {
         if !_persistentStoreCoordinator {
             let storeURL = applicationDocumentsDirectory.URLByAppendingPathComponent("WeCenterMobile.sqlite")
-            var error: NSError? = nil
-            _persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
             #if DEBUG
                 NSFileManager.defaultManager().removeItemAtURL(storeURL, error: nil)
             #endif
+            var error: NSError? = nil
+            _persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
             if _persistentStoreCoordinator!.addPersistentStoreWithType(
                 NSSQLiteStoreType,
                 configuration: nil,
@@ -122,7 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     NSInferMappingModelAutomaticallyOption: true],
                 error: &error) == nil {
                 #if DEBUG
-                    println("Unresolved error \(error), \(error!.userInfo)")
+//                    println("Unresolved error \(error!.userInfo)")
                     abort()
                 #endif
             }

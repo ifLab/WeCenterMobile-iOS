@@ -232,12 +232,12 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
                 //                    "password": password
             ],
             success: {
-                operation, property in
+                property in
                 println("success")
                 return
             },
             failure: {
-                operation, error in
+                error in
                 println(error.userInfo)
                 return
             })

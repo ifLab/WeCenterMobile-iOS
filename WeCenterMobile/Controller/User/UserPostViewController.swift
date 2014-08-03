@@ -69,13 +69,13 @@ class UserPostViewController :UIViewController {
                     //                    "password": password
                 ],
                 success: {
-                    operation, property in
+                    property in
                     println("success")
                     self.dismissViewControllerAnimated(true, completion: nil)
                     return
                 },
                 failure: {
-                    operation, error in
+                    error in
                     println(error.userInfo)
                     return
                 })
@@ -92,13 +92,13 @@ class UserPostViewController :UIViewController {
                     //                    "password": password
                 ],
                 success: {
-                    operation, property in
+                    property in
                     println("success")
                      self.dismissViewControllerAnimated(true, completion: nil)
                     return
                 },
                 failure: {
-                    operation, error in
+                    error in
                     println(error.userInfo)
                     return
                 })
@@ -119,13 +119,13 @@ class UserPostViewController :UIViewController {
 //                    "password": password
                 ],
                 success: {
-                    operation, property in
+                    property in
                     println("success")
                     self.dismissViewControllerAnimated(true, completion: nil)
                     return
                 },
                 failure: {
-                    operation, error in
+                    error in
                     println(error.userInfo)
                     return
                 })

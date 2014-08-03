@@ -30,7 +30,7 @@ class WelcomeViewController: UIViewController {
                     appDelegate.window!.rootViewController.presentViewController(appDelegate.mainViewController, animated: true, completion: nil)
                 },
                 failure: {
-                    networkError, serverError in
+                    error in
                     println("USER HAS FAILED TO LOG IN WITH NAME & PASSWORD.")
                 })
             return

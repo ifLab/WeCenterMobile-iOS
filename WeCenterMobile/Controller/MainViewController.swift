@@ -17,14 +17,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     var titles = [
         "Home",
-        "Discovery",
+        Msr.Data.LocalizedStrings(module: "Discovery", bundle: NSBundle.mainBundle())["Discovery"],
         "Favorite",
         "Bookmark",
         "Message"
     ]
     var viewControllers: [UIViewController] = [
         HomeViewController(statusBarStyle: .Default),
-        HomeViewController(statusBarStyle: .LightContent),
+        DiscoveryViewController(),
         HomeViewController(statusBarStyle: .Default),
         HomeViewController(statusBarStyle: .LightContent),
         HomeViewController(statusBarStyle: .Default)
@@ -55,28 +55,39 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        let cell = UITableViewCell(style: .Default, reuseIdentifier: "")
-        cell.textLabel.textColor = UIColor.whiteColor()
-        cell.backgroundColor = UIColor.clearColor()
-        cell.selectedBackgroundView = UIView(frame: CGRect(origin: CGPointZero, size: cell.bounds.size))
-        cell.selectedBackgroundView.backgroundColor = UIColor(white: 1, alpha: 0.1)
-        if indexPath.section == 0 {
-            cell.imageView.image = UIImage(named: "Butterfly").imageOfSize(CGSize(width: 50, height: 50))
-            cell.imageView.layer.cornerRadius = 25
-            cell.imageView.layer.masksToBounds = true
-        } else {
-            cell.textLabel.text = titles[indexPath.row]
-            cell.imageView.image = Msr.UI.RoundedRectangle(
-                color: UIColor(white: 1, alpha: 0.4),
-                size: CGSize(width: 40, height: 40),
-                cornerRadius: (20, 20, 20, 20)).image
-            cell.imageView.layer.contentsScale = UIScreen.mainScreen().scale
-            return cell
+        let identifier = "\(indexPath)"
+        var cell: UITableViewCell! = tableView.dequeueReusableCellWithIdentifier(identifier) as? UITableViewCell
+        if cell == nil {
+            cell = UITableViewCell(style: .Default, reuseIdentifier: identifier)
+            cell.textLabel.textColor = UIColor.whiteColor()
+            cell.backgroundColor = UIColor.clearColor()
+            cell.selectedBackgroundView = UIView(frame: CGRect(origin: CGPointZero, size: cell.bounds.size))
+            cell.selectedBackgroundView.backgroundColor = UIColor(white: 1, alpha: 0.1)
+            if indexPath.section == 0 {
+                cell.imageView.setImageWithURLRequest(NSURLRequest(URL: NSURL(string: appDelegate.currentUser?.avatarURL)),
+                    placeholderImage: nil,
+                    success: {
+                        request, response, image in
+                        cell.imageView.image = image
+                        cell.imageView.sizeToFit()
+                        cell.imageView.layer.cornerRadius = cell.imageView.bounds.width / 2
+                        cell.imageView.layer.masksToBounds = true
+                        self.tableView.reloadData()
+                        tableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1), animated: false, scrollPosition: .None)
+                    }, failure: nil)
+                cell.textLabel.text = appDelegate.currentUser?.name
+            } else {
+                cell.textLabel.text = titles[indexPath.row]
+                cell.imageView.image = Msr.UI.RoundedRectangle(
+                    color: UIColor(white: 1, alpha: 0.4),
+                    size: CGSize(width: 40, height: 40),
+                    cornerRadius: (20, 20, 20, 20)).image
+                return cell
+            }
         }
         return cell
     }
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         sidebar.hide(animated: true, completion: nil)
         if indexPath.section == 0 {
             contentViewController.setViewControllers([UserMainViewController()], animated: true, completion: nil)
@@ -90,6 +101,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             return 60
         }
+    }
+    func showSidebar() {
+        sidebar.show(animated: true, completion: nil)
     }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return contentViewController.preferredStatusBarStyle()
