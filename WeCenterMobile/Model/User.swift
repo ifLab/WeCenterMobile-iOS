@@ -9,6 +9,8 @@
 import Foundation
 import CoreData
 
+let UserModel = Model(module: "User", bundle: NSBundle.mainBundle())
+
 class User: NSManagedObject {
     
     @NSManaged var agreementCount: NSNumber?
@@ -25,21 +27,16 @@ class User: NSManagedObject {
     @NSManaged var thankCount: NSNumber?
     @NSManaged var topicFocusCount: NSNumber?
     
-    let model = Model(module: "User", bundle: NSBundle.mainBundle())
-    
     convenience init() {
         let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: appDelegate.managedObjectContext)
         self.init(entity: entity, insertIntoManagedObjectContext: appDelegate.managedObjectContext)
     }
     
     class func avatarURLWithURI(URI: String) -> String {
-        let model = Model(module: "User", bundle: NSBundle.mainBundle())
-        return model.URLStrings["Base"]! + model.URLStrings["Avatar Base"]! + URI
+        return UserModel.URLStrings["Base"]! + UserModel.URLStrings["Avatar Base"]! + URI
     }
     
-    class func userWithProperty(property: Msr.Data.Property) -> User {
-        let model = Model(module: "User", bundle: NSBundle.mainBundle())
-        let user = User()
+    class func parseUserWithProperty(user: User, property: Msr.Data.Property) {
         let data = property
         user.name = data["user_name"].asString()
         user.avatarURL = avatarURLWithURI(data["avatar_file"].asString())
@@ -52,7 +49,6 @@ class User: NSManagedObject {
         user.thankCount = data["thanks_count"].asInt()
         user.answerFavoriteCount = data["answer_favorite_count"].asInt()
         appDelegate.saveContext()
-        return user
     }
     
     private class func fetchUserUsingNetworkByID(id: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
@@ -60,8 +56,21 @@ class User: NSManagedObject {
         model.GET(model.URLStrings["Information"]!,
             parameters: ["uid": id], success: {
                 property in
-                let user = self.userWithProperty(property)
-                success?(user)
+                self.fetchUserUsingCacheByID(id,
+                    success: {
+                        user in
+                        self.parseUserWithProperty(user, property: property)
+                        user.id = id
+                        appDelegate.saveContext()
+                        success?(user)
+                    }, failure: {
+                        error in
+                        let user = User()
+                        self.parseUserWithProperty(user, property: property)
+                        user.id = id
+                        appDelegate.saveContext()
+                        success?(user)
+                    })
             }, failure: failure)
     }
     
@@ -124,7 +133,6 @@ class User: NSManagedObject {
                             strategy: .CacheFirst,
                             success: success, failure: failure)
                     }, failure: failure)
-                
             }
     }
     
