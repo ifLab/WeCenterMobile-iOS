@@ -36,12 +36,6 @@ class UserPostViewController :UIViewController {
             bodyView!.addSubview(textField)
             bodyView!.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
         }
-        if headerTitle == "生日" {
-            setDatePicker()
-            bodyView!.addSubview(datePicker)
-            bodyView!.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
-        }
-        
         if headerTitle == "个人介绍"{
 //            textView!.text = user?.introduction
             setTextView()
@@ -50,6 +44,13 @@ class UserPostViewController :UIViewController {
         }
         if headerTitle == "其他资料"{
             headerTitle = style
+            if headerTitle == "生日" {
+                setDatePicker()
+                println("1")
+                bodyView!.addSubview(datePicker)
+                bodyView!.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
+            }
+
             bodyView!.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
         }
         self.title = "修改" + headerTitle
@@ -151,7 +152,7 @@ class UserPostViewController :UIViewController {
         textField!.clearButtonMode = .WhileEditing
     }
     func setDatePicker() {
-        datePicker = UIDatePicker(frame: CGRectMake(2, 3, self.view.frame.width - 4, 100))
+        datePicker = UIDatePicker(frame: CGRectMake(2, self.view.frame.height * 0.2, self.view.frame.width - 4, 100))
         datePicker!.datePickerMode = UIDatePickerMode.Date
     }
 }

@@ -49,7 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             success: {
                 user in
                 self.currentUser = user
-                println("USER HAS SUCCESSFULLY LOGGED IN WITH COOKIE IN STORAGE.")
                 self.window!.makeKeyAndVisible()
                 dispatch_async(dispatch_get_main_queue()) {
                     self.welcomeViewController.presentViewController(self.mainViewController, animated: true, completion: nil)

@@ -14,14 +14,14 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
     var photo :UIImageView?
     var user:User?
     let model = Model(module: "User", bundle: NSBundle.mainBundle())
-    func items1() ->Array<Array<String>>{
+    func items1() ->Array<Array<String>> {
 //        return [["姓名","性别"],["生日"],["个人介绍"],["居住","教育","行业","工作"]]
-        return [["姓名","性别"],["生日"],["个人介绍"],["行业"]]
+        return [["姓名","性别"],["个人介绍"],["生日","行业","居住"]]
 
     }
     
     func items2() ->Array<String>{
-        return ["","生日","个人介绍","其他资料"]
+        return ["","个人介绍","其他资料"]
     }
     
     override func viewDidLoad() {
