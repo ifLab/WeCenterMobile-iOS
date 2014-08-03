@@ -1,0 +1,71 @@
+//
+//  TopicListTableViewController.swift
+//  WeCenterMobile
+//
+//  Created by Jerry Black on 14-7-15.
+//  Copyright (c) 2014年 ifLab. All rights reserved.
+//
+
+import UIKit
+
+class TopicListTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var userID = 0
+    var tableView :UITableView?
+    var topicList :Array<Topic>
+    
+    init()  {
+        topicList = []
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    class func mineTopicListTableViewController(userID : Int) -> TopicListTableViewController {
+        var instance = TopicListTableViewController()
+        instance.userID = userID
+        Topic.fetchTopicList(instance.userID,
+            success: {
+                topics in
+                instance.topicList = topics
+                instance.tableView!.reloadData()
+            }, failure: {
+                error in
+            })
+        instance.title = "我关注的话题"
+        instance.tableView = UITableView(frame:instance.view!.bounds)
+        instance.tableView!.delegate = instance
+        instance.tableView!.dataSource = instance
+        instance.view?.addSubview(instance.tableView)
+        instance.tableView!.rowHeight = CGFloat(70)
+        return instance
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+        return topicList.count
+    }
+    
+    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+        println("\(indexPath.row)")
+        let topic = topicList[indexPath.row]
+        return TopicCell(topic: topic, reuseIdentifier: "cell")
+    }
+    
+    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        println("DidSelectRowAtIndexPath \(indexPath.row)")
+        var topicID = topicList[indexPath.row].index
+        msrNavigationController.pushViewController(TopicDetailViewController(userID: 9, topicID: topicID), animated: true) { finished in }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+}

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6208.6" systemVersion="14A298i" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6208.6" systemVersion="13E28" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Activity" representedClassName="WeCenterMobile.Activity" syncable="YES">
         <attribute name="addedTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -26,8 +26,16 @@
         <attribute name="topicID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Topic" representedClassName="WeCenterMobile.Topic" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="allQuestion" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="beFocus" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="bestAnswer" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="bestAnswerer" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="fatherTopic" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="followers" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="index" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="introduct" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="topicImageURL" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="WeCenterMobile.User" syncable="YES">
         <attribute name="agreementCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -52,8 +60,8 @@
         <element name="Activity_Topic" positionX="-108" positionY="189" width="128" height="75"/>
         <element name="ArticalActivity" positionX="-63" positionY="162" width="128" height="58"/>
         <element name="QuestionActivity" positionX="-63" positionY="-63" width="128" height="133"/>
-        <element name="Topic" positionX="117" positionY="-63" width="128" height="73"/>
-        <element name="User" positionX="-369" positionY="272" width="128" height="238"/>
         <element name="QuestionActivity_Topic" positionX="-162" positionY="90" width="128" height="73"/>
+        <element name="Topic" positionX="117" positionY="-63" width="128" height="195"/>
+        <element name="User" positionX="-369" positionY="272" width="128" height="238"/>
     </elements>
 </model>

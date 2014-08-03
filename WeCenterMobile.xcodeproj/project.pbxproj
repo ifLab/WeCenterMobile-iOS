@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47E07075198E138B00DFFEF9 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E07073198E138B00DFFEF9 /* TopicCell.swift */; };
+		47E07076198E138B00DFFEF9 /* TopicDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E07074198E138B00DFFEF9 /* TopicDetailCell.swift */; };
+		47E07078198E13D400DFFEF9 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E07077198E13D400DFFEF9 /* Topic.swift */; };
+		47E0707C198E140000DFFEF9 /* TopicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0707A198E140000DFFEF9 /* TopicDetailViewController.swift */; };
+		47E0707D198E140000DFFEF9 /* TopicListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0707B198E140000DFFEF9 /* TopicListTableViewController.swift */; };
 		9563955A198D13A4002F3340 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95639559198D13A4002F3340 /* User.swift */; };
 		9563956A198D3EDF002F3340 /* ArticalActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95639569198D3EDF002F3340 /* ArticalActivity.swift */; };
-		9563956E198D3EDF002F3340 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9563956D198D3EDF002F3340 /* Topic.swift */; };
 		95639570198D3EDF002F3340 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9563956F198D3EDF002F3340 /* Activity.swift */; };
 		95639574198D4D50002F3340 /* QuestionActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95639573198D4D50002F3340 /* QuestionActivity.swift */; };
 		956E24501973D780006BB970 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956E244F1973D780006BB970 /* AppDelegate.swift */; };
@@ -81,9 +85,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		47E07073198E138B00DFFEF9 /* TopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
+		47E07074198E138B00DFFEF9 /* TopicDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicDetailCell.swift; sourceTree = "<group>"; };
+		47E07077198E13D400DFFEF9 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
+		47E0707A198E140000DFFEF9 /* TopicDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicDetailViewController.swift; sourceTree = "<group>"; };
+		47E0707B198E140000DFFEF9 /* TopicListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListTableViewController.swift; sourceTree = "<group>"; };
 		95639559198D13A4002F3340 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		95639569198D3EDF002F3340 /* ArticalActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticalActivity.swift; sourceTree = "<group>"; };
-		9563956D198D3EDF002F3340 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		9563956F198D3EDF002F3340 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		95639573198D4D50002F3340 /* QuestionActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionActivity.swift; sourceTree = "<group>"; };
 		956E244A1973D780006BB970 /* WeCenterMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeCenterMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,6 +201,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		47E07072198E138B00DFFEF9 /* Topic */ = {
+			isa = PBXGroup;
+			children = (
+				47E07073198E138B00DFFEF9 /* TopicCell.swift */,
+				47E07074198E138B00DFFEF9 /* TopicDetailCell.swift */,
+			);
+			path = Topic;
+			sourceTree = "<group>";
+		};
+		47E07079198E140000DFFEF9 /* Topic */ = {
+			isa = PBXGroup;
+			children = (
+				47E0707A198E140000DFFEF9 /* TopicDetailViewController.swift */,
+				47E0707B198E140000DFFEF9 /* TopicListTableViewController.swift */,
+			);
+			path = Topic;
+			sourceTree = "<group>";
+		};
 		956E24411973D780006BB970 = {
 			isa = PBXGroup;
 			children = (
@@ -252,8 +278,8 @@
 			children = (
 				95A81139198C0E91003E863B /* Model.swift */,
 				95639559198D13A4002F3340 /* User.swift */,
+				47E07077198E13D400DFFEF9 /* Topic.swift */,
 				9563956F198D3EDF002F3340 /* Activity.swift */,
-				9563956D198D3EDF002F3340 /* Topic.swift */,
 				95639569198D3EDF002F3340 /* ArticalActivity.swift */,
 				95639573198D4D50002F3340 /* QuestionActivity.swift */,
 				959A221F198D530E00A25406 /* QuestionActivity_Topic.swift */,
@@ -285,9 +311,10 @@
 		95A81158198C0EBA003E863B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				95A8115C198C0EBA003E863B /* Welcome */,
 				959A2221198D5C2A00A25406 /* Discovery */,
 				95A81159198C0EBA003E863B /* User */,
-				95A8115C198C0EBA003E863B /* Welcome */,
+				47E07072198E138B00DFFEF9 /* Topic */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -414,9 +441,10 @@
 			children = (
 				95A8119C198C0EBA003E863B /* HomeViewController.swift */,
 				95A8119D198C0EBA003E863B /* MainViewController.swift */,
-				95A8119E198C0EBA003E863B /* User */,
 				95A811A2198C0EBA003E863B /* Welcome */,
 				95A8119A198C0EBA003E863B /* Discovery */,
+				95A8119E198C0EBA003E863B /* User */,
+				47E07079198E140000DFFEF9 /* Topic */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -573,13 +601,17 @@
 				95A811CC198C0EBA003E863B /* UserEditViewController.swift in Sources */,
 				95A811B0198C0EBA003E863B /* AFURLSessionManager.m in Sources */,
 				95A811C4198C0EBA003E863B /* UIButton+AFNetworking.m in Sources */,
+				47E07075198E138B00DFFEF9 /* TopicCell.swift in Sources */,
 				95A811AA198C0EBA003E863B /* AFHTTPSessionManager.m in Sources */,
+				47E07078198E13D400DFFEF9 /* Topic.swift in Sources */,
 				95A811B6198C0EBA003E863B /* Namespace.swift in Sources */,
 				95A811AB198C0EBA003E863B /* AFNetworkReachabilityManager.m in Sources */,
 				95A811B2198C0EBA003E863B /* Array+Accessor.swift in Sources */,
+				47E07076198E138B00DFFEF9 /* TopicDetailCell.swift in Sources */,
 				95A811AF198C0EBA003E863B /* AFURLResponseSerialization.m in Sources */,
 				95A811CD198C0EBA003E863B /* UserMainViewController.swift in Sources */,
 				95A811B8198C0EBA003E863B /* AlertAction.swift in Sources */,
+				47E0707D198E140000DFFEF9 /* TopicListTableViewController.swift in Sources */,
 				95A811B3198C0EBA003E863B /* Localization.swift in Sources */,
 				95A811C1198C0EBA003E863B /* AFNetworkActivityIndicatorManager.m in Sources */,
 				95A811CB198C0EBA003E863B /* MainViewController.swift in Sources */,
@@ -591,7 +623,6 @@
 				95A811BD198C0EBA003E863B /* Sidebar.swift in Sources */,
 				95A811C9198C0EBA003E863B /* DiscoveryViewController.swift in Sources */,
 				95A811AD198C0EBA003E863B /* AFURLConnectionOperation.m in Sources */,
-				9563956E198D3EDF002F3340 /* Topic.swift in Sources */,
 				95A811A9198C0EBA003E863B /* AFHTTPRequestOperationManager.m in Sources */,
 				95A811A7198C0EBA003E863B /* WelcomeView.swift in Sources */,
 				95A811BE198C0EBA003E863B /* UIColor+Random.swift in Sources */,
@@ -606,6 +637,7 @@
 				95A811A6198C0EBA003E863B /* LoginView.swift in Sources */,
 				95A811C7198C0EBA003E863B /* UIRefreshControl+AFNetworking.m in Sources */,
 				95A811CF198C0EBA003E863B /* WelcomeViewController.swift in Sources */,
+				47E0707C198E140000DFFEF9 /* TopicDetailViewController.swift in Sources */,
 				95639574198D4D50002F3340 /* QuestionActivity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

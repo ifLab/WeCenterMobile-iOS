@@ -2,7 +2,7 @@
 //  Topic.swift
 //  WeCenterMobile
 //
-//  Created by Darren Liu on 14/8/2.
+//  Created by Jerry Black on 14-7-30.
 //  Copyright (c) 2014年 ifLab. All rights reserved.
 //
 
@@ -10,13 +10,80 @@ import Foundation
 import CoreData
 
 class Topic: NSManagedObject {
+    
+    let model = Model(module: "Topic", bundle: NSBundle.mainBundle())
 
-    @NSManaged var id: NSNumber
+    @NSManaged var allQuestion: NSNumber
+    @NSManaged var beFocus: NSNumber
+    @NSManaged var bestAnswer: NSNumber
+    @NSManaged var bestAnswerer: NSNumber
+    @NSManaged var fatherTopic: NSNumber
+    @NSManaged var followers: NSNumber
+    @NSManaged var index: NSNumber
+    @NSManaged var introduct: String
     @NSManaged var title: String
+    @NSManaged var topicImageURL: String
     
     convenience init() {
-        let entity = NSEntityDescription.entityForName("Topic", inManagedObjectContext: appDelegate.managedObjectContext)
-        self.init(entity: entity, insertIntoManagedObjectContext: appDelegate.managedObjectContext)
+        let entity = NSEntityDescription.entityForName("Topic",
+            inManagedObjectContext: appDelegate.managedObjectContext)
+        self.init(entity: entity,
+            insertIntoManagedObjectContext: appDelegate.managedObjectContext)
+    }
+    
+    class func parseDictionary(d: NSDictionary) -> Topic {
+        let topic = Topic()
+        topic.index = (d["topic_id"] as String).toInt()!
+        topic.title = d["topic_title"] as String
+        topic.introduct = d["topic_description"] as String
+        topic.topicImageURL = d["topic_pic"] as String
+        return topic
     }
 
+    class func fetchTopicList(userID : Int, success: (([Topic]) -> Void)?, failure: ((NSError) -> Void)?) {
+        let model = Model(module: "Topic", bundle: NSBundle.mainBundle())
+        model.GET(model.URLStrings["Get mine topic list"]!,
+            parameters: [
+                "uid" : userID,
+                "page" : 1
+            ],
+            success: {
+                property in
+                var topics = [Topic]()
+                for topicDictionary in property["rsm"]["rows"].asArray() as [NSDictionary] {
+                    topics += self.parseDictionary(topicDictionary)
+                }
+                success?(topics)
+            },
+            failure: {
+                error in
+                failure?(error)
+                return
+            })
+    }
+    
+    class func fetchTopicDetail(userID : Int, topicID : Int, success: ((Topic) -> Void)?, failure: ((NSError) -> Void)?) {
+        let model = Model(module: "Topic", bundle: NSBundle.mainBundle())
+        model.GET(model.URLStrings["Get topic"]!,
+            parameters: [
+                "uid" : userID,
+                "topic_id" : topicID
+            ],
+            success: {
+                property in
+                var topic = Topic()
+                topic.title = property["rsm"]["topic_title"].asString()
+                topic.introduct = property["rsm"]["topic_description"].asString()
+                topic.topicImageURL = property["rsm"]["topic_pic"].asString()
+                topic.beFocus = property["rsm"]["has_focus"].asBool()
+                topic.followers = property["rsm"]["focus_count"].asString().toInt()!
+                success?(topic)
+            },
+            failure: {
+                error in
+                failure?(error)
+                return
+            })
+    }
+    
 }
