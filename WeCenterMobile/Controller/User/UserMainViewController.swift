@@ -23,31 +23,14 @@ class UserMainViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         
    
-        self.title = "我的资料"
-        self.items = NSMutableArray()
+        title = "我的资料"
+        items = NSMutableArray()
         // self.items?.addObject("1","2")
         // Do any additional setup after loading the view, typically from a nib.
-        user = User()
-        user?.fetchUID(success: {
-            operation in
-            
-            self.model.GET(self.model.URLStrings["user_information"]!, parameters: ["uid":self.user!.uid!], success: {
-                operation, property in
-//                self.user!.userName = property["rsm"]["user_name"].asString()
-//                println(self.user?.userName)
-                
-                self.setupViews()
-                self.setupRightBarButtonItem()
-                self.setupLeftBarButtonItem()
-                return
-                }, failure: {
-                    operation,error in
-                    return
-                })
-            
-            return
-            }, failure: nil)
-
+        
+        setupViews()
+        setupRightBarButtonItem()
+        setupLeftBarButtonItem()
     }
     
     func setupViews()
