@@ -10,9 +10,9 @@ import UIKit
 
 class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDelegate, UITableViewDataSource,UIActionSheetDelegate ,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
-    var tableView : UITableView?
-    var photo :UIImageView?
-    var user:User?
+    var tableView :UITableView?
+    var avatarView :UIImageView?
+
     let model = Model(module: "User", bundle: NSBundle.mainBundle())
     func items1() ->Array<Array<String>> {
 //        return [["姓名","性别"],["生日"],["个人介绍"],["居住","教育","行业","工作"]]
@@ -33,6 +33,7 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
     
     func setupViews()
     {
+        
         let body = UIScrollView(frame: self.view.frame)
         body.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
         
@@ -46,12 +47,14 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
         body.sizeToFit()
         body.contentSize = CGSizeMake(self.view.frame.width, tableView!.frame.origin.y + tableView!.frame.height)
         
-        photo = UIImageView(frame: CGRectMake(UIScreen.mainScreen().bounds.width / 2 - 40, 18, 80, 80))
-        
+        avatarView = UIImageView(frame: CGRectMake(UIScreen.mainScreen().bounds.width / 2 - 40, 18, 80, 80))
+        avatarView!.setImageWithURL(NSURL(string: appDelegate.currentUser!.avatarURL))
+        avatarView!.layer.cornerRadius = avatarView!.bounds.width / 2
+        avatarView!.layer.masksToBounds = true
         var changePhoto = UIButton(frame: CGRectMake(UIScreen.mainScreen().bounds.width / 2 - 40, 18, 80, 80))
         changePhoto.addTarget(self, action: "choosePhoto", forControlEvents: UIControlEvents.TouchUpInside)
-        photo!.backgroundColor = UIColor.grayColor()
-        body.addSubview(photo)
+        avatarView!.backgroundColor = UIColor.grayColor()
+        body.addSubview(avatarView)
         body.addSubview(changePhoto)
         self.view.addSubview(body)
     }
@@ -119,8 +122,8 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
             success: {
                 operation, response in
                 println("success")
-                self.photo!.image = image
-                self.photo!.backgroundColor = UIColor.clearColor()
+                self.avatarView!.image = image
+                self.avatarView!.backgroundColor = UIColor.clearColor()
                 return
             },
             failure: {
@@ -162,7 +165,7 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
         switch indexPath.section {
         case 0:
             if indexPath.row == 0{
-                cell1.textLabel.text = user?.name
+                cell1.textLabel.text = appDelegate.currentUser!.name
             }else{
                 var cell2 = UserGenderCell(gender: 1)
                 cell2.selectionStyle = UITableViewCellSelectionStyle.None

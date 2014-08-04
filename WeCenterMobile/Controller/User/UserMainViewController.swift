@@ -10,7 +10,7 @@ import UIKit
 
 class UserMainViewController: UITableViewController {
     let titles = [
-        ["发问", "回复", "文章"],
+        ["回复","发问","文章"],
         ["动态"],
         ["查找好友"]
     ]
@@ -32,7 +32,6 @@ class UserMainViewController: UITableViewController {
     
     func rightBarButtonItemClicked() {
         var userEditView = UserEditListViewController()
-        userEditView.user = appDelegate.currentUser
         msrNavigationController.pushViewController(userEditView, animated: true) { finished in }
     }
     
@@ -64,7 +63,7 @@ class UserMainViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        let cell = UserMainCell(user: appDelegate.currentUser!, reuseIndentifer: "qqq")
+        let cell = UserMainCell(user: appDelegate.currentUser!, reuseIndentifer: "elseU")
         if indexPath.section == 0 {
             return cell.cellHeight!
         }else{
@@ -82,6 +81,18 @@ class UserMainViewController: UITableViewController {
                 cell = UITableViewCell(style: .Default, reuseIdentifier: identifier)
                 cell.textLabel.text = titles[indexPath.section - 1][indexPath.row]
                 cell.accessoryType = .DisclosureIndicator
+                if indexPath.section == 1 && indexPath.row <= 1 {
+                    let number = indexPath.row == 0 ? appDelegate.currentUser!.answerCount : appDelegate.currentUser!.questionCount
+                    var countLabel = UILabel(frame: CGRect(x: cell.frame.width - 100, y: 10, width: 67, height: 18))
+                    countLabel.text = "\(number!)"
+                    countLabel.font = UIFont.systemFontOfSize(13)
+                    countLabel.textColor = UIColor.grayColor()
+                    countLabel.textAlignment = NSTextAlignment.Right
+                    
+                    cell.addSubview(countLabel)
+                }
+               
+                
             }
         }
         return cell

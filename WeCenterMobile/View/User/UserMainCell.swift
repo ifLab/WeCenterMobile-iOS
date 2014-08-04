@@ -100,7 +100,7 @@ class UserMainCell: UITableViewCell {
         introduction.sizeToFit()
 
         
-        let line4 = UIView(frame: CGRectMake(0, introduction.frame.origin.y + introduction.frame.height + 5, 320, 1))
+        let line4 = UIView(frame: CGRectMake(0, introduction.frame.origin.y + introduction.frame.height + 5, 320, 0.6))
         line4.backgroundColor = UIColor.lightGrayColor()
         contentView.addSubview(line4)
 
@@ -132,15 +132,15 @@ class UserMainCell: UITableViewCell {
         favoriteCount.text = "\(user.answerFavoriteCount!)"
         favoriteCount.sizeToFit()
         
-        let line1 = UIView(frame: CGRectMake(96, 38, 226, 1))
+        let line1 = UIView(frame: CGRectMake(96, 38, 226, 0.6))
         line1.backgroundColor = UIColor.lightGrayColor()
         contentView.addSubview(line1)
         let line2 = UIView()
         line2.backgroundColor = UIColor.lightGrayColor()
         let line3 = UIView()
         line3.backgroundColor = UIColor.lightGrayColor()
-        line2.frame = CGRectMake(myTopicButton.frame.origin.x + myTopicButton.frame.width + 10, followingButton.frame.origin.y, 1, 45)
-        line3.frame = CGRectMake(followingButton.frame.origin.x + followingButton.frame.width + 6, followingButton.frame.origin.y, 1, 45)
+        line2.frame = CGRectMake(myTopicButton.frame.origin.x + myTopicButton.frame.width + 10, followingButton.frame.origin.y, 0.6, 45)
+        line3.frame = CGRectMake(followingButton.frame.origin.x + followingButton.frame.width + 6, followingButton.frame.origin.y, 0.6, 45)
         contentView.addSubview(line2)
         contentView.addSubview(line3)
         cellHeight = likeView.frame.origin.y + likeView.frame.height + 7
