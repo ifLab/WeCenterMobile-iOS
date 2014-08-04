@@ -56,7 +56,10 @@ class UserMainCell: UITableViewCell {
         nameLabel.frame = CGRect(x: 96, y: 15, width: 200, height: 20)
         nameLabel.font = UIFont.boldSystemFontOfSize(16)
         
-        myTopicButton.setTitle("我的话题", forState: .Normal) // UserStrings["My Topics"]
+        
+       
+        
+        myTopicButton.setTitle(UserStrings["My topics"], forState: .Normal) // UserStrings["My Topics"]
         myTopicButton.titleLabel.textAlignment = .Left
         myTopicButton.titleLabel.font = UIFont.systemFontOfSize(10)
         myTopicButton.setTitleColor(UIColor.grayColor(), forState: .Normal)
@@ -67,9 +70,9 @@ class UserMainCell: UITableViewCell {
         myTopicCountLabel.font = UIFont.systemFontOfSize(13)
         myTopicCountLabel.textColor = UIColor.darkTextColor()
         myTopicCountLabel.text = "\(user.topicFocusCount!)"
-        
+   
         followingButton.frame = CGRectMake(163, 45, 65, 65)
-        followingButton.setTitle("我关注的人", forState: .Normal)
+        followingButton.setTitle(UserStrings["I focus on"], forState: .Normal)
         followingButton.setTitleColor(UIColor.grayColor(), forState: .Normal)
         followingButton.titleLabel.font = UIFont.systemFontOfSize(10)
         followingButton.setBackgroundImage(Msr.UI.Rectangle(color: UIColor.whiteColor(), size: followingButton.bounds.size).image, forState: .Normal)
@@ -81,7 +84,7 @@ class UserMainCell: UITableViewCell {
         
         followerButton.frame = CGRect(x: 239, y: 45, width: 65, height: 65)
         followerButton.setTitleColor(UIColor.grayColor(), forState: .Normal)
-        followerButton.setTitle("关注我的人", forState: .Normal)
+        followerButton.setTitle(UserStrings["Watch me"], forState: .Normal)
         followerButton.titleLabel.font = UIFont.systemFontOfSize(10)
         followerButton.setBackgroundImage(Msr.UI.Rectangle(color: UIColor.whiteColor(), size: followerButton.bounds.size).image, forState: .Normal)
         

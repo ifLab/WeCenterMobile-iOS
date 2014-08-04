@@ -13,6 +13,10 @@ let UserModel = Model(module: "User", bundle: NSBundle.mainBundle())
 
 class User: NSManagedObject {
     
+    @NSManaged var gender: NSNumber?
+    @NSManaged var birthday: NSNumber?
+    @NSManaged var jobID: NSNumber?
+    @NSManaged var signature: String?
     @NSManaged var agreementCount: NSNumber?
     @NSManaged var answerFavoriteCount: NSNumber?
     @NSManaged var answerCount: NSNumber?
@@ -50,6 +54,21 @@ class User: NSManagedObject {
         user.answerFavoriteCount = data["answer_favorite_count"].asInt()
         appDelegate.saveContext()
     }
+
+    
+
+    class func parseUserProfileWithProperty(user: User, property: Msr.Data.Property) {
+        let data = property
+        println(property)
+        println(1)
+//        user.name = data["user_name"].asString()
+//        user.gender = data["sex"].isNull() ? 3 : data["sex"].asInt()
+//        user.birthday = data["birthday"].isNull() ? 0 : data["birthday"].asInt()
+//        user.jobID = data["job_id"].asInt()
+//        user.signature = data["signaturn"].asString()
+        appDelegate.saveContext()
+    }
+
     
     private class func fetchUserUsingNetworkByID(id: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
         UserModel.GET(UserModel.URLStrings["Information"]!,
@@ -73,6 +92,31 @@ class User: NSManagedObject {
             }, failure: failure)
     }
     
+    private class func fetchUserProfileUsingNetworkByID(id: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
+        UserModel.GET(UserModel.URLStrings["profile"]!,
+            parameters: ["uid": id], success: {
+                property in
+                self.fetchUserUsingCacheByID(id,
+                    success: {
+                        user in
+                        self.parseUserProfileWithProperty(user, property: property)
+                        user.id = id
+                        appDelegate.saveContext()
+                        success?(user)
+                    }, failure: {
+                        error in
+                        let user = User()
+                        self.parseUserProfileWithProperty(user, property: property)
+                        user.id = id
+                        appDelegate.saveContext()
+                        success?(user)
+                    })
+            }, failure: failure)
+    }
+
+    
+
+    
     private class func fetchUserUsingCacheByID(id: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
         let request = appDelegate.managedObjectModel.fetchRequestFromTemplateWithName("User_By_ID",
             substitutionVariables: [
@@ -86,6 +130,8 @@ class User: NSManagedObject {
             failure?(error != nil ? error! : NSError()) // Needs specification
         }
     }
+ 
+
     
     class func fetchUserByID(id: NSNumber, strategy: Model.Strategy, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
         switch strategy {
@@ -94,17 +140,27 @@ class User: NSManagedObject {
             break
         case .NetworkOnly:
             fetchUserUsingNetworkByID(id, success: success, failure: failure)
+            fetchUserProfileUsingNetworkByID(id, success: nil  , failure: nil)
             break
         case .CacheFirst:
             fetchUserUsingCacheByID(id, success: success, failure: {
                 error in
                 self.fetchUserUsingNetworkByID(id, success: success, failure: failure)
-            })
+                self.fetchUserProfileUsingNetworkByID(id, success: nil, failure: nil)
+                })
         case .NetworkFirst:
-            fetchUserUsingNetworkByID(id, success: success, failure: {
+            fetchUserUsingNetworkByID(id, success: {
+                user in
+                self.fetchUserProfileUsingNetworkByID(id, success: nil, failure: {
+                    error in
+                    self.fetchUserUsingCacheByID(id, success: success, failure: failure)
+                    })
+                success
+                return
+                }, failure: {
                 error in
                 self.fetchUserUsingCacheByID(id, success: success, failure: failure)
-            })
+                })
         default:
             break
         }

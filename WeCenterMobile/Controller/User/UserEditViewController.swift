@@ -16,18 +16,18 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
     let model = Model(module: "User", bundle: NSBundle.mainBundle())
     func items1() ->Array<Array<String>> {
 //        return [["姓名","性别"],["生日"],["个人介绍"],["居住","教育","行业","工作"]]
-        return [["姓名","性别"],["个人介绍"],["生日"]]
+        return [[UserStrings["Name"],UserStrings["Gender"]],[UserStrings["Introduction"]],[UserStrings["Birthday"]]]
 
     }
     
     func items2() ->Array<String>{
-        return ["","个人介绍","其他资料"]
+        return ["",UserStrings["Introduction"],UserStrings["Other information"]]
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "修改个人资料"
+        self.title = UserStrings["Modify Information"]
         setupViews()
     }
     
@@ -59,10 +59,10 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
         self.view.addSubview(body)
     }
     func choosePhoto(){
-        let title = "选择";
-        let cancel = "取消";
-        let button1 = "拍照";
-        let button2 = "相册";
+        let title = UserStrings["Select"];
+        let cancel = UserStrings["Cancel"];
+        let button1 = UserStrings["Pictures"];
+        let button2 = UserStrings["Album"];
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             let sheet = UIActionSheet(title: title, delegate: self, cancelButtonTitle: cancel, destructiveButtonTitle: nil, otherButtonTitles:button1, button2)
             sheet.showInView(self.view)
@@ -174,10 +174,10 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
             }
             break
         case 1:
-            cell1.textLabel.text = ""
+            cell1.textLabel.text = "1" //appDelegate.currentUser!.signature!
             break
         case 2:
-            cell1.textLabel.text = ""
+            cell1.textLabel.text = NSDate(timeIntervalSince1970: appDelegate.currentUser!.birthday!).description
             break
         case 3:
             
@@ -227,8 +227,8 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
         model.POST(model.URLStrings["profile_setting"]!,
             parameters: [
                 //                    "uid": user!.uid
-                "uid": "9",
-                "user_name": "eric",
+                "uid": appDelegate.currentUser!.id,
+                "user_name": appDelegate.currentUser!.name!,
                 "sex": theGender
                 
                 //                    "user_name": name,

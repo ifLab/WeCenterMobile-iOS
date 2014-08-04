@@ -1,0 +1,58 @@
+/* 
+  User.strings
+  WeCenterMobile
+
+  Created by EricLee on 14-8-4.
+  Copyright (c) 2014年 ifLab. All rights reserved.
+*/
+//Edit
+"Edit" = "编辑";
+
+//My topic button title
+"My topics" = "我的话题";
+
+//Following button title
+"I focus on" = "我关注的人";
+
+//Follower button title
+"Watch me" = "关注我的人";
+
+//Gender
+"male" = "男";
+"female" = "女";
+"secret" = "秘密";
+
+//Cell title
+"Reply" = "回复";
+"Ask" = "发问";
+"Article" = "文章";
+"Dynamic" = "动态";
+"Find Friends" = "查找好友";
+
+//UserMainViewController title
+"My Profile" = "我的资料";
+
+//User profile
+"Name" = "姓名";
+"Gender" = "性别";
+"Introduction" = "个人介绍";
+"Birthday" = "生日";
+"Other information" = "其他资料";
+
+//UserEditListViewController title
+"Modify Information" = "修改个人资料";
+
+//Take photo selecton
+"Select" = "选择";
+"Pictures" = "拍照";
+"Album" = "相册";
+
+//Publish button title
+"Publish" = "发布";
+
+//Cancel button title
+"Cancel" = "取消";
+
+//Modify
+"Modify" = "修改";
+
