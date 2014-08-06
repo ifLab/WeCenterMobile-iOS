@@ -10,29 +10,30 @@ import UIKit
 
 class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDelegate, UITableViewDataSource,UIActionSheetDelegate ,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
-    var tableView : UITableView?
-    var photo :UIImageView?
-    var user:User?
+    var tableView :UITableView?
+    var avatarView :UIImageView?
+
     let model = Model(module: "User", bundle: NSBundle.mainBundle())
     func items1() ->Array<Array<String>> {
 //        return [["姓名","性别"],["生日"],["个人介绍"],["居住","教育","行业","工作"]]
-        return [["姓名","性别"],["个人介绍"],["生日","行业","居住"]]
+        return [[UserStrings["Name"],UserStrings["Gender"]],[UserStrings["Introduction"]],[UserStrings["Birthday"]]]
 
     }
     
     func items2() ->Array<String>{
-        return ["","个人介绍","其他资料"]
+        return ["",UserStrings["Introduction"],UserStrings["Other information"]]
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "修改个人资料"
+        self.title = UserStrings["Modify Information"]
         setupViews()
     }
     
     func setupViews()
     {
+        
         let body = UIScrollView(frame: self.view.frame)
         body.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
         
@@ -46,20 +47,22 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
         body.sizeToFit()
         body.contentSize = CGSizeMake(self.view.frame.width, tableView!.frame.origin.y + tableView!.frame.height)
         
-        photo = UIImageView(frame: CGRectMake(UIScreen.mainScreen().bounds.width / 2 - 40, 18, 80, 80))
-        
+        avatarView = UIImageView(frame: CGRectMake(UIScreen.mainScreen().bounds.width / 2 - 40, 18, 80, 80))
+        avatarView!.setImageWithURL(NSURL(string: appDelegate.currentUser!.avatarURL))
+        avatarView!.layer.cornerRadius = avatarView!.bounds.width / 2
+        avatarView!.layer.masksToBounds = true
         var changePhoto = UIButton(frame: CGRectMake(UIScreen.mainScreen().bounds.width / 2 - 40, 18, 80, 80))
         changePhoto.addTarget(self, action: "choosePhoto", forControlEvents: UIControlEvents.TouchUpInside)
-        photo!.backgroundColor = UIColor.grayColor()
-        body.addSubview(photo)
+        avatarView!.backgroundColor = UIColor.grayColor()
+        body.addSubview(avatarView)
         body.addSubview(changePhoto)
         self.view.addSubview(body)
     }
     func choosePhoto(){
-        let title = "选择";
-        let cancel = "取消";
-        let button1 = "拍照";
-        let button2 = "相册";
+        let title = UserStrings["Select"];
+        let cancel = UserStrings["Cancel"];
+        let button1 = UserStrings["Pictures"];
+        let button2 = UserStrings["Album"];
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             let sheet = UIActionSheet(title: title, delegate: self, cancelButtonTitle: cancel, destructiveButtonTitle: nil, otherButtonTitles:button1, button2)
             sheet.showInView(self.view)
@@ -119,8 +122,8 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
             success: {
                 operation, response in
                 println("success")
-                self.photo!.image = image
-                self.photo!.backgroundColor = UIColor.clearColor()
+                self.avatarView!.image = image
+                self.avatarView!.backgroundColor = UIColor.clearColor()
                 return
             },
             failure: {
@@ -162,7 +165,7 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
         switch indexPath.section {
         case 0:
             if indexPath.row == 0{
-                cell1.textLabel.text = user?.name
+                cell1.textLabel.text = appDelegate.currentUser!.name
             }else{
                 var cell2 = UserGenderCell(gender: 1)
                 cell2.selectionStyle = UITableViewCellSelectionStyle.None
@@ -171,10 +174,10 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
             }
             break
         case 1:
-            cell1.textLabel.text = ""
+            cell1.textLabel.text = "1" //appDelegate.currentUser!.signature!
             break
         case 2:
-            cell1.textLabel.text = ""
+            cell1.textLabel.text = NSDate(timeIntervalSince1970: appDelegate.currentUser!.birthday!).description
             break
         case 3:
             
@@ -224,8 +227,8 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
         model.POST(model.URLStrings["profile_setting"]!,
             parameters: [
                 //                    "uid": user!.uid
-                "uid": "9",
-                "user_name": "eric",
+                "uid": appDelegate.currentUser!.id,
+                "user_name": appDelegate.currentUser!.name!,
                 "sex": theGender
                 
                 //                    "user_name": name,

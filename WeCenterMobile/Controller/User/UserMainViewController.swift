@@ -8,80 +8,34 @@
 
 import UIKit
 
-class UserMainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var tableView: UITableView?
-    var items: NSMutableArray?
-    var mainview: UserMainView?
-    var user: User?
-    let model = Model(module: "User", bundle: NSBundle.mainBundle())
-
-    func items1() -> [[String]] {
-        return [["发问","回复","文章"],["动态"],["查找好友"]]
-    }
+class UserMainViewController: UITableViewController {
+    let titles = [
+        [UserStrings["Reply"],UserStrings["Ask"],UserStrings["Article"]],
+        [UserStrings["Dynamic"]],
+        [UserStrings["Find Friends"]]
+    ]
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-   
-        title = "我的资料"
-        items = NSMutableArray()
-        // self.items?.addObject("1","2")
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        setupViews()
-        setupRightBarButtonItem()
-        setupLeftBarButtonItem()
-    }
-    
-    func setupViews()
-    {
-        mainview = UserMainView(frame: CGRectMake(0, 0, 320, 150), user: user!)
-        view = UIScrollView(frame: self.view.frame)
-        (view as UIScrollView).alwaysBounceVertical = true
-        mainview!.sizeToFit()
-        mainview!.frame = CGRectMake(0, 0, mainview!.frame.width, mainview!.like.frame.origin.y + mainview!.like.frame.height + 10)
-        
-        view.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
-        view.addSubview(mainview)
-        self.tableView = UITableView(frame:CGRectMake(0, mainview!.frame.height , 320, 500) , style: UITableViewStyle.Grouped)
-        self.tableView!.delegate = self
-        self.tableView!.dataSource = self
-        self.tableView!.scrollEnabled = false
-        self.tableView!.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        view.addSubview(self.tableView)
-        view.sizeToFit()
-        self.mainview?.topic.addTarget(self, action: "pushTableView", forControlEvents: UIControlEvents.TouchUpInside)
-        self.mainview?.careMe.addTarget(self, action: "pushTableView", forControlEvents: UIControlEvents.TouchUpInside)
-        self.mainview?.iCare.addTarget(self, action: "pushTableView", forControlEvents: UIControlEvents.TouchUpInside)
-    }
-    
-    func setupLeftBarButtonItem()
-    {
+    convenience init() {
+        self.init(style: .Grouped)
+        title = UserStrings["My Profile"]
+        tableView.contentInset = UIEdgeInsets(top: -35, left: 0, bottom: 0, right: 0)
         var leftBarButton = UIBarButtonItem(image: UIImage(named: "Category"), style: UIBarButtonItemStyle.Plain, target: self, action:"leftBarButtonItemClicked" )
-//        var leftBarButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: self, action: "leftBarButtonItemClicked" )
         self.navigationItem!.leftBarButtonItem = leftBarButton
-    }
-    
-    func setupRightBarButtonItem()
-    {
-        var rightBarButton = UIBarButtonItem(title: "编辑", style: UIBarButtonItemStyle.Plain, target: self, action: "rightBarButtonItemClicked" )
+        var rightBarButton = UIBarButtonItem(title: UserStrings["Edit"], style: UIBarButtonItemStyle.Plain, target: self, action: "rightBarButtonItemClicked" )
         self.navigationItem!.rightBarButtonItem = rightBarButton
     }
     
-    func pushTableView(){
+    func pushTableView() {
         let tableview1 = UITableViewController()
         msrNavigationController.pushViewController(tableview1, animated: true) { finished in }
     }
     
-    func rightBarButtonItemClicked()
-    {
+    func rightBarButtonItemClicked() {
         var userEditView = UserEditListViewController()
-        userEditView.user = user
         msrNavigationController.pushViewController(userEditView, animated: true) { finished in }
     }
     
-    func leftBarButtonItemClicked()
-    {
+    func leftBarButtonItemClicked() {
         var sidebar = appDelegate.mainViewController.sidebar
         sidebar.toggleShow(animated: true, completion: nil)
     }
@@ -92,34 +46,66 @@ class UserMainViewController: UIViewController, UITableViewDelegate, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int
-    {
-        return items1()[section].count
+    override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        } else {
+            return titles[section - 1].count
+        }
     }
     
-    
-    func numberOfSectionsInTableView(tableView: UITableView!) -> Int{
-        
-        return items1().count
+    override func tableView(tableView: UITableView!, shouldHighlightRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
+        return indexPath.section != 0
     }
     
+    override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+        return titles.count + 1
+    }
     
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!
-    {
-        let cell = tableView .dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
-        cell.textLabel.text =  items1()[indexPath.section][indexPath.row]
-        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+    override func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        let cell = UserMainCell(user: appDelegate.currentUser!, reuseIndentifer: "elseU")
+        if indexPath.section == 0 {
+            return cell.cellHeight!
+        }else{
+            return  40
+        }
+    }
+    
+    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+        let identifier = "\(indexPath)"
+        var cell: UITableViewCell! = tableView.dequeueReusableCellWithIdentifier(identifier) as? UITableViewCell
+        if cell == nil {
+            if indexPath.section == 0 {
+                return UserMainCell(user: appDelegate.currentUser!, reuseIndentifer: identifier) // Needs specification
+            } else {
+                cell = UITableViewCell(style: .Default, reuseIdentifier: identifier)
+                cell.textLabel.text = titles[indexPath.section - 1][indexPath.row]
+                cell.accessoryType = .DisclosureIndicator
+                if indexPath.section == 1 && indexPath.row <= 1 {
+                    let number = indexPath.row == 0 ? appDelegate.currentUser!.answerCount : appDelegate.currentUser!.questionCount
+                    var countLabel = UILabel(frame: CGRect(x: cell.frame.width - 100, y: 10, width: 67, height: 18))
+                    countLabel.text = "\(number!)"
+                    countLabel.font = UIFont.systemFontOfSize(13)
+                    countLabel.textColor = UIColor.grayColor()
+                    countLabel.textAlignment = NSTextAlignment.Right
+                    
+                    cell.addSubview(countLabel)
+                }
+               
+                
+            }
+        }
         return cell
     }
     
-    
-    
-    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
-    {
+    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         let tableview1 = UITableViewController()
         msrNavigationController.pushViewController(tableview1, animated: true) { finished in }
         self.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
     
 }

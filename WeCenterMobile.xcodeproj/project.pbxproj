@@ -31,7 +31,7 @@
 		95A81156198C0EA4003E863B /* User.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95A8114F198C0EA4003E863B /* User.plist */; };
 		95A81157198C0EA4003E863B /* Welcome.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95A81150198C0EA4003E863B /* Welcome.plist */; };
 		95A811A4198C0EBA003E863B /* UserGenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A8115A198C0EBA003E863B /* UserGenderCell.swift */; };
-		95A811A5198C0EBA003E863B /* UserMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A8115B198C0EBA003E863B /* UserMainView.swift */; };
+		95A811A5198C0EBA003E863B /* UserMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A8115B198C0EBA003E863B /* UserMainCell.swift */; };
 		95A811A6198C0EBA003E863B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A8115D198C0EBA003E863B /* LoginView.swift */; };
 		95A811A7198C0EBA003E863B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A8115E198C0EBA003E863B /* WelcomeView.swift */; };
 		95A811A8198C0EBA003E863B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A81162198C0EBA003E863B /* AFHTTPRequestOperation.m */; };
@@ -73,6 +73,8 @@
 		95A811CD198C0EBA003E863B /* UserMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A811A0198C0EBA003E863B /* UserMainViewController.swift */; };
 		95A811CE198C0EBA003E863B /* UserPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A811A1198C0EBA003E863B /* UserPostViewController.swift */; };
 		95A811CF198C0EBA003E863B /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A811A3198C0EBA003E863B /* WelcomeViewController.swift */; };
+		BEC5C4F4198F74D2002A79FF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5C4F3198F74D2002A79FF /* User.swift */; };
+		BEC5C4F7198FA0D9002A79FF /* User.strings in Resources */ = {isa = PBXBuildFile; fileRef = BEC5C4F9198FA0D9002A79FF /* User.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,7 +120,7 @@
 		95A8114F198C0EA4003E863B /* User.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = User.plist; sourceTree = "<group>"; };
 		95A81150198C0EA4003E863B /* Welcome.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Welcome.plist; sourceTree = "<group>"; };
 		95A8115A198C0EBA003E863B /* UserGenderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGenderCell.swift; sourceTree = "<group>"; };
-		95A8115B198C0EBA003E863B /* UserMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMainView.swift; sourceTree = "<group>"; };
+		95A8115B198C0EBA003E863B /* UserMainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMainCell.swift; sourceTree = "<group>"; };
 		95A8115D198C0EBA003E863B /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		95A8115E198C0EBA003E863B /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		95A81161198C0EBA003E863B /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -183,6 +185,9 @@
 		95E8502F197CF5F000064FF0 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		95F0BFFA19743CDD0018928B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		95F0BFFB19743CDD0018928B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		BEC5C4F3198F74D2002A79FF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BEC5C4F8198FA0D9002A79FF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/User.strings; sourceTree = "<group>"; };
+		BEC5C4FA198FA0DC002A79FF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/User.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,6 +283,7 @@
 		95A81137198C0E91003E863B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BEC5C4F3198F74D2002A79FF /* User.swift */,
 				95A81139198C0E91003E863B /* Model.swift */,
 				95639559198D13A4002F3340 /* User.swift */,
 				47E07077198E13D400DFFEF9 /* Topic.swift */,
@@ -294,6 +300,7 @@
 			children = (
 				95A81143198C0EA4003E863B /* Discovery.strings */,
 				95A81145198C0EA4003E863B /* Welcome.strings */,
+				BEC5C4F9198FA0D9002A79FF /* User.strings */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -326,7 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				95A8115A198C0EBA003E863B /* UserGenderCell.swift */,
-				95A8115B198C0EBA003E863B /* UserMainView.swift */,
+				95A8115B198C0EBA003E863B /* UserMainCell.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -463,8 +470,8 @@
 		95A8119E198C0EBA003E863B /* User */ = {
 			isa = PBXGroup;
 			children = (
-				95A8119F198C0EBA003E863B /* UserEditViewController.swift */,
 				95A811A0198C0EBA003E863B /* UserMainViewController.swift */,
+				95A8119F198C0EBA003E863B /* UserEditViewController.swift */,
 				95A811A1198C0EBA003E863B /* UserPostViewController.swift */,
 			);
 			path = User;
@@ -619,7 +626,6 @@
 				95A811B3198C0EBA003E863B /* Localization.swift in Sources */,
 				95A811C1198C0EBA003E863B /* AFNetworkActivityIndicatorManager.m in Sources */,
 				95A811CB198C0EBA003E863B /* MainViewController.swift in Sources */,
-				9563955A198D13A4002F3340 /* User.swift in Sources */,
 				95A811AE198C0EBA003E863B /* AFURLRequestSerialization.m in Sources */,
 				95A811C6198C0EBA003E863B /* UIProgressView+AFNetworking.m in Sources */,
 				95639570198D3EDF002F3340 /* Activity.swift in Sources */,
@@ -630,11 +636,12 @@
 				95A811A9198C0EBA003E863B /* AFHTTPRequestOperationManager.m in Sources */,
 				95A811A7198C0EBA003E863B /* WelcomeView.swift in Sources */,
 				95A811BE198C0EBA003E863B /* UIColor+Random.swift in Sources */,
-				95A811A5198C0EBA003E863B /* UserMainView.swift in Sources */,
+				95A811A5198C0EBA003E863B /* UserMainCell.swift in Sources */,
 				95A811C3198C0EBA003E863B /* UIAlertView+AFNetworking.m in Sources */,
 				95A811BF198C0EBA003E863B /* UIImage+Resize.swift in Sources */,
 				95A811AC198C0EBA003E863B /* AFSecurityPolicy.m in Sources */,
 				95A811BC198C0EBA003E863B /* Shape.swift in Sources */,
+				BEC5C4F4198F74D2002A79FF /* User.swift in Sources */,
 				956E24501973D780006BB970 /* AppDelegate.swift in Sources */,
 				95A811BB198C0EBA003E863B /* Rectangle.swift in Sources */,
 				95A811C8198C0EBA003E863B /* UIWebView+AFNetworking.m in Sources */,
@@ -682,6 +689,15 @@
 				95A8114A198C0EA4003E863B /* zh-Hant */,
 			);
 			name = Welcome.strings;
+			sourceTree = "<group>";
+		};
+		BEC5C4F9198FA0D9002A79FF /* User.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BEC5C4F8198FA0D9002A79FF /* en */,
+				BEC5C4FA198FA0DC002A79FF /* zh-Hans */,
+			);
+			name = User.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

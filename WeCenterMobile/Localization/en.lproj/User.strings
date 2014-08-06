@@ -1,0 +1,53 @@
+/* 
+  User.strings
+  WeCenterMobile
+
+  Created by EricLee on 14-8-4.
+  Copyright (c) 2014年 ifLab. All rights reserved.
+*/
+
+//Edit
+"Edit" = "Edit";
+
+//My topic button title
+"My topics" = "My topics";
+
+//Following button title
+"I focus on" = "I focus on";
+
+//Follower button title
+"Watch me" = "Watch me";
+
+//Gender
+"male" = "male";
+"female" = "female";
+"secret" = "Secret";
+
+//Cell title
+"Reply" = "Reply";
+"Ask" = "Ask";
+"Article" = "Article";
+"Dynamic" = "Dynamic";
+"Find Friends" = "Find Friends";
+
+//UserMainViewController title
+"My Profile" = "My Profile";
+
+//User profile
+"Name" = "Name";
+"Gender" = "Gender";
+"Introduction" = "Introduction";
+"Birthday" = "Birthday";
+"Other information" = "Other information";
+
+//UserEditListViewController title
+"Modify Information" = "Modify Information";
+
+//Take photo selecton
+"Select" = "Select";
+"Cancel" = "Cancel";
+"Pictures" = "Pictures";
+"Album" = "Album";
+
+//Modify
+"Modify" = "Modify";
