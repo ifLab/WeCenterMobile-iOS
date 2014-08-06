@@ -13,7 +13,6 @@
 		47E0707C198E140000DFFEF9 /* TopicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0707A198E140000DFFEF9 /* TopicDetailViewController.swift */; };
 		47E0707D198E140000DFFEF9 /* TopicListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0707B198E140000DFFEF9 /* TopicListTableViewController.swift */; };
 		47E0707F198E220900DFFEF9 /* Topic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47E0707E198E220900DFFEF9 /* Topic.plist */; };
-		9563955A198D13A4002F3340 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95639559198D13A4002F3340 /* User.swift */; };
 		9563956A198D3EDF002F3340 /* ArticalActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95639569198D3EDF002F3340 /* ArticalActivity.swift */; };
 		95639570198D3EDF002F3340 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9563956F198D3EDF002F3340 /* Activity.swift */; };
 		95639574198D4D50002F3340 /* QuestionActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95639573198D4D50002F3340 /* QuestionActivity.swift */; };
@@ -22,6 +21,7 @@
 		956E245A1973D780006BB970 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 956E24591973D780006BB970 /* Images.xcassets */; };
 		959A2220198D530E00A25406 /* QuestionActivity_Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A221F198D530E00A25406 /* QuestionActivity_Topic.swift */; };
 		959A2223198D5C4100A25406 /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A2222198D5C4100A25406 /* ActivityCell.swift */; };
+		95A32EB9199222FC00E7BDE9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95A32EB7199222FC00E7BDE9 /* Info.plist */; };
 		95A8113E198C0E91003E863B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A81139198C0E91003E863B /* Model.swift */; };
 		95A81151198C0EA4003E863B /* Discovery.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95A81143198C0EA4003E863B /* Discovery.strings */; };
 		95A81152198C0EA4003E863B /* Welcome.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95A81145198C0EA4003E863B /* Welcome.strings */; };
@@ -74,7 +74,6 @@
 		95A811CE198C0EBA003E863B /* UserPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A811A1198C0EBA003E863B /* UserPostViewController.swift */; };
 		95A811CF198C0EBA003E863B /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A811A3198C0EBA003E863B /* WelcomeViewController.swift */; };
 		BEC5C4F4198F74D2002A79FF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5C4F3198F74D2002A79FF /* User.swift */; };
-		BEC5C4F7198FA0D9002A79FF /* User.strings in Resources */ = {isa = PBXBuildFile; fileRef = BEC5C4F9198FA0D9002A79FF /* User.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,15 +97,17 @@
 		95639569198D3EDF002F3340 /* ArticalActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticalActivity.swift; sourceTree = "<group>"; };
 		9563956F198D3EDF002F3340 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		95639573198D4D50002F3340 /* QuestionActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionActivity.swift; sourceTree = "<group>"; };
-		956E244A1973D780006BB970 /* WeCenterMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeCenterMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		956E244E1973D780006BB970 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		956E244F1973D780006BB970 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		956E24521973D780006BB970 /* WeCenterMobile.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeCenterMobile.xcdatamodel; sourceTree = "<group>"; };
 		956E24591973D780006BB970 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		956E245F1973D780006BB970 /* WeCenterMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeCenterMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		956E246F1973D7BB006BB970 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
+		9589BC7F1992208600C3836C /* WeCenterMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeCenterMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		959A221F198D530E00A25406 /* QuestionActivity_Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionActivity_Topic.swift; sourceTree = "<group>"; };
 		959A2222198D5C4100A25406 /* ActivityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
+		95A32E871992223300E7BDE9 /* WeCenterMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeCenterMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		95A32EB7199222FC00E7BDE9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95A32EB8199222FC00E7BDE9 /* WeCenterMobileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeCenterMobileTests.swift; sourceTree = "<group>"; };
 		95A81139198C0E91003E863B /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		95A81144198C0EA4003E863B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Discovery.strings; sourceTree = "<group>"; };
 		95A81146198C0EA4003E863B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Welcome.strings; sourceTree = "<group>"; };
@@ -230,17 +231,9 @@
 			isa = PBXGroup;
 			children = (
 				956E244C1973D780006BB970 /* WeCenterMobile */,
-				956E244B1973D780006BB970 /* Products */,
+				95A32EB6199222FC00E7BDE9 /* WeCenterMobileTests */,
+				9589BC811992209500C3836C /* Product */,
 			);
-			sourceTree = "<group>";
-		};
-		956E244B1973D780006BB970 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				956E244A1973D780006BB970 /* WeCenterMobile.app */,
-				956E245F1973D780006BB970 /* WeCenterMobileTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		956E244C1973D780006BB970 /* WeCenterMobile */ = {
@@ -272,12 +265,38 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9589BC811992209500C3836C /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				9589BC7F1992208600C3836C /* WeCenterMobile.app */,
+				95A32E871992223300E7BDE9 /* WeCenterMobileTests.xctest */,
+			);
+			name = Product;
+			sourceTree = "<group>";
+		};
 		959A2221198D5C2A00A25406 /* Discovery */ = {
 			isa = PBXGroup;
 			children = (
 				959A2222198D5C4100A25406 /* ActivityCell.swift */,
 			);
 			path = Discovery;
+			sourceTree = "<group>";
+		};
+		95A32EB6199222FC00E7BDE9 /* WeCenterMobileTests */ = {
+			isa = PBXGroup;
+			children = (
+				95A32EBB1992233200E7BDE9 /* Supporting Files */,
+				95A32EB8199222FC00E7BDE9 /* WeCenterMobileTests.swift */,
+			);
+			path = WeCenterMobileTests;
+			sourceTree = "<group>";
+		};
+		95A32EBB1992233200E7BDE9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				95A32EB7199222FC00E7BDE9 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		95A81137198C0E91003E863B /* Model */ = {
@@ -502,7 +521,7 @@
 			);
 			name = WeCenterMobile;
 			productName = WeCenterMobile;
-			productReference = 956E244A1973D780006BB970 /* WeCenterMobile.app */;
+			productReference = 9589BC7F1992208600C3836C /* WeCenterMobile.app */;
 			productType = "com.apple.product-type.application";
 		};
 		956E245E1973D780006BB970 /* WeCenterMobileTests */ = {
@@ -520,7 +539,7 @@
 			);
 			name = WeCenterMobileTests;
 			productName = WeCenterMobileTests;
-			productReference = 956E245F1973D780006BB970 /* WeCenterMobileTests.xctest */;
+			productReference = 95A32E871992223300E7BDE9 /* WeCenterMobileTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -552,7 +571,7 @@
 				"zh-Hant",
 			);
 			mainGroup = 956E24411973D780006BB970;
-			productRefGroup = 956E244B1973D780006BB970 /* Products */;
+			productRefGroup = 956E24411973D780006BB970;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -575,6 +594,7 @@
 				95A81156198C0EA4003E863B /* User.plist in Resources */,
 				95A81153198C0EA4003E863B /* Answer.plist in Resources */,
 				95A81152198C0EA4003E863B /* Welcome.strings in Resources */,
+				95A32EB9199222FC00E7BDE9 /* Info.plist in Resources */,
 				95A811B1198C0EBA003E863B /* .gitignore in Resources */,
 				956E245A1973D780006BB970 /* Images.xcassets in Resources */,
 				47E0707F198E220900DFFEF9 /* Topic.plist in Resources */,

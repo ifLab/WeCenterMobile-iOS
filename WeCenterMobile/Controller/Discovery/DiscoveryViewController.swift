@@ -12,10 +12,16 @@ class DiscoveryViewController: UITableViewController {
     let model = Model(module: "Discovery", bundle: NSBundle.mainBundle())
     let strings = Msr.Data.LocalizedStrings(module: "Discovery", bundle: NSBundle.mainBundle())
     var activityList = [Activity]()
-    convenience init() {
-        self.init(style: .Plain)
+    override init() {
+        super.init(style: .Plain)
         title = strings["Discovery"]
         tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+    }
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    required init(coder aDecoder: NSCoder!) {
+        super.init(coder: aDecoder)
     }
     override func viewDidLoad() {
         Activity.fetchActivityList(

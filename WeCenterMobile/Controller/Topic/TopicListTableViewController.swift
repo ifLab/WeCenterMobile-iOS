@@ -10,13 +10,18 @@ import UIKit
 
 class TopicListTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var user : User?
-    var tableView :UITableView?
-    var topicList :Array<Topic>
+    var user: User?
+    var tableView: UITableView?
+    var topicList: [Topic]
     
-    init()  {
+    override init()  {
         topicList = []
         super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init(coder aDecoder: NSCoder!) {
+        topicList = aDecoder.decodeObjectForKey("topicList") as [Topic]
+        super.init(coder: aDecoder)
     }
     
     class func mineTopicListTableViewController(user : User) -> TopicListTableViewController {
@@ -36,7 +41,7 @@ class TopicListTableViewController: UIViewController, UITableViewDelegate, UITab
         instance.tableView = UITableView(frame:instance.view!.bounds)
         instance.tableView!.delegate = instance
         instance.tableView!.dataSource = instance
-        instance.view?.addSubview(instance.tableView)
+        instance.view?.addSubview(instance.tableView!)
         instance.tableView!.rowHeight = CGFloat(70)
         return instance
     }

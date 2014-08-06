@@ -44,4 +44,12 @@ class TopicCell: UITableViewCell {
         topicImageView.layer.cornerRadius = topicImageView.bounds.size.height / 2
         topicImageView.layer.masksToBounds = true
     }
+    
+    required init(coder aDecoder: NSCoder!) {
+        topicImageView = aDecoder.decodeObjectForKey("topicImageView") as UIImageView
+        titleLabel = aDecoder.decodeObjectForKey("titleLabel") as UILabel
+        introductLabel = aDecoder.decodeObjectForKey("introductLabel") as UILabel
+        super.init(coder: aDecoder)
+    }
+    
 }

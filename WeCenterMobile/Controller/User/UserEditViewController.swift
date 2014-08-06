@@ -43,7 +43,7 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
         self.tableView!.dataSource = self
         self.tableView!.scrollEnabled = false
         self.tableView!.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        body.addSubview(self.tableView)
+        body.addSubview(self.tableView!)
         body.sizeToFit()
         body.contentSize = CGSizeMake(self.view.frame.width, tableView!.frame.origin.y + tableView!.frame.height)
         
@@ -54,7 +54,7 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
         var changePhoto = UIButton(frame: CGRectMake(UIScreen.mainScreen().bounds.width / 2 - 40, 18, 80, 80))
         changePhoto.addTarget(self, action: "choosePhoto", forControlEvents: UIControlEvents.TouchUpInside)
         avatarView!.backgroundColor = UIColor.grayColor()
-        body.addSubview(avatarView)
+        body.addSubview(avatarView!)
         body.addSubview(changePhoto)
         self.view.addSubview(body)
     }

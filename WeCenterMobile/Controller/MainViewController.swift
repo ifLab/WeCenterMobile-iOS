@@ -31,7 +31,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         HomeViewController(statusBarStyle: .LightContent),
         HomeViewController(statusBarStyle: .Default)
     ]
-    init() {
+    override init() {
         contentViewController = Msr.UI.NavigationController(rootViewController: viewControllers[0])
         tableView = UITableView(frame: sidebar.contentView.bounds, style: .Grouped)
         super.init(nibName: nil, bundle: nil)
@@ -44,6 +44,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.separatorColor = UIColor.clearColor()
         tableView.separatorStyle = .SingleLineEtched
         sidebar.contentView.addSubview(tableView)                
+    }
+    required init(coder aDecoder: NSCoder!) {
+        contentViewController = Msr.UI.NavigationController(rootViewController: viewControllers[0])
+        tableView = UITableView(frame: sidebar.contentView.bounds, style: .Grouped)
+        super.init(coder: aDecoder)
     }
     func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
         return 2

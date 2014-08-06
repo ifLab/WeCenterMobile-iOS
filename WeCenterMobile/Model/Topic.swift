@@ -26,15 +26,8 @@ class Topic: NSManagedObject {
     @NSManaged var title: String?
     @NSManaged var topicImageURL: String?
     
-    convenience init() {
-        let entity = NSEntityDescription.entityForName("Topic",
-            inManagedObjectContext: appDelegate.managedObjectContext)
-        self.init(entity: entity,
-            insertIntoManagedObjectContext: appDelegate.managedObjectContext)
-    }
-    
     class func parseDictionary(d: NSDictionary) -> Topic {
-        let topic = Topic()
+        let topic = Model.createManagedObjectOfClass(Topic.self, entityName: "Topic") as Topic
         topic.index = (d["topic_id"] as String).toInt()!
         topic.title = d["topic_title"] as? String
         topic.introduct = d["topic_description"] as? String
@@ -52,7 +45,7 @@ class Topic: NSManagedObject {
                 property in
                 var topics = [Topic]()
                 for topicDictionary in property["rsm"]["rows"].asArray() as [NSDictionary] {
-                    topics += self.parseDictionary(topicDictionary)
+                    topics.append(self.parseDictionary(topicDictionary))
                 }
                 success?(topics)
             },failure: failure)
@@ -60,12 +53,12 @@ class Topic: NSManagedObject {
     
     private class func fetchMineTopicListUsingCache(user : User, success: (([Topic]) -> Void)?, failure: ((NSError) -> Void)?) {
         var error: NSError? = nil
-        let results = appDelegate.managedObjectContext.executeFetchRequest(request, error: &error) as? [[Topic]]
-        if error == nil && results!.count != 0 {
-            success?(results![0])
-        } else {
-            failure?(error != nil ? error! : NSError()) // Needs specification
-        }
+//        let results = appDelegate.managedObjectContext.executeFetchRequest(request, error: &error) as? [[Topic]]
+//        if error == nil && results!.count != 0 {
+//            success?(results![0])
+//        } else {
+//            failure?(error != nil ? error! : NSError()) // Needs specification
+//        }
     }
     
     class func fetchMineTopicList(user : User, strategy: Model.Strategy, success: (([Topic]) -> Void)?, failure: ((NSError) -> Void)?) {

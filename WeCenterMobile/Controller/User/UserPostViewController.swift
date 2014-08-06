@@ -41,28 +41,33 @@ class UserPostViewController :UIViewController {
             headerTitle = UserStrings["Name"]
             setTextField()
             textField!.text = user?.name
-            bodyView!.addSubview(textField)
+            bodyView!.addSubview(textField!)
+            
             bodyView!.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
         }
         if headerTitle == UserStrings["Introduction"]{
 //            textView!.text = user?.introduction
             setTextView()
-            bodyView!.addSubview(textView)
+            bodyView!.addSubview(textView!)
             
         }
-        if headerTitle == UserStrings["Other information"]{
+        if headerTitle == UserStrings["Other information"] {
             headerTitle = style
             if headerTitle == UserStrings["Birthday"] {
                 setDatePicker()
                 println("1")
-                bodyView!.addSubview(datePicker)
+                bodyView!.addSubview(datePicker!)
                 bodyView!.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
             }
 
             bodyView!.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
         }
         self.title = UserStrings["Modify"] + headerTitle
-        self.view.addSubview(bodyView)
+        self.view.addSubview(bodyView!)
+    }
+    required init(coder aDecoder: NSCoder!) {
+        headerTitle = aDecoder.decodeObjectForKey("headerTitle") as String
+        super.init(coder: aDecoder)
     }
     func postData() {
         if headerTitle == UserStrings["Birthday"] {

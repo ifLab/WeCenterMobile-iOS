@@ -148,4 +148,8 @@ class UserMainCell: UITableViewCell {
         contentView.addSubview(line3)
         cellHeight = likeView.frame.origin.y + likeView.frame.height + 7
     }
+    
+    required init(coder aDecoder: NSCoder!) {
+        super.init(coder: aDecoder)
+    }
 }

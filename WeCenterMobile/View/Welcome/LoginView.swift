@@ -13,7 +13,7 @@ class LoginView: Msr.UI.AlertView {
     let passwordField: UITextField!
     let property = Msr.Data.Property(module: "Welcome", bundle: NSBundle.mainBundle())
     let strings = Msr.Data.LocalizedStrings(module: "Welcome", bundle: NSBundle.mainBundle())
-    init() {
+    override init() {
         super.init()
         self.cornerRadius = 7
         let cornerRadius = self.cornerRadius

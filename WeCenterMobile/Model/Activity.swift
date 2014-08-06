@@ -24,28 +24,23 @@ class Activity: NSManagedObject {
         case Unanswered
     }
     
-    convenience init() {
-        let entity = NSEntityDescription.entityForName("Activity", inManagedObjectContext: appDelegate.managedObjectContext)
-        self.init(entity: entity, insertIntoManagedObjectContext: appDelegate.managedObjectContext)
-    }
-    
     class func activityWithProperty(property: Msr.Data.Property) -> Activity {
         let userModel = Model(module: "User", bundle: NSBundle.mainBundle())
         var activity: Activity! = nil
-        let user = User()
+        let user = Model.createManagedObjectOfClass(User.self, entityName: "User") as User
         user.id = property["user_info"]["uid"].asInt()
         user.name = property["user_info"]["user_name"].asString()
         user.avatarURL = User.avatarURLWithURI(property["user_info"]["avatar_file"].asString())
         switch property["post_type"].asString()! {
         case "article":
-            activity = ArticalActivity()
+            activity = Model.createManagedObjectOfClass(ArticalActivity.self, entityName: "ArticalActivity") as ArticalActivity
             let articalActivity = activity as ArticalActivity
             articalActivity.title = property["title"].asString()
             articalActivity.viewCount = property["views"].asInt()
             articalActivity.commentCount = property["comments"].asInt()
             break
         case "question":
-            activity = QuestionActivity()
+            activity = Model.createManagedObjectOfClass(QuestionActivity.self, entityName: "QuestionActivity") as QuestionActivity
             let questionActivity = activity as QuestionActivity
             questionActivity.title = property["question_content"].asString()
             questionActivity.lastUpdatedTime = NSDate(timeIntervalSince1970: NSTimeInterval(property["update_time"].asInt()))
@@ -56,7 +51,7 @@ class Activity: NSManagedObject {
             questionActivity.answerContent = answer["answer_content"].asString()
             if !answer["user_info"].isNull() {
                 let info = answer["user_info"]
-                questionActivity.answerUser = User()
+                questionActivity.answerUser = Model.createManagedObjectOfClass(User.self, entityName: "User") as? User
                 questionActivity.answerUser!.id = info["uid"].asInt()
                 questionActivity.answerUser!.name = info["user_name"].asString()
                 questionActivity.answerUser!.avatarURL = User.avatarURLWithURI(info["avatar_file"].asString())
@@ -65,13 +60,13 @@ class Activity: NSManagedObject {
             if !property["topics"].isNull() {
                 questionActivity.topics = []
                 for topicInfo in property["topics"].asArray() as [NSDictionary] {
-                    let topic = Topic()
+                    let topic = Model.createManagedObjectOfClass(Topic.self, entityName: "Topic") as Topic
                     topic.index = topicInfo["topic_id"] as Int
                     topic.title = topicInfo["topic_title"] as? String
-                    let relationship = QuestionActivity_Topic()
+                    let relationship = Model.createManagedObjectOfClass(QuestionActivity_Topic.self, entityName: "QuestionActivity_Topic") as QuestionActivity_Topic
                     relationship.questionActivityID = questionActivity.id
                     relationship.topicID = topic.index!
-                    questionActivity.topics += topic
+                    questionActivity.topics.append(topic)
                 }
             }
             break
@@ -113,7 +108,7 @@ class Activity: NSManagedObject {
                 property in
                 var activityList = [Activity]()
                 for activityDictionary in property["rows"].asArray() as [NSDictionary] {
-                    activityList += self.activityWithProperty(Msr.Data.Property(value: activityDictionary))
+                    activityList.append(self.activityWithProperty(Msr.Data.Property(value: activityDictionary)))
                 }
                 success?(activityList)
             },

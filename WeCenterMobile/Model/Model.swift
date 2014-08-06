@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 class Model {
     typealias Property = Msr.Data.Property
@@ -74,5 +75,9 @@ class Model {
         } else {
             failure?(error.memory!)
         }
+    }
+    class func createManagedObjectOfClass(Class: AnyClass, entityName: String) -> NSManagedObject {
+        let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: appDelegate.managedObjectContext)
+        return (Class as NSManagedObject.Type)(entity: entity, insertIntoManagedObjectContext: appDelegate.managedObjectContext)
     }
 }

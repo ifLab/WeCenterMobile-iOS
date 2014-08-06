@@ -22,6 +22,10 @@ class HomeViewController: UITableViewController {
         color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         view.backgroundColor = UIColor(red: 1 - red * 0.2, green: 1 - green * 0.2, blue: 1 - blue * 0.2, alpha: 1)
     }
+    required init(coder aDecoder: NSCoder!) {
+        initStatusBarStyle = UIStatusBarStyle.fromRaw(aDecoder.decodeIntegerForKey("initStatusBarStyle"))!
+        super.init(coder: aDecoder)
+    }
     override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
         return 1
     }
@@ -81,7 +85,7 @@ class HomeViewController: UITableViewController {
         case 3:
             var viewControllers = [UIViewController]()
             for i in 1...5 {
-                viewControllers += HomeViewController(i: title.toInt()! + i, statusBarStyle: initStatusBarStyle)
+                viewControllers.append(HomeViewController(i: title.toInt()! + i, statusBarStyle: initStatusBarStyle))
             }
             msrNavigationController.pushViewControllers(viewControllers, animated: true, completion: nil)
             break
@@ -99,7 +103,7 @@ class HomeViewController: UITableViewController {
             var viewControllers = msrNavigationController.viewControllers
             viewControllers.removeLast()
             for i in 0...1 {
-                viewControllers += HomeViewController(i: title.toInt()! + i, statusBarStyle: initStatusBarStyle)
+                viewControllers.append(HomeViewController(i: title.toInt()! + i, statusBarStyle: initStatusBarStyle))
             }
             msrNavigationController.setViewControllers(viewControllers, animated: true, completion: nil)
             break
@@ -108,18 +112,18 @@ class HomeViewController: UITableViewController {
             for _ in 1...2 {
                 viewControllers.removeLast()
             }
-            viewControllers += HomeViewController(i: title.toInt()! - 1, statusBarStyle: initStatusBarStyle)
+            viewControllers.append(HomeViewController(i: title.toInt()! - 1, statusBarStyle: initStatusBarStyle))
             msrNavigationController.setViewControllers(viewControllers, animated: true, completion: nil)
         case 8:
             var viewControllers = [msrNavigationController.viewControllers.firstOne]
             for i in 1...title.toInt()! {
-                viewControllers += HomeViewController(i: i, statusBarStyle: initStatusBarStyle)
+                viewControllers.append(HomeViewController(i: i, statusBarStyle: initStatusBarStyle))
             }
             msrNavigationController.setViewControllers(viewControllers, animated: true, completion: nil)
         case 9:
             var viewControllers = [UIViewController]()
             for i in 0...title.toInt()! {
-                viewControllers += HomeViewController(i: i, statusBarStyle: initStatusBarStyle)
+                viewControllers.append(HomeViewController(i: i, statusBarStyle: initStatusBarStyle))
             }
             msrNavigationController.setViewControllers(viewControllers, animated: true, completion: nil)
         default:

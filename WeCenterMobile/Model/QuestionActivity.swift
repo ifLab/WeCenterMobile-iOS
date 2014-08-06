@@ -21,9 +21,4 @@ class QuestionActivity: Activity {
     var answerUser: User? = nil
     var topics = [Topic]()
     
-    convenience init() {
-        let entity = NSEntityDescription.entityForName("QuestionActivity", inManagedObjectContext: appDelegate.managedObjectContext)
-        self.init(entity: entity, insertIntoManagedObjectContext: appDelegate.managedObjectContext)
-    }
-
 }

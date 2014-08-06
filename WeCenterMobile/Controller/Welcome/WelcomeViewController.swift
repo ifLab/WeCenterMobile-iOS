@@ -10,11 +10,10 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
     
-    let loginView: LoginView
+    let loginView = LoginView()
     let strings = Msr.Data.LocalizedStrings(module: "Welcome", bundle: NSBundle.mainBundle())
     
-    init() {
-        loginView = LoginView()
+    override init() {
         super.init(nibName: nil, bundle: NSBundle.mainBundle())
         let welcomeView = WelcomeView(frame: UIScreen.mainScreen().bounds)
         welcomeView.loginButton.addTarget(self, action: "showLoginView", forControlEvents: .TouchUpInside)
@@ -37,6 +36,10 @@ class WelcomeViewController: UIViewController {
             })
         view = welcomeView
         view.addSubview(loginView)
+    }
+    
+    required init(coder aDecoder: NSCoder!) {
+        super.init(coder: aDecoder)
     }
     
     func showLoginView() {

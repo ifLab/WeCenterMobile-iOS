@@ -76,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     var managedObjectContext: NSManagedObjectContext {
-        if !_managedObjectContext {
+        if _managedObjectContext == nil {
             let coordinator = persistentStoreCoordinator
             if coordinator != nil {
                 _managedObjectContext = NSManagedObjectContext()
@@ -89,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var _managedObjectContext: NSManagedObjectContext? = nil
     
     var managedObjectModel: NSManagedObjectModel {
-        if !_managedObjectModel {
+        if _managedObjectModel == nil {
             let modelURL = NSBundle.mainBundle().URLForResource("WeCenterMobile", withExtension: "momd")
             _managedObjectModel = NSManagedObjectModel(contentsOfURL: modelURL)
         }
@@ -99,10 +99,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var _managedObjectModel: NSManagedObjectModel? = nil
     
     var persistentStoreCoordinator: NSPersistentStoreCoordinator {
-        if !_persistentStoreCoordinator {
+        if _persistentStoreCoordinator == nil {
             let storeURL = applicationDocumentsDirectory.URLByAppendingPathComponent("WeCenterMobile.sqlite")
             #if DEBUG
-//                NSFileManager.defaultManager().removeItemAtURL(storeURL, error: nil)
+                NSFileManager.defaultManager().removeItemAtURL(storeURL, error: nil)
             #endif
             var error: NSError? = nil
             _persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)

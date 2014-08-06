@@ -10,16 +10,13 @@ import UIKit
 
 class WelcomeView: UIView {
     
-    let logoView: UIImageView
-    let loginButton: UIButton
-    let registerButton: UIButton
+    let logoView = UIImageView(image: UIImage(named: "Logo"))
+    let loginButton = UIButton()
+    let registerButton = UIButton()
     let property = Msr.Data.Property(module: "Welcome", bundle: NSBundle.mainBundle())
     let strings = Msr.Data.LocalizedStrings(module: "Welcome", bundle: NSBundle.mainBundle())
     
-    init(frame: CGRect) {
-        loginButton = UIButton()
-        registerButton = UIButton()
-        logoView = UIImageView(image: UIImage(named: "Logo"))
+    override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = property["View"]["Background Color"].asColor()
         var center = self.center
@@ -36,6 +33,10 @@ class WelcomeView: UIView {
         registerButton.setBackgroundImage(Msr.UI.Rectangle(color: property["Register Button"]["Background Color"].asColor(), size: registerButton.bounds.size).image, forState: .Normal)
         registerButton.titleLabel.font = UIFont.systemFontOfSize(16)
         addSubview(registerButton)
+    }
+    
+    required init(coder aDecoder: NSCoder!) {
+        super.init(coder: aDecoder)
     }
     
 }

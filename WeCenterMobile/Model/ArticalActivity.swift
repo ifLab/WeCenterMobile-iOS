@@ -12,10 +12,5 @@ import CoreData
 class ArticalActivity: Activity {
 
     @NSManaged var commentCount: NSNumber
-    
-    convenience init() {
-        let entity = NSEntityDescription.entityForName("ArticalActivity", inManagedObjectContext: appDelegate.managedObjectContext)
-        self.init(entity: entity, insertIntoManagedObjectContext: appDelegate.managedObjectContext)
-    }
 
 }

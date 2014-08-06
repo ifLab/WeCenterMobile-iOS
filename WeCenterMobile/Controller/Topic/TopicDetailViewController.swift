@@ -10,13 +10,13 @@ import UIKit
 
 class TopicDetailViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource
 {
-    var topic : Topic?
-    var tableView : UITableView?
-    var items : NSMutableArray?
-    var firstCell : TopicDetailCell
-    var secondCell : TopicDetailCell
+    var topic: Topic?
+    var tableView: UITableView?
+    var items: NSMutableArray?
+    var firstCell: TopicDetailCell
+    var secondCell: TopicDetailCell
     
-    init(user: User, topic : Topic) {
+    init(user: User, topic: Topic) {
         self.topic = topic
         firstCell = TopicDetailCell.getFirstCell(self.topic!, reuseIdentifier: "first")
         secondCell = TopicDetailCell.getSecondCell(self.topic!, reuseIdentifier: "second")
@@ -42,6 +42,12 @@ class TopicDetailViewController: UIViewController ,UITableViewDelegate, UITableV
             })
     }
     
+    required init(coder aDecoder: NSCoder!) {
+        firstCell = aDecoder.decodeObjectForKey("firstCell") as TopicDetailCell
+        secondCell = aDecoder.decodeObjectForKey("secondCell") as TopicDetailCell
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "话题"
@@ -49,7 +55,7 @@ class TopicDetailViewController: UIViewController ,UITableViewDelegate, UITableV
         tableView = UITableView(frame: self.view!.bounds, style: .Grouped)
         tableView!.delegate = self
         tableView!.dataSource = self
-        view!.addSubview(self.tableView)
+        view!.addSubview(self.tableView!)
         tableView!.contentInset = UIEdgeInsets(top: -35, left: 0, bottom: 0, right: 0)
         tableView!.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
 //        setupLeftBarButtonItem()

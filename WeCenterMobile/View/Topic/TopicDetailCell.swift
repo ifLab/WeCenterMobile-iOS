@@ -16,7 +16,7 @@ class TopicDetailCell: UITableViewCell {
     var followersTextLabel: UILabel
     var followButton: UIButton
     
-    init() {
+    override init() {
         topicImageView = UIImageView()
         titleLabel = UILabel()
         introductLabel = UILabel()
@@ -24,6 +24,16 @@ class TopicDetailCell: UITableViewCell {
         followersTextLabel = UILabel()
         followButton = UIButton()
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
+    }
+    
+    required init(coder aDecoder: NSCoder!) {
+        topicImageView = aDecoder.decodeObjectForKey("topicImageView") as UIImageView
+        titleLabel = aDecoder.decodeObjectForKey("titleLabel") as UILabel
+        introductLabel = aDecoder.decodeObjectForKey("introductLabel") as UILabel
+        followersLabel = aDecoder.decodeObjectForKey("follwersLabel") as UILabel
+        followersTextLabel = aDecoder.decodeObjectForKey("followersTextLabel") as UILabel
+        followButton = aDecoder.decodeObjectForKey("followButton") as UIButton
+        super.init(coder: aDecoder)
     }
     
     class func getFirstCell(topic: Topic, reuseIdentifier: String!) -> TopicDetailCell {

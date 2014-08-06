@@ -15,14 +15,22 @@ class UserMainViewController: UITableViewController {
         [UserStrings["Find Friends"]]
     ]
     
-    convenience init() {
-        self.init(style: .Grouped)
+    override init() {
+        super.init(style: .Grouped)
         title = UserStrings["My Profile"]
         tableView.contentInset = UIEdgeInsets(top: -35, left: 0, bottom: 0, right: 0)
         var leftBarButton = UIBarButtonItem(image: UIImage(named: "Category"), style: UIBarButtonItemStyle.Plain, target: self, action:"leftBarButtonItemClicked" )
         self.navigationItem!.leftBarButtonItem = leftBarButton
         var rightBarButton = UIBarButtonItem(title: UserStrings["Edit"], style: UIBarButtonItemStyle.Plain, target: self, action: "rightBarButtonItemClicked" )
         self.navigationItem!.rightBarButtonItem = rightBarButton
+    }
+    
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init(coder aDecoder: NSCoder!) {
+        super.init(coder: aDecoder)
     }
     
     func pushTableView() {

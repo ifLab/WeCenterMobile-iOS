@@ -31,11 +31,6 @@ class User: NSManagedObject {
     @NSManaged var thankCount: NSNumber?
     @NSManaged var topicFocusCount: NSNumber?
     
-    convenience init() {
-        let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: appDelegate.managedObjectContext)
-        self.init(entity: entity, insertIntoManagedObjectContext: appDelegate.managedObjectContext)
-    }
-    
     class func avatarURLWithURI(URI: String) -> String {
         return UserModel.URLStrings["Base"]! + UserModel.URLStrings["Avatar Base"]! + URI
     }
@@ -54,7 +49,6 @@ class User: NSManagedObject {
         user.answerFavoriteCount = data["answer_favorite_count"].asInt()
         appDelegate.saveContext()
     }
-
     
 
     class func parseUserProfileWithProperty(user: User, property: Msr.Data.Property) {
@@ -83,7 +77,7 @@ class User: NSManagedObject {
                         success?(user)
                     }, failure: {
                         error in
-                        let user = User()
+                        let user = Model.createManagedObjectOfClass(User.self, entityName: "User") as User
                         self.parseUserWithProperty(user, property: property)
                         user.id = id
                         appDelegate.saveContext()
@@ -105,7 +99,7 @@ class User: NSManagedObject {
                         success?(user)
                     }, failure: {
                         error in
-                        let user = User()
+                        let user = Model.createManagedObjectOfClass(User.self, entityName: "User") as User
                         self.parseUserProfileWithProperty(user, property: property)
                         user.id = id
                         appDelegate.saveContext()
@@ -170,7 +164,7 @@ class User: NSManagedObject {
         #success: ((User) -> Void)?,
         failure: ((NSError) -> Void)?) {
             let data = NSUserDefaults.standardUserDefaults().objectForKey("Cookies") as? NSData
-            if !data {
+            if data == nil {
                 failure?(NSError()) // Needs specification
             } else {
                 let cookies = NSKeyedUnarchiver.unarchiveObjectWithData(data) as [NSHTTPCookie]
