@@ -66,11 +66,11 @@ class Activity: NSManagedObject {
                 questionActivity.topics = []
                 for topicInfo in property["topics"].asArray() as [NSDictionary] {
                     let topic = Topic()
-                    topic.id = topicInfo["topic_id"] as Int
-                    topic.title = topicInfo["topic_title"] as String
+                    topic.index = topicInfo["topic_id"] as Int
+                    topic.title = topicInfo["topic_title"] as? String
                     let relationship = QuestionActivity_Topic()
                     relationship.questionActivityID = questionActivity.id
-                    relationship.topicID = topic.id
+                    relationship.topicID = topic.index!
                     questionActivity.topics += topic
                 }
             }

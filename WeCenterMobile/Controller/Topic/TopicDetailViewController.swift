@@ -16,20 +16,21 @@ class TopicDetailViewController: UIViewController ,UITableViewDelegate, UITableV
     var firstCell : TopicDetailCell
     var secondCell : TopicDetailCell
     
-    init(userID: Int, topicID : Int) {
-        topic =
-        firstCell = TopicDetailCell.getFirstCell(topic!, reuseIdentifier: "first")
-        secondCell = TopicDetailCell.getSecondCell(topic!, reuseIdentifier: "second")
+    init(user: User, topic : Topic) {
+        self.topic = topic
+        firstCell = TopicDetailCell.getFirstCell(self.topic!, reuseIdentifier: "first")
+        secondCell = TopicDetailCell.getSecondCell(self.topic!, reuseIdentifier: "second")
         super.init(nibName: nil, bundle: nil)
         Topic.fetchTopicDetail(
-            userID,
-            topicID: topicID,
+            user,
+            topic: topic,
+            strategy: .CacheFirst,
             success: {
                 topic in
                 self.topic = topic
                 self.firstCell = TopicDetailCell.getFirstCell(topic, reuseIdentifier: "first")
                 self.secondCell = TopicDetailCell.getSecondCell(topic, reuseIdentifier: "second")
-                if topic.beFocus.boolValue {
+                if topic.beFocus!.boolValue {
                     self.follow()
                 } else {
                     self.unfollow()

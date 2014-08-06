@@ -10,7 +10,7 @@ import UIKit
 
 class TopicListTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var userID = 0
+    var user : User?
     var tableView :UITableView?
     var topicList :Array<Topic>
     
@@ -19,10 +19,12 @@ class TopicListTableViewController: UIViewController, UITableViewDelegate, UITab
         super.init(nibName: nil, bundle: nil)
     }
     
-    class func mineTopicListTableViewController(userID : Int) -> TopicListTableViewController {
+    class func mineTopicListTableViewController(user : User) -> TopicListTableViewController {
         var instance = TopicListTableViewController()
-        instance.userID = userID
-        Topic.fetchTopicList(instance.userID,
+        instance.user = user
+        Topic.fetchMineTopicList(
+            instance.user!,
+            strategy: .CacheFirst,
             success: {
                 topics in
                 instance.topicList = topics
@@ -63,8 +65,8 @@ class TopicListTableViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         println("DidSelectRowAtIndexPath \(indexPath.row)")
-        var topicID = topicList[indexPath.row].index
-        msrNavigationController.pushViewController(TopicDetailViewController(userID: 9, topicID: topicID), animated: true) { finished in }
+        var topic = topicList[indexPath.row]
+        msrNavigationController.pushViewController(TopicDetailViewController(user: user!, topic: topic), animated: true) { finished in }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
