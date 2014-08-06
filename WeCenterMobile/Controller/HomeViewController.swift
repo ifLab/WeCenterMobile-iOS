@@ -115,7 +115,7 @@ class HomeViewController: UITableViewController {
             viewControllers.append(HomeViewController(i: title.toInt()! - 1, statusBarStyle: initStatusBarStyle))
             msrNavigationController.setViewControllers(viewControllers, animated: true, completion: nil)
         case 8:
-            var viewControllers = [msrNavigationController.viewControllers.firstOne]
+            var viewControllers = [msrNavigationController.viewControllers.first!]
             for i in 1...title.toInt()! {
                 viewControllers.append(HomeViewController(i: i, statusBarStyle: initStatusBarStyle))
             }

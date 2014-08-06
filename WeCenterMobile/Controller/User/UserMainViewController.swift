@@ -9,6 +9,7 @@
 import UIKit
 
 class UserMainViewController: UITableViewController {
+    
     let titles = [
         [UserStrings["Reply"],UserStrings["Ask"],UserStrings["Article"]],
         [UserStrings["Dynamic"]],
@@ -47,7 +48,6 @@ class UserMainViewController: UITableViewController {
         var sidebar = appDelegate.mainViewController.sidebar
         sidebar.toggleShow(animated: true, completion: nil)
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
