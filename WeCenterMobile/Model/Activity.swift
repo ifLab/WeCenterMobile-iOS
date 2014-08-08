@@ -9,6 +9,9 @@
 import Foundation
 import CoreData
 
+let DiscoveryStrings = Msr.Data.LocalizedStrings(module: "Discovery", bundle: NSBundle.mainBundle())
+let DiscoveryModel = Model(module: "Discovery", bundle: NSBundle.mainBundle())
+
 class Activity: NSManagedObject {
 
     @NSManaged var title: String

@@ -8,3 +8,12 @@
 
 /* Title */
 "Discovery" = "发现";
+
+/* Hot activity list */
+"Hot" = "热门";
+
+/* New activity list */
+"New" = "最新";
+
+/* Unanswered activity list */
+"Unanswered" = "尚未回答";

@@ -53,8 +53,8 @@ class User: NSManagedObject {
 
     class func parseUserProfileWithProperty(user: User, property: Msr.Data.Property) {
         let data = property
-        println(property)
-        println(1)
+//        println(property)
+//        println(1)
 //        user.name = data["user_name"].asString()
 //        user.gender = data["sex"].isNull() ? 3 : data["sex"].asInt()
 //        user.birthday = data["birthday"].isNull() ? 0 : data["birthday"].asInt()

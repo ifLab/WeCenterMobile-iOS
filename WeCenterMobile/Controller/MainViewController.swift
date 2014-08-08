@@ -29,7 +29,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         DiscoveryViewController(),
         HomeViewController(statusBarStyle: .Default),
         HomeViewController(statusBarStyle: .LightContent),
-        HomeViewController(statusBarStyle: .Default)
+        HomeViewController(statusBarStyle: .LightContent)
     ]
     override init() {
         contentViewController = Msr.UI.NavigationController(rootViewController: viewControllers[0])
@@ -83,11 +83,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                     }, failure: nil)
                 cell.textLabel.text = appDelegate.currentUser?.name
             } else {
+//                cell.imageView.image = nil
+//                cell.imageView.tintColor = UIColor.whiteColor()
                 cell.textLabel.text = titles[indexPath.row]
-                cell.imageView.image = Msr.UI.RoundedRectangle(
-                    color: UIColor(white: 1, alpha: 0.4),
-                    size: CGSize(width: 40, height: 40),
-                    cornerRadius: (20, 20, 20, 20)).image
                 return cell
             }
         }

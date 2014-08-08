@@ -8,3 +8,12 @@
 
 /* Title */
 "Discovery" = "Discovery";
+
+/* Hot activity list */
+"Hot" = "Hot";
+
+/* New activity list */
+"New" = "New";
+
+/* Unanswered activity list */
+"Unanswered" = "Unanswered";

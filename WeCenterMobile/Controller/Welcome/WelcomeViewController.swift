@@ -25,6 +25,7 @@ class WelcomeViewController: UIViewController {
                 password: self!.loginView.passwordField.text,
                 success: {
                     user in
+                    appDelegate.currentUser = user
                     println("USER HAS SUCCESSFULLY LOGGED IN WITH NAME & PASSWORD.")
                     appDelegate.window!.rootViewController.presentViewController(appDelegate.mainViewController, animated: true, completion: nil)
                 },
