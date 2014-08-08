@@ -8,22 +8,38 @@
 
 import UIKit
 
-class UserPostViewController :UIViewController {
+protocol UserPostDelegate: NSObjectProtocol{
+    func postedBirthday(controller:UserPostViewController, date:NSDate)
+    func postedName(controller:UserPostViewController, name:String)
+    func postedIntroduction(controller:UserPostViewController, introduction:String)
+
+    
+}
+
+class UserPostViewController: UIViewController {
     
     let user:User?
-    let headerTitle:String
-    var textField:UITextField?
-    var textView:UITextView?
-    var bodyView:UIScrollView?
-    let tip:UILabel?
-    let publishButton:UIBarButtonItem?
-    let cancelButton:UIBarButtonItem?
-    var datePicker:UIDatePicker?
-    let model = Model(module: "User", bundle: NSBundle.mainBundle())
+    let headerTitle: String?
+    var textField: UITextField?
+    var textView: UITextView?
+    var bodyView: UIScrollView?
+    let tip: UILabel?
+    let publishButton: UIBarButtonItem?
+    let cancelButton: UIBarButtonItem?
+    var datePicker: UIDatePicker?
+    
+    var delegate:UserPostDelegate?
+    
+
+    required init(coder aDecoder: NSCoder!) {
+        super.init(coder: aDecoder)
+       
+    }
+    
     init(style:String , title:String){
-        headerTitle = title
         super.init(nibName: nil, bundle: NSBundle.mainBundle())
-        publishButton = UIBarButtonItem(title: UserStrings["Publsih"], style: UIBarButtonItemStyle.Done, target: self , action: "postData" )
+        headerTitle = title
+        publishButton = UIBarButtonItem(title: UserStrings["Publish"], style: UIBarButtonItemStyle.Done, target: self , action: "postData" )
         cancelButton = UIBarButtonItem(title: UserStrings["Cancel"], style: UIBarButtonItemStyle.Done, target: self, action: "turnBack")
         self.navigationItem.rightBarButtonItem = publishButton
         self.navigationItem.leftBarButtonItem = cancelButton
@@ -42,7 +58,6 @@ class UserPostViewController :UIViewController {
             setTextField()
             textField!.text = user?.name
             bodyView!.addSubview(textField!)
-            
             bodyView!.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
         }
         if headerTitle == UserStrings["Introduction"]{
@@ -51,7 +66,7 @@ class UserPostViewController :UIViewController {
             bodyView!.addSubview(textView!)
             
         }
-        if headerTitle == UserStrings["Other information"] {
+        if headerTitle == UserStrings["Other information"]{
             headerTitle = style
             if headerTitle == UserStrings["Birthday"] {
                 setDatePicker()
@@ -62,29 +77,29 @@ class UserPostViewController :UIViewController {
 
             bodyView!.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
         }
-        self.title = UserStrings["Modify"] + headerTitle
+        self.title = UserStrings["Modify"] + " " + headerTitle!
         self.view.addSubview(bodyView!)
-    }
-    required init(coder aDecoder: NSCoder!) {
-        headerTitle = aDecoder.decodeObjectForKey("headerTitle") as String
-        super.init(coder: aDecoder)
     }
     func postData() {
         if headerTitle == UserStrings["Birthday"] {
             let date:NSDate = datePicker!.date
             let time:Int = Int(date.timeIntervalSince1970)
-            model.POST(model.URLStrings["profile_setting"]!,
+            UserModel.POST(UserModel.URLStrings["profile_setting"]!,
                 parameters: [
-                    //                    "uid": user!.uid
-                    "uid": "9",
-                    "user_name": "eric",
+
+                    "uid": appDelegate.currentUser!.id,
+                    "user_name": appDelegate.currentUser!.name!,
                     "birthday": time
-                    //                    "user_name": name,
-                    //                    "password": password
+
                 ],
                 success: {
                     property in
-                    println("success")
+                    #if DEBUG
+                    println("Birthday posted success")
+                    #endif
+                    if ((self.delegate) != nil) {
+                        self.delegate?.postedBirthday(self, date: date)
+                    }
                     self.dismissViewControllerAnimated(true, completion: nil)
                     return
                 },
@@ -95,19 +110,23 @@ class UserPostViewController :UIViewController {
                 })
 
         }
-        if headerTitle == UserStrings["Information"]{
-            model.POST(model.URLStrings["profile_setting"]!,
+        if headerTitle == UserStrings["Introduction"]{
+            UserModel.POST(UserModel.URLStrings["profile_setting"]!,
                 parameters: [
-                    //                    "uid": user!.uid
-                    "uid": "9",
-                    "user_name": "eric",
+
+                    "uid": appDelegate.currentUser!.id,
+                    "user_name": appDelegate.currentUser!.name!,
                     "signature": textView!.text
-                    //                    "user_name": name,
-                    //                    "password": password
+
                 ],
                 success: {
                     property in
-                    println("success")
+                    #if DEBUG
+                        println("Information posted success")
+                    #endif
+                    if ((self.delegate) != nil) {
+                        self.delegate?.postedIntroduction(self, introduction: self.textView!.text)
+                    }
                      self.dismissViewControllerAnimated(true, completion: nil)
                     return
                 },
@@ -123,18 +142,21 @@ class UserPostViewController :UIViewController {
             if textField?.text == nil {
                 return
             }
-            model.POST(model.URLStrings["profile_setting"]!,
+            UserModel.POST(UserModel.URLStrings["profile_setting"]!,
                 parameters: [
-//                    "uid": user!.uid
-                    "uid": "9",
-                    "user_name": textField!.text
+                    "uid": appDelegate.currentUser!.id,
+                   "user_name": textField!.text
                     
-//                    "user_name": name,
-//                    "password": password
+
                 ],
                 success: {
                     property in
-                    println("success")
+                    #if DEBUG
+                        println("Name posted success")
+                    #endif
+                    
+                    self.delegate?.postedName(self, name:self.textField!.text)
+    
                     self.dismissViewControllerAnimated(true, completion: nil)
                     return
                 },

@@ -45,9 +45,14 @@
 
 //Take photo selecton
 "Select" = "Select";
-"Cancel" = "Cancel";
 "Pictures" = "Pictures";
 "Album" = "Album";
+
+//Publish button title
+"Publish" = "Publish";
+
+//Cancel button title
+"Cancel" = "Cancel";
 
 //Modify
 "Modify" = "Modify";

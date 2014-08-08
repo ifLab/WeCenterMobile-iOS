@@ -27,6 +27,11 @@ class UserMainCell: UITableViewCell {
     var favoriteCount = UILabel()
     var introduction = UILabel()
     var cellHeight:CGFloat?
+    
+    required init(coder aDecoder: NSCoder!) {
+        super.init(coder: aDecoder)
+    }
+    
     init(user: User, reuseIndentifer: String!) {
         super.init(style: .Default, reuseIdentifier: reuseIndentifer)
         contentView.addSubview(avatarView)
@@ -147,9 +152,5 @@ class UserMainCell: UITableViewCell {
         contentView.addSubview(line2)
         contentView.addSubview(line3)
         cellHeight = likeView.frame.origin.y + likeView.frame.height + 7
-    }
-    
-    required init(coder aDecoder: NSCoder!) {
-        super.init(coder: aDecoder)
     }
 }

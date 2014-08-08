@@ -8,30 +8,31 @@
 
 import UIKit
 
-class UserMainViewController: UITableViewController {
-    
+class UserMainViewController: UITableViewController,UserEditDelegate{
     let titles = [
         [UserStrings["Reply"],UserStrings["Ask"],UserStrings["Article"]],
         [UserStrings["Dynamic"]],
         [UserStrings["Find Friends"]]
     ]
     
-    override init() {
-        super.init(style: .Grouped)
+    required init(coder aDecoder: NSCoder!) {
+        super.init(coder: aDecoder)
+    }
+    override init(style: UITableViewStyle) {
+        super.init(style: style)
+    }
+    
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    override convenience init() {
+        self.init(style: .Grouped)
         title = UserStrings["My Profile"]
         tableView.contentInset = UIEdgeInsets(top: -35, left: 0, bottom: 0, right: 0)
         var leftBarButton = UIBarButtonItem(image: UIImage(named: "Category"), style: UIBarButtonItemStyle.Plain, target: self, action:"leftBarButtonItemClicked" )
         self.navigationItem!.leftBarButtonItem = leftBarButton
         var rightBarButton = UIBarButtonItem(title: UserStrings["Edit"], style: UIBarButtonItemStyle.Plain, target: self, action: "rightBarButtonItemClicked" )
         self.navigationItem!.rightBarButtonItem = rightBarButton
-    }
-    
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required init(coder aDecoder: NSCoder!) {
-        super.init(coder: aDecoder)
     }
     
     func pushTableView() {
@@ -41,6 +42,7 @@ class UserMainViewController: UITableViewController {
     
     func rightBarButtonItemClicked() {
         var userEditView = UserEditListViewController()
+        userEditView.delegate = self
         msrNavigationController.pushViewController(userEditView, animated: true) { finished in }
     }
     
@@ -48,6 +50,7 @@ class UserMainViewController: UITableViewController {
         var sidebar = appDelegate.mainViewController.sidebar
         sidebar.toggleShow(animated: true, completion: nil)
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -116,4 +119,13 @@ class UserMainViewController: UITableViewController {
         return .LightContent
     }
     
+    func avatarDidPost(controller: UserEditListViewController, image: UIImage) {
+        var cell = self.tableView?.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as UserMainCell
+        cell.avatarView.image = image
+    }
+    func nameDidPost(controller: UserEditListViewController, name: String) {
+        var cell = self.tableView?.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as UserMainCell
+        cell.nameLabel.text = name
+
+    }
 }

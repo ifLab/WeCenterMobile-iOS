@@ -8,16 +8,20 @@
 
 import UIKit
 
-class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDelegate, UITableViewDataSource,UIActionSheetDelegate ,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
-    
-    var tableView :UITableView?
-    var avatarView :UIImageView?
+protocol UserEditDelegate:NSObjectProtocol {
+    func avatarDidPost(controller:UserEditListViewController , image:UIImage)
+    func nameDidPost(controller:UserEditListViewController, name:String)
+}
 
+class UserEditListViewController:UIViewController,UserPostDelegate,GenderDelegate,UITableViewDelegate, UITableViewDataSource,UIActionSheetDelegate ,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+    var delegate:UserEditDelegate?
+    var tableView: UITableView?
+    var avatarView: UIImageView?
+    var dateFormater = NSDateFormatter()
     let model = Model(module: "User", bundle: NSBundle.mainBundle())
     func items1() ->Array<Array<String>> {
-//        return [["姓名","性别"],["生日"],["个人介绍"],["居住","教育","行业","工作"]]
+//        return [["姓名","性别"],["个人介绍"],["生日"],["居住","教育","行业","工作"]]
         return [[UserStrings["Name"],UserStrings["Gender"]],[UserStrings["Introduction"]],[UserStrings["Birthday"]]]
-
     }
     
     func items2() ->Array<String>{
@@ -37,7 +41,7 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
         let body = UIScrollView(frame: self.view.frame)
         body.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
         
-        
+        dateFormater.dateFormat = "yyyy-MM-dd"
         self.tableView = UITableView(frame:CGRectMake(0, 80, 320, 500) , style: UITableViewStyle.Grouped)
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
@@ -79,15 +83,15 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
         var sourType:UIImagePickerControllerSourceType
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             switch buttonIndex {
-            case 0:println("0"); return  //取消
-            case 1:println("1");sourType = UIImagePickerControllerSourceType.Camera; break                 //拍照
-            case 2:println("2");sourType = UIImagePickerControllerSourceType.PhotoLibrary; break           //相册
+            case 0: return  //取消
+            case 1: sourType = UIImagePickerControllerSourceType.Camera; break                 //拍照
+            case 2: sourType = UIImagePickerControllerSourceType.PhotoLibrary; break           //相册
             default:return
             }
         }else{
             switch buttonIndex {
-            case 0:println("0"); return  //取消
-            case 1:println("1"); sourType = UIImagePickerControllerSourceType.PhotoLibrary;break          //相册
+            case 0: return  //取消
+            case 1: sourType = UIImagePickerControllerSourceType.PhotoLibrary;break          //相册
             default:return
             }
         }
@@ -121,14 +125,21 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
             },
             success: {
                 operation, response in
-                println("success")
+                #if DEBUG
+                println("posted avatar success")
+                #endif
                 self.avatarView!.image = image
                 self.avatarView!.backgroundColor = UIColor.clearColor()
+                if (self.delegate != nil ){
+                    self.delegate?.avatarDidPost(self, image: image)
+                }
                 return
             },
             failure: {
                 operation, error in
-                println("failure")
+                #if DEBUG
+                    println("posted avatar failure")
+                #endif
                 println(error.userInfo)
                 return
             })
@@ -177,7 +188,7 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
             cell1.textLabel.text = "1" //appDelegate.currentUser!.signature!
             break
         case 2:
-            cell1.textLabel.text = NSDate(timeIntervalSince1970: appDelegate.currentUser!.birthday!).description
+            cell1.textLabel.text = dateFormater.stringFromDate( NSDate(timeIntervalSince1970: appDelegate.currentUser!.birthday!))
             break
         case 3:
             
@@ -195,24 +206,37 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
     {
-        println("\(indexPath.section)  \(indexPath.row) \(items1()[indexPath.section][indexPath.row])")
+        #if DEBUG
+            println("\(indexPath.section)  \(indexPath.row) \(items1()[indexPath.section][indexPath.row])")
+        #endif
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.title = nil
         switch indexPath.section {
         case 0:
             if indexPath.row == 0 {
-            self.presentViewController(UINavigationController(rootViewController: UserPostViewController(style: items1()[indexPath.section][indexPath.row], title: items2()[indexPath.section])), animated: true, completion: nil)
+                var postViewController = UserPostViewController(style: items1()[indexPath.section][indexPath.row], title: items2()[indexPath.section])
+                postViewController.delegate = self
+            self.presentViewController(UINavigationController(rootViewController: postViewController), animated: true, completion: nil)
             }
             break
         case 1:
-            self.presentViewController(UINavigationController(rootViewController: UserPostViewController(style: items1()[indexPath.section][indexPath.row], title: items2()[indexPath.section])), animated: true, completion: nil)
+            var postViewController = UserPostViewController(style: items1()[indexPath.section][indexPath.row], title: items2()[indexPath.section])
+            postViewController.delegate = self
+
+            self.presentViewController(UINavigationController(rootViewController:postViewController), animated: true, completion: nil)
 
             break
         case 2:
-            self.presentViewController(UINavigationController(rootViewController: UserPostViewController(style: items1()[indexPath.section][indexPath.row], title: items2()[indexPath.section])), animated: true, completion: nil)
+            var postViewController = UserPostViewController(style: items1()[indexPath.section][indexPath.row], title: items2()[indexPath.section])
+            postViewController.delegate = self
+
+            self.presentViewController(UINavigationController(rootViewController:postViewController), animated: true, completion: nil)
             break
         case 3:
-            self.presentViewController(UINavigationController(rootViewController: UserPostViewController(style: items1()[indexPath.section][indexPath.row], title: items2()[indexPath.section])), animated: true, completion: nil)
+            var postViewController = UserPostViewController(style: items1()[indexPath.section][indexPath.row], title: items2()[indexPath.section])
+            postViewController.delegate = self
+
+            self.presentViewController(UINavigationController(rootViewController: postViewController), animated: true, completion: nil)
 
             break
         default:
@@ -223,27 +247,48 @@ class UserEditListViewController:UIViewController,GenderDelegate,UITableViewDele
         //        self.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
     }
     func GenderSellect(controller: UserGenderCell, theGender: Int) {
-//        println(theGender)
+
         model.POST(model.URLStrings["profile_setting"]!,
             parameters: [
-                //                    "uid": user!.uid
+
                 "uid": appDelegate.currentUser!.id,
                 "user_name": appDelegate.currentUser!.name!,
                 "sex": theGender
-                
-                //                    "user_name": name,
-                //                    "password": password
+
             ],
             success: {
                 property in
-                println("success")
+                #if DEBUG
+                    println("posted gender success")
+                #endif
                 return
             },
             failure: {
                 error in
+                #if DEBUG
+                    println("posted gender failure")
+                #endif
                 println(error.userInfo)
                 return
             })
     }
-
+    
+    func postedBirthday(controller: UserPostViewController, date: NSDate) {
+        var cell:UITableViewCell! =  self.tableView?.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2))
+        cell.textLabel.text = dateFormater.stringFromDate(date)!
+        print(dateFormater.stringFromDate(date)!)
+    }
+    
+    func postedIntroduction(controller: UserPostViewController, introduction: String) {
+        var cell:UITableViewCell! =  self.tableView?.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1))
+        cell.textLabel.text = introduction
+    }
+    
+    func postedName(controller: UserPostViewController, name: String) {
+        var cell:UITableViewCell! =  self.tableView?.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
+        cell.textLabel.text = name
+        delegate?.nameDidPost(self, name: name)
+    }
 }
+
+

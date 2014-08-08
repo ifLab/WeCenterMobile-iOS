@@ -7,18 +7,22 @@
 //
 
 import UIKit
-
-protocol GenderDelegate: NSObjectProtocol {
-    func GenderSellect(controller: UserGenderCell, theGender: Int)
+protocol GenderDelegate: NSObjectProtocol{
+    func GenderSellect(controller:UserGenderCell, theGender:Int)
     
 }
 
-class UserGenderCell: UITableViewCell {
+class UserGenderCell :UITableViewCell{
     let F = UIButton()
     let M = UIButton()
     let Unknown = UIButton()
     var theGender = 0
     var delegate: GenderDelegate?
+    
+    required init(coder aDecoder: NSCoder!) {
+        super.init(coder: aDecoder)
+    }
+    
     init(gender:Int){
         theGender = gender
         super.init(style: UITableViewCellStyle.Default, reuseIdentifier: "UserEditCell")
@@ -50,15 +54,12 @@ class UserGenderCell: UITableViewCell {
         self.addSubview(M)
         self.addSubview(F)
     }
-    required init(coder aDecoder: NSCoder!) {
-        super.init(coder: aDecoder)
-    }
     func touchF(){
         theGender = 2
         F.backgroundColor = UIColor.grayColor()
         M.backgroundColor = UIColor.lightGrayColor()
         Unknown.backgroundColor = UIColor.lightGrayColor()
-        if (delegate != nil) {
+        if ((delegate) != nil) {
             delegate?.GenderSellect(self, theGender: theGender)
         }
     }
@@ -67,7 +68,7 @@ class UserGenderCell: UITableViewCell {
         M.backgroundColor = UIColor.grayColor()
         F.backgroundColor = UIColor.lightGrayColor()
           Unknown.backgroundColor = UIColor.lightGrayColor()
-        if (delegate != nil) {
+        if ((delegate) != nil) {
             delegate?.GenderSellect(self, theGender: theGender)
         }
     }
@@ -76,7 +77,7 @@ class UserGenderCell: UITableViewCell {
         M.backgroundColor = UIColor.lightGrayColor()
         F.backgroundColor = UIColor.lightGrayColor()
         Unknown.backgroundColor = UIColor.grayColor()
-        if (delegate != nil) {
+        if ((delegate) != nil) {
             delegate?.GenderSellect(self, theGender: theGender)
         }
     }
