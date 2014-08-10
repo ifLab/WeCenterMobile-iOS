@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 let UserModel = Model(module: "User", bundle: NSBundle.mainBundle())
+let UserStrings = Msr.Data.LocalizedStrings(module: "User", bundle: NSBundle.mainBundle())
 
 class User: NSManagedObject {
     
@@ -31,85 +32,40 @@ class User: NSManagedObject {
     @NSManaged var thankCount: NSNumber?
     @NSManaged var topicFocusCount: NSNumber?
     
-    class func avatarURLWithURI(URI: String) -> String {
-        return UserModel.URLStrings["Base"]! + UserModel.URLStrings["Avatar Base"]! + URI
+    class func clearCookies() {
+        let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        for cookie in storage.cookies as [NSHTTPCookie] {
+            storage.deleteCookie(cookie)
+        }
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("Cookies")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        NSURLCache.sharedURLCache().removeAllCachedResponses()
     }
     
-    class func parseUserWithProperty(user: User, property: Msr.Data.Property) {
-        let data = property
-        user.name = data["user_name"].asString()
-        user.avatarURL = avatarURLWithURI(data["avatar_file"].asString())
-        user.followerCount = data["fans_count"].asInt()
-        user.friendCount = data["friend_count"].asInt()
-        user.questionCount = data["question_count"].asInt()
-        user.answerCount = data["answer_count"].asInt()
-        user.topicFocusCount = data["topic_focus_count"].asInt()
-        user.agreementCount = data["agree_count"].asInt()
-        user.thankCount = data["thanks_count"].asInt()
-        user.answerFavoriteCount = data["answer_favorite_count"].asInt()
-        appDelegate.saveContext()
+    class func fetchUserByID(id: NSNumber, strategy: Model.Strategy, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
+        switch strategy {
+        case .CacheOnly:
+            fetchUserUsingCacheByID(id, success: success, failure: failure)
+            break
+        case .NetworkOnly:
+            fetchUserUsingNetworkByID(id, success: success, failure: failure)
+            break
+        case .CacheFirst:
+            fetchUserUsingCacheByID(id, success: success, failure: {
+                error in
+                self.fetchUserUsingNetworkByID(id, success: success, failure: failure)
+            })
+            break
+        case .NetworkFirst:
+            fetchUserUsingNetworkByID(id, success: success, failure: {
+                error in
+                self.fetchUserUsingCacheByID(id, success: success, failure: failure)
+            })
+            break
+        default:
+            break
+        }
     }
-    
-
-    class func parseUserProfileWithProperty(user: User, property: Msr.Data.Property) {
-        let data = property
-//        println(property)
-//        println(1)
-//        user.name = data["user_name"].asString()
-//        user.gender = data["sex"].isNull() ? 3 : data["sex"].asInt()
-//        user.birthday = data["birthday"].isNull() ? 0 : data["birthday"].asInt()
-//        user.jobID = data["job_id"].asInt()
-//        user.signature = data["signaturn"].asString()
-        appDelegate.saveContext()
-    }
-
-    
-    private class func fetchUserUsingNetworkByID(id: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
-        UserModel.GET(UserModel.URLStrings["Information"]!,
-            parameters: ["uid": id], success: {
-                property in
-                self.fetchUserUsingCacheByID(id,
-                    success: {
-                        user in
-                        self.parseUserWithProperty(user, property: property)
-                        user.id = id
-                        appDelegate.saveContext()
-                        success?(user)
-                    }, failure: {
-                        error in
-                        let user = Model.createManagedObjectOfClass(User.self, entityName: "User") as User
-                        self.parseUserWithProperty(user, property: property)
-                        user.id = id
-                        appDelegate.saveContext()
-                        success?(user)
-                    })
-            }, failure: failure)
-    }
-    
-    private class func fetchUserProfileUsingNetworkByID(id: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
-        UserModel.GET(UserModel.URLStrings["profile"]!,
-            parameters: ["uid": id], success: {
-                property in
-                self.fetchUserUsingCacheByID(id,
-                    success: {
-                        user in
-                        self.parseUserProfileWithProperty(user, property: property)
-                        user.id = id
-                        appDelegate.saveContext()
-                        success?(user)
-                    }, failure: {
-                        error in
-                        let user = Model.createManagedObjectOfClass(User.self, entityName: "User") as User
-                        self.parseUserProfileWithProperty(user, property: property)
-                        user.id = id
-                        appDelegate.saveContext()
-                        success?(user)
-                    })
-            }, failure: failure)
-    }
-
-    
-
     
     private class func fetchUserUsingCacheByID(id: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
         let request = appDelegate.managedObjectModel.fetchRequestFromTemplateWithName("User_By_ID",
@@ -124,40 +80,30 @@ class User: NSManagedObject {
             failure?(error != nil ? error! : NSError()) // Needs specification
         }
     }
- 
-
     
-    class func fetchUserByID(id: NSNumber, strategy: Model.Strategy, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
-        switch strategy {
-        case .CacheOnly:
-            fetchUserUsingCacheByID(id, success: success, failure: failure)
-            break
-        case .NetworkOnly:
-            fetchUserUsingNetworkByID(id, success: success, failure: failure)
-            fetchUserProfileUsingNetworkByID(id, success: nil  , failure: nil)
-            break
-        case .CacheFirst:
-            fetchUserUsingCacheByID(id, success: success, failure: {
-                error in
-                self.fetchUserUsingNetworkByID(id, success: success, failure: failure)
-                self.fetchUserProfileUsingNetworkByID(id, success: nil, failure: nil)
+    private class func fetchUserUsingNetworkByID(id: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
+        UserModel.GET(UserModel.URLStrings["Information"]!,
+            parameters: [
+                "uid": id
+            ],
+            success: {
+                property in
+                self.fetchUserUsingCacheByID(id,
+                    success: {
+                        user in
+                        user.updateMainInformationWithProperty(property)
+                        user.id = id
+                        appDelegate.saveContext()
+                        success?(user)
+                    }, failure: {
+                        error in
+                        let user = Model.createManagedObjectOfClass(User.self, entityName: "User") as User
+                        user.updateMainInformationWithProperty(property)
+                        user.id = id
+                        appDelegate.saveContext()
+                        success?(user)
                 })
-        case .NetworkFirst:
-            fetchUserUsingNetworkByID(id, success: {
-                user in
-                self.fetchUserProfileUsingNetworkByID(id, success: nil, failure: {
-                    error in
-                    self.fetchUserUsingCacheByID(id, success: success, failure: failure)
-                    })
-                success
-                return
-                }, failure: {
-                error in
-                self.fetchUserUsingCacheByID(id, success: success, failure: failure)
-                })
-        default:
-            break
-        }
+            }, failure: failure)
     }
     
     class func loginWithCookieAndCacheInStorage(
@@ -191,8 +137,8 @@ class User: NSManagedObject {
         failure: ((NSError) -> Void)?) {
             UserModel.POST(UserModel.URLStrings["Login"]!,
                 parameters: [
-                    "user_name": name,
-                    "password": password
+                    "user_name": name.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding),
+                    "password": password.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
                 ],
                 success: {
                     property in
@@ -206,14 +152,46 @@ class User: NSManagedObject {
                 failure: failure)
     }
     
-    class func clearCookies() {
-        let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-        for cookie in storage.cookies as [NSHTTPCookie] {
-            storage.deleteCookie(cookie)
-        }
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("Cookies")
-        NSUserDefaults.standardUserDefaults().synchronize()
-        NSURLCache.sharedURLCache().removeAllCachedResponses()
+    func fetchProfileUsingNetwork(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        UserModel.GET(UserModel.URLStrings["profile"]!,
+            parameters: [
+                "uid": id
+            ],
+            success: {
+                property in
+                self.updateAdditionalInformationWithProperty(property[0])
+                success?()
+            },
+            failure: failure)
+    }
+    
+    class func avatarURLWithURI(URI: String) -> String {
+        return UserModel.URLStrings["Base"]! + UserModel.URLStrings["Avatar Base"]! + URI
+    }
+    
+    private func updateMainInformationWithProperty(property: Msr.Data.Property) {
+        let data = property
+        name = data["user_name"].asString()
+        avatarURL = User.avatarURLWithURI(data["avatar_file"].asString())
+        followerCount = data["fans_count"].asInt()
+        friendCount = data["friend_count"].asInt()
+        questionCount = data["question_count"].asInt()
+        answerCount = data["answer_count"].asInt()
+        topicFocusCount = data["topic_focus_count"].asInt()
+        agreementCount = data["agree_count"].asInt()
+        thankCount = data["thanks_count"].asInt()
+        answerFavoriteCount = data["answer_favorite_count"].asInt()
+        appDelegate.saveContext()
+    }
+    
+    private func updateAdditionalInformationWithProperty(property: Msr.Data.Property) {
+        let data = property
+        name = data["user_name"].asString()
+        gender = data["sex"].isNull() ? 3 : data["sex"].asInt()
+        birthday = data["birthday"].isNull() ? 0 : data["birthday"].asInt()
+        jobID = data["job_id"].asInt()
+        signature = data["signature"].asString()
+        appDelegate.saveContext()
     }
     
 }

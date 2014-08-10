@@ -57,7 +57,9 @@ class Activity: NSManagedObject {
                 questionActivity.answerUser = Model.createManagedObjectOfClass(User.self, entityName: "User") as? User
                 questionActivity.answerUser!.id = info["uid"].asInt()
                 questionActivity.answerUser!.name = info["user_name"].asString()
-                questionActivity.answerUser!.avatarURL = User.avatarURLWithURI(info["avatar_file"].asString())
+                if !info["avatar_file"].isNull() {
+                    questionActivity.answerUser!.avatarURL = User.avatarURLWithURI(info["avatar_file"].asString())
+                }
                 questionActivity.answerUserID = questionActivity.answerUser!.id
             }
             if !property["topics"].isNull() {

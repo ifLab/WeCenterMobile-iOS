@@ -43,7 +43,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.dataSource = self
         tableView.separatorColor = UIColor.clearColor()
         tableView.separatorStyle = .SingleLineEtched
-        sidebar.contentView.addSubview(tableView)                
+        sidebar.contentView.addSubview(tableView)
     }
     required init(coder aDecoder: NSCoder!) {
         contentViewController = Msr.UI.NavigationController(rootViewController: viewControllers[0])
@@ -83,8 +83,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                     }, failure: nil)
                 cell.textLabel.text = appDelegate.currentUser?.name
             } else {
-//                cell.imageView.image = nil
-//                cell.imageView.tintColor = UIColor.whiteColor()
+                cell.imageView.image = Msr.UI.Circle(color: UIColor(white: 1, alpha: 0.2), radius: 20).image
+                cell.imageView.tintColor = UIColor.whiteColor()
+                cell.imageView.layer.contentsScale = UIScreen.mainScreen().scale
                 cell.textLabel.text = titles[indexPath.row]
                 return cell
             }
@@ -94,7 +95,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         sidebar.hide(animated: true, completion: nil)
         if indexPath.section == 0 {
-            contentViewController.setViewControllers([UserMainViewController()], animated: true, completion: nil)
+            contentViewController.setViewControllers([UserViewController(userID: appDelegate.currentUser!.id)], animated: true, completion: nil)
         } else {
             contentViewController.setViewControllers([viewControllers[indexPath.row]], animated: true, completion: nil)
         }

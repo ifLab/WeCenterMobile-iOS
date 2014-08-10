@@ -6,53 +6,68 @@
   Copyright (c) 2014年 ifLab. All rights reserved.
 */
 
-//Edit
+/* Edit */
 "Edit" = "Edit";
 
-//My topic button title
+/* My topics button */
 "My topics" = "My topics";
 
-//Following button title
-"I focus on" = "I focus on";
+/* His topics button */
+"His topics" = "His/Her topics";
 
-//Follower button title
-"Watch me" = "Watch me";
+/* My following button */
+"My following" = "Following";
 
-//Gender
-"male" = "male";
-"female" = "female";
-"secret" = "Secret";
+/* His following button */
+"His following" = "Following";
 
-//Cell title
-"Reply" = "Reply";
-"Ask" = "Ask";
+/* My follower button */
+"My follower" = "Follower";
+
+/* His follower button */
+"His follower" = "Follower";
+
+/* Male */
+"Male" = "Male";
+
+/* Female */
+"Female" = "Female";
+
+/* Secret */
+"Secret" = "Secret";
+
+/* Article button */
 "Article" = "Article";
-"Dynamic" = "Dynamic";
-"Find Friends" = "Find Friends";
 
-//UserMainViewController title
-"My Profile" = "My Profile";
+/* Answered button */
+"Answered" = "Answered";
 
-//User profile
+/* Asked button */
+"Asked" = "Asked";
+
+/* Activity cell */
+"Activity" = "Activity";
+
+/* Find friends cell */
+"Find friends" = "Find friends";
+
+/* User profile view controller */
+"Profile" = "Profile";
+
+/* Name */
 "Name" = "Name";
+
+/* Gender */
 "Gender" = "Gender";
+
+/* Introduction */
 "Introduction" = "Introduction";
+
+/* Birthday */
 "Birthday" = "Birthday";
-"Other information" = "Other information";
 
-//UserEditListViewController title
-"Modify Information" = "Modify Information";
+/* Other informations */
+"Other informations" = "Other informations";
 
-//Take photo selecton
-"Select" = "Select";
-"Pictures" = "Pictures";
-"Album" = "Album";
-
-//Publish button title
-"Publish" = "Publish";
-
-//Cancel button title
-"Cancel" = "Cancel";
-
-//Modify
-"Modify" = "Modify";
+/* Edit list view controller */
+"Edit" = "Edit";
