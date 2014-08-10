@@ -7,7 +7,7 @@
 		<key>Base</key>
 		<string>http://w.hihwei.com/</string>
 		<key>Get Activity List</key>
-		<string>?/api/explore/</string>
+		<string>?/api/explore_ios/</string>
 	</dict>
 </dict>
 </plist>

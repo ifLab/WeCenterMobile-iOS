@@ -42,8 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window!.rootViewController = welcomeViewController
-        mainViewController = MainViewController()
-        mainViewController.modalTransitionStyle = .CrossDissolve
 //        User.clearCookies()
         User.loginWithCookieAndCacheInStorage(
             success: {
@@ -51,12 +49,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.currentUser = user
                 self.window!.makeKeyAndVisible()
                 dispatch_async(dispatch_get_main_queue()) {
+                    self.mainViewController = MainViewController()
+                    self.mainViewController.modalTransitionStyle = .CrossDissolve
                     self.welcomeViewController.presentViewController(self.mainViewController, animated: true, completion: nil)
                 }
             }, failure: {
                 error in
                 self.window!.makeKeyAndVisible()
                 println("USER HAS FAILED TO LOG IN WITH COOKIE IN STORAGE.")
+                println(error.userInfo)
             })
         return true
     }

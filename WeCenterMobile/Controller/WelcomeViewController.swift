@@ -26,6 +26,8 @@ class WelcomeViewController: UIViewController {
                 success: {
                     user in
                     appDelegate.currentUser = user
+                    appDelegate.mainViewController = MainViewController()
+                    appDelegate.mainViewController.modalTransitionStyle = .CrossDissolve
                     appDelegate.window!.rootViewController.presentViewController(appDelegate.mainViewController, animated: true, completion: nil)
                 },
                 failure: {

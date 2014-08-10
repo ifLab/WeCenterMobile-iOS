@@ -30,14 +30,18 @@ class Model {
         parameters: [String: AnyObject]!,
         success: ((Property) -> Void)?,
         failure: ((NSError) -> Void)?) -> Void {
+            let application = UIApplication.sharedApplication()
+            application.networkActivityIndicatorVisible = true
             manager.GET(URLString,
                 parameters: parameters,
                 success: {
                     operation, data in
+                    application.networkActivityIndicatorVisible = false
                     self.handleSuccess(data: data as NSData, success: success, failure: failure)
                 },
                 failure: {
                     operation, error in
+                    application.networkActivityIndicatorVisible = false
                     failure?(error)
                     return
                 })
@@ -46,22 +50,31 @@ class Model {
         parameters: [String: AnyObject]!,
         success: ((Property) -> Void)?,
         failure: ((NSError) -> Void)?) -> Void {
+            let application = UIApplication.sharedApplication()
+            application.networkActivityIndicatorVisible = true
             manager.POST(URLString,
                 parameters: parameters,
                 constructingBodyWithBlock: nil,
                 success: {
                     operation, data in
+                    application.networkActivityIndicatorVisible = false
                     self.handleSuccess(data: data as NSData, success: success, failure: failure)
                 },
                 failure: {
                     operation, error in
+                    application.networkActivityIndicatorVisible = false
                     failure?(error)
                     return
                 })
     }
     private func handleSuccess(#data: NSData, success: ((Property) -> Void)?, failure: ((NSError) -> Void)?) {
         let error: NSErrorPointer = nil
-        let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: error) as NSDictionary
+        let object: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: error)
+        if object == nil {
+            failure?(NSError()) // Needs specification
+            return
+        }
+        let dictionary = object as NSDictionary
         if !error {
             let value = Property(value: dictionary)
             if value["errno"].asInt() == self.noError {

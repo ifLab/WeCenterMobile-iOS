@@ -14,6 +14,12 @@ let UserStrings = Msr.Data.LocalizedStrings(module: "User", bundle: NSBundle.mai
 
 class User: NSManagedObject {
     
+    enum Gender: Int {
+        case Male = 1
+        case Female = 2
+        case Secret = 3
+    }
+    
     @NSManaged var gender: NSNumber?
     @NSManaged var birthday: NSNumber?
     @NSManaged var jobID: NSNumber?
@@ -31,6 +37,7 @@ class User: NSManagedObject {
     @NSManaged var questionCount: NSNumber?
     @NSManaged var thankCount: NSNumber?
     @NSManaged var topicFocusCount: NSNumber?
+    var followed: Bool? = nil
     
     class func clearCookies() {
         let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
@@ -135,6 +142,7 @@ class User: NSManagedObject {
         password: String,
         success: ((User) -> Void)?,
         failure: ((NSError) -> Void)?) {
+            clearCookies()
             UserModel.POST(UserModel.URLStrings["Login"]!,
                 parameters: [
                     "user_name": name.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding),
@@ -165,6 +173,19 @@ class User: NSManagedObject {
             failure: failure)
     }
     
+    func toggleFollow(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        UserModel.GET(UserModel.URLStrings["Follow User"]!,
+            parameters: [
+                "uid": id
+            ],
+            success: {
+                property in
+                self.followed = (property["type"].asString() == "add")
+                success?()
+            },
+            failure: failure)
+    }
+    
     class func avatarURLWithURI(URI: String) -> String {
         return UserModel.URLStrings["Base"]! + UserModel.URLStrings["Avatar Base"]! + URI
     }
@@ -181,13 +202,14 @@ class User: NSManagedObject {
         agreementCount = data["agree_count"].asInt()
         thankCount = data["thanks_count"].asInt()
         answerFavoriteCount = data["answer_favorite_count"].asInt()
+        followed = (data["has_focus"].asInt() == 1)
         appDelegate.saveContext()
     }
     
     private func updateAdditionalInformationWithProperty(property: Msr.Data.Property) {
         let data = property
         name = data["user_name"].asString()
-        gender = data["sex"].isNull() ? 3 : data["sex"].asInt()
+        gender = data["sex"].isNull() ? Gender.Secret.toRaw() : data["sex"].asInt()
         birthday = data["birthday"].isNull() ? 0 : data["birthday"].asInt()
         jobID = data["job_id"].asInt()
         signature = data["signature"].asString()

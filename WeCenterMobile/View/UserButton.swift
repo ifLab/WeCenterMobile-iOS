@@ -13,7 +13,7 @@ class UserButton: UIButton {
     override init() {
         super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width / 3, height: 100))
         addSubview(footerLabel)
-        setBackgroundImage(Msr.UI.Rectangle(color: UIColor(RGB: 0xe0e0e0), size: bounds.size).image, forState: .Normal)
+        setBackgroundImage(Msr.UI.Rectangle(color: %+0xe0e0e0, size: bounds.size).image, forState: .Normal)
         layer.contentsScale = UIScreen.mainScreen().scale
         footerLabel.frame = CGRect(x: 0, y: 60, width: bounds.width, height: 40)
         footerLabel.textColor = UIColor.grayColor()

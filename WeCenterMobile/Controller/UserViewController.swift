@@ -8,11 +8,20 @@
 
 import UIKit
 
-class UserViewController: UIViewController, UIScrollViewDelegate, UserEditDelegate {
+class UserViewController: UIViewController, UIScrollViewDelegate {
+    
+    enum AvatarButtonState {
+        case Normal
+        case NotFollowing
+        case Following
+    }
     
     var topView = UIScrollView()
     var bottomView = UIScrollView()
-    var avatarView = UIImageView()
+    var avatarButton = UIButton()
+    var avatarButtonState = AvatarButtonState.Normal
+    var avatarButtonTimer: NSTimer? = nil
+    var avatarActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
     var nameLabel = UILabel()
     var hideableView = UIView()
     var signatureLabel = UILabel()
@@ -28,13 +37,6 @@ class UserViewController: UIViewController, UIScrollViewDelegate, UserEditDelega
     var articleButton = UserCountButton()
     var activityButton = UserCoverButton()
     
-//    var likeView = UIImageView()
-//    var likeCountLabel = UILabel()
-//    var thankView = UIImageView()
-//    var thankCountLabel = UILabel()
-//    var favoriteView = UIImageView()
-//    var favoriteCountLabel = UILabel()
-    
     var userID: NSNumber!
     var user: User!
     var layouted: Bool = false
@@ -47,7 +49,8 @@ class UserViewController: UIViewController, UIScrollViewDelegate, UserEditDelega
         
         view.addSubview(bottomView)
         view.addSubview(topView)
-        topView.addSubview(avatarView)
+        topView.addSubview(avatarButton)
+        topView.addSubview(avatarActivityIndicatorView)
         topView.addSubview(nameLabel)
         bottomView.addSubview(topicButton)
         bottomView.addSubview(followingButton)
@@ -63,7 +66,8 @@ class UserViewController: UIViewController, UIScrollViewDelegate, UserEditDelega
         hideableView.addSubview(agreementCountView)
         
         topView.frame = CGRect(x: 0, y: -(UINavigationController().navigationBar.bounds.height + UIApplication.sharedApplication().statusBarFrame.height), width: view.bounds.width, height: 200)
-        topView.backgroundColor = UIColor(RGB: 0x424242)
+        topView.backgroundColor = %+0x424242
+        topView.delaysContentTouches = false
         topView.layer.shadowColor = UIColor.blackColor().CGColor
         topView.layer.shadowOpacity = true
         topView.layer.masksToBounds = false
@@ -73,30 +77,32 @@ class UserViewController: UIViewController, UIScrollViewDelegate, UserEditDelega
         bottomView.showsVerticalScrollIndicator = false
         bottomView.delegate = self
         bottomView.addGestureRecognizer(topView.panGestureRecognizer)
-        avatarView.bounds.size = CGSize(width: 100, height: 100)
-        avatarView.center.x = topView.center.x
-        avatarView.frame.origin.y = 50
-        avatarView.layer.cornerRadius = avatarView.bounds.width / 2
-        avatarView.layer.masksToBounds = true
-        nameLabel.frame = CGRect(x: 0, y: avatarView.frame.origin.y + avatarView.bounds.height + 20, width: topView.bounds.width, height: 26)
+        avatarButton.bounds.size = CGSize(width: 100, height: 100)
+        avatarButton.center.x = topView.center.x
+        avatarButton.frame.origin.y = 50
+        avatarButton.layer.cornerRadius = avatarButton.bounds.width / 2
+        avatarButton.layer.masksToBounds = true
+        avatarButton.addTarget(self, action: "toggleAvatarButtonImage", forControlEvents: .TouchUpInside)
+        avatarButton.addTarget(self, action: "delayHidingAvatarButtonImage", forControlEvents: .TouchDown)
+        avatarButton.imageView.frame = avatarButton.bounds
+        avatarButton.imageView.alpha = 0
+        avatarActivityIndicatorView.frame = avatarButton.frame
+        avatarActivityIndicatorView.userInteractionEnabled = false
+        nameLabel.frame = CGRect(x: 0, y: avatarButton.frame.origin.y + avatarButton.bounds.height + 20, width: topView.bounds.width, height: 26)
         nameLabel.font = UIFont.boldSystemFontOfSize(22)
         nameLabel.textColor = UIColor.whiteColor()
         nameLabel.textAlignment = .Center
         hideableView.backgroundColor = topView.backgroundColor
-        hideableView.frame = CGRect(x: 0, y: 0, width: bottomView.bounds.width, height: 50)
+        hideableView.frame = CGRect(x: 0, y: 0, width: bottomView.bounds.width, height: 0.01)
         hideableView.layer.shadowColor = UIColor.blackColor().CGColor
         hideableView.layer.shadowOpacity = true
         hideableView.layer.masksToBounds = false
         signatureLabel.font = UIFont.systemFontOfSize(16)
-        signatureLabel.textColor = UIColor(RGB: 0xeeeeee)
+        signatureLabel.textColor = %+0xeeeeee
         signatureLabel.numberOfLines = 0
         signatureLabel.textAlignment = .Center
         signatureLabel.frame = CGRect(x: 0, y: 0, width: hideableView.bounds.width, height: 0.01)
         signatureLabel.alpha = 0
-//        var thankCountView = UserCountView()
-//        var likeCountView = UserCountView()
-//        var favoriteCountView = UserCountView()
-//        var shareCountView = UserCountView()
         thankCountView.imageView.image = UIImage(named: "Love_icon").imageWithRenderingMode(.AlwaysTemplate)
         thankCountView.frame.origin = CGPoint(x: 0, y: 10)
         likeCountView.imageView.image = UIImage(named: "Like_icon").imageWithRenderingMode(.AlwaysTemplate)
@@ -111,12 +117,18 @@ class UserViewController: UIViewController, UIScrollViewDelegate, UserEditDelega
         articleButton.frame.origin = CGPoint(x: 0, y: topicButton.bounds.height)
         askedButton.frame.origin = CGPoint(x: bottomView.bounds.width / 3, y: followingButton.bounds.height)
         answeredButton.frame.origin = CGPoint(x: bottomView.bounds.width * 2 / 3, y: followerButton.bounds.height)
+        topicButton.alpha = 0
+        followingButton.alpha = 0
+        followerButton.alpha = 0
+        articleButton.alpha = 0
+        askedButton.alpha = 0
+        answeredButton.alpha = 0
         if userID == appDelegate.currentUser!.id {
             topicButton.footerLabel.text = UserStrings["My topics"]
             followingButton.footerLabel.text = UserStrings["My following"]
             followerButton.footerLabel.text = UserStrings["My follower"]
         } else {
-            topicButton.footerLabel.text = UserStrings["His Topics"]
+            topicButton.footerLabel.text = UserStrings["His topics"]
             followingButton.footerLabel.text = UserStrings["His following"]
             followerButton.footerLabel.text = UserStrings["His follower"]
         }
@@ -173,17 +185,29 @@ class UserViewController: UIViewController, UIScrollViewDelegate, UserEditDelega
     }
     
     override func viewWillAppear(animated: Bool) {
-        if appDelegate.currentUser?.avatarURL != nil {
-            avatarView.setImageWithURL(NSURL(string: appDelegate.currentUser!.avatarURL))
-        }
         msrNavigationBar.hidden = true
     }
     
     override func viewDidLayoutSubviews() {
         if !layouted {
             nameLabel.text = user.name
+            if user.avatarURL != nil && avatarButton.backgroundImageForState(.Normal) == nil {
+                avatarButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: user.avatarURL!))
+            }
             if user.signature != nil {
                 layouted = true
+                switch User.Gender.fromRaw(user.gender!)! {
+                case .Male:
+                    nameLabel.text! += " ♂"
+                    break
+                case .Female:
+                    nameLabel.text! += " ♀"
+                    break
+                case .Secret:
+                    break
+                default:
+                    break
+                }
                 signatureLabel.text = user.signature
                 UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .BeginFromCurrentState, animations: {
                     let height = self.signatureLabel.sizeThatFits(CGSize(width: self.signatureLabel.frame.width, height: CGFloat.max)).height
@@ -202,6 +226,12 @@ class UserViewController: UIViewController, UIScrollViewDelegate, UserEditDelega
                     self.likeCountView.countLabel.text = "\(self.user.markCount!)"
                     self.favoriteCountView.countLabel.text = "\(self.user.answerFavoriteCount!)"
                     self.agreementCountView.countLabel.text = "\(self.user.agreementCount!)"
+                    self.topicButton.alpha = 1
+                    self.followingButton.alpha = 1
+                    self.followerButton.alpha = 1
+                    self.articleButton.alpha = 1
+                    self.askedButton.alpha = 1
+                    self.answeredButton.alpha = 1
                     for subview in self.bottomView.subviews as [UIView] {
                         if subview !== self.hideableView {
                             subview.transform = CGAffineTransformMakeTranslation(0,  self.hideableView.frame.size.height)
@@ -259,14 +289,91 @@ class UserViewController: UIViewController, UIScrollViewDelegate, UserEditDelega
         }
     }
     
-    func avatarDidPost(controller:UserEditViewController , image:UIImage) {
-        
+    func delayHidingAvatarButtonImage() {
+        preventHidingAvatarButtonImage()
+        tryHidingAvatarButtonImage()
     }
     
-    func nameDidPost(controller:UserEditViewController, name:String) {
-        
+    func preventHidingAvatarButtonImage() {
+        avatarButtonTimer?.invalidate()
+        avatarButtonTimer = nil
     }
     
+    func tryHidingAvatarButtonImage() {
+        avatarButtonTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "doHidingAvatarButtonImage", userInfo: nil, repeats: false)
+    }
+    
+    func doHidingAvatarButtonImage() {
+        self.avatarButtonState = .Normal
+        avatarButton.userInteractionEnabled = false
+        UIView.animateWithDuration(0.2,
+            delay: 0,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 0,
+            options: .BeginFromCurrentState,
+            animations: {
+                self.avatarButton.imageView.alpha = 0
+            }, completion: {
+                finished in
+                self.avatarButton.setImage(nil, forState: .Normal)
+                self.avatarButton.userInteractionEnabled = true
+        })
+    }
+    
+    func toggleAvatarButtonImage() {
+        if user?.followed != nil {
+            switch avatarButtonState {
+            case .Normal:
+                if user!.followed! {
+                    avatarButton.setImage(UIImage(named: "User_Following"), forState: .Normal)
+                    avatarButtonState = .Following
+                } else {
+                    avatarButton.setImage(UIImage(named: "User_Follow"), forState: .Normal)
+                    avatarButtonState = .NotFollowing
+                }
+                avatarButton.userInteractionEnabled = false
+                UIView.animateWithDuration(0.2,
+                    delay: 0,
+                    usingSpringWithDamping: 1,
+                    initialSpringVelocity: 0,
+                    options: .BeginFromCurrentState,
+                    animations: {
+                        self.avatarButton.imageView.alpha = 1
+                    }, completion: {
+                        finished in
+                        self.avatarButton.userInteractionEnabled = true
+                    })
+                break
+            case .NotFollowing, .Following:
+                avatarActivityIndicatorView.startAnimating()
+                avatarButton.userInteractionEnabled = false
+                preventHidingAvatarButtonImage()
+                user!.toggleFollow(
+                    success: {
+                        self.tryHidingAvatarButtonImage()
+                        self.avatarActivityIndicatorView.stopAnimating()
+                        self.avatarButton.userInteractionEnabled = true
+                        if self.user!.followed! {
+                            self.avatarButton.setImage(UIImage(named: "User_Following"), forState: .Normal)
+                            self.avatarButtonState = .Following
+                        } else {
+                            self.avatarButton.setImage(UIImage(named: "User_Follow"), forState: .Normal)
+                            self.avatarButtonState = .NotFollowing
+                        }
+                    },
+                    failure: {
+                        error in
+                        self.tryHidingAvatarButtonImage()
+                        self.avatarActivityIndicatorView.stopAnimating()
+                        self.avatarButton.userInteractionEnabled = true
+                        println(error.userInfo)
+                    })
+                break
+            default:
+                break
+            }
+        }
+    }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent

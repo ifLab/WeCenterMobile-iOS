@@ -9,7 +9,7 @@
 		<key>Login</key>
 		<string>?/api/account/login_process/</string>
 		<key>Information</key>
-		<string>api/user.php</string>
+		<string>?/api/account/get_userinfo/</string>
 		<key>Register</key>
 		<string>?/api/account/register_process/</string>
 		<key>Get UID</key>
@@ -24,6 +24,8 @@
 		<string>api/profile_setting.php</string>
 		<key>profile</key>
 		<string>api/profile.php</string>
+		<key>Follow User</key>
+		<string>?/follow/ajax/follow_people/</string>
 	</dict>
 </dict>
 </plist>

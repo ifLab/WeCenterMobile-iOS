@@ -51,13 +51,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.init(coder: aDecoder)
     }
     func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
-        return 2
+        return 3
     }
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        } else {
+        if section == 1 {
             return titles.count
+        } else {
+            return 1
         }
     }
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
@@ -82,12 +82,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                         tableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1), animated: false, scrollPosition: .None)
                     }, failure: nil)
                 cell.textLabel.text = appDelegate.currentUser?.name
-            } else {
+            } else if indexPath.section == 1 {
                 cell.imageView.image = Msr.UI.Circle(color: UIColor(white: 1, alpha: 0.2), radius: 20).image
                 cell.imageView.tintColor = UIColor.whiteColor()
                 cell.imageView.layer.contentsScale = UIScreen.mainScreen().scale
                 cell.textLabel.text = titles[indexPath.row]
-                return cell
+            } else {
+                cell.textLabel.text = "TEMPORARY_EXIT"
             }
         }
         return cell
@@ -96,8 +97,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         sidebar.hide(animated: true, completion: nil)
         if indexPath.section == 0 {
             contentViewController.setViewControllers([UserViewController(userID: appDelegate.currentUser!.id)], animated: true, completion: nil)
-        } else {
+        } else if indexPath.section == 1 {
             contentViewController.setViewControllers([viewControllers[indexPath.row]], animated: true, completion: nil)
+        } else {
+            dismissViewControllerAnimated(true, completion: nil)
         }
     }
     func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {

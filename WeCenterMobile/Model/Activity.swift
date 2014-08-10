@@ -112,7 +112,7 @@ class Activity: NSManagedObject {
             success: {
                 property in
                 var activityList = [Activity]()
-                for activityDictionary in property["rows"].asArray() as [NSDictionary] {
+                for (key, activityDictionary) in property["rows"].asDictionary() as [String: NSDictionary] {
                     activityList.append(self.activityWithProperty(Msr.Data.Property(value: activityDictionary)))
                 }
                 success?(activityList)

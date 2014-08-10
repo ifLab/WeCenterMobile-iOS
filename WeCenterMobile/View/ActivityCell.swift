@@ -10,11 +10,11 @@ import UIKit
 
 class ActivityCell: UITableViewCell {
     
-    private let innerView = InnerView()
-    let titleView = UIView()
+    private let innerView = UIView()
+    let titleButton = UIButton()
     let titleLabel = UILabel()
     let answerView = UIView()
-    let answerUserAvatarView = UIImageView()
+    let answerUserAvatarButton = UIButton()
     let answerUserNameLabel = UILabel()
     let answerContentLabel = UILabel()
     
@@ -25,22 +25,26 @@ class ActivityCell: UITableViewCell {
         titleLabel.numberOfLines = 0
         titleLabel.font = UIFont.boldSystemFontOfSize(16)
         titleLabel.frame = CGRect(x: 10, y: 20, width: width - 40, height: titleLabel.sizeThatFits(maxTitleLabelSize).height)
-        titleView.frame = CGRect(x: 0, y: 0, width: width - 20, height: titleLabel.frame.size.height + 40)
-        
+        titleButton.frame = CGRect(x: 0, y: 0, width: width - 20, height: titleLabel.frame.size.height + 40)
+        titleButton.setBackgroundImage(Msr.UI.Rectangle(color: %+0xeeeeee, size: titleButton.bounds.size).image, forState: .Normal)
+        titleButton.setBackgroundImage(Msr.UI.Rectangle(color: %+0xbdbdbd, size: titleButton.bounds.size).image, forState: .Highlighted)
+        titleButton.layer.contentsScale = UIScreen.mainScreen().scale
+        answerView.frame = CGRectZero
         if let questionActivity = activity as? QuestionActivity {
             if questionActivity.answerUser != nil {
-                answerUserAvatarView.frame = CGRect(x: 10, y: 15, width: 40, height: 40)
-                answerUserAvatarView.layer.masksToBounds = true
-                answerUserAvatarView.layer.cornerRadius = answerUserAvatarView.frame.width / 2
-                answerUserAvatarView.layer.borderWidth = 0.5
-                answerUserAvatarView.layer.borderColor = UIColor.lightGrayColor().CGColor
+                answerUserAvatarButton.frame = CGRect(x: 10, y: 15, width: 40, height: 40)
+                answerUserAvatarButton.imageView.layer.masksToBounds = true
+                answerUserAvatarButton.imageView.layer.cornerRadius = answerUserAvatarButton.frame.width / 2
+                answerUserAvatarButton.imageView.layer.borderWidth = 0.5
+                answerUserAvatarButton.imageView.layer.borderColor = UIColor.lightGrayColor().CGColor
+                answerUserAvatarButton.tag = questionActivity.answerUserID!
                 if autoLoadingAvatar && questionActivity.answerUser!.avatarURL != nil {
-                    answerUserAvatarView.setImageWithURL(NSURL(string: questionActivity.answerUser!.avatarURL!.stringByReplacingOccurrencesOfString("min", withString: "max", options: .BackwardsSearch, range: nil))) // Needs modifing
+                    answerUserAvatarButton.setImageForState(.Normal, withURL: NSURL(string: questionActivity.answerUser!.avatarURL!.stringByReplacingOccurrencesOfString("min", withString: "max", options: .BackwardsSearch, range: nil))) // Needs modifing
                 }
                 answerUserNameLabel.font = UIFont.systemFontOfSize(15)
                 answerUserNameLabel.text = questionActivity.answerUser!.name
                 answerUserNameLabel.frame.size = answerUserNameLabel.sizeThatFits(CGSize(width: CGFloat.max, height: CGFloat.max))
-                answerUserNameLabel.frame.origin = CGPoint(x: answerUserAvatarView.frame.origin.x + answerUserAvatarView.frame.width + 10, y: answerUserAvatarView.frame.origin.y)
+                answerUserNameLabel.frame.origin = CGPoint(x: answerUserAvatarButton.frame.origin.x + answerUserAvatarButton.frame.width + 10, y: answerUserAvatarButton.frame.origin.y)
                 answerContentLabel.font = UIFont.systemFontOfSize(14)
                 answerContentLabel.textColor = UIColor.grayColor()
                 answerContentLabel.lineBreakMode = .ByCharWrapping
@@ -48,21 +52,24 @@ class ActivityCell: UITableViewCell {
                 answerContentLabel.text = questionActivity.answerContent
                 answerContentLabel.frame.size = answerContentLabel.sizeThatFits(CGSize(width: width - 20 - answerUserNameLabel.frame.origin.x - 10, height: CGFloat.max))
                 answerContentLabel.frame.origin = CGPoint(x: answerUserNameLabel.frame.origin.x, y: answerUserNameLabel.frame.origin.y + answerUserNameLabel.frame.height + 5)
-                answerView.frame = CGRect(x: 0, y: titleView.frame.origin.x + titleView.frame.height, width: width - 20, height: max(answerUserAvatarView.frame.origin.y + answerUserAvatarView.frame.height, answerContentLabel.frame.origin.y + answerContentLabel.frame.height) + 10)
+                answerView.frame = CGRect(x: 0, y: titleButton.frame.origin.x + titleButton.frame.height, width: width - 20, height: max(answerUserAvatarButton.frame.origin.y + answerUserAvatarButton.frame.height, answerContentLabel.frame.origin.y + answerContentLabel.frame.height) + 10)
+                answerView.backgroundColor = %+0xfafafa
             }
-            innerView.frame = CGRect(x: 10, y: 10, width: width - 20, height: titleView.frame.height + answerView.frame.height)
+            innerView.frame = CGRect(x: 10, y: 10, width: width - 20, height: titleButton.frame.height + answerView.frame.height)
         } else if let ariticalActivity = activity as? ArticalActivity {
-            innerView.frame = CGRect(x: 10, y: 10, width: width - 20, height: titleView.frame.height)
+            innerView.frame = CGRect(x: 10, y: 10, width: width - 20, height: titleButton.frame.height)
         }
-        innerView.layer.borderWidth = 0.5
-        innerView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        innerView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        innerView.layer.shadowColor = UIColor.lightGrayColor().CGColor
+        innerView.layer.shadowRadius = 1
+        innerView.layer.shadowOpacity = true
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
         frame = CGRect(x: 0, y: 0, width: width, height: innerView.frame.size.height + 10)
         contentView.addSubview(innerView)
-        innerView.addSubview(titleView)
+        innerView.addSubview(titleButton)
         innerView.addSubview(answerView)
-        titleView.addSubview(titleLabel)
-        answerView.addSubview(answerUserAvatarView)
+        titleButton.addSubview(titleLabel)
+        answerView.addSubview(answerUserAvatarButton)
         answerView.addSubview(answerUserNameLabel)
         answerView.addSubview(answerContentLabel)
         innerView.backgroundColor = UIColor.whiteColor()
@@ -71,31 +78,6 @@ class ActivityCell: UITableViewCell {
     
     required init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
-    }
-    
-    private class InnerView: UIView {
-        
-        override init() {
-            super.init()
-        }
-        
-        required init(coder aDecoder: NSCoder!) {
-            super.init(coder: aDecoder)
-        }
-        
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-        }
-        
-        override func drawRect(rect: CGRect) {
-            let cell = superview!.superview as ActivityCell
-            let path = UIBezierPath()
-            path.moveToPoint(CGPoint(x: cell.titleView.frame.origin.x + 10, y: cell.titleView.frame.height + cell.titleView.frame.origin.y))
-            path.addLineToPoint(CGPoint(x: cell.titleView.frame.origin.x + cell.titleView.frame.size.width - 10, y: cell.titleView.frame.height + cell.titleView.frame.origin.y))
-            UIColor(white: 0, alpha: 0.1).set()
-            path.stroke()
-        }
-        
     }
     
 }
