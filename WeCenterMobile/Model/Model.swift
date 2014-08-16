@@ -93,4 +93,21 @@ class Model {
         let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: appDelegate.managedObjectContext)
         return (Class as NSManagedObject.Type)(entity: entity, insertIntoManagedObjectContext: appDelegate.managedObjectContext)
     }
+    class func fetchManagedObjectByTemplateName<T: NSManagedObject>(templateName: String, ID: NSNumber, success: ((T) -> Void)?, failure: ((NSError) -> Void)?) {
+        let request = appDelegate.managedObjectModel.fetchRequestFromTemplateWithName(templateName,
+            substitutionVariables: [
+                "ID": ID
+            ])
+        var error: NSError? = nil
+        let results = appDelegate.managedObjectContext.executeFetchRequest(request, error: &error)
+        if error == nil && results != nil && results!.count != 0 {
+            success?(results![0] as T)
+        } else {
+            failure?(error != nil ? error! : NSError()) // Needs specification
+        }
+    }
+}
+
+class ManagedObjectModel<T> {
+    
 }

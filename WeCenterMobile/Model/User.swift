@@ -49,24 +49,24 @@ class User: NSManagedObject {
         NSURLCache.sharedURLCache().removeAllCachedResponses()
     }
     
-    class func fetchUserByID(id: NSNumber, strategy: Model.Strategy, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
+    class func fetchUserByID(ID: NSNumber, strategy: Model.Strategy, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
         switch strategy {
         case .CacheOnly:
-            fetchUserUsingCacheByID(id, success: success, failure: failure)
+            fetchUserUsingCacheByID(ID, success: success, failure: failure)
             break
         case .NetworkOnly:
-            fetchUserUsingNetworkByID(id, success: success, failure: failure)
+            fetchUserUsingNetworkByID(ID, success: success, failure: failure)
             break
         case .CacheFirst:
-            fetchUserUsingCacheByID(id, success: success, failure: {
+            fetchUserUsingCacheByID(ID, success: success, failure: {
                 error in
-                self.fetchUserUsingNetworkByID(id, success: success, failure: failure)
+                self.fetchUserUsingNetworkByID(ID, success: success, failure: failure)
             })
             break
         case .NetworkFirst:
-            fetchUserUsingNetworkByID(id, success: success, failure: {
+            fetchUserUsingNetworkByID(ID, success: success, failure: {
                 error in
-                self.fetchUserUsingCacheByID(id, success: success, failure: failure)
+                self.fetchUserUsingCacheByID(ID, success: success, failure: failure)
             })
             break
         default:
@@ -74,39 +74,29 @@ class User: NSManagedObject {
         }
     }
     
-    private class func fetchUserUsingCacheByID(id: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
-        let request = appDelegate.managedObjectModel.fetchRequestFromTemplateWithName("User_By_ID",
-            substitutionVariables: [
-                "ID": id
-            ])
-        var error: NSError? = nil
-        let results = appDelegate.managedObjectContext.executeFetchRequest(request, error: &error) as? [User]
-        if error == nil && results!.count != 0 {
-            success?(results![0])
-        } else {
-            failure?(error != nil ? error! : NSError()) // Needs specification
-        }
+    private class func fetchUserUsingCacheByID(ID: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
+        Model.fetchManagedObjectByTemplateName("User_By_ID", ID: ID, success: success, failure: failure)
     }
     
-    private class func fetchUserUsingNetworkByID(id: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
+    private class func fetchUserUsingNetworkByID(ID: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
         UserModel.GET(UserModel.URLStrings["Information"]!,
             parameters: [
-                "uid": id
+                "uid": ID
             ],
             success: {
                 property in
-                self.fetchUserUsingCacheByID(id,
+                self.fetchUserUsingCacheByID(ID,
                     success: {
                         user in
                         user.updateMainInformationWithProperty(property)
-                        user.id = id
+                        user.id = ID
                         appDelegate.saveContext()
                         success?(user)
                     }, failure: {
                         error in
                         let user = Model.createManagedObjectOfClass(User.self, entityName: "User") as User
                         user.updateMainInformationWithProperty(property)
-                        user.id = id
+                        user.id = ID
                         appDelegate.saveContext()
                         success?(user)
                 })

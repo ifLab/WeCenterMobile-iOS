@@ -66,10 +66,8 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         hideableView.addSubview(agreementCountView)
         
         topView.frame = CGRect(x: 0, y: -(UINavigationController().navigationBar.bounds.height + UIApplication.sharedApplication().statusBarFrame.height), width: view.bounds.width, height: 200)
-        topView.backgroundColor = %+0x424242
+        topView.backgroundColor = UIColor.paperColorGray300()
         topView.delaysContentTouches = false
-        topView.layer.shadowColor = UIColor.blackColor().CGColor
-        topView.layer.shadowOpacity = true
         topView.layer.masksToBounds = false
         bottomView.frame = CGRect(x: 0, y: topView.frame.origin.y + topView.bounds.height, width: view.bounds.width, height: view.frame.height - topView.bounds.height)
         bottomView.backgroundColor = UIColor.groupTableViewBackgroundColor()
@@ -90,15 +88,13 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         avatarActivityIndicatorView.userInteractionEnabled = false
         nameLabel.frame = CGRect(x: 0, y: avatarButton.frame.origin.y + avatarButton.bounds.height + 20, width: topView.bounds.width, height: 26)
         nameLabel.font = UIFont.boldSystemFontOfSize(22)
-        nameLabel.textColor = UIColor.whiteColor()
+        nameLabel.textColor = UIColor.blackColor()
         nameLabel.textAlignment = .Center
         hideableView.backgroundColor = topView.backgroundColor
         hideableView.frame = CGRect(x: 0, y: 0, width: bottomView.bounds.width, height: 0.01)
-        hideableView.layer.shadowColor = UIColor.blackColor().CGColor
-        hideableView.layer.shadowOpacity = true
         hideableView.layer.masksToBounds = false
         signatureLabel.font = UIFont.systemFontOfSize(16)
-        signatureLabel.textColor = %+0xeeeeee
+        signatureLabel.textColor = UIColor.paperColorGray900()
         signatureLabel.numberOfLines = 0
         signatureLabel.textAlignment = .Center
         signatureLabel.frame = CGRect(x: 0, y: 0, width: hideableView.bounds.width, height: 0.01)
@@ -123,6 +119,10 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         articleButton.alpha = 0
         askedButton.alpha = 0
         answeredButton.alpha = 0
+        topicButton.addTarget(self, action: "pushTopicListViewController", forControlEvents: .TouchUpInside)
+        for subview in hideableView.subviews as [UIView] {
+            subview.alpha = 0
+        }
         if userID == appDelegate.currentUser!.id {
             topicButton.footerLabel.text = UserStrings["My topics"]
             followingButton.footerLabel.text = UserStrings["My following"]
@@ -232,6 +232,9 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
                     self.articleButton.alpha = 1
                     self.askedButton.alpha = 1
                     self.answeredButton.alpha = 1
+                    for subview in self.hideableView.subviews as [UIView] {
+                        subview.alpha = 1
+                    }
                     for subview in self.bottomView.subviews as [UIView] {
                         if subview !== self.hideableView {
                             subview.transform = CGAffineTransformMakeTranslation(0,  self.hideableView.frame.size.height)
@@ -262,14 +265,10 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         if scrollView === bottomView {
             if bottomView.contentOffset.y < 0 {
                 topView.frame.size.height = 200 + -bottomView.contentOffset.y
-                topView.layer.shadowRadius = 0
                 topView.contentOffset.y = bottomView.contentOffset.y
-                hideableView.layer.shadowRadius = 5
             } else {
                 topView.frame.size.height = 200
                 let percentage = min(bottomView.contentOffset.y, hideableView.bounds.height) / hideableView.bounds.height
-                topView.layer.shadowRadius = pow(percentage, 0.2) * 5
-                hideableView.layer.shadowRadius = pow(1 - percentage, 0.2) * 5
                 topView.contentOffset.y = pow(percentage * pow(100, 2), 0.5) / 100 * 10
             }
         }
@@ -375,7 +374,9 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    internal func pushTopicListViewController() {}
+    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return .Default
     }
 }

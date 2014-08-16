@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let contentViewController: Msr.UI.NavigationController
-    let sidebar = Msr.UI.Sidebar(width: 200, blurEffectStyle: .Dark)
+    let sidebar = Msr.UI.Sidebar(width: 200, blurEffectStyle: .Light)
     let tableView: UITableView
 //    let model = Model(module: "User", bundle: NSBundle.mainBundle())
 
@@ -22,14 +22,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         Msr.Data.LocalizedStrings(module: "Discovery", bundle: NSBundle.mainBundle())["Discovery"],
         "Favorite",
         "Bookmark",
-        "Message"
+        "Message",
+        "TEST VC"
     ]
     var viewControllers: [UIViewController] = [
-        HomeViewController(statusBarStyle: .Default),
+        UIViewController(),
         DiscoveryViewController(),
+        UIViewController(),
+        UIViewController(),
+        UIViewController(),
         HomeViewController(statusBarStyle: .Default),
-        HomeViewController(statusBarStyle: .LightContent),
-        HomeViewController(statusBarStyle: .LightContent)
     ]
     override init() {
         contentViewController = Msr.UI.NavigationController(rootViewController: viewControllers[0])
@@ -43,6 +45,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.dataSource = self
         tableView.separatorColor = UIColor.clearColor()
         tableView.separatorStyle = .SingleLineEtched
+        tableView.showsVerticalScrollIndicator = false
         sidebar.contentView.addSubview(tableView)
     }
     required init(coder aDecoder: NSCoder!) {
@@ -65,10 +68,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         var cell: UITableViewCell! = tableView.dequeueReusableCellWithIdentifier(identifier) as? UITableViewCell
         if cell == nil {
             cell = UITableViewCell(style: .Default, reuseIdentifier: identifier)
-            cell.textLabel.textColor = UIColor.whiteColor()
+            cell.textLabel.textColor = UIColor.blackColor()
             cell.backgroundColor = UIColor.clearColor()
             cell.selectedBackgroundView = UIView(frame: CGRect(origin: CGPointZero, size: cell.bounds.size))
-            cell.selectedBackgroundView.backgroundColor = UIColor(white: 1, alpha: 0.1)
+            cell.selectedBackgroundView.backgroundColor = UIColor(white: 0, alpha: 0.1)
             if indexPath.section == 0 {
                 cell.imageView.setImageWithURLRequest(NSURLRequest(URL: NSURL(string: appDelegate.currentUser?.avatarURL)),
                     placeholderImage: nil,
@@ -83,8 +86,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                     }, failure: nil)
                 cell.textLabel.text = appDelegate.currentUser?.name
             } else if indexPath.section == 1 {
-                cell.imageView.image = Msr.UI.Circle(color: UIColor(white: 1, alpha: 0.2), radius: 20).image
-                cell.imageView.tintColor = UIColor.whiteColor()
+                cell.imageView.image = Msr.UI.Circle(color: UIColor(white: 0, alpha: 0.2), radius: 20).image
+                cell.imageView.tintColor = UIColor.blackColor()
                 cell.imageView.layer.contentsScale = UIScreen.mainScreen().scale
                 cell.textLabel.text = titles[indexPath.row]
             } else {

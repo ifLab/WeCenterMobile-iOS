@@ -20,7 +20,6 @@ class DiscoveryViewController: Msr.UI.SegmentedViewController {
                 ActivityListViewController(listType: .Unanswered)
             ])
         title = DiscoveryStrings["Discovery"]
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refresh")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List-Dots"), style: .Bordered, target: self, action: "showSidebar")
     }
     
@@ -28,12 +27,12 @@ class DiscoveryViewController: Msr.UI.SegmentedViewController {
         super.viewWillAppear(animated)
     }
     
-    func refresh() {
-        (viewControllers[segmentedControl.selectedSegmentIndex] as ActivityListViewController).refresh()
-    }
-    
     func showSidebar() {
         appDelegate.mainViewController.sidebar.show(animated: true, completion: nil)
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return viewControllers[segmentedControl.selectedSegmentIndex].preferredStatusBarStyle()
     }
     
     required init(coder aDecoder: NSCoder!) {

@@ -11,12 +11,7 @@ import CoreData
 
 class QuestionActivity_Topic: NSManagedObject {
 
-    @NSManaged var questionActivityID: NSNumber
+    @NSManaged var activityID: String
     @NSManaged var topicID: NSNumber
-    
-    convenience init() {
-        let entity = NSEntityDescription.entityForName("QuestionActivity_Topic", inManagedObjectContext: appDelegate.managedObjectContext)
-        self.init(entity: entity, insertIntoManagedObjectContext: appDelegate.managedObjectContext)
-    }
 
 }

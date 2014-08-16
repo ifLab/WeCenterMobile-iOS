@@ -13,7 +13,8 @@ let DiscoveryStrings = Msr.Data.LocalizedStrings(module: "Discovery", bundle: NS
 let DiscoveryModel = Model(module: "Discovery", bundle: NSBundle.mainBundle())
 
 class Activity: NSManagedObject {
-
+    
+    @NSManaged var id: String
     @NSManaged var title: String
     @NSManaged var userID: NSNumber
     @NSManaged var addedTime: NSDate
@@ -28,29 +29,44 @@ class Activity: NSManagedObject {
     }
     
     class func activityWithProperty(property: Msr.Data.Property) -> Activity {
-        let userModel = Model(module: "User", bundle: NSBundle.mainBundle())
+        let key = property.asDictionary().keys.first!
+        let value = Msr.Data.Property(value: property.asDictionary().values.first as NSObject)
         var activity: Activity! = nil
-        let user = Model.createManagedObjectOfClass(User.self, entityName: "User") as User
-        user.id = property["user_info"]["uid"].asInt()
-        user.name = property["user_info"]["user_name"].asString()
-        user.avatarURL = User.avatarURLWithURI(property["user_info"]["avatar_file"].asString())
-        switch property["post_type"].asString()! {
+        var user: User! = nil
+        User.fetchUserByID(value["user_info"]["uid"].asInt(),
+            strategy: .CacheOnly,
+            success: {
+                _user in
+                user = _user
+                user.name = value["user_info"]["user_name"].asString()
+                user.avatarURL = User.avatarURLWithURI(value["user_info"]["avatar_file"].asString())
+                return
+            }, failure: {
+                error in
+                user = Model.createManagedObjectOfClass(User.self, entityName: "User") as User
+                user.id = value["user_info"]["uid"].asInt()
+                user.name = value["user_info"]["user_name"].asString()
+                user.avatarURL = User.avatarURLWithURI(value["user_info"]["avatar_file"].asString())
+            })
+        switch value["post_type"].asString()! {
         case "article":
             activity = Model.createManagedObjectOfClass(ArticalActivity.self, entityName: "ArticalActivity") as ArticalActivity
+            activity.id = key
             let articalActivity = activity as ArticalActivity
-            articalActivity.title = property["title"].asString()
-            articalActivity.viewCount = property["views"].asInt()
-            articalActivity.commentCount = property["comments"].asInt()
+            articalActivity.title = value["title"].asString()
+            articalActivity.viewCount = value["views"].asInt()
+            articalActivity.commentCount = value["comments"].asInt()
             break
         case "question":
             activity = Model.createManagedObjectOfClass(QuestionActivity.self, entityName: "QuestionActivity") as QuestionActivity
+            activity.id = key
             let questionActivity = activity as QuestionActivity
-            questionActivity.title = property["question_content"].asString()
-            questionActivity.lastUpdatedTime = NSDate(timeIntervalSince1970: NSTimeInterval(property["update_time"].asInt()))
-            questionActivity.answerCount = property["answer_count"].asInt()
-            questionActivity.viewCount = property["view_count"].asInt()
-            questionActivity.focusCount = property["focus_count"].asInt()
-            let answer = property["answer"]
+            questionActivity.title = value["question_content"]?.asString() ?? ""
+            questionActivity.lastUpdatedTime = NSDate(timeIntervalSince1970: NSTimeInterval(value["update_time"]?.asInt() ?? 0))
+            questionActivity.answerCount = value["answer_count"]?.asInt() ?? 0
+            questionActivity.viewCount = value["view_count"]?.asInt() ?? 0
+            questionActivity.focusCount = value["focus_count"]?.asInt() ?? 0
+            let answer = value["answer"]
             questionActivity.answerContent = answer["answer_content"].asString()
             if !answer["user_info"].isNull() {
                 let info = answer["user_info"]
@@ -62,15 +78,15 @@ class Activity: NSManagedObject {
                 }
                 questionActivity.answerUserID = questionActivity.answerUser!.id
             }
-            if !property["topics"].isNull() {
+            if !value["topics"].isNull() {
                 questionActivity.topics = []
-                for topicInfo in property["topics"].asArray() as [NSDictionary] {
+                for topicInfo in value["topics"].asArray() as [NSDictionary] {
                     let topic = Model.createManagedObjectOfClass(Topic.self, entityName: "Topic") as Topic
-                    topic.index = topicInfo["topic_id"] as Int
-                    topic.title = topicInfo["topic_title"] as? String
+                    topic.id = topicInfo["topic_id"] as Int
+                    topic.title = topicInfo["topic_title"] as String
                     let relationship = Model.createManagedObjectOfClass(QuestionActivity_Topic.self, entityName: "QuestionActivity_Topic") as QuestionActivity_Topic
-                    relationship.questionActivityID = questionActivity.id
-                    relationship.topicID = topic.index!
+                    relationship.activityID = questionActivity.id
+                    relationship.topicID = topic.id
                     questionActivity.topics.append(topic)
                 }
             }
@@ -80,9 +96,13 @@ class Activity: NSManagedObject {
         }
         activity.user = user
         activity.userID = user.id
-        activity.addedTime = NSDate(timeIntervalSince1970: NSTimeInterval(property["add_time"].asInt()))
+        activity.addedTime = NSDate(timeIntervalSince1970: NSTimeInterval(value["add_time"]?.asInt() ?? 0))
         appDelegate.saveContext()
         return activity
+    }
+    
+    class func fetchActivityUsingCacheByID(ID: NSNumber, success: ((Activity) -> Void)?, failure: ((NSError) -> Void)?) {
+        Model.fetchManagedObjectByTemplateName("Activity_By_ID", ID: ID, success: success, failure: failure)
     }
     
     class func fetchActivityList(#count: Int, page: Int, dayCount: Int, recommended: Bool, type: ListType, success: (([Activity]) -> Void)?, failure: ((NSError) -> Void)?) {
@@ -111,11 +131,17 @@ class Activity: NSManagedObject {
             ],
             success: {
                 property in
-                var activityList = [Activity]()
-                for (key, activityDictionary) in property["rows"].asDictionary() as [String: NSDictionary] {
-                    activityList.append(self.activityWithProperty(Msr.Data.Property(value: activityDictionary)))
+                if property["total_rows"].asInt() > 0 {
+                    var activityList = [Activity]()
+                    for (ID, activityDictionary) in property["rows"].asDictionary() as [String: NSDictionary] {
+                        let activity = self.activityWithProperty(Msr.Data.Property(value: [ID: activityDictionary]))
+                        activity.id = ID
+                        activityList.append(activity)
+                    }
+                    success?(activityList)
+                } else {
+                    failure?(NSError(domain: model.URLStrings["Get Activity List"], code: 0, userInfo: ["Hint": "No more data"])) // Needs specification
                 }
-                success?(activityList)
             },
             failure: failure)
     }

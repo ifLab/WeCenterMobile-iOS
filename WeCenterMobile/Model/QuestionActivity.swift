@@ -13,7 +13,6 @@ class QuestionActivity: Activity {
 
     @NSManaged var answerCount: NSNumber?
     @NSManaged var focusCount: NSNumber?
-    @NSManaged var id: NSNumber
     @NSManaged var lastUpdatedTime: NSDate?
     @NSManaged var answerUserID: NSNumber?
     @NSManaged var answerContent: String?
