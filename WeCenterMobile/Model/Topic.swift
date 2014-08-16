@@ -95,11 +95,7 @@ class Topic: NSManagedObject {
                                 error in
                                 topic = Model.createManagedObjecWithEntityName("Topic") as Topic
                             })
-                        if !Model.relationshipExists("User_Topic_Check", a: ("UserID", userID), b: ("TopicID", topicID)) {
-                            let user_topic = Model.createManagedObjecWithEntityName("User_Topic") as User_Topic
-                            user_topic.userID = userID
-                            user_topic.topicID = topicID
-                        }
+                        User_Topic.updateRelationship(userID: userID, topicID: topicID)
                         topic.id = topicID
                         topic.title = property["topic_title"].asString()
                         topic.introduction = property["topic_description"].asString()

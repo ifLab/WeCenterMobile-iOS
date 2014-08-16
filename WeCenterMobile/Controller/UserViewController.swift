@@ -120,6 +120,8 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         askedButton.alpha = 0
         answeredButton.alpha = 0
         topicButton.addTarget(self, action: "pushTopicListViewController", forControlEvents: .TouchUpInside)
+        followerButton.addTarget(self, action: "pushFollowerViewController", forControlEvents: .TouchUpInside)
+        followingButton.addTarget(self, action: "pushFollowingViewController", forControlEvents: .TouchUpInside)
         for subview in hideableView.subviews as [UIView] {
             subview.alpha = 0
         }
@@ -194,7 +196,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
             if user.avatarURL != nil && avatarButton.backgroundImageForState(.Normal) == nil {
                 avatarButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: user.avatarURL!))
             }
-            if user.signature != nil {
+            if user.signature != nil && user.gender != nil {
                 layouted = true
                 switch User.Gender.fromRaw(user.gender!)! {
                 case .Male:
@@ -376,6 +378,14 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     
     internal func pushTopicListViewController() {
         msrNavigationController.pushViewController(TopicListViewController(userID: userID), animated: true, completion: nil)
+    }
+    
+    internal func pushFollowerViewController() {
+        msrNavigationController.pushViewController(UserListViewController(ID: userID, listType: .UserFollower), animated: true, completion: nil)
+    }
+    
+    internal func pushFollowingViewController() {
+        msrNavigationController.pushViewController(UserListViewController(ID: userID, listType: .UserFollowing), animated: true, completion: nil)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

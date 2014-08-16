@@ -39,12 +39,10 @@ class TopicListViewController: UITableViewController {
         return topicList.count
     }
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        let cell = BFPaperTableViewCell(style: .Default, reuseIdentifier: "\(indexPath)")
-        cell.textLabel.text = topicList[indexPath.row].title
-        return cell
+        return TopicCell(topic: topicList[indexPath.row], reuseIdentifier: "")
     }
     override func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        return 60
+        return 80
     }
     func refresh() {
         Topic.fetchTopicListByUserID(userID,

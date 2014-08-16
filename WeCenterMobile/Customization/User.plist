@@ -26,6 +26,10 @@
 		<string>api/profile.php</string>
 		<key>Follow User</key>
 		<string>?/follow/ajax/follow_people/</string>
+		<key>GET Following List</key>
+		<string>api/my_focus_user.php</string>
+		<key>GET Follower List</key>
+		<string>api/my_fans_user.php</string>
 	</dict>
 </dict>
 </plist>
