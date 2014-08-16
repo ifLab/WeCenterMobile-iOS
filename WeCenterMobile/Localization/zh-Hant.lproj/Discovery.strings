@@ -1,0 +1,19 @@
+/* 
+  Discovery.strings
+  WeCenterMobile
+
+  Created by Darren Liu on 14/8/1.
+  Copyright (c) 2014年 ifLab. All rights reserved.
+*/
+
+/* Title */
+"Discovery" = "探索";
+
+/* Hot activity list */
+"Hot" = "熱門";
+
+/* New activity list */
+"New" = "最新";
+
+/* Unanswered activity list */
+"Unanswered" = "尚無回覆";

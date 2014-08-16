@@ -6,6 +6,7 @@
 //  Copyright (c) 2014年 ifLab. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import CoreData
 
@@ -13,34 +14,51 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             
     var window: UIWindow?
+    let welcomeViewController = WelcomeViewController()
+    var mainViewController: MainViewController!
+    var currentUser: User?
     
-    func insert() {
-        let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: managedObjectContext)
-        let user = User(entity: entity, insertIntoManagedObjectContext: managedObjectContext)
-        user.name = "刘鸿喆";
-        user.email = "butterfly@msrlab.org"
-        user.uid = 1
-        saveContext()
-    }
-    
-    func select() {
-        let request = NSFetchRequest()
-        let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: managedObjectContext)
-        request.entity = entity
-        request.returnsObjectsAsFaults = false
-        var error: NSError?
-        let objects = managedObjectContext.executeFetchRequest(request, error: &error)
-        for object in objects {
-            println(object)
-        }
-    }
+//    func insert() {
+//        let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: managedObjectContext)
+//        let user = User(entity: entity, insertIntoManagedObjectContext: managedObjectContext)
+//        user.name = "刘鸿喆";
+//        user.email = "butterfly@msrlab.org"
+//        user.uid = 1
+//        saveContext()
+//    }
+//    
+//    func select() {
+//        let request = NSFetchRequest()
+//        let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: managedObjectContext)
+//        request.entity = entity
+//        request.returnsObjectsAsFaults = false
+//        var error: NSError?
+//        let objects = managedObjectContext.executeFetchRequest(request, error: &error)
+//        for object in objects {
+//            println(object)
+//        }
+//    }
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window!.rootViewController = WelcomeViewController()
-        window!.makeKeyAndVisible()
-        insert()
-        select()
+        window!.rootViewController = welcomeViewController
+//        User.clearCookies()
+        User.loginWithCookieAndCacheInStorage(
+            success: {
+                user in
+                self.currentUser = user
+                self.window!.makeKeyAndVisible()
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.mainViewController = MainViewController()
+                    self.mainViewController.modalTransitionStyle = .CrossDissolve
+                    self.welcomeViewController.presentViewController(self.mainViewController, animated: true, completion: nil)
+                }
+            }, failure: {
+                error in
+                self.window!.makeKeyAndVisible()
+                println("USER HAS FAILED TO LOG IN WITH COOKIE IN STORAGE.")
+                println(error.userInfo)
+            })
         return true
     }
 
@@ -59,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     var managedObjectContext: NSManagedObjectContext {
-        if !_managedObjectContext {
+        if _managedObjectContext == nil {
             let coordinator = persistentStoreCoordinator
             if coordinator != nil {
                 _managedObjectContext = NSManagedObjectContext()
@@ -72,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var _managedObjectContext: NSManagedObjectContext? = nil
     
     var managedObjectModel: NSManagedObjectModel {
-        if !_managedObjectModel {
+        if _managedObjectModel == nil {
             let modelURL = NSBundle.mainBundle().URLForResource("WeCenterMobile", withExtension: "momd")
             _managedObjectModel = NSManagedObjectModel(contentsOfURL: modelURL)
         }
@@ -82,13 +100,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var _managedObjectModel: NSManagedObjectModel? = nil
     
     var persistentStoreCoordinator: NSPersistentStoreCoordinator {
-        if !_persistentStoreCoordinator {
+        if _persistentStoreCoordinator == nil {
             let storeURL = applicationDocumentsDirectory.URLByAppendingPathComponent("WeCenterMobile.sqlite")
-            var error: NSError? = nil
-            _persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
             #if DEBUG
                 NSFileManager.defaultManager().removeItemAtURL(storeURL, error: nil)
             #endif
+            var error: NSError? = nil
+            _persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
             if _persistentStoreCoordinator!.addPersistentStoreWithType(
                 NSSQLiteStoreType,
                 configuration: nil,
@@ -98,7 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     NSInferMappingModelAutomaticallyOption: true],
                 error: &error) == nil {
                 #if DEBUG
-                    println("Unresolved error \(error), \(error!.userInfo)")
+                    println("Unresolved error \(error!.userInfo)")
                     abort()
                 #endif
             }
@@ -112,6 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         return urls[urls.count - 1] as NSURL
     }
-
+    
 }
 
+let appDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)

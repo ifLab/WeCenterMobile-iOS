@@ -1,0 +1,73 @@
+/* 
+  User.strings
+  WeCenterMobile
+
+  Created by EricLee on 14-8-4.
+  Copyright (c) 2014年 ifLab. All rights reserved.
+*/
+
+/* Edit */
+"Edit" = "修改";
+
+/* My topics button */
+"My topics" = "我的話題";
+
+/* His topics button */
+"His topics" = "他／她的話題";
+
+/* My following button */
+"My following" = "我關注的";
+
+/* His following button */
+"His following" = "他／她關注的";
+
+/* My follower button */
+"My follower" = "關注我的";
+
+/* His follower button */
+"His follower" = "關注他／她的";
+
+/* Male */
+"Male" = "男";
+
+/* Female */
+"Female" = "女";
+
+/* Secret */
+"Secret" = "保密";
+
+/* Article button */
+"Article" = "文章";
+
+/* Answered button */
+"Answered" = "回答";
+
+/* Asked button */
+"Asked" = "提問";
+
+/* Activity cell */
+"Activity" = "活動";
+
+/* Find friends cell */
+"Find friends" = "查找朋友";
+
+/* User profile view controller */
+"Profile" = "個人中心";
+
+/* Name */
+"Name" = "姓名";
+
+/* Gender */
+"Gender" = "性別";
+
+/* Introduction */
+"Introduction" = "介紹";
+
+/* Birthday */
+"Birthday" = "生日";
+
+/* Other informations */
+"Other informations" = "其他信息";
+
+/* Edit list view controller */
+"Edit" = "修改";

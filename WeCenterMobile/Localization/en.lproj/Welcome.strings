@@ -14,3 +14,9 @@
 
 /* Username placeholder */
 "Username" = "Username";
+
+/* Password placeholder */
+"Password" = "Password";
+
+/* Cancel button title */
+"Cancel" = "Cancel";
