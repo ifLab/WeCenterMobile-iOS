@@ -30,7 +30,6 @@ class User: NSManagedObject {
     @NSManaged var avatarURL: String?
     @NSManaged var followerCount: NSNumber?
     @NSManaged var followingCount: NSNumber?
-    @NSManaged var friendCount: NSNumber?
     @NSManaged var id: NSNumber
     @NSManaged var markCount: NSNumber?
     @NSManaged var name: String?
@@ -100,7 +99,7 @@ class User: NSManagedObject {
                 user.name = property["user_name"].asString()
                 user.avatarURL = User.avatarURLWithURI(property["avatar_file"].asString())
                 user.followerCount = property["fans_count"].asInt()
-                user.friendCount = property["friend_count"].asInt()
+                user.followingCount = property["friend_count"].asInt()
                 user.questionCount = property["question_count"].asInt()
                 user.answerCount = property["answer_count"].asInt()
                 user.topicFocusCount = property["topic_focus_count"].asInt()

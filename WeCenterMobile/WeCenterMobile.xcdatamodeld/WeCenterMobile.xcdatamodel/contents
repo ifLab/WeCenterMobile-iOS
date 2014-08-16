@@ -40,7 +40,6 @@
         <attribute name="birthday" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="followerCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="followingCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="friendCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="jobID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -75,7 +74,7 @@
         <element name="QuestionActivity" positionX="-63" positionY="-63" width="128" height="120"/>
         <element name="QuestionActivity_Topic" positionX="-162" positionY="90" width="128" height="75"/>
         <element name="Topic" positionX="117" positionY="-63" width="128" height="120"/>
-        <element name="User" positionX="-369" positionY="272" width="128" height="300"/>
+        <element name="User" positionX="-369" positionY="272" width="128" height="285"/>
         <element name="User_Topic" positionX="-162" positionY="90" width="128" height="30"/>
         <element name="User_User" positionX="-162" positionY="99" width="128" height="30"/>
     </elements>
