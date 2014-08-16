@@ -18,7 +18,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     
     var topView = UIScrollView()
     var bottomView = UIScrollView()
-    var avatarButton = UIButton()
+    var avatarButton = BFPaperButton(flatWithFrame: CGRectZero)
     var avatarButtonState = AvatarButtonState.Normal
     var avatarButtonTimer: NSTimer? = nil
     var avatarActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
@@ -83,6 +83,8 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         avatarButton.addTarget(self, action: "delayHidingAvatarButtonImage", forControlEvents: .TouchDown)
         avatarButton.imageView.frame = avatarButton.bounds
         avatarButton.imageView.alpha = 0
+        avatarButton.usesSmartColor = false
+        avatarButton.tapCircleColor = UIColor(white: 1, alpha: 0.5)
         avatarActivityIndicatorView.frame = avatarButton.frame
         avatarActivityIndicatorView.userInteractionEnabled = false
         nameLabel.frame = CGRect(x: 0, y: avatarButton.frame.origin.y + avatarButton.bounds.height + 20, width: topView.bounds.width, height: 26)
@@ -204,23 +206,23 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
                 break
             }
             signatureLabel.text = user.signature
+            topicButton.countLabel.text = "\(user.topicFocusCount!)"
+            followingButton.countLabel.text = "\(user.followingCount!)"
+            followerButton.countLabel.text = "\(user.followerCount!)"
+            articleButton.countLabel.font = UIFont.systemFontOfSize(10)
+            articleButton.countLabel.text = "没接口(╯`□′)╯(┻━┻"
+            askedButton.countLabel.text = "\(user.questionCount!)"
+            answeredButton.countLabel.text = "\(user.answerCount!)"
+            thankCountView.countLabel.text = "\(user.thankCount!)"
+            likeCountView.countLabel.text = "\(user.markCount!)"
+            favoriteCountView.countLabel.text = "\(user.answerFavoriteCount!)"
+            agreementCountView.countLabel.text = "\(user.agreementCount!)"
             UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .BeginFromCurrentState, animations: {
                 let height = self.signatureLabel.sizeThatFits(CGSize(width: self.signatureLabel.frame.width, height: CGFloat.max)).height
                 self.signatureLabel.frame.size.height = height
                 self.hideableView.frame.size.height = height + 50
                 self.signatureLabel.alpha = 1
                 self.bottomView.contentSize = CGSize(width: self.bottomView.bounds.width, height: self.bottomView.bounds.height + self.hideableView.bounds.height)
-                self.topicButton.countLabel.text = "\(self.user.topicFocusCount!)"
-                self.followingButton.countLabel.text = "\(self.user.followingCount!)"
-                self.followerButton.countLabel.text = "\(self.user.followerCount!)"
-                self.articleButton.countLabel.font = UIFont.systemFontOfSize(10)
-                self.articleButton.countLabel.text = "没接口(╯`□′)╯(┻━┻"
-                self.askedButton.countLabel.text = "\(self.user.questionCount!)"
-                self.answeredButton.countLabel.text = "\(self.user.answerCount!)"
-                self.thankCountView.countLabel.text = "\(self.user.thankCount!)"
-                self.likeCountView.countLabel.text = "\(self.user.markCount!)"
-                self.favoriteCountView.countLabel.text = "\(self.user.answerFavoriteCount!)"
-                self.agreementCountView.countLabel.text = "\(self.user.agreementCount!)"
                 self.topicButton.alpha = 1
                 self.followingButton.alpha = 1
                 self.followerButton.alpha = 1
