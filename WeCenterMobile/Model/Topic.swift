@@ -145,7 +145,7 @@ class Topic: NSManagedObject {
         let update: (Topic) -> Void = {
             topic in
             topic.id = ID
-            TopicModel.GET(TopicModel.URLStrings["Topic Detail"]!,
+            TopicModel.GET(TopicModel.URLStrings["GET Topic"]!,
                 parameters: [
                     "uid": "x",
                     "topic_id": ID
@@ -157,6 +157,7 @@ class Topic: NSManagedObject {
                     topic.imageURL = Topic.imageURLWithURI(property["topic_pic"].asString())
                     topic.focusCount = property["focus_count"].asInt()
                     appDelegate.saveContext()
+                    success?(topic)
                 },
                 failure: failure)
         }

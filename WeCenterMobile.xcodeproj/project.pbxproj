@@ -11,7 +11,7 @@
 		9531D0151996ED510035FAA7 /* UserCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D0141996ED510035FAA7 /* UserCountView.swift */; };
 		9531D0171997D1ED0035FAA7 /* ActivityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D0161997D1ED0035FAA7 /* ActivityListViewController.swift */; };
 		9540823019963D6200A19C8B /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9540822F19963D6200A19C8B /* Circle.swift */; };
-		9562D81A1996DE080044DAF8 /* UserButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9562D8191996DE080044DAF8 /* UserButton.swift */; };
+		9562D81A1996DE080044DAF8 /* RectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9562D8191996DE080044DAF8 /* RectangleButton.swift */; };
 		9563956A198D3EDF002F3340 /* ArticalActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95639569198D3EDF002F3340 /* ArticalActivity.swift */; };
 		95639570198D3EDF002F3340 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9563956F198D3EDF002F3340 /* Activity.swift */; };
 		95639574198D4D50002F3340 /* QuestionActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95639573198D4D50002F3340 /* QuestionActivity.swift */; };
@@ -85,6 +85,7 @@
 		95F91E8A199F9A2C0011FE45 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F91E89199F9A2C0011FE45 /* UserCell.swift */; };
 		95F91E8C199F9AA80011FE45 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F91E8B199F9AA80011FE45 /* UserListViewController.swift */; };
 		95F91E8E199F9DAE0011FE45 /* User_User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F91E8D199F9DAE0011FE45 /* User_User.swift */; };
+		95F91E90199FE6720011FE45 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F91E8F199FE6720011FE45 /* TopicViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,7 +103,7 @@
 		9531D0141996ED510035FAA7 /* UserCountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCountView.swift; sourceTree = "<group>"; };
 		9531D0161997D1ED0035FAA7 /* ActivityListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityListViewController.swift; sourceTree = "<group>"; };
 		9540822F19963D6200A19C8B /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
-		9562D8191996DE080044DAF8 /* UserButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserButton.swift; sourceTree = "<group>"; };
+		9562D8191996DE080044DAF8 /* RectangleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleButton.swift; sourceTree = "<group>"; };
 		95639569198D3EDF002F3340 /* ArticalActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticalActivity.swift; sourceTree = "<group>"; };
 		9563956F198D3EDF002F3340 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		95639573198D4D50002F3340 /* QuestionActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionActivity.swift; sourceTree = "<group>"; };
@@ -221,6 +222,7 @@
 		95F91E89199F9A2C0011FE45 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		95F91E8B199F9AA80011FE45 /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		95F91E8D199F9DAE0011FE45 /* User_User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User_User.swift; sourceTree = "<group>"; };
+		95F91E8F199FE6720011FE45 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		BEC5C4F8198FA0D9002A79FF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/User.strings; sourceTree = "<group>"; };
 		BEC5C4FA198FA0DC002A79FF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/User.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -462,6 +464,7 @@
 				95CDEE2F199ED949000AC63F /* TopicListViewController.swift */,
 				95BB01971995C3FC0049CAD2 /* UserEditViewController.swift */,
 				95BB01981995C3FC0049CAD2 /* UserViewController.swift */,
+				95F91E8F199FE6720011FE45 /* TopicViewController.swift */,
 				95F91E8B199F9AA80011FE45 /* UserListViewController.swift */,
 				95BB01991995C3FC0049CAD2 /* UserPostViewController.swift */,
 				95BB019A1995C3FC0049CAD2 /* WelcomeViewController.swift */,
@@ -478,7 +481,7 @@
 				95F91E89199F9A2C0011FE45 /* UserCell.swift */,
 				95BB01A01995C3FC0049CAD2 /* UserGenderCell.swift */,
 				95BB01A21995C3FC0049CAD2 /* WelcomeView.swift */,
-				9562D8191996DE080044DAF8 /* UserButton.swift */,
+				9562D8191996DE080044DAF8 /* RectangleButton.swift */,
 				9531D0141996ED510035FAA7 /* UserCountView.swift */,
 			);
 			path = View;
@@ -684,9 +687,10 @@
 				95A811B4198C0EBA003E863B /* Property.swift in Sources */,
 				95A811BD198C0EBA003E863B /* Sidebar.swift in Sources */,
 				95A811AD198C0EBA003E863B /* AFURLConnectionOperation.m in Sources */,
+				95F91E90199FE6720011FE45 /* TopicViewController.swift in Sources */,
 				95BB01A31995C3FC0049CAD2 /* DiscoveryViewController.swift in Sources */,
 				95A811A9198C0EBA003E863B /* AFHTTPRequestOperationManager.m in Sources */,
-				9562D81A1996DE080044DAF8 /* UserButton.swift in Sources */,
+				9562D81A1996DE080044DAF8 /* RectangleButton.swift in Sources */,
 				95A811BE198C0EBA003E863B /* UIColor+Msr.swift in Sources */,
 				95A811C3198C0EBA003E863B /* UIAlertView+AFNetworking.m in Sources */,
 				95A811BF198C0EBA003E863B /* UIImage+Resize.swift in Sources */,

@@ -29,13 +29,12 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     var likeCountView = UserCountView()
     var favoriteCountView = UserCountView()
     var agreementCountView = UserCountView()
-    var topicButton = UserCountButton()
-    var followingButton = UserCountButton()
-    var followerButton = UserCountButton()
-    var askedButton = UserCountButton()
-    var answeredButton = UserCountButton()
-    var articleButton = UserCountButton()
-    var activityButton = UserCoverButton()
+    var topicButton = RectangleCountButton()
+    var followingButton = RectangleCountButton()
+    var followerButton = RectangleCountButton()
+    var askedButton = RectangleCountButton()
+    var answeredButton = RectangleCountButton()
+    var articleButton = RectangleCountButton()
     
     var userID: NSNumber!
     var user: User!

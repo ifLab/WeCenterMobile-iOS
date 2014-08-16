@@ -11,8 +11,30 @@
         <attribute name="activityID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="topicID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
+    <entity name="Answer" syncable="YES">
+        <attribute name="agreementCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="commentCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="ArticalActivity" representedClassName="WeCenterMobile.ArticalActivity" parentEntity="Activity" syncable="YES">
         <attribute name="commentCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Question" syncable="YES">
+        <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="focusCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Question_Answer" syncable="YES">
+        <attribute name="answerID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="questionID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Question_Topic" syncable="YES">
+        <attribute name="questionID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="topicID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="QuestionActivity" representedClassName="WeCenterMobile.QuestionActivity" parentEntity="Activity" syncable="YES">
         <attribute name="answerContent" optional="YES" attributeType="String" syncable="YES"/>
@@ -77,5 +99,9 @@
         <element name="User" positionX="-369" positionY="272" width="128" height="285"/>
         <element name="User_Topic" positionX="-162" positionY="90" width="128" height="30"/>
         <element name="User_User" positionX="-162" positionY="99" width="128" height="30"/>
+        <element name="Answer" positionX="-162" positionY="90" width="128" height="135"/>
+        <element name="Question" positionX="-153" positionY="99" width="128" height="103"/>
+        <element name="Question_Topic" positionX="-144" positionY="108" width="128" height="73"/>
+        <element name="Question_Answer" positionX="-135" positionY="117" width="128" height="73"/>
     </elements>
 </model>

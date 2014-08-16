@@ -1,5 +1,5 @@
 //
-//  UserButton.swift
+//  RectangleButton.swift
 //  WeCenterMobile
 //
 //  Created by Darren Liu on 14/8/10.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserButton: BFPaperButton {
+class RectangleButton: BFPaperButton {
     let footerLabel = UILabel()
     override init() {
         super.init(flatWithFrame: CGRectZero)
@@ -38,7 +38,7 @@ class UserButton: BFPaperButton {
     }
 }
 
-class UserCountButton: UserButton {
+class RectangleCountButton: RectangleButton {
     dynamic let countLabel = UILabel() // This should be a bug of Swift. Use a simple 'dynamic' to fix it now.
     override init() {
         super.init()
@@ -56,7 +56,7 @@ class UserCountButton: UserButton {
     }
 }
 
-class UserCoverButton: UserButton {
+class RectangleCoverButton: RectangleButton {
     let coverView = UIImageView()
     override init() {
         super.init()

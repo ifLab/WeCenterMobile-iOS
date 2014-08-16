@@ -44,6 +44,9 @@ class TopicListViewController: UITableViewController {
     override func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
         return 80
     }
+    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        msrNavigationController.pushViewController(TopicViewController(topicID: topicList[indexPath.row].id), animated: true, completion: nil)
+    }
     func refresh() {
         Topic.fetchTopicListByUserID(userID,
             page: 1,
