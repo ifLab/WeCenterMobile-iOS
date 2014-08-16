@@ -12,8 +12,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     let contentViewController: Msr.UI.NavigationController! = nil
     let sidebar = Msr.UI.Sidebar(width: 200, blurEffectStyle: .Light)
     let tableView: UITableView! = nil
-//    let model = Model(module: "User", bundle: NSBundle.mainBundle())
-
     var user: User? {
         return appDelegate.currentUser
     }
