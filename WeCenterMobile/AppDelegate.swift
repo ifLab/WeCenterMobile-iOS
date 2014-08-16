@@ -17,27 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let welcomeViewController = WelcomeViewController()
     var mainViewController: MainViewController!
     var currentUser: User?
-    
-//    func insert() {
-//        let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: managedObjectContext)
-//        let user = User(entity: entity, insertIntoManagedObjectContext: managedObjectContext)
-//        user.name = "刘鸿喆";
-//        user.email = "butterfly@msrlab.org"
-//        user.uid = 1
-//        saveContext()
-//    }
-//    
-//    func select() {
-//        let request = NSFetchRequest()
-//        let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: managedObjectContext)
-//        request.entity = entity
-//        request.returnsObjectsAsFaults = false
-//        var error: NSError?
-//        let objects = managedObjectContext.executeFetchRequest(request, error: &error)
-//        for object in objects {
-//            println(object)
-//        }
-//    }
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -56,8 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }, failure: {
                 error in
                 self.window!.makeKeyAndVisible()
-                println("USER HAS FAILED TO LOG IN WITH COOKIE IN STORAGE.")
-                println(error.userInfo)
             })
         return true
     }

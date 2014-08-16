@@ -177,11 +177,7 @@ class User: NSManagedObject {
                     failure?(NSError()) // Needs specification
                 }
             },
-            failure: {
-                error in
-                println(error.userInfo)
-                return
-            })
+            failure: failure)
     }
     
     private class func fetchFollowingListUsingCacheByUserID(ID: NSNumber, page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
@@ -189,7 +185,6 @@ class User: NSManagedObject {
             ID: ID,
             page: page,
             count: count,
-            sortBy: nil,
             success: {
                 user_users in
                 var users = [User]()
@@ -200,7 +195,7 @@ class User: NSManagedObject {
                             user in
                             users.append(user)
                         },
-                        failure: nil)
+                        failure: failure)
                 }
                 success?(users)
             },
@@ -253,13 +248,11 @@ class User: NSManagedObject {
                             success: {
                                 _user in
                                 user = _user
-                                return
                             },
                             failure: {
                                 error in
                                 user = Model.createManagedObjecWithEntityName("User") as User
                                 user.id = a
-                                return
                             })
                         user.name = value["user_name"].asString()
                         user.avatarURL = User.avatarURLWithURI(value["avatar_file"].asString())
@@ -272,11 +265,7 @@ class User: NSManagedObject {
                     failure?(NSError()) // Needs specification
                 }
             },
-            failure: {
-                error in
-                println(error.userInfo)
-                return
-            })
+            failure: failure)
     }
     
     private class func fetchFollowerListUsingCacheByUserID(ID: NSNumber, page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
@@ -284,7 +273,6 @@ class User: NSManagedObject {
             ID: ID,
             page: page,
             count: count,
-            sortBy: nil,
             success: {
                 user_users in
                 var users = [User]()
@@ -295,7 +283,7 @@ class User: NSManagedObject {
                             user in
                             users.append(user)
                         },
-                        failure: nil)
+                        failure: failure)
                 }
                 success?(users)
             },

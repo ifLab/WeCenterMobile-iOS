@@ -59,7 +59,6 @@ class TopicListViewController: UITableViewController {
             },
             failure: {
                 error in
-                println(error.userInfo)
                 self.refreshControl.endRefreshing()
                 self.tableView.reloadData()
             })
@@ -79,7 +78,6 @@ class TopicListViewController: UITableViewController {
             },
             failure: {
                 error in
-                println(error.userInfo)
                 self.loadMoreControl.endLoadingMore()
                 self.tableView.reloadData()
             })

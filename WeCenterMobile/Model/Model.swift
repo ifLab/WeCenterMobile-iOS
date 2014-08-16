@@ -43,7 +43,6 @@ class Model {
                     operation, error in
                     application.networkActivityIndicatorVisible = false
                     failure?(error)
-                    return
                 })
     }
     func POST(URLString: String,
@@ -64,7 +63,6 @@ class Model {
                     operation, error in
                     application.networkActivityIndicatorVisible = false
                     failure?(error)
-                    return
                 })
     }
     private func handleSuccess(#data: NSData, success: ((Property) -> Void)?, failure: ((NSError) -> Void)?) {

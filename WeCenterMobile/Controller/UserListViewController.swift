@@ -64,7 +64,6 @@ class UserListViewController: UITableViewController {
         }
         let failure: (NSError) -> Void = {
             error in
-            println(error.userInfo)
             self.refreshControl.endRefreshing()
             self.tableView.reloadData()
         }
@@ -89,7 +88,6 @@ class UserListViewController: UITableViewController {
         }
         let failure: (NSError) -> Void = {
             error in
-            println(error.userInfo)
             self.refreshControl.endRefreshing()
             self.tableView.reloadData()
         }

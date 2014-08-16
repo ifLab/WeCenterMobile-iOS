@@ -154,9 +154,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
                             success: {
                                 self.view.setNeedsLayout()
                             },
-                            failure: {
-                                error in
-                        })
+                            failure: nil)
                     }, failure: nil)
             },
             failure: {
@@ -171,9 +169,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
                             success: {
                                 self.view.setNeedsLayout()
                             },
-                            failure: {
-                                error in
-                        })
+                            failure: nil)
                     }, failure: nil)
         })
     }
@@ -367,7 +363,6 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
                         self.tryHidingAvatarButtonImage()
                         self.avatarActivityIndicatorView.stopAnimating()
                         self.avatarButton.userInteractionEnabled = true
-                        println(error.userInfo)
                     })
                 break
             default:

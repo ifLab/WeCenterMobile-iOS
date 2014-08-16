@@ -142,7 +142,7 @@ class Topic: NSManagedObject {
     }
     
     private class func fetchTopicUsingNetworkByID(ID: NSNumber, success: ((Topic) -> Void)?, failure: ((NSError) -> Void)?) {
-        let updateUsingNetwork: (Topic) -> Void = {
+        let update: (Topic) -> Void = {
             topic in
             topic.id = ID
             TopicModel.GET(TopicModel.URLStrings["Topic Detail"]!,
@@ -163,13 +163,11 @@ class Topic: NSManagedObject {
         fetchTopicUsingCacheByID(ID,
             success: {
                 topic in
-                updateUsingNetwork(topic)
-                return
+                update(topic)
             }, failure: {
                 error in
                 let topic = Model.createManagedObjecWithEntityName("Topic") as Topic
-                updateUsingNetwork(topic)
-                return
+                update(topic)
             })
     }
     

@@ -99,10 +99,7 @@ class UserPostViewController: UIViewController {
                     self.dismissViewControllerAnimated(true, completion: nil)
                     return
                 },
-                failure: {
-                    error in
-                    return
-                })
+                failure: nil)
 
         }
         if headerTitle == UserStrings["Introduction"]{
@@ -120,12 +117,8 @@ class UserPostViewController: UIViewController {
                         self.delegate?.postedIntroduction(self, introduction: self.textView!.text)
                     }
                      self.dismissViewControllerAnimated(true, completion: nil)
-                    return
                 },
-                failure: {
-                    error in
-                    return
-                })
+                failure: nil)
         }else if headerTitle == UserStrings["Other information"]{
         
             
@@ -143,14 +136,9 @@ class UserPostViewController: UIViewController {
                 success: {
                     property in
                     self.delegate?.postedName(self, name:self.textField!.text)
-    
                     self.dismissViewControllerAnimated(true, completion: nil)
-                    return
                 },
-                failure: {
-                    error in
-                    return
-                })
+                failure: nil)
         }
        
     }
