@@ -28,7 +28,7 @@
     <entity name="Topic" representedClassName="WeCenterMobile.Topic" syncable="YES">
         <attribute name="focusCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="introduction" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -51,17 +51,24 @@
         <attribute name="thankCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="topicFocusCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
+    <entity name="User_Topic" representedClassName="WeCenterMobile.User_Topic" syncable="YES">
+        <attribute name="topicID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
     <fetchRequest name="Activity_By_ID" entity="Activity" predicateString="id == $ID"/>
     <fetchRequest name="Activity_Topic_By_ActivityID" entity="Activity_Topic" predicateString="activityID == $ACTIVITY_ID"/>
     <fetchRequest name="Topic_By_ID" entity="Topic" predicateString="id == $ID"/>
     <fetchRequest name="User_By_ID" entity="User" predicateString="id == $ID"/>
+    <fetchRequest name="User_Topic_By_UserID" entity="User_Topic" predicateString="userID == $ID"/>
+    <fetchRequest name="User_Topic_Check" entity="User_Topic" predicateString="userID == $UserID AND topicID == $TopicID"/>
     <elements>
         <element name="Activity" positionX="-227" positionY="99" width="128" height="120"/>
         <element name="Activity_Topic" positionX="-108" positionY="189" width="128" height="75"/>
         <element name="ArticalActivity" positionX="-63" positionY="162" width="128" height="58"/>
         <element name="QuestionActivity" positionX="-63" positionY="-63" width="128" height="120"/>
         <element name="QuestionActivity_Topic" positionX="-162" positionY="90" width="128" height="75"/>
-        <element name="Topic" positionX="117" positionY="-63" width="128" height="118"/>
+        <element name="Topic" positionX="117" positionY="-63" width="128" height="120"/>
         <element name="User" positionX="-369" positionY="272" width="128" height="300"/>
+        <element name="User_Topic" positionX="-162" positionY="90" width="128" height="30"/>
     </elements>
 </model>

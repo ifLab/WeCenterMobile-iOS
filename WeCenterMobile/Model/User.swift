@@ -94,7 +94,7 @@ class User: NSManagedObject {
                         success?(user)
                     }, failure: {
                         error in
-                        let user = Model.createManagedObjectOfClass(User.self, entityName: "User") as User
+                        let user = Model.createManagedObjecWithEntityName("User") as User
                         user.updateMainInformationWithProperty(property)
                         user.id = ID
                         appDelegate.saveContext()

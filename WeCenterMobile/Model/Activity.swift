@@ -43,14 +43,14 @@ class Activity: NSManagedObject {
                 return
             }, failure: {
                 error in
-                user = Model.createManagedObjectOfClass(User.self, entityName: "User") as User
+                user = Model.createManagedObjecWithEntityName("User") as User
                 user.id = value["user_info"]["uid"].asInt()
                 user.name = value["user_info"]["user_name"].asString()
                 user.avatarURL = User.avatarURLWithURI(value["user_info"]["avatar_file"].asString())
             })
         switch value["post_type"].asString()! {
         case "article":
-            activity = Model.createManagedObjectOfClass(ArticalActivity.self, entityName: "ArticalActivity") as ArticalActivity
+            activity = Model.createManagedObjecWithEntityName("ArticalActivity") as ArticalActivity
             activity.id = key
             let articalActivity = activity as ArticalActivity
             articalActivity.title = value["title"].asString()
@@ -58,7 +58,7 @@ class Activity: NSManagedObject {
             articalActivity.commentCount = value["comments"].asInt()
             break
         case "question":
-            activity = Model.createManagedObjectOfClass(QuestionActivity.self, entityName: "QuestionActivity") as QuestionActivity
+            activity = Model.createManagedObjecWithEntityName("QuestionActivity") as QuestionActivity
             activity.id = key
             let questionActivity = activity as QuestionActivity
             questionActivity.title = value["question_content"]?.asString() ?? ""
@@ -70,7 +70,7 @@ class Activity: NSManagedObject {
             questionActivity.answerContent = answer["answer_content"].asString()
             if !answer["user_info"].isNull() {
                 let info = answer["user_info"]
-                questionActivity.answerUser = Model.createManagedObjectOfClass(User.self, entityName: "User") as? User
+                questionActivity.answerUser = Model.createManagedObjecWithEntityName("User") as? User
                 questionActivity.answerUser!.id = info["uid"].asInt()
                 questionActivity.answerUser!.name = info["user_name"].asString()
                 if !info["avatar_file"].isNull() {
@@ -81,10 +81,10 @@ class Activity: NSManagedObject {
             if !value["topics"].isNull() {
                 questionActivity.topics = []
                 for topicInfo in value["topics"].asArray() as [NSDictionary] {
-                    let topic = Model.createManagedObjectOfClass(Topic.self, entityName: "Topic") as Topic
+                    let topic = Model.createManagedObjecWithEntityName("Topic") as Topic
                     topic.id = topicInfo["topic_id"] as Int
                     topic.title = topicInfo["topic_title"] as String
-                    let relationship = Model.createManagedObjectOfClass(QuestionActivity_Topic.self, entityName: "QuestionActivity_Topic") as QuestionActivity_Topic
+                    let relationship = Model.createManagedObjecWithEntityName("QuestionActivity_Topic") as QuestionActivity_Topic
                     relationship.activityID = questionActivity.id
                     relationship.topicID = topic.id
                     questionActivity.topics.append(topic)

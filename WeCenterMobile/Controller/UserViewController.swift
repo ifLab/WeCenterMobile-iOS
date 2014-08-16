@@ -42,8 +42,8 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     var layouted: Bool = false
     
     init(userID: NSNumber) {
-        self.userID = userID
         super.init()
+        self.userID = userID
         view = UIScrollView(frame: UIScreen.mainScreen().bounds)
         (view as UIScrollView).bounces = false
         
@@ -374,7 +374,9 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    internal func pushTopicListViewController() {}
+    internal func pushTopicListViewController() {
+        msrNavigationController.pushViewController(TopicListViewController(userID: userID), animated: true, completion: nil)
+    }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .Default

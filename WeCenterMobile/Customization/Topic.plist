@@ -6,12 +6,12 @@
 	<dict>
 		<key>Base</key>
 		<string>http://w.hihwei.com/</string>
-		<key>ImageURL</key>
-		<string>http://w.hihwei.com/uploads/topic/</string>
-		<key>Get mine topic list</key>
-		<string>api/my_focus_topic.php</string>
-		<key>Get topic</key>
+		<key>Image Base</key>
+		<string>uploads/topic/</string>
+		<key>GET Topic</key>
 		<string>api/topic.php</string>
+		<key>GET Topic List</key>
+		<string>api/my_focus_topic_ios.php</string>
 	</dict>
 </dict>
 </plist>

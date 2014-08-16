@@ -89,9 +89,9 @@ class Model {
             failure?(error.memory!)
         }
     }
-    class func createManagedObjectOfClass(Class: AnyClass, entityName: String) -> NSManagedObject {
+    class func createManagedObjecWithEntityName(entityName: String) -> NSManagedObject {
         let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: appDelegate.managedObjectContext)
-        return (Class as NSManagedObject.Type)(entity: entity, insertIntoManagedObjectContext: appDelegate.managedObjectContext)
+        return NSManagedObject(entity: entity, insertIntoManagedObjectContext: appDelegate.managedObjectContext)
     }
     class func fetchManagedObjectByTemplateName<T: NSManagedObject>(templateName: String, ID: NSNumber, success: ((T) -> Void)?, failure: ((NSError) -> Void)?) {
         let request = appDelegate.managedObjectModel.fetchRequestFromTemplateWithName(templateName,
@@ -105,6 +105,34 @@ class Model {
         } else {
             failure?(error != nil ? error! : NSError()) // Needs specification
         }
+    }
+    class func fetchRelationshipsByTemplateName<T: NSManagedObject>(templateName: String, ID: NSNumber, page: Int, count: Int, sortBy: (String, Bool)? = nil, success: (([T]) -> Void)?, failure: ((NSError) -> Void)?) {
+        let request = appDelegate.managedObjectModel.fetchRequestFromTemplateWithName(templateName,
+            substitutionVariables: [
+                "ID": ID
+            ])
+        request.fetchLimit = count
+        request.fetchOffset = (page - 1) * count
+        if sortBy != nil {
+            request.sortDescriptors = [NSSortDescriptor(key: sortBy!.0, ascending: sortBy!.1)]
+        }
+        var error: NSError? = nil
+        let results = appDelegate.managedObjectContext.executeFetchRequest(request, error: &error)
+        if error == nil && results != nil && results!.count != 0 {
+            success?(results as [T])
+        } else {
+            failure?(error != nil ? error! : NSError()) // Needs specification
+        }
+    }
+    class func relationshipExists(templateName: String, a: (String, NSNumber), b: (String, NSNumber)) -> Bool {
+        let request = appDelegate.managedObjectModel.fetchRequestFromTemplateWithName(templateName,
+            substitutionVariables: [
+                a.0: a.1,
+                b.0: b.1
+            ])
+        var error: NSError? = nil
+        let results = appDelegate.managedObjectContext.executeFetchRequest(request, error: &error)
+        return error == nil && results != nil && results!.count != 0
     }
 }
 
