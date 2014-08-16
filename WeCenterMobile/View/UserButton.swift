@@ -8,13 +8,13 @@
 
 import UIKit
 
-class UserButton: UIButton {
+class UserButton: BFPaperButton {
     let footerLabel = UILabel()
     override init() {
-        super.init()
+        super.init(flatWithFrame: CGRectZero)
         frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width / 3, height: 100)
         addSubview(footerLabel)
-        setBackgroundImage(Msr.UI.Rectangle(color: UIColor.paperColorGray200(), size: bounds.size).image, forState: .Normal)
+        backgroundColor = UIColor.paperColorGray200()
         layer.contentsScale = UIScreen.mainScreen().scale
         footerLabel.frame = CGRect(x: 0, y: 60, width: bounds.width, height: 40)
         footerLabel.textColor = UIColor.grayColor()
@@ -27,10 +27,19 @@ class UserButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
+    override init(raisedWithFrame frame: CGRect) {
+        super.init(raisedWithFrame: frame)
+    }
+    override init(flat: ()) {
+        super.init(flat: ())
+    }
+    override init(flatWithFrame frame: CGRect) {
+        super.init(flatWithFrame: frame)
+    }
 }
 
 class UserCountButton: UserButton {
-    let countLabel = UILabel()
+    dynamic let countLabel = UILabel() // This should be a bug of Swift. Use a simple 'dynamic' to fix it now.
     override init() {
         super.init()
         addSubview(countLabel)

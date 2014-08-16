@@ -39,6 +39,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     
     var userID: NSNumber!
     var user: User!
+    var needsToBeRefreshed: Bool = false
     
     init(userID: NSNumber) {
         super.init()
@@ -156,15 +157,18 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
             success: {
                 user in
                 self.user = user
+                self.needsToBeRefreshed = true
                 self.view.setNeedsLayout()
                 User.fetchUserByID(self.userID,
                     strategy: .NetworkFirst,
                     success: {
                         user in
                         self.user = user
+                        self.needsToBeRefreshed = true
                         self.view.setNeedsLayout()
                         user.fetchProfileUsingNetwork(
                             success: {
+                                self.needsToBeRefreshed = true
                                 self.view.setNeedsLayout()
                             },
                             failure: nil)
@@ -177,9 +181,11 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
                     success: {
                         user in
                         self.user = user
+                        self.needsToBeRefreshed = true
                         self.bottomView.setNeedsLayout()
                         user.fetchProfileUsingNetwork(
                             success: {
+                                self.needsToBeRefreshed = true
                                 self.view.setNeedsLayout()
                             },
                             failure: nil)
@@ -188,65 +194,68 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewDidLayoutSubviews() {
-        nameLabel.text = user.name
-        if user.avatarURL != nil && avatarButton.backgroundImageForState(.Normal) == nil {
-            avatarButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: user.avatarURL!))
-        }
-        if user.signature != nil && user.gender != nil {
-            switch User.Gender.fromRaw(user.gender!)! {
-            case .Male:
-                nameLabel.text! += " ♂"
-                break
-            case .Female:
-                nameLabel.text! += " ♀"
-                break
-            case .Secret:
-                break
-            default:
-                break
+        if needsToBeRefreshed {
+            needsToBeRefreshed = false
+            nameLabel.text = user.name
+            if user.avatarURL != nil {
+                avatarButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: user.avatarURL!), placeholderImage: avatarButton.backgroundImageForState(.Normal))
             }
-            signatureLabel.text = user.signature
-            topicButton.countLabel.text = "\(user.topicFocusCount!)"
-            followingButton.countLabel.text = "\(user.followingCount!)"
-            followerButton.countLabel.text = "\(user.followerCount!)"
-            articleButton.countLabel.font = UIFont.systemFontOfSize(10)
-            articleButton.countLabel.text = "没接口(╯`□′)╯(┻━┻"
-            askedButton.countLabel.text = "\(user.questionCount!)"
-            answeredButton.countLabel.text = "\(user.answerCount!)"
-            thankCountView.countLabel.text = "\(user.thankCount!)"
-            likeCountView.countLabel.text = "\(user.markCount!)"
-            favoriteCountView.countLabel.text = "\(user.answerFavoriteCount!)"
-            agreementCountView.countLabel.text = "\(user.agreementCount!)"
-            UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .BeginFromCurrentState, animations: {
-                let height = self.signatureLabel.sizeThatFits(CGSize(width: self.signatureLabel.frame.width, height: CGFloat.max)).height
-                self.signatureLabel.frame.size.height = height
-                self.hideableView.frame.size.height = height + 50
-                self.signatureLabel.alpha = 1
-                self.bottomView.contentSize = CGSize(width: self.bottomView.bounds.width, height: self.bottomView.bounds.height + self.hideableView.bounds.height)
-                self.topicButton.alpha = 1
-                self.followingButton.alpha = 1
-                self.followerButton.alpha = 1
-                self.articleButton.alpha = 1
-                self.askedButton.alpha = 1
-                self.answeredButton.alpha = 1
-                for subview in self.hideableView.subviews as [UIView] {
-                    subview.alpha = 1
+            if user.signature != nil && user.gender != nil {
+                switch User.Gender.fromRaw(user.gender!)! {
+                case .Male:
+                    nameLabel.text! += " ♂"
+                    break
+                case .Female:
+                    nameLabel.text! += " ♀"
+                    break
+                case .Secret:
+                    break
+                default:
+                    break
                 }
-                for subview in self.bottomView.subviews as [UIView] {
-                    if subview !== self.hideableView {
-                        subview.transform = CGAffineTransformMakeTranslation(0,  self.hideableView.frame.size.height)
+                signatureLabel.text = user.signature
+                topicButton.countLabel.text = "\(user.topicFocusCount!)"
+                followingButton.countLabel.text = "\(user.followingCount!)"
+                followerButton.countLabel.text = "\(user.followerCount!)"
+                articleButton.countLabel.font = UIFont.systemFontOfSize(10)
+                articleButton.countLabel.text = "没接口(╯`□′)╯(┻━┻"
+                askedButton.countLabel.text = "\(user.questionCount!)"
+                answeredButton.countLabel.text = "\(user.answerCount!)"
+                thankCountView.countLabel.text = "\(user.thankCount!)"
+                likeCountView.countLabel.text = "\(user.markCount!)"
+                favoriteCountView.countLabel.text = "\(user.answerFavoriteCount!)"
+                agreementCountView.countLabel.text = "\(user.agreementCount!)"
+                UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .BeginFromCurrentState, animations: {
+                    let height = self.signatureLabel.sizeThatFits(CGSize(width: self.signatureLabel.frame.width, height: CGFloat.max)).height
+                    self.signatureLabel.frame.size.height = height
+                    self.hideableView.frame.size.height = height + 50
+                    self.signatureLabel.alpha = 1
+                    self.bottomView.contentSize = CGSize(width: self.bottomView.bounds.width, height: self.bottomView.bounds.height + self.hideableView.bounds.height)
+                    self.topicButton.alpha = 1
+                    self.followingButton.alpha = 1
+                    self.followerButton.alpha = 1
+                    self.articleButton.alpha = 1
+                    self.askedButton.alpha = 1
+                    self.answeredButton.alpha = 1
+                    for subview in self.hideableView.subviews as [UIView] {
+                        subview.alpha = 1
                     }
-                }
-                for subview in self.hideableView.subviews as [UIView] {
-                    if subview !== self.signatureLabel {
-                        subview.transform = CGAffineTransformMakeTranslation(0,  height)
+                    for subview in self.bottomView.subviews as [UIView] {
+                        if subview !== self.hideableView {
+                            subview.transform = CGAffineTransformMakeTranslation(0,  self.hideableView.frame.size.height)
+                        }
                     }
-                }
-                },
-                completion: {
-                    finished in
-                    self.bottomView.setContentOffset(CGPoint(x: 0, y: self.signatureLabel.bounds.height), animated: true)
+                    for subview in self.hideableView.subviews as [UIView] {
+                        if subview !== self.signatureLabel {
+                            subview.transform = CGAffineTransformMakeTranslation(0,  height)
+                        }
+                    }
+                    },
+                    completion: {
+                        finished in
+                        self.bottomView.setContentOffset(CGPoint(x: 0, y: self.signatureLabel.bounds.height), animated: true)
                 })
+            }
         }
     }
     
