@@ -9,9 +9,9 @@
 import UIKit
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    let contentViewController: Msr.UI.NavigationController
+    let contentViewController: Msr.UI.NavigationController! = nil
     let sidebar = Msr.UI.Sidebar(width: 200, blurEffectStyle: .Light)
-    let tableView: UITableView
+    let tableView: UITableView! = nil
 //    let model = Model(module: "User", bundle: NSBundle.mainBundle())
 
     var user: User? {
@@ -25,18 +25,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         "Message",
         "TEST VC"
     ]
-    var viewControllers: [UIViewController] = [
-        UIViewController(),
-        DiscoveryViewController(),
-        UIViewController(),
-        UIViewController(),
-        UIViewController(),
-        HomeViewController(statusBarStyle: .Default),
-    ]
     override init() {
-        contentViewController = Msr.UI.NavigationController(rootViewController: viewControllers[0])
         tableView = UITableView(frame: sidebar.contentView.bounds, style: .Grouped)
         super.init(nibName: nil, bundle: nil)
+        contentViewController = Msr.UI.NavigationController(rootViewController: viewControllerAtIndex(0))
         addChildViewController(contentViewController)
         view.addSubview(contentViewController.view)
         view.insertSubview(sidebar, aboveSubview: contentViewController.view)
@@ -49,8 +41,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         sidebar.contentView.addSubview(tableView)
     }
     required init(coder aDecoder: NSCoder!) {
-        contentViewController = Msr.UI.NavigationController(rootViewController: viewControllers[0])
-        tableView = UITableView(frame: sidebar.contentView.bounds, style: .Grouped)
         super.init(coder: aDecoder)
     }
     func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
@@ -101,7 +91,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         if indexPath.section == 0 {
             contentViewController.setViewControllers([UserViewController(userID: appDelegate.currentUser!.id)], animated: true, completion: nil)
         } else if indexPath.section == 1 {
-            contentViewController.setViewControllers([viewControllers[indexPath.row]], animated: true, completion: nil)
+            contentViewController.setViewControllers([viewControllerAtIndex(indexPath.row)], animated: true, completion: nil)
         } else {
             dismissViewControllerAnimated(true, completion: nil)
         }
@@ -112,6 +102,32 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             return 60
         }
+    }
+    func viewControllerAtIndex(index: Int) -> UIViewController {
+        var viewController: UIViewController! = nil
+        switch index {
+        case 0:
+            viewController = UIViewController()
+            break
+        case 1:
+            viewController = DiscoveryViewController()
+            break
+        case 2:
+            viewController = UIViewController()
+            break
+        case 3:
+            viewController = UIViewController()
+            break
+        case 4:
+            viewController = UIViewController()
+            break
+        case 5:
+            viewController = HomeViewController(statusBarStyle: .Default)
+            break
+        default:
+            break
+        }
+        return viewController
     }
     func showSidebar() {
         sidebar.show(animated: true, completion: nil)
