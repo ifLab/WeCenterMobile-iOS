@@ -30,6 +30,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     
     var topicID: NSNumber!
     var topic: Topic!
+    var array: [(question: Question, answer: Answer, user: User)] = []
     
     init(topicID: NSNumber) {
         super.init()
@@ -103,6 +104,13 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
                 topic in
                 self.topic = topic
                 self.reloadData()
+                Topic.fetchOutstandingQuestionAnswerUserListUsingNetworkByTopicID(self.topicID,
+                    success: {
+                        array in
+                        self.array = array
+                        self.tableView.reloadData()
+                    },
+                    failure: nil)
             },
             failure: nil)
     }
@@ -147,7 +155,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     func reloadData() {
         titleLabel.text = topic.title
         imageButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: topic.imageURL), placeholderImage: Msr.UI.Circle(color: UIColor.paperColorGray400(), radius: imageButton.bounds.width / 2).image)
-        countLabel.text = "\(topic.focusCount)人关注"
+        countLabel.text = "\(topic.focusCount!)人关注"
         introductionLabel.text = topic.introduction
         introductionLabel.frame = CGRect(origin: CGPoint(x: 15, y: 0), size: introductionLabel.sizeThatFits(CGSize(width: introductionLabel.bounds.width, height: CGFloat.max)))
         hideableView.frame.size.height = introductionLabel.bounds.height + 10
@@ -184,7 +192,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
                 finished in
                 self.imageButton.setImage(nil, forState: .Normal)
                 self.imageButton.userInteractionEnabled = true
-        })
+            })
     }
     
     func toggleImageButtonImage() {
@@ -209,7 +217,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
                     }, completion: {
                         finished in
                         self.imageButton.userInteractionEnabled = true
-                })
+                    })
                 break
             case .NotFollowing, .Following:
                 imageActivityIndicatorView.startAnimating()
@@ -233,7 +241,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
                         self.tryHidingImageButtonImage()
                         self.imageActivityIndicatorView.stopAnimating()
                         self.imageButton.userInteractionEnabled = true
-                })
+                    })
                 break
             default:
                 break
@@ -246,12 +254,18 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     }
     
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return array.count
     }
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        let cell = BFPaperTableViewCell(style: .Default, reuseIdentifier: "")
-        cell.textLabel.text = "Section \(indexPath.section), Row \(indexPath.row)"
+        let cell = BFPaperTableViewCell(style: .Subtitle, reuseIdentifier: "")
+        let tuple = array[indexPath.row]
+        cell.textLabel.text = tuple.question.title
+        cell.detailTextLabel.text = tuple.answer.body
+        cell.imageView.bounds.size = CGSize(width: 60, height: 60)
+        cell.imageView.layer.cornerRadius = cell.imageView.bounds.width / 2
+        cell.imageView.layer.masksToBounds = true
+        cell.imageView.setImageWithURL(NSURL(string: tuple.user.avatarURL), placeholderImage: Msr.UI.Circle(color: UIColor.paperColorGray300(), radius: cell.imageView.bounds.width / 2).image)
         cell.backgroundColor = UIColor.clearColor()
         return cell
     }

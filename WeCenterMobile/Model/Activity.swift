@@ -71,7 +71,7 @@ class Activity: NSManagedObject {
                 for topicInfo in value["topics"].asArray() as [NSDictionary] {
                     let topic = Model.createManagedObjecWithEntityName("Topic") as Topic
                     topic.id = topicInfo["topic_id"] as Int
-                    topic.title = topicInfo["topic_title"] as String
+                    topic.title = topicInfo["topic_title"] as? String
                     let relationship = Model.createManagedObjecWithEntityName("QuestionActivity_Topic") as QuestionActivity_Topic
                     relationship.activityID = questionActivity.id
                     relationship.topicID = topic.id

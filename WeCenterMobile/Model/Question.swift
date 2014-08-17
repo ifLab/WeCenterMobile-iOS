@@ -14,9 +14,9 @@ let QuestionModel = Model(module: "Question", bundle: NSBundle.mainBundle())
 class Question: NSManagedObject {
 
     @NSManaged var id: NSNumber
-    @NSManaged var title: String
-    @NSManaged var body: String
-    @NSManaged var focusCount: NSNumber
+    @NSManaged var title: String?
+    @NSManaged var body: String?
+    @NSManaged var focusCount: NSNumber?
     
     var focused: Bool? = nil
     
@@ -69,7 +69,7 @@ class Question: NSManagedObject {
                     answer.body = value["answer_content"].asString()
                     answer.agreementCount = value["agree_count"].asInt()
                     answer.userID = value["uid"].asInt()
-                    let user = Model.autoGenerateManagedObjectByEntityName("User", ID: answer.userID) as User
+                    let user = Model.autoGenerateManagedObjectByEntityName("User", ID: answer.userID!) as User
                     user.name = value["user_name"].asString()
                     Question_Answer.updateRelationship(questionID: question.id, answerID: answer.id)
                 }

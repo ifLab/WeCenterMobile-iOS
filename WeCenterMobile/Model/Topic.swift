@@ -13,11 +13,11 @@ let TopicModel = Model(module: "Topic", bundle: NSBundle.mainBundle())
 
 class Topic: NSManagedObject {
 
-    @NSManaged var title: String
+    @NSManaged var title: String?
     @NSManaged var id: NSNumber
-    @NSManaged var introduction: String
-    @NSManaged var imageURL: String
-    @NSManaged var focusCount: NSNumber
+    @NSManaged var introduction: String?
+    @NSManaged var imageURL: String?
+    @NSManaged var focusCount: NSNumber?
     
     var focused: Bool? = nil
     
@@ -197,7 +197,7 @@ class Topic: NSManagedObject {
     }
     
     class func fetchOutstandingQuestionAnswerUserListUsingNetworkByTopicID(topicID: NSNumber,
-        success: ([(Question, Answer, User)] -> Void)?,
+        success: ([(question: Question, answer: Answer, user: User)] -> Void)?,
         failure: ((NSError) -> Void)?) {
             TopicModel.GET(TopicModel.URLStrings["GET Outstanding"]!,
                 parameters: [
@@ -206,7 +206,7 @@ class Topic: NSManagedObject {
                 success: {
                     property in
                     if property["total_rows"].asInt() > 0 {
-                        var array: [(Question, Answer, User)] = []
+                        var array: [(question: Question, answer: Answer, user: User)] = []
                         for dictionary in property["rows"].asArray() as [NSDictionary] {
                             let questionValue = Msr.Data.Property(value: dictionary["question_info"] as NSObject)
                             let answerValue = Msr.Data.Property(value: dictionary["answer_info"] as NSObject)
@@ -217,7 +217,7 @@ class Topic: NSManagedObject {
                             answer.agreementCount = answerValue["agree_count"].asInt()
                             let user = Model.autoGenerateManagedObjectByEntityName("User", ID: answerValue["uid"].asInt()) as User
                             user.avatarURL = User.avatarURLWithURI(answerValue["avatar_file"].asString())
-                            array.append((question, answer, user))
+                            array.append((question: question, answer: answer, user: user))
                         }
                         appDelegate.saveContext()
                         success?(array)

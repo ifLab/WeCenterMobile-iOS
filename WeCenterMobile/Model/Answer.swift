@@ -14,12 +14,12 @@ let AnswerModel = Model(module: "Answer", bundle: NSBundle.mainBundle())
 class Answer: NSManagedObject {
 
     @NSManaged var id: NSNumber
-    @NSManaged var userID: NSNumber
-    @NSManaged var agreementCount: NSNumber
-    @NSManaged var body: String
-    @NSManaged var commentCount: NSNumber
-    @NSManaged var date: NSDate
-    @NSManaged var questionID: NSNumber
+    @NSManaged var userID: NSNumber?
+    @NSManaged var agreementCount: NSNumber?
+    @NSManaged var body: String?
+    @NSManaged var commentCount: NSNumber?
+    @NSManaged var date: NSDate?
+    @NSManaged var questionID: NSNumber?
     
     enum Evaluation: Int {
         case None = 0
@@ -73,8 +73,8 @@ class Answer: NSManagedObject {
                 answer.agreementCount = property["agree_count"].asInt()
                 answer.commentCount = property["comment_count"].asInt()
                 answer.evaluation = Evaluation.fromRaw(property["vote_value"].asInt())
-                Question_Answer.updateRelationship(questionID: answer.questionID, answerID: answer.id)
-                let user = Model.autoGenerateManagedObjectByEntityName("User", ID: answer.userID) as User
+                Question_Answer.updateRelationship(questionID: answer.questionID!, answerID: answer.id)
+                let user = Model.autoGenerateManagedObjectByEntityName("User", ID: answer.userID!) as User
                 user.name = property["user_name"].asString()
                 user.avatarURL = User.avatarURLWithURI(property["avatar_file"].asString())
                 user.signature = property["signature"].asString()
