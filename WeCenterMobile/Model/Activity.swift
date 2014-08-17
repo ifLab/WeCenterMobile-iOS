@@ -32,22 +32,10 @@ class Activity: NSManagedObject {
         let key = property.asDictionary().keys.first!
         let value = Msr.Data.Property(value: property.asDictionary().values.first as NSObject)
         var activity: Activity! = nil
-        var user: User! = nil
-        User.fetchUserByID(value["user_info"]["uid"].asInt(),
-            strategy: .CacheOnly,
-            success: {
-                _user in
-                user = _user
-                user.name = value["user_info"]["user_name"].asString()
-                user.avatarURL = User.avatarURLWithURI(value["user_info"]["avatar_file"].asString())
-                return
-            }, failure: {
-                error in
-                user = Model.createManagedObjecWithEntityName("User") as User
-                user.id = value["user_info"]["uid"].asInt()
-                user.name = value["user_info"]["user_name"].asString()
-                user.avatarURL = User.avatarURLWithURI(value["user_info"]["avatar_file"].asString())
-            })
+        let userID = value["user_info"]["uid"].asInt()
+        let user = Model.autoGenerateManagedObjectByEntityName("User", ID: userID) as User
+        user.name = value["user_info"]["user_name"].asString()
+        user.avatarURL = User.avatarURLWithURI(value["user_info"]["avatar_file"].asString())
         switch value["post_type"].asString()! {
         case "article":
             activity = Model.createManagedObjecWithEntityName("ArticalActivity") as ArticalActivity

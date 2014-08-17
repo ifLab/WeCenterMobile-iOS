@@ -58,56 +58,30 @@ class Answer: NSManagedObject {
     }
     
     class func fetchAnswerUsingNetworkByID(ID: NSNumber, success: ((Answer) -> Void)?, failure: ((NSError) -> Void)?) {
-        let update: (Answer) -> Void = {
-            answer in
-            answer.id = ID
-            AnswerModel.GET(AnswerModel.URLStrings["GET Detail"]!,
-                parameters: [
-                    "id": ID
-                ],
-                success: {
-                    property in
-                    answer.id = property["answer_id"].asInt()
-                    answer.userID = property["uid"].asInt()
-                    answer.questionID = property["question_id"].asInt()
-                    answer.body = property["answer_content"].asString()
-                    answer.date = NSDate(timeIntervalSince1970: NSTimeInterval(property["add_time"].asInt()))
-                    answer.agreementCount = property["agree_count"].asInt()
-                    answer.commentCount = property["comment_count"].asInt()
-                    answer.evaluation = Evaluation.fromRaw(property["vote_value"].asInt())
-                    Question_Answer.updateRelationship(questionID: answer.questionID, answerID: answer.id)
-                    var user: User! = nil
-                    User.fetchUserByID(answer.userID,
-                        strategy: .CacheOnly,
-                        success: {
-                            _user in
-                            user = _user
-                        },
-                        failure: {
-                            error in
-                            user = Model.createManagedObjecWithEntityName("User") as User
-                            user.id = answer.userID
-                        })
-                    user.name = property["user_name"].asString()
-                    user.avatarURL = User.avatarURLWithURI(property["avatar_file"].asString())
-                    user.signature = property["signature"].asString()
-                    appDelegate.saveContext()
-                    success?(answer)
-                },
-                failure: failure)
-        }
-        var answer: Answer! = nil
-        fetchAnswerByID(ID,
-            strategy: .CacheOnly,
+        let answer = Model.autoGenerateManagedObjectByEntityName("Answer", ID: ID) as Answer
+        AnswerModel.GET(AnswerModel.URLStrings["GET Detail"]!,
+            parameters: [
+                "id": ID
+            ],
             success: {
-                _answer in
-                answer = _answer
+                property in
+                answer.id = property["answer_id"].asInt()
+                answer.userID = property["uid"].asInt()
+                answer.questionID = property["question_id"].asInt()
+                answer.body = property["answer_content"].asString()
+                answer.date = NSDate(timeIntervalSince1970: NSTimeInterval(property["add_time"].asInt()))
+                answer.agreementCount = property["agree_count"].asInt()
+                answer.commentCount = property["comment_count"].asInt()
+                answer.evaluation = Evaluation.fromRaw(property["vote_value"].asInt())
+                Question_Answer.updateRelationship(questionID: answer.questionID, answerID: answer.id)
+                let user = Model.autoGenerateManagedObjectByEntityName("User", ID: answer.userID) as User
+                user.name = property["user_name"].asString()
+                user.avatarURL = User.avatarURLWithURI(property["avatar_file"].asString())
+                user.signature = property["signature"].asString()
+                appDelegate.saveContext()
+                success?(answer)
             },
-            failure: {
-                error in
-                answer = Model.createManagedObjecWithEntityName("Answer") as Answer
-            })
-        update(answer)
+            failure: failure)
     }
 
 }

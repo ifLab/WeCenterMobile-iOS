@@ -84,17 +84,7 @@ class User: NSManagedObject {
             ],
             success: {
                 property in
-                var user: User! = nil
-                self.fetchUserUsingCacheByID(ID,
-                    success: {
-                        _user in
-                        user = _user
-                        return
-                    }, failure: {
-                        error in
-                        user = Model.createManagedObjecWithEntityName("User") as User
-                        return
-                    })
+                let user = Model.autoGenerateManagedObjectByEntityName("User", ID: ID) as User
                 user.id = ID
                 user.name = property["user_name"].asString()
                 user.avatarURL = User.avatarURLWithURI(property["avatar_file"].asString())
@@ -150,22 +140,9 @@ class User: NSManagedObject {
                     let a = ID
                     for userDictionary in userProperties.asArray() as [NSDictionary] {
                         let value = Msr.Data.Property(value: userDictionary)
-                        var user: User! = nil
                         let b = value["uid"].asInt()
                         User_User.updateRelationship(a: a, b: b)
-                        User.fetchUserByID(b,
-                            strategy: .CacheOnly,
-                            success: {
-                                _user in
-                                user = _user
-                                return
-                            },
-                            failure: {
-                                error in
-                                user = Model.createManagedObjecWithEntityName("User") as User
-                                user.id = b
-                                return
-                            })
+                        let user = Model.autoGenerateManagedObjectByEntityName("User", ID: b) as User
                         user.name = value["user_name"].asString()
                         user.avatarURL = User.avatarURLWithURI(value["avatar_file"].asString())
                         user.signature = value["signature"].asString()
@@ -240,20 +217,9 @@ class User: NSManagedObject {
                     let b = ID
                     for userDictionary in userProperties.asArray() as [NSDictionary] {
                         let value = Msr.Data.Property(value: userDictionary)
-                        var user: User! = nil
                         let a = value["uid"].asInt()
                         User_User.updateRelationship(a: a, b: b)
-                        User.fetchUserByID(a,
-                            strategy: .CacheOnly,
-                            success: {
-                                _user in
-                                user = _user
-                            },
-                            failure: {
-                                error in
-                                user = Model.createManagedObjecWithEntityName("User") as User
-                                user.id = a
-                            })
+                        let user = Model.autoGenerateManagedObjectByEntityName("User", ID: a) as User
                         user.name = value["user_name"].asString()
                         user.avatarURL = User.avatarURLWithURI(value["avatar_file"].asString())
                         user.signature = value["signature"].asString()

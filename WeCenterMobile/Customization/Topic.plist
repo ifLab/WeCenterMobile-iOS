@@ -12,6 +12,8 @@
 		<string>api/topic.php</string>
 		<key>GET List</key>
 		<string>api/my_focus_topic_ios.php</string>
+		<key>GET Outstanding</key>
+		<string>?/api/topic/topic_best_answer/</string>
 		<key>POST Focus</key>
 		<string>api/focus_topic.php</string>
 	</dict>

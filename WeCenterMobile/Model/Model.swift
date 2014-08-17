@@ -104,6 +104,20 @@ class Model {
             failure?(error != nil ? error! : NSError()) // Needs specification
         }
     }
+    class func autoGenerateManagedObjectByEntityName(entityName: String, ID: NSNumber) -> NSManagedObject {
+        var object: NSManagedObject! = nil
+        fetchManagedObjectByTemplateName(entityName + "_By_ID",
+            ID: ID,
+            success: {
+                (_object: NSManagedObject) -> Void in
+                object = _object
+            }, failure: {
+                error in
+                object = self.createManagedObjecWithEntityName(entityName)
+                object.setValue(ID, forKey: "id")
+            })
+        return object
+    }
     class func fetchRelationshipsByTemplateName<T: NSManagedObject>(templateName: String, ID: NSNumber, page: Int, count: Int, sortBy: (String, Bool)? = nil, success: (([T]) -> Void)?, failure: ((NSError) -> Void)?) {
         let request = appDelegate.managedObjectModel.fetchRequestFromTemplateWithName(templateName,
             substitutionVariables: [
@@ -132,8 +146,4 @@ class Model {
         let results = appDelegate.managedObjectContext.executeFetchRequest(request, error: &error)
         return error == nil && results != nil && results!.count != 0
     }
-}
-
-class ManagedObjectModel<T> {
-    
 }

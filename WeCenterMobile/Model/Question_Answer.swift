@@ -23,7 +23,7 @@ class Question_Answer: NSManagedObject {
         }
     }
     
-    class func fetchRelationshipsUsingCacheByQuestionID(questionID: NSNumber, page: Int, count: Int, success: (([User_Topic]) -> Void)?, failure: ((NSError) -> Void)?) {
+    class func fetchRelationshipsUsingCacheByQuestionID(questionID: NSNumber, page: Int, count: Int, success: (([Question_Answer]) -> Void)?, failure: ((NSError) -> Void)?) {
         Model.fetchRelationshipsByTemplateName("Question_Answer_By_QuestionID", ID: questionID, page: page, count: count, success: success, failure: failure)
     }
     

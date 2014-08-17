@@ -86,23 +86,14 @@ class Topic: NSManagedObject {
                     var topics = [Topic]()
                     for topicDictionary in property["rows"].asArray() as [NSDictionary] {
                         let property = Msr.Data.Property(value: topicDictionary)
-                        var topic: Topic! = nil
                         let topicID = property["topic_id"].asInt()
-                        self.fetchTopicByID(topicID,
-                            strategy: .CacheOnly,
-                            success: {
-                                _topic in
-                                topic = _topic
-                            }, failure: {
-                                error in
-                                topic = Model.createManagedObjecWithEntityName("Topic") as Topic
-                            })
-                        User_Topic.updateRelationship(userID: userID, topicID: topicID)
+                        let topic = Model.autoGenerateManagedObjectByEntityName("Topic", ID: topicID) as Topic
                         topic.id = topicID
                         topic.title = property["topic_title"].asString()
                         topic.introduction = property["topic_description"].asString()
                         topic.imageURL = self.imageURLWithURI(property["topic_pic"].asString())
                         topics.append(topic)
+                        User_Topic.updateRelationship(userID: userID, topicID: topicID)
                         appDelegate.saveContext()
                     }
                     success?(topics)
@@ -144,35 +135,23 @@ class Topic: NSManagedObject {
     }
     
     private class func fetchTopicUsingNetworkByID(ID: NSNumber, success: ((Topic) -> Void)?, failure: ((NSError) -> Void)?) {
-        let update: (Topic) -> Void = {
-            topic in
-            topic.id = ID
-            TopicModel.GET(TopicModel.URLStrings["GET Detail"]!,
-                parameters: [
-                    "uid": appDelegate.currentUser!.id,
-                    "topic_id": ID
-                ],
-                success: {
-                    property in
-                    topic.title = property["topic_title"].asString()
-                    topic.introduction = property["topic_description"].asString()
-                    topic.imageURL = Topic.imageURLWithURI(property["topic_pic"].asString())
-                    topic.focusCount = property["focus_count"].asInt()
-                    topic.focused = (property["has_focus"].asInt() == 1)
-                    appDelegate.saveContext()
-                    success?(topic)
-                },
-                failure: failure)
-        }
-        fetchTopicUsingCacheByID(ID,
+        let topic = Model.autoGenerateManagedObjectByEntityName("Topic", ID: ID) as Topic
+        TopicModel.GET(TopicModel.URLStrings["GET Detail"]!,
+            parameters: [
+                "uid": appDelegate.currentUser!.id,
+                "topic_id": ID
+            ],
             success: {
-                topic in
-                update(topic)
-            }, failure: {
-                error in
-                let topic = Model.createManagedObjecWithEntityName("Topic") as Topic
-                update(topic)
-            })
+                property in
+                topic.title = property["topic_title"].asString()
+                topic.introduction = property["topic_description"].asString()
+                topic.imageURL = Topic.imageURLWithURI(property["topic_pic"].asString())
+                topic.focusCount = property["focus_count"].asInt()
+                topic.focused = (property["has_focus"].asInt() == 1)
+                appDelegate.saveContext()
+                success?(topic)
+            },
+            failure: failure)
     }
     
     func toggleFocusTopicUsingNetworkByUserID(userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
@@ -215,6 +194,37 @@ class Topic: NSManagedObject {
                 success?()
             },
             failure: failure)
+    }
+    
+    class func fetchOutstandingQuestionAnswerUserListUsingNetworkByTopicID(topicID: NSNumber,
+        success: ([(Question, Answer, User)] -> Void)?,
+        failure: ((NSError) -> Void)?) {
+            TopicModel.GET(TopicModel.URLStrings["GET Outstanding"]!,
+                parameters: [
+                    "id": topicID
+                ],
+                success: {
+                    property in
+                    if property["total_rows"].asInt() > 0 {
+                        var array: [(Question, Answer, User)] = []
+                        for dictionary in property["rows"].asArray() as [NSDictionary] {
+                            let questionValue = Msr.Data.Property(value: dictionary["question_info"] as NSObject)
+                            let answerValue = Msr.Data.Property(value: dictionary["answer_info"] as NSObject)
+                            let question = Model.autoGenerateManagedObjectByEntityName("Question", ID: questionValue["question_id"].asInt()) as Question
+                            question.title = questionValue["question_content"].asString()
+                            let answer = Model.autoGenerateManagedObjectByEntityName("Answer", ID: answerValue["answer_id"].asInt()) as Answer
+                            answer.body = answerValue["answer_content"].asString()
+                            answer.agreementCount = answerValue["agree_count"].asInt()
+                            let user = Model.autoGenerateManagedObjectByEntityName("User", ID: answerValue["uid"].asInt()) as User
+                            user.avatarURL = User.avatarURLWithURI(answerValue["avatar_file"].asString())
+                            array.append((question, answer, user))
+                        }
+                        appDelegate.saveContext()
+                        success?(array)
+                    } else {
+                        failure?(NSError()) // Needs specification
+                    }
+                }, failure: failure)
     }
     
 }

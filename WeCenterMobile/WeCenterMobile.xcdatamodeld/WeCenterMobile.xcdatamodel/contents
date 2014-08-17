@@ -87,6 +87,8 @@
     <fetchRequest name="Question_Answer_By_QuestionID" entity="Question_Answer" predicateString="questionID == $ID"/>
     <fetchRequest name="Question_Answer_Check" entity="Question_Answer" predicateString="questionID == $QuestionID AND answerID == $AnswerID"/>
     <fetchRequest name="Question_By_ID" entity="Question" predicateString="id == $ID"/>
+    <fetchRequest name="Question_Topic_By_QuestionID" entity="Question_Topic" predicateString="questionID == $ID"/>
+    <fetchRequest name="Question_Topic_Check" entity="Question_Topic" predicateString="questionID == $QuestionID AND topicID == $TopicID"/>
     <fetchRequest name="Topic_By_ID" entity="Topic" predicateString="id == $ID"/>
     <fetchRequest name="User_By_ID" entity="User" predicateString="id == $ID"/>
     <fetchRequest name="User_Topic_By_UserID" entity="User_Topic" predicateString="userID == $ID"/>
