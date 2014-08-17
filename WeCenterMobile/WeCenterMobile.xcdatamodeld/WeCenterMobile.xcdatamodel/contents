@@ -11,7 +11,7 @@
         <attribute name="activityID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="topicID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
-    <entity name="Answer" syncable="YES">
+    <entity name="Answer" representedClassName="Answer" syncable="YES">
         <attribute name="agreementCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="commentCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -22,17 +22,17 @@
     <entity name="ArticalActivity" representedClassName="WeCenterMobile.ArticalActivity" parentEntity="Activity" syncable="YES">
         <attribute name="commentCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
-    <entity name="Question" syncable="YES">
+    <entity name="Question" representedClassName="Question" syncable="YES">
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="focusCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Question_Answer" syncable="YES">
+    <entity name="Question_Answer" representedClassName="Question_Answer" syncable="YES">
         <attribute name="answerID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="questionID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
-    <entity name="Question_Topic" syncable="YES">
+    <entity name="Question_Topic" representedClassName="Question_Topic" syncable="YES">
         <attribute name="questionID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="topicID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>

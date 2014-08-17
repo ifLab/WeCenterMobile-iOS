@@ -19,6 +19,8 @@ class Topic: NSManagedObject {
     @NSManaged var imageURL: String
     @NSManaged var focusCount: NSNumber
     
+    var focused: Bool? = nil
+    
     class func imageURLWithURI(URI: String) -> String {
         return TopicModel.URLStrings["Base"]! + TopicModel.URLStrings["Image Base"]! + URI
     }
@@ -72,7 +74,7 @@ class Topic: NSManagedObject {
     }
     
     private class func fetchTopicListUsingNetworkByUserID(userID: NSNumber, page: Int, count: Int, success: (([Topic]) -> Void)?, failure: ((NSError) -> Void)?) {
-        TopicModel.GET(TopicModel.URLStrings["GET Topic List"]!,
+        TopicModel.GET(TopicModel.URLStrings["GET List"]!,
             parameters: [
                 "uid": userID,
                 "page": page,
@@ -145,9 +147,9 @@ class Topic: NSManagedObject {
         let update: (Topic) -> Void = {
             topic in
             topic.id = ID
-            TopicModel.GET(TopicModel.URLStrings["GET Topic"]!,
+            TopicModel.GET(TopicModel.URLStrings["GET Detail"]!,
                 parameters: [
-                    "uid": "x",
+                    "uid": appDelegate.currentUser!.id,
                     "topic_id": ID
                 ],
                 success: {
@@ -156,6 +158,7 @@ class Topic: NSManagedObject {
                     topic.introduction = property["topic_description"].asString()
                     topic.imageURL = Topic.imageURLWithURI(property["topic_pic"].asString())
                     topic.focusCount = property["focus_count"].asInt()
+                    topic.focused = (property["has_focus"].asInt() == 1)
                     appDelegate.saveContext()
                     success?(topic)
                 },
@@ -170,6 +173,48 @@ class Topic: NSManagedObject {
                 let topic = Model.createManagedObjecWithEntityName("Topic") as Topic
                 update(topic)
             })
+    }
+    
+    func toggleFocusTopicUsingNetworkByUserID(userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        if focused != nil {
+            if focused! {
+                cancleFocusTopicUsingNetworkByUserID(userID, success: success, failure: failure)
+            } else {
+                focusTopicUsingNetworkByUserID(userID, success: success, failure: failure)
+            }
+        } else {
+            failure?(NSError()) // Needs specification
+        }
+    }
+    
+    func cancleFocusTopicUsingNetworkByUserID(userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        TopicModel.POST(TopicModel.URLStrings["POST Focus"]!,
+            parameters: [
+                "uid": userID,
+                "topic_id": id,
+                "type": "cancel"
+            ],
+            success: {
+                property in
+                self.focused = false
+                success?()
+            },
+            failure: failure)
+    }
+    
+    func focusTopicUsingNetworkByUserID(userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        TopicModel.POST(TopicModel.URLStrings["POST Focus"]!,
+            parameters: [
+                "uid": userID,
+                "topic_id": id,
+                "type": "focus"
+            ],
+            success: {
+                property in
+                self.focused = true
+                success?()
+            },
+            failure: failure)
     }
     
 }

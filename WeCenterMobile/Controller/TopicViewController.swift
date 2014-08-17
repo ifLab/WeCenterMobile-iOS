@@ -45,7 +45,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         tableView.addSubview(hideableView)
         
         hideableView.addSubview(introductionLabel)
-        topView.frame = CGRect(x: 0, y: -(UINavigationController().navigationBar.bounds.height + UIApplication.sharedApplication().statusBarFrame.height), width: view.bounds.width, height: 150)
+        topView.frame = CGRect(x: 0, y: -(UINavigationController().navigationBar.bounds.height + UIApplication.sharedApplication().statusBarFrame.height), width: view.bounds.width, height: 140)
         topView.backgroundColor = UIColor.paperColorGray300()
         topView.delaysContentTouches = false
         topView.layer.masksToBounds = false
@@ -59,7 +59,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         tableView.addGestureRecognizer(topView.panGestureRecognizer)
         hideableView.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0.1)
         hideableView.backgroundColor = topView.backgroundColor
-        imageButton.bounds.size = CGSize(width: 80, height: 85)
+        imageButton.bounds.size = CGSize(width: 80, height: 80)
         imageButton.center.x = topView.center.x - 90
         imageButton.frame.origin.y = 40
         imageButton.layer.cornerRadius = imageButton.bounds.width / 2
@@ -116,10 +116,10 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     func scrollViewDidScroll(scrollView: UIScrollView!) {
         if scrollView === tableView {
             if tableView.contentOffset.y < -self.hideableView.bounds.height {
-                topView.frame.size.height = 150 - tableView.contentOffset.y - hideableView.bounds.height
+                topView.frame.size.height = 140 - tableView.contentOffset.y - hideableView.bounds.height
                 topView.contentOffset.y = tableView.contentOffset.y + hideableView.bounds.height
             } else {
-                topView.frame.size.height = 150
+                topView.frame.size.height = 140
                 let percentage = min(tableView.contentOffset.y + hideableView.bounds.height, hideableView.bounds.height) / hideableView.bounds.height
                 topView.contentOffset.y = percentage * 5
             }
@@ -192,57 +192,57 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     }
     
     func toggleImageButtonImage() {
-//        if user?.followed != nil {
-//            switch imageButtonState {
-//            case .Normal:
-//                if user!.followed! {
-//                    imageButton.setImage(UIImage(named: "User_Following"), forState: .Normal)
-//                    imageButtonState = .Following
-//                } else {
-//                    imageButton.setImage(UIImage(named: "User_Follow"), forState: .Normal)
-//                    imageButtonState = .NotFollowing
-//                }
-//                imageButton.userInteractionEnabled = false
-//                UIView.animateWithDuration(0.2,
-//                    delay: 0,
-//                    usingSpringWithDamping: 1,
-//                    initialSpringVelocity: 0,
-//                    options: .BeginFromCurrentState,
-//                    animations: {
-//                        self.imageButton.imageView.alpha = 1
-//                    }, completion: {
-//                        finished in
-//                        self.imageButton.userInteractionEnabled = true
-//                })
-//                break
-//            case .NotFollowing, .Following:
-//                imageActivityIndicatorView.startAnimating()
-//                imageButton.userInteractionEnabled = false
-//                preventHidingAvatarButtonImage()
-//                user!.toggleFollow(
-//                    success: {
-//                        self.tryHidingAvatarButtonImage()
-//                        self.imageActivityIndicatorView.stopAnimating()
-//                        self.imageButton.userInteractionEnabled = true
-//                        if self.user!.followed! {
-//                            self.imageButton.setImage(UIImage(named: "User_Following"), forState: .Normal)
-//                            self.imageButtonState = .Following
-//                        } else {
-//                            self.imageButton.setImage(UIImage(named: "User_Follow"), forState: .Normal)
-//                            self.imageButtonState = .NotFollowing
-//                        }
-//                    },
-//                    failure: {
-//                        error in
-//                        self.tryHidingAvatarButtonImage()
-//                        self.imageActivityIndicatorView.stopAnimating()
-//                        self.imageButton.userInteractionEnabled = true
-//                })
-//                break
-//            default:
-//                break
-//            }
-//        }
+        if topic?.focused != nil {
+            switch imageButtonState {
+            case .Normal:
+                if topic!.focused! {
+                    imageButton.setImage(UIImage(named: "User_Following"), forState: .Normal)
+                    imageButtonState = .Following
+                } else {
+                    imageButton.setImage(UIImage(named: "User_Follow"), forState: .Normal)
+                    imageButtonState = .NotFollowing
+                }
+                imageButton.userInteractionEnabled = false
+                UIView.animateWithDuration(0.2,
+                    delay: 0,
+                    usingSpringWithDamping: 1,
+                    initialSpringVelocity: 0,
+                    options: .BeginFromCurrentState,
+                    animations: {
+                        self.imageButton.imageView.alpha = 1
+                    }, completion: {
+                        finished in
+                        self.imageButton.userInteractionEnabled = true
+                })
+                break
+            case .NotFollowing, .Following:
+                imageActivityIndicatorView.startAnimating()
+                imageButton.userInteractionEnabled = false
+                preventHidingImageButtonImage()
+                topic!.toggleFocusTopicUsingNetworkByUserID(appDelegate.currentUser!.id,
+                    success: {
+                        self.tryHidingImageButtonImage()
+                        self.imageActivityIndicatorView.stopAnimating()
+                        self.imageButton.userInteractionEnabled = true
+                        if self.topic!.focused! {
+                            self.imageButton.setImage(UIImage(named: "User_Following"), forState: .Normal)
+                            self.imageButtonState = .Following
+                        } else {
+                            self.imageButton.setImage(UIImage(named: "User_Follow"), forState: .Normal)
+                            self.imageButtonState = .NotFollowing
+                        }
+                    },
+                    failure: {
+                        error in
+                        self.tryHidingImageButtonImage()
+                        self.imageActivityIndicatorView.stopAnimating()
+                        self.imageButton.userInteractionEnabled = true
+                })
+                break
+            default:
+                break
+            }
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView!) -> Int {

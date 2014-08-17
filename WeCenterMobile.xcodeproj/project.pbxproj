@@ -17,6 +17,10 @@
 		95639574198D4D50002F3340 /* QuestionActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95639573198D4D50002F3340 /* QuestionActivity.swift */; };
 		956E24501973D780006BB970 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956E244F1973D780006BB970 /* AppDelegate.swift */; };
 		956E24531973D780006BB970 /* WeCenterMobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 956E24511973D780006BB970 /* WeCenterMobile.xcdatamodeld */; };
+		9578A58319A011E400983884 /* Question_Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9578A58219A011E400983884 /* Question_Topic.swift */; };
+		9578A58519A011E500983884 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9578A58419A011E500983884 /* Answer.swift */; };
+		9578A58719A011E500983884 /* Question_Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9578A58619A011E500983884 /* Question_Answer.swift */; };
+		9578A58919A011E500983884 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9578A58819A011E500983884 /* Question.swift */; };
 		959A2220198D530E00A25406 /* QuestionActivity_Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A221F198D530E00A25406 /* QuestionActivity_Topic.swift */; };
 		95A32EB9199222FC00E7BDE9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95A32EB7199222FC00E7BDE9 /* Info.plist */; };
 		95A32EBD19922E3800E7BDE9 /* SegmentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A32EBC19922E3800E7BDE9 /* SegmentedViewController.swift */; };
@@ -111,6 +115,10 @@
 		956E244F1973D780006BB970 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		956E24521973D780006BB970 /* WeCenterMobile.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeCenterMobile.xcdatamodel; sourceTree = "<group>"; };
 		956E246F1973D7BB006BB970 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
+		9578A58219A011E400983884 /* Question_Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question_Topic.swift; sourceTree = "<group>"; };
+		9578A58419A011E500983884 /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		9578A58619A011E500983884 /* Question_Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question_Answer.swift; sourceTree = "<group>"; };
+		9578A58819A011E500983884 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		9589BC7F1992208600C3836C /* WeCenterMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeCenterMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		959A221F198D530E00A25406 /* QuestionActivity_Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionActivity_Topic.swift; sourceTree = "<group>"; };
 		95A32E871992223300E7BDE9 /* WeCenterMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeCenterMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -321,6 +329,10 @@
 				95639573198D4D50002F3340 /* QuestionActivity.swift */,
 				959A221F198D530E00A25406 /* QuestionActivity_Topic.swift */,
 				95CDEE33199EDCA8000AC63F /* Topic.swift */,
+				9578A58819A011E500983884 /* Question.swift */,
+				9578A58619A011E500983884 /* Question_Answer.swift */,
+				9578A58419A011E500983884 /* Answer.swift */,
+				9578A58219A011E400983884 /* Question_Topic.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -651,10 +663,12 @@
 				95A811B9198C0EBA003E863B /* AlertView.swift in Sources */,
 				9563956A198D3EDF002F3340 /* ArticalActivity.swift in Sources */,
 				95F91E8A199F9A2C0011FE45 /* UserCell.swift in Sources */,
+				9578A58519A011E500983884 /* Answer.swift in Sources */,
 				95BB01A41995C3FC0049CAD2 /* HomeViewController.swift in Sources */,
 				95C4B936199D6495005DBC26 /* BFPaperButton.m in Sources */,
 				956E24531973D780006BB970 /* WeCenterMobile.xcdatamodeld in Sources */,
 				95A8113E198C0E91003E863B /* Model.swift in Sources */,
+				9578A58319A011E400983884 /* Question_Topic.swift in Sources */,
 				95A811BA198C0EBA003E863B /* NavigationController.swift in Sources */,
 				95C4B941199D6495005DBC26 /* UIColor+BFPaperColors.m in Sources */,
 				95A811C2198C0EBA003E863B /* UIActivityIndicatorView+AFNetworking.m in Sources */,
@@ -663,6 +677,7 @@
 				95BB01A81995C3FC0049CAD2 /* UserEditViewController.swift in Sources */,
 				95D785F5199AF2D1009E7C5D /* LoadMoreControl.swift in Sources */,
 				95BB01A51995C3FC0049CAD2 /* MainViewController.swift in Sources */,
+				9578A58719A011E500983884 /* Question_Answer.swift in Sources */,
 				95A811B0198C0EBA003E863B /* AFURLSessionManager.m in Sources */,
 				95A811C4198C0EBA003E863B /* UIButton+AFNetworking.m in Sources */,
 				95C4B939199D6495005DBC26 /* BFPaperCheckbox.m in Sources */,
@@ -706,6 +721,7 @@
 				95BB01B01995C3FC0049CAD2 /* UserGenderCell.swift in Sources */,
 				95F91E8C199F9AA80011FE45 /* UserListViewController.swift in Sources */,
 				9531D0151996ED510035FAA7 /* UserCountView.swift in Sources */,
+				9578A58919A011E500983884 /* Question.swift in Sources */,
 				95639574198D4D50002F3340 /* QuestionActivity.swift in Sources */,
 				95F91E88199F14650011FE45 /* TopicCell.swift in Sources */,
 				95BB01AB1995C3FC0049CAD2 /* WelcomeViewController.swift in Sources */,
