@@ -11,28 +11,29 @@
         <attribute name="activityID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="topicID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
-    <entity name="Answer" representedClassName="Answer" syncable="YES">
+    <entity name="Answer" representedClassName="WeCenterMobile.Answer" syncable="YES">
         <attribute name="agreementCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="commentCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="questionID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="ArticalActivity" representedClassName="WeCenterMobile.ArticalActivity" parentEntity="Activity" syncable="YES">
         <attribute name="commentCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
-    <entity name="Question" representedClassName="Question" syncable="YES">
+    <entity name="Question" representedClassName="WeCenterMobile.Question" syncable="YES">
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="focusCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Question_Answer" representedClassName="Question_Answer" syncable="YES">
+    <entity name="Question_Answer" representedClassName="WeCenterMobile.Question_Answer" syncable="YES">
         <attribute name="answerID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="questionID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
-    <entity name="Question_Topic" representedClassName="Question_Topic" syncable="YES">
+    <entity name="Question_Topic" representedClassName="WeCenterMobile.Question_Topic" syncable="YES">
         <attribute name="questionID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="topicID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
@@ -82,6 +83,10 @@
     </entity>
     <fetchRequest name="Activity_By_ID" entity="Activity" predicateString="id == $ID"/>
     <fetchRequest name="Activity_Topic_By_ActivityID" entity="Activity_Topic" predicateString="activityID == $ACTIVITY_ID"/>
+    <fetchRequest name="Answer_By_ID" entity="Answer" predicateString="id == $ID"/>
+    <fetchRequest name="Question_Answer_By_QuestionID" entity="Question_Answer" predicateString="questionID == $ID"/>
+    <fetchRequest name="Question_Answer_Check" entity="Question_Answer" predicateString="questionID == $QuestionID AND answerID == $AnswerID"/>
+    <fetchRequest name="Question_By_ID" entity="Question" predicateString="id == $ID"/>
     <fetchRequest name="Topic_By_ID" entity="Topic" predicateString="id == $ID"/>
     <fetchRequest name="User_By_ID" entity="User" predicateString="id == $ID"/>
     <fetchRequest name="User_Topic_By_UserID" entity="User_Topic" predicateString="userID == $ID"/>
@@ -92,16 +97,16 @@
     <elements>
         <element name="Activity" positionX="-227" positionY="99" width="128" height="120"/>
         <element name="Activity_Topic" positionX="-108" positionY="189" width="128" height="75"/>
+        <element name="Answer" positionX="-162" positionY="90" width="128" height="148"/>
         <element name="ArticalActivity" positionX="-63" positionY="162" width="128" height="58"/>
+        <element name="Question" positionX="-153" positionY="99" width="128" height="105"/>
+        <element name="Question_Answer" positionX="-135" positionY="117" width="128" height="75"/>
+        <element name="Question_Topic" positionX="-144" positionY="108" width="128" height="75"/>
         <element name="QuestionActivity" positionX="-63" positionY="-63" width="128" height="120"/>
         <element name="QuestionActivity_Topic" positionX="-162" positionY="90" width="128" height="75"/>
         <element name="Topic" positionX="117" positionY="-63" width="128" height="120"/>
         <element name="User" positionX="-369" positionY="272" width="128" height="285"/>
         <element name="User_Topic" positionX="-162" positionY="90" width="128" height="30"/>
         <element name="User_User" positionX="-162" positionY="99" width="128" height="30"/>
-        <element name="Answer" positionX="-162" positionY="90" width="128" height="135"/>
-        <element name="Question" positionX="-153" positionY="99" width="128" height="103"/>
-        <element name="Question_Topic" positionX="-144" positionY="108" width="128" height="73"/>
-        <element name="Question_Answer" positionX="-135" positionY="117" width="128" height="73"/>
     </elements>
 </model>

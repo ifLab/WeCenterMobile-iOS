@@ -15,5 +15,7 @@ class Question: NSManagedObject {
     @NSManaged var title: String
     @NSManaged var body: String
     @NSManaged var focusCount: NSNumber
+    
+
 
 }
