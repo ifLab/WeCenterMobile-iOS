@@ -22,7 +22,7 @@ class HomeViewController: UITableViewController {
         color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         view.backgroundColor = UIColor(red: 1 - red * 0.2, green: 1 - green * 0.2, blue: 1 - blue * 0.2, alpha: 1)
     }
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         initStatusBarStyle = UIStatusBarStyle.fromRaw(aDecoder.decodeIntegerForKey("initStatusBarStyle"))!
         super.init(coder: aDecoder)
     }
@@ -58,12 +58,15 @@ class HomeViewController: UITableViewController {
             break
         case 7:
             cell.textLabel.text = "Pop & Replace"
+            break
         case 8:
             cell.textLabel.text = "Pop & Push"
             cell.detailTextLabel.text = "Available When PopCount < ControllersCount"
+            break
         case 9:
             cell.textLabel.text = "Pop & Replace & Push"
             cell.detailTextLabel.text = "Available When PopCount = ControllersCount"
+            break
         default:
             break
         }
@@ -74,58 +77,61 @@ class HomeViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             let viewController = HomeViewController(i: title.toInt()! + 1, statusBarStyle: initStatusBarStyle)
-            msrNavigationController.pushViewController(viewController, animated: true, completion: nil)
+            msrNavigationController!.pushViewController(viewController, animated: true, completion: nil)
             break
         case 1:
-            msrNavigationController.popViewController(true, completion: nil)
+            msrNavigationController!.popViewController(true, completion: nil)
             break
         case 2:
-            msrNavigationController.popToRootViewControllerAnimated(true, completion: nil)
+            msrNavigationController!.popToRootViewControllerAnimated(true, completion: nil)
             break
         case 3:
             var viewControllers = [UIViewController]()
             for i in 1...5 {
                 viewControllers.append(HomeViewController(i: title.toInt()! + i, statusBarStyle: initStatusBarStyle))
             }
-            msrNavigationController.pushViewControllers(viewControllers, animated: true, completion: nil)
+            msrNavigationController!.pushViewControllers(viewControllers, animated: true, completion: nil)
             break
         case 4:
-            var viewControllers = msrNavigationController.viewControllers
+            var viewControllers = msrNavigationController!.viewControllers
             for _ in 1...5 {
                 viewControllers.removeLast()
             }
-            msrNavigationController.setViewControllers(viewControllers, animated: true, completion: nil)
+            msrNavigationController!.setViewControllers(viewControllers, animated: true, completion: nil)
             break
         case 5:
-            msrNavigationController.replaceCurrentViewControllerWithViewController(HomeViewController(i: title.toInt()!,  statusBarStyle: initStatusBarStyle), animated: true, completion: nil)
+            msrNavigationController!.replaceCurrentViewControllerWithViewController(HomeViewController(i: title.toInt()!,  statusBarStyle: initStatusBarStyle), animated: true, completion: nil)
             break
         case 6:
-            var viewControllers = msrNavigationController.viewControllers
+            var viewControllers = msrNavigationController!.viewControllers
             viewControllers.removeLast()
             for i in 0...1 {
                 viewControllers.append(HomeViewController(i: title.toInt()! + i, statusBarStyle: initStatusBarStyle))
             }
-            msrNavigationController.setViewControllers(viewControllers, animated: true, completion: nil)
+            msrNavigationController!.setViewControllers(viewControllers, animated: true, completion: nil)
             break
         case 7:
-            var viewControllers = msrNavigationController.viewControllers
+            var viewControllers = msrNavigationController!.viewControllers
             for _ in 1...2 {
                 viewControllers.removeLast()
             }
             viewControllers.append(HomeViewController(i: title.toInt()! - 1, statusBarStyle: initStatusBarStyle))
-            msrNavigationController.setViewControllers(viewControllers, animated: true, completion: nil)
+            msrNavigationController!.setViewControllers(viewControllers, animated: true, completion: nil)
+            break
         case 8:
-            var viewControllers = [msrNavigationController.viewControllers.first!]
+            var viewControllers = [msrNavigationController!.viewControllers.first!]
             for i in 1...title.toInt()! {
                 viewControllers.append(HomeViewController(i: i, statusBarStyle: initStatusBarStyle))
             }
-            msrNavigationController.setViewControllers(viewControllers, animated: true, completion: nil)
+            msrNavigationController!.setViewControllers(viewControllers, animated: true, completion: nil)
+            break
         case 9:
             var viewControllers = [UIViewController]()
             for i in 0...title.toInt()! {
                 viewControllers.append(HomeViewController(i: i, statusBarStyle: initStatusBarStyle))
             }
-            msrNavigationController.setViewControllers(viewControllers, animated: true, completion: nil)
+            msrNavigationController!.setViewControllers(viewControllers, animated: true, completion: nil)
+            break
         default:
             break
         }

@@ -11,6 +11,6 @@ import CoreData
 
 class ArticalActivity: Activity {
 
-    @NSManaged var commentCount: NSNumber
+    @NSManaged var commentCount: NSNumber?
 
 }

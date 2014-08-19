@@ -64,20 +64,20 @@ class Answer: NSManagedObject {
                 "id": ID
             ],
             success: {
-                property in
-                answer.id = property["answer_id"].asInt()
-                answer.userID = property["uid"].asInt()
-                answer.questionID = property["question_id"].asInt()
-                answer.body = property["answer_content"].asString()
-                answer.date = NSDate(timeIntervalSince1970: NSTimeInterval(property["add_time"].asInt()))
-                answer.agreementCount = property["agree_count"].asInt()
-                answer.commentCount = property["comment_count"].asInt()
-                answer.evaluation = Evaluation.fromRaw(property["vote_value"].asInt())
+                data in
+                answer.id = data["answer_id"] as NSNumber
+                answer.userID = data["uid"] as? NSNumber
+                answer.questionID = data["question_id"] as? NSNumber
+                answer.body = data["answer_content"] as? String
+                answer.date = NSDate(timeIntervalSince1970: NSTimeInterval(data["add_time"] as NSNumber))
+                answer.agreementCount = data["agree_count"] as? NSNumber
+                answer.commentCount = data["comment_count"] as? NSNumber
+                answer.evaluation = Evaluation.fromRaw(data["vote_value"] as NSNumber)
                 Question_Answer.updateRelationship(questionID: answer.questionID!, answerID: answer.id)
                 let user = Model.autoGenerateManagedObjectByEntityName("User", ID: answer.userID!) as User
-                user.name = property["user_name"].asString()
-                user.avatarURL = User.avatarURLWithURI(property["avatar_file"].asString())
-                user.signature = property["signature"].asString()
+                user.name = data["user_name"] as? String
+                user.avatarURL = User.avatarURLWithURI(data["avatar_file"] as String)
+                user.signature = data["signature"] as? String
                 appDelegate.saveContext()
                 success?(answer)
             },

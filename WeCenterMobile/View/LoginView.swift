@@ -11,13 +11,12 @@ import UIKit
 class LoginView: Msr.UI.AlertView {
     let usernameField: UITextField!
     let passwordField: UITextField!
-    let property = Msr.Data.Property(module: "Welcome", bundle: NSBundle.mainBundle())
     let strings = Msr.Data.LocalizedStrings(module: "Welcome", bundle: NSBundle.mainBundle())
     override init() {
         super.init()
         self.cornerRadius = 7
         let cornerRadius = self.cornerRadius
-        let borderColor = property["Login View"]["Text Field"]["Border Color"].asColor().CGColor
+        let borderColor = UIColor.blackColor().CGColor
         var newTextField = {
             () -> UITextField in
             let textField = UITextField(frame: CGRect(x: 0, y: 0, width: 230, height: 35))
@@ -36,15 +35,15 @@ class LoginView: Msr.UI.AlertView {
         passwordField = newTextField()
         usernameField.attributedPlaceholder = NSAttributedString(
             string: strings["Username"],
-            attributes: [NSForegroundColorAttributeName: property["Login View"]["Text Field"]["Border Color"].asColor()])
+            attributes: [NSForegroundColorAttributeName: UIColor.blackColor()])
         passwordField.attributedPlaceholder = NSAttributedString(
             string: strings["Password"],
-            attributes: [NSForegroundColorAttributeName: property["Login View"]["Text Field"]["Border Color"].asColor()])
+            attributes: [NSForegroundColorAttributeName: UIColor.blackColor()])
         usernameField.center = CGPoint(x: contentView.center.x, y: 35)
         passwordField.center = CGPoint(x: contentView.center.x, y: 85)
         usernameField.delegate = self
         passwordField.delegate = self
-        backgroundColor = property["View"]["Background Color"].asColor()
+        backgroundColor = UIColor.whiteColor()
         contentView.bounds = CGRect(origin: CGPointZero, size: CGSize(width: contentView.bounds.width, height: 120))
         contentView.addSubview(usernameField)
         contentView.addSubview(passwordField)

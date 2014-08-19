@@ -26,6 +26,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     var countLabel = UILabel()
     var introductionLabel = UILabel()
     var tableView = UITableView(frame: CGRectZero, style: .Plain)
+    var tableViewCellReuseIdentifier = "WE_CENTER_MOBILE@TOPIC_VIEW_CONTROLLER+TABLE_VIEW-QUESTION_ANSWER_CELL-REUSE_IDENTIFIER"
     var outstandingAnswerButton = RectangleCoverButton()
     
     var topicID: NSNumber!
@@ -43,6 +44,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         topView.addSubview(imageButton)
         topView.addSubview(titleLabel)
         topView.addSubview(countLabel)
+        imageButton.addSubview(imageActivityIndicatorView)
         tableView.addSubview(hideableView)
         
         hideableView.addSubview(introductionLabel)
@@ -57,7 +59,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .None
-        tableView.addGestureRecognizer(topView.panGestureRecognizer)
+        tableView.registerClass(QuestionAnswerCell.self, forCellReuseIdentifier: tableViewCellReuseIdentifier)
         hideableView.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0.1)
         hideableView.backgroundColor = topView.backgroundColor
         imageButton.bounds.size = CGSize(width: 80, height: 80)
@@ -70,7 +72,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         imageButton.imageView.frame = imageButton.bounds
         imageButton.usesSmartColor = false
         imageButton.tapCircleColor = UIColor(white: 1, alpha: 0.5)
-        imageActivityIndicatorView.frame = imageButton.frame
+        imageActivityIndicatorView.frame = imageButton.bounds
         imageActivityIndicatorView.userInteractionEnabled = false
         titleLabel.frame = CGRect(x: imageButton.frame.origin.x + imageButton.frame.width + 20, y: 0, width: 160, height: 26)
         titleLabel.center.y = imageButton.center.y - 15
@@ -88,7 +90,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         scrollViewDidScroll(tableView)
     }
     
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -97,14 +99,14 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     }
     
     override func viewWillAppear(animated: Bool) {
-        msrNavigationBar.hidden = true
+        msrNavigationBar?.hidden = true
         Topic.fetchTopicByID(topicID,
             strategy: .NetworkFirst,
             success: {
                 topic in
                 self.topic = topic
                 self.reloadData()
-                Topic.fetchOutstandingQuestionAnswerUserListUsingNetworkByTopicID(self.topicID,
+                Topic.fetchTopicOutstandingQuestionAnswerListUsingNetworkByTopicID(self.topicID,
                     success: {
                         array in
                         self.array = array
@@ -154,7 +156,9 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     
     func reloadData() {
         titleLabel.text = topic.title
-        imageButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: topic.imageURL), placeholderImage: Msr.UI.Circle(color: UIColor.paperColorGray400(), radius: imageButton.bounds.width / 2).image)
+        if topic.imageURL != nil {
+            imageButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: topic.imageURL!), placeholderImage: UIImage.circleWithColor(UIColor.paperColorGray400(), radius: imageButton.bounds.width / 2))
+        }
         countLabel.text = "\(topic.focusCount!)人关注"
         introductionLabel.text = topic.introduction
         introductionLabel.frame = CGRect(origin: CGPoint(x: 15, y: 0), size: introductionLabel.sizeThatFits(CGSize(width: introductionLabel.bounds.width, height: CGFloat.max)))
@@ -256,18 +260,29 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         return array.count
     }
-    
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        let cell = BFPaperTableViewCell(style: .Subtitle, reuseIdentifier: "")
-        let tuple = array[indexPath.row]
-        cell.textLabel.text = tuple.question.title
-        cell.detailTextLabel.text = tuple.answer.body
-        cell.imageView.bounds.size = CGSize(width: 60, height: 60)
-        cell.imageView.layer.cornerRadius = cell.imageView.bounds.width / 2
-        cell.imageView.layer.masksToBounds = true
-        cell.imageView.setImageWithURL(NSURL(string: tuple.user.avatarURL), placeholderImage: Msr.UI.Circle(color: UIColor.paperColorGray300(), radius: cell.imageView.bounds.width / 2).image)
-        cell.backgroundColor = UIColor.clearColor()
+        let data = array[indexPath!.row]
+        var cell = tableView!.dequeueReusableCellWithIdentifier(tableViewCellReuseIdentifier, forIndexPath: indexPath) as? QuestionAnswerCell
+        if cell == nil {
+            cell = QuestionAnswerCell(style: .Default, reuseIdentifier: tableViewCellReuseIdentifier)
+        }
+        cell!.update(data: data, width: tableView!.bounds.width)
+        cell!.userButton.addTarget(self, action: "pushUserViewController:", forControlEvents: .TouchUpInside)
+        if data.user.avatar != nil {
+            cell!.userButton.setImage(data.user.avatar, forState: .Normal)
+        } else {
+            data.user.fetchAvatarImage(
+                success: {
+                    if cell!.userButton.msrUserInfo as NSNumber == data.user.id {
+                        cell!.userButton.setImage(data.user.avatar, forState: .Normal)
+                    }
+                },
+                failure: nil)
+        }
         return cell
+    }
+    func pushUserViewController(userButton: UIButton) {
+        msrNavigationController!.pushViewController(UserViewController(userID: userButton.msrUserInfo as NSNumber), animated: true, completion: nil)
     }
     
     func tableView(tableView: UITableView!, heightForHeaderInSection section: Int) -> CGFloat {
@@ -275,7 +290,9 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     }
     
     func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        return 80
+        let cell = QuestionAnswerCell(style: .Default, reuseIdentifier: tableViewCellReuseIdentifier)
+        cell.update(data: array[indexPath.row], width: tableView.bounds.width)
+        return cell.bounds.height
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

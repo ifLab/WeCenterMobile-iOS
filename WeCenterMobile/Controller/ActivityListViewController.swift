@@ -10,7 +10,7 @@ import UIKit
 
 class ActivityListViewController: UITableViewController {
     var activityList = [Activity]()
-    let listType: Activity.ListType!
+    var listType: Activity.ListType? = nil
     var page = 1
     init(listType: Activity.ListType) {
         super.init(style: .Plain)
@@ -20,8 +20,8 @@ class ActivityListViewController: UITableViewController {
         tableView.backgroundColor = UIColor.whiteColor() // %+0xe0e0e0
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
-        loadMoreControl = Msr.UI.LoadMoreControl()
-        loadMoreControl.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
+        msrLoadMoreControl = Msr.UI.LoadMoreControl()
+        msrLoadMoreControl.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
         switch listType {
         case .Hot:
             title = DiscoveryStrings["Hot"]
@@ -42,33 +42,33 @@ class ActivityListViewController: UITableViewController {
             page: self.page + 1,
             dayCount: 30,
             recommended: false,
-            type: self.listType,
+            type: self.listType!,
             success: {
                 activityList in
                 ++self.page
                 self.activityList.extend(activityList)
-                self.loadMoreControl.endLoadingMore()
+                self.msrLoadMoreControl.endLoadingMore()
                 self.tableView.reloadData()
             },
             failure: {
                 error in
-                self.loadMoreControl.endLoadingMore()
+                self.msrLoadMoreControl.endLoadingMore()
                 self.tableView.reloadData()
         })
     }
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     override func viewDidLoad() {
         refresh()
     }
     override func viewWillAppear(animated: Bool) {
-        msrNavigationBar.barTintColor = UIColor.paperColorGray300()
-        msrNavigationBar.translucent = false
-        msrNavigationBar.tintColor = UIColor.paperColorGray800()
+        msrNavigationBar?.barTintColor = UIColor.paperColorGray300()
+        msrNavigationBar?.translucent = false
+        msrNavigationBar?.tintColor = UIColor.paperColorGray800()
     }
     override func tableView(tableView: UITableView!, shouldHighlightRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
         return false
@@ -94,7 +94,7 @@ class ActivityListViewController: UITableViewController {
         return cell
     }
     func pushUserViewControllerMatchedToUserAvatarButton(userAvatarButton: UIButton) {
-        msrNavigationController.pushViewController(UserViewController(userID: userAvatarButton.tag), animated: true, completion: nil)
+        msrNavigationController!.pushViewController(UserViewController(userID: userAvatarButton.tag), animated: true, completion: nil)
     }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .Default
@@ -105,7 +105,7 @@ class ActivityListViewController: UITableViewController {
             page: 1,
             dayCount: 30,
             recommended: false,
-            type: listType,
+            type: listType!,
             success: {
                 activityList in
                 self.page = 1

@@ -141,7 +141,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         scrollViewDidScroll(bottomView)
     }
     
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -189,7 +189,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
                             },
                             failure: nil)
                     }, failure: nil)
-        })
+            })
     }
     
     override func viewDidLayoutSubviews() {
@@ -377,15 +377,15 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     }
     
     internal func pushTopicListViewController() {
-        msrNavigationController.pushViewController(TopicListViewController(userID: userID), animated: true, completion: nil)
+        msrNavigationController!.pushViewController(TopicListViewController(userID: userID), animated: true, completion: nil)
     }
     
     internal func pushFollowerViewController() {
-        msrNavigationController.pushViewController(UserListViewController(ID: userID, listType: .UserFollower), animated: true, completion: nil)
+        msrNavigationController!.pushViewController(UserListViewController(ID: userID, listType: .UserFollower), animated: true, completion: nil)
     }
     
     internal func pushFollowingViewController() {
-        msrNavigationController.pushViewController(UserListViewController(ID: userID, listType: .UserFollowing), animated: true, completion: nil)
+        msrNavigationController!.pushViewController(UserListViewController(ID: userID, listType: .UserFollowing), animated: true, completion: nil)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

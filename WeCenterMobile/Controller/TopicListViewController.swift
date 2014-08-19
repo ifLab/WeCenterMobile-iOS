@@ -19,10 +19,10 @@ class TopicListViewController: UITableViewController {
         tableView.separatorStyle = .None
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
-        loadMoreControl = Msr.UI.LoadMoreControl()
-        loadMoreControl.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
+        msrLoadMoreControl = Msr.UI.LoadMoreControl()
+        msrLoadMoreControl.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
     }
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
@@ -45,7 +45,7 @@ class TopicListViewController: UITableViewController {
         return 80
     }
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-        msrNavigationController.pushViewController(TopicViewController(topicID: topicList[indexPath.row].id), animated: true, completion: nil)
+        msrNavigationController!.pushViewController(TopicViewController(topicID: topicList[indexPath.row].id), animated: true, completion: nil)
     }
     func refresh() {
         Topic.fetchTopicListByUserID(userID,
@@ -75,13 +75,13 @@ class TopicListViewController: UITableViewController {
                 topics in
                 ++self.page
                 self.topicList.extend(topics)
-                self.loadMoreControl.endLoadingMore()
+                self.msrLoadMoreControl.endLoadingMore()
                 self.tableView.reloadData()
                 return
             },
             failure: {
                 error in
-                self.loadMoreControl.endLoadingMore()
+                self.msrLoadMoreControl.endLoadingMore()
                 self.tableView.reloadData()
             })
     }

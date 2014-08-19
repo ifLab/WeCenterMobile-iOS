@@ -26,10 +26,10 @@ class UserListViewController: UITableViewController {
         tableView.separatorStyle = .None
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
-        loadMoreControl = Msr.UI.LoadMoreControl()
-        loadMoreControl.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
+        msrLoadMoreControl = Msr.UI.LoadMoreControl()
+        msrLoadMoreControl.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
     }
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
@@ -52,7 +52,7 @@ class UserListViewController: UITableViewController {
         return 80
     }
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-        msrNavigationController.pushViewController(UserViewController(userID: userList[indexPath.row].id), animated: true, completion: nil)
+        msrNavigationController!.pushViewController(UserViewController(userID: userList[indexPath.row].id), animated: true, completion: nil)
     }
     func refresh() {
         let success: ([User]) -> Void = {
@@ -83,12 +83,12 @@ class UserListViewController: UITableViewController {
             users in
             ++self.page
             self.userList.extend(users)
-            self.refreshControl.endRefreshing()
+            self.msrLoadMoreControl.endLoadingMore()
             self.tableView.reloadData()
         }
         let failure: (NSError) -> Void = {
             error in
-            self.refreshControl.endRefreshing()
+            self.msrLoadMoreControl.endLoadingMore()
             self.tableView.reloadData()
         }
         switch listType! {

@@ -15,10 +15,10 @@ let DiscoveryModel = Model(module: "Discovery", bundle: NSBundle.mainBundle())
 class Activity: NSManagedObject {
     
     @NSManaged var id: String
-    @NSManaged var title: String
-    @NSManaged var userID: NSNumber
-    @NSManaged var addedTime: NSDate
-    @NSManaged var viewCount: NSNumber
+    @NSManaged var title: String?
+    @NSManaged var userID: NSNumber?
+    @NSManaged var addedTime: NSDate?
+    @NSManaged var viewCount: NSNumber?
     
     var user: User! = nil
     
@@ -26,67 +26,6 @@ class Activity: NSManagedObject {
         case New
         case Hot
         case Unanswered
-    }
-    
-    class func activityWithProperty(property: Msr.Data.Property) -> Activity {
-        let key = property.asDictionary().keys.first!
-        let value = Msr.Data.Property(value: property.asDictionary().values.first as NSObject)
-        var activity: Activity! = nil
-        let userID = value["user_info"]["uid"].asInt()
-        let user = Model.autoGenerateManagedObjectByEntityName("User", ID: userID) as User
-        user.name = value["user_info"]["user_name"].asString()
-        user.avatarURL = User.avatarURLWithURI(value["user_info"]["avatar_file"].asString())
-        switch value["post_type"].asString()! {
-        case "article":
-            activity = Model.createManagedObjecWithEntityName("ArticalActivity") as ArticalActivity
-            activity.id = key
-            let articalActivity = activity as ArticalActivity
-            articalActivity.title = value["title"].asString()
-            articalActivity.viewCount = value["views"].asInt()
-            articalActivity.commentCount = value["comments"].asInt()
-            break
-        case "question":
-            activity = Model.createManagedObjecWithEntityName("QuestionActivity") as QuestionActivity
-            activity.id = key
-            let questionActivity = activity as QuestionActivity
-            questionActivity.title = value["question_content"]?.asString() ?? ""
-            questionActivity.lastUpdatedTime = NSDate(timeIntervalSince1970: NSTimeInterval(value["update_time"]?.asInt() ?? 0))
-            questionActivity.answerCount = value["answer_count"]?.asInt() ?? 0
-            questionActivity.viewCount = value["view_count"]?.asInt() ?? 0
-            questionActivity.focusCount = value["focus_count"]?.asInt() ?? 0
-            let answer = value["answer"]
-            questionActivity.answerContent = answer["answer_content"].asString()
-            if !answer["user_info"].isNull() {
-                let info = answer["user_info"]
-                questionActivity.answerUser = Model.createManagedObjecWithEntityName("User") as? User
-                questionActivity.answerUser!.id = info["uid"].asInt()
-                questionActivity.answerUser!.name = info["user_name"].asString()
-                if !info["avatar_file"].isNull() {
-                    questionActivity.answerUser!.avatarURL = User.avatarURLWithURI(info["avatar_file"].asString())
-                }
-                questionActivity.answerUserID = questionActivity.answerUser!.id
-            }
-            if !value["topics"].isNull() {
-                questionActivity.topics = []
-                for topicInfo in value["topics"].asArray() as [NSDictionary] {
-                    let topic = Model.createManagedObjecWithEntityName("Topic") as Topic
-                    topic.id = topicInfo["topic_id"] as Int
-                    topic.title = topicInfo["topic_title"] as? String
-                    let relationship = Model.createManagedObjecWithEntityName("QuestionActivity_Topic") as QuestionActivity_Topic
-                    relationship.activityID = questionActivity.id
-                    relationship.topicID = topic.id
-                    questionActivity.topics.append(topic)
-                }
-            }
-            break
-        default:
-            break
-        }
-        activity.user = user
-        activity.userID = user.id
-        activity.addedTime = NSDate(timeIntervalSince1970: NSTimeInterval(value["add_time"]?.asInt() ?? 0))
-        appDelegate.saveContext()
-        return activity
     }
     
     class func fetchActivityUsingCacheByID(ID: NSNumber, success: ((Activity) -> Void)?, failure: ((NSError) -> Void)?) {
@@ -118,17 +57,73 @@ class Activity: NSManagedObject {
                 "sort_type": sortType
             ],
             success: {
-                property in
-                if property["total_rows"].asInt() > 0 {
+                data in
+                if data["total_rows"] as NSNumber > 0 {
                     var activityList = [Activity]()
-                    for (ID, activityDictionary) in property["rows"].asDictionary() as [String: NSDictionary] {
-                        let activity = self.activityWithProperty(Msr.Data.Property(value: [ID: activityDictionary]))
-                        activity.id = ID
+                    for (key, value) in data["rows"] as [String: AnyObject] {
+                        var activity: Activity! = nil
+                        let userID = (value["user_info"] as NSDictionary)["uid"] as Int
+                        let user = Model.autoGenerateManagedObjectByEntityName("User", ID: userID) as User
+                        user.name = (value["user_info"] as NSDictionary)["user_name"] as? String
+                        user.avatarURL = User.avatarURLWithURI((value["user_info"] as NSDictionary)["avatar_file"] as String)
+                        switch value["post_type"] as String {
+                        case "article":
+                            activity = Model.createManagedObjecWithEntityName("ArticalActivity") as ArticalActivity
+                            activity.id = key
+                            let articalActivity = activity as ArticalActivity
+                            articalActivity.title = value["title"] as? String
+                            articalActivity.viewCount = value["views"] as? NSNumber
+                            articalActivity.commentCount = value["comments"] as? NSNumber
+                            break
+                        case "question":
+                            activity = Model.createManagedObjecWithEntityName("QuestionActivity") as QuestionActivity
+                            activity.id = key
+                            let questionActivity = activity as QuestionActivity
+                            questionActivity.title = value["question_content"] as? String
+                            if value["update_time"] != nil {
+                                questionActivity.lastUpdatedTime = NSDate(timeIntervalSince1970: NSTimeInterval(value["update_time"] as NSNumber))
+                            }
+                            questionActivity.answerCount = value["answer_count"] as? NSNumber
+                            questionActivity.viewCount = value["view_count"] as? NSNumber
+                            questionActivity.focusCount = value["focus_count"] as? NSNumber
+                            let answer = value["answer"] as NSDictionary
+                            questionActivity.answerContent = answer["answer_content"] as? String
+                            if !(answer["user_info"] is NSNull) {
+                                let info = answer["user_info"] as NSDictionary
+                                questionActivity.answerUser = Model.createManagedObjecWithEntityName("User") as? User
+                                questionActivity.answerUser!.id = info["uid"] as NSNumber
+                                questionActivity.answerUser!.name = info["user_name"] as? String
+                                if !(info["avatar_file"] is NSNull) {
+                                    questionActivity.answerUser!.avatarURL = User.avatarURLWithURI(info["avatar_file"] as String)
+                                }
+                                questionActivity.answerUserID = questionActivity.answerUser!.id
+                            }
+                            if !(value["topics"] is NSNull) {
+                                questionActivity.topics = []
+                                for topicInfo in value["topics"] as [NSDictionary] {
+                                    let topic = Model.createManagedObjecWithEntityName("Topic") as Topic
+                                    topic.id = topicInfo["topic_id"] as NSNumber
+                                    topic.title = topicInfo["topic_title"] as? String
+                                    let relationship = Model.createManagedObjecWithEntityName("QuestionActivity_Topic") as QuestionActivity_Topic
+                                    relationship.activityID = questionActivity.id
+                                    relationship.topicID = topic.id
+                                    questionActivity.topics.append(topic)
+                                }
+                            }
+                            break
+                        default:
+                            break
+                        }
+                        activity.user = user
+                        activity.userID = user.id
+                        activity.addedTime = NSDate(timeIntervalSince1970: NSTimeInterval(value["add_time"]? as? NSNumber ?? 0))
+                        appDelegate.saveContext()
+                        activity.id = key
                         activityList.append(activity)
                     }
                     success?(activityList)
                 } else {
-                    failure?(NSError(domain: model.URLStrings["Get Activity List"], code: 0, userInfo: ["Hint": "No more data"])) // Needs specification
+                    failure?(NSError()) // Needs specification
                 }
             },
             failure: failure)

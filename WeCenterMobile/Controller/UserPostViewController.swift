@@ -31,7 +31,7 @@ class UserPostViewController: UIViewController {
     var delegate:UserPostDelegate?
     
 
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
        
     }
@@ -92,7 +92,7 @@ class UserPostViewController: UIViewController {
 
                 ],
                 success: {
-                    property in
+                    data in
                     if ((self.delegate) != nil) {
                         self.delegate?.postedBirthday(self, date: date)
                     }
@@ -112,7 +112,7 @@ class UserPostViewController: UIViewController {
 
                 ],
                 success: {
-                    property in
+                    data in
                     if ((self.delegate) != nil) {
                         self.delegate?.postedIntroduction(self, introduction: self.textView!.text)
                     }
@@ -134,7 +134,7 @@ class UserPostViewController: UIViewController {
 
                 ],
                 success: {
-                    property in
+                    data in
                     self.delegate?.postedName(self, name:self.textField!.text)
                     self.dismissViewControllerAnimated(true, completion: nil)
                 },

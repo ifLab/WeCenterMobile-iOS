@@ -21,7 +21,7 @@ class RectangleButton: BFPaperButton {
         footerLabel.textAlignment = .Center
         footerLabel.font = UIFont.systemFontOfSize(12)
     }
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     override init(frame: CGRect) {
@@ -48,7 +48,7 @@ class RectangleCountButton: RectangleButton {
         countLabel.textAlignment = .Center
         countLabel.font = UIFont.systemFontOfSize(32)
     }
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     override init(frame: CGRect) {
@@ -63,7 +63,7 @@ class RectangleCoverButton: RectangleButton {
         addSubview(coverView)
         coverView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: 90)
     }
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     override init(frame: CGRect) {

@@ -45,21 +45,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func saveContext () {
         var error: NSError? = nil
-        let managedObjectContext = self.managedObjectContext
-        if managedObjectContext != nil {
-            if managedObjectContext.hasChanges && !managedObjectContext.save(&error) {
-                abort()
-            }
+        if managedObjectContext.hasChanges && !managedObjectContext.save(&error) {
+            abort()
         }
     }
     
     var managedObjectContext: NSManagedObjectContext {
         if _managedObjectContext == nil {
-            let coordinator = persistentStoreCoordinator
-            if coordinator != nil {
-                _managedObjectContext = NSManagedObjectContext()
-                _managedObjectContext!.persistentStoreCoordinator = coordinator
-            }
+            _managedObjectContext = NSManagedObjectContext()
+            _managedObjectContext!.persistentStoreCoordinator = persistentStoreCoordinator
         }
         return _managedObjectContext!
     }

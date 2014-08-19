@@ -81,17 +81,16 @@ class Topic: NSManagedObject {
                 "per_page": count
             ],
             success: {
-                property in
-                if property["total_rows"].asInt() > 0 {
+                data in
+                if data["total_rows"] as NSNumber > 0 {
                     var topics = [Topic]()
-                    for topicDictionary in property["rows"].asArray() as [NSDictionary] {
-                        let property = Msr.Data.Property(value: topicDictionary)
-                        let topicID = property["topic_id"].asInt()
+                    for value in data["rows"] as [NSDictionary] {
+                        let topicID = value["topic_id"] as NSNumber
                         let topic = Model.autoGenerateManagedObjectByEntityName("Topic", ID: topicID) as Topic
                         topic.id = topicID
-                        topic.title = property["topic_title"].asString()
-                        topic.introduction = property["topic_description"].asString()
-                        topic.imageURL = self.imageURLWithURI(property["topic_pic"].asString())
+                        topic.title = value["topic_title"] as? String
+                        topic.introduction = value["topic_description"] as? String
+                        topic.imageURL = self.imageURLWithURI(value["topic_pic"] as String)
                         topics.append(topic)
                         User_Topic.updateRelationship(userID: userID, topicID: topicID)
                         appDelegate.saveContext()
@@ -142,12 +141,12 @@ class Topic: NSManagedObject {
                 "topic_id": ID
             ],
             success: {
-                property in
-                topic.title = property["topic_title"].asString()
-                topic.introduction = property["topic_description"].asString()
-                topic.imageURL = Topic.imageURLWithURI(property["topic_pic"].asString())
-                topic.focusCount = property["focus_count"].asInt()
-                topic.focused = (property["has_focus"].asInt() == 1)
+                data in
+                topic.title = data["topic_title"] as? String
+                topic.introduction = data["topic_description"] as? String
+                topic.imageURL = Topic.imageURLWithURI(data["topic_pic"] as String)
+                topic.focusCount = data["focus_count"] as? NSNumber
+                topic.focused = (data["has_focus"] as? NSNumber == 1)
                 appDelegate.saveContext()
                 success?(topic)
             },
@@ -174,7 +173,7 @@ class Topic: NSManagedObject {
                 "type": "cancel"
             ],
             success: {
-                property in
+                data in
                 self.focused = false
                 success?()
             },
@@ -189,14 +188,14 @@ class Topic: NSManagedObject {
                 "type": "focus"
             ],
             success: {
-                property in
+                data in
                 self.focused = true
                 success?()
             },
             failure: failure)
     }
     
-    class func fetchOutstandingQuestionAnswerUserListUsingNetworkByTopicID(topicID: NSNumber,
+    class func fetchTopicOutstandingQuestionAnswerListUsingNetworkByTopicID(topicID: NSNumber,
         success: ([(question: Question, answer: Answer, user: User)] -> Void)?,
         failure: ((NSError) -> Void)?) {
             TopicModel.GET(TopicModel.URLStrings["GET Outstanding"]!,
@@ -204,19 +203,19 @@ class Topic: NSManagedObject {
                     "id": topicID
                 ],
                 success: {
-                    property in
-                    if property["total_rows"].asInt() > 0 {
+                    data in
+                    if data["total_rows"] as NSNumber > 0 {
                         var array: [(question: Question, answer: Answer, user: User)] = []
-                        for dictionary in property["rows"].asArray() as [NSDictionary] {
-                            let questionValue = Msr.Data.Property(value: dictionary["question_info"] as NSObject)
-                            let answerValue = Msr.Data.Property(value: dictionary["answer_info"] as NSObject)
-                            let question = Model.autoGenerateManagedObjectByEntityName("Question", ID: questionValue["question_id"].asInt()) as Question
-                            question.title = questionValue["question_content"].asString()
-                            let answer = Model.autoGenerateManagedObjectByEntityName("Answer", ID: answerValue["answer_id"].asInt()) as Answer
-                            answer.body = answerValue["answer_content"].asString()
-                            answer.agreementCount = answerValue["agree_count"].asInt()
-                            let user = Model.autoGenerateManagedObjectByEntityName("User", ID: answerValue["uid"].asInt()) as User
-                            user.avatarURL = User.avatarURLWithURI(answerValue["avatar_file"].asString())
+                        for value in data["rows"] as [NSDictionary] {
+                            let questionValue = value["question_info"] as NSDictionary
+                            let answerValue = value["answer_info"] as NSDictionary
+                            let question = Model.autoGenerateManagedObjectByEntityName("Question", ID: questionValue["question_id"] as NSNumber) as Question
+                            question.title = questionValue["question_content"] as? String
+                            let answer = Model.autoGenerateManagedObjectByEntityName("Answer", ID: answerValue["answer_id"] as NSNumber) as Answer
+                            answer.body = answerValue["answer_content"] as? String
+                            answer.agreementCount = answerValue["agree_count"] as? NSNumber
+                            let user = Model.autoGenerateManagedObjectByEntityName("User", ID: answerValue["uid"] as NSNumber) as User
+                            user.avatarURL = User.avatarURLWithURI(answerValue["avatar_file"] as String)
                             array.append((question: question, answer: answer, user: user))
                         }
                         appDelegate.saveContext()

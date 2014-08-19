@@ -71,7 +71,7 @@ class ActivityCell: UITableViewCell {
         backgroundColor = UIColor.clearColor()
     }
     
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     

@@ -38,7 +38,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.showsVerticalScrollIndicator = false
         sidebar.contentView.addSubview(tableView)
     }
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
@@ -61,20 +61,22 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.selectedBackgroundView = UIView(frame: CGRect(origin: CGPointZero, size: cell.bounds.size))
             cell.selectedBackgroundView.backgroundColor = UIColor(white: 0, alpha: 0.1)
             if indexPath.section == 0 {
-                cell.imageView.setImageWithURLRequest(NSURLRequest(URL: NSURL(string: appDelegate.currentUser?.avatarURL)),
-                    placeholderImage: nil,
-                    success: {
-                        request, response, image in
-                        cell.imageView.image = image
-                        cell.imageView.sizeToFit()
-                        cell.imageView.layer.cornerRadius = cell.imageView.bounds.width / 2
-                        cell.imageView.layer.masksToBounds = true
-                        self.tableView.reloadData()
-                        tableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1), animated: false, scrollPosition: .None)
-                    }, failure: nil)
+                if appDelegate.currentUser?.avatarURL != nil {
+                    cell.imageView.setImageWithURLRequest(NSURLRequest(URL: NSURL(string: appDelegate.currentUser!.avatarURL!)),
+                        placeholderImage: nil,
+                        success: {
+                            request, response, image in
+                            cell.imageView.image = image
+                            cell.imageView.sizeToFit()
+                            cell.imageView.layer.cornerRadius = cell.imageView.bounds.width / 2
+                            cell.imageView.layer.masksToBounds = true
+                            self.tableView.reloadData()
+                            tableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1), animated: false, scrollPosition: .None)
+                        }, failure: nil)
+                }
                 cell.textLabel.text = appDelegate.currentUser?.name
             } else if indexPath.section == 1 {
-                cell.imageView.image = Msr.UI.Circle(color: UIColor(white: 0, alpha: 0.2), radius: 20).image
+                cell.imageView.image = UIImage.circleWithColor(UIColor(white: 0, alpha: 0.2), radius: 20)
                 cell.imageView.tintColor = UIColor.blackColor()
                 cell.imageView.layer.contentsScale = UIScreen.mainScreen().scale
                 cell.textLabel.text = titles[indexPath.row]

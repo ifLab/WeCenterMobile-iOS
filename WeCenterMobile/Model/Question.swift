@@ -56,27 +56,25 @@ class Question: NSManagedObject {
                 "id": ID
             ],
             success: {
-                property in
-                let value = property["question_info"]
-                question.id = value["question_id"].asInt()
-                question.title = value["question_content"].asString()
-                question.body = value["question_detail"].asString()
-                question.focusCount = value["focus_count"].asInt()
-                question.focused = (value["has_focus"].asInt() == 1)
-                for answerDictionary in property["answers"].asArray() as [NSDictionary] {
-                    let value = Msr.Data.Property(value: answerDictionary)
-                    let answer = Model.autoGenerateManagedObjectByEntityName("Answer", ID: value["answerID"].asInt()) as Answer
-                    answer.body = value["answer_content"].asString()
-                    answer.agreementCount = value["agree_count"].asInt()
-                    answer.userID = value["uid"].asInt()
+                data in
+                let value = data["question_info"] as NSDictionary
+                question.id = value["question_id"] as NSNumber
+                question.title = value["question_content"] as? String
+                question.body = value["question_detail"] as? String
+                question.focusCount = value["focus_count"] as? NSNumber
+                question.focused = (value["has_focus"] as? NSNumber == 1)
+                for value in data["answers"] as [NSDictionary] {
+                    let answer = Model.autoGenerateManagedObjectByEntityName("Answer", ID: value["answerID"] as NSNumber) as Answer
+                    answer.body = value["answer_content"] as? String
+                    answer.agreementCount = value["agree_count"] as? NSNumber
+                    answer.userID = value["uid"] as? NSNumber
                     let user = Model.autoGenerateManagedObjectByEntityName("User", ID: answer.userID!) as User
-                    user.name = value["user_name"].asString()
+                    user.name = value["user_name"] as? String
                     Question_Answer.updateRelationship(questionID: question.id, answerID: answer.id)
                 }
-                for topicDictionary in property["question_topics"].asArray() as [NSDictionary] {
-                    let value = Msr.Data.Property(value: topicDictionary)
-                    let topic = Model.autoGenerateManagedObjectByEntityName("Topic", ID: value["topic_id"].asInt()) as Topic
-                    topic.title = value["topic_title"].asString()
+                for value in data["question_topics"] as [NSDictionary] {
+                    let topic = Model.autoGenerateManagedObjectByEntityName("Topic", ID: value["topic_id"] as NSNumber) as Topic
+                    topic.title = value["topic_title"] as? String
                     Question_Topic.updateRelationship(questionID: question.id, topicID: topic.id)
                 }
                 appDelegate.saveContext()

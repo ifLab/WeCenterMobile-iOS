@@ -35,7 +35,7 @@ class DiscoveryViewController: Msr.UI.SegmentedViewController {
         return viewControllers[segmentedControl.selectedSegmentIndex].preferredStatusBarStyle()
     }
     
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 }

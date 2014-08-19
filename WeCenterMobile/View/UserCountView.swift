@@ -23,7 +23,7 @@ class UserCountView: UIView {
         countLabel.font = UIFont.systemFontOfSize(10)
         countLabel.textColor = UIColor.grayColor()
     }
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     override init(frame: CGRect) {
