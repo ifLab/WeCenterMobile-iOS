@@ -90,15 +90,15 @@ class User: NSManagedObject {
                 user.id = ID
                 user.name = data["user_name"] as? String
                 user.avatarURL = User.avatarURLWithURI(data["avatar_file"] as String)
-                user.followerCount = data["fans_count"] as? NSNumber
-                user.followingCount = data["friend_count"] as? NSNumber
-                user.questionCount = data["question_count"] as? NSNumber
-                user.answerCount = data["answer_count"] as? NSNumber
-                user.topicFocusCount = data["topic_focus_count"] as? NSNumber
-                user.agreementCount = data["agree_count"] as? NSNumber
-                user.thankCount = data["thanks_count"] as? NSNumber
-                user.answerFavoriteCount = data["answer_favorite_count"] as? NSNumber
-                user.followed = (data["has_focus"] as? NSNumber == 1)
+                user.followerCount = (data["fans_count"] as NSString).integerValue
+                user.followingCount = (data["friend_count"] as NSString).integerValue
+                user.questionCount = (data["question_count"] as NSString).integerValue
+                user.answerCount = (data["answer_count"] as NSString).integerValue
+                user.topicFocusCount = (data["topic_focus_count"] as NSString).integerValue
+                user.agreementCount = (data["agree_count"] as NSString).integerValue
+                user.thankCount = (data["thanks_count"] as NSString).integerValue
+                user.answerFavoriteCount = (data["answer_favorite_count"] as NSString).integerValue
+                user.followed = (data["has_focus"] as NSNumber == 1)
                 appDelegate.saveContext()
                 success?(user)
             }, failure: failure)
@@ -136,11 +136,11 @@ class User: NSManagedObject {
             ],
             success: {
                 data in
-                if data["total_rows"] as NSNumber > 0 {
+                if (data["total_rows"] as NSString).integerValue > 0 {
                     var users = [User]()
                     let a = ID
                     for value in data["rows"] as [NSDictionary] {
-                        let b = value["uid"] as NSNumber
+                        let b = (value["uid"] as NSString).integerValue
                         User_User.updateRelationship(a: a, b: b)
                         let user = Model.autoGenerateManagedObjectByEntityName("User", ID: b) as User
                         user.name = value["user_name"] as? String
@@ -211,11 +211,11 @@ class User: NSManagedObject {
             ],
             success: {
                 data in
-                if data["total_rows"] as NSNumber > 0 {
+                if (data["total_rows"] as NSString).integerValue > 0 {
                     var users = [User]()
                     let b = ID
                     for value in data["rows"] as [NSDictionary] {
-                        let a = value["uid"] as NSNumber
+                        let a = (value["uid"] as NSString).integerValue
                         User_User.updateRelationship(a: a, b: b)
                         let user = Model.autoGenerateManagedObjectByEntityName("User", ID: a) as User
                         user.name = value["user_name"] as? String
@@ -303,11 +303,12 @@ class User: NSManagedObject {
             ],
             success: {
                 data in
-                self.name = data["user_name"] as? String
-                self.gender = data["sex"] is NSNull ? Gender.Secret.toRaw() : data["sex"] as? NSNumber
-                self.birthday = data["birthday"] is NSNull ? 0 : data["birthday"] as? NSNumber
-                self.jobID = data["job_id"] as? NSNumber
-                self.signature = data["signature"] as? String
+                let value = data[0] as NSDictionary
+                self.name = value["user_name"] as? String
+                self.gender = value["sex"] is NSNull ? Gender.Secret.toRaw() : (value["sex"] as NSString).integerValue
+                self.birthday = value["birthday"] is NSNull ? nil : (value["birthday"] as NSString).integerValue
+                self.jobID = (value["job_id"] as NSString).integerValue
+                self.signature = value["signature"] as? String
                 appDelegate.saveContext()
                 success?()
             },

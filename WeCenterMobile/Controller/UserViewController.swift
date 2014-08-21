@@ -150,7 +150,8 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-        msrNavigationBar.hidden = true
+        let msr_navigationBar = Msr.UI.navigationBarOfViewController(self)
+        msr_navigationBar!.hidden = true
         User.fetchUserByID(userID,
             strategy: .CacheOnly,
             success: {
@@ -195,11 +196,13 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLayoutSubviews() {
         if needsToBeRefreshed {
             needsToBeRefreshed = false
-            nameLabel.text = user.name
+            if user.name != nil {
+                nameLabel.text = user.name
+            }
             if user.avatarURL != nil {
                 avatarButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: user.avatarURL!), placeholderImage: avatarButton.backgroundImageForState(.Normal))
             }
-            if user.signature != nil && user.gender != nil {
+            if user.gender != nil {
                 switch User.Gender.fromRaw(user.gender!)! {
                 case .Male:
                     nameLabel.text! += " ♂"
@@ -212,49 +215,64 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
                 default:
                     break
                 }
-                signatureLabel.text = user.signature
-                topicButton.countLabel.text = "\(user.topicFocusCount!)"
-                followingButton.countLabel.text = "\(user.followingCount!)"
-                followerButton.countLabel.text = "\(user.followerCount!)"
-                articleButton.countLabel.font = UIFont.systemFontOfSize(10)
-                articleButton.countLabel.text = "没接口(╯`□′)╯(┻━┻"
-                askedButton.countLabel.text = "\(user.questionCount!)"
-                answeredButton.countLabel.text = "\(user.answerCount!)"
-                thankCountView.countLabel.text = "\(user.thankCount!)"
-                likeCountView.countLabel.text = "\(user.markCount!)"
-                favoriteCountView.countLabel.text = "\(user.answerFavoriteCount!)"
-                agreementCountView.countLabel.text = "\(user.agreementCount!)"
-                UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .BeginFromCurrentState, animations: {
-                    let height = self.signatureLabel.sizeThatFits(CGSize(width: self.signatureLabel.frame.width, height: CGFloat.max)).height
-                    self.signatureLabel.frame.size.height = height
-                    self.hideableView.frame.size.height = height + 50
-                    self.signatureLabel.alpha = 1
-                    self.bottomView.contentSize = CGSize(width: self.bottomView.bounds.width, height: self.bottomView.bounds.height + self.hideableView.bounds.height)
-                    self.topicButton.alpha = 1
-                    self.followingButton.alpha = 1
-                    self.followerButton.alpha = 1
-                    self.articleButton.alpha = 1
-                    self.askedButton.alpha = 1
-                    self.answeredButton.alpha = 1
-                    for subview in self.hideableView.subviews as [UIView] {
-                        subview.alpha = 1
-                    }
-                    for subview in self.bottomView.subviews as [UIView] {
-                        if subview !== self.hideableView {
-                            subview.transform = CGAffineTransformMakeTranslation(0,  self.hideableView.frame.size.height)
-                        }
-                    }
-                    for subview in self.hideableView.subviews as [UIView] {
-                        if subview !== self.signatureLabel {
-                            subview.transform = CGAffineTransformMakeTranslation(0,  height)
-                        }
-                    }
-                    },
-                    completion: {
-                        finished in
-                        self.bottomView.setContentOffset(CGPoint(x: 0, y: self.signatureLabel.bounds.height), animated: true)
-                })
             }
+            if user.signature != nil {
+                signatureLabel.text = user.signature
+            }
+            if user.topicFocusCount != nil {
+                topicButton.countLabel.text = "\(user.topicFocusCount!)"
+            }
+            if user.followingCount != nil {
+                followingButton.countLabel.text = "\(user.followingCount!)"
+            }
+            if user.followerCount != nil {
+                followerButton.countLabel.text = "\(user.followerCount!)"
+            }
+            articleButton.countLabel.font = UIFont.systemFontOfSize(10)
+            articleButton.countLabel.text = "没接口(╯`□′)╯(┻━┻"
+            if user.questionCount != nil {
+                askedButton.countLabel.text = "\(user.questionCount!)"
+            }
+            if user.answerCount != nil {
+                answeredButton.countLabel.text = "\(user.answerCount!)"
+            }
+            if user.thankCount != nil {
+                thankCountView.countLabel.text = "\(user.thankCount!)"
+            }
+            if user.markCount != nil {
+                likeCountView.countLabel.text = "\(user.markCount!)"
+            }
+            if user.answerFavoriteCount != nil {
+                favoriteCountView.countLabel.text = "\(user.answerFavoriteCount!)"
+            }
+            if user.agreementCount != nil {
+                agreementCountView.countLabel.text = "\(user.agreementCount!)"
+            }
+            let height = self.signatureLabel.sizeThatFits(CGSize(width: self.signatureLabel.frame.width, height: CGFloat.max)).height
+            self.signatureLabel.frame.size.height = height
+            self.hideableView.frame.size.height = height + 50
+            self.signatureLabel.alpha = 1
+            self.bottomView.contentSize = CGSize(width: self.bottomView.bounds.width, height: self.bottomView.bounds.height + self.hideableView.bounds.height)
+            self.topicButton.alpha = 1
+            self.followingButton.alpha = 1
+            self.followerButton.alpha = 1
+            self.articleButton.alpha = 1
+            self.askedButton.alpha = 1
+            self.answeredButton.alpha = 1
+            for subview in self.hideableView.subviews as [UIView] {
+                subview.alpha = 1
+            }
+            for subview in self.bottomView.subviews as [UIView] {
+                if subview !== self.hideableView {
+                    subview.transform = CGAffineTransformMakeTranslation(0, self.hideableView.frame.size.height)
+                }
+            }
+            for subview in self.hideableView.subviews as [UIView] {
+                if subview !== self.signatureLabel {
+                    subview.transform = CGAffineTransformMakeTranslation(0, height)
+                }
+            }
+            bottomView.contentOffset.y = self.signatureLabel.bounds.height
         }
     }
     
@@ -377,15 +395,18 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     }
     
     internal func pushTopicListViewController() {
-        msrNavigationController!.pushViewController(TopicListViewController(userID: userID), animated: true, completion: nil)
+        let msr_navigationController = Msr.UI.navigationControllerOfViewController(self)
+        msr_navigationController!.pushViewController(TopicListViewController(userID: userID), animated: true, completion: nil)
     }
     
     internal func pushFollowerViewController() {
-        msrNavigationController!.pushViewController(UserListViewController(ID: userID, listType: .UserFollower), animated: true, completion: nil)
+        let msr_navigationController = Msr.UI.navigationControllerOfViewController(self)
+        msr_navigationController!.pushViewController(UserListViewController(ID: userID, listType: .UserFollower), animated: true, completion: nil)
     }
     
     internal func pushFollowingViewController() {
-        msrNavigationController!.pushViewController(UserListViewController(ID: userID, listType: .UserFollowing), animated: true, completion: nil)
+        let msr_navigationController = Msr.UI.navigationControllerOfViewController(self)
+        msr_navigationController!.pushViewController(UserListViewController(ID: userID, listType: .UserFollowing), animated: true, completion: nil)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

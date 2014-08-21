@@ -19,8 +19,9 @@ class TopicListViewController: UITableViewController {
         tableView.separatorStyle = .None
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
-        msrLoadMoreControl = Msr.UI.LoadMoreControl()
-        msrLoadMoreControl.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
+/// @TODO: This version of implementation will cause compiler crash on Xcode 6 Beta 6. Temporarily removed for future use.
+//        msr_loadMoreControl = Msr.UI.LoadMoreControl()
+//        msr_loadMoreControl.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
     }
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -45,7 +46,8 @@ class TopicListViewController: UITableViewController {
         return 80
     }
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-        msrNavigationController!.pushViewController(TopicViewController(topicID: topicList[indexPath.row].id), animated: true, completion: nil)
+        let msr_navigationController = Msr.UI.navigationControllerOfViewController(self)
+        msr_navigationController!.pushViewController(TopicViewController(topicID: topicList[indexPath.row].id), animated: true, completion: nil)
     }
     func refresh() {
         Topic.fetchTopicListByUserID(userID,
@@ -66,23 +68,24 @@ class TopicListViewController: UITableViewController {
                 self.tableView.reloadData()
             })
     }
-    func loadMore() {
-        Topic.fetchTopicListByUserID(userID,
-            page: page + 1,
-            count: count,
-            strategy: .NetworkFirst,
-            success: {
-                topics in
-                ++self.page
-                self.topicList.extend(topics)
-                self.msrLoadMoreControl.endLoadingMore()
-                self.tableView.reloadData()
-                return
-            },
-            failure: {
-                error in
-                self.msrLoadMoreControl.endLoadingMore()
-                self.tableView.reloadData()
-            })
-    }
+/// @TODO: This version of implementation will cause compiler crash on Xcode 6 Beta 6. Temporarily removed for future use.
+//    func loadMore() {
+//        Topic.fetchTopicListByUserID(userID,
+//            page: page + 1,
+//            count: count,
+//            strategy: .NetworkFirst,
+//            success: {
+//                topics in
+//                ++self.page
+//                self.topicList.extend(topics)
+//                self.msr_loadMoreControl.endLoadingMore()
+//                self.tableView.reloadData()
+//                return
+//            },
+//            failure: {
+//                error in
+//                self.msr_loadMoreControl.endLoadingMore()
+//                self.tableView.reloadData()
+//            })
+//    }
 }

@@ -21,7 +21,8 @@ class Model {
         case NetworkFirst
     }
     init(module: String, bundle: NSBundle) {
-        URLStrings = NSDictionary(contentsOfFile: module)["URL"] as [String: String]
+        let path = bundle.pathForResource(module, ofType: "plist")!
+        URLStrings = NSDictionary(contentsOfFile: path)["URL"] as [String: String]
         manager = AFHTTPRequestOperationManager(baseURL: NSURL(string: URLStrings["Base"]!))
         manager.responseSerializer = AFHTTPResponseSerializer()
     }

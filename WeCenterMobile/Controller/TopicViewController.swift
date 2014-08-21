@@ -99,7 +99,8 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     }
     
     override func viewWillAppear(animated: Bool) {
-        msrNavigationBar?.hidden = true
+        let msr_navigationBar = Msr.UI.navigationBarOfViewController(self)
+        msr_navigationBar!.hidden = true
         Topic.fetchTopicByID(topicID,
             strategy: .NetworkFirst,
             success: {
@@ -273,16 +274,18 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         } else {
             data.user.fetchAvatarImage(
                 success: {
-                    if cell!.userButton.msrUserInfo as NSNumber == data.user.id {
-                        cell!.userButton.setImage(data.user.avatar, forState: .Normal)
-                    }
+/// @TODO: This version of implementation will cause compiler crash on Xcode 6 Beta 6. Temporarily removed for future use.
+//                    if cell!.userButton.msr_userInfo as NSNumber == data.user.id {
+//                        cell!.userButton.setImage(data.user.avatar, forState: .Normal)
+//                    }
                 },
                 failure: nil)
         }
         return cell
     }
     func pushUserViewController(userButton: UIButton) {
-        msrNavigationController!.pushViewController(UserViewController(userID: userButton.msrUserInfo as NSNumber), animated: true, completion: nil)
+/// @TODO: This version of implementation will cause compiler crash on Xcode 6 Beta 6. Temporarily removed for future use.
+//        msr_navigationController!.pushViewController(UserViewController(userID: userButton.msr_userInfo as NSNumber), animated: true, completion: nil)
     }
     
     func tableView(tableView: UITableView!, heightForHeaderInSection section: Int) -> CGFloat {

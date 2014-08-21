@@ -82,10 +82,10 @@ class Topic: NSManagedObject {
             ],
             success: {
                 data in
-                if data["total_rows"] as NSNumber > 0 {
+                if (data["total_rows"] as NSString).integerValue > 0 {
                     var topics = [Topic]()
                     for value in data["rows"] as [NSDictionary] {
-                        let topicID = value["topic_id"] as NSNumber
+                        let topicID = (value["topic_id"] as NSString).integerValue
                         let topic = Model.autoGenerateManagedObjectByEntityName("Topic", ID: topicID) as Topic
                         topic.id = topicID
                         topic.title = value["topic_title"] as? String

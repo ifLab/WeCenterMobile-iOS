@@ -50,10 +50,11 @@ class QuestionAnswerCell: UITableViewCell {
         let question = data.question
         let answer = data.answer
         let user = data.user
-        
-        questionButton.msrUserInfo = question.id
-        answerButton.msrUserInfo = answer.id
-        userButton.msrUserInfo = user.id
+    
+/// @TODO: This version of implementation will cause compiler crash on Xcode 6 Beta 6. Temporarily removed for future use.
+//        questionButton.msr_userInfo = question.id
+//        answerButton.msr_userInfo = answer.id
+//        userButton.msr_userInfo = user.id
         
         questionLabel.text = question.title
         questionLabel.font = UIFont.boldSystemFontOfSize(16)

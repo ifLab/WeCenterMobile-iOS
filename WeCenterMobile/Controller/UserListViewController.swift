@@ -26,8 +26,9 @@ class UserListViewController: UITableViewController {
         tableView.separatorStyle = .None
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
-        msrLoadMoreControl = Msr.UI.LoadMoreControl()
-        msrLoadMoreControl.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
+/// @TODO: This version of implementation will cause compiler crash on Xcode 6 Beta 6. Temporarily removed for future use.
+//        msr_loadMoreControl = Msr.UI.LoadMoreControl()
+//        msr_loadMoreControl.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
     }
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -52,7 +53,8 @@ class UserListViewController: UITableViewController {
         return 80
     }
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-        msrNavigationController!.pushViewController(UserViewController(userID: userList[indexPath.row].id), animated: true, completion: nil)
+        let msr_navigationController = Msr.UI.navigationControllerOfViewController(self)
+        msr_navigationController!.pushViewController(UserViewController(userID: userList[indexPath.row].id), animated: true, completion: nil)
     }
     func refresh() {
         let success: ([User]) -> Void = {
@@ -78,28 +80,29 @@ class UserListViewController: UITableViewController {
             break
         }
     }
-    func loadMore() {
-        let success: ([User]) -> Void = {
-            users in
-            ++self.page
-            self.userList.extend(users)
-            self.msrLoadMoreControl.endLoadingMore()
-            self.tableView.reloadData()
-        }
-        let failure: (NSError) -> Void = {
-            error in
-            self.msrLoadMoreControl.endLoadingMore()
-            self.tableView.reloadData()
-        }
-        switch listType! {
-        case .UserFollower:
-            User.fetchFollowerListByUserID(ID, strategy: .NetworkFirst, page: page + 1, count: count, success: success, failure: failure)
-            break
-        case .UserFollowing:
-            User.fetchFollowingListByUserID(ID, strategy: .NetworkFirst, page: page + 1, count: count, success: success, failure: failure)
-            break
-        default:
-            break
-        }
-    }
+/// @TODO: This version of implementation will cause compiler crash on Xcode 6 Beta 6. Temporarily removed for future use.
+//    func loadMore() {
+//        let success: ([User]) -> Void = {
+//            users in
+//            ++self.page
+//            self.userList.extend(users)
+//            self.msr_loadMoreControl.endLoadingMore()
+//            self.tableView.reloadData()
+//        }
+//        let failure: (NSError) -> Void = {
+//            error in
+//            self.msr_loadMoreControl.endLoadingMore()
+//            self.tableView.reloadData()
+//        }
+//        switch listType! {
+//        case .UserFollower:
+//            User.fetchFollowerListByUserID(ID, strategy: .NetworkFirst, page: page + 1, count: count, success: success, failure: failure)
+//            break
+//        case .UserFollowing:
+//            User.fetchFollowingListByUserID(ID, strategy: .NetworkFirst, page: page + 1, count: count, success: success, failure: failure)
+//            break
+//        default:
+//            break
+//        }
+//    }
 }
