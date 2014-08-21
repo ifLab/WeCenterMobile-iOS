@@ -158,8 +158,7 @@ class User: NSManagedObject {
     }
     
     private class func fetchFollowingListUsingCacheByUserID(ID: NSNumber, page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
-        Model.fetchRelationshipsByTemplateName("User_User_By_UserAID",
-            ID: ID,
+        User_User.fetchRelationshipsUsingCacheByUserAID(ID,
             page: page,
             count: count,
             success: {
@@ -233,8 +232,7 @@ class User: NSManagedObject {
     }
     
     private class func fetchFollowerListUsingCacheByUserID(ID: NSNumber, page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
-        Model.fetchRelationshipsByTemplateName("User_User_By_UserBID",
-            ID: ID,
+        User_User.fetchRelationshipsUsingCacheByUserBID(ID,
             page: page,
             count: count,
             success: {

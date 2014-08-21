@@ -56,6 +56,10 @@ class QuestionAnswerCell: UITableViewCell {
 //        answerButton.msr_userInfo = answer.id
 //        userButton.msr_userInfo = user.id
         
+        questionButton.tag = question.id
+        answerButton.tag = answer.id
+        userButton.tag = user.id
+        
         questionLabel.text = question.title
         questionLabel.font = UIFont.boldSystemFontOfSize(16)
         questionLabel.frame = CGRect(origin: CGPoint(x: 10, y: 12), size: questionLabel.sizeThatFits(CGSize(width: width - 20, height: CGFloat.max)))

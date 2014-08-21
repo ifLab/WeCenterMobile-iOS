@@ -145,8 +145,8 @@ class Topic: NSManagedObject {
                 topic.title = data["topic_title"] as? String
                 topic.introduction = data["topic_description"] as? String
                 topic.imageURL = Topic.imageURLWithURI(data["topic_pic"] as String)
-                topic.focusCount = data["focus_count"] as? NSNumber
-                topic.focused = (data["has_focus"] as? NSNumber == 1)
+                topic.focusCount = (data["focus_count"] as NSString).integerValue
+                topic.focused = (data["has_focus"] as NSNumber == 1)
                 appDelegate.saveContext()
                 success?(topic)
             },
