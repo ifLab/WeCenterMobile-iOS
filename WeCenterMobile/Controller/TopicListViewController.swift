@@ -13,15 +13,30 @@ class TopicListViewController: UITableViewController {
     var page = 1
     let count = 20
     var userID: NSNumber! = nil
+    enum ListType: Int {
+        case Normal = 0
+        case User = 1
+    }
+    var listType: ListType! = .Normal
     init(userID: NSNumber) {
         super.init(style: .Plain)
+        initialize()
+        listType = .User
         self.userID = userID
-        tableView.separatorStyle = .None
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
 /// @TODO: This version of implementation will cause compiler crash on Xcode 6 Beta 6. Temporarily removed for future use.
 //        msr_loadMoreControl = Msr.UI.LoadMoreControl()
 //        msr_loadMoreControl.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
+    }
+    init(topics: [Topic]) {
+        super.init(style: .Plain)
+        initialize()
+        listType = .Normal
+        topicList = topics
+    }
+    func initialize() {
+        tableView.separatorStyle = .None
     }
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -30,7 +45,7 @@ class TopicListViewController: UITableViewController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     override func viewDidAppear(animated: Bool) {
-        refreshControl.beginRefreshing()
+        refreshControl?.beginRefreshing()
         refresh()
     }
     override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
@@ -50,23 +65,32 @@ class TopicListViewController: UITableViewController {
         msr_navigationController!.pushViewController(TopicViewController(topicID: topicList[indexPath.row].id), animated: true, completion: nil)
     }
     func refresh() {
-        Topic.fetchTopicListByUserID(userID,
-            page: 1,
-            count: count,
-            strategy: .NetworkFirst,
-            success: {
-                topics in
-                self.page = 1
-                self.topicList = topics
-                self.refreshControl.endRefreshing()
-                self.tableView.reloadData()
-                return
-            },
-            failure: {
-                error in
-                self.refreshControl.endRefreshing()
-                self.tableView.reloadData()
-            })
+        switch listType! {
+        case .User:
+            Topic.fetchTopicListByUserID(userID,
+                page: 1,
+                count: count,
+                strategy: .NetworkFirst,
+                success: {
+                    topics in
+                    self.page = 1
+                    self.topicList = topics
+                    self.refreshControl.endRefreshing()
+                    self.tableView.reloadData()
+                    return
+                },
+                failure: {
+                    error in
+                    self.refreshControl.endRefreshing()
+                    self.tableView.reloadData()
+                })
+            break
+        case .Normal:
+            break
+        default:
+            break
+        }
+        
     }
 /// @TODO: This version of implementation will cause compiler crash on Xcode 6 Beta 6. Temporarily removed for future use.
 //    func loadMore() {

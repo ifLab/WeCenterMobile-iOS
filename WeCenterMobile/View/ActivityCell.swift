@@ -11,7 +11,7 @@ import UIKit
 class ActivityCell: UITableViewCell {
     
     private let innerView = UIView()
-    let titleButton = BFPaperButton(flatWithFrame: CGRectZero)
+    let titleButton = BFPaperButton(raised: false)
     let titleLabel = UILabel()
     let answerView = UIView()
     let answerUserAvatarButton = UIButton()

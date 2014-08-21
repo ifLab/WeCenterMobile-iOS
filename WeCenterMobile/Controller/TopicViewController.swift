@@ -18,7 +18,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     
     var topView = UIScrollView()
     var hideableView = UIView()
-    var imageButton = BFPaperButton(flatWithFrame: CGRectZero)
+    var imageButton = BFPaperButton(raised: false)
     var imageButtonState = ImageButtonState.Normal
     var imageButtonTimer: NSTimer? = nil
     var imageActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
@@ -261,6 +261,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         return array.count
     }
+    
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         let data = array[indexPath!.row]
         var cell = tableView!.dequeueReusableCellWithIdentifier(tableViewCellReuseIdentifier, forIndexPath: indexPath) as? QuestionAnswerCell
@@ -269,6 +270,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         }
         cell!.update(data: data, width: tableView!.bounds.width)
         cell!.userButton.addTarget(self, action: "pushUserViewController:", forControlEvents: .TouchUpInside)
+        cell!.questionButton.addTarget(self, action: "pushQuestionViewController:", forControlEvents: .TouchUpInside)
         if data.user.avatar != nil {
             cell!.userButton.setImage(data.user.avatar, forState: .Normal)
         } else {
@@ -283,9 +285,16 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         }
         return cell
     }
+    
     func pushUserViewController(userButton: UIButton) {
 /// @TODO: This version of implementation will cause compiler crash on Xcode 6 Beta 6. Temporarily removed for future use.
 //        msr_navigationController!.pushViewController(UserViewController(userID: userButton.msr_userInfo as NSNumber), animated: true, completion: nil)
+    }
+    
+    func pushQuestionViewController(questionButton: UIButton) {
+        let msr_navigationController = Msr.UI.navigationControllerOfViewController(self)
+/// @TODO
+        msr_navigationController!.pushViewController(QuestionViewController(questionID: questionButton.tag), animated: true, completion: nil)
     }
     
     func tableView(tableView: UITableView!, heightForHeaderInSection section: Int) -> CGFloat {

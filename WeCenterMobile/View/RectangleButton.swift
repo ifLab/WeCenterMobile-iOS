@@ -11,7 +11,7 @@ import UIKit
 class RectangleButton: BFPaperButton {
     let footerLabel = UILabel()
     override init() {
-        super.init(flatWithFrame: CGRectZero)
+        super.init()
         frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width / 3, height: 100)
         addSubview(footerLabel)
         backgroundColor = UIColor.paperColorGray200()
@@ -26,15 +26,6 @@ class RectangleButton: BFPaperButton {
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
-    }
-    override init(raisedWithFrame frame: CGRect) {
-        super.init(raisedWithFrame: frame)
-    }
-    override init(flat: ()) {
-        super.init(flat: ())
-    }
-    override init(flatWithFrame frame: CGRect) {
-        super.init(flatWithFrame: frame)
     }
 }
 

@@ -1,3 +1,18 @@
 [submodule "WeCenterMobile/External/Msr"]
 	path = WeCenterMobile/External/Msr
 	url = https://github.com/Msr-B/Msr.LibSwift.git
+[submodule "WeCenterMobile/External/DTCoreText"]
+	path = WeCenterMobile/External/DTCoreText
+	url = https://github.com/Cocoanetics/DTCoreText.git
+[submodule "WeCenterMobile/External/AFNetworking"]
+	path = WeCenterMobile/External/AFNetworking
+	url = https://github.com/AFNetworking/AFNetworking.git
+[submodule "WeCenterMobile/External/BFPaperButton"]
+	path = WeCenterMobile/External/BFPaperButton
+	url = https://github.com/bfeher/BFPaperButton.git
+[submodule "WeCenterMobile/External/BFPaperColors"]
+	path = WeCenterMobile/External/BFPaperColors
+	url = https://github.com/bfeher/BFPaperColors.git
+[submodule "WeCenterMobile/External/BFPaperTableViewCell"]
+	path = WeCenterMobile/External/BFPaperTableViewCell
+	url = https://github.com/bfeher/BFPaperTableViewCell.git

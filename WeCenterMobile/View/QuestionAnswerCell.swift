@@ -10,11 +10,11 @@ import UIKit
 
 class QuestionAnswerCell: UITableViewCell {
 
-    var questionButton = BFPaperButton()
+    var questionButton = BFPaperButton(raised: false)
     var questionLabel = UILabel()
-    var answerButton = BFPaperButton()
+    var answerButton = BFPaperButton(raised: false)
     var answerLabel = UILabel()
-    var userButton = BFPaperButton()
+    var userButton = BFPaperButton(raised: false)
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

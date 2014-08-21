@@ -18,7 +18,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     
     var topView = UIScrollView()
     var bottomView = UIScrollView()
-    var avatarButton = BFPaperButton(flatWithFrame: CGRectZero)
+    var avatarButton = BFPaperButton(raised: false)
     var avatarButtonState = AvatarButtonState.Normal
     var avatarButtonTimer: NSTimer? = nil
     var avatarActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
