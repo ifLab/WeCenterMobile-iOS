@@ -27,7 +27,7 @@ class User_User: NSManagedObject {
         Model.fetchRelationshipsByTemplateName("User_User_By_UserAID", ID: a, page: page, count: count, success: success, failure: failure)
     }
     
-    class func fetchRelationshipsUsingCacheByUserBID(b: NSNumber, page: Int, count: Int, success: (([User_Topic]) -> Void)?, failure: ((NSError) -> Void)?) {
+    class func fetchRelationshipsUsingCacheByUserBID(b: NSNumber, page: Int, count: Int, success: (([User_User]) -> Void)?, failure: ((NSError) -> Void)?) {
         Model.fetchRelationshipsByTemplateName("User_User_By_UserBID", ID: b, page: page, count: count, success: success, failure: failure)
     }
     

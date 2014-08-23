@@ -52,7 +52,7 @@ class UserEditViewController:UIViewController,UserPostDelegate,GenderDelegate,UI
         body.contentSize = CGSizeMake(self.view.frame.width, tableView!.frame.origin.y + tableView!.frame.height)
         
         avatarView = UIImageView(frame: CGRectMake(UIScreen.mainScreen().bounds.width / 2 - 40, 18, 80, 80))
-        avatarView!.setImageWithURL(NSURL(string: appDelegate.currentUser!.avatarURL))
+        avatarView!.setImageWithURL(NSURL(string: appDelegate.currentUser!.avatarURL!))
         avatarView!.layer.cornerRadius = avatarView!.bounds.width / 2
         avatarView!.layer.masksToBounds = true
         var changePhoto = UIButton(frame: CGRectMake(UIScreen.mainScreen().bounds.width / 2 - 40, 18, 80, 80))
@@ -251,7 +251,7 @@ class UserEditViewController:UIViewController,UserPostDelegate,GenderDelegate,UI
 
             ],
             success: {
-                property in
+                data in
                 return
             },
             failure: {
@@ -262,8 +262,8 @@ class UserEditViewController:UIViewController,UserPostDelegate,GenderDelegate,UI
     
     func postedBirthday(controller: UserPostViewController, date: NSDate) {
         var cell:UITableViewCell! =  self.tableView?.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2))
-        cell.textLabel.text = dateFormater.stringFromDate(date)!
-        print(dateFormater.stringFromDate(date)!)
+        cell.textLabel.text = dateFormater.stringFromDate(date)
+        print(dateFormater.stringFromDate(date))
     }
     
     func postedIntroduction(controller: UserPostViewController, introduction: String) {

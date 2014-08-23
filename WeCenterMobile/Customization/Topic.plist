@@ -8,10 +8,14 @@
 		<string>http://w.hihwei.com/</string>
 		<key>Image Base</key>
 		<string>uploads/topic/</string>
-		<key>GET Topic</key>
+		<key>GET Detail</key>
 		<string>api/topic.php</string>
-		<key>GET Topic List</key>
+		<key>GET List</key>
 		<string>api/my_focus_topic_ios.php</string>
+		<key>GET Outstanding</key>
+		<string>?/api/topic/topic_best_answer/</string>
+		<key>POST Focus</key>
+		<string>api/focus_topic.php</string>
 	</dict>
 </dict>
 </plist>

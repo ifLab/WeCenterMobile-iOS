@@ -1,5 +1,5 @@
 //
-//  UserButton.swift
+//  RectangleButton.swift
 //  WeCenterMobile
 //
 //  Created by Darren Liu on 14/8/10.
@@ -8,20 +8,20 @@
 
 import UIKit
 
-class UserButton: UIButton {
+class RectangleButton: BFPaperButton {
     let footerLabel = UILabel()
     override init() {
         super.init()
         frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width / 3, height: 100)
         addSubview(footerLabel)
-        setBackgroundImage(Msr.UI.Rectangle(color: UIColor.paperColorGray200(), size: bounds.size).image, forState: .Normal)
+        backgroundColor = UIColor.paperColorGray200()
         layer.contentsScale = UIScreen.mainScreen().scale
         footerLabel.frame = CGRect(x: 0, y: 60, width: bounds.width, height: 40)
         footerLabel.textColor = UIColor.grayColor()
         footerLabel.textAlignment = .Center
         footerLabel.font = UIFont.systemFontOfSize(12)
     }
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     override init(frame: CGRect) {
@@ -29,8 +29,8 @@ class UserButton: UIButton {
     }
 }
 
-class UserCountButton: UserButton {
-    let countLabel = UILabel()
+class RectangleCountButton: RectangleButton {
+    dynamic let countLabel = UILabel() // This should be a bug of Swift. Use a simple 'dynamic' to fix it now.
     override init() {
         super.init()
         addSubview(countLabel)
@@ -39,7 +39,7 @@ class UserCountButton: UserButton {
         countLabel.textAlignment = .Center
         countLabel.font = UIFont.systemFontOfSize(32)
     }
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     override init(frame: CGRect) {
@@ -47,14 +47,14 @@ class UserCountButton: UserButton {
     }
 }
 
-class UserCoverButton: UserButton {
+class RectangleCoverButton: RectangleButton {
     let coverView = UIImageView()
     override init() {
         super.init()
         addSubview(coverView)
         coverView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: 90)
     }
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     override init(frame: CGRect) {

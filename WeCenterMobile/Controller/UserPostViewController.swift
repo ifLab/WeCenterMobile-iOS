@@ -31,7 +31,7 @@ class UserPostViewController: UIViewController {
     var delegate:UserPostDelegate?
     
 
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
        
     }
@@ -92,17 +92,14 @@ class UserPostViewController: UIViewController {
 
                 ],
                 success: {
-                    property in
+                    data in
                     if ((self.delegate) != nil) {
                         self.delegate?.postedBirthday(self, date: date)
                     }
                     self.dismissViewControllerAnimated(true, completion: nil)
                     return
                 },
-                failure: {
-                    error in
-                    return
-                })
+                failure: nil)
 
         }
         if headerTitle == UserStrings["Introduction"]{
@@ -115,17 +112,13 @@ class UserPostViewController: UIViewController {
 
                 ],
                 success: {
-                    property in
+                    data in
                     if ((self.delegate) != nil) {
                         self.delegate?.postedIntroduction(self, introduction: self.textView!.text)
                     }
                      self.dismissViewControllerAnimated(true, completion: nil)
-                    return
                 },
-                failure: {
-                    error in
-                    return
-                })
+                failure: nil)
         }else if headerTitle == UserStrings["Other information"]{
         
             
@@ -141,16 +134,11 @@ class UserPostViewController: UIViewController {
 
                 ],
                 success: {
-                    property in
+                    data in
                     self.delegate?.postedName(self, name:self.textField!.text)
-    
                     self.dismissViewControllerAnimated(true, completion: nil)
-                    return
                 },
-                failure: {
-                    error in
-                    return
-                })
+                failure: nil)
         }
        
     }

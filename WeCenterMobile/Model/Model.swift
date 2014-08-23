@@ -10,7 +10,6 @@ import Foundation
 import CoreData
 
 class Model {
-    typealias Property = Msr.Data.Property
     let URLStrings: [String: String]
     let manager: AFHTTPRequestOperationManager
     let noError = 1
@@ -22,13 +21,14 @@ class Model {
         case NetworkFirst
     }
     init(module: String, bundle: NSBundle) {
-        URLStrings = Property(module: module, bundle: bundle)["URL"].asDictionary() as [String: String]
-        manager = AFHTTPRequestOperationManager(baseURL: NSURL(string: URLStrings["Base"]))
+        let path = bundle.pathForResource(module, ofType: "plist")!
+        URLStrings = NSDictionary(contentsOfFile: path)["URL"] as [String: String]
+        manager = AFHTTPRequestOperationManager(baseURL: NSURL(string: URLStrings["Base"]!))
         manager.responseSerializer = AFHTTPResponseSerializer()
     }
     func GET(URLString: String,
-        parameters: [String: AnyObject]!,
-        success: ((Property) -> Void)?,
+        parameters: NSDictionary?,
+        success: ((AnyObject) -> Void)?,
         failure: ((NSError) -> Void)?) -> Void {
             let application = UIApplication.sharedApplication()
             application.networkActivityIndicatorVisible = true
@@ -43,12 +43,11 @@ class Model {
                     operation, error in
                     application.networkActivityIndicatorVisible = false
                     failure?(error)
-                    return
                 })
     }
     func POST(URLString: String,
-        parameters: [String: AnyObject]!,
-        success: ((Property) -> Void)?,
+        parameters: NSDictionary?,
+        success: ((AnyObject) -> Void)?,
         failure: ((NSError) -> Void)?) -> Void {
             let application = UIApplication.sharedApplication()
             application.networkActivityIndicatorVisible = true
@@ -64,26 +63,24 @@ class Model {
                     operation, error in
                     application.networkActivityIndicatorVisible = false
                     failure?(error)
-                    return
                 })
     }
-    private func handleSuccess(#data: NSData, success: ((Property) -> Void)?, failure: ((NSError) -> Void)?) {
+    private func handleSuccess(#data: NSData, success: ((AnyObject) -> Void)?, failure: ((NSError) -> Void)?) {
         let error: NSErrorPointer = nil
         let object: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: error)
         if object == nil {
             failure?(NSError()) // Needs specification
             return
         }
-        let dictionary = object as NSDictionary
-        if !error {
-            let value = Property(value: dictionary)
-            if value["errno"].asInt() == self.noError {
-                success?(Property(value: value["rsm"].value))
+        let data = object as NSDictionary
+        if error == nil {
+            if data["errno"] as? NSNumber == noError {
+                success?(data["rsm"]!)
             } else {
                 failure?(NSError(
-                    domain: self.URLStrings["Base"],
+                    domain: self.URLStrings["Base"]!,
                     code: self.internalErrorCode,
-                    userInfo: ["Hint": value["err"].asString()]))
+                    userInfo: ["Hint": data["err"] as String]))
             }
         } else {
             failure?(error.memory!)
@@ -105,6 +102,20 @@ class Model {
         } else {
             failure?(error != nil ? error! : NSError()) // Needs specification
         }
+    }
+    class func autoGenerateManagedObjectByEntityName(entityName: String, ID: NSNumber) -> NSManagedObject {
+        var object: NSManagedObject! = nil
+        fetchManagedObjectByTemplateName(entityName + "_By_ID",
+            ID: ID,
+            success: {
+                (_object: NSManagedObject) -> Void in
+                object = _object
+            }, failure: {
+                error in
+                object = self.createManagedObjecWithEntityName(entityName)
+                object.setValue(ID, forKey: "id")
+            })
+        return object
     }
     class func fetchRelationshipsByTemplateName<T: NSManagedObject>(templateName: String, ID: NSNumber, page: Int, count: Int, sortBy: (String, Bool)? = nil, success: (([T]) -> Void)?, failure: ((NSError) -> Void)?) {
         let request = appDelegate.managedObjectModel.fetchRequestFromTemplateWithName(templateName,
@@ -134,8 +145,4 @@ class Model {
         let results = appDelegate.managedObjectContext.executeFetchRequest(request, error: &error)
         return error == nil && results != nil && results!.count != 0
     }
-}
-
-class ManagedObjectModel<T> {
-    
 }

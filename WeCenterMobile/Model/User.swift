@@ -30,14 +30,15 @@ class User: NSManagedObject {
     @NSManaged var avatarURL: String?
     @NSManaged var followerCount: NSNumber?
     @NSManaged var followingCount: NSNumber?
-    @NSManaged var friendCount: NSNumber?
     @NSManaged var id: NSNumber
     @NSManaged var markCount: NSNumber?
     @NSManaged var name: String?
     @NSManaged var questionCount: NSNumber?
     @NSManaged var thankCount: NSNumber?
     @NSManaged var topicFocusCount: NSNumber?
+    
     var followed: Bool? = nil
+    var avatar: UIImage? = nil
     
     class func clearCookies() {
         let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
@@ -84,30 +85,20 @@ class User: NSManagedObject {
                 "uid": ID
             ],
             success: {
-                property in
-                var user: User! = nil
-                self.fetchUserUsingCacheByID(ID,
-                    success: {
-                        _user in
-                        user = _user
-                        return
-                    }, failure: {
-                        error in
-                        user = Model.createManagedObjecWithEntityName("User") as User
-                        return
-                    })
+                data in
+                let user = Model.autoGenerateManagedObjectByEntityName("User", ID: ID) as User
                 user.id = ID
-                user.name = property["user_name"].asString()
-                user.avatarURL = User.avatarURLWithURI(property["avatar_file"].asString())
-                user.followerCount = property["fans_count"].asInt()
-                user.friendCount = property["friend_count"].asInt()
-                user.questionCount = property["question_count"].asInt()
-                user.answerCount = property["answer_count"].asInt()
-                user.topicFocusCount = property["topic_focus_count"].asInt()
-                user.agreementCount = property["agree_count"].asInt()
-                user.thankCount = property["thanks_count"].asInt()
-                user.answerFavoriteCount = property["answer_favorite_count"].asInt()
-                user.followed = (property["has_focus"].asInt() == 1)
+                user.name = data["user_name"] as? String
+                user.avatarURL = User.avatarURLWithURI(data["avatar_file"] as String)
+                user.followerCount = (data["fans_count"] as NSString).integerValue
+                user.followingCount = (data["friend_count"] as NSString).integerValue
+                user.questionCount = (data["question_count"] as NSString).integerValue
+                user.answerCount = (data["answer_count"] as NSString).integerValue
+                user.topicFocusCount = (data["topic_focus_count"] as NSString).integerValue
+                user.agreementCount = (data["agree_count"] as NSString).integerValue
+                user.thankCount = (data["thanks_count"] as NSString).integerValue
+                user.answerFavoriteCount = (data["answer_favorite_count"] as NSString).integerValue
+                user.followed = (data["has_focus"] as NSNumber == 1)
                 appDelegate.saveContext()
                 success?(user)
             }, failure: failure)
@@ -144,32 +135,17 @@ class User: NSManagedObject {
                 "per_page": count
             ],
             success: {
-                property in
-                if property["total_rows"].asInt() > 0 {
+                data in
+                if (data["total_rows"] as NSString).integerValue > 0 {
                     var users = [User]()
-                    let userProperties = property["rows"]
                     let a = ID
-                    for userDictionary in userProperties.asArray() as [NSDictionary] {
-                        let value = Msr.Data.Property(value: userDictionary)
-                        var user: User! = nil
-                        let b = value["uid"].asInt()
+                    for value in data["rows"] as [NSDictionary] {
+                        let b = (value["uid"] as NSString).integerValue
                         User_User.updateRelationship(a: a, b: b)
-                        User.fetchUserByID(b,
-                            strategy: .CacheOnly,
-                            success: {
-                                _user in
-                                user = _user
-                                return
-                            },
-                            failure: {
-                                error in
-                                user = Model.createManagedObjecWithEntityName("User") as User
-                                user.id = b
-                                return
-                            })
-                        user.name = value["user_name"].asString()
-                        user.avatarURL = User.avatarURLWithURI(value["avatar_file"].asString())
-                        user.signature = value["signature"].asString()
+                        let user = Model.autoGenerateManagedObjectByEntityName("User", ID: b) as User
+                        user.name = value["user_name"] as? String
+                        user.avatarURL = User.avatarURLWithURI(value["avatar_file"] as String)
+                        user.signature = value["signature"] as? String
                         users.append(user)
                     }
                     appDelegate.saveContext()
@@ -178,19 +154,13 @@ class User: NSManagedObject {
                     failure?(NSError()) // Needs specification
                 }
             },
-            failure: {
-                error in
-                println(error.userInfo)
-                return
-            })
+            failure: failure)
     }
     
     private class func fetchFollowingListUsingCacheByUserID(ID: NSNumber, page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
-        Model.fetchRelationshipsByTemplateName("User_User_By_UserAID",
-            ID: ID,
+        User_User.fetchRelationshipsUsingCacheByUserAID(ID,
             page: page,
             count: count,
-            sortBy: nil,
             success: {
                 user_users in
                 var users = [User]()
@@ -201,7 +171,7 @@ class User: NSManagedObject {
                             user in
                             users.append(user)
                         },
-                        failure: nil)
+                        failure: failure)
                 }
                 success?(users)
             },
@@ -239,32 +209,17 @@ class User: NSManagedObject {
                 "per_page": count
             ],
             success: {
-                property in
-                if property["total_rows"].asInt() > 0 {
+                data in
+                if (data["total_rows"] as NSString).integerValue > 0 {
                     var users = [User]()
-                    let userProperties = property["rows"]
                     let b = ID
-                    for userDictionary in userProperties.asArray() as [NSDictionary] {
-                        let value = Msr.Data.Property(value: userDictionary)
-                        var user: User! = nil
-                        let a = value["uid"].asInt()
+                    for value in data["rows"] as [NSDictionary] {
+                        let a = (value["uid"] as NSString).integerValue
                         User_User.updateRelationship(a: a, b: b)
-                        User.fetchUserByID(a,
-                            strategy: .CacheOnly,
-                            success: {
-                                _user in
-                                user = _user
-                                return
-                            },
-                            failure: {
-                                error in
-                                user = Model.createManagedObjecWithEntityName("User") as User
-                                user.id = a
-                                return
-                            })
-                        user.name = value["user_name"].asString()
-                        user.avatarURL = User.avatarURLWithURI(value["avatar_file"].asString())
-                        user.signature = value["signature"].asString()
+                        let user = Model.autoGenerateManagedObjectByEntityName("User", ID: a) as User
+                        user.name = value["user_name"] as? String
+                        user.avatarURL = User.avatarURLWithURI(value["avatar_file"] as String)
+                        user.signature = value["signature"] as? String
                         users.append(user)
                     }
                     appDelegate.saveContext()
@@ -273,19 +228,13 @@ class User: NSManagedObject {
                     failure?(NSError()) // Needs specification
                 }
             },
-            failure: {
-                error in
-                println(error.userInfo)
-                return
-            })
+            failure: failure)
     }
     
     private class func fetchFollowerListUsingCacheByUserID(ID: NSNumber, page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
-        Model.fetchRelationshipsByTemplateName("User_User_By_UserBID",
-            ID: ID,
+        User_User.fetchRelationshipsUsingCacheByUserBID(ID,
             page: page,
             count: count,
-            sortBy: nil,
             success: {
                 user_users in
                 var users = [User]()
@@ -296,7 +245,7 @@ class User: NSManagedObject {
                             user in
                             users.append(user)
                         },
-                        failure: nil)
+                        failure: failure)
                 }
                 success?(users)
             },
@@ -308,7 +257,7 @@ class User: NSManagedObject {
             if data == nil {
                 failure?(NSError()) // Needs specification
             } else {
-                let cookies = NSKeyedUnarchiver.unarchiveObjectWithData(data) as [NSHTTPCookie]
+                let cookies = NSKeyedUnarchiver.unarchiveObjectWithData(data!) as [NSHTTPCookie]
                 let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
                 for cookie in cookies {
                     storage.setCookie(cookie)
@@ -316,9 +265,9 @@ class User: NSManagedObject {
                 UserModel.GET(UserModel.URLStrings["Get UID"]!,
                     parameters: nil,
                     success: {
-                        property in
+                        data in
                         self.fetchUserByID(
-                            property["uid"].asInt(),
+                            data["uid"] as NSNumber,
                             strategy: .CacheFirst,
                             success: success, failure: failure)
                     }, failure: failure)
@@ -329,11 +278,11 @@ class User: NSManagedObject {
         clearCookies()
         UserModel.POST(UserModel.URLStrings["Login"]!,
             parameters: [
-                "user_name": name.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding),
-                "password": password.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+                "user_name": name.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!,
+                "password": password.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
             ],
             success: {
-                property in
+                data in
                 let cookies = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies as [NSHTTPCookie]
                 let data = NSKeyedArchiver.archivedDataWithRootObject(cookies)
                 let defaults = NSUserDefaults.standardUserDefaults()
@@ -351,13 +300,13 @@ class User: NSManagedObject {
                 "uid": id
             ],
             success: {
-                property in
-                let data = property[0]
-                self.name = data["user_name"].asString()
-                self.gender = data["sex"].isNull() ? Gender.Secret.toRaw() : data["sex"].asInt()
-                self.birthday = data["birthday"].isNull() ? 0 : data["birthday"].asInt()
-                self.jobID = data["job_id"].asInt()
-                self.signature = data["signature"].asString()
+                data in
+                let value = data[0] as NSDictionary
+                self.name = value["user_name"] as? String
+                self.gender = value["sex"] is NSNull ? Gender.Secret.toRaw() : (value["sex"] as NSString).integerValue
+                self.birthday = value["birthday"] is NSNull ? nil : (value["birthday"] as NSString).integerValue
+                self.jobID = (value["job_id"] as NSString).integerValue
+                self.signature = value["signature"] as? String
                 appDelegate.saveContext()
                 success?()
             },
@@ -370,11 +319,33 @@ class User: NSManagedObject {
                 "uid": id
             ],
             success: {
-                property in
-                self.followed = (property["type"].asString() == "add")
+                data in
+                self.followed = (data["type"] as? String == "add")
                 success?()
             },
             failure: failure)
+    }
+    
+    private let imageView = UIImageView()
+    
+    func fetchAvatarImage(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        if avatarURL != nil {
+            imageView.setImageWithURLRequest(NSURLRequest(URL: NSURL(string: avatarURL!)),
+                placeholderImage: nil,
+                success: {
+                    request, response, image in
+                    self.avatar = image
+                    success?()
+                    return
+                },
+                failure: {
+                    request, response, error in
+                    failure?(error)
+                    return
+                })
+        } else {
+            failure?(NSError()) // Needs specification
+        }
     }
     
     class func avatarURLWithURI(URI: String) -> String {

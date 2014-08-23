@@ -19,7 +19,7 @@ class UserGenderCell :UITableViewCell{
     var theGender = 0
     var delegate: GenderDelegate?
     
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
