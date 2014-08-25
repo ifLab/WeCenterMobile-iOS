@@ -75,6 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let storeURL = applicationDocumentsDirectory.URLByAppendingPathComponent("WeCenterMobile.sqlite")
             #if DEBUG
                 NSFileManager.defaultManager().removeItemAtURL(storeURL, error: nil)
+                NSLog("Database reset.")
             #endif
             var error: NSError? = nil
             _persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
@@ -87,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     NSInferMappingModelAutomaticallyOption: true],
                 error: &error) == nil {
                 #if DEBUG
-                    println("Unresolved error \(error!.userInfo)")
+                    NSLog("Unresolved error \(error!.userInfo)")
                     abort()
                 #endif
             }

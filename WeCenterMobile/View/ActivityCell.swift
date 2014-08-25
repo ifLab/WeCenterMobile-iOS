@@ -31,6 +31,7 @@ class ActivityCell: UITableViewCell {
         answerView.frame = CGRectZero
         if let questionActivity = activity as? QuestionActivity {
             if questionActivity.answerUser != nil {
+                titleButton.tag = (questionActivity.id.stringByReplacingOccurrencesOfString("question_id_", withString: "", options: nil, range: questionActivity.id.startIndex..<questionActivity.id.endIndex) as NSString).integerValue
                 answerUserAvatarButton.frame = CGRect(x: 10, y: 15, width: 40, height: 40)
                 answerUserAvatarButton.imageView.layer.masksToBounds = true
                 answerUserAvatarButton.imageView.layer.cornerRadius = answerUserAvatarButton.frame.width / 2

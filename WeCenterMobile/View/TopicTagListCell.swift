@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TopicTagListCell: BFPaperTableViewCell, UIScrollViewDelegate, UIGestureRecognizerDelegate {
+class TopicTagListCell: UITableViewCell {
     class ScrollView: UIScrollView {
         override init() {
             super.init()
@@ -56,6 +56,7 @@ class TopicTagListCell: BFPaperTableViewCell, UIScrollViewDelegate, UIGestureRec
         scrollView.backgroundColor = UIColor.clearColor()
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.alwaysBounceHorizontal = true
+        backgroundColor = UIColor.paperColorGray300()
     }
     func update(#topics: [Topic], width: CGFloat) {
         for topicTagView in topicTagViews {
@@ -72,8 +73,8 @@ class TopicTagListCell: BFPaperTableViewCell, UIScrollViewDelegate, UIGestureRec
             scrollView.addSubview(topicTagView)
             topicTagViews.append(topicTagView)
         }
-        frame = CGRect(x: 0, y: 0, width: width, height: height + 20)
-        scrollView.frame = CGRect(x: 0, y: 10, width: width, height: height)
+        frame = CGRect(x: 0, y: 0, width: width, height: height + 10)
+        scrollView.frame = CGRect(x: 0, y: 0, width: width, height: height + 10)
         scrollView.contentSize = CGSize(width: offset, height: height)
     }
 }

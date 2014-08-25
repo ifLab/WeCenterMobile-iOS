@@ -93,12 +93,17 @@ class ActivityListViewController: UITableViewController {
         }
         if let questionActivity = activity as? QuestionActivity {
             cell!.answerUserAvatarButton.addTarget(self, action: "pushUserViewControllerMatchedToUserAvatarButton:", forControlEvents: .TouchUpInside)
+            cell!.titleButton.addTarget(self, action: "pushQuestionViewController:", forControlEvents: .TouchUpInside)
         }
         return cell
     }
     func pushUserViewControllerMatchedToUserAvatarButton(userAvatarButton: UIButton) {
         let msr_navigationController = Msr.UI.navigationControllerOfViewController(self)
         msr_navigationController!.pushViewController(UserViewController(userID: userAvatarButton.tag), animated: true, completion: nil)
+    }
+    func pushQuestionViewController(titleButton: UIButton) {
+        let msr_navigationController = Msr.UI.navigationControllerOfViewController(self)
+        msr_navigationController?.pushViewController(QuestionViewController(questionID: titleButton.tag), animated: true, completion: nil)
     }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .Default

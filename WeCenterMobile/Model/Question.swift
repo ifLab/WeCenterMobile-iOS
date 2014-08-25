@@ -18,7 +18,7 @@ class Question: NSManagedObject {
     @NSManaged var body: String?
     @NSManaged var focusCount: NSNumber?
     
-    var focused: Bool? = nil
+    var focusing: Bool? = nil
     
     class func fetchDataForQuestionViewControllerByID(ID: NSNumber, strategy: Model.Strategy, success: (((Question, [Topic], [Answer], [User])) -> Void)?, failure: ((NSError) -> Void)?) {
         switch strategy {
@@ -109,7 +109,7 @@ class Question: NSManagedObject {
                 question.title = value["question_content"] as? String
                 question.body = value["question_detail"] as? String
                 question.focusCount = value["focus_count"] as? NSNumber
-                question.focused = (value["has_focus"] as? NSNumber == 1)
+                question.focusing = (value["has_focus"] as? NSNumber == 1)
                 var answers = [Answer]()
                 var users = [User]()
                 for value in data["answers"] as [NSDictionary] {
@@ -119,6 +119,7 @@ class Question: NSManagedObject {
                     answer.userID = value["uid"] as? NSNumber
                     let user = Model.autoGenerateManagedObjectByEntityName("User", ID: answer.userID!) as User
                     user.name = value["user_name"] as? String
+                    user.avatarURL = User.avatarURLWithURI(value["avatar_file"] as String)
                     Question_Answer.updateRelationship(questionID: question.id, answerID: answer.id)
                     answers.append(answer)
                     users.append(user)
@@ -132,6 +133,19 @@ class Question: NSManagedObject {
                 }
                 appDelegate.saveContext()
                 success?((question, topics, answers, users))
+            },
+            failure: failure)
+    }
+    
+    func toggleFocus(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        QuestionModel.GET(QuestionModel.URLStrings["GET Focus"]!,
+            parameters: [
+                "question_id": id
+            ],
+            success: {
+                data in
+                self.focusing = (data["type"] as String == "add")
+                success?()
             },
             failure: failure)
     }

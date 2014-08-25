@@ -7,14 +7,12 @@
 //
 
 import UIKit
-import WebKit
 
-class QuestionBodyCell: BFPaperTableViewCell {
-    let titleLabel = UILabel()
-    let bodyView = WKWebView(frame: CGRectZero, configuration: WKWebViewConfiguration())
-    init(question: Question, width: CGFloat, reuseIdentifier: String!) {
-        super.init(style: .Default, reuseIdentifier: reuseIdentifier)
+class QuestionBodyCell: DTAttributedTextCell {
+    init(question: Question?, reuseIdentifier: String!) {
+        super.init(reuseIdentifier: reuseIdentifier)
         initialize()
+        update(question: question)
     }
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -22,8 +20,27 @@ class QuestionBodyCell: BFPaperTableViewCell {
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
+        initialize()
+    }
+    override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        initialize()
     }
     func initialize() {
         
+    }
+    func update(#question: Question?) {
+        var HTMLString = ""
+        if question?.body != nil {
+            HTMLString = "<p style='padding: 5px'>\(question!.body!)</p>"
+        }
+        setHTMLString(HTMLString,
+            options: [
+                NSTextSizeMultiplierDocumentOption: 1,
+                DTDefaultFontSize: 14,
+                DTDefaultTextColor: UIColor.darkTextColor(),
+                DTDefaultLinkColor: "purple",
+                DTDefaultLinkHighlightColor: "red"
+            ])
     }
 }

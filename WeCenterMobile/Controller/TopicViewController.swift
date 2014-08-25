@@ -276,10 +276,9 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         } else {
             data.user.fetchAvatarImage(
                 success: {
-/// @TODO: This version of implementation will cause compiler crash on Xcode 6 Beta 6. Temporarily removed for future use.
-//                    if cell!.userButton.msr_userInfo as NSNumber == data.user.id {
-//                        cell!.userButton.setImage(data.user.avatar, forState: .Normal)
-//                    }
+                    if cell!.userButton.tag == data.user.id {
+                        cell!.userButton.setImage(data.user.avatar, forState: .Normal)
+                    }
                 },
                 failure: nil)
         }

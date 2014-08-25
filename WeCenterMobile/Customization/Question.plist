@@ -8,6 +8,8 @@
 		<string>http://w.hihwei.com/</string>
 		<key>GET Detail</key>
 		<string>?/api/question/question/</string>
+		<key>GET Focus</key>
+		<string>?/question/ajax/focus/</string>
 	</dict>
 </dict>
 </plist>
