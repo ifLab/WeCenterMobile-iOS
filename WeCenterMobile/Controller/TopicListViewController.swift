@@ -17,10 +17,9 @@ class TopicListViewController: UITableViewController {
         case Normal = 0
         case User = 1
     }
-    var listType: ListType! = .Normal
+    var listType: ListType! = nil
     init(userID: NSNumber) {
         super.init(style: .Plain)
-        initialize()
         listType = .User
         self.userID = userID
         refreshControl = UIRefreshControl()
@@ -28,12 +27,13 @@ class TopicListViewController: UITableViewController {
 /// @TODO: This version of implementation will cause compiler crash on Xcode 6 Beta 6. Temporarily removed for future use.
 //        msr_loadMoreControl = Msr.UI.LoadMoreControl()
 //        msr_loadMoreControl.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
+        initialize()
     }
     init(topics: [Topic]) {
         super.init(style: .Plain)
-        initialize()
         listType = .Normal
         topicList = topics
+        initialize()
     }
     func initialize() {
         tableView.separatorStyle = .None
@@ -44,7 +44,8 @@ class TopicListViewController: UITableViewController {
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
         refreshControl?.beginRefreshing()
         refresh()
     }

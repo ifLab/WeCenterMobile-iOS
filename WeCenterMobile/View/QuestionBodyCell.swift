@@ -27,7 +27,7 @@ class QuestionBodyCell: DTAttributedTextCell {
         initialize()
     }
     func initialize() {
-        
+//        textDelegate = self
     }
     func update(#question: Question?) {
         var HTMLString = ""
@@ -38,9 +38,11 @@ class QuestionBodyCell: DTAttributedTextCell {
             options: [
                 NSTextSizeMultiplierDocumentOption: 1,
                 DTDefaultFontSize: 14,
-                DTDefaultTextColor: UIColor.darkTextColor(),
-                DTDefaultLinkColor: "purple",
-                DTDefaultLinkHighlightColor: "red"
+                DTDefaultTextColor: UIColor.paperColorGray600(),
+                DTDefaultLinkColor: UIColor.paperColorBlue500(),
+                DTDefaultLinkHighlightColor: UIColor.paperColorPurple300(),
+                DTDefaultLineHeightMultiplier: 1.5,
+                DTDefaultLinkDecoration: false
             ])
     }
 }

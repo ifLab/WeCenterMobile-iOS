@@ -14,6 +14,13 @@ class HomeViewController: UITableViewController {
         initStatusBarStyle = statusBarStyle
         super.init(nibName: nil, bundle: nil)
         title = i.description
+    }
+    required init(coder aDecoder: NSCoder) {
+        initStatusBarStyle = UIStatusBarStyle.fromRaw(aDecoder.decodeIntegerForKey("initStatusBarStyle"))!
+        super.init(coder: aDecoder)
+    }
+    override func loadView() {
+        super.loadView()
         let color = UIColor.randomColor(true)
         var red = CGFloat(0)
         var green = CGFloat(0)
@@ -21,10 +28,6 @@ class HomeViewController: UITableViewController {
         var alpha = CGFloat(0)
         color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         view.backgroundColor = UIColor(red: 1 - red * 0.2, green: 1 - green * 0.2, blue: 1 - blue * 0.2, alpha: 1)
-    }
-    required init(coder aDecoder: NSCoder) {
-        initStatusBarStyle = UIStatusBarStyle.fromRaw(aDecoder.decodeIntegerForKey("initStatusBarStyle"))!
-        super.init(coder: aDecoder)
     }
     override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
         return 1
@@ -79,7 +82,6 @@ class HomeViewController: UITableViewController {
         case 0:
             let viewController = HomeViewController(i: title.toInt()! + 1, statusBarStyle: initStatusBarStyle)
             msr_navigationController!.pushViewController(viewController, animated: true, completion: nil)
-            Msr.UI.navigationControllerOfViewController(self)!.pushViewController(viewController, animated: true, completion: nil)
             break
         case 1:
             msr_navigationController!.popViewController(true, completion: nil)

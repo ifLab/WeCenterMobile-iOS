@@ -20,6 +20,46 @@ class Question: NSManagedObject {
     
     var focusing: Bool? = nil
     
+    class func fetchQuestionByID(ID: NSNumber, strategy: Model.Strategy, success: ((Question) -> Void)?, failure: ((NSError) -> Void)?) {
+        switch strategy {
+        case .CacheOnly:
+            fetchQuestionUsingCacheByID(ID, success: success, failure: failure)
+            break
+        case .NetworkOnly:
+            fetchQuestionUsingNetworkByID(ID, success: success, failure: failure)
+            break
+        case .CacheFirst:
+            fetchQuestionUsingCacheByID(ID, success: success, failure: {
+                error in
+                self.fetchQuestionUsingNetworkByID(ID, success: success, failure: failure)
+            })
+            break
+        case .NetworkFirst:
+            fetchQuestionUsingNetworkByID(ID, success: success, failure: {
+                error in
+                self.fetchQuestionUsingCacheByID(ID, success: success, failure: failure)
+            })
+            break
+        default:
+            break
+        }
+    }
+    
+    private class func fetchQuestionUsingCacheByID(ID: NSNumber, success: ((Question) -> Void)?, failure: ((NSError) -> Void)?) {
+        Model.fetchManagedObjectByTemplateName("Question_By_ID", ID: ID, success: success, failure: failure)
+    }
+    
+    private class func fetchQuestionUsingNetworkByID(ID: NSNumber, success: ((Question) -> Void)?, failure: ((NSError) -> Void)?) {
+        fetchDataForQuestionViewControllerByID(ID,
+            strategy: .NetworkOnly,
+            success: {
+                data in
+                success?(data.0)
+                return
+            },
+            failure: failure)
+    }
+    
     class func fetchDataForQuestionViewControllerByID(ID: NSNumber, strategy: Model.Strategy, success: (((Question, [Topic], [Answer], [User])) -> Void)?, failure: ((NSError) -> Void)?) {
         switch strategy {
         case .CacheOnly:
@@ -117,10 +157,13 @@ class Question: NSManagedObject {
                     answer.body = value["answer_content"] as? String
                     answer.agreementCount = value["agree_count"] as? NSNumber
                     answer.userID = value["uid"] as? NSNumber
+                    answer.questionID = question.id
                     let user = Model.autoGenerateManagedObjectByEntityName("User", ID: answer.userID!) as User
                     user.name = value["user_name"] as? String
-                    user.avatarURL = User.avatarURLWithURI(value["avatar_file"] as String)
+                    let avatarURI = value["avatar_file"] as? String
+                    user.avatarURL = (avatarURI == nil) ? nil : User.avatarURLWithURI(avatarURI!)
                     Question_Answer.updateRelationship(questionID: question.id, answerID: answer.id)
+                    User_Answer.updateRelationship(userID: user.id, answerID: answer.id)
                     answers.append(answer)
                     users.append(user)
                 }

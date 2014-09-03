@@ -20,9 +20,9 @@ class WelcomeViewController: UIViewController {
         typealias AlertAction = Msr.UI.AlertAction
         loginView.addAction(AlertAction(title: strings["Cancel"], style: .Cancel) { action in })
         loginView.addAction(AlertAction(title: strings["Login"], style: .Default) {
-            [weak self] action in
-            User.loginWithName(self!.loginView.usernameField.text,
-                password: self!.loginView.passwordField.text,
+            action in
+            User.loginWithName(self.loginView.usernameField.text,
+                password: self.loginView.passwordField.text,
                 success: {
                     user in
                     appDelegate.currentUser = user
@@ -31,8 +31,7 @@ class WelcomeViewController: UIViewController {
                     appDelegate.window!.rootViewController.presentViewController(appDelegate.mainViewController, animated: true, completion: nil)
                 },
                 failure: nil)
-            return
-            })
+        })
         view = welcomeView
         view.addSubview(loginView)
     }

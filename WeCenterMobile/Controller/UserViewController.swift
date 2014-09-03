@@ -43,6 +43,19 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     init(userID: NSNumber) {
         super.init()
         self.userID = userID
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    override func loadView() {
+        super.loadView()
+        
         view = UIScrollView(frame: UIScreen.mainScreen().bounds)
         (view as UIScrollView).bounces = false
         
@@ -141,17 +154,8 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         scrollViewDidScroll(bottomView)
     }
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        let msr_navigationBar = Msr.UI.navigationBarOfViewController(self)
-        msr_navigationBar!.hidden = true
+    override func viewDidLoad() {
+        super.viewDidLoad()
         User.fetchUserByID(userID,
             strategy: .CacheOnly,
             success: {
@@ -191,6 +195,12 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
                             failure: nil)
                     }, failure: nil)
             })
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        let msr_navigationBar = Msr.UI.navigationBarOfViewController(self)
+        msr_navigationBar!.hidden = true
     }
     
     override func viewDidLayoutSubviews() {

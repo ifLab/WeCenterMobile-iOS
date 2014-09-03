@@ -19,6 +19,9 @@
 		954B6E6219A9470100FD333C /* AnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954B6E6119A9470100FD333C /* AnswerCell.swift */; };
 		954B6E6419AAC88400FD333C /* QuestionFocusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954B6E6319AAC88400FD333C /* QuestionFocusCell.swift */; };
 		954B6E6819AAEF0A00FD333C /* AnswerAdditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954B6E6719AAEF0A00FD333C /* AnswerAdditionCell.swift */; };
+		954B6E6A19AB07F100FD333C /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954B6E6919AB07F100FD333C /* AnswerViewController.swift */; };
+		954B6E6C19AB08E800FD333C /* User_Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954B6E6B19AB08E800FD333C /* User_Answer.swift */; };
+		954B6E6F19ABA28000FD333C /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954B6E6E19ABA28000FD333C /* Type.swift */; };
 		9562D81A1996DE080044DAF8 /* RectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9562D8191996DE080044DAF8 /* RectangleButton.swift */; };
 		9563956A198D3EDF002F3340 /* ArticalActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95639569198D3EDF002F3340 /* ArticalActivity.swift */; };
 		95639570198D3EDF002F3340 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9563956F198D3EDF002F3340 /* Activity.swift */; };
@@ -255,6 +258,9 @@
 		954B6E6119A9470100FD333C /* AnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnswerCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		954B6E6319AAC88400FD333C /* QuestionFocusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = QuestionFocusCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		954B6E6719AAEF0A00FD333C /* AnswerAdditionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnswerAdditionCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		954B6E6919AB07F100FD333C /* AnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
+		954B6E6B19AB08E800FD333C /* User_Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User_Answer.swift; sourceTree = "<group>"; };
+		954B6E6E19ABA28000FD333C /* Type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		9562D8191996DE080044DAF8 /* RectangleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RectangleButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		95639569198D3EDF002F3340 /* ArticalActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticalActivity.swift; sourceTree = "<group>"; };
 		9563956F198D3EDF002F3340 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Activity.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -797,6 +803,7 @@
 				9578A58219A011E400983884 /* Question_Topic.swift */,
 				95CDEE33199EDCA8000AC63F /* Topic.swift */,
 				95C695E2199EDF3B009022D8 /* User.swift */,
+				954B6E6B19AB08E800FD333C /* User_Answer.swift */,
 				95C695E4199EE15E009022D8 /* User_Topic.swift */,
 				95F91E8D199F9DAE0011FE45 /* User_User.swift */,
 			);
@@ -858,6 +865,7 @@
 			children = (
 				95A81177198C0EBA003E863B /* Array+Accessor.swift */,
 				95A81178198C0EBA003E863B /* Localization.swift */,
+				954B6E6E19ABA28000FD333C /* Type.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -882,6 +890,7 @@
 		95BB01911995C3FC0049CAD2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				954B6E6919AB07F100FD333C /* AnswerViewController.swift */,
 				9531D0161997D1ED0035FAA7 /* ActivityListViewController.swift */,
 				95BB01921995C3FC0049CAD2 /* DiscoveryViewController.swift */,
 				95BB01931995C3FC0049CAD2 /* HomeViewController.swift */,
@@ -1547,6 +1556,7 @@
 				95C16EB119A62022002DDFC8 /* DTVideoTextAttachment.m in Sources */,
 				95C16EB919A62022002DDFC8 /* NSCoder+DTCompatibility.m in Sources */,
 				957F793019A603E1002320CF /* AFHTTPSessionManager.m in Sources */,
+				954B6E6F19ABA28000FD333C /* Type.swift in Sources */,
 				957F793819A603E1002320CF /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				95C16E9019A62022002DDFC8 /* DTCoreTextConstants.m in Sources */,
 				95C16DF419A6200D002DDFC8 /* NSFileWrapper+DTCopying.m in Sources */,
@@ -1585,6 +1595,7 @@
 				95C16DC719A6200D002DDFC8 /* DTHTMLParser.m in Sources */,
 				957F793219A603E1002320CF /* AFSecurityPolicy.m in Sources */,
 				95A811B2198C0EBA003E863B /* Array+Accessor.swift in Sources */,
+				954B6E6C19AB08E800FD333C /* User_Answer.swift in Sources */,
 				95C16E9519A62022002DDFC8 /* DTCoreTextLayouter.m in Sources */,
 				95C16E8F19A62022002DDFC8 /* DTColorFunctions.m in Sources */,
 				95BB01A91995C3FC0049CAD2 /* UserViewController.swift in Sources */,
@@ -1678,6 +1689,7 @@
 				95C16DC419A6200D002DDFC8 /* DTExtendedFileAttributes.m in Sources */,
 				95C16DBF19A6200D002DDFC8 /* DTAsyncFileDeleter.m in Sources */,
 				951F07F619A1971F00F05CF7 /* QuestionAnswerCell.swift in Sources */,
+				954B6E6A19AB07F100FD333C /* AnswerViewController.swift in Sources */,
 				95C16EE419A636A9002DDFC8 /* BFPaperButton.m in Sources */,
 				95C16EBD19A62022002DDFC8 /* NSScanner+HTML.m in Sources */,
 				95C16E9219A62022002DDFC8 /* DTCoreTextFontDescriptor.m in Sources */,

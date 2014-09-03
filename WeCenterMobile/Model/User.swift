@@ -269,7 +269,8 @@ class User: NSManagedObject {
                         self.fetchUserByID(
                             data["uid"] as NSNumber,
                             strategy: .CacheFirst,
-                            success: success, failure: failure)
+                            success: success,
+                            failure: failure)
                     }, failure: failure)
             }
     }

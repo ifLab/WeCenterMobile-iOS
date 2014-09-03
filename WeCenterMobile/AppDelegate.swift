@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window!.rootViewController = welcomeViewController
-//        User.clearCookies()
         User.loginWithCookieAndCacheInStorage(
             success: {
                 user in
@@ -32,7 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.mainViewController.modalTransitionStyle = .CrossDissolve
                     self.welcomeViewController.presentViewController(self.mainViewController, animated: true, completion: nil)
                 }
-            }, failure: {
+            },
+            failure: {
                 error in
                 self.window!.makeKeyAndVisible()
             })

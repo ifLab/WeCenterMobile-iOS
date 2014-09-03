@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuestionViewController: UITableViewController {
+class QuestionViewController: UITableViewController, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate {
     var questionID: NSNumber! = nil
     var data: (question: Question, topics: [Topic], answers: [Answer], users: [User])? = nil
     let identifiers = [
@@ -21,8 +21,17 @@ class QuestionViewController: UITableViewController {
     ]
     var questionFocusCell: QuestionFocusCell! = nil
     init(questionID: NSNumber) {
-        self.questionID = questionID
         super.init(style: .Grouped)
+        self.questionID = questionID
+    }
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    override func loadView() {
+        super.loadView()
         tableView.registerClass(QuestionTitleCell.self, forCellReuseIdentifier: identifiers[0])
         tableView.registerClass(TopicTagListCell.self, forCellReuseIdentifier: identifiers[1])
         tableView.registerClass(QuestionBodyCell.self, forCellReuseIdentifier: identifiers[2])
@@ -34,13 +43,16 @@ class QuestionViewController: UITableViewController {
         tableView.contentInset.top -= 35
         tableView.contentOffset.y = 0
         tableView.separatorStyle = .None
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
         Question.fetchDataForQuestionViewControllerByID(questionID,
             strategy: .CacheOnly,
             success: {
                 data in
                 self.data = data
                 self.tableView.reloadData()
-                Question.fetchDataForQuestionViewControllerByID(questionID,
+                Question.fetchDataForQuestionViewControllerByID(self.questionID,
                     strategy: .NetworkOnly,
                     success: {
                         data in
@@ -50,12 +62,6 @@ class QuestionViewController: UITableViewController {
                     failure: nil)
             },
             failure: nil)
-    }
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
     override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
         return 6
@@ -67,21 +73,54 @@ class QuestionViewController: UITableViewController {
             return 1
         }
     }
+    override func tableView(tableView: UITableView!, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
     override func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
         let identifier = identifiers[indexPath.section]
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
         switch indexPath.section {
         case 0:
-            return QuestionTitleCell(question: data?.question, width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
+            if cell == nil {
+                return QuestionTitleCell(question: data?.question, width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
+            } else {
+                (cell as QuestionTitleCell).update(question: data?.question, width: tableView.bounds.width)
+                return cell!.bounds.height
+            }
         case 1:
-            return TopicTagListCell(topics: data?.topics ?? [], width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
+            if cell == nil {
+                return TopicTagListCell(topics: data?.topics ?? [], width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
+            } else {
+                (cell as TopicTagListCell).update(topics: data?.topics ?? [], width: tableView.bounds.width)
+                return cell!.bounds.height
+            }
         case 2:
-            return QuestionBodyCell(question: data?.question, reuseIdentifier: identifier).requiredRowHeightInTableView(tableView)
+            if cell == nil {
+                return QuestionBodyCell(question: data?.question, reuseIdentifier: identifier).bounds.height
+            } else {
+                (cell as QuestionBodyCell).update(question: data?.question)
+                return (cell as QuestionBodyCell).requiredRowHeightInTableView(tableView)
+            }
         case 3:
-            return QuestionFocusCell(question: data?.question, answerCount: data?.answers.count, width: tableView.bounds.width, reuseIdentifier: identifiers[3]).bounds.height
+            if cell == nil {
+                return QuestionFocusCell(question: data?.question, answerCount: data?.answers.count, width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
+            } else {
+                (cell as QuestionFocusCell).update(question: data?.question, answerCount: data?.answers.count, width: tableView.bounds.width)
+                return cell!.bounds.height
+            }
         case 4:
-            return AnswerAdditionCell(reuseIdentifier: identifier, width: tableView.bounds.width).bounds.height
+            if cell == nil {
+                return AnswerAdditionCell(reuseIdentifier: identifier, width: tableView.bounds.width).bounds.height
+            } else {
+                return cell!.bounds.height
+            }
         case 5:
-            return AnswerCell(answer: data?.answers[indexPath.row], user: data?.users[indexPath.row], width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
+            if cell == nil {
+                return AnswerCell(answer: data?.answers[indexPath.row], user: data?.users[indexPath.row], width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
+            } else {
+                (cell as AnswerCell).update(answer: data?.answers[indexPath.row], user: data?.users[indexPath.row], width: tableView.bounds.width)
+                return cell!.bounds.height
+            }
         default:
             return 0
         }
@@ -110,8 +149,14 @@ class QuestionViewController: UITableViewController {
         case 2:
             if cell == nil {
                 cell = QuestionBodyCell(question: data?.question, reuseIdentifier: identifier)
+                NSNotificationCenter.defaultCenter().addObserverForName(DTAttributedTextContentViewDidFinishLayoutNotification, object: (cell as QuestionBodyCell).attributedTextContextView, queue: NSOperationQueue.mainQueue(), usingBlock: {
+                    notification in
+                    println("?")
+                    self.tableView.reloadData()
+                })
             } else {
                 (cell as QuestionBodyCell).update(question: data?.question)
+                (cell as QuestionBodyCell).textDelegate = self
             }
             break
         case 3:
@@ -166,8 +211,38 @@ class QuestionViewController: UITableViewController {
                 msr_navigationController!.pushViewController(TopicListViewController(topics: data!.topics), animated: true, completion: nil)
             }
             break
+        case 5:
+            if data != nil {
+                msr_navigationController!.pushViewController(AnswerViewController(answerID: data!.answers[indexPath.row].id), animated: true, completion: nil)
+            }
         default:
             break
+        }
+    }
+    func attributedTextContentView(attributedTextContentView: DTAttributedTextContentView!, viewForAttachment attachment: DTTextAttachment!, frame: CGRect) -> UIView! {
+        if let imageAttachment = attachment as? DTImageTextAttachment {
+            let imageView = DTLazyImageView(frame: frame)
+            imageView.shouldShowProgressiveDownload = true
+            imageView.image = imageAttachment.image
+            imageView.url = imageAttachment.contentURL
+            imageView.delegate = self
+            return imageView
+        }
+        return nil
+    }
+    func lazyImageView(lazyImageView: DTLazyImageView!, didChangeImageSize size: CGSize) {
+        let predicate = NSPredicate(format: "contentURL == %@", lazyImageView.url)
+        var didUpdate = false
+        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) as DTAttributedTextCell
+        for attachment in cell.attributedTextContextView.layoutFrame.textAttachmentsWithPredicate(predicate) as [DTTextAttachment] {
+            if attachment.originalSize == CGSizeZero {
+                attachment.originalSize = sizeWithImageSize(size)
+                didUpdate = true
+            }
+        }
+        if didUpdate {
+            cell.attributedTextContextView.relayoutText()
+            tableView.reloadData() // ???
         }
     }
     func toggleFocusQuestion(focusButton: UIButton) {
@@ -181,5 +256,15 @@ class QuestionViewController: UITableViewController {
                 error in
                 update()
             })
+    }
+    private func sizeWithImageSize(size: CGSize) -> CGSize {
+        let maxWidth = view.bounds.width - 20
+        if size.width > maxWidth {
+            let width = maxWidth
+            let height = size.height * (width / size.width)
+            return CGSize(width: width, height: height)
+        } else {
+            return size
+        }
     }
 }
