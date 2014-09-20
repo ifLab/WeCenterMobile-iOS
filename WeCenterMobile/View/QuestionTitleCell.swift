@@ -10,31 +10,22 @@ import Foundation
 
 class QuestionTitleCell: BFPaperTableViewCell {
     let titleLabel = UILabel()
-    init(question: Question?, width: CGFloat, reuseIdentifier: String!) {
+    init(question: Question?, width: CGFloat, reuseIdentifier: String?) {
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
-        initialize()
-        update(question: question, width: width)
-    }
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        initialize()
-    }
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        initialize()
-    }
-    override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        initialize()
-    }
-    func initialize() {
         addSubview(titleLabel)
-        textLabel.text = nil
-        backgroundColor = UIColor.paperColorGray300()
+        textLabel!.text = ""
+        backgroundColor = UIColor.materialGray300()
         titleLabel.numberOfLines = 0
         titleLabel.lineBreakMode = .ByCharWrapping
         titleLabel.textColor = UIColor.blackColor()
         titleLabel.font = UIFont.boldSystemFontOfSize(16)
+        update(question: question, width: width)
+    }
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     func update(#question: Question?, width: CGFloat) {
         titleLabel.text = question?.title

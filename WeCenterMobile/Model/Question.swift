@@ -138,7 +138,7 @@ class Question: NSManagedObject {
     
     private class func fetchDataForQuestionViewControllerUsingNetworkByID(ID: NSNumber, success: (((Question, [Topic], [Answer], [User])) -> Void)?, failure: ((NSError) -> Void)?) {
         let question = Model.autoGenerateManagedObjectByEntityName("Question", ID: ID) as Question
-        QuestionModel.GET(QuestionModel.URLStrings["GET Detail"]!,
+        QuestionModel.GET("GET Detail",
             parameters: [
                 "id": ID
             ],
@@ -181,7 +181,7 @@ class Question: NSManagedObject {
     }
     
     func toggleFocus(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
-        QuestionModel.GET(QuestionModel.URLStrings["GET Focus"]!,
+        QuestionModel.GET("GET Focus",
             parameters: [
                 "question_id": id
             ],

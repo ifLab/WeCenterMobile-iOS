@@ -118,7 +118,7 @@ class Answer: NSManagedObject {
     
     private class func fetchDataForAnswerViewControllerUsingNetworkByAnswerID(ID: NSNumber, success: (((Question, Answer, User)) -> Void)?, failure: ((NSError) -> Void)?) {
         let answer = Model.autoGenerateManagedObjectByEntityName("Answer", ID: ID) as Answer
-        AnswerModel.GET(AnswerModel.URLStrings["GET Detail"]!,
+        AnswerModel.GET("GET Detail",
             parameters: [
                 "id": ID
             ],

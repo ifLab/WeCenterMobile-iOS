@@ -14,18 +14,18 @@ class RectangleButton: BFPaperButton {
         super.init()
         frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width / 3, height: 100)
         addSubview(footerLabel)
-        backgroundColor = UIColor.paperColorGray200()
+        backgroundColor = UIColor.materialGray200()
         layer.contentsScale = UIScreen.mainScreen().scale
         footerLabel.frame = CGRect(x: 0, y: 60, width: bounds.width, height: 40)
         footerLabel.textColor = UIColor.grayColor()
         footerLabel.textAlignment = .Center
         footerLabel.font = UIFont.systemFontOfSize(12)
     }
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
     override init(frame: CGRect) {
         super.init(frame: frame)
+    }
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -39,11 +39,11 @@ class RectangleCountButton: RectangleButton {
         countLabel.textAlignment = .Center
         countLabel.font = UIFont.systemFontOfSize(32)
     }
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
     override init(frame: CGRect) {
         super.init(frame: frame)
+    }
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -54,10 +54,10 @@ class RectangleCoverButton: RectangleButton {
         addSubview(coverView)
         coverView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: 90)
     }
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
     override init(frame: CGRect) {
         super.init(frame: frame)
+    }
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

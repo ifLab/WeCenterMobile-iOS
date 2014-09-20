@@ -80,7 +80,7 @@ class User: NSManagedObject {
     }
     
     private class func fetchUserUsingNetworkByID(ID: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
-        UserModel.GET(UserModel.URLStrings["Information"]!,
+        UserModel.GET("Information",
             parameters: [
                 "uid": ID
             ],
@@ -128,7 +128,7 @@ class User: NSManagedObject {
     }
     
     private class func fetchFollowingListUsingNetworkByUserID(ID: NSNumber, page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
-        UserModel.GET(UserModel.URLStrings["GET Following List"]!,
+        UserModel.GET("GET Following List",
             parameters: [
                 "uid": ID,
                 "page": page,
@@ -202,7 +202,7 @@ class User: NSManagedObject {
     }
     
     private class func fetchFollowerListUsingNetworkByUserID(ID: NSNumber, page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
-        UserModel.GET(UserModel.URLStrings["GET Follower List"]!,
+        UserModel.GET("GET Follower List",
             parameters: [
                 "uid": ID,
                 "page": page,
@@ -262,7 +262,7 @@ class User: NSManagedObject {
                 for cookie in cookies {
                     storage.setCookie(cookie)
                 }
-                UserModel.GET(UserModel.URLStrings["Get UID"]!,
+                UserModel.GET("Get UID",
                     parameters: nil,
                     success: {
                         data in
@@ -277,7 +277,7 @@ class User: NSManagedObject {
     
     class func loginWithName(name: String, password: String, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
         clearCookies()
-        UserModel.POST(UserModel.URLStrings["Login"]!,
+        UserModel.POST("Login",
             parameters: [
                 "user_name": name.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!,
                 "password": password.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
@@ -296,7 +296,7 @@ class User: NSManagedObject {
     
     // Needs to be modified
     func fetchProfileUsingNetwork(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
-        UserModel.GET(UserModel.URLStrings["profile"]!,
+        UserModel.GET("profile",
             parameters: [
                 "uid": id
             ],
@@ -315,7 +315,7 @@ class User: NSManagedObject {
     }
     
     func toggleFollow(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
-        UserModel.GET(UserModel.URLStrings["Follow User"]!,
+        UserModel.GET("Follow User",
             parameters: [
                 "uid": id
             ],

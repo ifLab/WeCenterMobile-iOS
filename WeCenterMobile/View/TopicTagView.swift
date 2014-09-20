@@ -12,25 +12,20 @@ class TopicTagView: UIView {
     let label = UILabel()
     init(topic: Topic) {
         super.init()
-        initialize()
-        update(topic: topic)
-    }
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        initialize()
-    }
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        initialize()
-    }
-    func initialize() {
         addSubview(label)
         label.font = UIFont.systemFontOfSize(12)
-        label.textColor = UIColor.paperColorGray700()
-        backgroundColor = UIColor.paperColorGray100()
+        label.textColor = UIColor.materialGray700()
+        backgroundColor = UIColor.materialGray100()
         layer.cornerRadius = 3
         layer.masksToBounds = true
         userInteractionEnabled = false
+        update(topic: topic)
+    }
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
     func update(#topic: Topic) {
         label.text = topic.title

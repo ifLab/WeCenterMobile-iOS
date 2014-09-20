@@ -9,9 +9,9 @@
 import UIKit
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    let contentViewController: Msr.UI.NavigationController! = nil
+    var contentViewController: Msr.UI.NavigationController! = nil
     let sidebar = Msr.UI.Sidebar(width: 200, blurEffectStyle: .Light)
-    let tableView: UITableView! = nil
+    var tableView: UITableView! = nil
     var user: User? {
         return appDelegate.currentUser
     }
@@ -24,8 +24,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         "TEST VC"
     ]
     override init() {
-        tableView = UITableView(frame: sidebar.contentView.bounds, style: .Grouped)
         super.init(nibName: nil, bundle: nil)
+        tableView = UITableView(frame: sidebar.contentView.bounds, style: .Grouped)
         contentViewController = Msr.UI.NavigationController(rootViewController: viewControllerAtIndex(0))
         addChildViewController(contentViewController)
         view.addSubview(contentViewController.view)
@@ -39,51 +39,51 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         sidebar.contentView.addSubview(tableView)
     }
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
-    func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
     }
-    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 1 {
             return titles.count
         } else {
             return 1
         }
     }
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let identifier = "\(indexPath)"
         var cell: UITableViewCell! = tableView.dequeueReusableCellWithIdentifier(identifier) as? UITableViewCell
         if cell == nil {
             cell = UITableViewCell(style: .Default, reuseIdentifier: identifier)
-            cell.textLabel.textColor = UIColor.blackColor()
+            cell.textLabel!.textColor = UIColor.blackColor()
             cell.backgroundColor = UIColor.clearColor()
             cell.selectedBackgroundView = UIView(frame: CGRect(origin: CGPointZero, size: cell.bounds.size))
             cell.selectedBackgroundView.backgroundColor = UIColor(white: 0, alpha: 0.1)
             if indexPath.section == 0 {
                 appDelegate.currentUser!.fetchAvatarImage(
                     success: {
-                        cell.imageView.image = appDelegate.currentUser!.avatar
-                        cell.imageView.sizeToFit()
-                        cell.imageView.layer.cornerRadius = cell.imageView.bounds.width / 2
-                        cell.imageView.layer.masksToBounds = true
+                        cell.imageView!.image = appDelegate.currentUser!.avatar
+                        cell.imageView!.sizeToFit()
+                        cell.imageView!.layer.cornerRadius = cell.imageView!.bounds.width / 2
+                        cell.imageView!.layer.masksToBounds = true
                         self.tableView.reloadData()
                         tableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1), animated: false, scrollPosition: .None)
                     },
                     failure: nil)
-                cell.textLabel.text = appDelegate.currentUser?.name
+                cell.textLabel!.text = appDelegate.currentUser?.name
             } else if indexPath.section == 1 {
-                cell.imageView.image = UIImage.circleWithColor(UIColor(white: 0, alpha: 0.2), radius: 20)
-                cell.imageView.tintColor = UIColor.blackColor()
-                cell.imageView.layer.contentsScale = UIScreen.mainScreen().scale
-                cell.textLabel.text = titles[indexPath.row]
+                cell.imageView!.image = UIImage.circleWithColor(UIColor(white: 0, alpha: 0.2), radius: 20)
+                cell.imageView!.tintColor = UIColor.blackColor()
+                cell.imageView!.layer.contentsScale = UIScreen.mainScreen().scale
+                cell.textLabel!.text = titles[indexPath.row]
             } else {
-                cell.textLabel.text = "TEMPORARY_EXIT"
+                cell.textLabel!.text = "TEMPORARY_EXIT"
             }
         }
         return cell
     }
-    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         sidebar.hide(animated: true, completion: nil)
         if indexPath.section == 0 {
             contentViewController.setViewControllers([UserViewController(userID: appDelegate.currentUser!.id)], animated: true, completion: nil)
@@ -93,7 +93,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             dismissViewControllerAnimated(true, completion: nil)
         }
     }
-    func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 100
         } else {

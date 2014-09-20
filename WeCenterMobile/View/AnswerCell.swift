@@ -9,54 +9,43 @@
 import UIKit
 
 class AnswerCell: BFPaperTableViewCell {
-    let avatarButtonUnavailable = -1
     let avatarButton = UIButton()
     let agreementCountLabel = UILabel()
     let nameLabel = UILabel()
     let contentLabel = DTAttributedLabel()
-    init(answer: Answer?, user: User?, width: CGFloat, reuseIdentifier: String!) {
+    init(answer: Answer?, user: User?, width: CGFloat, reuseIdentifier: String?) {
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
-        initialize()
-        update(answer: answer, user: user, width: width)
-    }
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        initialize()
-    }
-    override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        initialize()
-    }
-    func initialize() {
         contentView.addSubview(avatarButton)
         contentView.addSubview(agreementCountLabel)
         contentView.addSubview(nameLabel)
         contentView.addSubview(contentLabel)
-        
-        textLabel.text = ""
-        
+        textLabel!.text = ""
         avatarButton.frame = CGRect(x: 10, y: 10, width: 30, height: 30)
-        avatarButton.backgroundColor = UIColor.paperColorGray200()
+        avatarButton.backgroundColor = UIColor.materialGray200()
         avatarButton.layer.cornerRadius = avatarButton.bounds.width / 2
         avatarButton.layer.masksToBounds = true
-        
         agreementCountLabel.frame = CGRect(x: avatarButton.frame.origin.x, y: avatarButton.frame.origin.y + avatarButton.bounds.height + 5, width: avatarButton.bounds.width, height: 13)
-        agreementCountLabel.backgroundColor = UIColor.paperColorGray700()
+        agreementCountLabel.backgroundColor = UIColor.materialGray700()
         agreementCountLabel.textColor = UIColor.whiteColor()
         agreementCountLabel.font = UIFont.systemFontOfSize(10)
         agreementCountLabel.textAlignment = .Center
-        
         nameLabel.frame = CGRect(x: avatarButton.frame.origin.x + avatarButton.bounds.width + 10, y: avatarButton.frame.origin.y, width: 0, height: 20)
         nameLabel.font = UIFont.systemFontOfSize(14)
-        
         contentLabel.frame = CGRect(x: nameLabel.frame.origin.x, y: nameLabel.frame.origin.y + nameLabel.bounds.height + 3, width: 0, height: 0)
         contentLabel.numberOfLines = 3
         contentLabel.lineBreakMode = .ByCharWrapping
         contentLabel.layoutFrameHeightIsConstrainedByBounds = false
         contentLabel.backgroundColor = UIColor.clearColor()
+        update(answer: answer, user: user, width: width)
+    }
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     func update(#answer: Answer?, user: User?, width: CGFloat) {
-        avatarButton.tag = user?.id ?? avatarButtonUnavailable
+        avatarButton.msr_userInfo = user?.id ?? -1
         agreementCountLabel.text = answer?.agreementCount?.stringValue
         nameLabel.text = user?.name
         nameLabel.frame.size.width = width - nameLabel.frame.origin.x - 10
@@ -79,7 +68,7 @@ class AnswerCell: BFPaperTableViewCell {
         CGContextMoveToPoint(context, 0, 0)
         CGContextAddLineToPoint(context, bounds.width, 0)
         CGContextClosePath(context)
-        CGContextSetStrokeColorWithColor(context, UIColor.paperColorGray400().CGColor)
+        CGContextSetStrokeColorWithColor(context, UIColor.materialGray400().CGColor)
         CGContextStrokePath(context)
     }
 }

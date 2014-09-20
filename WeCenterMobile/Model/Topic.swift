@@ -74,7 +74,7 @@ class Topic: NSManagedObject {
     }
     
     private class func fetchTopicListUsingNetworkByUserID(userID: NSNumber, page: Int, count: Int, success: (([Topic]) -> Void)?, failure: ((NSError) -> Void)?) {
-        TopicModel.GET(TopicModel.URLStrings["GET List"]!,
+        TopicModel.GET("GET List",
             parameters: [
                 "uid": userID,
                 "page": page,
@@ -135,7 +135,7 @@ class Topic: NSManagedObject {
     
     private class func fetchTopicUsingNetworkByID(ID: NSNumber, success: ((Topic) -> Void)?, failure: ((NSError) -> Void)?) {
         let topic = Model.autoGenerateManagedObjectByEntityName("Topic", ID: ID) as Topic
-        TopicModel.GET(TopicModel.URLStrings["GET Detail"]!,
+        TopicModel.GET("GET Detail",
             parameters: [
                 "uid": appDelegate.currentUser!.id,
                 "topic_id": ID
@@ -166,7 +166,7 @@ class Topic: NSManagedObject {
     }
     
     func cancleFocusTopicUsingNetworkByUserID(userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
-        TopicModel.POST(TopicModel.URLStrings["POST Focus"]!,
+        TopicModel.POST("POST Focus",
             parameters: [
                 "uid": userID,
                 "topic_id": id,
@@ -181,7 +181,7 @@ class Topic: NSManagedObject {
     }
     
     func focusTopicUsingNetworkByUserID(userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
-        TopicModel.POST(TopicModel.URLStrings["POST Focus"]!,
+        TopicModel.POST("POST Focus",
             parameters: [
                 "uid": userID,
                 "topic_id": id,
@@ -198,7 +198,7 @@ class Topic: NSManagedObject {
     class func fetchTopicOutstandingQuestionAnswerListUsingNetworkByTopicID(topicID: NSNumber,
         success: ([(question: Question, answer: Answer, user: User)] -> Void)?,
         failure: ((NSError) -> Void)?) {
-            TopicModel.GET(TopicModel.URLStrings["GET Outstanding"]!,
+            TopicModel.GET("GET Outstanding",
                 parameters: [
                     "id": topicID
                 ],

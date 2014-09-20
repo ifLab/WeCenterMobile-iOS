@@ -147,7 +147,7 @@ class UserEditViewController:UIViewController,UserPostDelegate,GenderDelegate,UI
         
     }
     
-    func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String! {
         return items2()[section]
         
     }
@@ -157,18 +157,18 @@ class UserEditViewController:UIViewController,UserPostDelegate,GenderDelegate,UI
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items1()[section].count
     }
     
     
-    func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         return items1().count
     }
     
     
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell1 = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "UserEditCell")
         switch indexPath.section {
         case 0:
@@ -201,7 +201,7 @@ class UserEditViewController:UIViewController,UserPostDelegate,GenderDelegate,UI
     
     
     
-    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.title = nil
@@ -242,7 +242,7 @@ class UserEditViewController:UIViewController,UserPostDelegate,GenderDelegate,UI
     }
     func GenderSellect(controller: UserGenderCell, theGender: Int) {
 
-        model.POST(model.URLStrings["profile_setting"]!,
+        model.POST("profile_setting",
             parameters: [
 
                 "uid": appDelegate.currentUser!.id,
@@ -261,18 +261,18 @@ class UserEditViewController:UIViewController,UserPostDelegate,GenderDelegate,UI
     }
     
     func postedBirthday(controller: UserPostViewController, date: NSDate) {
-        var cell:UITableViewCell! =  self.tableView?.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2))
+        var cell:UITableViewCell =  self.tableView?.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2))
         cell.textLabel.text = dateFormater.stringFromDate(date)
         print(dateFormater.stringFromDate(date))
     }
     
     func postedIntroduction(controller: UserPostViewController, introduction: String) {
-        var cell:UITableViewCell! =  self.tableView?.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1))
+        var cell:UITableViewCell =  self.tableView?.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1))
         cell.textLabel.text = introduction
     }
     
     func postedName(controller: UserPostViewController, name: String) {
-        var cell:UITableViewCell! =  self.tableView?.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
+        var cell:UITableViewCell =  self.tableView?.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
         cell.textLabel.text = name
         delegate?.nameDidPost(self, name: name)
     }

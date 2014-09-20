@@ -24,9 +24,6 @@ class UserCountView: UIView {
         countLabel.textColor = UIColor.grayColor()
     }
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+        fatalError("init(coder:) has not been implemented")
     }
 }

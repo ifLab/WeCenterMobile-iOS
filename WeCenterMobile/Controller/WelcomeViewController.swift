@@ -14,8 +14,8 @@ class WelcomeViewController: UIViewController {
     let strings = Msr.Data.LocalizedStrings(module: "Welcome", bundle: NSBundle.mainBundle())
     
     override init() {
-        super.init(nibName: nil, bundle: NSBundle.mainBundle())
-        let welcomeView = WelcomeView(frame: UIScreen.mainScreen().bounds)
+        super.init(nibName: nil, bundle: nil)
+        let welcomeView = WelcomeView()
         welcomeView.loginButton.addTarget(self, action: "showLoginView", forControlEvents: .TouchUpInside)
         typealias AlertAction = Msr.UI.AlertAction
         loginView.addAction(AlertAction(title: strings["Cancel"], style: .Cancel) { action in })
@@ -28,16 +28,16 @@ class WelcomeViewController: UIViewController {
                     appDelegate.currentUser = user
                     appDelegate.mainViewController = MainViewController()
                     appDelegate.mainViewController.modalTransitionStyle = .CrossDissolve
-                    appDelegate.window!.rootViewController.presentViewController(appDelegate.mainViewController, animated: true, completion: nil)
+                    appDelegate.window!.rootViewController!.presentViewController(appDelegate.mainViewController, animated: true, completion: nil)
                 },
                 failure: nil)
         })
         view = welcomeView
         view.addSubview(loginView)
     }
-    
+
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
     
     func showLoginView() {

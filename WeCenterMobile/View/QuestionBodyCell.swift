@@ -9,25 +9,15 @@
 import UIKit
 
 class QuestionBodyCell: DTAttributedTextCell {
-    init(question: Question?, reuseIdentifier: String!) {
+    init(question: Question?, reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        initialize()
         update(question: question)
     }
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        initialize()
+        fatalError("init(coder:) has not been implemented")
     }
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        initialize()
-    }
-    override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        initialize()
-    }
-    func initialize() {
-//        textDelegate = self
     }
     func update(#question: Question?) {
         var HTMLString = ""
@@ -38,9 +28,9 @@ class QuestionBodyCell: DTAttributedTextCell {
             options: [
                 NSTextSizeMultiplierDocumentOption: 1,
                 DTDefaultFontSize: 14,
-                DTDefaultTextColor: UIColor.paperColorGray600(),
-                DTDefaultLinkColor: UIColor.paperColorBlue500(),
-                DTDefaultLinkHighlightColor: UIColor.paperColorPurple300(),
+                DTDefaultTextColor: UIColor.materialGray600(),
+                DTDefaultLinkColor: UIColor.materialBlue500(),
+                DTDefaultLinkHighlightColor: UIColor.materialPurple300(),
                 DTDefaultLineHeightMultiplier: 1.5,
                 DTDefaultLinkDecoration: false
             ])

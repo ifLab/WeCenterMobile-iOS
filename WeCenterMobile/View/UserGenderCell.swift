@@ -19,10 +19,6 @@ class UserGenderCell :UITableViewCell{
     var theGender = 0
     var delegate: GenderDelegate?
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
     init(gender:Int){
         theGender = gender
         super.init(style: UITableViewCellStyle.Default, reuseIdentifier: "UserEditCell")

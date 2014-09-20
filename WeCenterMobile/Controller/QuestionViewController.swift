@@ -24,11 +24,11 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
         super.init(style: .Grouped)
         self.questionID = questionID
     }
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
+    }
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     override func loadView() {
         super.loadView()
@@ -63,36 +63,36 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
             },
             failure: nil)
     }
-    override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 6
     }
-    override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 5 {
             return data!.answers.count
         } else {
             return 1
         }
     }
-    override func tableView(tableView: UITableView!, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
-    override func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let identifier = identifiers[indexPath.section]
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        let cell: UITableViewCell! = tableView.cellForRowAtIndexPath(indexPath)
         switch indexPath.section {
         case 0:
             if cell == nil {
                 return QuestionTitleCell(question: data?.question, width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
             } else {
                 (cell as QuestionTitleCell).update(question: data?.question, width: tableView.bounds.width)
-                return cell!.bounds.height
+                return cell.bounds.height
             }
         case 1:
             if cell == nil {
                 return TopicTagListCell(topics: data?.topics ?? [], width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
             } else {
                 (cell as TopicTagListCell).update(topics: data?.topics ?? [], width: tableView.bounds.width)
-                return cell!.bounds.height
+                return cell.bounds.height
             }
         case 2:
             if cell == nil {
@@ -106,29 +106,29 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
                 return QuestionFocusCell(question: data?.question, answerCount: data?.answers.count, width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
             } else {
                 (cell as QuestionFocusCell).update(question: data?.question, answerCount: data?.answers.count, width: tableView.bounds.width)
-                return cell!.bounds.height
+                return cell.bounds.height
             }
         case 4:
             if cell == nil {
                 return AnswerAdditionCell(reuseIdentifier: identifier, width: tableView.bounds.width).bounds.height
             } else {
-                return cell!.bounds.height
+                return cell.bounds.height
             }
         case 5:
             if cell == nil {
                 return AnswerCell(answer: data?.answers[indexPath.row], user: data?.users[indexPath.row], width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
             } else {
                 (cell as AnswerCell).update(answer: data?.answers[indexPath.row], user: data?.users[indexPath.row], width: tableView.bounds.width)
-                return cell!.bounds.height
+                return cell.bounds.height
             }
         default:
             return 0
         }
     }
-    override func tableView(tableView: UITableView!, shouldHighlightRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
+    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return indexPath.section == 1 || indexPath.section == 4 || indexPath.section == 5
     }
-    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let identifier = identifiers[indexPath.section]
         var cell: UITableViewCell! = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? UITableViewCell
         switch indexPath.section {
@@ -191,7 +191,7 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
             } else {
                 user?.fetchAvatarImage(
                     success: {
-                        if answerCell.avatarButton.tag == user!.id {
+                        if answerCell.avatarButton.msr_userInfo as NSNumber == user!.id {
                             answerCell.avatarButton.setImage(user!.avatar, forState: .Normal)
                         }
                     },
@@ -203,8 +203,7 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
         }
         return cell
     }
-    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-        let msr_navigationController = Msr.UI.navigationControllerOfViewController(self)
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.section {
         case 1:
             if data != nil {

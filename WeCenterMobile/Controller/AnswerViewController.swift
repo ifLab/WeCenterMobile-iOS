@@ -40,11 +40,11 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     var answerID: NSNumber! = nil
     var data: (question: Question, answer: Answer, user: User)? = nil
     init(answerID: NSNumber) {
-        super.init(nibName: nil, bundle: NSBundle.mainBundle())
+        super.init(nibName: nil, bundle: nil)
         self.answerID = answerID
     }
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
     override func loadView() {
         view = DTAttributedTextView(frame: UIScreen.mainScreen().bounds)
@@ -54,23 +54,23 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         topBar.addSubview(evaluationButton)
         contentTextView.alwaysBounceVertical = true
         contentTextView.shouldDrawImages = true
-        contentTextView.backgroundColor = UIColor.paperColorGray100()
+        contentTextView.backgroundColor = UIColor.materialGray100()
         contentTextView.textDelegate = self
         evaluationButton.frame = CGRect(x: view.bounds.width - 80, y: 0, width: 80, height: topBar.bounds.height)
         evaluationButton.addTarget(self, action: "toggleEvaluation", forControlEvents: .TouchUpInside)
         evaluationButton.backgroundColor = UIColor.clearColor()
-        avatarButton.backgroundColor = UIColor.paperColorGray100()
+        avatarButton.backgroundColor = UIColor.materialGray100()
         avatarButton.frame = CGRect(x: 10, y: 7, width: 30, height: 30)
         avatarButton.layer.masksToBounds = true
         avatarButton.layer.cornerRadius = avatarButton.bounds.width / 2
         nameLabel.frame.origin = CGPoint(x: avatarButton.frame.origin.x + avatarButton.bounds.width + 10, y: avatarButton.frame.origin.y)
         nameLabel.frame.size = CGSize(width: view.bounds.width - nameLabel.frame.origin.x - evaluationButton.bounds.width, height: avatarButton.bounds.height / 2)
         nameLabel.font = UIFont.systemFontOfSize(12)
-        nameLabel.textColor = UIColor.paperColorGray800()
+        nameLabel.textColor = UIColor.materialGray800()
         signatureLabel.frame = nameLabel.frame
         signatureLabel.frame.origin.y += avatarButton.bounds.height / 2
         signatureLabel.font = nameLabel.font
-        signatureLabel.textColor = UIColor.paperColorGray600()
+        signatureLabel.textColor = UIColor.materialGray600()
         topBar.delegate = self
         bottomBar.delegate = self
         let likeItem = UIBarButtonItem(image: UIImage(named: "Star-Line"), style: .Plain, target: nil, action: nil)
@@ -116,7 +116,6 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
             firstAppear = false
             wrapper!.addSubview(topBar)
             wrapper!.addSubview(bottomBar)
-            let msr_navigationBar = Msr.UI.navigationBarOfViewController(self)
             topBar.frame.origin.y += msr_navigationBar!.bounds.height
             contentTextView.contentInset.top += topBar.bounds.height
             contentTextView.contentInset.bottom += bottomBar.bounds.height
@@ -148,9 +147,9 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
             options: [
                 NSTextSizeMultiplierDocumentOption: 1,
                 DTDefaultFontSize: 16,
-                DTDefaultTextColor: UIColor.paperColorGray700(),
-                DTDefaultLinkColor: UIColor.paperColorBlue500(),
-                DTDefaultLinkHighlightColor: UIColor.paperColorPurple300(),
+                DTDefaultTextColor: UIColor.materialGray700(),
+                DTDefaultLinkColor: UIColor.materialBlue500(),
+                DTDefaultLinkHighlightColor: UIColor.materialPurple300(),
                 DTDefaultLineHeightMultiplier: 1.7,
                 DTDefaultLinkDecoration: false
             ],
@@ -219,6 +218,10 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
             return .Bottom
         }
         return .Any
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .Default
     }
     
 }

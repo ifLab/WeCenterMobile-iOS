@@ -41,16 +41,12 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     var needsToBeRefreshed: Bool = false
     
     init(userID: NSNumber) {
-        super.init()
+        super.init(nibName: nil, bundle: nil)
         self.userID = userID
     }
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func loadView() {
@@ -78,7 +74,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         hideableView.addSubview(agreementCountView)
         
         topView.frame = CGRect(x: 0, y: -(UINavigationController().navigationBar.bounds.height + UIApplication.sharedApplication().statusBarFrame.height), width: view.bounds.width, height: 200)
-        topView.backgroundColor = UIColor.paperColorGray300()
+        topView.backgroundColor = UIColor.materialGray300()
         topView.delaysContentTouches = false
         topView.layer.masksToBounds = false
         bottomView.frame = CGRect(x: 0, y: topView.frame.origin.y + topView.bounds.height, width: view.bounds.width, height: view.frame.height - topView.bounds.height)
@@ -94,8 +90,8 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         avatarButton.layer.masksToBounds = true
         avatarButton.addTarget(self, action: "toggleAvatarButtonImage", forControlEvents: .TouchUpInside)
         avatarButton.addTarget(self, action: "delayHidingAvatarButtonImage", forControlEvents: .TouchDown)
-        avatarButton.imageView.frame = avatarButton.bounds
-        avatarButton.imageView.alpha = 0
+        avatarButton.imageView!.frame = avatarButton.bounds
+        avatarButton.imageView!.alpha = 0
         avatarButton.usesSmartColor = false
         avatarButton.tapCircleColor = UIColor(white: 1, alpha: 0.5)
         avatarActivityIndicatorView.frame = avatarButton.frame
@@ -108,7 +104,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         hideableView.frame = CGRect(x: 0, y: 0, width: bottomView.bounds.width, height: 0.01)
         hideableView.layer.masksToBounds = false
         signatureLabel.font = UIFont.systemFontOfSize(16)
-        signatureLabel.textColor = UIColor.paperColorGray900()
+        signatureLabel.textColor = UIColor.materialGray900()
         signatureLabel.numberOfLines = 0
         signatureLabel.textAlignment = .Center
         signatureLabel.frame = CGRect(x: 0, y: 0, width: hideableView.bounds.width, height: 0.01)
@@ -197,9 +193,8 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
             })
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        let msr_navigationBar = Msr.UI.navigationBarOfViewController(self)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         msr_navigationBar!.hidden = true
     }
     
@@ -342,7 +337,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
             initialSpringVelocity: 0,
             options: .BeginFromCurrentState,
             animations: {
-                self.avatarButton.imageView.alpha = 0
+                self.avatarButton.imageView!.alpha = 0
             }, completion: {
                 finished in
                 self.avatarButton.setImage(nil, forState: .Normal)
@@ -368,7 +363,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
                     initialSpringVelocity: 0,
                     options: .BeginFromCurrentState,
                     animations: {
-                        self.avatarButton.imageView.alpha = 1
+                        self.avatarButton.imageView!.alpha = 1
                     }, completion: {
                         finished in
                         self.avatarButton.userInteractionEnabled = true
@@ -405,17 +400,14 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     }
     
     internal func pushTopicListViewController() {
-        let msr_navigationController = Msr.UI.navigationControllerOfViewController(self)
         msr_navigationController!.pushViewController(TopicListViewController(userID: userID), animated: true, completion: nil)
     }
     
     internal func pushFollowerViewController() {
-        let msr_navigationController = Msr.UI.navigationControllerOfViewController(self)
         msr_navigationController!.pushViewController(UserListViewController(ID: userID, listType: .UserFollower), animated: true, completion: nil)
     }
     
     internal func pushFollowingViewController() {
-        let msr_navigationController = Msr.UI.navigationControllerOfViewController(self)
         msr_navigationController!.pushViewController(UserListViewController(ID: userID, listType: .UserFollowing), animated: true, completion: nil)
     }
     

@@ -12,26 +12,14 @@ class AnswerAdditionCell: BFPaperTableViewCell {
     let additionView = UIView()
     let additionImageView = UIImageView(image: UIImage(named: "Add_icon").imageWithRenderingMode(.AlwaysTemplate))
     let additionTextLabel = UILabel()
-    init(reuseIdentifier: String!, width: CGFloat) {
+    init(reuseIdentifier: String?, width: CGFloat) {
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
-        initialize()
-        update(width: width)
-    }
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        initialize()
-    }
-    override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        initialize()
-    }
-    func initialize() {
         contentView.addSubview(additionView)
         additionView.addSubview(additionImageView)
         additionView.addSubview(additionTextLabel)
-        textLabel.text = ""
+        textLabel!.text = ""
         additionImageView.frame = CGRect(x: 0, y: 10, width: 20, height: 20)
-        additionImageView.tintColor = UIColor.paperColorGray800()
+        additionImageView.tintColor = UIColor.materialGray800()
         additionTextLabel.font = UIFont.systemFontOfSize(12)
         additionTextLabel.text = "添加回答" // Needs localization
         additionTextLabel.frame = CGRect(
@@ -42,7 +30,14 @@ class AnswerAdditionCell: BFPaperTableViewCell {
         additionView.frame = CGRect(x: 0, y: 0, width: additionTextLabel.frame.origin.x + additionTextLabel.bounds.width, height: 40)
         contentView.frame = additionView.bounds
         frame = contentView.bounds
-        backgroundColor = UIColor.paperColorGray200()
+        backgroundColor = UIColor.materialGray200()
+        update(width: width)
+    }
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     func update(#width: CGFloat) {
         additionView.center.x = width / 2
@@ -54,7 +49,7 @@ class AnswerAdditionCell: BFPaperTableViewCell {
         CGContextMoveToPoint(context, 0, 0)
         CGContextAddLineToPoint(context, bounds.width, 0)
         CGContextClosePath(context)
-        CGContextSetStrokeColorWithColor(context, UIColor.paperColorGray400().CGColor)
+        CGContextSetStrokeColorWithColor(context, UIColor.materialGray400().CGColor)
         CGContextStrokePath(context)
     }
 }
