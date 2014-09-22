@@ -80,7 +80,6 @@ class Activity: NSManagedObject {
                             let questionActivity = activity as QuestionActivity
                             questionActivity.title = value["question_content"] as? String
                             if value["update_time"] != nil && value["update_time"]! != nil { // BACK_END_BUG value["update_time"] might be Optional("nil")
-                                println(String.fromCString(object_getClassName(value["update_time"])))
                                 questionActivity.lastUpdatedTime = NSDate(timeIntervalSince1970: NSTimeInterval(value["update_time"] as NSNumber))
                             }
                             questionActivity.answerCount = value["answer_count"] as? NSNumber

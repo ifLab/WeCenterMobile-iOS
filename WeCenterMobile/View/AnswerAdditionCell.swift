@@ -14,6 +14,17 @@ class AnswerAdditionCell: BFPaperTableViewCell {
     let additionTextLabel = UILabel()
     init(reuseIdentifier: String?, width: CGFloat) {
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
+        initialize()
+        update(width: width)
+    }
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        initialize()
+    }
+    func initialize() {
         contentView.addSubview(additionView)
         additionView.addSubview(additionImageView)
         additionView.addSubview(additionTextLabel)
@@ -31,13 +42,6 @@ class AnswerAdditionCell: BFPaperTableViewCell {
         contentView.frame = additionView.bounds
         frame = contentView.bounds
         backgroundColor = UIColor.materialGray200()
-        update(width: width)
-    }
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     func update(#width: CGFloat) {
         additionView.center.x = width / 2

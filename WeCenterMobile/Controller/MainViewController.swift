@@ -25,9 +25,15 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     ]
     override init() {
         super.init(nibName: nil, bundle: nil)
-        tableView = UITableView(frame: sidebar.contentView.bounds, style: .Grouped)
         contentViewController = Msr.UI.NavigationController(rootViewController: viewControllerAtIndex(0))
         addChildViewController(contentViewController)
+    }
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    override func loadView() {
+        super.loadView()
+        tableView = UITableView(frame: sidebar.contentView.bounds, style: .Grouped)
         view.addSubview(contentViewController.view)
         view.insertSubview(sidebar, aboveSubview: contentViewController.view)
         tableView.backgroundColor = UIColor.clearColor()
@@ -37,9 +43,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.separatorStyle = .SingleLineEtched
         tableView.showsVerticalScrollIndicator = false
         sidebar.contentView.addSubview(tableView)
-    }
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3

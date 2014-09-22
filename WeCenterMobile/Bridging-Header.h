@@ -14,5 +14,4 @@
 #import "BFPaperTableViewCell.h"
 #undef deprecated
 
-#import "DTFoundation.h"
 #import "DTCoreText.h"

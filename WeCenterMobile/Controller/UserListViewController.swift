@@ -23,17 +23,20 @@ class UserListViewController: UITableViewController {
         super.init(style: .Plain)
         self.listType = listType
         self.ID = ID
-        tableView.separatorStyle = .None
-        refreshControl = UIRefreshControl()
-        refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
-        msr_loadMoreControl = Msr.UI.LoadMoreControl()
-        msr_loadMoreControl.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
     }
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    override func loadView() {
+        super.loadView()
+        tableView.separatorStyle = .None
+        refreshControl = UIRefreshControl()
+        refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+        msr_loadMoreControl = Msr.UI.LoadMoreControl()
+        msr_loadMoreControl.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
     }
     override func viewDidAppear(animated: Bool) {
         refreshControl!.beginRefreshing()

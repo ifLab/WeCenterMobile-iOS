@@ -19,6 +19,14 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
         "ADD",
         "ANSWERS"
     ]
+    let classes: [AnyClass] = [
+        QuestionTitleCell.self,
+        TopicTagListCell.self,
+        QuestionBodyCell.self,
+        QuestionFocusCell.self,
+        AnswerAdditionCell.self,
+        AnswerCell.self
+    ]
     var questionFocusCell: QuestionFocusCell! = nil
     init(questionID: NSNumber) {
         super.init(style: .Grouped)
@@ -32,12 +40,9 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
     }
     override func loadView() {
         super.loadView()
-        tableView.registerClass(QuestionTitleCell.self, forCellReuseIdentifier: identifiers[0])
-        tableView.registerClass(TopicTagListCell.self, forCellReuseIdentifier: identifiers[1])
-        tableView.registerClass(QuestionBodyCell.self, forCellReuseIdentifier: identifiers[2])
-        tableView.registerClass(QuestionFocusCell.self, forCellReuseIdentifier: identifiers[3])
-        tableView.registerClass(AnswerAdditionCell.self, forCellReuseIdentifier: identifiers[4])
-        tableView.registerClass(AnswerCell.self, forCellReuseIdentifier: identifiers[5])
+        for i in 0..<identifiers.count {
+            tableView.registerClass(classes[i], forCellReuseIdentifier: identifiers[i])
+        }
         tableView.sectionHeaderHeight = 0
         tableView.sectionFooterHeight = 0
         tableView.contentInset.top -= 35
@@ -151,7 +156,6 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
                 cell = QuestionBodyCell(question: data?.question, reuseIdentifier: identifier)
                 NSNotificationCenter.defaultCenter().addObserverForName(DTAttributedTextContentViewDidFinishLayoutNotification, object: (cell as QuestionBodyCell).attributedTextContextView, queue: NSOperationQueue.mainQueue(), usingBlock: {
                     notification in
-                    println("?")
                     self.tableView.reloadData()
                 })
             } else {

@@ -22,17 +22,11 @@ class TopicListViewController: UITableViewController {
         super.init(style: .Plain)
         listType = .User
         self.userID = userID
-        refreshControl = UIRefreshControl()
-        refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
-        msr_loadMoreControl = Msr.UI.LoadMoreControl()
-        msr_loadMoreControl.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
-        initialize()
     }
     init(topics: [Topic]) {
         super.init(style: .Plain)
         listType = .Normal
         topicList = topics
-        initialize()
     }
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -40,7 +34,12 @@ class TopicListViewController: UITableViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
-    private func initialize() {
+    override func loadView() {
+        super.loadView()
+        refreshControl = UIRefreshControl()
+        refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+        msr_loadMoreControl = Msr.UI.LoadMoreControl()
+        msr_loadMoreControl.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
         tableView.separatorStyle = .None
     }
     override func viewDidLoad() {

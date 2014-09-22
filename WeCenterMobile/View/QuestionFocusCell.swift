@@ -59,6 +59,20 @@ class QuestionFocusCell: UITableViewCell {
     
     init(question: Question?, answerCount: NSNumber?, width: CGFloat, reuseIdentifier: String) {
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
+        initialize()
+        update(question: question, answerCount: answerCount, width: width)
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        initialize()
+    }
+    
+    func initialize() {
         contentView.addSubview(focusImageView)
         contentView.addSubview(focusCountLabel)
         contentView.addSubview(answerImageView)
@@ -87,15 +101,6 @@ class QuestionFocusCell: UITableViewCell {
         backgroundColor = UIColor.materialGray100()
         frame.size.height = focusButton.bounds.height
         contentView.frame.size.height = bounds.height
-        update(question: question, answerCount: answerCount, width: width)
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
     func update(#question: Question?, answerCount: NSNumber?, width: CGFloat) {

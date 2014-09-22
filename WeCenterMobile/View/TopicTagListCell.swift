@@ -30,12 +30,7 @@ class TopicTagListCell: UITableViewCell {
     var topicTagViews = [TopicTagView]()
     init(topics: [Topic], width: CGFloat, reuseIdentifier: String?) {
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(scrollView)
-        textLabel!.text = ""
-        scrollView.backgroundColor = UIColor.clearColor()
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.alwaysBounceHorizontal = true
-        backgroundColor = UIColor.materialGray300()
+        initialize()
         update(topics: topics, width: width)
     }
     required init(coder aDecoder: NSCoder) {
@@ -43,6 +38,15 @@ class TopicTagListCell: UITableViewCell {
     }
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        initialize()
+    }
+    func initialize() {
+        contentView.addSubview(scrollView)
+        textLabel!.text = ""
+        scrollView.backgroundColor = UIColor.clearColor()
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.alwaysBounceHorizontal = true
+        backgroundColor = UIColor.materialGray300()
     }
     func update(#topics: [Topic], width: CGFloat) {
         for topicTagView in topicTagViews {

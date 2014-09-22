@@ -12,13 +12,7 @@ class QuestionTitleCell: BFPaperTableViewCell {
     let titleLabel = UILabel()
     init(question: Question?, width: CGFloat, reuseIdentifier: String?) {
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
-        addSubview(titleLabel)
-        textLabel!.text = ""
-        backgroundColor = UIColor.materialGray300()
-        titleLabel.numberOfLines = 0
-        titleLabel.lineBreakMode = .ByCharWrapping
-        titleLabel.textColor = UIColor.blackColor()
-        titleLabel.font = UIFont.boldSystemFontOfSize(16)
+        initialize()
         update(question: question, width: width)
     }
     required init(coder aDecoder: NSCoder) {
@@ -26,6 +20,16 @@ class QuestionTitleCell: BFPaperTableViewCell {
     }
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        initialize()
+    }
+    func initialize() {
+        contentView.addSubview(titleLabel)
+        textLabel!.text = ""
+        backgroundColor = UIColor.materialGray300()
+        titleLabel.numberOfLines = 0
+        titleLabel.lineBreakMode = .ByCharWrapping
+        titleLabel.textColor = UIColor.blackColor()
+        titleLabel.font = UIFont.boldSystemFontOfSize(16)
     }
     func update(#question: Question?, width: CGFloat) {
         titleLabel.text = question?.title

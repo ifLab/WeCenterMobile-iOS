@@ -36,9 +36,16 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     init(topicID: NSNumber) {
         super.init(nibName: nil, bundle: nil)
         self.topicID = topicID
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
+        super.loadView()
         view = UIScrollView(frame: UIScreen.mainScreen().bounds)
         (view as UIScrollView).bounces = false
-        
         view.addSubview(tableView)
         view.addSubview(topView)
         topView.addSubview(imageButton)
@@ -46,7 +53,6 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         topView.addSubview(countLabel)
         imageButton.addSubview(imageActivityIndicatorView)
         tableView.addSubview(hideableView)
-        
         hideableView.addSubview(introductionLabel)
         topView.frame = CGRect(x: 0, y: -(UINavigationController().navigationBar.bounds.height + UIApplication.sharedApplication().statusBarFrame.height), width: view.bounds.width, height: 140)
         topView.backgroundColor = UIColor.materialGray300()
@@ -88,10 +94,6 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         introductionLabel.font = UIFont.systemFontOfSize(14)
         introductionLabel.textColor = UIColor.materialGray800()
         scrollViewDidScroll(tableView)
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewWillAppear(animated: Bool) {

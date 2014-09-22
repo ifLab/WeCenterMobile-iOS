@@ -15,6 +15,14 @@ class WelcomeViewController: UIViewController {
     
     override init() {
         super.init(nibName: nil, bundle: nil)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
+        super.loadView()
         let welcomeView = WelcomeView()
         welcomeView.loginButton.addTarget(self, action: "showLoginView", forControlEvents: .TouchUpInside)
         typealias AlertAction = Msr.UI.AlertAction
@@ -31,13 +39,9 @@ class WelcomeViewController: UIViewController {
                     appDelegate.window!.rootViewController!.presentViewController(appDelegate.mainViewController, animated: true, completion: nil)
                 },
                 failure: nil)
-        })
+            })
         view = welcomeView
         view.addSubview(loginView)
-    }
-
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     func showLoginView() {

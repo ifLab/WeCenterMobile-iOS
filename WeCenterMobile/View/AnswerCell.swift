@@ -15,6 +15,17 @@ class AnswerCell: BFPaperTableViewCell {
     let contentLabel = DTAttributedLabel()
     init(answer: Answer?, user: User?, width: CGFloat, reuseIdentifier: String?) {
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
+        initialize()
+        update(answer: answer, user: user, width: width)
+    }
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        initialize()
+    }
+    func initialize() {
         contentView.addSubview(avatarButton)
         contentView.addSubview(agreementCountLabel)
         contentView.addSubview(nameLabel)
@@ -36,13 +47,6 @@ class AnswerCell: BFPaperTableViewCell {
         contentLabel.lineBreakMode = .ByCharWrapping
         contentLabel.layoutFrameHeightIsConstrainedByBounds = false
         contentLabel.backgroundColor = UIColor.clearColor()
-        update(answer: answer, user: user, width: width)
-    }
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     func update(#answer: Answer?, user: User?, width: CGFloat) {
         avatarButton.msr_userInfo = user?.id ?? -1

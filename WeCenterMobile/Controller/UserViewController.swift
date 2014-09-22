@@ -51,10 +51,8 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     
     override func loadView() {
         super.loadView()
-        
         view = UIScrollView(frame: UIScreen.mainScreen().bounds)
         (view as UIScrollView).bounces = false
-        
         view.addSubview(bottomView)
         view.addSubview(topView)
         topView.addSubview(avatarButton)
@@ -72,7 +70,6 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         hideableView.addSubview(likeCountView)
         hideableView.addSubview(favoriteCountView)
         hideableView.addSubview(agreementCountView)
-        
         topView.frame = CGRect(x: 0, y: -(UINavigationController().navigationBar.bounds.height + UIApplication.sharedApplication().statusBarFrame.height), width: view.bounds.width, height: 200)
         topView.backgroundColor = UIColor.materialGray300()
         topView.delaysContentTouches = false
