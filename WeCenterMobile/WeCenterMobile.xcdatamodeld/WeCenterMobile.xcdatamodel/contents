@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6220.8" systemVersion="14A314h" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6220.17" systemVersion="14A329f" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Activity" representedClassName="WeCenterMobile.Activity" syncable="YES">
         <attribute name="addedTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,6 +23,7 @@
     <entity name="ArticalActivity" representedClassName="WeCenterMobile.ArticalActivity" parentEntity="Activity" syncable="YES">
         <attribute name="commentCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
+    <entity name="Comment" syncable="YES"/>
     <entity name="Question" representedClassName="WeCenterMobile.Question" syncable="YES">
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="focusCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -73,6 +74,10 @@
         <attribute name="thankCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="topicFocusCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
+    <entity name="User_Answer" representedClassName="WeCenterMobile.User_Answer" syncable="YES">
+        <attribute name="answerID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="User_Topic" representedClassName="WeCenterMobile.User_Topic" syncable="YES">
         <attribute name="topicID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -90,6 +95,8 @@
     <fetchRequest name="Question_Topic_By_QuestionID" entity="Question_Topic" predicateString="questionID == $ID"/>
     <fetchRequest name="Question_Topic_Check" entity="Question_Topic" predicateString="questionID == $QuestionID AND topicID == $TopicID"/>
     <fetchRequest name="Topic_By_ID" entity="Topic" predicateString="id == $ID"/>
+    <fetchRequest name="User_Answer_By_UserID" entity="User_Answer" predicateString="userID == $ID"/>
+    <fetchRequest name="User_Answer_Check" entity="User_Answer" predicateString="userID == $UserID AND answerID == $AnswerID"/>
     <fetchRequest name="User_By_ID" entity="User" predicateString="id == $ID"/>
     <fetchRequest name="User_Topic_By_UserID" entity="User_Topic" predicateString="userID == $ID"/>
     <fetchRequest name="User_Topic_Check" entity="User_Topic" predicateString="userID == $UserID AND topicID == $TopicID"/>
@@ -101,6 +108,7 @@
         <element name="Activity_Topic" positionX="-108" positionY="189" width="128" height="75"/>
         <element name="Answer" positionX="-162" positionY="90" width="128" height="148"/>
         <element name="ArticalActivity" positionX="-63" positionY="162" width="128" height="58"/>
+        <element name="Comment" positionX="-162" positionY="90" width="128" height="45"/>
         <element name="Question" positionX="-153" positionY="99" width="128" height="105"/>
         <element name="Question_Answer" positionX="-135" positionY="117" width="128" height="75"/>
         <element name="Question_Topic" positionX="-144" positionY="108" width="128" height="75"/>
@@ -108,6 +116,7 @@
         <element name="QuestionActivity_Topic" positionX="-162" positionY="90" width="128" height="75"/>
         <element name="Topic" positionX="117" positionY="-63" width="128" height="120"/>
         <element name="User" positionX="-369" positionY="272" width="128" height="285"/>
+        <element name="User_Answer" positionX="-162" positionY="90" width="128" height="73"/>
         <element name="User_Topic" positionX="-162" positionY="90" width="128" height="30"/>
         <element name="User_User" positionX="-162" positionY="99" width="128" height="30"/>
     </elements>

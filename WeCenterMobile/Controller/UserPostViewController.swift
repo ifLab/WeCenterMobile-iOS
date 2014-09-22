@@ -30,14 +30,8 @@ class UserPostViewController: UIViewController {
     
     var delegate:UserPostDelegate?
     
-
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-       
-    }
-    
     init(style:String , title:String){
-        super.init(nibName: nil, bundle: NSBundle.mainBundle())
+        super.init(nibName: nil, bundle: nil)
         headerTitle = title
         publishButton = UIBarButtonItem(title: UserStrings["Publish"], style: UIBarButtonItemStyle.Done, target: self , action: "postData" )
         cancelButton = UIBarButtonItem(title: UserStrings["Cancel"], style: UIBarButtonItemStyle.Done, target: self, action: "turnBack")
@@ -83,7 +77,7 @@ class UserPostViewController: UIViewController {
         if headerTitle == UserStrings["Birthday"] {
             let date:NSDate = datePicker!.date
             let time:Int = Int(date.timeIntervalSince1970)
-            UserModel.POST(UserModel.URLStrings["profile_setting"]!,
+            UserModel.POST("profile_setting",
                 parameters: [
 
                     "uid": appDelegate.currentUser!.id,
@@ -103,7 +97,7 @@ class UserPostViewController: UIViewController {
 
         }
         if headerTitle == UserStrings["Introduction"]{
-            UserModel.POST(UserModel.URLStrings["profile_setting"]!,
+            UserModel.POST("profile_setting",
                 parameters: [
 
                     "uid": appDelegate.currentUser!.id,
@@ -126,7 +120,7 @@ class UserPostViewController: UIViewController {
             if textField?.text == nil {
                 return
             }
-            UserModel.POST(UserModel.URLStrings["profile_setting"]!,
+            UserModel.POST("profile_setting",
                 parameters: [
                     "uid": appDelegate.currentUser!.id,
                    "user_name": textField!.text

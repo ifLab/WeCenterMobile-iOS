@@ -14,31 +14,34 @@ class WelcomeViewController: UIViewController {
     let strings = Msr.Data.LocalizedStrings(module: "Welcome", bundle: NSBundle.mainBundle())
     
     override init() {
-        super.init(nibName: nil, bundle: NSBundle.mainBundle())
-        let welcomeView = WelcomeView(frame: UIScreen.mainScreen().bounds)
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
+        super.loadView()
+        let welcomeView = WelcomeView()
         welcomeView.loginButton.addTarget(self, action: "showLoginView", forControlEvents: .TouchUpInside)
         typealias AlertAction = Msr.UI.AlertAction
         loginView.addAction(AlertAction(title: strings["Cancel"], style: .Cancel) { action in })
         loginView.addAction(AlertAction(title: strings["Login"], style: .Default) {
-            [weak self] action in
-            User.loginWithName(self!.loginView.usernameField.text,
-                password: self!.loginView.passwordField.text,
+            action in
+            User.loginWithName(self.loginView.usernameField.text,
+                password: self.loginView.passwordField.text,
                 success: {
                     user in
                     appDelegate.currentUser = user
                     appDelegate.mainViewController = MainViewController()
                     appDelegate.mainViewController.modalTransitionStyle = .CrossDissolve
-                    appDelegate.window!.rootViewController.presentViewController(appDelegate.mainViewController, animated: true, completion: nil)
+                    appDelegate.window!.rootViewController!.presentViewController(appDelegate.mainViewController, animated: true, completion: nil)
                 },
                 failure: nil)
-            return
             })
         view = welcomeView
         view.addSubview(loginView)
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
     
     func showLoginView() {

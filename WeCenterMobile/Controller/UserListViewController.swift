@@ -14,8 +14,8 @@ class UserListViewController: UITableViewController {
         case UserFollower = 2
         case QuestionFollwer = 3
     }
-    let listType: ListType!
-    let ID: NSNumber!
+    var listType: ListType! = nil
+    var ID: NSNumber! = nil
     var page = 1
     let count = 20
     var userList = [User]()
@@ -23,37 +23,38 @@ class UserListViewController: UITableViewController {
         super.init(style: .Plain)
         self.listType = listType
         self.ID = ID
-        tableView.separatorStyle = .None
-        refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
-/// @TODO: This version of implementation will cause compiler crash on Xcode 6 Beta 6. Temporarily removed for future use.
-//        msr_loadMoreControl = Msr.UI.LoadMoreControl()
-//        msr_loadMoreControl.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
     }
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
+    override func loadView() {
+        super.loadView()
+        tableView.separatorStyle = .None
+        refreshControl = UIRefreshControl()
+        refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+        msr_loadMoreControl = Msr.UI.LoadMoreControl()
+        msr_loadMoreControl.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
+    }
     override func viewDidAppear(animated: Bool) {
-        refreshControl.beginRefreshing()
+        refreshControl!.beginRefreshing()
         refresh()
     }
-    override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userList.count
     }
-    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         return UserCell(user: userList[indexPath.row], reuseIdentifier: "")
     }
-    override func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 80
     }
-    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-        let msr_navigationController = Msr.UI.navigationControllerOfViewController(self)
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         msr_navigationController!.pushViewController(UserViewController(userID: userList[indexPath.row].id), animated: true, completion: nil)
     }
     func refresh() {
@@ -61,12 +62,12 @@ class UserListViewController: UITableViewController {
             users in
             self.page = 1
             self.userList = users
-            self.refreshControl.endRefreshing()
+            self.refreshControl!.endRefreshing()
             self.tableView.reloadData()
         }
         let failure: (NSError) -> Void = {
             error in
-            self.refreshControl.endRefreshing()
+            self.refreshControl!.endRefreshing()
             self.tableView.reloadData()
         }
         switch listType! {
@@ -80,29 +81,28 @@ class UserListViewController: UITableViewController {
             break
         }
     }
-/// @TODO: This version of implementation will cause compiler crash on Xcode 6 Beta 6. Temporarily removed for future use.
-//    func loadMore() {
-//        let success: ([User]) -> Void = {
-//            users in
-//            ++self.page
-//            self.userList.extend(users)
-//            self.msr_loadMoreControl.endLoadingMore()
-//            self.tableView.reloadData()
-//        }
-//        let failure: (NSError) -> Void = {
-//            error in
-//            self.msr_loadMoreControl.endLoadingMore()
-//            self.tableView.reloadData()
-//        }
-//        switch listType! {
-//        case .UserFollower:
-//            User.fetchFollowerListByUserID(ID, strategy: .NetworkFirst, page: page + 1, count: count, success: success, failure: failure)
-//            break
-//        case .UserFollowing:
-//            User.fetchFollowingListByUserID(ID, strategy: .NetworkFirst, page: page + 1, count: count, success: success, failure: failure)
-//            break
-//        default:
-//            break
-//        }
-//    }
+    func loadMore() {
+        let success: ([User]) -> Void = {
+            users in
+            ++self.page
+            self.userList.extend(users)
+            self.msr_loadMoreControl.endLoadingMore()
+            self.tableView.reloadData()
+        }
+        let failure: (NSError) -> Void = {
+            error in
+            self.msr_loadMoreControl.endLoadingMore()
+            self.tableView.reloadData()
+        }
+        switch listType! {
+        case .UserFollower:
+            User.fetchFollowerListByUserID(ID, strategy: .NetworkFirst, page: page + 1, count: count, success: success, failure: failure)
+            break
+        case .UserFollowing:
+            User.fetchFollowingListByUserID(ID, strategy: .NetworkFirst, page: page + 1, count: count, success: success, failure: failure)
+            break
+        default:
+            break
+        }
+    }
 }

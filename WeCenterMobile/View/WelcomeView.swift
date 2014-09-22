@@ -15,8 +15,8 @@ class WelcomeView: UIView {
     let registerButton = UIButton()
     let strings = Msr.Data.LocalizedStrings(module: "Welcome", bundle: NSBundle.mainBundle())
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init() {
+        super.init(frame: UIScreen.mainScreen().bounds)
         backgroundColor = UIColor.whiteColor()
         var center = self.center
         center.y = frame.height / 3
@@ -24,18 +24,18 @@ class WelcomeView: UIView {
         addSubview(logoView)
         loginButton.setTitle(strings["Login"], forState: .Normal)
         loginButton.frame = CGRect(x: frame.width / 5, y: frame.height * 3 / 5, width: frame.width * 3 / 5, height: 40)
-        loginButton.setBackgroundImage(UIImage.rectangleWithColor(UIColor.blackColor(), size: loginButton.bounds.size), forState: .Normal)
-        loginButton.titleLabel.font = UIFont.systemFontOfSize(16)
+        loginButton.setBackgroundImage(UIImage.rectangleWithColor(.blackColor(), size: loginButton.bounds.size), forState: .Normal)
+        loginButton.titleLabel!.font = UIFont.systemFontOfSize(16)
         addSubview(loginButton)
         registerButton.setTitle(strings["Register"], forState: .Normal)
         registerButton.frame = CGRect(x: frame.width / 5, y: frame.height * 3 / 5 + 60, width: frame.width * 3 / 5, height: 40)
-        registerButton.setBackgroundImage(UIImage.rectangleWithColor(UIColor.grayColor(), size: registerButton.bounds.size), forState: .Normal)
-        registerButton.titleLabel.font = UIFont.systemFontOfSize(16)
+        registerButton.setBackgroundImage(UIImage.rectangleWithColor(.grayColor(), size: registerButton.bounds.size), forState: .Normal)
+        registerButton.titleLabel!.font = UIFont.systemFontOfSize(16)
         addSubview(registerButton)
     }
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
     
 }

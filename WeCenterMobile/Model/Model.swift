@@ -26,13 +26,13 @@ class Model {
         manager = AFHTTPRequestOperationManager(baseURL: NSURL(string: URLStrings["Base"]!))
         manager.responseSerializer = AFHTTPResponseSerializer()
     }
-    func GET(URLString: String,
+    func GET(key: String,
         parameters: NSDictionary?,
         success: ((AnyObject) -> Void)?,
         failure: ((NSError) -> Void)?) -> Void {
             let application = UIApplication.sharedApplication()
             application.networkActivityIndicatorVisible = true
-            manager.GET(URLString,
+            manager.GET(URLStrings[key]!,
                 parameters: parameters,
                 success: {
                     operation, data in
@@ -45,13 +45,13 @@ class Model {
                     failure?(error)
                 })
     }
-    func POST(URLString: String,
+    func POST(key: String,
         parameters: NSDictionary?,
         success: ((AnyObject) -> Void)?,
         failure: ((NSError) -> Void)?) -> Void {
             let application = UIApplication.sharedApplication()
             application.networkActivityIndicatorVisible = true
-            manager.POST(URLString,
+            manager.POST(URLStrings[key]!,
                 parameters: parameters,
                 constructingBodyWithBlock: nil,
                 success: {
@@ -66,8 +66,8 @@ class Model {
                 })
     }
     private func handleSuccess(#data: NSData, success: ((AnyObject) -> Void)?, failure: ((NSError) -> Void)?) {
-        let error: NSErrorPointer = nil
-        let object: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: error)
+        var error: NSError? = nil
+        let object: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error)
         if object == nil {
             failure?(NSError()) // Needs specification
             return
@@ -83,20 +83,20 @@ class Model {
                     userInfo: ["Hint": data["err"] as String]))
             }
         } else {
-            failure?(error.memory!)
+            failure?(error!)
         }
     }
     class func createManagedObjecWithEntityName(entityName: String) -> NSManagedObject {
-        let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: appDelegate.managedObjectContext)
+        let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: appDelegate.managedObjectContext!)!
         return NSManagedObject(entity: entity, insertIntoManagedObjectContext: appDelegate.managedObjectContext)
     }
     class func fetchManagedObjectByTemplateName<T: NSManagedObject>(templateName: String, ID: NSNumber, success: ((T) -> Void)?, failure: ((NSError) -> Void)?) {
         let request = appDelegate.managedObjectModel.fetchRequestFromTemplateWithName(templateName,
             substitutionVariables: [
                 "ID": ID
-            ])
+            ])!
         var error: NSError? = nil
-        let results = appDelegate.managedObjectContext.executeFetchRequest(request, error: &error)
+        let results = appDelegate.managedObjectContext!.executeFetchRequest(request, error: &error)
         if error == nil && results != nil && results!.count != 0 {
             success?(results![0] as T)
         } else {
@@ -121,14 +121,14 @@ class Model {
         let request = appDelegate.managedObjectModel.fetchRequestFromTemplateWithName(templateName,
             substitutionVariables: [
                 "ID": ID
-            ])
+            ])!
         request.fetchLimit = count
         request.fetchOffset = (page - 1) * count
         if sortBy != nil {
             request.sortDescriptors = [NSSortDescriptor(key: sortBy!.0, ascending: sortBy!.1)]
         }
         var error: NSError? = nil
-        let results = appDelegate.managedObjectContext.executeFetchRequest(request, error: &error)
+        let results = appDelegate.managedObjectContext!.executeFetchRequest(request, error: &error)
         if error == nil && results != nil && results!.count != 0 {
             success?(results as [T])
         } else {
@@ -140,9 +140,9 @@ class Model {
             substitutionVariables: [
                 a.0: a.1,
                 b.0: b.1
-            ])
+            ])!
         var error: NSError? = nil
-        let results = appDelegate.managedObjectContext.executeFetchRequest(request, error: &error)
+        let results = appDelegate.managedObjectContext!.executeFetchRequest(request, error: &error)
         return error == nil && results != nil && results!.count != 0
     }
 }

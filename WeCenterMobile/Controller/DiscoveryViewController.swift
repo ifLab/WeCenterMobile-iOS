@@ -23,6 +23,10 @@ class DiscoveryViewController: Msr.UI.SegmentedViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List-Dots"), style: .Bordered, target: self, action: "showSidebar")
     }
     
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -35,8 +39,5 @@ class DiscoveryViewController: Msr.UI.SegmentedViewController {
         return viewControllers[segmentedControl.selectedSegmentIndex].preferredStatusBarStyle()
     }
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
 }
 

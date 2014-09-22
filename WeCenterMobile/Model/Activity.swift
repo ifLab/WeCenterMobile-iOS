@@ -33,7 +33,6 @@ class Activity: NSManagedObject {
     }
     
     class func fetchActivityList(#count: Int, page: Int, dayCount: Int, recommended: Bool, type: ListType, success: (([Activity]) -> Void)?, failure: ((NSError) -> Void)?) {
-        let model = Model(module: "Discovery", bundle: NSBundle.mainBundle())
         var sortType = ""
         switch type {
         case .Hot:
@@ -48,7 +47,7 @@ class Activity: NSManagedObject {
         default:
             break
         }
-        model.GET(model.URLStrings["Get Activity List"]!,
+        DiscoveryModel.GET("Get Activity List",
             parameters: [
                 "per_page": count,
                 "page": page,
@@ -80,7 +79,7 @@ class Activity: NSManagedObject {
                             activity.id = key
                             let questionActivity = activity as QuestionActivity
                             questionActivity.title = value["question_content"] as? String
-                            if value["update_time"] != nil {
+                            if value["update_time"] != nil && value["update_time"]! != nil { // BACK_END_BUG value["update_time"] might be Optional("nil")
                                 questionActivity.lastUpdatedTime = NSDate(timeIntervalSince1970: NSTimeInterval(value["update_time"] as NSNumber))
                             }
                             questionActivity.answerCount = value["answer_count"] as? NSNumber

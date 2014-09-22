@@ -16,49 +16,35 @@ class QuestionAnswerCell: UITableViewCell {
     var answerLabel = UILabel()
     var userButton = BFPaperButton(raised: false)
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        initialize()
-    }
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        initialize()
-    }
-    
-    func initialize() {
         contentView.addSubview(questionButton)
         contentView.addSubview(answerButton)
         contentView.addSubview(userButton)
         questionButton.addSubview(questionLabel)
         answerButton.addSubview(answerLabel)
-        
         questionButton.exclusiveTouch = true
-        questionButton.backgroundColor = UIColor.paperColorGray200()
-        
+        questionButton.backgroundColor = UIColor.materialGray200()
         answerButton.exclusiveTouch = true
-        answerButton.backgroundColor = UIColor.paperColorGray100()
-        
+        answerButton.backgroundColor = UIColor.materialGray100()
         userButton.exclusiveTouch = true
-        userButton.backgroundColor = UIColor.paperColorGray200()
-        
+        userButton.backgroundColor = UIColor.materialGray200()
         questionLabel.numberOfLines = 0
-        
         answerLabel.numberOfLines = 4
     }
+    
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func update(#data: (question: Question, answer: Answer, user: User), width: CGFloat) {
         let question = data.question
         let answer = data.answer
         let user = data.user
     
-/// @TODO: This version of implementation will cause compiler crash on Xcode 6 Beta 6. Temporarily removed for future use.
-//        questionButton.msr_userInfo = question.id
-//        answerButton.msr_userInfo = answer.id
-//        userButton.msr_userInfo = user.id
-        
-        questionButton.tag = question.id
-        answerButton.tag = answer.id
-        userButton.tag = user.id
+        questionButton.msr_userInfo = question.id
+        answerButton.msr_userInfo = answer.id
+        userButton.msr_userInfo = user.id
         
         questionLabel.text = question.title
         questionLabel.font = UIFont.boldSystemFontOfSize(16)

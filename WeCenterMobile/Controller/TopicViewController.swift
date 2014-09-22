@@ -34,11 +34,18 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     var array: [(question: Question, answer: Answer, user: User)] = []
     
     init(topicID: NSNumber) {
-        super.init()
+        super.init(nibName: nil, bundle: nil)
         self.topicID = topicID
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
+        super.loadView()
         view = UIScrollView(frame: UIScreen.mainScreen().bounds)
         (view as UIScrollView).bounces = false
-        
         view.addSubview(tableView)
         view.addSubview(topView)
         topView.addSubview(imageButton)
@@ -46,10 +53,9 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         topView.addSubview(countLabel)
         imageButton.addSubview(imageActivityIndicatorView)
         tableView.addSubview(hideableView)
-        
         hideableView.addSubview(introductionLabel)
         topView.frame = CGRect(x: 0, y: -(UINavigationController().navigationBar.bounds.height + UIApplication.sharedApplication().statusBarFrame.height), width: view.bounds.width, height: 140)
-        topView.backgroundColor = UIColor.paperColorGray300()
+        topView.backgroundColor = UIColor.materialGray300()
         topView.delaysContentTouches = false
         topView.layer.masksToBounds = false
         tableView.frame = CGRect(x: 0, y: topView.frame.origin.y + topView.bounds.height, width: view.bounds.width, height: view.frame.height - topView.bounds.height)
@@ -69,7 +75,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         imageButton.layer.masksToBounds = true
         imageButton.addTarget(self, action: "toggleImageButtonImage", forControlEvents: .TouchUpInside)
         imageButton.addTarget(self, action: "delayHidingImageButtonImage", forControlEvents: .TouchDown)
-        imageButton.imageView.frame = imageButton.bounds
+        imageButton.imageView!.frame = imageButton.bounds
         imageButton.usesSmartColor = false
         imageButton.tapCircleColor = UIColor(white: 1, alpha: 0.5)
         imageActivityIndicatorView.frame = imageButton.bounds
@@ -81,25 +87,16 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         countLabel.frame = CGRect(x: titleLabel.frame.origin.x + 2, y: 0, width: titleLabel.bounds.width, height: 24)
         countLabel.center.y = imageButton.center.y + 15
         countLabel.font = UIFont.systemFontOfSize(16)
-        countLabel.textColor = UIColor.paperColorGray700()
+        countLabel.textColor = UIColor.materialGray700()
         countLabel.numberOfLines = 0
         introductionLabel.frame.size = CGSize(width: hideableView.bounds.width - 30, height: 0)
         introductionLabel.numberOfLines = 0
         introductionLabel.font = UIFont.systemFontOfSize(14)
-        introductionLabel.textColor = UIColor.paperColorGray800()
+        introductionLabel.textColor = UIColor.materialGray800()
         scrollViewDidScroll(tableView)
     }
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
     override func viewWillAppear(animated: Bool) {
-        let msr_navigationBar = Msr.UI.navigationBarOfViewController(self)
         msr_navigationBar!.hidden = true
         Topic.fetchTopicByID(topicID,
             strategy: .NetworkFirst,
@@ -158,7 +155,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     func reloadData() {
         titleLabel.text = topic.title
         if topic.imageURL != nil {
-            imageButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: topic.imageURL!), placeholderImage: UIImage.circleWithColor(UIColor.paperColorGray400(), radius: imageButton.bounds.width / 2))
+            imageButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: topic.imageURL!), placeholderImage: UIImage.circleWithColor(UIColor.materialGray400(), radius: imageButton.bounds.width / 2))
         }
         countLabel.text = "\(topic.focusCount!)人关注"
         introductionLabel.text = topic.introduction
@@ -192,7 +189,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
             initialSpringVelocity: 0,
             options: .BeginFromCurrentState,
             animations: {
-                self.imageButton.imageView.alpha = 0
+                self.imageButton.imageView!.alpha = 0
             }, completion: {
                 finished in
                 self.imageButton.setImage(nil, forState: .Normal)
@@ -218,7 +215,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
                     initialSpringVelocity: 0,
                     options: .BeginFromCurrentState,
                     animations: {
-                        self.imageButton.imageView.alpha = 1
+                        self.imageButton.imageView!.alpha = 1
                     }, completion: {
                         finished in
                         self.imageButton.userInteractionEnabled = true
@@ -254,32 +251,31 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         }
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return array.count
     }
     
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        let data = array[indexPath!.row]
-        var cell = tableView!.dequeueReusableCellWithIdentifier(tableViewCellReuseIdentifier, forIndexPath: indexPath) as? QuestionAnswerCell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let data = array[indexPath.row]
+        var cell: QuestionAnswerCell! = tableView.dequeueReusableCellWithIdentifier(tableViewCellReuseIdentifier, forIndexPath: indexPath) as? QuestionAnswerCell
         if cell == nil {
             cell = QuestionAnswerCell(style: .Default, reuseIdentifier: tableViewCellReuseIdentifier)
         }
-        cell!.update(data: data, width: tableView!.bounds.width)
-        cell!.userButton.addTarget(self, action: "pushUserViewController:", forControlEvents: .TouchUpInside)
-        cell!.questionButton.addTarget(self, action: "pushQuestionViewController:", forControlEvents: .TouchUpInside)
+        cell.update(data: data, width: tableView.bounds.width)
+        cell.userButton.addTarget(self, action: "pushUserViewController:", forControlEvents: .TouchUpInside)
+        cell.questionButton.addTarget(self, action: "pushQuestionViewController:", forControlEvents: .TouchUpInside)
         if data.user.avatar != nil {
-            cell!.userButton.setImage(data.user.avatar, forState: .Normal)
+            cell.userButton.setImage(data.user.avatar, forState: .Normal)
         } else {
             data.user.fetchAvatarImage(
                 success: {
-/// @TODO: This version of implementation will cause compiler crash on Xcode 6 Beta 6. Temporarily removed for future use.
-//                    if cell!.userButton.msr_userInfo as NSNumber == data.user.id {
-//                        cell!.userButton.setImage(data.user.avatar, forState: .Normal)
-//                    }
+                    if cell.userButton.msr_userInfo as NSNumber == data.user.id {
+                        cell.userButton.setImage(data.user.avatar, forState: .Normal)
+                    }
                 },
                 failure: nil)
         }
@@ -287,21 +283,18 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     }
     
     func pushUserViewController(userButton: UIButton) {
-/// @TODO: This version of implementation will cause compiler crash on Xcode 6 Beta 6. Temporarily removed for future use.
-//        msr_navigationController!.pushViewController(UserViewController(userID: userButton.msr_userInfo as NSNumber), animated: true, completion: nil)
+        msr_navigationController!.pushViewController(UserViewController(userID: userButton.msr_userInfo as NSNumber), animated: true, completion: nil)
     }
     
     func pushQuestionViewController(questionButton: UIButton) {
-        let msr_navigationController = Msr.UI.navigationControllerOfViewController(self)
-/// @TODO
-        msr_navigationController!.pushViewController(QuestionViewController(questionID: questionButton.tag), animated: true, completion: nil)
+        msr_navigationController!.pushViewController(QuestionViewController(questionID: questionButton.msr_userInfo as NSNumber), animated: true, completion: nil)
     }
     
-    func tableView(tableView: UITableView!, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
     
-    func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let cell = QuestionAnswerCell(style: .Default, reuseIdentifier: tableViewCellReuseIdentifier)
         cell.update(data: array[indexPath.row], width: tableView.bounds.width)
         return cell.bounds.height

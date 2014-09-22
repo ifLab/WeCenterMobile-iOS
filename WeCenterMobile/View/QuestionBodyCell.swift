@@ -7,23 +7,32 @@
 //
 
 import UIKit
-import WebKit
 
-class QuestionBodyCell: BFPaperTableViewCell {
-    let titleLabel = UILabel()
-    let bodyView = WKWebView(frame: CGRectZero, configuration: WKWebViewConfiguration())
-    init(question: Question, width: CGFloat, reuseIdentifier: String!) {
-        super.init(style: .Default, reuseIdentifier: reuseIdentifier)
-        initialize()
+class QuestionBodyCell: DTAttributedTextCell {
+    init(question: Question?, reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        update(question: question)
     }
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        initialize()
+        fatalError("init(coder:) has not been implemented")
     }
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
-    func initialize() {
-        
+    func update(#question: Question?) {
+        var HTMLString = ""
+        if question?.body != nil {
+            HTMLString = "<p style='padding: 5px'>\(question!.body!)</p>"
+        }
+        setHTMLString(HTMLString,
+            options: [
+                NSTextSizeMultiplierDocumentOption: 1,
+                DTDefaultFontSize: 14,
+                DTDefaultTextColor: UIColor.materialGray600(),
+                DTDefaultLinkColor: UIColor.materialBlue500(),
+                DTDefaultLinkHighlightColor: UIColor.materialPurple300(),
+                DTDefaultLineHeightMultiplier: 1.5,
+                DTDefaultLinkDecoration: false
+            ])
     }
 }

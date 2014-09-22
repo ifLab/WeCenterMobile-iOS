@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window!.rootViewController = welcomeViewController
-//        User.clearCookies()
         User.loginWithCookieAndCacheInStorage(
             success: {
                 user in
@@ -32,74 +31,67 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.mainViewController.modalTransitionStyle = .CrossDissolve
                     self.welcomeViewController.presentViewController(self.mainViewController, animated: true, completion: nil)
                 }
-            }, failure: {
+            },
+            failure: {
                 error in
                 self.window!.makeKeyAndVisible()
             })
         return true
     }
-
-    func applicationWillTerminate(application: UIApplication!) {
+    
+    func applicationWillTerminate(application: UIApplication) {
         self.saveContext()
     }
 
-    func saveContext () {
+    lazy var applicationDocumentsDirectory: NSURL = {
+        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        return urls.last as NSURL
+    }()
+    
+    lazy var managedObjectModel: NSManagedObjectModel = {
+        let modelURL = NSBundle.mainBundle().URLForResource("WeCenterMobile", withExtension: "momd")!
+        return NSManagedObjectModel(contentsOfURL: modelURL)
+    }()
+    
+    lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
+        var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
+        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("WeCenterMobile.sqlite")
         var error: NSError? = nil
-        if managedObjectContext.hasChanges && !managedObjectContext.save(&error) {
+        var failureReason = "There was an error creating or loading the application's saved data."
+        if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
+            coordinator = nil
+            let dict = NSMutableDictionary()
+            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
+            dict[NSLocalizedFailureReasonErrorKey] = failureReason
+            dict[NSUnderlyingErrorKey] = error
+            error = NSError.errorWithDomain("YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
+            NSLog("Unresolved error \(error), \(error!.userInfo)")
             abort()
         }
-    }
+        
+        return coordinator
+    }()
     
-    var managedObjectContext: NSManagedObjectContext {
-        if _managedObjectContext == nil {
-            _managedObjectContext = NSManagedObjectContext()
-            _managedObjectContext!.persistentStoreCoordinator = persistentStoreCoordinator
+    lazy var managedObjectContext: NSManagedObjectContext? = {
+        let coordinator = self.persistentStoreCoordinator
+        if coordinator == nil {
+            return nil
         }
-        return _managedObjectContext!
-    }
+        var managedObjectContext = NSManagedObjectContext()
+        managedObjectContext.persistentStoreCoordinator = coordinator
+        return managedObjectContext
+    }()
     
-    var _managedObjectContext: NSManagedObjectContext? = nil
-    
-    var managedObjectModel: NSManagedObjectModel {
-        if _managedObjectModel == nil {
-            let modelURL = NSBundle.mainBundle().URLForResource("WeCenterMobile", withExtension: "momd")
-            _managedObjectModel = NSManagedObjectModel(contentsOfURL: modelURL)
-        }
-        return _managedObjectModel!
-    }
-    
-    var _managedObjectModel: NSManagedObjectModel? = nil
-    
-    var persistentStoreCoordinator: NSPersistentStoreCoordinator {
-        if _persistentStoreCoordinator == nil {
-            let storeURL = applicationDocumentsDirectory.URLByAppendingPathComponent("WeCenterMobile.sqlite")
-            #if DEBUG
-                NSFileManager.defaultManager().removeItemAtURL(storeURL, error: nil)
-            #endif
+    func saveContext () {
+        if let moc = self.managedObjectContext {
             var error: NSError? = nil
-            _persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-            if _persistentStoreCoordinator!.addPersistentStoreWithType(
-                NSSQLiteStoreType,
-                configuration: nil,
-                URL: storeURL,
-                options: [
-                    NSMigratePersistentStoresAutomaticallyOption: true,
-                    NSInferMappingModelAutomaticallyOption: true],
-                error: &error) == nil {
-                #if DEBUG
-                    println("Unresolved error \(error!.userInfo)")
-                    abort()
-                #endif
+            if moc.hasChanges && !moc.save(&error) {
+                // Replace this implementation with code to handle the error appropriately.
+                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                NSLog("Unresolved error \(error), \(error!.userInfo)")
+                abort()
             }
         }
-        return _persistentStoreCoordinator!
-    }
-    
-    var _persistentStoreCoordinator: NSPersistentStoreCoordinator? = nil
-    
-    var applicationDocumentsDirectory: NSURL {
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls[urls.count - 1] as NSURL
     }
     
 }
