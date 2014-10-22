@@ -23,7 +23,7 @@ class LoginView: Msr.UI.AlertView {
             textField.layer.borderColor = borderColor
             textField.layer.borderWidth = 1
             textField.layer.cornerRadius = cornerRadius
-            textField.textColor = UIColor.whiteColor()
+            textField.textColor = UIColor.blackColor()
             textField.tintColor = UIColor.whiteColor()
             textField.textAlignment = .Center
             textField.keyboardAppearance = UIKeyboardAppearance.Default

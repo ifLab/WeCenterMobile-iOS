@@ -10,7 +10,7 @@ import UIKit
 
 class AnswerAdditionCell: BFPaperTableViewCell {
     let additionView = UIView()
-    let additionImageView = UIImageView(image: UIImage(named: "Add_icon").imageWithRenderingMode(.AlwaysTemplate))
+    let additionImageView = UIImageView(image: UIImage(named: "Add_icon")!.imageWithRenderingMode(.AlwaysTemplate))
     let additionTextLabel = UILabel()
     init(reuseIdentifier: String?, width: CGFloat) {
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
@@ -28,7 +28,7 @@ class AnswerAdditionCell: BFPaperTableViewCell {
         contentView.addSubview(additionView)
         additionView.addSubview(additionImageView)
         additionView.addSubview(additionTextLabel)
-        textLabel!.text = ""
+        textLabel.text = ""
         additionImageView.frame = CGRect(x: 0, y: 10, width: 20, height: 20)
         additionImageView.tintColor = UIColor.materialGray800()
         additionTextLabel.font = UIFont.systemFontOfSize(12)

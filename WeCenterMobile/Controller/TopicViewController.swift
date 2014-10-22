@@ -98,16 +98,14 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     
     override func viewWillAppear(animated: Bool) {
         msr_navigationBar!.hidden = true
-        Topic.fetchTopicByID(topicID,
-            strategy: .NetworkFirst,
+        topic = Topic.get(ID: topicID, error: nil)
+        Topic.fetch(ID: topicID,
             success: {
                 topic in
                 self.topic = topic
                 self.reloadData()
-                Topic.fetchTopicOutstandingQuestionAnswerListUsingNetworkByTopicID(self.topicID,
+                self.topic.fetchOutstandingAnswers(
                     success: {
-                        array in
-                        self.array = array
                         self.tableView.reloadData()
                     },
                     failure: nil)
@@ -225,7 +223,8 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
                 imageActivityIndicatorView.startAnimating()
                 imageButton.userInteractionEnabled = false
                 preventHidingImageButtonImage()
-                topic!.toggleFocusTopicUsingNetworkByUserID(appDelegate.currentUser!.id,
+                topic!.toggleFocus(
+                    userID: appDelegate.currentUser!.id,
                     success: {
                         self.tryHidingImageButtonImage()
                         self.imageActivityIndicatorView.stopAnimating()
@@ -271,7 +270,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         if data.user.avatar != nil {
             cell.userButton.setImage(data.user.avatar, forState: .Normal)
         } else {
-            data.user.fetchAvatarImage(
+            data.user.fetchAvatar(
                 success: {
                     if cell.userButton.msr_userInfo as NSNumber == data.user.id {
                         cell.userButton.setImage(data.user.avatar, forState: .Normal)

@@ -38,7 +38,10 @@ class WelcomeViewController: UIViewController {
                     appDelegate.mainViewController.modalTransitionStyle = .CrossDissolve
                     appDelegate.window!.rootViewController!.presentViewController(appDelegate.mainViewController, animated: true, completion: nil)
                 },
-                failure: nil)
+                failure: {
+                    error in
+                    println(error.userInfo ?? [:])
+                })
             })
         view = welcomeView
         view.addSubview(loginView)

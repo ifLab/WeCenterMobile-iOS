@@ -22,7 +22,7 @@ class QuestionBodyCell: DTAttributedTextCell {
     func update(#question: Question?) {
         var HTMLString = ""
         if question?.body != nil {
-            HTMLString = "<p style='padding: 5px'>\(question!.body!)</p>"
+            HTMLString = "<p style='padding: 5px'>\(question!.body)</p>"
         }
         setHTMLString(HTMLString,
             options: [

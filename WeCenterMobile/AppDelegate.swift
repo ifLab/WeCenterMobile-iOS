@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window!.rootViewController = welcomeViewController
+//        NetworkManager.clearCookies()
         User.loginWithCookieAndCacheInStorage(
             success: {
                 user in
@@ -50,12 +51,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     lazy var managedObjectModel: NSManagedObjectModel = {
         let modelURL = NSBundle.mainBundle().URLForResource("WeCenterMobile", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOfURL: modelURL)
+        return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()
     
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
         var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("WeCenterMobile.sqlite")
+//        NSFileManager.defaultManager().removeItemAtURL(url, error: nil)
         var error: NSError? = nil
         var failureReason = "There was an error creating or loading the application's saved data."
         if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
@@ -64,11 +66,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
             dict[NSUnderlyingErrorKey] = error
-            error = NSError.errorWithDomain("YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
+            error = NSError(domain: networkManager.website, code: networkManager.internalErrorCode.integerValue, userInfo: dict)
             NSLog("Unresolved error \(error), \(error!.userInfo)")
             abort()
         }
-        
         return coordinator
     }()
     
@@ -97,3 +98,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 let appDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+let networkManager = NetworkManager(configuration: NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("Configuration", ofType: "plist")!)!)
+let dataManager = DataManager(managedObjectContext: appDelegate.managedObjectContext!, managedObjectModel: appDelegate.managedObjectModel)

@@ -106,13 +106,13 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         signatureLabel.textAlignment = .Center
         signatureLabel.frame = CGRect(x: 0, y: 0, width: hideableView.bounds.width, height: 0.01)
         signatureLabel.alpha = 0
-        thankCountView.imageView.image = UIImage(named: "Love_icon").imageWithRenderingMode(.AlwaysTemplate)
+        thankCountView.imageView.image = UIImage(named: "Love_icon")!.imageWithRenderingMode(.AlwaysTemplate)
         thankCountView.frame.origin = CGPoint(x: 0, y: 10)
-        likeCountView.imageView.image = UIImage(named: "Like_icon").imageWithRenderingMode(.AlwaysTemplate)
+        likeCountView.imageView.image = UIImage(named: "Like_icon")!.imageWithRenderingMode(.AlwaysTemplate)
         likeCountView.frame.origin = CGPoint(x: hideableView.bounds.width / 4, y: 10)
-        favoriteCountView.imageView.image = UIImage(named: "Star_icon").imageWithRenderingMode(.AlwaysTemplate)
+        favoriteCountView.imageView.image = UIImage(named: "Star_icon")!.imageWithRenderingMode(.AlwaysTemplate)
         favoriteCountView.frame.origin = CGPoint(x: hideableView.bounds.width * 2 / 4, y: 10)
-        agreementCountView.imageView.image = UIImage(named: "Tick_icon").imageWithRenderingMode(.AlwaysTemplate)
+        agreementCountView.imageView.image = UIImage(named: "Tick_icon")!.imageWithRenderingMode(.AlwaysTemplate)
         agreementCountView.frame.origin = CGPoint(x: hideableView.bounds.width * 3 / 4, y: 10)
         topicButton.frame.origin.x = 0
         followingButton.frame.origin.x = bottomView.bounds.width / 3
@@ -149,45 +149,22 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        User.fetchUserByID(userID,
-            strategy: .CacheOnly,
+        user = User.get(ID: userID, error: nil)
+        needsToBeRefreshed = true
+        view.setNeedsLayout()
+        User.fetch(ID: userID,
             success: {
                 user in
                 self.user = user
                 self.needsToBeRefreshed = true
                 self.view.setNeedsLayout()
-                User.fetchUserByID(self.userID,
-                    strategy: .NetworkFirst,
+                self.user.fetchProfile(
                     success: {
-                        user in
-                        self.user = user
                         self.needsToBeRefreshed = true
                         self.view.setNeedsLayout()
-                        user.fetchProfileUsingNetwork(
-                            success: {
-                                self.needsToBeRefreshed = true
-                                self.view.setNeedsLayout()
-                            },
-                            failure: nil)
                     }, failure: nil)
             },
-            failure: {
-                error in
-                User.fetchUserByID(self.userID,
-                    strategy: .NetworkOnly,
-                    success: {
-                        user in
-                        self.user = user
-                        self.needsToBeRefreshed = true
-                        self.bottomView.setNeedsLayout()
-                        user.fetchProfileUsingNetwork(
-                            success: {
-                                self.needsToBeRefreshed = true
-                                self.view.setNeedsLayout()
-                            },
-                            failure: nil)
-                    }, failure: nil)
-            })
+            failure: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -204,19 +181,15 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
             if user.avatarURL != nil {
                 avatarButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: user.avatarURL!), placeholderImage: avatarButton.backgroundImageForState(.Normal))
             }
-            if user.gender != nil {
-                switch User.Gender.fromRaw(user.gender!)! {
-                case .Male:
-                    nameLabel.text! += " ♂"
-                    break
-                case .Female:
-                    nameLabel.text! += " ♀"
-                    break
-                case .Secret:
-                    break
-                default:
-                    break
-                }
+            switch user.gender {
+            case .Some(.Male):
+                nameLabel.text! += " ♂"
+                break
+            case .Some(.Female):
+                nameLabel.text! += " ♀"
+                break
+            default:
+                break
             }
             if user.signature != nil {
                 signatureLabel.text = user.signature
