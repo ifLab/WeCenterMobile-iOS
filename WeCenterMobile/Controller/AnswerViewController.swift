@@ -38,7 +38,7 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         return view as DTAttributedTextView
     }
     var answerID: NSNumber! = nil
-    var data: (question: Question, answer: Answer, user: User)? = nil
+    var answer: Answer? = nil
     init(answerID: NSNumber) {
         super.init(nibName: nil, bundle: nil)
         self.answerID = answerID
@@ -75,7 +75,7 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         bottomBar.delegate = self
         let likeItem = UIBarButtonItem(image: UIImage(named: "Star-Line"), style: .Plain, target: nil, action: nil)
         let uselessItem = UIBarButtonItem(image: UIImage(named: "Flag-Line"), style: .Plain, target: nil, action: nil)
-        let commentItem = UIBarButtonItem(image: UIImage(named: "Conversation-Line"), style: .Plain, target: nil, action: nil)
+        let commentItem = UIBarButtonItem(image: UIImage(named: "Conversation-Line"), style: .Plain, target: self, action: "pushCommentListViewController")
         let createFlexibleSpaceItem: () -> UIBarButtonItem = {
             return UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         }
@@ -94,22 +94,14 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         ]
     }
     override func viewDidLoad() {
-        Answer.fetchDataForAnswerViewControllerByAnswerID(answerID,
-            strategy: .CacheOnly,
+        answer = Answer.get(ID: answerID, error: nil)
+        reloadData()
+        Answer.fetch(ID: answerID,
             success: {
-                data in
-                self.data = data
+                answer in
+                self.answer = answer
                 self.reloadData()
-                Answer.fetchDataForAnswerViewControllerByAnswerID(self.answerID,
-                    strategy: .NetworkOnly,
-                    success: {
-                        data in
-                        self.data = data
-                        self.reloadData()
-                    },
-                    failure: nil)
-            },
-            failure: nil)
+            }, failure: nil)
     }
     override func viewDidAppear(animated: Bool) {
         if firstAppear {
@@ -124,23 +116,23 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         }
     }
     func reloadData() {
-        navigationItem.title = data?.question.title
-        if data?.user.avatar != nil {
-            avatarButton.setImage(data!.user.avatar, forState: .Normal)
+        navigationItem.title = answer?.question?.title
+        if answer?.user?.avatar != nil {
+            avatarButton.setImage(answer!.user!.avatar, forState: .Normal)
         } else {
-            data?.user.fetchAvatarImage(
+            answer?.user?.fetchAvatar(
                 success: {
-                    self.avatarButton.setImage(self.data!.user.avatar, forState: .Normal)
+                    self.avatarButton.setImage(self.answer!.user!.avatar, forState: .Normal)
                 },
                 failure: nil)
         }
-        nameLabel.text = data?.user.name
-        signatureLabel.text = data?.user.signature
-        evaluationButtonState = data?.answer.evaluation ?? .None
-        evaluationButton.setTitle(data?.answer.agreementCount?.stringValue, forState: .Normal)
+        nameLabel.text = answer?.user?.name
+        signatureLabel.text = answer?.user?.signature
+        evaluationButtonState = answer?.evaluation ?? .None
+        evaluationButton.setTitle(answer?.agreementCount?.stringValue, forState: .Normal)
         var string = ""
-        if data?.answer.body != nil {
-            string = "<p style='padding: 10px'>\(data!.answer.body!)</p>"
+        if answer?.body != nil {
+            string = "<p style='padding: 10px'>\(answer!.body)</p>"
         }
         contentTextView.attributedString = NSAttributedString(
             HTMLData: string.dataUsingEncoding(NSUTF8StringEncoding),
@@ -222,6 +214,10 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .Default
+    }
+    
+    internal func pushCommentListViewController() {
+        msr_navigationController?.pushViewController(CommentListViewController(answerID: answerID), animated: true, completion: nil)
     }
     
 }

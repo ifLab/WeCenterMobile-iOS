@@ -10,8 +10,8 @@ import UIKit
 
 class QuestionFocusCell: UITableViewCell {
     
-    let focusImageView = UIImageView(image: UIImage(named: "View_icon").imageWithRenderingMode(.AlwaysTemplate))
-    let answerImageView = UIImageView(image: UIImage(named: "Chat_icon").imageWithRenderingMode(.AlwaysTemplate))
+    let focusImageView = UIImageView(image: UIImage(named: "View_icon")!.imageWithRenderingMode(.AlwaysTemplate))
+    let answerImageView = UIImageView(image: UIImage(named: "Chat_icon")!.imageWithRenderingMode(.AlwaysTemplate))
     let focusCountLabel = UILabel()
     let answerCountLabel = UILabel()
     let focusButton = BFPaperButton()

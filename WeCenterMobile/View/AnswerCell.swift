@@ -13,10 +13,10 @@ class AnswerCell: BFPaperTableViewCell {
     let agreementCountLabel = UILabel()
     let nameLabel = UILabel()
     let contentLabel = DTAttributedLabel()
-    init(answer: Answer?, user: User?, width: CGFloat, reuseIdentifier: String?) {
+    init(answer: Answer?, width: CGFloat, reuseIdentifier: String?) {
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
         initialize()
-        update(answer: answer, user: user, width: width)
+        update(answer: answer, width: width)
     }
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -30,7 +30,7 @@ class AnswerCell: BFPaperTableViewCell {
         contentView.addSubview(agreementCountLabel)
         contentView.addSubview(nameLabel)
         contentView.addSubview(contentLabel)
-        textLabel!.text = ""
+        textLabel.text = ""
         avatarButton.frame = CGRect(x: 10, y: 10, width: 30, height: 30)
         avatarButton.backgroundColor = UIColor.materialGray200()
         avatarButton.layer.cornerRadius = avatarButton.bounds.width / 2
@@ -48,10 +48,10 @@ class AnswerCell: BFPaperTableViewCell {
         contentLabel.layoutFrameHeightIsConstrainedByBounds = false
         contentLabel.backgroundColor = UIColor.clearColor()
     }
-    func update(#answer: Answer?, user: User?, width: CGFloat) {
-        avatarButton.msr_userInfo = user?.id ?? -1
+    func update(#answer: Answer?, width: CGFloat) {
+        avatarButton.msr_userInfo = answer?.user?.id ?? -1
         agreementCountLabel.text = answer?.agreementCount?.stringValue
-        nameLabel.text = user?.name
+        nameLabel.text = answer?.user?.name
         nameLabel.frame.size.width = width - nameLabel.frame.origin.x - 10
         contentLabel.frame.size.width = width - contentLabel.frame.origin.x - 10
         contentLabel.attributedString = NSAttributedString(HTMLData: answer?.body?.dataUsingEncoding(NSUTF8StringEncoding),

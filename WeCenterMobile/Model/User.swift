@@ -2,17 +2,41 @@
 //  User.swift
 //  WeCenterMobile
 //
-//  Created by Darren Liu on 14/8/1.
+//  Created by Darren Liu on 14/10/7.
 //  Copyright (c) 2014年 ifLab. All rights reserved.
 //
 
 import Foundation
 import CoreData
 
-let UserModel = Model(module: "User", bundle: NSBundle.mainBundle())
-let UserStrings = Msr.Data.LocalizedStrings(module: "User", bundle: NSBundle.mainBundle())
-
 class User: NSManagedObject {
+
+    @NSManaged var agreementCount: NSNumber?
+    @NSManaged var answerCount: NSNumber?
+    @NSManaged var answerFavoriteCount: NSNumber?
+    @NSManaged var avatarURI: String?
+    @NSManaged var birthday: NSNumber?
+    @NSManaged var followerCount: NSNumber?
+    @NSManaged var followingCount: NSNumber?
+    @NSManaged var genderValue: NSNumber?
+    @NSManaged var id: NSNumber
+    @NSManaged var jobID: NSNumber?
+    @NSManaged var markCount: NSNumber?
+    @NSManaged var name: String?
+    @NSManaged var questionCount: NSNumber?
+    @NSManaged var signature: String?
+    @NSManaged var thankCount: NSNumber?
+    @NSManaged var topicFocusCount: NSNumber?
+    @NSManaged var actions: NSSet
+    @NSManaged var answers: NSSet
+    @NSManaged var articles: NSSet
+    @NSManaged var comments: NSSet
+    @NSManaged var questions: NSSet
+    @NSManaged var topics: NSSet
+    @NSManaged var commentsMentioned: NSSet
+    @NSManaged var followers: NSSet
+    @NSManaged var followings: NSSet
+    @NSManaged var avatarData: NSData?
     
     enum Gender: Int {
         case Male = 1
@@ -20,76 +44,49 @@ class User: NSManagedObject {
         case Secret = 3
     }
     
-    @NSManaged var gender: NSNumber?
-    @NSManaged var birthday: NSNumber?
-    @NSManaged var jobID: NSNumber?
-    @NSManaged var signature: String?
-    @NSManaged var agreementCount: NSNumber?
-    @NSManaged var answerFavoriteCount: NSNumber?
-    @NSManaged var answerCount: NSNumber?
-    @NSManaged var avatarURL: String?
-    @NSManaged var followerCount: NSNumber?
-    @NSManaged var followingCount: NSNumber?
-    @NSManaged var id: NSNumber
-    @NSManaged var markCount: NSNumber?
-    @NSManaged var name: String?
-    @NSManaged var questionCount: NSNumber?
-    @NSManaged var thankCount: NSNumber?
-    @NSManaged var topicFocusCount: NSNumber?
+    var gender: Gender? {
+        get {
+            return (genderValue == nil) ? nil : Gender(rawValue: genderValue!.integerValue)
+        }
+        set {
+            genderValue = newValue?.rawValue
+        }
+    }
+    
+    var avatar: UIImage? {
+        get {
+            if avatarData != nil {
+                return UIImage(data: avatarData!)
+            } else {
+                return nil
+            }
+        }
+        set {
+            avatarData = newValue?.dataForPNGRepresentation()
+        }
+    }
     
     var followed: Bool? = nil
-    var avatar: UIImage? = nil
     
-    class func clearCookies() {
-        let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-        for cookie in storage.cookies as [NSHTTPCookie] {
-            storage.deleteCookie(cookie)
-        }
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("Cookies")
-        NSUserDefaults.standardUserDefaults().synchronize()
-        NSURLCache.sharedURLCache().removeAllCachedResponses()
+    var avatarURL: String? {
+        return (avatarURI == nil) ? nil : networkManager.website + networkManager.paths["User Avatar"]! + avatarURI!
     }
     
-    class func fetchUserByID(ID: NSNumber, strategy: Model.Strategy, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
-        switch strategy {
-        case .CacheOnly:
-            fetchUserUsingCacheByID(ID, success: success, failure: failure)
-            break
-        case .NetworkOnly:
-            fetchUserUsingNetworkByID(ID, success: success, failure: failure)
-            break
-        case .CacheFirst:
-            fetchUserUsingCacheByID(ID, success: success, failure: {
-                error in
-                self.fetchUserUsingNetworkByID(ID, success: success, failure: failure)
-            })
-            break
-        case .NetworkFirst:
-            fetchUserUsingNetworkByID(ID, success: success, failure: {
-                error in
-                self.fetchUserUsingCacheByID(ID, success: success, failure: failure)
-            })
-            break
-        default:
-            break
-        }
+    class func get(#ID: NSNumber, error: NSErrorPointer) -> User? {
+        return dataManager.fetch("User", ID: ID, error: error) as? User
     }
     
-    private class func fetchUserUsingCacheByID(ID: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
-        Model.fetchManagedObjectByTemplateName("User_By_ID", ID: ID, success: success, failure: failure)
-    }
-    
-    private class func fetchUserUsingNetworkByID(ID: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
-        UserModel.GET("Information",
+    class func fetch(#ID: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
+        networkManager.GET("User Extra Information",
             parameters: [
                 "uid": ID
             ],
             success: {
                 data in
-                let user = Model.autoGenerateManagedObjectByEntityName("User", ID: ID) as User
+                let user = dataManager.autoGenerate("User", ID: ID) as User
                 user.id = ID
                 user.name = data["user_name"] as? String
-                user.avatarURL = User.avatarURLWithURI(data["avatar_file"] as String)
+                user.avatarURI = data["avatar_file"] as? String
                 user.followerCount = (data["fans_count"] as NSString).integerValue
                 user.followingCount = (data["friend_count"] as NSString).integerValue
                 user.questionCount = (data["question_count"] as NSString).integerValue
@@ -99,57 +96,34 @@ class User: NSManagedObject {
                 user.thankCount = (data["thanks_count"] as NSString).integerValue
                 user.answerFavoriteCount = (data["answer_favorite_count"] as NSString).integerValue
                 user.followed = (data["has_focus"] as NSNumber == 1)
-                appDelegate.saveContext()
                 success?(user)
             }, failure: failure)
     }
     
-    class func fetchFollowingListByUserID(ID: NSNumber, strategy: Model.Strategy, page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
-        switch strategy {
-        case .CacheOnly:
-            fetchFollowingListUsingCacheByUserID(ID, page: page, count: count, success: success, failure: failure)
-            break
-        case .NetworkOnly:
-            fetchFollowingListUsingNetworkByUserID(ID, page: page, count: count, success: success, failure: failure)
-            break
-        case .CacheFirst:
-            fetchFollowingListUsingCacheByUserID(ID, page: page, count: count, success: success, failure: {
-                error in
-                self.fetchFollowingListUsingNetworkByUserID(ID, page: page, count: count, success: success, failure: failure)
-            })
-            break
-        case .NetworkFirst:
-            fetchFollowingListUsingNetworkByUserID(ID, page: page, count: count, success: success, failure: {
-                error in
-                self.fetchFollowingListUsingCacheByUserID(ID, page: page, count: count, success: success, failure: failure)
-            })
-            break
-        }
-    }
-    
-    private class func fetchFollowingListUsingNetworkByUserID(ID: NSNumber, page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
-        UserModel.GET("GET Following List",
+    func fetchFollowings(#page: Int, count: Int, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        networkManager.GET("User Following List",
             parameters: [
-                "uid": ID,
+                "uid": id,
                 "page": page,
                 "per_page": count
             ],
             success: {
                 data in
                 if (data["total_rows"] as NSString).integerValue > 0 {
-                    var users = [User]()
-                    let a = ID
+                    var array = self.followings.allObjects as [User]
                     for value in data["rows"] as [NSDictionary] {
-                        let b = (value["uid"] as NSString).integerValue
-                        User_User.updateRelationship(a: a, b: b)
-                        let user = Model.autoGenerateManagedObjectByEntityName("User", ID: b) as User
+                        let userID = (value["uid"] as NSString).integerValue
+                        var user: User! = array.filter({ $0.id == userID }).first
+                        if user == nil {
+                            user = dataManager.autoGenerate("User", ID: (value["uid"] as NSString).integerValue) as User
+                            array.append(user)
+                        }
                         user.name = value["user_name"] as? String
-                        user.avatarURL = User.avatarURLWithURI(value["avatar_file"] as String)
+                        user.avatarURI = value["avatar_file"] as? String
                         user.signature = value["signature"] as? String
-                        users.append(user)
                     }
-                    appDelegate.saveContext()
-                    success?(users)
+                    self.followings = NSSet(array: array)
+                    success?()
                 } else {
                     failure?(NSError()) // Needs specification
                 }
@@ -157,73 +131,30 @@ class User: NSManagedObject {
             failure: failure)
     }
     
-    private class func fetchFollowingListUsingCacheByUserID(ID: NSNumber, page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
-        User_User.fetchRelationshipsUsingCacheByUserAID(ID,
-            page: page,
-            count: count,
-            success: {
-                user_users in
-                var users = [User]()
-                for user_user in user_users as [User_User] {
-                    User.fetchUserByID(user_user.b,
-                        strategy: .CacheOnly,
-                        success: {
-                            user in
-                            users.append(user)
-                        },
-                        failure: failure)
-                }
-                success?(users)
-            },
-            failure: failure)
-    }
-    
-    class func fetchFollowerListByUserID(ID: NSNumber, strategy: Model.Strategy, page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
-        switch strategy {
-        case .CacheOnly:
-            fetchFollowerListUsingCacheByUserID(ID, page: page, count: count, success: success, failure: failure)
-            break
-        case .NetworkOnly:
-            fetchFollowerListUsingNetworkByUserID(ID, page: page, count: count, success: success, failure: failure)
-            break
-        case .CacheFirst:
-            fetchFollowerListUsingCacheByUserID(ID, page: page, count: count, success: success, failure: {
-                error in
-                self.fetchFollowerListUsingNetworkByUserID(ID, page: page, count: count, success: success, failure: failure)
-            })
-            break
-        case .NetworkFirst:
-            fetchFollowerListUsingNetworkByUserID(ID, page: page, count: count, success: success, failure: {
-                error in
-                self.fetchFollowerListUsingCacheByUserID(ID, page: page, count: count, success: success, failure: failure)
-            })
-            break
-        }
-    }
-    
-    private class func fetchFollowerListUsingNetworkByUserID(ID: NSNumber, page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
-        UserModel.GET("GET Follower List",
+    func fetchFollowers(#page: Int, count: Int, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        networkManager.GET("User Follower List",
             parameters: [
-                "uid": ID,
+                "uid": id,
                 "page": page,
                 "per_page": count
             ],
             success: {
                 data in
                 if (data["total_rows"] as NSString).integerValue > 0 {
-                    var users = [User]()
-                    let b = ID
+                    var array = self.followers.allObjects as [User]
                     for value in data["rows"] as [NSDictionary] {
-                        let a = (value["uid"] as NSString).integerValue
-                        User_User.updateRelationship(a: a, b: b)
-                        let user = Model.autoGenerateManagedObjectByEntityName("User", ID: a) as User
+                        let userID = (value["uid"] as NSString).integerValue
+                        var user: User! = array.filter({ $0.id == userID }).first
+                        if user == nil {
+                            user = dataManager.autoGenerate("User", ID: (value["uid"] as NSString).integerValue) as User
+                            array.append(user)
+                        }
                         user.name = value["user_name"] as? String
-                        user.avatarURL = User.avatarURLWithURI(value["avatar_file"] as String)
+                        user.avatarURI = value["avatar_file"] as? String
                         user.signature = value["signature"] as? String
-                        users.append(user)
                     }
-                    appDelegate.saveContext()
-                    success?(users)
+                    self.followers = NSSet(array: array)
+                    success?()
                 } else {
                     failure?(NSError()) // Needs specification
                 }
@@ -231,53 +162,101 @@ class User: NSManagedObject {
             failure: failure)
     }
     
-    private class func fetchFollowerListUsingCacheByUserID(ID: NSNumber, page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
-        User_User.fetchRelationshipsUsingCacheByUserBID(ID,
-            page: page,
-            count: count,
+    func fetchTopics(#page: Int, count: Int, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        networkManager.GET("User Topic List",
+            parameters: [
+                "uid": id,
+                "page": page,
+                "per_page": count
+            ],
             success: {
-                user_users in
-                var users = [User]()
-                for user_user in user_users as [User_User] {
-                    User.fetchUserByID(user_user.a,
-                        strategy: .CacheOnly,
-                        success: {
-                            user in
-                            users.append(user)
-                        },
-                        failure: failure)
+                data in
+                if (data["total_rows"] as NSString).integerValue > 0 {
+                    var array = self.topics.allObjects as [Topic]
+                    for value in data["rows"] as [NSDictionary] {
+                        let topicID = (value["topic_id"] as NSString).integerValue
+                        var topic: Topic! = array.filter({ $0.id == topicID }).first
+                        if topic == nil {
+                            topic = dataManager.autoGenerate("Topic", ID: topicID) as Topic
+                            array.append(topic)
+                        }
+                        topic.title = value["topic_title"] as? String
+                        topic.introduction = value["topic_description"] as? String
+                        topic.imageURI = value["topic_pic"] as? String
+                        array.append(topic)
+                    }
+                    self.topics = NSSet(array: array)
+                    success?()
+                } else {
+                    failure?(NSError()) // Needs specification
                 }
-                success?(users)
+                return
+            },
+            failure: failure)
+    }
+    
+    func fetchQuestions(#page: Int, count: Int, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        networkManager.GET("User Question List",
+            parameters: [
+                "uid": id
+            ],
+            success: {
+                data in
+                if (data["total_rows"] as NSString).integerValue > 0 {
+                    var questionsData = [NSDictionary]()
+                    if data["rows"] is NSDictionary {
+                        questionsData = [data["rows"] as NSDictionary]
+                    } else {
+                        questionsData = data["rows"] as [NSDictionary]
+                    }
+                    var array = self.questions.allObjects as [Question]
+                    for questionData in questionsData {
+                        let questionID = (questionData["id"] as NSString).integerValue
+                        var question: Question! = array.filter({ $0.id == questionID }).first
+                        if question == nil {
+                            question = dataManager.autoGenerate("Question", ID: questionID) as Question
+                            array.append(question)
+                        }
+                        question.user = self
+                        question.title = questionData["title"] as? String
+                        question.body = questionData["detail"] as? String
+                    }
+                    self.questions = NSSet(array: array)
+                }
+                success?()
             },
             failure: failure)
     }
     
     class func loginWithCookieAndCacheInStorage(#success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
-            let data = NSUserDefaults.standardUserDefaults().objectForKey("Cookies") as? NSData
-            if data == nil {
-                failure?(NSError()) // Needs specification
-            } else {
-                let cookies = NSKeyedUnarchiver.unarchiveObjectWithData(data!) as [NSHTTPCookie]
-                let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-                for cookie in cookies {
-                    storage.setCookie(cookie)
-                }
-                UserModel.GET("Get UID",
-                    parameters: nil,
-                    success: {
-                        data in
-                        self.fetchUserByID(
-                            data["uid"] as NSNumber,
-                            strategy: .CacheFirst,
-                            success: success,
-                            failure: failure)
-                    }, failure: failure)
+        let data = NSUserDefaults.standardUserDefaults().objectForKey("Cookies") as? NSData
+        if data == nil {
+            failure?(NSError()) // Needs specification
+        } else {
+            let cookies = NSKeyedUnarchiver.unarchiveObjectWithData(data!) as [NSHTTPCookie]
+            let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+            for cookie in cookies {
+                storage.setCookie(cookie)
             }
+            networkManager.GET("User UID",
+                parameters: nil,
+                success: {
+                    data in
+                    var error: NSError? = nil
+                    let user = self.get(ID: data["uid"] as NSNumber, error: &error)
+                    if user != nil {
+                        success?(user!)
+                    } else {
+                        failure?(error ?? NSError()) // Needs specification
+                    }
+                },
+                failure: failure)
+        }
     }
     
     class func loginWithName(name: String, password: String, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
-        clearCookies()
-        UserModel.POST("Login",
+        NetworkManager.clearCookies()
+        networkManager.POST("User Login",
             parameters: [
                 "user_name": name.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!,
                 "password": password.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
@@ -285,18 +264,22 @@ class User: NSManagedObject {
             success: {
                 data in
                 let cookies = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies as [NSHTTPCookie]
-                let data = NSKeyedArchiver.archivedDataWithRootObject(cookies)
+                let cookiesData = NSKeyedArchiver.archivedDataWithRootObject(cookies)
                 let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setObject(data, forKey: "Cookies")
+                defaults.setObject(cookiesData, forKey: "Cookies")
                 defaults.synchronize()
+                let user = dataManager.autoGenerate("User", ID: data["uid"] as NSNumber) as User
+                user.name = data["user_name"] as? String
+                user.avatarURI = data["avatar_file"] as? String
+                appDelegate.saveContext()
                 self.loginWithCookieAndCacheInStorage(success: success, failure: failure)
             },
             failure: failure)
     }
     
     // Needs to be modified
-    func fetchProfileUsingNetwork(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
-        UserModel.GET("profile",
+    func fetchProfile(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        networkManager.GET("User Basic Information",
             parameters: [
                 "uid": id
             ],
@@ -304,24 +287,23 @@ class User: NSManagedObject {
                 data in
                 let value = data[0] as NSDictionary
                 self.name = value["user_name"] as? String
-                self.gender = value["sex"] is NSNull ? Gender.Secret.toRaw() : (value["sex"] as NSString).integerValue
-                self.birthday = value["birthday"] is NSNull ? nil : (value["birthday"] as NSString).integerValue
+                self.genderValue = value["sex"] is NSNull ? Gender.Secret.rawValue : (value["sex"] as NSString).integerValue
+                self.birthday = (value["birthday"] as? NSString)?.integerValue
                 self.jobID = (value["job_id"] as NSString).integerValue
                 self.signature = value["signature"] as? String
-                appDelegate.saveContext()
                 success?()
             },
             failure: failure)
     }
     
     func toggleFollow(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
-        UserModel.GET("Follow User",
+        networkManager.GET("Follow User",
             parameters: [
                 "uid": id
             ],
             success: {
                 data in
-                self.followed = (data["type"] as? String == "add")
+                self.followed = (data["type"] as String == "add")
                 success?()
             },
             failure: failure)
@@ -329,9 +311,9 @@ class User: NSManagedObject {
     
     private let imageView = UIImageView()
     
-    func fetchAvatarImage(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchAvatar(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         if avatarURL != nil {
-            imageView.setImageWithURLRequest(NSURLRequest(URL: NSURL(string: avatarURL!)),
+            imageView.setImageWithURLRequest(NSURLRequest(URL: NSURL(string: avatarURL!)!),
                 placeholderImage: nil,
                 success: {
                     request, response, image in
@@ -348,9 +330,7 @@ class User: NSManagedObject {
             failure?(NSError()) // Needs specification
         }
     }
-    
-    class func avatarURLWithURI(URI: String) -> String {
-        return UserModel.URLStrings["Base"]! + UserModel.URLStrings["Avatar Base"]! + URI
-    }
-    
+
 }
+
+let UserStrings = Msr.Data.LocalizedStrings(module: "User", bundle: NSBundle.mainBundle())

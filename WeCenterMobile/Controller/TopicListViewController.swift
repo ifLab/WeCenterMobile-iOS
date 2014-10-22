@@ -13,6 +13,10 @@ class TopicListViewController: UITableViewController {
     var page = 1
     let count = 20
     var userID: NSNumber! = nil
+    var _user: User? = nil
+    var user: User? {
+        return User.get(ID: userID, error: nil)
+    }
     enum ListType: Int {
         case Normal = 0
         case User = 1
@@ -65,17 +69,13 @@ class TopicListViewController: UITableViewController {
     func refresh() {
         switch listType! {
         case .User:
-            Topic.fetchTopicListByUserID(userID,
+            user?.fetchTopics(
                 page: 1,
                 count: count,
-                strategy: .NetworkFirst,
                 success: {
-                    topics in
                     self.page = 1
-                    self.topicList = topics
                     self.refreshControl!.endRefreshing()
                     self.tableView.reloadData()
-                    return
                 },
                 failure: {
                     error in
@@ -91,14 +91,11 @@ class TopicListViewController: UITableViewController {
         
     }
     func loadMore() {
-        Topic.fetchTopicListByUserID(userID,
+        user?.fetchTopics(
             page: page + 1,
             count: count,
-            strategy: .NetworkFirst,
             success: {
-                topics in
                 ++self.page
-                self.topicList.extend(topics)
                 self.msr_loadMoreControl.endLoadingMore()
                 self.tableView.reloadData()
                 return

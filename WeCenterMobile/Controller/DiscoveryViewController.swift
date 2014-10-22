@@ -15,11 +15,11 @@ class DiscoveryViewController: Msr.UI.SegmentedViewController {
             frame: UIScreen.mainScreen().bounds,
             toolBarStyle: .Black,
             viewControllers: [
-                ActivityListViewController(listType: .Hot),
-                ActivityListViewController(listType: .New),
-                ActivityListViewController(listType: .Unanswered)
+//                ActivityListViewController(listType: .Hot),
+//                ActivityListViewController(listType: .New),
+//                ActivityListViewController(listType: .Unanswered)
             ])
-        title = DiscoveryStrings["Discovery"]
+//        title = DiscoveryStrings["Discovery"]
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List-Dots"), style: .Bordered, target: self, action: "showSidebar")
     }
     

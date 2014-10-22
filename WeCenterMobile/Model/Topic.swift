@@ -2,140 +2,47 @@
 //  Topic.swift
 //  WeCenterMobile
 //
-//  Created by Darren Liu on 14/8/16.
+//  Created by Darren Liu on 14/10/7.
 //  Copyright (c) 2014年 ifLab. All rights reserved.
 //
 
 import Foundation
 import CoreData
 
-let TopicModel = Model(module: "Topic", bundle: NSBundle.mainBundle())
-
 class Topic: NSManagedObject {
 
-    @NSManaged var title: String?
-    @NSManaged var id: NSNumber
-    @NSManaged var introduction: String?
-    @NSManaged var imageURL: String?
     @NSManaged var focusCount: NSNumber?
+    @NSManaged var id: NSNumber
+    @NSManaged var imageURI: String?
+    @NSManaged var introduction: String?
+    @NSManaged var title: String?
+    @NSManaged var articles: NSSet
+    @NSManaged var questions: NSSet
+    @NSManaged var users: NSSet
+    @NSManaged var imageData: NSData?
     
     var focused: Bool? = nil
     
-    class func imageURLWithURI(URI: String) -> String {
-        return TopicModel.URLStrings["Base"]! + TopicModel.URLStrings["Image Base"]! + URI
+    var imageURL: String? {
+        return (imageURI == nil) ? nil : networkManager.website + networkManager.paths["Topic Image"]! + imageURI!
     }
     
-    class func fetchTopicListByUserID(userID: NSNumber, page: Int, count: Int, strategy: Model.Strategy, success: (([Topic]) -> Void)?, failure: ((NSError) -> Void)?) {
-        switch strategy {
-        case .CacheOnly:
-            fetchTopicListUsingCacheByUserID(userID, page: page, count: count, success: success, failure: failure)
-            break
-        case .NetworkOnly:
-            fetchTopicListUsingNetworkByUserID(userID, page: page, count: count, success: success, failure: failure)
-            break
-        case .CacheFirst:
-            fetchTopicListUsingCacheByUserID(userID, page: page, count: count, success: success, failure: {
-                error in
-                self.fetchTopicListUsingNetworkByUserID(userID, page: page, count: count, success: success, failure: failure)
-            })
-            break
-        case .NetworkFirst:
-            fetchTopicListUsingNetworkByUserID(userID, page: page, count: count, success: success, failure: {
-                error in
-                self.fetchTopicListUsingCacheByUserID(userID, page: page, count: count, success: success, failure: failure)
-            })
-            break
-        default:
-            break
+    var image: UIImage? {
+        get {
+            return (imageData == nil) ? nil : UIImage(data: imageData!)
+        }
+        set {
+            imageData = newValue?.dataForPNGRepresentation()
         }
     }
     
-    private class func fetchTopicListUsingCacheByUserID(userID: NSNumber, page: Int, count: Int, success: (([Topic]) -> Void)?, failure: ((NSError) -> Void)?) {
-        User_Topic.fetchRelationshipsUsingCacheByUserID(userID,
-            page: page,
-            count: count,
-            success: {
-                relationships in
-                var topics = [Topic]()
-                for user_topic in relationships {
-                    self.fetchTopicByID(user_topic.topicID,
-                        strategy: .CacheOnly,
-                        success: {
-                            topic in
-                            topics.append(topic)
-                            return
-                        },
-                        failure: nil)
-                }
-                success?(topics)
-                return
-            },
-            failure: failure)
+    class func get(#ID: NSNumber, error: NSErrorPointer) -> Topic? {
+        return dataManager.fetch("Topic", ID: ID, error: error) as? Topic
     }
     
-    private class func fetchTopicListUsingNetworkByUserID(userID: NSNumber, page: Int, count: Int, success: (([Topic]) -> Void)?, failure: ((NSError) -> Void)?) {
-        TopicModel.GET("GET List",
-            parameters: [
-                "uid": userID,
-                "page": page,
-                "per_page": count
-            ],
-            success: {
-                data in
-                if (data["total_rows"] as NSString).integerValue > 0 {
-                    var topics = [Topic]()
-                    for value in data["rows"] as [NSDictionary] {
-                        let topicID = (value["topic_id"] as NSString).integerValue
-                        let topic = Model.autoGenerateManagedObjectByEntityName("Topic", ID: topicID) as Topic
-                        topic.id = topicID
-                        topic.title = value["topic_title"] as? String
-                        topic.introduction = value["topic_description"] as? String
-                        topic.imageURL = self.imageURLWithURI(value["topic_pic"] as String)
-                        topics.append(topic)
-                        User_Topic.updateRelationship(userID: userID, topicID: topicID)
-                        appDelegate.saveContext()
-                    }
-                    success?(topics)
-                } else {
-                    failure?(NSError()) // Needs specification
-                }
-                return
-            },
-            failure: failure)
-    }
-    
-    class func fetchTopicByID(ID: NSNumber, strategy: Model.Strategy, success: ((Topic) -> Void)?, failure: ((NSError) -> Void)?) {
-        switch strategy {
-        case .CacheOnly:
-            fetchTopicUsingCacheByID(ID, success: success, failure: failure)
-            break
-        case .NetworkOnly:
-            fetchTopicUsingNetworkByID(ID, success: success, failure: failure)
-            break
-        case .CacheFirst:
-            fetchTopicUsingCacheByID(ID, success: success, failure: {
-                error in
-                self.fetchTopicUsingNetworkByID(ID, success: success, failure: failure)
-            })
-            break
-        case .NetworkFirst:
-            fetchTopicUsingNetworkByID(ID, success: success, failure: {
-                error in
-                self.fetchTopicUsingCacheByID(ID, success: success, failure: failure)
-            })
-            break
-        default:
-            break
-        }
-    }
-    
-    private class func fetchTopicUsingCacheByID(ID: NSNumber, success: ((Topic) -> Void)?, failure: ((NSError) -> Void)?) {
-        Model.fetchManagedObjectByTemplateName("Topic_By_ID", ID: ID, success: success, failure: failure)
-    }
-    
-    private class func fetchTopicUsingNetworkByID(ID: NSNumber, success: ((Topic) -> Void)?, failure: ((NSError) -> Void)?) {
-        let topic = Model.autoGenerateManagedObjectByEntityName("Topic", ID: ID) as Topic
-        TopicModel.GET("GET Detail",
+    class func fetch(#ID: NSNumber, success: ((Topic) -> Void)?, failure: ((NSError) -> Void)?) {
+        let topic = dataManager.autoGenerate("Topic", ID: ID) as Topic
+        networkManager.GET("Topic Detail",
             parameters: [
                 "uid": appDelegate.currentUser!.id,
                 "topic_id": ID
@@ -144,29 +51,28 @@ class Topic: NSManagedObject {
                 data in
                 topic.title = data["topic_title"] as? String
                 topic.introduction = data["topic_description"] as? String
-                topic.imageURL = Topic.imageURLWithURI(data["topic_pic"] as String)
+                topic.imageURI = data["topic_pic"] as? String
                 topic.focusCount = (data["focus_count"] as NSString).integerValue
                 topic.focused = (data["has_focus"] as NSNumber == 1)
-                appDelegate.saveContext()
                 success?(topic)
             },
             failure: failure)
     }
     
-    func toggleFocusTopicUsingNetworkByUserID(userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func toggleFocus(#userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         if focused != nil {
             if focused! {
-                cancleFocusTopicUsingNetworkByUserID(userID, success: success, failure: failure)
+                // cancle
             } else {
-                focusTopicUsingNetworkByUserID(userID, success: success, failure: failure)
+                // focus
             }
         } else {
             failure?(NSError()) // Needs specification
         }
     }
     
-    func cancleFocusTopicUsingNetworkByUserID(userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
-        TopicModel.POST("POST Focus",
+    func cancleFocus(#userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        networkManager.POST("Focus Topic",
             parameters: [
                 "uid": userID,
                 "topic_id": id,
@@ -180,8 +86,8 @@ class Topic: NSManagedObject {
             failure: failure)
     }
     
-    func focusTopicUsingNetworkByUserID(userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
-        TopicModel.POST("POST Focus",
+    func focus(#userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        networkManager.POST("Focus Topic",
             parameters: [
                 "uid": userID,
                 "topic_id": id,
@@ -195,35 +101,45 @@ class Topic: NSManagedObject {
             failure: failure)
     }
     
-    class func fetchTopicOutstandingQuestionAnswerListUsingNetworkByTopicID(topicID: NSNumber,
-        success: ([(question: Question, answer: Answer, user: User)] -> Void)?,
-        failure: ((NSError) -> Void)?) {
-            TopicModel.GET("GET Outstanding",
-                parameters: [
-                    "id": topicID
-                ],
-                success: {
-                    data in
-                    if data["total_rows"] as NSNumber > 0 {
-                        var array: [(question: Question, answer: Answer, user: User)] = []
-                        for value in data["rows"] as [NSDictionary] {
-                            let questionValue = value["question_info"] as NSDictionary
-                            let answerValue = value["answer_info"] as NSDictionary
-                            let question = Model.autoGenerateManagedObjectByEntityName("Question", ID: questionValue["question_id"] as NSNumber) as Question
-                            question.title = questionValue["question_content"] as? String
-                            let answer = Model.autoGenerateManagedObjectByEntityName("Answer", ID: answerValue["answer_id"] as NSNumber) as Answer
-                            answer.body = answerValue["answer_content"] as? String
-                            answer.agreementCount = answerValue["agree_count"] as? NSNumber
-                            let user = Model.autoGenerateManagedObjectByEntityName("User", ID: answerValue["uid"] as NSNumber) as User
-                            user.avatarURL = User.avatarURLWithURI(answerValue["avatar_file"] as String)
-                            array.append((question: question, answer: answer, user: user))
+    func fetchOutstandingAnswers(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        networkManager.GET("Topic Outstanding Answer List",
+            parameters: [
+                "id": id
+            ],
+            success: {
+                data in
+                if (data["total_rows"] as NSNumber).integerValue > 0 {
+                    for value in data["rows"] as [NSDictionary] {
+                        let questionValue = value["question_info"] as NSDictionary
+                        var questionArray = self.questions.allObjects as [Question]
+                        let questionID = questionValue["question_id"] as NSNumber
+                        var question: Question! = questionArray.filter({ $0.id == questionID }).first
+                        if question == nil {
+                            question = dataManager.autoGenerate("Question", ID: questionID) as? Question
+                            questionArray.append(question)
                         }
-                        appDelegate.saveContext()
-                        success?(array)
-                    } else {
-                        failure?(NSError()) // Needs specification
+                        question.title = questionValue["question_content"] as? String
+                        self.questions = NSSet(array: questionArray)
+                        let answerValue = value["answer_info"] as NSDictionary
+                        var answerArray = question.answers.allObjects as [Answer]
+                        let answerID = answerValue["answer_id"] as NSNumber
+                        var answer: Answer! = answerArray.filter({ $0.id == answerID }).first
+                        if answer == nil {
+                            answer = dataManager.autoGenerate("Answer", ID: answerID) as? Answer
+                            answerArray.append(answer)
+                        }
+                        answer.body = answerValue["answer_content"] as? String
+                        answer.agreementCount = answerValue["agree_count"] as? NSNumber
+                        question.answers = NSSet(array: answerArray)
+                        let userID = answerValue["uid"] as NSNumber
+                        answer.user = (dataManager.autoGenerate("User", ID: userID) as User)
+                        answer.user!.avatarURI = answerValue["avatar_file"] as? String
                     }
-                }, failure: failure)
+                    success?()
+                } else {
+                    failure?(NSError()) // Needs specification
+                }
+            }, failure: failure)
     }
-    
+
 }

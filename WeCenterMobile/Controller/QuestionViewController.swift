@@ -10,7 +10,13 @@ import UIKit
 
 class QuestionViewController: UITableViewController, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate {
     var questionID: NSNumber! = nil
-    var data: (question: Question, topics: [Topic], answers: [Answer], users: [User])? = nil
+    var question: Question? = nil
+    var answers: [Answer] {
+        return (question?.answers.allObjects ?? []) as [Answer]
+    }
+    var topics: [Topic] {
+        return (question?.topics.allObjects ?? []) as [Topic]
+    }
     let identifiers = [
         "QUESTION_TITLE",
         "TOPIC",
@@ -51,29 +57,21 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        Question.fetchDataForQuestionViewControllerByID(questionID,
-            strategy: .CacheOnly,
+        question = Question.get(ID: questionID, error: nil)
+        tableView.reloadData()
+        Question.fetch(ID: questionID,
             success: {
-                data in
-                self.data = data
+                question in
+                self.question = question
                 self.tableView.reloadData()
-                Question.fetchDataForQuestionViewControllerByID(self.questionID,
-                    strategy: .NetworkOnly,
-                    success: {
-                        data in
-                        self.data = data
-                        self.tableView.reloadData()
-                    },
-                    failure: nil)
-            },
-            failure: nil)
+            }, failure: nil)
     }
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 6
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 5 {
-            return data!.answers.count
+            return question?.answers.count ?? 0
         } else {
             return 1
         }
@@ -87,30 +85,30 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
         switch indexPath.section {
         case 0:
             if cell == nil {
-                return QuestionTitleCell(question: data?.question, width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
+                return QuestionTitleCell(question: question, width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
             } else {
-                (cell as QuestionTitleCell).update(question: data?.question, width: tableView.bounds.width)
+                (cell as QuestionTitleCell).update(question: question, width: tableView.bounds.width)
                 return cell.bounds.height
             }
         case 1:
             if cell == nil {
-                return TopicTagListCell(topics: data?.topics ?? [], width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
+                return TopicTagListCell(topics: topics, width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
             } else {
-                (cell as TopicTagListCell).update(topics: data?.topics ?? [], width: tableView.bounds.width)
+                (cell as TopicTagListCell).update(topics: topics, width: tableView.bounds.width)
                 return cell.bounds.height
             }
         case 2:
             if cell == nil {
-                return QuestionBodyCell(question: data?.question, reuseIdentifier: identifier).bounds.height
+                return QuestionBodyCell(question: question, reuseIdentifier: identifier).bounds.height
             } else {
-                (cell as QuestionBodyCell).update(question: data?.question)
+                (cell as QuestionBodyCell).update(question: question)
                 return (cell as QuestionBodyCell).requiredRowHeightInTableView(tableView)
             }
         case 3:
             if cell == nil {
-                return QuestionFocusCell(question: data?.question, answerCount: data?.answers.count, width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
+                return QuestionFocusCell(question: question, answerCount: answers.count, width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
             } else {
-                (cell as QuestionFocusCell).update(question: data?.question, answerCount: data?.answers.count, width: tableView.bounds.width)
+                (cell as QuestionFocusCell).update(question: question, answerCount: answers.count, width: tableView.bounds.width)
                 return cell.bounds.height
             }
         case 4:
@@ -121,9 +119,9 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
             }
         case 5:
             if cell == nil {
-                return AnswerCell(answer: data?.answers[indexPath.row], user: data?.users[indexPath.row], width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
+                return AnswerCell(answer: answers[indexPath.row], width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
             } else {
-                (cell as AnswerCell).update(answer: data?.answers[indexPath.row], user: data?.users[indexPath.row], width: tableView.bounds.width)
+                (cell as AnswerCell).update(answer: answers[indexPath.row], width: tableView.bounds.width)
                 return cell.bounds.height
             }
         default:
@@ -139,39 +137,39 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
         switch indexPath.section {
         case 0:
             if cell == nil {
-                cell = QuestionTitleCell(question: data?.question, width: tableView.bounds.width, reuseIdentifier: identifier)
+                cell = QuestionTitleCell(question: question, width: tableView.bounds.width, reuseIdentifier: identifier)
             } else {
-                (cell as QuestionTitleCell).update(question: data?.question, width: tableView.bounds.width)
+                (cell as QuestionTitleCell).update(question: question, width: tableView.bounds.width)
             }
             break
         case 1:
             if cell == nil {
-                cell = TopicTagListCell(topics: data?.topics ?? [], width: tableView.bounds.width, reuseIdentifier: identifier)
+                cell = TopicTagListCell(topics: topics, width: tableView.bounds.width, reuseIdentifier: identifier)
             } else {
-                (cell as TopicTagListCell).update(topics: data?.topics ?? [], width: tableView.bounds.width)
+                (cell as TopicTagListCell).update(topics: topics, width: tableView.bounds.width)
             }
             break
         case 2:
             if cell == nil {
-                cell = QuestionBodyCell(question: data?.question, reuseIdentifier: identifier)
+                cell = QuestionBodyCell(question: question, reuseIdentifier: identifier)
                 NSNotificationCenter.defaultCenter().addObserverForName(DTAttributedTextContentViewDidFinishLayoutNotification, object: (cell as QuestionBodyCell).attributedTextContextView, queue: NSOperationQueue.mainQueue(), usingBlock: {
                     notification in
                     self.tableView.reloadData()
                 })
             } else {
-                (cell as QuestionBodyCell).update(question: data?.question)
+                (cell as QuestionBodyCell).update(question: question)
                 (cell as QuestionBodyCell).textDelegate = self
             }
             break
         case 3:
             if cell == nil {
-                questionFocusCell = QuestionFocusCell(question: data?.question, answerCount: data?.answers.count, width: tableView.bounds.width, reuseIdentifier: identifiers[3])
+                questionFocusCell = QuestionFocusCell(question: question, answerCount: answers.count, width: tableView.bounds.width, reuseIdentifier: identifiers[3])
                 cell = questionFocusCell
             } else {
                 questionFocusCell = cell as? QuestionFocusCell
             }
             questionFocusCell.focusButton.addTarget(self, action: "toggleFocusQuestion:", forControlEvents: .TouchUpInside)
-            questionFocusCell.update(question: data?.question, answerCount: data?.answers.count, width: tableView.bounds.width)
+            questionFocusCell.update(question: question, answerCount: answers.count, width: tableView.bounds.width)
             break
         case 4:
             if cell == nil {
@@ -181,22 +179,21 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
             }
             break
         case 5:
-            let answer = data?.answers[indexPath.row]
-            let user = data?.users[indexPath.row]
+            let answer = answers[indexPath.row]
             if cell == nil {
-                cell = AnswerCell(answer: answer, user: user, width: tableView.bounds.width, reuseIdentifier: identifier)
+                cell = AnswerCell(answer: answer, width: tableView.bounds.width, reuseIdentifier: identifier)
             } else {
-                (cell as AnswerCell).update(answer: answer, user: user, width: tableView.bounds.width)
+                (cell as AnswerCell).update(answer: answer, width: tableView.bounds.width)
             }
             let answerCell = cell as AnswerCell
             answerCell.avatarButton.setImage(nil, forState: .Normal)
-            if user?.avatar != nil {
-                answerCell.avatarButton.setImage(user!.avatar, forState: .Normal)
+            if answer.user?.avatar != nil {
+                answerCell.avatarButton.setImage(answer.user!.avatar, forState: .Normal)
             } else {
-                user?.fetchAvatarImage(
+                answer.user!.fetchAvatar(
                     success: {
-                        if answerCell.avatarButton.msr_userInfo as NSNumber == user!.id {
-                            answerCell.avatarButton.setImage(user!.avatar, forState: .Normal)
+                        if answerCell.avatarButton.msr_userInfo as NSNumber == answer.user!.id {
+                            answerCell.avatarButton.setImage(answer.user!.avatar, forState: .Normal)
                         }
                     },
                     failure: nil)
@@ -210,13 +207,13 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.section {
         case 1:
-            if data != nil {
-                msr_navigationController!.pushViewController(TopicListViewController(topics: data!.topics), animated: true, completion: nil)
+            if question != nil {
+                msr_navigationController!.pushViewController(TopicListViewController(topics: topics), animated: true, completion: nil)
             }
             break
         case 5:
-            if data != nil {
-                msr_navigationController!.pushViewController(AnswerViewController(answerID: data!.answers[indexPath.row].id), animated: true, completion: nil)
+            if question != nil {
+                msr_navigationController!.pushViewController(AnswerViewController(answerID: answers[indexPath.row].id), animated: true, completion: nil)
             }
         default:
             break
@@ -251,9 +248,9 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
     func toggleFocusQuestion(focusButton: UIButton) {
         questionFocusCell.focusButtonState = .Loading
         let update: () -> Void = {
-            self.questionFocusCell.update(question: self.data?.question, answerCount: self.data?.answers.count, width: self.tableView.bounds.width)
+            self.questionFocusCell.update(question: self.question, answerCount: self.question?.answers.count, width: self.tableView.bounds.width)
         }
-        data?.question.toggleFocus(
+        question?.toggleFocus(
             success: update,
             failure: {
                 error in

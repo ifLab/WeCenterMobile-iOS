@@ -16,9 +16,21 @@ class UserListViewController: UITableViewController {
     }
     var listType: ListType! = nil
     var ID: NSNumber! = nil
+    var user: User? {
+        return User.get(ID: ID, error: nil)
+    }
+    var users: [User] {
+        switch listType! {
+        case .UserFollower:
+            return (user?.followers.allObjects ?? []) as [User]
+        case .UserFollowing:
+            return (user?.followings.allObjects ?? []) as [User]
+        case .QuestionFollwer:
+            return []
+        }
+    }
     var page = 1
     let count = 20
-    var userList = [User]()
     init(ID: NSNumber, listType: ListType) {
         super.init(style: .Plain)
         self.listType = listType
@@ -46,22 +58,20 @@ class UserListViewController: UITableViewController {
         return 1
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userList.count
+        return users.count
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UserCell(user: userList[indexPath.row], reuseIdentifier: "")
+        return UserCell(user: users[indexPath.row], reuseIdentifier: "")
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 80
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        msr_navigationController!.pushViewController(UserViewController(userID: userList[indexPath.row].id), animated: true, completion: nil)
+        msr_navigationController!.pushViewController(UserViewController(userID: users[indexPath.row].id), animated: true, completion: nil)
     }
     func refresh() {
-        let success: ([User]) -> Void = {
-            users in
+        let success: () -> Void = {
             self.page = 1
-            self.userList = users
             self.refreshControl!.endRefreshing()
             self.tableView.reloadData()
         }
@@ -72,20 +82,18 @@ class UserListViewController: UITableViewController {
         }
         switch listType! {
         case .UserFollower:
-            User.fetchFollowerListByUserID(ID, strategy: .NetworkFirst, page: 1, count: count, success: success, failure: failure)
+            user?.fetchFollowers(page: 1, count: count, success: success, failure: failure)
             break
         case .UserFollowing:
-            User.fetchFollowingListByUserID(ID, strategy: .NetworkFirst, page: 1, count: count, success: success, failure: failure)
+            user?.fetchFollowings(page: 1, count: count, success: success, failure: failure)
             break
         default:
             break
         }
     }
     func loadMore() {
-        let success: ([User]) -> Void = {
-            users in
+        let success: () -> Void = {
             ++self.page
-            self.userList.extend(users)
             self.msr_loadMoreControl.endLoadingMore()
             self.tableView.reloadData()
         }
@@ -96,10 +104,10 @@ class UserListViewController: UITableViewController {
         }
         switch listType! {
         case .UserFollower:
-            User.fetchFollowerListByUserID(ID, strategy: .NetworkFirst, page: page + 1, count: count, success: success, failure: failure)
+            user?.fetchFollowers(page: page + 1, count: count, success: success, failure: failure)
             break
         case .UserFollowing:
-            User.fetchFollowingListByUserID(ID, strategy: .NetworkFirst, page: page + 1, count: count, success: success, failure: failure)
+            user?.fetchFollowings(page: page + 1, count: count, success: success, failure: failure)
             break
         default:
             break

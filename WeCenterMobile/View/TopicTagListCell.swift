@@ -42,7 +42,7 @@ class TopicTagListCell: UITableViewCell {
     }
     func initialize() {
         contentView.addSubview(scrollView)
-        textLabel!.text = ""
+        textLabel.text = ""
         scrollView.backgroundColor = UIColor.clearColor()
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.alwaysBounceHorizontal = true

@@ -38,35 +38,35 @@ class HomeViewController: UITableViewController {
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "")
         switch indexPath.row {
         case 0:
-            cell.textLabel!.text = "Push View Controller"
+            cell.textLabel.text = "Push View Controller"
             break
         case 1:
-            cell.textLabel!.text = "Pop View Controller"
+            cell.textLabel.text = "Pop View Controller"
             break
         case 2:
-            cell.textLabel!.text = "Pop To Root View Controller"
+            cell.textLabel.text = "Pop To Root View Controller"
             break
         case 3:
-            cell.textLabel!.text = "Push 5 View Controllers"
+            cell.textLabel.text = "Push 5 View Controllers"
             break
         case 4:
-            cell.textLabel!.text = "Pop 5 View Controllers"
+            cell.textLabel.text = "Pop 5 View Controllers"
             break
         case 5:
-            cell.textLabel!.text = "Replace Current View Controller"
+            cell.textLabel.text = "Replace Current View Controller"
             break
         case 6:
-            cell.textLabel!.text = "Replace & Push"
+            cell.textLabel.text = "Replace & Push"
             break
         case 7:
-            cell.textLabel!.text = "Pop & Replace"
+            cell.textLabel.text = "Pop & Replace"
             break
         case 8:
-            cell.textLabel!.text = "Pop & Push"
+            cell.textLabel.text = "Pop & Push"
             cell.detailTextLabel!.text = "Available When PopCount < ControllersCount"
             break
         case 9:
-            cell.textLabel!.text = "Pop & Replace & Push"
+            cell.textLabel.text = "Pop & Replace & Push"
             cell.detailTextLabel!.text = "Available When PopCount = ControllersCount"
             break
         default:
@@ -139,6 +139,6 @@ class HomeViewController: UITableViewController {
         }
     }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.fromRaw(Int(title!.toInt()! + initStatusBarStyle.toRaw()) % 2)!
+        return UIStatusBarStyle(rawValue: Int(title!.toInt()! + initStatusBarStyle.rawValue) % 2)!
     }
 }

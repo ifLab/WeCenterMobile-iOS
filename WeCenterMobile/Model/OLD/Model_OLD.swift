@@ -9,30 +9,36 @@
 import Foundation
 import CoreData
 
-class Model {
-    let URLStrings: [String: String]
-    let manager: AFHTTPRequestOperationManager
-    let noError = 1
-    let internalErrorCode = 23333
+struct Model {
+    static let configuration: NSDictionary = {
+        return NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("Configuration", ofType: "plist")!)
+    }()
+    static var website: String {
+        return configuration["Website"] as String
+    }
+    static var paths: [String: String] {
+        return configuration["Path"] as [String: String]
+    }
+    static let manager: AFHTTPRequestOperationManager = {
+        let manager = AFHTTPRequestOperationManager(baseURL: NSURL(string: website))
+        manager.responseSerializer = AFHTTPResponseSerializer()
+        return manager
+    }()
+    static let noError = 1
+    static let internalErrorCode = 23333
     enum Strategy {
         case NetworkOnly
         case CacheOnly
         case CacheFirst
         case NetworkFirst
     }
-    init(module: String, bundle: NSBundle) {
-        let path = bundle.pathForResource(module, ofType: "plist")!
-        URLStrings = NSDictionary(contentsOfFile: path)["URL"] as [String: String]
-        manager = AFHTTPRequestOperationManager(baseURL: NSURL(string: URLStrings["Base"]!))
-        manager.responseSerializer = AFHTTPResponseSerializer()
-    }
-    func GET(key: String,
+    static func GET(key: String,
         parameters: NSDictionary?,
         success: ((AnyObject) -> Void)?,
         failure: ((NSError) -> Void)?) -> Void {
             let application = UIApplication.sharedApplication()
             application.networkActivityIndicatorVisible = true
-            manager.GET(URLStrings[key]!,
+            manager.GET(paths[key]!,
                 parameters: parameters,
                 success: {
                     operation, data in
@@ -45,13 +51,13 @@ class Model {
                     failure?(error)
                 })
     }
-    func POST(key: String,
+    static func POST(key: String,
         parameters: NSDictionary?,
         success: ((AnyObject) -> Void)?,
         failure: ((NSError) -> Void)?) -> Void {
             let application = UIApplication.sharedApplication()
             application.networkActivityIndicatorVisible = true
-            manager.POST(URLStrings[key]!,
+            manager.POST(paths[key]!,
                 parameters: parameters,
                 constructingBodyWithBlock: nil,
                 success: {
@@ -65,7 +71,7 @@ class Model {
                     failure?(error)
                 })
     }
-    private func handleSuccess(#data: NSData, success: ((AnyObject) -> Void)?, failure: ((NSError) -> Void)?) {
+    static private func handleSuccess(#data: NSData, success: ((AnyObject) -> Void)?, failure: ((NSError) -> Void)?) {
         var error: NSError? = nil
         let object: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error)
         if object == nil {
@@ -78,7 +84,7 @@ class Model {
                 success?(data["rsm"]!)
             } else {
                 failure?(NSError(
-                    domain: self.URLStrings["Base"]!,
+                    domain: website,
                     code: self.internalErrorCode,
                     userInfo: ["Hint": data["err"] as String]))
             }
@@ -86,11 +92,11 @@ class Model {
             failure?(error!)
         }
     }
-    class func createManagedObjecWithEntityName(entityName: String) -> NSManagedObject {
+    static func createManagedObjecWithEntityName(entityName: String) -> NSManagedObject {
         let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: appDelegate.managedObjectContext!)!
         return NSManagedObject(entity: entity, insertIntoManagedObjectContext: appDelegate.managedObjectContext)
     }
-    class func fetchManagedObjectByTemplateName<T: NSManagedObject>(templateName: String, ID: NSNumber, success: ((T) -> Void)?, failure: ((NSError) -> Void)?) {
+    static func fetchManagedObjectByTemplateName<T: NSManagedObject>(templateName: String, ID: NSNumber, success: ((T) -> Void)?, failure: ((NSError) -> Void)?) {
         let request = appDelegate.managedObjectModel.fetchRequestFromTemplateWithName(templateName,
             substitutionVariables: [
                 "ID": ID
@@ -103,7 +109,7 @@ class Model {
             failure?(error != nil ? error! : NSError()) // Needs specification
         }
     }
-    class func autoGenerateManagedObjectByEntityName(entityName: String, ID: NSNumber) -> NSManagedObject {
+    static func autoGenerateManagedObjectByEntityName(entityName: String, ID: NSNumber) -> NSManagedObject {
         var object: NSManagedObject! = nil
         fetchManagedObjectByTemplateName(entityName + "_By_ID",
             ID: ID,
@@ -116,33 +122,5 @@ class Model {
                 object.setValue(ID, forKey: "id")
             })
         return object
-    }
-    class func fetchRelationshipsByTemplateName<T: NSManagedObject>(templateName: String, ID: NSNumber, page: Int, count: Int, sortBy: (String, Bool)? = nil, success: (([T]) -> Void)?, failure: ((NSError) -> Void)?) {
-        let request = appDelegate.managedObjectModel.fetchRequestFromTemplateWithName(templateName,
-            substitutionVariables: [
-                "ID": ID
-            ])!
-        request.fetchLimit = count
-        request.fetchOffset = (page - 1) * count
-        if sortBy != nil {
-            request.sortDescriptors = [NSSortDescriptor(key: sortBy!.0, ascending: sortBy!.1)]
-        }
-        var error: NSError? = nil
-        let results = appDelegate.managedObjectContext!.executeFetchRequest(request, error: &error)
-        if error == nil && results != nil && results!.count != 0 {
-            success?(results as [T])
-        } else {
-            failure?(error != nil ? error! : NSError()) // Needs specification
-        }
-    }
-    class func relationshipExists(templateName: String, a: (String, NSNumber), b: (String, NSNumber)) -> Bool {
-        let request = appDelegate.managedObjectModel.fetchRequestFromTemplateWithName(templateName,
-            substitutionVariables: [
-                a.0: a.1,
-                b.0: b.1
-            ])!
-        var error: NSError? = nil
-        let results = appDelegate.managedObjectContext!.executeFetchRequest(request, error: &error)
-        return error == nil && results != nil && results!.count != 0
     }
 }

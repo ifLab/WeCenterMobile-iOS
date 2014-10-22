@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Website</key>
+	<string>http://w.hihwei.com/</string>
+	<key>Path</key>
+	<dict>
+		<key>Topic Detail</key>
+		<string>api/topic.php</string>
+		<key>Topic Image</key>
+		<string>uploads/topic/</string>
+		<key>User Topic List</key>
+		<string>api/my_focus_topic_ios.php</string>
+		<key>Topic Outstanding Answer List</key>
+		<string>?/api/topic/topic_best_answer/</string>
+		<key>Focus Topic</key>
+		<string>api/focus_topic.php</string>
+		<key>Answer Detail</key>
+		<string>?/api/question/answer_detail/</string>
+		<key>Activity List</key>
+		<string>?/api/explore_ios/</string>
+		<key>Question Detail</key>
+		<string>?/api/question/question/</string>
+		<key>Focus Question</key>
+		<string>?/question/ajax/focus/</string>
+		<key>User Login</key>
+		<string>?/api/account/login_process/</string>
+		<key>User UID</key>
+		<string>?/api/account/get_uid/</string>
+		<key>User Basic Information</key>
+		<string>api/profile.php</string>
+		<key>User Extra Information</key>
+		<string>?/api/account/get_userinfo/</string>
+		<key>User Register</key>
+		<string>?/api/account/register_process/</string>
+		<key>User Avatar</key>
+		<string>uploads/avatar/</string>
+		<key>Follow User</key>
+		<string>?/follow/ajax/follow_people/</string>
+		<key>User Following List</key>
+		<string>api/my_focus_user.php</string>
+		<key>User Follower List</key>
+		<string>api/my_fans_user.php</string>
+		<key>Answer Comment List</key>
+		<string>api/answer_comment.php</string>
+		<key>Artical Comment List</key>
+		<string>?/api/article/comment/</string>
+		<key>Artical Detail</key>
+		<string>?/api/article/article/</string>
+		<key>User Question List</key>
+		<string></string>
+	</dict>
+	<key>Success Code</key>
+	<integer>1</integer>
+	<key>Internal Error Code</key>
+	<integer>23333</integer>
+</dict>
+</plist>
