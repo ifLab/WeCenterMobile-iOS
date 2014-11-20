@@ -36,13 +36,12 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     var answeredButton = RectangleCountButton()
     var articleButton = RectangleCountButton()
     
-    var userID: NSNumber!
-    var user: User!
+    var user: User
     var needsToBeRefreshed: Bool = false
     
-    init(userID: NSNumber) {
+    init(user: User) {
+        self.user = user
         super.init(nibName: nil, bundle: nil)
-        self.userID = userID
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -51,8 +50,6 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     
     override func loadView() {
         super.loadView()
-        view = UIScrollView(frame: UIScreen.mainScreen().bounds)
-        (view as UIScrollView).bounces = false
         view.addSubview(bottomView)
         view.addSubview(topView)
         topView.addSubview(avatarButton)
@@ -70,7 +67,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         hideableView.addSubview(likeCountView)
         hideableView.addSubview(favoriteCountView)
         hideableView.addSubview(agreementCountView)
-        topView.frame = CGRect(x: 0, y: -(UINavigationController().navigationBar.bounds.height + UIApplication.sharedApplication().statusBarFrame.height), width: view.bounds.width, height: 200)
+        topView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 200)
         topView.backgroundColor = UIColor.materialGray300()
         topView.delaysContentTouches = false
         topView.layer.masksToBounds = false
@@ -132,27 +129,26 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         for subview in hideableView.subviews as [UIView] {
             subview.alpha = 0
         }
-        if userID == appDelegate.currentUser!.id {
-            topicButton.footerLabel.text = UserStrings["My topics"]
-            followingButton.footerLabel.text = UserStrings["My following"]
-            followerButton.footerLabel.text = UserStrings["My follower"]
+        if user.id == appDelegate.currentUser!.id {
+            topicButton.footerLabel.text = userStrings["My topics"]
+            followingButton.footerLabel.text = userStrings["My following"]
+            followerButton.footerLabel.text = userStrings["My follower"]
         } else {
-            topicButton.footerLabel.text = UserStrings["His topics"]
-            followingButton.footerLabel.text = UserStrings["His following"]
-            followerButton.footerLabel.text = UserStrings["His follower"]
+            topicButton.footerLabel.text = userStrings["His topics"]
+            followingButton.footerLabel.text = userStrings["His following"]
+            followerButton.footerLabel.text = userStrings["His follower"]
         }
-        articleButton.footerLabel.text = UserStrings["Article"]
-        askedButton.footerLabel.text = UserStrings["Asked"]
-        answeredButton.footerLabel.text = UserStrings["Answered"]
+        articleButton.footerLabel.text = userStrings["Article"]
+        askedButton.footerLabel.text = userStrings["Asked"]
+        answeredButton.footerLabel.text = userStrings["Answered"]
         scrollViewDidScroll(bottomView)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        user = User.get(ID: userID, error: nil)
         needsToBeRefreshed = true
         view.setNeedsLayout()
-        User.fetch(ID: userID,
+        User.fetch(ID: user.id,
             success: {
                 user in
                 self.user = user
@@ -170,6 +166,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         msr_navigationBar!.hidden = true
+        view.frame = msr_navigationController!.view.bounds
     }
     
     override func viewDidLayoutSubviews() {
@@ -316,10 +313,10 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func toggleAvatarButtonImage() {
-        if user?.followed != nil {
+        if user.followed != nil {
             switch avatarButtonState {
             case .Normal:
-                if user!.followed! {
+                if user.followed! {
                     avatarButton.setImage(UIImage(named: "User_Following"), forState: .Normal)
                     avatarButtonState = .Following
                 } else {
@@ -343,12 +340,12 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
                 avatarActivityIndicatorView.startAnimating()
                 avatarButton.userInteractionEnabled = false
                 preventHidingAvatarButtonImage()
-                user!.toggleFollow(
+                user.toggleFollow(
                     success: {
                         self.tryHidingAvatarButtonImage()
                         self.avatarActivityIndicatorView.stopAnimating()
                         self.avatarButton.userInteractionEnabled = true
-                        if self.user!.followed! {
+                        if self.user.followed! {
                             self.avatarButton.setImage(UIImage(named: "User_Following"), forState: .Normal)
                             self.avatarButtonState = .Following
                         } else {
@@ -370,18 +367,19 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     }
     
     internal func pushTopicListViewController() {
-        msr_navigationController!.pushViewController(TopicListViewController(userID: userID), animated: true, completion: nil)
+        msr_navigationController!.pushViewController(UserTopicListViewController(user: user), animated: true, completion: nil)
     }
     
     internal func pushFollowerViewController() {
-        msr_navigationController!.pushViewController(UserListViewController(ID: userID, listType: .UserFollower), animated: true, completion: nil)
+        msr_navigationController!.pushViewController(UserListViewController(ID: user.id, listType: .UserFollower), animated: true, completion: nil)
     }
     
     internal func pushFollowingViewController() {
-        msr_navigationController!.pushViewController(UserListViewController(ID: userID, listType: .UserFollowing), animated: true, completion: nil)
+        msr_navigationController!.pushViewController(UserListViewController(ID: user.id, listType: .UserFollowing), animated: true, completion: nil)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .Default
     }
+    
 }

@@ -49,7 +49,7 @@ class AnswerCell: BFPaperTableViewCell {
         contentLabel.backgroundColor = UIColor.clearColor()
     }
     func update(#answer: Answer?, width: CGFloat) {
-        avatarButton.msr_userInfo = answer?.user?.id ?? -1
+        avatarButton.msr_userInfo = answer?.user
         agreementCountLabel.text = answer?.agreementCount?.stringValue
         nameLabel.text = answer?.user?.name
         nameLabel.frame.size.width = width - nameLabel.frame.origin.x - 10

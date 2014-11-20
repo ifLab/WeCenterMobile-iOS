@@ -9,8 +9,6 @@
 import Foundation
 import CoreData
 
-let UserStrings = Msr.Data.LocalizedStrings(module: "User", bundle: NSBundle.mainBundle())
-
 class User: NSManagedObject {
     
     enum Gender: Int {

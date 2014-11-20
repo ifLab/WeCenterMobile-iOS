@@ -106,7 +106,7 @@ class QuestionFocusCell: UITableViewCell {
     func update(#question: Question?, answerCount: NSNumber?, width: CGFloat) {
         focusCountLabel.text = question?.focusCount?.stringValue
         answerCountLabel.text = answerCount?.stringValue
-        focusButton.msr_userInfo = question?.id ?? -1
+        focusButton.msr_userInfo = question
         if question?.focusing == nil {
             focusButtonState = .Loading
         } else if question!.focusing! {

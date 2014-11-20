@@ -89,7 +89,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         sidebar.hide(animated: true, completion: nil)
         if indexPath.section == 0 {
-            contentViewController.setViewControllers([UserViewController(userID: appDelegate.currentUser!.id)], animated: true, completion: nil)
+            contentViewController.setViewControllers([UserViewController(user: appDelegate.currentUser!)], animated: true, completion: nil)
         } else if indexPath.section == 1 {
             contentViewController.setViewControllers([viewControllerAtIndex(indexPath.row)], animated: true, completion: nil)
         } else {

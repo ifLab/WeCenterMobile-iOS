@@ -171,7 +171,7 @@ class User: NSManagedObject {
             ],
             success: {
                 data in
-                if (data["total_rows"] as NSString).integerValue > 0 {
+                if (((data["total_rows"] as? NSString)?.integerValue) ?? (data["total_rows"] as? NSNumber)?.integerValue ?? 0) > 0 {
                     var array = self.topics.allObjects as [Topic]
                     for value in data["rows"] as [NSDictionary] {
                         let topicID = (value["topic_id"] as NSString).integerValue
@@ -333,4 +333,4 @@ class User: NSManagedObject {
 
 }
 
-let UserStrings = Msr.Data.LocalizedStrings(module: "User", bundle: NSBundle.mainBundle())
+let userStrings = Msr.Data.LocalizedStrings(module: "User", bundle: NSBundle.mainBundle())

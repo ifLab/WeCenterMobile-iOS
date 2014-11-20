@@ -13,8 +13,9 @@ class UserListViewController: UITableViewController {
         case UserFollowing = 1
         case UserFollower = 2
         case QuestionFollwer = 3
+        case Unknown
     }
-    var listType: ListType! = nil
+    var listType: ListType?
     var ID: NSNumber! = nil
     var user: User? {
         return User.get(ID: ID, error: nil)
@@ -26,6 +27,8 @@ class UserListViewController: UITableViewController {
         case .UserFollowing:
             return (user?.followings.allObjects ?? []) as [User]
         case .QuestionFollwer:
+            return []
+        default:
             return []
         }
     }
@@ -41,6 +44,7 @@ class UserListViewController: UITableViewController {
     }
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.listType = .Unknown
     }
     override func loadView() {
         super.loadView()
@@ -48,7 +52,7 @@ class UserListViewController: UITableViewController {
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         msr_loadMoreControl = Msr.UI.LoadMoreControl()
-        msr_loadMoreControl.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
+        msr_loadMoreControl!.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
     }
     override func viewDidAppear(animated: Bool) {
         refreshControl!.beginRefreshing()
@@ -67,7 +71,7 @@ class UserListViewController: UITableViewController {
         return 80
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        msr_navigationController!.pushViewController(UserViewController(userID: users[indexPath.row].id), animated: true, completion: nil)
+        msr_navigationController!.pushViewController(UserViewController(user: users[indexPath.row]), animated: true, completion: nil)
     }
     func refresh() {
         let success: () -> Void = {
@@ -94,13 +98,13 @@ class UserListViewController: UITableViewController {
     func loadMore() {
         let success: () -> Void = {
             ++self.page
-            self.msr_loadMoreControl.endLoadingMore()
+            self.msr_loadMoreControl?.endLoadingMore()
             self.tableView.reloadData()
         }
         let failure: (NSError) -> Void = {
             error in
-            self.msr_loadMoreControl.endLoadingMore()
-            self.tableView.reloadData()
+            self.msr_loadMoreControl?.endLoadingMore()
+            return
         }
         switch listType! {
         case .UserFollower:

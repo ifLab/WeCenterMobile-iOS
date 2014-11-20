@@ -25,9 +25,9 @@ class UserGenderCell :UITableViewCell{
         M.frame = CGRectMake(self.frame.width * (1 / 5) - 10, self.frame.height / 10, self.frame.width / 5, self.frame.height * 0.8)
         F.frame = CGRectMake(self.frame.width * (2 / 5), self.frame.height / 10, self.frame.width / 5, self.frame.height * 0.8)
         Unknown.frame = CGRectMake(self.frame.width * (3 / 5) + 10, self.frame.height / 10, self.frame.width / 5, self.frame.height * 0.8)
-        F.setTitle( UserStrings["female"], forState: .Normal)
-        M.setTitle( UserStrings["male"], forState: .Normal)
-        Unknown.setTitle(UserStrings["secret"], forState: .Normal)
+        F.setTitle( userStrings["female"], forState: .Normal)
+        M.setTitle( userStrings["male"], forState: .Normal)
+        Unknown.setTitle(userStrings["secret"], forState: .Normal)
         if gender == 1 {
             M.backgroundColor = UIColor.grayColor()
             F.backgroundColor = UIColor.lightGrayColor()

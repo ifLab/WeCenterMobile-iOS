@@ -26,13 +26,13 @@ class LoginView: Msr.UI.AlertView {
             textField.textColor = UIColor.blackColor()
             textField.tintColor = UIColor.whiteColor()
             textField.textAlignment = .Center
-            textField.keyboardAppearance = UIKeyboardAppearance.Default
-            textField.keyboardType = UIKeyboardType.ASCIICapable
+            textField.keyboardAppearance = .Default
             textField.clearButtonMode = .WhileEditing
             return textField
         }
         usernameField = newTextField()
         passwordField = newTextField()
+        passwordField.secureTextEntry = true
         usernameField.attributedPlaceholder = NSAttributedString(
             string: strings["Username"],
             attributes: [NSForegroundColorAttributeName: UIColor.blackColor()])

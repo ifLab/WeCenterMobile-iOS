@@ -21,17 +21,17 @@ class UserEditViewController:UIViewController,UserPostDelegate,GenderDelegate,UI
     let model = Model(module: "User", bundle: NSBundle.mainBundle())
     func items1() ->Array<Array<String>> {
 //        return [["姓名","性别"],["个人介绍"],["生日"],["居住","教育","行业","工作"]]
-        return [[UserStrings["Name"],UserStrings["Gender"]],[UserStrings["Introduction"]],[UserStrings["Birthday"]]]
+        return [[userStrings["Name"],userStrings["Gender"]],[userStrings["Introduction"]],[userStrings["Birthday"]]]
     }
     
     func items2() ->Array<String>{
-        return ["",UserStrings["Introduction"],UserStrings["Other information"]]
+        return ["",userStrings["Introduction"],userStrings["Other information"]]
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = UserStrings["Modify Information"]
+        self.title = userStrings["Modify Information"]
         setupViews()
     }
     
@@ -63,10 +63,10 @@ class UserEditViewController:UIViewController,UserPostDelegate,GenderDelegate,UI
         self.view.addSubview(body)
     }
     func choosePhoto(){
-        let title = UserStrings["Select"];
-        let cancel = UserStrings["Cancel"];
-        let button1 = UserStrings["Pictures"];
-        let button2 = UserStrings["Album"];
+        let title = userStrings["Select"];
+        let cancel = userStrings["Cancel"];
+        let button1 = userStrings["Pictures"];
+        let button2 = userStrings["Album"];
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             let sheet = UIActionSheet(title: title, delegate: self, cancelButtonTitle: cancel, destructiveButtonTitle: nil, otherButtonTitles:button1, button2)
             sheet.showInView(self.view)

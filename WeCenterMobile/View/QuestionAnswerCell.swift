@@ -37,14 +37,13 @@ class QuestionAnswerCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update(#data: (question: Question, answer: Answer, user: User), width: CGFloat) {
-        let question = data.question
-        let answer = data.answer
-        let user = data.user
+    func update(#answer: Answer, width: CGFloat) {
+        let question = answer.question!
+        let user = answer.user!
     
-        questionButton.msr_userInfo = question.id
-        answerButton.msr_userInfo = answer.id
-        userButton.msr_userInfo = user.id
+        questionButton.msr_userInfo = question
+        answerButton.msr_userInfo = answer
+        userButton.msr_userInfo = user
         
         questionLabel.text = question.title
         questionLabel.font = UIFont.boldSystemFontOfSize(16)

@@ -9,13 +9,12 @@
 import UIKit
 
 class QuestionViewController: UITableViewController, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate {
-    var questionID: NSNumber! = nil
-    var question: Question? = nil
+    var question: Question
     var answers: [Answer] {
-        return (question?.answers.allObjects ?? []) as [Answer]
+        return (question.answers.allObjects ?? []) as [Answer]
     }
     var topics: [Topic] {
-        return (question?.topics.allObjects ?? []) as [Topic]
+        return (question.topics.allObjects ?? []) as [Topic]
     }
     let identifiers = [
         "QUESTION_TITLE",
@@ -34,15 +33,12 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
         AnswerCell.self
     ]
     var questionFocusCell: QuestionFocusCell! = nil
-    init(questionID: NSNumber) {
+    init(question: Question) {
+        self.question = question
         super.init(style: .Grouped)
-        self.questionID = questionID
     }
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     override func loadView() {
         super.loadView()
@@ -57,9 +53,8 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        question = Question.get(ID: questionID, error: nil)
         tableView.reloadData()
-        Question.fetch(ID: questionID,
+        Question.fetch(ID: question.id,
             success: {
                 question in
                 self.question = question
@@ -71,7 +66,7 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 5 {
-            return question?.answers.count ?? 0
+            return question.answers.count ?? 0
         } else {
             return 1
         }
@@ -192,7 +187,7 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
             } else {
                 answer.user!.fetchAvatar(
                     success: {
-                        if answerCell.avatarButton.msr_userInfo as NSNumber == answer.user!.id {
+                        if (answerCell.avatarButton.msr_userInfo as User).id == answer.user!.id {
                             answerCell.avatarButton.setImage(answer.user!.avatar, forState: .Normal)
                         }
                     },
@@ -207,14 +202,11 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.section {
         case 1:
-            if question != nil {
-                msr_navigationController!.pushViewController(TopicListViewController(topics: topics), animated: true, completion: nil)
-            }
+            msr_navigationController!.pushViewController(TopicListViewController(topics: topics), animated: true, completion: nil)
             break
         case 5:
-            if question != nil {
-                msr_navigationController!.pushViewController(AnswerViewController(answerID: answers[indexPath.row].id), animated: true, completion: nil)
-            }
+            msr_navigationController!.pushViewController(AnswerViewController(answerID: answers[indexPath.row].id), animated: true, completion: nil)
+            break
         default:
             break
         }
@@ -248,9 +240,9 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
     func toggleFocusQuestion(focusButton: UIButton) {
         questionFocusCell.focusButtonState = .Loading
         let update: () -> Void = {
-            self.questionFocusCell.update(question: self.question, answerCount: self.question?.answers.count, width: self.tableView.bounds.width)
+            self.questionFocusCell.update(question: self.question, answerCount: self.question.answers.count, width: self.tableView.bounds.width)
         }
-        question?.toggleFocus(
+        question.toggleFocus(
             success: update,
             failure: {
                 error in

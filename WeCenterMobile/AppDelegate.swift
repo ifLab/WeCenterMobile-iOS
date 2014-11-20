@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             },
             failure: {
                 error in
+                println(error.userInfo)
                 self.window!.makeKeyAndVisible()
             })
         return true

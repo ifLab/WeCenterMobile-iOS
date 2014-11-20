@@ -76,7 +76,8 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         let likeItem = UIBarButtonItem(image: UIImage(named: "Star-Line"), style: .Plain, target: nil, action: nil)
         let uselessItem = UIBarButtonItem(image: UIImage(named: "Flag-Line"), style: .Plain, target: nil, action: nil)
         let commentItem = UIBarButtonItem(image: UIImage(named: "Conversation-Line"), style: .Plain, target: self, action: "pushCommentListViewController")
-        let createFlexibleSpaceItem: () -> UIBarButtonItem = {
+        let createFlexibleSpaceItem = {
+            () -> UIBarButtonItem in
             return UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         }
         // Needs localization

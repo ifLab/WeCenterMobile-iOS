@@ -28,14 +28,13 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     var tableView = UITableView(frame: CGRectZero, style: .Plain)
     var tableViewCellReuseIdentifier = "WE_CENTER_MOBILE@TOPIC_VIEW_CONTROLLER+TABLE_VIEW-QUESTION_ANSWER_CELL-REUSE_IDENTIFIER"
     var outstandingAnswerButton = RectangleCoverButton()
+
+    var topic: Topic
+    var answers = [Answer]()
     
-    var topicID: NSNumber!
-    var topic: Topic!
-    var array: [(question: Question, answer: Answer, user: User)] = []
-    
-    init(topicID: NSNumber) {
+    init(topic: Topic) {
+        self.topic = topic
         super.init(nibName: nil, bundle: nil)
-        self.topicID = topicID
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -44,8 +43,6 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     
     override func loadView() {
         super.loadView()
-        view = UIScrollView(frame: UIScreen.mainScreen().bounds)
-        (view as UIScrollView).bounces = false
         view.addSubview(tableView)
         view.addSubview(topView)
         topView.addSubview(imageButton)
@@ -54,7 +51,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         imageButton.addSubview(imageActivityIndicatorView)
         tableView.addSubview(hideableView)
         hideableView.addSubview(introductionLabel)
-        topView.frame = CGRect(x: 0, y: -(UINavigationController().navigationBar.bounds.height + UIApplication.sharedApplication().statusBarFrame.height), width: view.bounds.width, height: 140)
+        topView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 140)
         topView.backgroundColor = UIColor.materialGray300()
         topView.delaysContentTouches = false
         topView.layer.masksToBounds = false
@@ -97,16 +94,23 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         msr_navigationBar!.hidden = true
-        topic = Topic.get(ID: topicID, error: nil)
-        Topic.fetch(ID: topicID,
+        view.frame = msr_navigationController!.view.bounds
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        reloadData()
+        Topic.fetch(ID: topic.id,
             success: {
                 topic in
                 self.topic = topic
-                self.reloadData()
                 self.topic.fetchOutstandingAnswers(
                     success: {
-                        self.tableView.reloadData()
+                        answers in
+                        self.answers = answers
+                        self.reloadData()
                     },
                     failure: nil)
             },
@@ -162,6 +166,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         hideableView.frame.origin.y = -hideableView.frame.size.height
         tableView.contentInset.top = hideableView.bounds.height
         tableView.contentOffset.y = -tableView.contentInset.top
+        tableView.reloadData()
     }
     
     func delayHidingImageButtonImage() {
@@ -196,10 +201,10 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     }
     
     func toggleImageButtonImage() {
-        if topic?.focused != nil {
+        if topic.focused != nil {
             switch imageButtonState {
             case .Normal:
-                if topic!.focused! {
+                if topic.focused! {
                     imageButton.setImage(UIImage(named: "User_Following"), forState: .Normal)
                     imageButtonState = .Following
                 } else {
@@ -223,13 +228,13 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
                 imageActivityIndicatorView.startAnimating()
                 imageButton.userInteractionEnabled = false
                 preventHidingImageButtonImage()
-                topic!.toggleFocus(
+                topic.toggleFocus(
                     userID: appDelegate.currentUser!.id,
                     success: {
                         self.tryHidingImageButtonImage()
                         self.imageActivityIndicatorView.stopAnimating()
                         self.imageButton.userInteractionEnabled = true
-                        if self.topic!.focused! {
+                        if self.topic.focused! {
                             self.imageButton.setImage(UIImage(named: "User_Following"), forState: .Normal)
                             self.imageButtonState = .Following
                         } else {
@@ -255,25 +260,25 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return array.count
+        return answers.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let data = array[indexPath.row]
+        let answer = answers[indexPath.row]
         var cell: QuestionAnswerCell! = tableView.dequeueReusableCellWithIdentifier(tableViewCellReuseIdentifier, forIndexPath: indexPath) as? QuestionAnswerCell
         if cell == nil {
             cell = QuestionAnswerCell(style: .Default, reuseIdentifier: tableViewCellReuseIdentifier)
         }
-        cell.update(data: data, width: tableView.bounds.width)
+        cell.update(answer: answer, width: tableView.bounds.width)
         cell.userButton.addTarget(self, action: "pushUserViewController:", forControlEvents: .TouchUpInside)
         cell.questionButton.addTarget(self, action: "pushQuestionViewController:", forControlEvents: .TouchUpInside)
-        if data.user.avatar != nil {
-            cell.userButton.setImage(data.user.avatar, forState: .Normal)
+        if answer.user?.avatar != nil {
+            cell.userButton.setImage(answer.user!.avatar, forState: .Normal)
         } else {
-            data.user.fetchAvatar(
+            answer.user?.fetchAvatar(
                 success: {
-                    if cell.userButton.msr_userInfo as NSNumber == data.user.id {
-                        cell.userButton.setImage(data.user.avatar, forState: .Normal)
+                    if (cell.userButton.msr_userInfo as User).id == answer.user!.id {
+                        cell.userButton.setImage(answer.user!.avatar, forState: .Normal)
                     }
                 },
                 failure: nil)
@@ -282,11 +287,15 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     }
     
     func pushUserViewController(userButton: UIButton) {
-        msr_navigationController!.pushViewController(UserViewController(userID: userButton.msr_userInfo as NSNumber), animated: true, completion: nil)
+        if userButton.msr_userInfo != nil {
+            msr_navigationController!.pushViewController(UserViewController(user: userButton.msr_userInfo as User), animated: true, completion: nil)
+        }
     }
     
     func pushQuestionViewController(questionButton: UIButton) {
-        msr_navigationController!.pushViewController(QuestionViewController(questionID: questionButton.msr_userInfo as NSNumber), animated: true, completion: nil)
+        if questionButton.msr_userInfo != nil {
+            msr_navigationController!.pushViewController(QuestionViewController(question: questionButton.msr_userInfo as Question), animated: true, completion: nil)
+        }
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -295,7 +304,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let cell = QuestionAnswerCell(style: .Default, reuseIdentifier: tableViewCellReuseIdentifier)
-        cell.update(data: array[indexPath.row], width: tableView.bounds.width)
+        cell.update(answer: answers[indexPath.row], width: tableView.bounds.width)
         return cell.bounds.height
     }
     
