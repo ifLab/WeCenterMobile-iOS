@@ -42,20 +42,16 @@
 		950FE71A1A1DA2B500167D09 /* UIImage+Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4D41A1DA2B500167D09 /* UIImage+Shape.swift */; };
 		950FE71B1A1DA2B500167D09 /* UIView+KeyboardUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4D51A1DA2B500167D09 /* UIView+KeyboardUtility.swift */; };
 		950FE71C1A1DA2B500167D09 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4D71A1DA2B500167D09 /* Action.swift */; };
-		950FE71D1A1DA2B500167D09 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4D81A1DA2B500167D09 /* Answer.swift */; };
 		950FE71E1A1DA2B500167D09 /* AnswerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4D91A1DA2B500167D09 /* AnswerAction.swift */; };
 		950FE71F1A1DA2B500167D09 /* AnswerAgreementAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4DA1A1DA2B500167D09 /* AnswerAgreementAction.swift */; };
-		950FE7201A1DA2B500167D09 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4DB1A1DA2B500167D09 /* Article.swift */; };
 		950FE7211A1DA2B500167D09 /* ArticleAgreementAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4DC1A1DA2B500167D09 /* ArticleAgreementAction.swift */; };
 		950FE7221A1DA2B500167D09 /* ArticlePublishmentAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4DD1A1DA2B500167D09 /* ArticlePublishmentAction.swift */; };
-		950FE7231A1DA2B500167D09 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4DE1A1DA2B500167D09 /* Comment.swift */; };
 		950FE7241A1DA2B500167D09 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4DF1A1DA2B500167D09 /* DataManager.swift */; };
 		950FE7251A1DA2B500167D09 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4E01A1DA2B500167D09 /* NetworkManager.swift */; };
 		950FE72E1A1DA2B500167D09 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4EA1A1DA2B500167D09 /* Question.swift */; };
 		950FE72F1A1DA2B500167D09 /* QuestionFocusingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4EB1A1DA2B500167D09 /* QuestionFocusingAction.swift */; };
 		950FE7301A1DA2B500167D09 /* QuestionPublishmentAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4EC1A1DA2B500167D09 /* QuestionPublishmentAction.swift */; };
 		950FE7311A1DA2B500167D09 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4ED1A1DA2B500167D09 /* Topic.swift */; };
-		950FE7321A1DA2B500167D09 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4EE1A1DA2B500167D09 /* User.swift */; };
 		950FE7331A1DA2B500167D09 /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4F11A1DA2B500167D09 /* ActivityCell.swift */; };
 		950FE7341A1DA2B500167D09 /* AnswerAdditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4F21A1DA2B500167D09 /* AnswerAdditionCell.swift */; };
 		950FE7351A1DA2B500167D09 /* AnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4F31A1DA2B500167D09 /* AnswerCell.swift */; };
@@ -230,8 +226,13 @@
 		9588F5E91A1D9D1C001BC426 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9588F5E81A1D9D1C001BC426 /* AppDelegate.swift */; };
 		9588F5EC1A1D9D1C001BC426 /* WeCenterMobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9588F5EA1A1D9D1C001BC426 /* WeCenterMobile.xcdatamodeld */; };
 		9588F5F31A1D9D1C001BC426 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9588F5F21A1D9D1C001BC426 /* Images.xcassets */; };
-		9588F5F61A1D9D1C001BC426 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9588F5F41A1D9D1C001BC426 /* LaunchScreen.xib */; };
 		9588F6021A1D9D1C001BC426 /* WeCenterMobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9588F6011A1D9D1C001BC426 /* WeCenterMobileTests.swift */; };
+		959CC93A1A25BAED00F8B6CB /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC9391A25BAED00F8B6CB /* Article.swift */; };
+		959CC93C1A25BAED00F8B6CB /* AnswerComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC93B1A25BAED00F8B6CB /* AnswerComment.swift */; };
+		959CC93E1A25BAED00F8B6CB /* ArticleComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC93D1A25BAED00F8B6CB /* ArticleComment.swift */; };
+		959CC9401A25BAED00F8B6CB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC93F1A25BAED00F8B6CB /* User.swift */; };
+		959CC9421A25BAEE00F8B6CB /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC9411A25BAEE00F8B6CB /* Answer.swift */; };
+		95B6E6B91A232E2400F31BE3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9588F5F41A1D9D1C001BC426 /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -287,20 +288,16 @@
 		950FE4D41A1DA2B500167D09 /* UIImage+Shape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Shape.swift"; sourceTree = "<group>"; };
 		950FE4D51A1DA2B500167D09 /* UIView+KeyboardUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+KeyboardUtility.swift"; sourceTree = "<group>"; };
 		950FE4D71A1DA2B500167D09 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
-		950FE4D81A1DA2B500167D09 /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		950FE4D91A1DA2B500167D09 /* AnswerAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerAction.swift; sourceTree = "<group>"; };
 		950FE4DA1A1DA2B500167D09 /* AnswerAgreementAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerAgreementAction.swift; sourceTree = "<group>"; };
-		950FE4DB1A1DA2B500167D09 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		950FE4DC1A1DA2B500167D09 /* ArticleAgreementAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleAgreementAction.swift; sourceTree = "<group>"; };
 		950FE4DD1A1DA2B500167D09 /* ArticlePublishmentAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlePublishmentAction.swift; sourceTree = "<group>"; };
-		950FE4DE1A1DA2B500167D09 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		950FE4DF1A1DA2B500167D09 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		950FE4E01A1DA2B500167D09 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		950FE4EA1A1DA2B500167D09 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		950FE4EB1A1DA2B500167D09 /* QuestionFocusingAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionFocusingAction.swift; sourceTree = "<group>"; };
 		950FE4EC1A1DA2B500167D09 /* QuestionPublishmentAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionPublishmentAction.swift; sourceTree = "<group>"; };
 		950FE4ED1A1DA2B500167D09 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
-		950FE4EE1A1DA2B500167D09 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		950FE4EF1A1DA2B500167D09 /* Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.h; sourceTree = "<group>"; };
 		950FE4F11A1DA2B500167D09 /* ActivityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
 		950FE4F21A1DA2B500167D09 /* AnswerAdditionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerAdditionCell.swift; sourceTree = "<group>"; };
@@ -635,6 +632,11 @@
 		9588F5FB1A1D9D1C001BC426 /* WeCenterMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeCenterMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9588F6001A1D9D1C001BC426 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9588F6011A1D9D1C001BC426 /* WeCenterMobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeCenterMobileTests.swift; sourceTree = "<group>"; };
+		959CC9391A25BAED00F8B6CB /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		959CC93B1A25BAED00F8B6CB /* AnswerComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerComment.swift; sourceTree = "<group>"; };
+		959CC93D1A25BAED00F8B6CB /* ArticleComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleComment.swift; sourceTree = "<group>"; };
+		959CC93F1A25BAED00F8B6CB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		959CC9411A25BAEE00F8B6CB /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -752,20 +754,21 @@
 			isa = PBXGroup;
 			children = (
 				950FE4D71A1DA2B500167D09 /* Action.swift */,
-				950FE4D81A1DA2B500167D09 /* Answer.swift */,
+				959CC9411A25BAEE00F8B6CB /* Answer.swift */,
 				950FE4D91A1DA2B500167D09 /* AnswerAction.swift */,
 				950FE4DA1A1DA2B500167D09 /* AnswerAgreementAction.swift */,
-				950FE4DB1A1DA2B500167D09 /* Article.swift */,
+				959CC93B1A25BAED00F8B6CB /* AnswerComment.swift */,
+				959CC9391A25BAED00F8B6CB /* Article.swift */,
 				950FE4DC1A1DA2B500167D09 /* ArticleAgreementAction.swift */,
+				959CC93D1A25BAED00F8B6CB /* ArticleComment.swift */,
 				950FE4DD1A1DA2B500167D09 /* ArticlePublishmentAction.swift */,
-				950FE4DE1A1DA2B500167D09 /* Comment.swift */,
 				950FE4DF1A1DA2B500167D09 /* DataManager.swift */,
 				950FE4E01A1DA2B500167D09 /* NetworkManager.swift */,
 				950FE4EA1A1DA2B500167D09 /* Question.swift */,
 				950FE4EB1A1DA2B500167D09 /* QuestionFocusingAction.swift */,
 				950FE4EC1A1DA2B500167D09 /* QuestionPublishmentAction.swift */,
 				950FE4ED1A1DA2B500167D09 /* Topic.swift */,
-				950FE4EE1A1DA2B500167D09 /* User.swift */,
+				959CC93F1A25BAED00F8B6CB /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1457,7 +1460,7 @@
 			files = (
 				950FE1241A1DA2A400167D09 /* Configuration.plist in Resources */,
 				950FE1251A1DA2A400167D09 /* Discovery.strings in Resources */,
-				9588F5F61A1D9D1C001BC426 /* LaunchScreen.xib in Resources */,
+				95B6E6B91A232E2400F31BE3 /* LaunchScreen.xib in Resources */,
 				950FE1271A1DA2A400167D09 /* Welcome.strings in Resources */,
 				9588F5F31A1D9D1C001BC426 /* Images.xcassets in Resources */,
 				950FE1261A1DA2A400167D09 /* User.strings in Resources */,
@@ -1481,11 +1484,13 @@
 			files = (
 				950FE9501A1DA7B400167D09 /* DTDictationPlaceholderView.m in Sources */,
 				950FEA331A1DA7D800167D09 /* unzip.c in Sources */,
+				959CC93A1A25BAED00F8B6CB /* Article.swift in Sources */,
 				950FE50E1A1DA2B500167D09 /* UserQuestionListViewController.swift in Sources */,
 				950FE9591A1DA7B400167D09 /* DTImageTextAttachment.m in Sources */,
 				950FEA511A1DA7D800167D09 /* NSString+DTFormatNumbers.m in Sources */,
 				950FEA281A1DA7D800167D09 /* NSScanner+DTScripting.m in Sources */,
 				950FEA211A1DA7D800167D09 /* DTFolderMonitor.m in Sources */,
+				959CC9421A25BAEE00F8B6CB /* Answer.swift in Sources */,
 				950FE7341A1DA2B500167D09 /* AnswerAdditionCell.swift in Sources */,
 				950FEA441A1DA7D800167D09 /* DTTiledLayerWithoutFade.m in Sources */,
 				950FE94C1A1DA7B400167D09 /* DTCoreTextParagraphStyle.m in Sources */,
@@ -1496,7 +1501,6 @@
 				950FEA8D1A1DA81400167D09 /* AFURLResponseSerialization.m in Sources */,
 				950FE9711A1DA7B400167D09 /* NSString+HTML.m in Sources */,
 				950FE9621A1DA7B400167D09 /* DTTextHTMLElement.m in Sources */,
-				950FE7321A1DA2B500167D09 /* User.swift in Sources */,
 				950FE9701A1DA7B400167D09 /* NSString+CSS.m in Sources */,
 				950FEA1F1A1DA7D800167D09 /* DTCoreGraphicsUtils.m in Sources */,
 				950FE96D1A1DA7B400167D09 /* NSMutableAttributedString+HTML.m in Sources */,
@@ -1535,7 +1539,6 @@
 				950FE7331A1DA2B500167D09 /* ActivityCell.swift in Sources */,
 				950FE93D1A1DA7B400167D09 /* DTAttributedTextContentView.m in Sources */,
 				950FE5051A1DA2B500167D09 /* DiscoveryViewController.swift in Sources */,
-				950FE7201A1DA2B500167D09 /* Article.swift in Sources */,
 				950FEA531A1DA7D800167D09 /* NSString+DTURLEncoding.m in Sources */,
 				950FE7F21A1DA66800167D09 /* BFPaperButton.m in Sources */,
 				950FE95E1A1DA7B400167D09 /* DTStylesheetHTMLElement.m in Sources */,
@@ -1592,6 +1595,7 @@
 				950FE9471A1DA7B400167D09 /* DTCoreTextLayouter.m in Sources */,
 				950FE9421A1DA7B400167D09 /* DTCoreTextConstants.m in Sources */,
 				950FE7381A1DA2B500167D09 /* QuestionAnswerCell.swift in Sources */,
+				959CC93C1A25BAED00F8B6CB /* AnswerComment.swift in Sources */,
 				950FEA3C1A1DA7D800167D09 /* DTCustomColoredAccessory.m in Sources */,
 				950FE9581A1DA7B400167D09 /* DTImage+HTML.m in Sources */,
 				950FEA291A1DA7D800167D09 /* DTSQLiteDatabase.m in Sources */,
@@ -1620,7 +1624,6 @@
 				950FEA8A1A1DA81400167D09 /* AFSecurityPolicy.m in Sources */,
 				950FEA4C1A1DA7D800167D09 /* NSArray+DTError.m in Sources */,
 				950FE9481A1DA7B400167D09 /* DTCoreTextLayoutFrame+Cursor.m in Sources */,
-				950FE71D1A1DA2B500167D09 /* Answer.swift in Sources */,
 				950FE73D1A1DA2B500167D09 /* TopicCell.swift in Sources */,
 				950FE96C1A1DA7B400167D09 /* NSDictionary+DTCoreText.m in Sources */,
 				950FE9721A1DA7B400167D09 /* NSString+Paragraphs.m in Sources */,
@@ -1661,14 +1664,15 @@
 				950FEA471A1DA7D800167D09 /* NSURL+DTAppLinks.m in Sources */,
 				950FE72F1A1DA2B500167D09 /* QuestionFocusingAction.swift in Sources */,
 				950FEA271A1DA7D800167D09 /* DTScriptVariable.m in Sources */,
-				950FE7231A1DA2B500167D09 /* Comment.swift in Sources */,
 				950FE9411A1DA7B400167D09 /* DTColorFunctions.m in Sources */,
 				9588F5EC1A1D9D1C001BC426 /* WeCenterMobile.xcdatamodeld in Sources */,
 				950FEA231A1DA7D800167D09 /* DTHTMLParser.m in Sources */,
 				950FE5061A1DA2B500167D09 /* HomeViewController.swift in Sources */,
 				950FEA191A1DA7D800167D09 /* DTASN1Parser.m in Sources */,
+				959CC9401A25BAED00F8B6CB /* User.swift in Sources */,
 				950FE9571A1DA7B400167D09 /* DTIframeTextAttachment.m in Sources */,
 				950FEA891A1DA81400167D09 /* AFNetworkReachabilityManager.m in Sources */,
+				959CC93E1A25BAED00F8B6CB /* ArticleComment.swift in Sources */,
 				950FE7131A1DA2B500167D09 /* NavigationController.swift in Sources */,
 				9588F5E91A1D9D1C001BC426 /* AppDelegate.swift in Sources */,
 				950FE5071A1DA2B500167D09 /* MainViewController.swift in Sources */,

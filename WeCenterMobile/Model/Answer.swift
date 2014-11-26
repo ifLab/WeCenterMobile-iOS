@@ -2,8 +2,8 @@
 //  Answer.swift
 //  WeCenterMobile
 //
-//  Created by Darren Liu on 14/10/7.
-//  Copyright (c) 2014年 ifLab. All rights reserved.
+//  Created by Darren Liu on 14/11/26.
+//  Copyright (c) 2014年 Beijing Information Science and Technology University. All rights reserved.
 //
 
 import Foundation
@@ -69,12 +69,12 @@ class Answer: NSManagedObject {
                 } else {
                     commentsData = data as [NSDictionary]
                 }
-                var array = self.comments.allObjects as [Comment]
+                var array = self.comments.allObjects as [AnswerComment]
                 for commentData in commentsData {
                     let commentID = commentData["id"] as? NSNumber ?? -1
-                    var comment: Comment! = array.filter({ $0.id == commentID }).first
+                    var comment: AnswerComment! = array.filter({ $0.id == commentID }).first
                     if comment == nil {
-                        comment = dataManager.autoGenerate("Comment", ID: commentID) as Comment
+                        comment = dataManager.autoGenerate("AnswerComment", ID: commentID) as AnswerComment
                         array.append(comment)
                     }
                     let userID = commentData["uid"] as? NSNumber

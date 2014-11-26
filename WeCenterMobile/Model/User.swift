@@ -2,8 +2,8 @@
 //  User.swift
 //  WeCenterMobile
 //
-//  Created by Darren Liu on 14/10/7.
-//  Copyright (c) 2014年 ifLab. All rights reserved.
+//  Created by Darren Liu on 14/11/26.
+//  Copyright (c) 2014年 Beijing Information Science and Technology University. All rights reserved.
 //
 
 import Foundation
@@ -14,6 +14,7 @@ class User: NSManagedObject {
     @NSManaged var agreementCount: NSNumber?
     @NSManaged var answerCount: NSNumber?
     @NSManaged var answerFavoriteCount: NSNumber?
+    @NSManaged var avatarData: NSData?
     @NSManaged var avatarURI: String?
     @NSManaged var birthday: NSNumber?
     @NSManaged var followerCount: NSNumber?
@@ -30,13 +31,14 @@ class User: NSManagedObject {
     @NSManaged var actions: NSSet
     @NSManaged var answers: NSSet
     @NSManaged var articles: NSSet
-    @NSManaged var comments: NSSet
-    @NSManaged var questions: NSSet
-    @NSManaged var topics: NSSet
-    @NSManaged var commentsMentioned: NSSet
+    @NSManaged var answerComments: NSSet
+    @NSManaged var answerCommentsMentioned: NSSet
     @NSManaged var followers: NSSet
     @NSManaged var followings: NSSet
-    @NSManaged var avatarData: NSData?
+    @NSManaged var questions: NSSet
+    @NSManaged var topics: NSSet
+    @NSManaged var articleComments: NSSet
+    @NSManaged var articleCommentsMentioned: NSSet
     
     enum Gender: Int {
         case Male = 1
@@ -325,10 +327,34 @@ class User: NSManagedObject {
                     request, response, error in
                     failure?(error)
                     return
-                })
+            })
         } else {
             failure?(NSError()) // Needs specification
         }
+    }
+    
+    func fetchActions(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        networkManager.GET("Home List",
+            parameters: nil,
+            success: {
+                data in
+                let rows = data["total_rows"] as Int
+                if rows > 0 {
+                    let objects = data["rows"] as [[String: AnyObject]]
+                    for object in objects {
+                        let typeID = Action.TypeID(rawValue: (object["associate_action"] as Int))!
+                        var currentAction: Action!
+                        if typeID == .ArticleAgreement {
+                            let action = dataManager.autoGenerate("ArticleAgreementAction", ID: object["uid"] as NSNumber) as ArticleAgreementAction
+                            currentAction = action
+                            
+                        }
+                    }
+                } else {
+                    failure?(NSError()) // Needs specification
+                }
+            },
+            failure: failure)
     }
 
 }
