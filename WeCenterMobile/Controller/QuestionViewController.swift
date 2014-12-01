@@ -9,7 +9,7 @@
 import UIKit
 
 class QuestionViewController: UITableViewController, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate {
-    var question: Question
+    var question: Question!
     var answers: [Answer] {
         return (question.answers.allObjects ?? []) as [Answer]
     }
@@ -34,11 +34,14 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
     ]
     var questionFocusCell: QuestionFocusCell! = nil
     init(question: Question) {
-        self.question = question
         super.init(style: .Grouped)
+        self.question = question
     }
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     override func loadView() {
         super.loadView()

@@ -21,7 +21,7 @@
 		950FE50B1A1DA2B500167D09 /* TopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1341A1DA2B300167D09 /* TopicListViewController.swift */; };
 		950FE50C1A1DA2B500167D09 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1351A1DA2B300167D09 /* TopicViewController.swift */; };
 		950FE50D1A1DA2B500167D09 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1361A1DA2B300167D09 /* UserListViewController.swift */; };
-		950FE50E1A1DA2B500167D09 /* UserQuestionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1371A1DA2B300167D09 /* UserQuestionListViewController.swift */; };
+		950FE50E1A1DA2B500167D09 /* UserAskedQuestionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1371A1DA2B300167D09 /* UserAskedQuestionListViewController.swift */; };
 		950FE50F1A1DA2B500167D09 /* UserTopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1381A1DA2B300167D09 /* UserTopicListViewController.swift */; };
 		950FE5101A1DA2B500167D09 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1391A1DA2B300167D09 /* UserViewController.swift */; };
 		950FE5111A1DA2B500167D09 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE13A1A1DA2B300167D09 /* WelcomeViewController.swift */; };
@@ -267,7 +267,7 @@
 		950FE1341A1DA2B300167D09 /* TopicListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListViewController.swift; sourceTree = "<group>"; };
 		950FE1351A1DA2B300167D09 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		950FE1361A1DA2B300167D09 /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
-		950FE1371A1DA2B300167D09 /* UserQuestionListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserQuestionListViewController.swift; sourceTree = "<group>"; };
+		950FE1371A1DA2B300167D09 /* UserAskedQuestionListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAskedQuestionListViewController.swift; sourceTree = "<group>"; };
 		950FE1381A1DA2B300167D09 /* UserTopicListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTopicListViewController.swift; sourceTree = "<group>"; };
 		950FE1391A1DA2B300167D09 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		950FE13A1A1DA2B300167D09 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -689,7 +689,7 @@
 				950FE1341A1DA2B300167D09 /* TopicListViewController.swift */,
 				950FE1351A1DA2B300167D09 /* TopicViewController.swift */,
 				950FE1361A1DA2B300167D09 /* UserListViewController.swift */,
-				950FE1371A1DA2B300167D09 /* UserQuestionListViewController.swift */,
+				950FE1371A1DA2B300167D09 /* UserAskedQuestionListViewController.swift */,
 				950FE1381A1DA2B300167D09 /* UserTopicListViewController.swift */,
 				950FE1391A1DA2B300167D09 /* UserViewController.swift */,
 				950FE13A1A1DA2B300167D09 /* WelcomeViewController.swift */,
@@ -1425,6 +1425,7 @@
 				TargetAttributes = {
 					9588F5E21A1D9D1C001BC426 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = ZRU9NS7944;
 					};
 					9588F5FA1A1D9D1C001BC426 = {
 						CreatedOnToolsVersion = 6.1;
@@ -1485,7 +1486,7 @@
 				950FE9501A1DA7B400167D09 /* DTDictationPlaceholderView.m in Sources */,
 				950FEA331A1DA7D800167D09 /* unzip.c in Sources */,
 				959CC93A1A25BAED00F8B6CB /* Article.swift in Sources */,
-				950FE50E1A1DA2B500167D09 /* UserQuestionListViewController.swift in Sources */,
+				950FE50E1A1DA2B500167D09 /* UserAskedQuestionListViewController.swift in Sources */,
 				950FE9591A1DA7B400167D09 /* DTImageTextAttachment.m in Sources */,
 				950FEA511A1DA7D800167D09 /* NSString+DTFormatNumbers.m in Sources */,
 				950FEA281A1DA7D800167D09 /* NSScanner+DTScripting.m in Sources */,

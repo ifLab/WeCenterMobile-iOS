@@ -117,13 +117,14 @@
         <relationship name="topics" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Topic" inverseName="users" inverseEntity="Topic" syncable="YES"/>
     </entity>
     <fetchRequest name="Answer_By_ID" entity="Answer" predicateString="id == $ID"/>
+    <fetchRequest name="AnswerComment_By_ID" entity="AnswerComment" predicateString="id == $ID"/>
     <fetchRequest name="Article_By_ID" entity="Article" predicateString="id == $ID"/>
     <fetchRequest name="Question_By_ID" entity="Question" predicateString="id == $ID"/>
     <fetchRequest name="Topic_By_ID" entity="Topic" predicateString="id == $ID"/>
     <fetchRequest name="User_By_ID" entity="User" predicateString="id == $ID"/>
     <elements>
         <element name="Action" positionX="450" positionY="216" width="128" height="90"/>
-        <element name="Answer" positionX="450" positionY="522" width="128" height="193"/>
+        <element name="Answer" positionX="450" positionY="522" width="128" height="195"/>
         <element name="AnswerAction" positionX="450" positionY="369" width="128" height="60"/>
         <element name="AnswerAgreementAction" positionX="450" positionY="437" width="128" height="60"/>
         <element name="AnswerComment" positionX="448" positionY="729" width="128" height="150"/>

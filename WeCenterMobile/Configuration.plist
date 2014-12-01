@@ -51,7 +51,7 @@
 		<key>Home List</key>
 		<string>?/api/home/</string>
 		<key>User Question List</key>
-		<string></string>
+		<string>api/my_question.php</string>
 	</dict>
 	<key>Success Code</key>
 	<integer>1</integer>

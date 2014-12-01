@@ -42,7 +42,7 @@ class Question: NSManagedObject {
                 question.focusCount = value["focus_count"] as? NSNumber
                 question.focusing = (value["has_focus"] as? NSNumber == 1)
                 var answerArray = question.answers.allObjects as [Answer]
-                for (key, value) in data["answers"] as [String: NSDictionary] {
+                for (key, value) in data["answers"] as? [String: NSDictionary] ?? [:] {
                     let answerID = value["answer_id"] as NSNumber
                     var answer: Answer! = answerArray.filter({ $0.id == answerID }).first
                     if answer == nil {

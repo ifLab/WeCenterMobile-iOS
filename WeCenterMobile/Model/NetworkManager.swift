@@ -23,7 +23,7 @@ class NetworkManager {
                 success: {
                     operation, data in
                     application.networkActivityIndicatorVisible = false
-                    self.handleSuccess(data: data as NSData, success: success, failure: failure)
+                    self.handleSuccess(operation: operation, data: data as NSData, success: success, failure: failure)
                 },
                 failure: {
                     operation, error in
@@ -43,7 +43,7 @@ class NetworkManager {
                 success: {
                     operation, data in
                     application.networkActivityIndicatorVisible = false
-                    self.handleSuccess(data: data as NSData, success: success, failure: failure)
+                    self.handleSuccess(operation: operation, data: data as NSData, success: success, failure: failure)
                 },
                 failure: {
                     operation, error in
@@ -60,26 +60,44 @@ class NetworkManager {
         NSUserDefaults.standardUserDefaults().synchronize()
         NSURLCache.sharedURLCache().removeAllCachedResponses()
     }
-    private func handleSuccess(#data: NSData, success: ((AnyObject) -> Void)?, failure: ((NSError) -> Void)?) {
+    private func handleSuccess(#operation: AFHTTPRequestOperation, data: NSData, success: ((AnyObject) -> Void)?, failure: ((NSError) -> Void)?) {
         var error: NSError? = nil
         let object: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error)
-        if object == nil {
-            failure?(NSError()) // Needs specification
+        if error != nil || object == nil || !(object is NSDictionary) {
+            var userInfo = [
+                NSLocalizedDescriptionKey: "Failed to parse JSON.",
+                NSLocalizedFailureReasonErrorKey: "The data returned from the server does not meet the JSON syntax.",
+                NSURLErrorKey: operation.response.URL!
+            ]
+            if operation.error != nil {
+                userInfo[NSUnderlyingErrorKey] = operation.error
+            }
+            failure?(NSError(
+                domain: website,
+                code: self.internalErrorCode.integerValue,
+                userInfo: userInfo)) // Needs specification
             return
         }
         let data = object as NSDictionary
-        if error == nil {
-            if data["errno"] as NSNumber == successCode {
-                success?(data["rsm"]!)
-                appDelegate.saveContext() // It's not a good idea to place this here, but it can reduce duplicated codes.
-            } else {
-                failure?(NSError(
-                    domain: website,
-                    code: self.internalErrorCode.integerValue,
-                    userInfo: ["Hint": data["err"] as String]))
-            }
+        if data["errno"] as NSNumber == successCode {
+            let info: AnyObject = data["rsm"]!
+            NSLog("\(operation.response.URL!)\n\(info)")
+            success?(info)
+            appDelegate.saveContext() // It's not a good idea to be placed here, but this could reduce duplicated codes.
         } else {
-            failure?(error!)
+            var userInfo = [
+                NSLocalizedDescriptionKey: data["err"]!,
+                NSURLErrorKey: operation.response.URL!
+            ]
+            if operation.error != nil {
+                userInfo[NSUnderlyingErrorKey] = operation.error
+            }
+            let error = NSError(
+                domain: website,
+                code: self.internalErrorCode.integerValue,
+                userInfo: userInfo)
+            NSLog("\(error)")
+            failure?(error) // Needs specification
         }
     }
     let configuration: NSDictionary

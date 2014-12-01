@@ -64,25 +64,19 @@ class Answer: NSManagedObject {
             success: {
                 data in
                 var commentsData = [NSDictionary]()
-                if data is NSDictionary {
-                    commentsData = [data as NSDictionary]
-                } else {
+                if data is [NSDictionary] {
                     commentsData = data as [NSDictionary]
                 }
-                var array = self.comments.allObjects as [AnswerComment]
+                var array = [AnswerComment]()
                 for commentData in commentsData {
-                    let commentID = commentData["id"] as? NSNumber ?? -1
-                    var comment: AnswerComment! = array.filter({ $0.id == commentID }).first
-                    if comment == nil {
-                        comment = dataManager.autoGenerate("AnswerComment", ID: commentID) as AnswerComment
-                        array.append(comment)
-                    }
+                    let commentID = (commentData["id"] as NSString).integerValue
+                    let comment = dataManager.autoGenerate("AnswerComment", ID: commentID) as AnswerComment
                     let userID = commentData["uid"] as? NSNumber
                     if userID != nil {
                         comment.user = (dataManager.autoGenerate("User", ID: userID!) as User)
                         comment.user!.name = commentData["user_name"] as? String
                     }
-                    comment.body = commentData["body"] as? String
+                    comment.body = commentData["content"] as? String
                     let timeInterval = commentData["add_time"] as? NSTimeInterval
                     if timeInterval != nil {
                         comment.date = NSDate(timeIntervalSince1970: timeInterval!)
@@ -93,6 +87,7 @@ class Answer: NSManagedObject {
                         comment.atUser = (dataManager.autoGenerate("User", ID: atID!) as User)
                         comment.atUser!.name = commentData["at_user"]?["user_name"] as? NSString as? String // This should be a compiler bug.
                     }
+                    array.append(comment)
                 }
                 self.comments = NSSet(array: array)
                 success?()

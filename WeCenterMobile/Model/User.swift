@@ -347,7 +347,7 @@ class User: NSManagedObject {
                         if typeID == .ArticleAgreement {
                             let action = dataManager.autoGenerate("ArticleAgreementAction", ID: object["uid"] as NSNumber) as ArticleAgreementAction
                             currentAction = action
-                            
+                            /// @TODO: !!!
                         }
                     }
                 } else {
