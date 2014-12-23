@@ -10,9 +10,17 @@ import Foundation
 import UIKit
 import CoreData
 
+let userStrings = Msr.Data.LocalizedStrings(module: "User", bundle: NSBundle.mainBundle())
+let discoveryStrings = Msr.Data.LocalizedStrings(module: "Discovery", bundle: NSBundle.mainBundle())
+let welcomeStrings = Msr.Data.LocalizedStrings(module: "Welcome", bundle: NSBundle.mainBundle())
+
+let appDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+let networkManager = NetworkManager(configuration: NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("Configuration", ofType: "plist")!)!)
+let dataManager = DataManager(managedObjectContext: appDelegate.managedObjectContext!, managedObjectModel: appDelegate.managedObjectModel)
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-                            
+    
     var window: UIWindow?
     let welcomeViewController = WelcomeViewController()
     var mainViewController: MainViewController!
@@ -63,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
             coordinator = nil
             let dict = NSMutableDictionary()
-            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
+            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data."
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
             dict[NSUnderlyingErrorKey] = error
             error = NSError(domain: networkManager.website, code: networkManager.internalErrorCode.integerValue, userInfo: dict)
@@ -97,6 +105,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 }
 
-let appDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
-let networkManager = NetworkManager(configuration: NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("Configuration", ofType: "plist")!)!)
-let dataManager = DataManager(managedObjectContext: appDelegate.managedObjectContext!, managedObjectModel: appDelegate.managedObjectModel)

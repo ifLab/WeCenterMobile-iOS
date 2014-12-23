@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14B25" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Action" representedClassName="WeCenterMobile.Action" isAbstract="YES" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -116,10 +116,18 @@
         <relationship name="questions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Question" inverseName="user" inverseEntity="Question" syncable="YES"/>
         <relationship name="topics" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Topic" inverseName="users" inverseEntity="Topic" syncable="YES"/>
     </entity>
+    <fetchRequest name="Action" entity="Action"/>
+    <fetchRequest name="Action_By_ID" entity="Action" predicateString="id == $ID"/>
     <fetchRequest name="Answer_By_ID" entity="Answer" predicateString="id == $ID"/>
+    <fetchRequest name="AnswerAction_By_ID" entity="AnswerAction" predicateString="id == $ID"/>
+    <fetchRequest name="AnswerAgreementAction_By_ID" entity="ArticleAgreementAction"/>
     <fetchRequest name="AnswerComment_By_ID" entity="AnswerComment" predicateString="id == $ID"/>
     <fetchRequest name="Article_By_ID" entity="Article" predicateString="id == $ID"/>
+    <fetchRequest name="ArticleAgreementAction_By_ID" entity="ArticleAgreementAction" predicateString="id == $ID"/>
+    <fetchRequest name="ArticlePublishmentAction_By_ID" entity="ArticlePublishmentAction" predicateString="id == $ID"/>
     <fetchRequest name="Question_By_ID" entity="Question" predicateString="id == $ID"/>
+    <fetchRequest name="QuestionFocusingAction_By_ID" entity="QuestionFocusingAction" predicateString="id == $ID"/>
+    <fetchRequest name="QuestionPublishmentAction_By_ID" entity="QuestionPublishmentAction" predicateString="id == $ID"/>
     <fetchRequest name="Topic_By_ID" entity="Topic" predicateString="id == $ID"/>
     <fetchRequest name="User_By_ID" entity="User" predicateString="id == $ID"/>
     <elements>

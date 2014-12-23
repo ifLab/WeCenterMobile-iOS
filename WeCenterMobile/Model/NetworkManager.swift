@@ -111,7 +111,7 @@ class NetworkManager {
         let manager = AFHTTPRequestOperationManager(baseURL: NSURL(string: self.website))
         manager.responseSerializer = AFHTTPResponseSerializer()
         return manager
-        }()
+    }()
     var successCode: NSNumber {
         return configuration["Success Code"] as NSNumber
     }

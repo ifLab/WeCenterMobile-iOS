@@ -28,7 +28,7 @@ class AnswerAdditionCell: BFPaperTableViewCell {
         contentView.addSubview(additionView)
         additionView.addSubview(additionImageView)
         additionView.addSubview(additionTextLabel)
-        textLabel.text = ""
+        textLabel!.text = ""
         additionImageView.frame = CGRect(x: 0, y: 10, width: 20, height: 20)
         additionImageView.tintColor = UIColor.materialGray800()
         additionTextLabel.font = UIFont.systemFontOfSize(12)

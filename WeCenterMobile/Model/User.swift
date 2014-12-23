@@ -64,7 +64,7 @@ class User: NSManagedObject {
             }
         }
         set {
-            avatarData = newValue?.dataForPNGRepresentation()
+            avatarData = UIImagePNGRepresentation(newValue)
         }
     }
     
@@ -333,23 +333,121 @@ class User: NSManagedObject {
         }
     }
     
-    func fetchActions(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    private enum ActionTypeID: Int {
+        case QuestionPublishment = 101
+        case QuestionFocusing = 105
+        case Answer = 201
+        case AnswerAgreement = 204
+        case ArticlePublishment = 501
+        case ArticleAgreement = 502
+    }
+    
+    func fetchRelatedActions(#page: Int, count: Int, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         networkManager.GET("Home List",
-            parameters: nil,
+            parameters: [
+                "page": page,
+                "per_page": count
+            ],
             success: {
                 data in
                 let rows = data["total_rows"] as Int
                 if rows > 0 {
                     let objects = data["rows"] as [[String: AnyObject]]
                     for object in objects {
-                        let typeID = Action.TypeID(rawValue: (object["associate_action"] as Int))!
-                        var currentAction: Action!
-                        if typeID == .ArticleAgreement {
-                            let action = dataManager.autoGenerate("ArticleAgreementAction", ID: object["uid"] as NSNumber) as ArticleAgreementAction
-                            currentAction = action
-                            /// @TODO: !!!
+                        let typeID = ActionTypeID(rawValue: (object["associate_action"] as NSNumber).integerValue)!
+                        var action_: Action!
+                        switch typeID {
+                        case .AnswerAgreement:
+                            let action = dataManager.autoGenerate("AnswerAgreementAction", ID: object["history_id"] as NSNumber) as AnswerAgreementAction
+                            action_ = action
+                            action.date = NSDate(timeIntervalSince1970: (object["add_time"] as NSNumber).doubleValue)
+                            let userInfo = object["user_info"] as NSDictionary
+                            action.user = (dataManager.autoGenerate("User", ID: userInfo["uid"] as NSNumber) as User)
+                            action.user.name = (userInfo["user_name"] as String)
+                            action.user.avatarURI = (userInfo["user_name"] as String)
+                            let answerInfo = object["answer_info"] as NSDictionary
+                            action.answer = dataManager.autoGenerate("Answer", ID: answerInfo["answer_id"] as NSNumber) as Answer
+                            action.answer.question = (dataManager.autoGenerate("Question", ID: answerInfo["question_id"] as NSNumber) as Question)
+                            action.answer.body = (answerInfo["answer_content"] as String)
+                            action.answer.agreementCount = (answerInfo["agree_count"] as NSNumber)
+                            action.answer.evaluation = Answer.Evaluation(rawValue: (answerInfo["agree_status"] as NSNumber).integerValue)
+                            let questionInfo = object["question_info"] as NSDictionary
+                            action.answer.question = (dataManager.autoGenerate("Question", ID: questionInfo["question_id"] as NSNumber) as Question)
+                            action.answer.question!.body = (questionInfo["question_content"] as String)
+                            break
+                        case .QuestionFocusing:
+                            let action = dataManager.autoGenerate("QuestionFocusingAction", ID: object["history_id"] as NSNumber) as QuestionFocusingAction
+                            action_ = action
+                            action.date = NSDate(timeIntervalSince1970: (object["add_time"] as NSNumber).doubleValue)
+                            let userInfo = object["user_info"] as NSDictionary
+                            action.user = dataManager.autoGenerate("User", ID: userInfo["uid"] as NSNumber) as User
+                            action.user.name = (userInfo["user_name"] as String)
+                            action.user.avatarURI = (userInfo["avatar_file"] as String)
+                            let questionInfo = object["question_info"] as NSDictionary
+                            action.question = dataManager.autoGenerate("Question", ID: questionInfo["question_id"] as NSNumber) as Question
+                            action.question.body = (questionInfo["question_content"] as String)
+                            break
+                        case .QuestionPublishment:
+                            let action = dataManager.autoGenerate("QuestionPublishmentAction", ID: object["history_id"] as NSNumber) as QuestionPublishmentAction
+                            action_ = action
+                            action.date = NSDate(timeIntervalSince1970: (object["add_time"] as NSNumber).doubleValue)
+                            let userInfo = object["user_info"] as NSDictionary
+                            action.user = dataManager.autoGenerate("User", ID: userInfo["uid"] as NSNumber) as User
+                            action.user.name = (userInfo["user_name"] as String)
+                            action.user.avatarURI = (userInfo["avatar_file"] as String)
+                            let questionInfo = object["question_info"] as NSDictionary
+                            action.question = dataManager.autoGenerate("Question", ID: questionInfo["question_id"] as NSNumber) as Question
+                            action.question.body = (questionInfo["question_content"] as String)
+                            action.question.user = action.user
+                            break
+                        case .ArticleAgreement:
+                            let action = dataManager.autoGenerate("ArticleAgreementAction", ID: object["history_id"] as NSNumber) as ArticleAgreementAction
+                            action_ = action
+                            action.date = NSDate(timeIntervalSince1970: (object["add_time"] as NSNumber).doubleValue)
+                            let userInfo = object["user_info"] as NSDictionary
+                            action.user = dataManager.autoGenerate("User", ID: userInfo["uid"] as NSNumber) as User
+                            action.user.name = (userInfo["user_name"] as String)
+                            action.user.avatarURI = (userInfo["avatar_file"] as String)
+                            let articleInfo = object["article_info"] as NSDictionary
+                            action.article = dataManager.autoGenerate("Article", ID: articleInfo["id"] as NSNumber) as Article
+                            action.article.title = (articleInfo["title"] as String)
+                            break
+                        case .Answer:
+                            let action = dataManager.autoGenerate("AnswerAction", ID: object["history_id"] as NSNumber) as AnswerAction
+                            action_ = action
+                            action.date = NSDate(timeIntervalSince1970: (object["add_time"] as NSNumber).doubleValue)
+                            let userInfo = object["user_info"] as NSDictionary
+                            action.user = dataManager.autoGenerate("User", ID: userInfo["uid"] as NSNumber) as User
+                            action.user.name = (userInfo["user_name"] as String)
+                            action.user.avatarURI = (userInfo["avatar_file"] as String)
+                            let answerInfo = object["answer_info"] as NSDictionary
+                            action.answer = dataManager.autoGenerate("Answer", ID: answerInfo["answer_id"] as NSNumber) as Answer
+                            action.answer.body = (answerInfo["answer_content"] as String)
+                            action.answer.agreementCount = (answerInfo["agree_count"] as NSNumber)
+                            action.answer.evaluation = Answer.Evaluation(rawValue: (answerInfo["agree_status"] as NSNumber).integerValue)!
+                            let questionInfo = object["question_info"] as NSDictionary
+                            action.answer.question = (dataManager.autoGenerate("Question", ID: questionInfo["question_id"] as NSNumber) as Question)
+                            action.answer.question!.body = (questionInfo["question_content"] as String)
+                            action.answer.user = action.user
+                            break
+                        case .ArticlePublishment:
+                            let action = dataManager.autoGenerate("ArticlePublishmentAction", ID: object["history_id"] as NSNumber) as ArticlePublishmentAction
+                            action_ = action
+                            action.date = NSDate(timeIntervalSince1970: (object["add_time"] as NSNumber).doubleValue)
+                            let userInfo = object["user_info"] as NSDictionary
+                            action.user = dataManager.autoGenerate("User", ID: userInfo["uid"] as NSNumber) as User
+                            action.user.name = (userInfo["user_name"] as String)
+                            action.user.avatarURI = (userInfo["avatar_file"] as String)
+                            let articleInfo = object["article_info"] as NSDictionary
+                            action.article = dataManager.autoGenerate("Article", ID: articleInfo["id"] as NSNumber) as Article
+                            action.article.title = (articleInfo["title"] as String)
+                            action.article.user = action.user
+                            break
+                        default:
+                            break
                         }
                     }
+                    success?()
                 } else {
                     failure?(NSError()) // Needs specification
                 }
@@ -358,5 +456,3 @@ class User: NSManagedObject {
     }
 
 }
-
-let userStrings = Msr.Data.LocalizedStrings(module: "User", bundle: NSBundle.mainBundle())

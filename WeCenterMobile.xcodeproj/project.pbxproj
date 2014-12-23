@@ -11,11 +11,10 @@
 		950FE1251A1DA2A400167D09 /* Discovery.strings in Resources */ = {isa = PBXBuildFile; fileRef = 950FE1181A1DA2A400167D09 /* Discovery.strings */; };
 		950FE1261A1DA2A400167D09 /* User.strings in Resources */ = {isa = PBXBuildFile; fileRef = 950FE11A1A1DA2A400167D09 /* User.strings */; };
 		950FE1271A1DA2A400167D09 /* Welcome.strings in Resources */ = {isa = PBXBuildFile; fileRef = 950FE11C1A1DA2A400167D09 /* Welcome.strings */; };
-		950FE5021A1DA2B500167D09 /* ActivityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE12A1A1DA2B300167D09 /* ActivityListViewController.swift */; };
 		950FE5031A1DA2B500167D09 /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE12B1A1DA2B300167D09 /* AnswerViewController.swift */; };
 		950FE5041A1DA2B500167D09 /* CommetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE12C1A1DA2B300167D09 /* CommetListViewController.swift */; };
 		950FE5051A1DA2B500167D09 /* DiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE12D1A1DA2B300167D09 /* DiscoveryViewController.swift */; };
-		950FE5061A1DA2B500167D09 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE12E1A1DA2B300167D09 /* HomeViewController.swift */; };
+		950FE5061A1DA2B500167D09 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE12E1A1DA2B300167D09 /* TestViewController.swift */; };
 		950FE5071A1DA2B500167D09 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE12F1A1DA2B300167D09 /* MainViewController.swift */; };
 		950FE50A1A1DA2B500167D09 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1331A1DA2B300167D09 /* QuestionViewController.swift */; };
 		950FE50B1A1DA2B500167D09 /* TopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1341A1DA2B300167D09 /* TopicListViewController.swift */; };
@@ -227,12 +226,14 @@
 		9588F5EC1A1D9D1C001BC426 /* WeCenterMobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9588F5EA1A1D9D1C001BC426 /* WeCenterMobile.xcdatamodeld */; };
 		9588F5F31A1D9D1C001BC426 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9588F5F21A1D9D1C001BC426 /* Images.xcassets */; };
 		9588F6021A1D9D1C001BC426 /* WeCenterMobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9588F6011A1D9D1C001BC426 /* WeCenterMobileTests.swift */; };
+		9594CD291A2D0EC10013235C /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9594CD281A2D0EC10013235C /* UIImage+Resize.swift */; };
 		959CC93A1A25BAED00F8B6CB /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC9391A25BAED00F8B6CB /* Article.swift */; };
 		959CC93C1A25BAED00F8B6CB /* AnswerComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC93B1A25BAED00F8B6CB /* AnswerComment.swift */; };
 		959CC93E1A25BAED00F8B6CB /* ArticleComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC93D1A25BAED00F8B6CB /* ArticleComment.swift */; };
 		959CC9401A25BAED00F8B6CB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC93F1A25BAED00F8B6CB /* User.swift */; };
 		959CC9421A25BAEE00F8B6CB /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC9411A25BAEE00F8B6CB /* Answer.swift */; };
 		95B6E6B91A232E2400F31BE3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9588F5F41A1D9D1C001BC426 /* LaunchScreen.xib */; };
+		95E5355A1A49DCFD00D7B76B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535591A49DCFD00D7B76B /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -257,11 +258,10 @@
 		950FE1221A1DA2A400167D09 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/User.strings"; sourceTree = "<group>"; };
 		950FE1231A1DA2A400167D09 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Welcome.strings"; sourceTree = "<group>"; };
 		950FE1281A1DA2B300167D09 /* Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
-		950FE12A1A1DA2B300167D09 /* ActivityListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityListViewController.swift; sourceTree = "<group>"; };
 		950FE12B1A1DA2B300167D09 /* AnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
 		950FE12C1A1DA2B300167D09 /* CommetListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommetListViewController.swift; sourceTree = "<group>"; };
 		950FE12D1A1DA2B300167D09 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
-		950FE12E1A1DA2B300167D09 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		950FE12E1A1DA2B300167D09 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		950FE12F1A1DA2B300167D09 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		950FE1331A1DA2B300167D09 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		950FE1341A1DA2B300167D09 /* TopicListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListViewController.swift; sourceTree = "<group>"; };
@@ -632,11 +632,13 @@
 		9588F5FB1A1D9D1C001BC426 /* WeCenterMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeCenterMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9588F6001A1D9D1C001BC426 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9588F6011A1D9D1C001BC426 /* WeCenterMobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeCenterMobileTests.swift; sourceTree = "<group>"; };
+		9594CD281A2D0EC10013235C /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		959CC9391A25BAED00F8B6CB /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		959CC93B1A25BAED00F8B6CB /* AnswerComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerComment.swift; sourceTree = "<group>"; };
 		959CC93D1A25BAED00F8B6CB /* ArticleComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleComment.swift; sourceTree = "<group>"; };
 		959CC93F1A25BAED00F8B6CB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		959CC9411A25BAEE00F8B6CB /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		95E535591A49DCFD00D7B76B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -679,11 +681,11 @@
 		950FE1291A1DA2B300167D09 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				950FE12A1A1DA2B300167D09 /* ActivityListViewController.swift */,
 				950FE12B1A1DA2B300167D09 /* AnswerViewController.swift */,
 				950FE12C1A1DA2B300167D09 /* CommetListViewController.swift */,
 				950FE12D1A1DA2B300167D09 /* DiscoveryViewController.swift */,
-				950FE12E1A1DA2B300167D09 /* HomeViewController.swift */,
+				950FE12E1A1DA2B300167D09 /* TestViewController.swift */,
+				95E535591A49DCFD00D7B76B /* HomeViewController.swift */,
 				950FE12F1A1DA2B300167D09 /* MainViewController.swift */,
 				950FE1331A1DA2B300167D09 /* QuestionViewController.swift */,
 				950FE1341A1DA2B300167D09 /* TopicListViewController.swift */,
@@ -745,6 +747,7 @@
 				950FE4D21A1DA2B500167D09 /* UIColor+RGBA.swift */,
 				950FE4D31A1DA2B500167D09 /* UIControl+UserInfo.swift */,
 				950FE4D41A1DA2B500167D09 /* UIImage+Shape.swift */,
+				9594CD281A2D0EC10013235C /* UIImage+Resize.swift */,
 				950FE4D51A1DA2B500167D09 /* UIView+KeyboardUtility.swift */,
 			);
 			path = UI;
@@ -1488,6 +1491,7 @@
 				959CC93A1A25BAED00F8B6CB /* Article.swift in Sources */,
 				950FE50E1A1DA2B500167D09 /* UserAskedQuestionListViewController.swift in Sources */,
 				950FE9591A1DA7B400167D09 /* DTImageTextAttachment.m in Sources */,
+				95E5355A1A49DCFD00D7B76B /* HomeViewController.swift in Sources */,
 				950FEA511A1DA7D800167D09 /* NSString+DTFormatNumbers.m in Sources */,
 				950FEA281A1DA7D800167D09 /* NSScanner+DTScripting.m in Sources */,
 				950FEA211A1DA7D800167D09 /* DTFolderMonitor.m in Sources */,
@@ -1566,7 +1570,6 @@
 				950FE70C1A1DA2B500167D09 /* Type.swift in Sources */,
 				950FEA8E1A1DA81400167D09 /* AFURLSessionManager.m in Sources */,
 				950FE7251A1DA2B500167D09 /* NetworkManager.swift in Sources */,
-				950FE5021A1DA2B500167D09 /* ActivityListViewController.swift in Sources */,
 				950FEA301A1DA7D800167D09 /* DTZipArchivePKZip.m in Sources */,
 				950FE7141A1DA2B500167D09 /* SegmentedViewController.swift in Sources */,
 				950FEA321A1DA7D800167D09 /* mztools.c in Sources */,
@@ -1631,6 +1634,7 @@
 				950FEA2B1A1DA7D800167D09 /* NSString+DTUTI.m in Sources */,
 				950FEA261A1DA7D800167D09 /* DTScriptExpression.m in Sources */,
 				950FEA961A1DA81400167D09 /* UIWebView+AFNetworking.m in Sources */,
+				9594CD291A2D0EC10013235C /* UIImage+Resize.swift in Sources */,
 				950FE7EE1A1DA64700167D09 /* UIColor+BFPaperColors.m in Sources */,
 				950FE94D1A1DA7B400167D09 /* DTCSSListStyle.m in Sources */,
 				950FE7211A1DA2B500167D09 /* ArticleAgreementAction.swift in Sources */,
@@ -1668,7 +1672,7 @@
 				950FE9411A1DA7B400167D09 /* DTColorFunctions.m in Sources */,
 				9588F5EC1A1D9D1C001BC426 /* WeCenterMobile.xcdatamodeld in Sources */,
 				950FEA231A1DA7D800167D09 /* DTHTMLParser.m in Sources */,
-				950FE5061A1DA2B500167D09 /* HomeViewController.swift in Sources */,
+				950FE5061A1DA2B500167D09 /* TestViewController.swift in Sources */,
 				950FEA191A1DA7D800167D09 /* DTASN1Parser.m in Sources */,
 				959CC9401A25BAED00F8B6CB /* User.swift in Sources */,
 				950FE9571A1DA7B400167D09 /* DTIframeTextAttachment.m in Sources */,

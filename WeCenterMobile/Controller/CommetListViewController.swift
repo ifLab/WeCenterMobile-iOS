@@ -39,7 +39,7 @@ class CommentListViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = BFPaperTableViewCell(style: .Subtitle, reuseIdentifier: "...")
         let comment = answer.comments.allObjects[indexPath.row] as AnswerComment
-        cell.textLabel.text = comment.body
+        cell.textLabel!.text = comment.body
         cell.detailTextLabel!.text = comment.atUser?.name ?? ""
         return cell
     }

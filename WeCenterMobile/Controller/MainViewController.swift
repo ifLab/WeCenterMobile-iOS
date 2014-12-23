@@ -17,7 +17,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     var titles = [
         "Home",
-        Msr.Data.LocalizedStrings(module: "Discovery", bundle: NSBundle.mainBundle())["Discovery"],
+        discoveryStrings["Discovery"],
         "Favorite",
         "Bookmark",
         "Message",
@@ -59,29 +59,30 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         var cell: UITableViewCell! = tableView.dequeueReusableCellWithIdentifier(identifier) as? UITableViewCell
         if cell == nil {
             cell = UITableViewCell(style: .Default, reuseIdentifier: identifier)
-            cell.textLabel.textColor = UIColor.blackColor()
+            cell.textLabel!.textColor = UIColor.blackColor()
             cell.backgroundColor = UIColor.clearColor()
             cell.selectedBackgroundView = UIView(frame: CGRect(origin: CGPointZero, size: cell.bounds.size))
             cell.selectedBackgroundView.backgroundColor = UIColor(white: 0, alpha: 0.1)
             if indexPath.section == 0 {
                 appDelegate.currentUser!.fetchAvatar(
                     success: {
-                        cell.imageView.image = appDelegate.currentUser!.avatar
-                        cell.imageView.sizeToFit()
-                        cell.imageView.layer.cornerRadius = cell.imageView.bounds.width / 2
-                        cell.imageView.layer.masksToBounds = true
+                        let size = CGSize(width: 50, height: 50)
+                        cell.imageView!.image = appDelegate.currentUser!.avatar?.msr_imageOfSize(size)
+                        cell.imageView!.sizeToFit()
+                        cell.imageView!.layer.cornerRadius = cell.imageView!.bounds.width / 2
+                        cell.imageView!.layer.masksToBounds = true
                         self.tableView.reloadData()
                         tableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1), animated: false, scrollPosition: .None)
                     },
                     failure: nil)
-                cell.textLabel.text = appDelegate.currentUser?.name
+                cell.textLabel!.text = appDelegate.currentUser?.name
             } else if indexPath.section == 1 {
-                cell.imageView.image = UIImage.circleWithColor(UIColor(white: 0, alpha: 0.2), radius: 20)
-                cell.imageView.tintColor = UIColor.blackColor()
-                cell.imageView.layer.contentsScale = UIScreen.mainScreen().scale
-                cell.textLabel.text = titles[indexPath.row]
+                cell.imageView!.image = UIImage.msr_circleWithColor(UIColor(white: 0, alpha: 0.2), radius: 20)
+                cell.imageView!.tintColor = UIColor.blackColor()
+                cell.imageView!.layer.contentsScale = UIScreen.mainScreen().scale
+                cell.textLabel!.text = titles[indexPath.row]
             } else {
-                cell.textLabel.text = "TEMPORARY_EXIT"
+                cell.textLabel!.text = "TEMPORARY_EXIT"
             }
         }
         return cell
@@ -107,7 +108,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         var viewController: UIViewController! = nil
         switch index {
         case 0:
-            viewController = UIViewController()
+            viewController = HomeViewController(user: appDelegate.currentUser!)
             break
         case 1:
             viewController = DiscoveryViewController()
@@ -122,7 +123,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             viewController = UIViewController()
             break
         case 5:
-            viewController = HomeViewController(statusBarStyle: .Default)
+            viewController = TestViewController(statusBarStyle: .Default)
             break
         default:
             break
@@ -136,6 +137,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return contentViewController.preferredStatusBarStyle()
     }
     override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
-        return UIStatusBarAnimation.Slide
+        return .Slide
     }
 }

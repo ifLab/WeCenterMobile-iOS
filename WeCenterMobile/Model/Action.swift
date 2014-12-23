@@ -15,15 +15,6 @@ class Action: NSManagedObject {
     @NSManaged var id: NSNumber
     @NSManaged var user: User
     
-    enum TypeID: Int {
-        case QuestionPublishment = 101
-        case QuestionFocusing = 105
-        case Answer = 201
-        case AnswerAgreement = 204
-        case ArticlePublishment = 501
-        case ArticleAgreement = 502
-    }
-    
     class func get(#ID: NSNumber, error: NSErrorPointer) -> Action? {
         return dataManager.fetch("Action", ID: ID, error: error) as? Action
     }
