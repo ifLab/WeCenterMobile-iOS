@@ -18,7 +18,7 @@
 		<string>api/focus_topic.php</string>
 		<key>Answer Detail</key>
 		<string>?/api/question/answer_detail/</string>
-		<key>Activity List</key>
+		<key>Explore List</key>
 		<string>?/api/explore_ios/</string>
 		<key>Question Detail</key>
 		<string>?/api/question/question/</string>
@@ -48,8 +48,10 @@
 		<string>?/api/article/comment/</string>
 		<key>Artical Detail</key>
 		<string>?/api/article/article/</string>
+		<key>Home List</key>
+		<string>?/api/home/</string>
 		<key>User Question List</key>
-		<string></string>
+		<string>api/my_question.php</string>
 	</dict>
 	<key>Success Code</key>
 	<integer>1</integer>

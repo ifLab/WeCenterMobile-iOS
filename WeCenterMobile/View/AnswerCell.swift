@@ -30,7 +30,7 @@ class AnswerCell: BFPaperTableViewCell {
         contentView.addSubview(agreementCountLabel)
         contentView.addSubview(nameLabel)
         contentView.addSubview(contentLabel)
-        textLabel.text = ""
+        textLabel!.text = ""
         avatarButton.frame = CGRect(x: 10, y: 10, width: 30, height: 30)
         avatarButton.backgroundColor = UIColor.materialGray200()
         avatarButton.layer.cornerRadius = avatarButton.bounds.width / 2

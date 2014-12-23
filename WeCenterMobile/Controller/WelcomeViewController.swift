@@ -11,7 +11,6 @@ import UIKit
 class WelcomeViewController: UIViewController {
     
     let loginView = LoginView()
-    let strings = Msr.Data.LocalizedStrings(module: "Welcome", bundle: NSBundle.mainBundle())
     
     override init() {
         super.init(nibName: nil, bundle: nil)
@@ -26,8 +25,8 @@ class WelcomeViewController: UIViewController {
         let welcomeView = WelcomeView()
         welcomeView.loginButton.addTarget(self, action: "showLoginView", forControlEvents: .TouchUpInside)
         typealias AlertAction = Msr.UI.AlertAction
-        loginView.addAction(AlertAction(title: strings["Cancel"], style: .Cancel) { action in })
-        loginView.addAction(AlertAction(title: strings["Login"], style: .Default) {
+        loginView.addAction(AlertAction(title: welcomeStrings["Cancel"], style: .Cancel) { action in })
+        loginView.addAction(AlertAction(title: welcomeStrings["Login"], style: .Default) {
             action in
             User.loginWithName(self.loginView.usernameField.text,
                 password: self.loginView.passwordField.text,
@@ -38,10 +37,7 @@ class WelcomeViewController: UIViewController {
                     appDelegate.mainViewController.modalTransitionStyle = .CrossDissolve
                     appDelegate.window!.rootViewController!.presentViewController(appDelegate.mainViewController, animated: true, completion: nil)
                 },
-                failure: {
-                    error in
-                    println(error.userInfo ?? [:])
-                })
+                failure: nil)
             })
         view = welcomeView
         view.addSubview(loginView)

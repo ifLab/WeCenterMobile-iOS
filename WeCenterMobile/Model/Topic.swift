@@ -32,7 +32,7 @@ class Topic: NSManagedObject {
             return (imageData == nil) ? nil : UIImage(data: imageData!)
         }
         set {
-            imageData = newValue?.dataForPNGRepresentation()
+            imageData = UIImagePNGRepresentation(newValue)
         }
     }
     
@@ -141,7 +141,8 @@ class Topic: NSManagedObject {
                 } else {
                     failure?(NSError()) // Needs specification
                 }
-            }, failure: failure)
+            },
+            failure: failure)
     }
 
 }

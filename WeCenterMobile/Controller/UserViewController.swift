@@ -126,6 +126,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         topicButton.addTarget(self, action: "pushTopicListViewController", forControlEvents: .TouchUpInside)
         followerButton.addTarget(self, action: "pushFollowerViewController", forControlEvents: .TouchUpInside)
         followingButton.addTarget(self, action: "pushFollowingViewController", forControlEvents: .TouchUpInside)
+        askedButton.addTarget(self, action: "pushQuestionViewController", forControlEvents: .TouchUpInside)
         for subview in hideableView.subviews as [UIView] {
             subview.alpha = 0
         }
@@ -158,7 +159,8 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
                     success: {
                         self.needsToBeRefreshed = true
                         self.view.setNeedsLayout()
-                    }, failure: nil)
+                    },
+                    failure: nil)
             },
             failure: nil)
     }
@@ -296,7 +298,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func doHidingAvatarButtonImage() {
-        self.avatarButtonState = .Normal
+        avatarButtonState = .Normal
         avatarButton.userInteractionEnabled = false
         UIView.animateWithDuration(0.2,
             delay: 0,
@@ -376,6 +378,10 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     
     internal func pushFollowingViewController() {
         msr_navigationController!.pushViewController(UserListViewController(ID: user.id, listType: .UserFollowing), animated: true, completion: nil)
+    }
+    
+    internal func pushQuestionViewController() {
+        msr_navigationController!.pushViewController(UserAskedQuestionListViewController(user: user), animated: true, completion: nil)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

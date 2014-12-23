@@ -157,7 +157,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     func reloadData() {
         titleLabel.text = topic.title
         if topic.imageURL != nil {
-            imageButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: topic.imageURL!), placeholderImage: UIImage.circleWithColor(UIColor.materialGray400(), radius: imageButton.bounds.width / 2))
+            imageButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: topic.imageURL!), placeholderImage: UIImage.msr_circleWithColor(UIColor.materialGray400(), radius: imageButton.bounds.width / 2))
         }
         countLabel.text = "\(topic.focusCount!)人关注"
         introductionLabel.text = topic.introduction

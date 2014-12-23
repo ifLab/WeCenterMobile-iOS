@@ -131,12 +131,8 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         signatureLabel.text = answer?.user?.signature
         evaluationButtonState = answer?.evaluation ?? .None
         evaluationButton.setTitle(answer?.agreementCount?.stringValue, forState: .Normal)
-        var string = ""
-        if answer?.body != nil {
-            string = "<p style='padding: 10px'>\(answer!.body)</p>"
-        }
         contentTextView.attributedString = NSAttributedString(
-            HTMLData: string.dataUsingEncoding(NSUTF8StringEncoding),
+            HTMLData: "<p style='padding: 10px'>\(answer?.body ?? NSString() /* Could not be 'String' here. I don't want to know why. */ )</p>".dataUsingEncoding(NSUTF8StringEncoding),
             options: [
                 NSTextSizeMultiplierDocumentOption: 1,
                 DTDefaultFontSize: 16,
@@ -218,7 +214,7 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     }
     
     internal func pushCommentListViewController() {
-        msr_navigationController?.pushViewController(CommentListViewController(answerID: answerID), animated: true, completion: nil)
+        msr_navigationController!.pushViewController(CommentListViewController(answer: answer!), animated: true, completion: nil)
     }
     
 }

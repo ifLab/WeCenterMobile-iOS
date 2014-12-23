@@ -1,5 +1,5 @@
 //
-//  Article.swift
+//  ArticleComment.swift
 //  WeCenterMobile
 //
 //  Created by Darren Liu on 14/11/26.
@@ -9,16 +9,14 @@
 import Foundation
 import CoreData
 
-class Article: NSManagedObject {
+class ArticleComment: NSManagedObject {
 
-    @NSManaged var agreementCount: NSNumber?
+    @NSManaged var atID: NSNumber?
     @NSManaged var body: String?
+    @NSManaged var date: NSDate?
     @NSManaged var id: NSNumber
-    @NSManaged var title: String?
-    @NSManaged var articleAgreementActions: NSSet
-    @NSManaged var articlePublishmentActions: NSSet
-    @NSManaged var topics: NSSet
+    @NSManaged var atUser: User?
+    @NSManaged var article: Article?
     @NSManaged var user: User?
-    @NSManaged var comments: NSSet
 
 }
