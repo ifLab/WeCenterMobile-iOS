@@ -1,5 +1,5 @@
 //
-//  Bridging-Header.h
+//  Bridge.h
 //  WeCenterMobile
 //
 //  Created by Darren Liu on 14/7/21.

@@ -11,7 +11,6 @@ import UIKit
 class LoginView: Msr.UI.AlertView {
     let usernameField: UITextField!
     let passwordField: UITextField!
-    let strings = Msr.Data.LocalizedStrings(module: "Welcome", bundle: NSBundle.mainBundle())
     override init() {
         super.init()
         self.cornerRadius = 7
@@ -26,18 +25,18 @@ class LoginView: Msr.UI.AlertView {
             textField.textColor = UIColor.blackColor()
             textField.tintColor = UIColor.whiteColor()
             textField.textAlignment = .Center
-            textField.keyboardAppearance = UIKeyboardAppearance.Default
-            textField.keyboardType = UIKeyboardType.ASCIICapable
+            textField.keyboardAppearance = .Default
             textField.clearButtonMode = .WhileEditing
             return textField
         }
         usernameField = newTextField()
         passwordField = newTextField()
+        passwordField.secureTextEntry = true
         usernameField.attributedPlaceholder = NSAttributedString(
-            string: strings["Username"],
+            string: welcomeStrings["Username"],
             attributes: [NSForegroundColorAttributeName: UIColor.blackColor()])
         passwordField.attributedPlaceholder = NSAttributedString(
-            string: strings["Password"],
+            string: welcomeStrings["Password"],
             attributes: [NSForegroundColorAttributeName: UIColor.blackColor()])
         usernameField.center = CGPoint(x: contentView.center.x, y: 35)
         passwordField.center = CGPoint(x: contentView.center.x, y: 85)

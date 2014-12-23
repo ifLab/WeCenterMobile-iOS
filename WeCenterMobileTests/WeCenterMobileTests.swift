@@ -2,8 +2,8 @@
 //  WeCenterMobileTests.swift
 //  WeCenterMobileTests
 //
-//  Created by Darren Liu on 14/8/6.
-//  Copyright (c) 2014年 MsrLab. All rights reserved.
+//  Created by Darren Liu on 14/11/20.
+//  Copyright (c) 2014年 Beijing Information Science and Technology University. All rights reserved.
 //
 
 import UIKit

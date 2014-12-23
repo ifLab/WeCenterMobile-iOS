@@ -33,8 +33,8 @@ class UserPostViewController: UIViewController {
     init(style:String , title:String){
         super.init(nibName: nil, bundle: nil)
         headerTitle = title
-        publishButton = UIBarButtonItem(title: UserStrings["Publish"], style: UIBarButtonItemStyle.Done, target: self , action: "postData" )
-        cancelButton = UIBarButtonItem(title: UserStrings["Cancel"], style: UIBarButtonItemStyle.Done, target: self, action: "turnBack")
+        publishButton = UIBarButtonItem(title: userStrings["Publish"], style: UIBarButtonItemStyle.Done, target: self , action: "postData" )
+        cancelButton = UIBarButtonItem(title: userStrings["Cancel"], style: UIBarButtonItemStyle.Done, target: self, action: "turnBack")
         self.navigationItem.rightBarButtonItem = publishButton
         self.navigationItem.leftBarButtonItem = cancelButton
         self.view.backgroundColor =  UIColor.whiteColor()
@@ -48,21 +48,21 @@ class UserPostViewController: UIViewController {
 //        "Other information" = "其他资料";
         
         if headerTitle == "" {
-            headerTitle = UserStrings["Name"]
+            headerTitle = userStrings["Name"]
             setTextField()
             textField!.text = user?.name
             bodyView!.addSubview(textField!)
             bodyView!.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
         }
-        if headerTitle == UserStrings["Introduction"]{
+        if headerTitle == userStrings["Introduction"]{
 //            textView!.text = user?.introduction
             setTextView()
             bodyView!.addSubview(textView!)
             
         }
-        if headerTitle == UserStrings["Other information"]{
+        if headerTitle == userStrings["Other information"]{
             headerTitle = style
-            if headerTitle == UserStrings["Birthday"] {
+            if headerTitle == userStrings["Birthday"] {
                 setDatePicker()
                 bodyView!.addSubview(datePicker!)
                 bodyView!.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
@@ -70,11 +70,11 @@ class UserPostViewController: UIViewController {
 
             bodyView!.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 244/255, alpha: 1)
         }
-        self.title = UserStrings["Modify"] + " " + headerTitle!
+        self.title = userStrings["Modify"] + " " + headerTitle!
         self.view.addSubview(bodyView!)
     }
     func postData() {
-        if headerTitle == UserStrings["Birthday"] {
+        if headerTitle == userStrings["Birthday"] {
             let date:NSDate = datePicker!.date
             let time:Int = Int(date.timeIntervalSince1970)
             UserModel.POST("profile_setting",
@@ -96,7 +96,7 @@ class UserPostViewController: UIViewController {
                 failure: nil)
 
         }
-        if headerTitle == UserStrings["Introduction"]{
+        if headerTitle == userStrings["Introduction"]{
             UserModel.POST("profile_setting",
                 parameters: [
 
@@ -113,7 +113,7 @@ class UserPostViewController: UIViewController {
                      self.dismissViewControllerAnimated(true, completion: nil)
                 },
                 failure: nil)
-        }else if headerTitle == UserStrings["Other information"]{
+        }else if headerTitle == userStrings["Other information"]{
         
             
         }else {

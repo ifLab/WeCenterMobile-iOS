@@ -32,7 +32,7 @@ class Topic: NSManagedObject {
             return (imageData == nil) ? nil : UIImage(data: imageData!)
         }
         set {
-            imageData = newValue?.dataForPNGRepresentation()
+            imageData = UIImagePNGRepresentation(newValue)
         }
     }
     
@@ -62,9 +62,9 @@ class Topic: NSManagedObject {
     func toggleFocus(#userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         if focused != nil {
             if focused! {
-                // cancle
+                cancleFocus(userID: userID, success: success, failure: failure)
             } else {
-                // focus
+                focus(userID: userID, success: success, failure: failure)
             }
         } else {
             failure?(NSError()) // Needs specification
@@ -101,7 +101,7 @@ class Topic: NSManagedObject {
             failure: failure)
     }
     
-    func fetchOutstandingAnswers(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchOutstandingAnswers(#success: (([Answer]) -> Void)?, failure: ((NSError) -> Void)?) {
         networkManager.GET("Topic Outstanding Answer List",
             parameters: [
                 "id": id
@@ -109,6 +109,7 @@ class Topic: NSManagedObject {
             success: {
                 data in
                 if (data["total_rows"] as NSNumber).integerValue > 0 {
+                    var answers = [Answer]()
                     for value in data["rows"] as [NSDictionary] {
                         let questionValue = value["question_info"] as NSDictionary
                         var questionArray = self.questions.allObjects as [Question]
@@ -134,12 +135,14 @@ class Topic: NSManagedObject {
                         let userID = answerValue["uid"] as NSNumber
                         answer.user = (dataManager.autoGenerate("User", ID: userID) as User)
                         answer.user!.avatarURI = answerValue["avatar_file"] as? String
+                        answers.append(answer)
                     }
-                    success?()
+                    success?(answers)
                 } else {
                     failure?(NSError()) // Needs specification
                 }
-            }, failure: failure)
+            },
+            failure: failure)
     }
 
 }

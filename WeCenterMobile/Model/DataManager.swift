@@ -33,14 +33,26 @@ class DataManager {
             return nil
         }
     }
+    func fetchAll(entityName: String, error: NSErrorPointer) -> [NSManagedObject] {
+        let request = model.fetchRequestTemplateForName(entityName)!
+        let results = context.executeFetchRequest(request, error: error)
+        if results != nil {
+            return results as [NSManagedObject]
+        } else {
+            if error != nil && error.memory == nil {
+                error.memory = NSError() // Needs specification
+            }
+            return []
+        }
+    }
     func autoGenerate(entityName: String, ID: NSNumber) -> NSManagedObject {
         var object = fetch(entityName, ID: ID, error: nil)
         if object == nil {
-            object = self.create(entityName)
+            object = create(entityName)
             object!.setValue(ID, forKey: "id")
         }
         return object!
     }
-    private let context: NSManagedObjectContext
-    private let model: NSManagedObjectModel
+    let context: NSManagedObjectContext
+    let model: NSManagedObjectModel
 }

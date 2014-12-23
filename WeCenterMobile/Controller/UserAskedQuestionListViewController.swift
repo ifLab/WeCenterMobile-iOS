@@ -1,26 +1,24 @@
 //
-//  HomeViewController.swift
+//  UserAskedQuestionListViewController.swift
 //  WeCenterMobile
 //
-//  Created by Darren Liu on 14/12/24.
-//  Copyright (c) 2014年 Beijing Information Science and Technology University. All rights reserved.
+//  Created by Darren Liu on 14/11/17.
+//  Copyright (c) 2014年 ifLab. All rights reserved.
 //
 
-import CoreData
+import UIKit
 
-class HomeViewController: UITableViewController {
-    
-    let count = 10
-    var page = 1
+class UserAskedQuestionListViewController: UITableViewController {
     
     var user: User!
-    var actions = [Action]()
+    var page = 0
+    let count = 20
     
     init(user: User) {
         super.init(style: .Plain)
         self.user = user
     }
-
+    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -31,6 +29,7 @@ class HomeViewController: UITableViewController {
     
     override func loadView() {
         super.loadView()
+        /// @TODO: UITableView customization
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         msr_loadMoreControl = Msr.UI.LoadMoreControl()
@@ -48,22 +47,31 @@ class HomeViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return min(page * count, actions.count)
+        return min(page * count, user.questions.count)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .Default, reuseIdentifier: "")
-        cell.textLabel!.text = actions[indexPath.row].user.name
+        let cell = BFPaperTableViewCell(style: .Subtitle, reuseIdentifier: "")
+        let question = user.questions.allObjects[indexPath.row] as Question
+        cell.textLabel!.text = question.title
+        cell.detailTextLabel!.text = question.body
         return cell
     }
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 60
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        msr_navigationController!.pushViewController(QuestionViewController(question: user.questions.allObjects[indexPath.row] as Question), animated: true, completion: nil)
+    }
+    
     internal func refresh() {
-        user.fetchRelatedActions(
+        user.fetchQuestions(
             page: 1,
             count: count,
             success: {
                 self.page = 1
-                self.actions = dataManager.fetchAll("Action", error: nil) as [Action]
                 self.refreshControl!.endRefreshing()
                 self.tableView.reloadData()
             },
@@ -75,18 +83,17 @@ class HomeViewController: UITableViewController {
     }
     
     internal func loadMore() {
-        user.fetchRelatedActions(
+        user.fetchQuestions(
             page: page + 1,
             count: count,
             success: {
-                ++self.page
-                self.actions = dataManager.fetchAll("Action", error: nil) as [Action]
-                self.refreshControl!.endRefreshing()
+                self.page += 1
+                self.msr_loadMoreControl!.endLoadingMore()
                 self.tableView.reloadData()
             },
             failure: {
                 error in
-                self.refreshControl!.endRefreshing()
+                self.msr_loadMoreControl!.endLoadingMore()
                 self.tableView.reloadData()
             })
     }

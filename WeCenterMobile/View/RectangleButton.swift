@@ -38,6 +38,7 @@ class RectangleCountButton: RectangleButton {
         countLabel.textColor = UIColor.darkGrayColor()
         countLabel.textAlignment = .Center
         countLabel.font = UIFont.systemFontOfSize(32)
+        
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
