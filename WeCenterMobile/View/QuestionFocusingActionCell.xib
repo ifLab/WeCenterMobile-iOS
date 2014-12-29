@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="QuestionFocusingActionCell" id="6un-ch-qmT" customClass="QuestionFocusingActionCell" customModule="WeCenterMobile" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6un-ch-qmT" id="AiQ-JE-7Us">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="abL-Jr-aIq">
+                        <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="48" id="Xi2-8y-hBd"/>
+                            <constraint firstAttribute="height" constant="48" id="hjY-Mw-Bra"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserAvatarMask" translatesAutoresizingMaskIntoConstraints="NO" id="QlV-jl-2c7">
+                        <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6x5-ov-kdC">
+                        <rect key="frame" x="16" y="8" width="36" height="27"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="用户名"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="关注了该问题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSn-F3-x5H">
+                        <rect key="frame" x="57" y="8" width="72" height="27"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="这里是问题标题，可能会很长，但最多显示两行。" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nch-Qz-l4t">
+                        <rect key="frame" x="16" y="35" width="288" height="34"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Nch-Qz-l4t" firstAttribute="top" secondItem="6x5-ov-kdC" secondAttribute="bottom" id="1qh-6m-l2M"/>
+                    <constraint firstItem="abL-Jr-aIq" firstAttribute="centerX" secondItem="QlV-jl-2c7" secondAttribute="centerX" id="7Cm-36-mra"/>
+                    <constraint firstItem="abL-Jr-aIq" firstAttribute="width" secondItem="QlV-jl-2c7" secondAttribute="width" id="86l-kf-CJ3"/>
+                    <constraint firstItem="abL-Jr-aIq" firstAttribute="height" secondItem="QlV-jl-2c7" secondAttribute="height" id="CX0-Dc-scs"/>
+                    <constraint firstItem="Nch-Qz-l4t" firstAttribute="leading" secondItem="AiQ-JE-7Us" secondAttribute="leadingMargin" constant="8" id="Kbo-F2-val"/>
+                    <constraint firstItem="6x5-ov-kdC" firstAttribute="baseline" secondItem="RSn-F3-x5H" secondAttribute="baseline" id="QEX-ty-hrC"/>
+                    <constraint firstItem="abL-Jr-aIq" firstAttribute="top" secondItem="AiQ-JE-7Us" secondAttribute="top" id="YO0-X4-iUu"/>
+                    <constraint firstItem="abL-Jr-aIq" firstAttribute="leading" secondItem="AiQ-JE-7Us" secondAttribute="leading" id="ZY6-f1-n4t"/>
+                    <constraint firstItem="6x5-ov-kdC" firstAttribute="top" secondItem="AiQ-JE-7Us" secondAttribute="topMargin" id="a09-Ji-xiN"/>
+                    <constraint firstItem="abL-Jr-aIq" firstAttribute="centerY" secondItem="QlV-jl-2c7" secondAttribute="centerY" id="jSV-lP-gaD"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Nch-Qz-l4t" secondAttribute="bottom" id="kZ5-yY-9Sf"/>
+                    <constraint firstItem="6x5-ov-kdC" firstAttribute="bottom" secondItem="RSn-F3-x5H" secondAttribute="bottom" id="kvX-Gm-HMa"/>
+                    <constraint firstItem="6x5-ov-kdC" firstAttribute="top" secondItem="RSn-F3-x5H" secondAttribute="top" id="nIu-y9-WhV"/>
+                    <constraint firstItem="6x5-ov-kdC" firstAttribute="leading" secondItem="AiQ-JE-7Us" secondAttribute="leadingMargin" constant="8" id="phk-pi-NZs"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Nch-Qz-l4t" secondAttribute="trailing" constant="8" id="wec-Uh-cVq"/>
+                    <constraint firstItem="RSn-F3-x5H" firstAttribute="leading" secondItem="6x5-ov-kdC" secondAttribute="trailing" constant="5" id="zbF-a9-aMQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="questionTitleLabel" destination="Nch-Qz-l4t" id="a6F-B0-QnC"/>
+                <outlet property="userAvatarView" destination="abL-Jr-aIq" id="6y4-7Y-X54"/>
+                <outlet property="userNameButton" destination="6x5-ov-kdC" id="qFN-uD-Ru7"/>
+            </connections>
+            <point key="canvasLocation" x="699" y="349.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="UserAvatarMask" width="48" height="48"/>
+    </resources>
+</document>

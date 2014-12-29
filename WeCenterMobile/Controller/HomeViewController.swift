@@ -10,11 +10,15 @@ import CoreData
 
 class HomeViewController: UITableViewController {
     
-    let count = 10
+    let count = 20
     var page = 1
     
     var user: User!
     var actions = [Action]()
+    
+    let actionTypes = [AnswerAction.self, QuestionPublishmentAction.self, QuestionFocusingAction.self, AnswerAgreementAction.self, ArticlePublishmentAction.self, ArticleAgreementAction.self]
+    let identifiers = ["AnswerActionCell", "QuestionPublishmentActionCell", "QuestionFocusingActionCell", "AnswerAgreementActionCell", "ArticlePublishmentActionCell", "ArticleAgreementActionCell"]
+    let nibNames = ["AnswerActionCell", "QuestionPublishmentActionCell", "QuestionFocusingActionCell", "AnswerAgreementActionCell", "ArticlePublishmentActionCell", "ArticleAgreementActionCell"]
     
     init(user: User) {
         super.init(style: .Plain)
@@ -35,6 +39,11 @@ class HomeViewController: UITableViewController {
         refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         msr_loadMoreControl = Msr.UI.LoadMoreControl()
         msr_loadMoreControl!.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
+        title = "首页" // Needs localization
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List-Dots"), style: .Bordered, target: self, action: "showSidebar")
+        for i in 0..<nibNames.count {
+            tableView.registerNib(UINib(nibName: nibNames[i], bundle: NSBundle.mainBundle()), forCellReuseIdentifier: identifiers[i])
+        }
     }
     
     override func viewDidLoad() {
@@ -52,9 +61,41 @@ class HomeViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .Default, reuseIdentifier: "")
-        cell.textLabel!.text = actions[indexPath.row].user.name
+        let action = actions[indexPath.row]
+        let index = actionTypes.indexOfObject(action.classForCoder)
+        if index >= identifiers.count {
+            return UITableViewCell() // Needs specification
+        }
+        var cell: ActionCell! = tableView.dequeueReusableCellWithIdentifier(identifiers[index]) as? ActionCell
+        if cell == nil {
+            cell = NSBundle.mainBundle().loadNibNamed(nibNames[index], owner: self, options: nil).first as ActionCell
+        }
+        cell.update(action: action)
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let action = actions[indexPath.row]
+        let index = actionTypes.indexOfObject(action.classForCoder)
+        if index >= nibNames.count {
+            return 40
+        }
+        struct _Static {
+            static var cells = [String: ActionCell]()
+            static var id: dispatch_once_t = 0
+        }
+        dispatch_once(&_Static.id) {
+            for nibName in self.nibNames {
+                _Static.cells[nibName] = (NSBundle.mainBundle().loadNibNamed(nibName, owner: self, options: nil).first as ActionCell)
+            }
+        }
+        let cell = _Static.cells[nibNames[index]]!
+        cell.update(action: action)
+        return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+    }
+    
+    func showSidebar() {
+        appDelegate.mainViewController.sidebar.show(animated: true, completion: nil)
     }
     
     internal func refresh() {
@@ -63,14 +104,16 @@ class HomeViewController: UITableViewController {
             count: count,
             success: {
                 self.page = 1
-                self.actions = dataManager.fetchAll("Action", error: nil) as [Action]
-                self.refreshControl!.endRefreshing()
+                self.actions = (dataManager.fetchAll("Action", error: nil) as [Action]).sorted() {
+                    $0.date.timeIntervalSince1970 > $1.date.timeIntervalSince1970
+                }
                 self.tableView.reloadData()
+                self.refreshControl!.endRefreshing()
             },
             failure: {
                 error in
-                self.refreshControl!.endRefreshing()
                 self.tableView.reloadData()
+                self.refreshControl!.endRefreshing()
             })
     }
     
@@ -80,14 +123,16 @@ class HomeViewController: UITableViewController {
             count: count,
             success: {
                 ++self.page
-                self.actions = dataManager.fetchAll("Action", error: nil) as [Action]
-                self.refreshControl!.endRefreshing()
+                self.actions = (dataManager.fetchAll("Action", error: nil) as [Action]).sorted() {
+                    $0.date.timeIntervalSince1970 > $1.date.timeIntervalSince1970
+                }
                 self.tableView.reloadData()
+                self.msr_loadMoreControl!.endLoadingMore()
             },
             failure: {
                 error in
-                self.refreshControl!.endRefreshing()
                 self.tableView.reloadData()
+                self.msr_loadMoreControl!.endLoadingMore()
             })
     }
     
