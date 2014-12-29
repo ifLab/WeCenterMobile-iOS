@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ArticleAgreementActionCell" id="CN9-PK-f8h" customClass="ArticleAgreementActionCell" customModule="WeCenterMobile" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CN9-PK-f8h" id="SZq-0k-jS4">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="at7-tM-xJR">
+                        <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="kLW-CZ-zLf"/>
+                            <constraint firstAttribute="width" constant="48" id="qAw-X3-dVj"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserAvatarMask" translatesAutoresizingMaskIntoConstraints="NO" id="zQH-pE-cXS">
+                        <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kgs-DE-tpx">
+                        <rect key="frame" x="16" y="8" width="36" height="27"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="用户名"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="赞同该文章" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wX6-Tg-acH">
+                        <rect key="frame" x="57" y="8" width="60" height="27"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="这里是文章标题，可能会很长，但最多显示两行。" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MR2-39-gNG">
+                        <rect key="frame" x="16" y="35" width="288" height="34"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Kgs-DE-tpx" firstAttribute="top" secondItem="SZq-0k-jS4" secondAttribute="topMargin" id="08d-1b-8IJ"/>
+                    <constraint firstItem="Kgs-DE-tpx" firstAttribute="bottom" secondItem="wX6-Tg-acH" secondAttribute="bottom" id="2Nq-yu-c9Y"/>
+                    <constraint firstItem="Kgs-DE-tpx" firstAttribute="leading" secondItem="SZq-0k-jS4" secondAttribute="leadingMargin" constant="8" id="3m7-50-2NQ"/>
+                    <constraint firstItem="at7-tM-xJR" firstAttribute="top" secondItem="SZq-0k-jS4" secondAttribute="top" id="4ct-yZ-dkB"/>
+                    <constraint firstItem="at7-tM-xJR" firstAttribute="height" secondItem="zQH-pE-cXS" secondAttribute="height" id="4tY-p8-KHZ"/>
+                    <constraint firstItem="at7-tM-xJR" firstAttribute="leading" secondItem="SZq-0k-jS4" secondAttribute="leading" id="5In-5b-v2i"/>
+                    <constraint firstItem="wX6-Tg-acH" firstAttribute="leading" secondItem="Kgs-DE-tpx" secondAttribute="trailing" constant="5" id="6iC-gy-gPb"/>
+                    <constraint firstItem="at7-tM-xJR" firstAttribute="width" secondItem="zQH-pE-cXS" secondAttribute="width" id="L39-bM-dEf"/>
+                    <constraint firstItem="MR2-39-gNG" firstAttribute="top" secondItem="Kgs-DE-tpx" secondAttribute="bottom" id="Ple-Rk-a7b"/>
+                    <constraint firstItem="at7-tM-xJR" firstAttribute="centerX" secondItem="zQH-pE-cXS" secondAttribute="centerX" id="Qtu-A3-gY6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="MR2-39-gNG" secondAttribute="trailing" constant="8" id="RMB-tR-PdY"/>
+                    <constraint firstItem="Kgs-DE-tpx" firstAttribute="baseline" secondItem="wX6-Tg-acH" secondAttribute="baseline" id="hqJ-yq-8Fh"/>
+                    <constraint firstItem="at7-tM-xJR" firstAttribute="centerY" secondItem="zQH-pE-cXS" secondAttribute="centerY" id="iQ1-5R-cO0"/>
+                    <constraint firstItem="Kgs-DE-tpx" firstAttribute="top" secondItem="wX6-Tg-acH" secondAttribute="top" id="rbo-iK-Snb"/>
+                    <constraint firstItem="MR2-39-gNG" firstAttribute="leading" secondItem="SZq-0k-jS4" secondAttribute="leadingMargin" constant="8" id="wSx-pE-vQC"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="MR2-39-gNG" secondAttribute="bottom" id="xy4-lh-trm"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="articleTitleLabel" destination="MR2-39-gNG" id="gLR-gR-7BE"/>
+                <outlet property="userAvatarView" destination="at7-tM-xJR" id="hqr-09-OaX"/>
+                <outlet property="userNameButton" destination="Kgs-DE-tpx" id="dQM-6f-7YM"/>
+            </connections>
+            <point key="canvasLocation" x="731" y="347.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="UserAvatarMask" width="48" height="48"/>
+    </resources>
+</document>

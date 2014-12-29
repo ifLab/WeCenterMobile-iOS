@@ -345,7 +345,7 @@ class User: NSManagedObject {
     func fetchRelatedActions(#page: Int, count: Int, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         networkManager.GET("Home List",
             parameters: [
-                "page": page,
+                "page": page - 1,
                 "per_page": count
             ],
             success: {
@@ -370,10 +370,10 @@ class User: NSManagedObject {
                             action.answer.question = (dataManager.autoGenerate("Question", ID: answerInfo["question_id"] as NSNumber) as Question)
                             action.answer.body = (answerInfo["answer_content"] as String)
                             action.answer.agreementCount = (answerInfo["agree_count"] as NSNumber)
-                            action.answer.evaluation = Answer.Evaluation(rawValue: (answerInfo["agree_status"] as NSNumber).integerValue)
+                            action.answer.evaluation = Answer.Evaluation(rawValue: Msr.Data.IntegerValueOfObject(answerInfo["agree_status"]!))!
                             let questionInfo = object["question_info"] as NSDictionary
                             action.answer.question = (dataManager.autoGenerate("Question", ID: questionInfo["question_id"] as NSNumber) as Question)
-                            action.answer.question!.body = (questionInfo["question_content"] as String)
+                            action.answer.question!.title = (questionInfo["question_content"] as String)
                             break
                         case .QuestionFocusing:
                             let action = dataManager.autoGenerate("QuestionFocusingAction", ID: object["history_id"] as NSNumber) as QuestionFocusingAction
@@ -385,7 +385,7 @@ class User: NSManagedObject {
                             action.user.avatarURI = (userInfo["avatar_file"] as String)
                             let questionInfo = object["question_info"] as NSDictionary
                             action.question = dataManager.autoGenerate("Question", ID: questionInfo["question_id"] as NSNumber) as Question
-                            action.question.body = (questionInfo["question_content"] as String)
+                            action.question.title = (questionInfo["question_content"] as String)
                             break
                         case .QuestionPublishment:
                             let action = dataManager.autoGenerate("QuestionPublishmentAction", ID: object["history_id"] as NSNumber) as QuestionPublishmentAction
@@ -397,7 +397,7 @@ class User: NSManagedObject {
                             action.user.avatarURI = (userInfo["avatar_file"] as String)
                             let questionInfo = object["question_info"] as NSDictionary
                             action.question = dataManager.autoGenerate("Question", ID: questionInfo["question_id"] as NSNumber) as Question
-                            action.question.body = (questionInfo["question_content"] as String)
+                            action.question.title = (questionInfo["question_content"] as String)
                             action.question.user = action.user
                             break
                         case .ArticleAgreement:
@@ -424,10 +424,10 @@ class User: NSManagedObject {
                             action.answer = dataManager.autoGenerate("Answer", ID: answerInfo["answer_id"] as NSNumber) as Answer
                             action.answer.body = (answerInfo["answer_content"] as String)
                             action.answer.agreementCount = (answerInfo["agree_count"] as NSNumber)
-                            action.answer.evaluation = Answer.Evaluation(rawValue: (answerInfo["agree_status"] as NSNumber).integerValue)!
+                            action.answer.evaluation = Answer.Evaluation(rawValue: Msr.Data.IntegerValueOfObject(answerInfo["agree_status"]!))!
                             let questionInfo = object["question_info"] as NSDictionary
                             action.answer.question = (dataManager.autoGenerate("Question", ID: questionInfo["question_id"] as NSNumber) as Question)
-                            action.answer.question!.body = (questionInfo["question_content"] as String)
+                            action.answer.question!.title = (questionInfo["question_content"] as String)
                             action.answer.user = action.user
                             break
                         case .ArticlePublishment:

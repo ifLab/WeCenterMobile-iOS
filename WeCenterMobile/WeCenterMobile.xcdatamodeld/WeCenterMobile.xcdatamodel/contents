@@ -120,7 +120,7 @@
     <fetchRequest name="Action_By_ID" entity="Action" predicateString="id == $ID"/>
     <fetchRequest name="Answer_By_ID" entity="Answer" predicateString="id == $ID"/>
     <fetchRequest name="AnswerAction_By_ID" entity="AnswerAction" predicateString="id == $ID"/>
-    <fetchRequest name="AnswerAgreementAction_By_ID" entity="ArticleAgreementAction"/>
+    <fetchRequest name="AnswerAgreementAction_By_ID" entity="AnswerAgreementAction" predicateString="id == $ID"/>
     <fetchRequest name="AnswerComment_By_ID" entity="AnswerComment" predicateString="id == $ID"/>
     <fetchRequest name="Article_By_ID" entity="Article" predicateString="id == $ID"/>
     <fetchRequest name="ArticleAgreementAction_By_ID" entity="ArticleAgreementAction" predicateString="id == $ID"/>
