@@ -32,7 +32,7 @@ class DiscoveryViewController: Msr.UI.SegmentedViewController {
     }
     
     func showSidebar() {
-        appDelegate.mainViewController.sidebar.show(animated: true, completion: nil)
+        appDelegate.mainViewController.sidebar.show(animated: true)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

@@ -71,9 +71,9 @@ class Answer: NSManagedObject {
                 for commentData in commentsData {
                     let commentID = (commentData["id"] as NSString).integerValue
                     let comment = dataManager.autoGenerate("AnswerComment", ID: commentID) as AnswerComment
-                    let userID = commentData["uid"] as? NSNumber
-                    if userID != nil {
-                        comment.user = (dataManager.autoGenerate("User", ID: userID!) as User)
+                    if commentData["uid"] != nil {
+                        let userID = Msr.Data.IntegerValueOfObject(commentData["uid"]!)
+                        comment.user = (dataManager.autoGenerate("User", ID: userID) as User)
                         comment.user!.name = commentData["user_name"] as? String
                     }
                     comment.body = commentData["content"] as? String

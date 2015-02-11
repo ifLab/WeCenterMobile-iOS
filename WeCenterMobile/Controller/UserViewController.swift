@@ -271,15 +271,21 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView!) {
         if scrollView === bottomView {
-            UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .BeginFromCurrentState, animations: {
-                if self.bottomView.contentOffset.y < self.signatureLabel.bounds.height / 2 {
-                    self.bottomView.contentOffset.y = 0
-                } else if self.bottomView.contentOffset.y < (self.signatureLabel.frame.height + self.hideableView.bounds.height) / 2 {
-                    self.bottomView.contentOffset.y = self.signatureLabel.bounds.height
-                } else {
-                    self.bottomView.contentOffset.y = self.hideableView.bounds.height
-                }
-            }, completion: nil)
+            UIView.animateWithDuration(0.5,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 0,
+                options: .BeginFromCurrentState,
+                animations: {
+                    if self.bottomView.contentOffset.y < self.signatureLabel.bounds.height / 2 {
+                        self.bottomView.contentOffset.y = 0
+                    } else if self.bottomView.contentOffset.y < (self.signatureLabel.frame.height + self.hideableView.bounds.height) / 2 {
+                        self.bottomView.contentOffset.y = self.signatureLabel.bounds.height
+                    } else {
+                        self.bottomView.contentOffset.y = self.hideableView.bounds.height
+                    }
+                },
+                completion: nil)
         }
     }
     
@@ -369,19 +375,19 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     }
     
     internal func pushTopicListViewController() {
-        msr_navigationController!.pushViewController(UserTopicListViewController(user: user), animated: true, completion: nil)
+        msr_navigationController!.pushViewController(UserTopicListViewController(user: user), animated: true)
     }
     
     internal func pushFollowerViewController() {
-        msr_navigationController!.pushViewController(UserListViewController(ID: user.id, listType: .UserFollower), animated: true, completion: nil)
+        msr_navigationController!.pushViewController(UserListViewController(ID: user.id, listType: .UserFollower), animated: true)
     }
     
     internal func pushFollowingViewController() {
-        msr_navigationController!.pushViewController(UserListViewController(ID: user.id, listType: .UserFollowing), animated: true, completion: nil)
+        msr_navigationController!.pushViewController(UserListViewController(ID: user.id, listType: .UserFollowing), animated: true)
     }
     
     internal func pushQuestionViewController() {
-        msr_navigationController!.pushViewController(UserAskedQuestionListViewController(user: user), animated: true, completion: nil)
+        msr_navigationController!.pushViewController(UserAskedQuestionListViewController(user: user), animated: true)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

@@ -63,7 +63,7 @@ class UserAskedQuestionListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        msr_navigationController!.pushViewController(QuestionViewController(question: user.questions.allObjects[indexPath.row] as Question), animated: true, completion: nil)
+        msr_navigationController!.pushViewController(QuestionViewController(question: user.questions.allObjects[indexPath.row] as Question), animated: true)
     }
     
     internal func refresh() {

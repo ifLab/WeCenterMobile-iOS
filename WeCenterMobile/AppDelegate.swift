@@ -44,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             failure: {
                 error in
                 self.window!.makeKeyAndVisible()
+                println(error)
             })
         return true
     }

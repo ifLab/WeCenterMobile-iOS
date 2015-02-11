@@ -31,9 +31,6 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         }
     }
     var firstAppear = true
-    var wrapper: UIView! {
-        return view.superview
-    }
     var contentTextView: DTAttributedTextView {
         return view as DTAttributedTextView
     }
@@ -107,8 +104,8 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     override func viewDidAppear(animated: Bool) {
         if firstAppear {
             firstAppear = false
-            wrapper!.addSubview(topBar)
-            wrapper!.addSubview(bottomBar)
+            msr_navigationWrapperView!.addSubview(topBar) // Needs change
+            msr_navigationWrapperView!.addSubview(bottomBar) // Needs change
             topBar.frame.origin.y += msr_navigationBar!.bounds.height
             contentTextView.contentInset.top += topBar.bounds.height
             contentTextView.contentInset.bottom += bottomBar.bounds.height
@@ -214,7 +211,7 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     }
     
     internal func pushCommentListViewController() {
-        msr_navigationController!.pushViewController(CommentListViewController(answer: answer!), animated: true, completion: nil)
+        msr_navigationController!.pushViewController(AnswerCommentListViewController(answer: answer!), animated: true)
     }
     
 }

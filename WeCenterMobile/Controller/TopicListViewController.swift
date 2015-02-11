@@ -34,6 +34,6 @@ class TopicListViewController: UITableViewController {
         return 80
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        msr_navigationController!.pushViewController(TopicViewController(topic: topics[indexPath.row]), animated: true, completion: nil)
+        msr_navigationController!.pushViewController(TopicViewController(topic: topics[indexPath.row]), animated: true)
     }
 }

@@ -233,7 +233,14 @@ class User: NSManagedObject {
     class func loginWithCookieAndCacheInStorage(#success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
         let data = NSUserDefaults.standardUserDefaults().objectForKey("Cookies") as? NSData
         if data == nil {
-            failure?(NSError()) // Needs specification
+            var userInfo = [
+                NSLocalizedDescriptionKey: "Could not find any cookies in storage.",
+                NSLocalizedFailureReasonErrorKey: "You've never logged in before or cookies have been cleared.",
+            ]
+            failure?(NSError(
+                domain: networkManager.website,
+                code: networkManager.internalErrorCode.integerValue,
+                userInfo: userInfo)) // Needs specification
         } else {
             let cookies = NSKeyedUnarchiver.unarchiveObjectWithData(data!) as [NSHTTPCookie]
             let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -35,27 +35,30 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="这里是问题标题，可能会很长，但最多显示两行。" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YqM-KN-Lxr">
-                        <rect key="frame" x="16" y="35" width="288" height="34"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="EN9-cx-2wo" customClass="MultilineLabelButton" customModule="WeCenterMobile" customModuleProvider="target">
+                        <rect key="frame" x="13" y="35" width="294" height="39"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                        <state key="normal" title="这里是问题标题，可能会很长，但最多显示两行。">
+                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="YqM-KN-Lxr" secondAttribute="trailing" constant="8" id="0ef-W1-fiI"/>
                     <constraint firstItem="mHp-Tt-t3H" firstAttribute="top" secondItem="WGM-nr-lCl" secondAttribute="topMargin" id="6ug-lX-soA"/>
                     <constraint firstItem="mHp-Tt-t3H" firstAttribute="leading" secondItem="WGM-nr-lCl" secondAttribute="leadingMargin" constant="8" id="AYc-Dz-Qkm"/>
                     <constraint firstItem="Vi0-CQ-N80" firstAttribute="width" secondItem="b97-go-u5w" secondAttribute="width" id="KHa-at-3n6"/>
-                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="YqM-KN-Lxr" secondAttribute="bottom" id="MHZ-qu-gPn"/>
                     <constraint firstItem="mHp-Tt-t3H" firstAttribute="bottom" secondItem="mFC-Xq-H90" secondAttribute="bottom" id="OJ5-gK-eMv"/>
                     <constraint firstItem="Vi0-CQ-N80" firstAttribute="top" secondItem="WGM-nr-lCl" secondAttribute="top" id="SVO-ef-MLk"/>
                     <constraint firstItem="mHp-Tt-t3H" firstAttribute="top" secondItem="mFC-Xq-H90" secondAttribute="top" id="Sf2-ez-Kzq"/>
-                    <constraint firstItem="YqM-KN-Lxr" firstAttribute="top" secondItem="mHp-Tt-t3H" secondAttribute="bottom" id="cR6-MO-FNQ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="EN9-cx-2wo" secondAttribute="trailing" constant="5" id="ZZB-iD-ExF"/>
+                    <constraint firstItem="EN9-cx-2wo" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="WGM-nr-lCl" secondAttribute="bottomMargin" id="ant-Vg-map"/>
                     <constraint firstItem="mFC-Xq-H90" firstAttribute="leading" secondItem="mHp-Tt-t3H" secondAttribute="trailing" constant="5" id="dZY-0o-cNH"/>
-                    <constraint firstItem="YqM-KN-Lxr" firstAttribute="leading" secondItem="WGM-nr-lCl" secondAttribute="leadingMargin" constant="8" id="gLP-We-TvF"/>
+                    <constraint firstItem="EN9-cx-2wo" firstAttribute="top" secondItem="mFC-Xq-H90" secondAttribute="bottom" id="htA-5d-2EX"/>
                     <constraint firstItem="Vi0-CQ-N80" firstAttribute="centerY" secondItem="b97-go-u5w" secondAttribute="centerY" id="iel-Ra-tml"/>
+                    <constraint firstItem="EN9-cx-2wo" firstAttribute="leading" secondItem="WGM-nr-lCl" secondAttribute="leadingMargin" constant="5" id="iiP-BF-Qzb"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="EN9-cx-2wo" secondAttribute="bottom" id="nzK-OW-Ixl"/>
                     <constraint firstItem="Vi0-CQ-N80" firstAttribute="height" secondItem="b97-go-u5w" secondAttribute="height" id="qGc-a1-MX0"/>
                     <constraint firstItem="Vi0-CQ-N80" firstAttribute="centerX" secondItem="b97-go-u5w" secondAttribute="centerX" id="sqQ-6l-1QN"/>
                     <constraint firstItem="Vi0-CQ-N80" firstAttribute="leading" secondItem="WGM-nr-lCl" secondAttribute="leading" id="yPt-wb-GH6"/>
@@ -63,7 +66,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="questionTitleLabel" destination="YqM-KN-Lxr" id="Kjb-7b-hyF"/>
+                <outlet property="questionTitleButton" destination="EN9-cx-2wo" id="XHS-Nc-euU"/>
                 <outlet property="userAvatarView" destination="Vi0-CQ-N80" id="5kn-NP-LWR"/>
                 <outlet property="userNameButton" destination="mHp-Tt-t3H" id="Sd4-JY-bxn"/>
             </connections>

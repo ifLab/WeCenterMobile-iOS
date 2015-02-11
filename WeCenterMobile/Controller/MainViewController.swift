@@ -16,12 +16,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return appDelegate.currentUser
     }
     var titles = [
-        "Home",
-        discoveryStrings["Discovery"],
-        "Favorite",
-        "Bookmark",
-        "Message",
-        "TEST VC"
+        "首页", // Needs localization
+        "发现",
+        "测试"
     ]
     override init() {
         super.init(nibName: nil, bundle: nil)
@@ -82,17 +79,17 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 cell.imageView!.layer.contentsScale = UIScreen.mainScreen().scale
                 cell.textLabel!.text = titles[indexPath.row]
             } else {
-                cell.textLabel!.text = "TEMPORARY_EXIT"
+                cell.textLabel!.text = "注销"
             }
         }
         return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        sidebar.hide(animated: true, completion: nil)
+        sidebar.hide(animated: true)
         if indexPath.section == 0 {
-            contentViewController.setViewControllers([UserViewController(user: appDelegate.currentUser!)], animated: true, completion: nil)
+            contentViewController.setViewControllers([UserViewController(user: appDelegate.currentUser!)], animated: true)
         } else if indexPath.section == 1 {
-            contentViewController.setViewControllers([viewControllerAtIndex(indexPath.row)], animated: true, completion: nil)
+            contentViewController.setViewControllers([viewControllerAtIndex(indexPath.row)], animated: true)
         } else {
             dismissViewControllerAnimated(true, completion: nil)
         }
@@ -114,15 +111,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             viewController = DiscoveryViewController()
             break
         case 2:
-            viewController = UIViewController()
-            break
-        case 3:
-            viewController = UIViewController()
-            break
-        case 4:
-            viewController = UIViewController()
-            break
-        case 5:
             viewController = TestViewController(statusBarStyle: .Default)
             break
         default:
@@ -131,7 +119,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return viewController
     }
     func showSidebar() {
-        sidebar.show(animated: true, completion: nil)
+        sidebar.show(animated: true)
     }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return contentViewController.preferredStatusBarStyle()

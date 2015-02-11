@@ -41,6 +41,7 @@ class HomeViewController: UITableViewController {
         msr_loadMoreControl!.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
         title = "首页" // Needs localization
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List-Dots"), style: .Bordered, target: self, action: "showSidebar")
+//        tableView.rowHeight = UITableViewAutomaticDimension
         for i in 0..<nibNames.count {
             tableView.registerNib(UINib(nibName: nibNames[i], bundle: NSBundle.mainBundle()), forCellReuseIdentifier: identifiers[i])
         }
@@ -70,7 +71,13 @@ class HomeViewController: UITableViewController {
         if cell == nil {
             cell = NSBundle.mainBundle().loadNibNamed(nibNames[index], owner: self, options: nil).first as ActionCell
         }
+        cell.userNameButton.addTarget(self, action: "pushUserViewController:", forControlEvents: .TouchUpInside)
+        if let cell_ = cell as? QuestionPublishmentActionCell {
+            cell_.questionTitleButton.addTarget(self, action: "pushQuestionViewController:", forControlEvents: .TouchUpInside)
+        }
         cell.update(action: action)
+        cell.setNeedsUpdateConstraints()
+        cell.updateConstraintsIfNeeded()
         return cell
     }
     
@@ -91,11 +98,27 @@ class HomeViewController: UITableViewController {
         }
         let cell = _Static.cells[nibNames[index]]!
         cell.update(action: action)
+        cell.setNeedsUpdateConstraints()
+        cell.updateConstraintsIfNeeded()
+//        let className = NSStringFromClass(action.classForCoder).stringByReplacingOccurrencesOfString("WeCenterMobile.", withString: "", options: .CaseInsensitiveSearch, range: nil)
+//        println("\(indexPath.row). \(action.user.name!), \(className): \(cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height)")
         return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
     }
     
     func showSidebar() {
-        appDelegate.mainViewController.sidebar.show(animated: true, completion: nil)
+        appDelegate.mainViewController.sidebar.show(animated: true)
+    }
+    
+    func pushUserViewController(sender: UIButton) {
+        if let user = sender.msr_userInfo as? User {
+            msr_navigationController!.pushViewController(UserViewController(user: user), animated: true)
+        }
+    }
+    
+    func pushQuestionViewController(sender: UIButton) {
+        if let question = sender.msr_userInfo as? Question {
+            msr_navigationController!.pushViewController(QuestionViewController(question: question), animated: true)
+        }
     }
     
     internal func refresh() {
@@ -107,6 +130,22 @@ class HomeViewController: UITableViewController {
                 self.actions = (dataManager.fetchAll("Action", error: nil) as [Action]).sorted() {
                     $0.date.timeIntervalSince1970 > $1.date.timeIntervalSince1970
                 }
+//                for (i, user) in enumerate(map(self.actions, { $0.user }))  {
+//                    user.fetchAvatar(
+//                        success: {
+//                            appDelegate.saveContext()
+//                            let indexPath = NSIndexPath(forRow: i, inSection: 0)
+//                            let cell: ActionCell? = self.tableView.cellForRowAtIndexPath(indexPath) as? ActionCell
+//                            if cell != nil {
+//                                self.tableView.beginUpdates()
+//                                if cell?.userNameButton.msr_userInfo as? NSNumber == user.id {
+//                                    self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+//                                }
+//                                self.tableView.endUpdates()
+//                            }
+//                        },
+//                        failure: nil)
+//                }
                 self.tableView.reloadData()
                 self.refreshControl!.endRefreshing()
             },

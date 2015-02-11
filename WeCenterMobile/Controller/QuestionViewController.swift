@@ -62,7 +62,8 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
                 question in
                 self.question = question
                 self.tableView.reloadData()
-            }, failure: nil)
+            },
+            failure: nil)
     }
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 6
@@ -205,10 +206,10 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.section {
         case 1:
-            msr_navigationController!.pushViewController(TopicListViewController(topics: topics), animated: true, completion: nil)
+            msr_navigationController!.pushViewController(TopicListViewController(topics: topics), animated: true)
             break
         case 5:
-            msr_navigationController!.pushViewController(AnswerViewController(answerID: answers[indexPath.row].id), animated: true, completion: nil)
+            msr_navigationController!.pushViewController(AnswerViewController(answerID: answers[indexPath.row].id), animated: true)
             break
         default:
             break

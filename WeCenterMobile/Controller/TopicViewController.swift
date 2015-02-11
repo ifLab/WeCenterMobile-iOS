@@ -288,13 +288,13 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     
     func pushUserViewController(userButton: UIButton) {
         if userButton.msr_userInfo != nil {
-            msr_navigationController!.pushViewController(UserViewController(user: userButton.msr_userInfo as User), animated: true, completion: nil)
+            msr_navigationController!.pushViewController(UserViewController(user: userButton.msr_userInfo as User), animated: true)
         }
     }
     
     func pushQuestionViewController(questionButton: UIButton) {
         if questionButton.msr_userInfo != nil {
-            msr_navigationController!.pushViewController(QuestionViewController(question: questionButton.msr_userInfo as Question), animated: true, completion: nil)
+            msr_navigationController!.pushViewController(QuestionViewController(question: questionButton.msr_userInfo as Question), animated: true)
         }
     }
     

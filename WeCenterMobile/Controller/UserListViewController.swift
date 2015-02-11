@@ -71,7 +71,7 @@ class UserListViewController: UITableViewController {
         return 80
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        msr_navigationController!.pushViewController(UserViewController(user: users[indexPath.row]), animated: true, completion: nil)
+        msr_navigationController!.pushViewController(UserViewController(user: users[indexPath.row]), animated: true)
     }
     func refresh() {
         let success: () -> Void = {

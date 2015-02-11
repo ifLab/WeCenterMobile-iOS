@@ -79,30 +79,30 @@ class TestViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             let viewController = TestViewController(i: title!.toInt()! + 1, statusBarStyle: initStatusBarStyle)
-            msr_navigationController!.pushViewController(viewController, animated: true, completion: nil)
+            msr_navigationController!.pushViewController(viewController, animated: true)
             break
         case 1:
-            msr_navigationController!.popViewController(true, completion: nil)
+            msr_navigationController!.popViewController(animated: true)
             break
         case 2:
-            msr_navigationController!.popToRootViewControllerAnimated(true, completion: nil)
+            msr_navigationController!.popToRootViewController(animated: true)
             break
         case 3:
             var viewControllers = [UIViewController]()
             for i in 1...5 {
                 viewControllers.append(TestViewController(i: title!.toInt()! + i, statusBarStyle: initStatusBarStyle))
             }
-            msr_navigationController!.pushViewControllers(viewControllers, animated: true, completion: nil)
+            msr_navigationController!.pushViewControllers(viewControllers, animated: true)
             break
         case 4:
             var viewControllers = msr_navigationController!.viewControllers
             for _ in 1...5 {
                 viewControllers.removeLast()
             }
-            msr_navigationController!.setViewControllers(viewControllers, animated: true, completion: nil)
+            msr_navigationController!.setViewControllers(viewControllers, animated: true)
             break
         case 5:
-            msr_navigationController!.replaceCurrentViewControllerWithViewController(TestViewController(i: title!.toInt()!,  statusBarStyle: initStatusBarStyle), animated: true, completion: nil)
+            msr_navigationController!.replaceCurrentViewControllerWithViewController(TestViewController(i: title!.toInt()!, statusBarStyle: initStatusBarStyle), animated: true)
             break
         case 6:
             var viewControllers = msr_navigationController!.viewControllers
@@ -110,7 +110,7 @@ class TestViewController: UITableViewController {
             for i in 0...1 {
                 viewControllers.append(TestViewController(i: title!.toInt()! + i, statusBarStyle: initStatusBarStyle))
             }
-            msr_navigationController!.setViewControllers(viewControllers, animated: true, completion: nil)
+            msr_navigationController!.setViewControllers(viewControllers, animated: true)
             break
         case 7:
             var viewControllers = msr_navigationController!.viewControllers
@@ -118,21 +118,21 @@ class TestViewController: UITableViewController {
                 viewControllers.removeLast()
             }
             viewControllers.append(TestViewController(i: title!.toInt()! - 1, statusBarStyle: initStatusBarStyle))
-            msr_navigationController!.setViewControllers(viewControllers, animated: true, completion: nil)
+            msr_navigationController!.setViewControllers(viewControllers, animated: true)
             break
         case 8:
             var viewControllers = [msr_navigationController!.viewControllers.first!]
             for i in 1...title!.toInt()! {
                 viewControllers.append(TestViewController(i: i, statusBarStyle: initStatusBarStyle))
             }
-            msr_navigationController!.setViewControllers(viewControllers, animated: true, completion: nil)
+            msr_navigationController!.setViewControllers(viewControllers, animated: true)
             break
         case 9:
             var viewControllers = [UIViewController]()
             for i in 0...title!.toInt()! {
                 viewControllers.append(TestViewController(i: i, statusBarStyle: initStatusBarStyle))
             }
-            msr_navigationController!.setViewControllers(viewControllers, animated: true, completion: nil)
+            msr_navigationController!.setViewControllers(viewControllers, animated: true)
             break
         default:
             break

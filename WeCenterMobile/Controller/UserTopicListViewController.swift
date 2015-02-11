@@ -46,7 +46,7 @@ class UserTopicListViewController: UITableViewController {
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        msr_navigationController?.pushViewController(TopicViewController(topic: user.topics.allObjects[indexPath.row] as Topic), animated: true, completion: nil)
+        msr_navigationController?.pushViewController(TopicViewController(topic: user.topics.allObjects[indexPath.row] as Topic), animated: true)
     }
     func refresh() {
         user.fetchTopics(
