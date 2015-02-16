@@ -12,7 +12,9 @@ class AnswerCommentListViewController: UITableViewController {
     private var answer: Answer!
     let cellReuseIdentifier = "CommentCell"
     let cellNibName = "CommentCell"
-    let keyboardTextFieldBar = Msr.UI.KeyboardTextFieldBar(frame: CGRect(x: 0, y: 0, width: 0, height: 44))
+    let keyboardBar = Msr.UI.KeyboardBar(frame: CGRect(x: 0, y: 0, width: 0, height: 44))
+    let textField = UITextField()
+    let publishButton = UIButton()
     init(answer: Answer) {
         super.init(style: .Plain)
         self.answer = answer
@@ -29,6 +31,21 @@ class AnswerCommentListViewController: UITableViewController {
         refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         tableView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         tableView.separatorStyle = .None
+        title = "评论"
+        let views = ["textField": textField, "publishButton": publishButton]
+        for (k, v) in views {
+            v.setTranslatesAutoresizingMaskIntoConstraints(false)
+            keyboardBar.addSubview(v)
+        }
+        textField.placeholder = "在此处输入评论……"
+        textField.borderStyle = .None
+        textField.clearButtonMode = .WhileEditing
+        publishButton.setTitle("发布", forState: .Normal) // Needs localization
+        publishButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        publishButton.setBackgroundImage(UIImage.msr_rectangleWithColor(UIColor.materialTeal500(), size: CGSize(width: 1, height: 1)), forState: .Normal)
+        keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-5-[textField]-5-[publishButton(==100)]|", options: nil, metrics: nil, views: views))
+        keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[textField]|", options: nil, metrics: nil, views: views))
+        keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[publishButton]|", options: nil, metrics: nil, views: views))
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +54,8 @@ class AnswerCommentListViewController: UITableViewController {
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        msr_navigationWrapperView!.addSubview(keyboardTextFieldBar)
+        msr_navigationWrapperView!.addSubview(keyboardBar)
+        
     }
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

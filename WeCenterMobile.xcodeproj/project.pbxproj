@@ -84,7 +84,7 @@
 		953BF5BC1A51A70D00B804B8 /* ArticlePublishmentActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 953BF5BB1A51A70D00B804B8 /* ArticlePublishmentActionCell.xib */; };
 		953BF5BE1A51C4F700B804B8 /* ArticleAgreementActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953BF5BD1A51C4F700B804B8 /* ArticleAgreementActionCell.swift */; };
 		953BF5C01A51C50800B804B8 /* ArticleAgreementActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 953BF5BF1A51C50800B804B8 /* ArticleAgreementActionCell.xib */; };
-		9569A9151A80AFE4003F58AC /* KeyboardTextFieldBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569A9141A80AFE4003F58AC /* KeyboardTextFieldBar.swift */; };
+		9569A9151A80AFE4003F58AC /* KeyboardBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569A9141A80AFE4003F58AC /* KeyboardBar.swift */; };
 		956C0EF31A583D2B0053EDCA /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 956C0ECF1A583D2B0053EDCA /* AFHTTPRequestOperation.m */; };
 		956C0EF41A583D2B0053EDCA /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 956C0ED11A583D2B0053EDCA /* AFHTTPRequestOperationManager.m */; };
 		956C0EF51A583D2B0053EDCA /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 956C0ED31A583D2B0053EDCA /* AFHTTPSessionManager.m */; };
@@ -350,7 +350,7 @@
 		953BF5BB1A51A70D00B804B8 /* ArticlePublishmentActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticlePublishmentActionCell.xib; sourceTree = "<group>"; };
 		953BF5BD1A51C4F700B804B8 /* ArticleAgreementActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleAgreementActionCell.swift; sourceTree = "<group>"; };
 		953BF5BF1A51C50800B804B8 /* ArticleAgreementActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleAgreementActionCell.xib; sourceTree = "<group>"; };
-		9569A9141A80AFE4003F58AC /* KeyboardTextFieldBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardTextFieldBar.swift; sourceTree = "<group>"; };
+		9569A9141A80AFE4003F58AC /* KeyboardBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardBar.swift; sourceTree = "<group>"; };
 		956C0ECE1A583D2B0053EDCA /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		956C0ECF1A583D2B0053EDCA /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		956C0ED01A583D2B0053EDCA /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -788,7 +788,7 @@
 				9594CD281A2D0EC10013235C /* UIImage+Resize.swift */,
 				950FE4D51A1DA2B500167D09 /* UIView+KeyboardUtility.swift */,
 				95A247CF1A7F4A88006A6C84 /* MultilineLabelButton.swift */,
-				9569A9141A80AFE4003F58AC /* KeyboardTextFieldBar.swift */,
+				9569A9141A80AFE4003F58AC /* KeyboardBar.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1758,7 +1758,7 @@
 				956C0FBB1A583F320053EDCA /* DTTextAttachment.m in Sources */,
 				950FE50A1A1DA2B500167D09 /* QuestionViewController.swift in Sources */,
 				950FE7221A1DA2B500167D09 /* ArticlePublishmentAction.swift in Sources */,
-				9569A9151A80AFE4003F58AC /* KeyboardTextFieldBar.swift in Sources */,
+				9569A9151A80AFE4003F58AC /* KeyboardBar.swift in Sources */,
 				950FE71F1A1DA2B500167D09 /* AnswerAgreementAction.swift in Sources */,
 				956C0EF61A583D2B0053EDCA /* AFNetworkReachabilityManager.m in Sources */,
 				950FE50F1A1DA2B500167D09 /* UserTopicListViewController.swift in Sources */,
