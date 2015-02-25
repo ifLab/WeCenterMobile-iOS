@@ -12,7 +12,7 @@ class AnswerCommentListViewController: UITableViewController {
     private var answer: Answer!
     let cellReuseIdentifier = "CommentCell"
     let cellNibName = "CommentCell"
-    let keyboardBar = Msr.UI.KeyboardBar(frame: CGRect(x: 0, y: 0, width: 0, height: 44))
+    var keyboardBar: Msr.UI.KeyboardBar!
     let textField = UITextField()
     let publishButton = UIButton()
     init(answer: Answer) {
@@ -27,12 +27,13 @@ class AnswerCommentListViewController: UITableViewController {
     }
     override func loadView() {
         super.loadView()
+        keyboardBar = Msr.UI.KeyboardBar()
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         tableView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         tableView.separatorStyle = .None
         title = "评论"
-        let views = ["textField": textField, "publishButton": publishButton]
+        let views = ["t": textField, "b": publishButton]
         for (k, v) in views {
             v.setTranslatesAutoresizingMaskIntoConstraints(false)
             keyboardBar.addSubview(v)
@@ -43,9 +44,10 @@ class AnswerCommentListViewController: UITableViewController {
         publishButton.setTitle("发布", forState: .Normal) // Needs localization
         publishButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         publishButton.setBackgroundImage(UIImage.msr_rectangleWithColor(UIColor.materialTeal500(), size: CGSize(width: 1, height: 1)), forState: .Normal)
-        keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-5-[textField]-5-[publishButton(==100)]|", options: nil, metrics: nil, views: views))
-        keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[textField]|", options: nil, metrics: nil, views: views))
-        keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[publishButton]|", options: nil, metrics: nil, views: views))
+        keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-5-[t]-5-[b(==75)]|", options: nil, metrics: nil, views: views))
+        keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[t(>=44)]|", options: nil, metrics: nil, views: views))
+        keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[b(>=44)]|", options: nil, metrics: nil, views: views))
+        keyboardBar.backgroundColor = UIColor.whiteColor()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,6 +115,11 @@ class AnswerCommentListViewController: UITableViewController {
     }
     func copyCommentBody() {
         
+    }
+    
+    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        super.willRotateToInterfaceOrientation(toInterfaceOrientation, duration: duration)
+        keyboardBar.layoutIfNeeded()
     }
     func refresh() {
         answer.fetchComments(
