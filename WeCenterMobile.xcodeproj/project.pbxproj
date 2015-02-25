@@ -249,7 +249,6 @@
 		959CC9401A25BAED00F8B6CB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC93F1A25BAED00F8B6CB /* User.swift */; };
 		959CC9421A25BAEE00F8B6CB /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC9411A25BAEE00F8B6CB /* Answer.swift */; };
 		95A13AC91A9341110050331B /* UINavigationBar+Accessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A13AC81A9341110050331B /* UINavigationBar+Accessor.swift */; };
-		95A247D01A7F4A88006A6C84 /* MultilineLabelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A247CF1A7F4A88006A6C84 /* MultilineLabelButton.swift */; };
 		95A247D21A7FD346006A6C84 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95A247D11A7FD346006A6C84 /* CommentCell.xib */; };
 		95A247D41A7FDA5F006A6C84 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A247D31A7FDA5F006A6C84 /* CommentCell.swift */; };
 		95B6E6B91A232E2400F31BE3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9588F5F41A1D9D1C001BC426 /* LaunchScreen.xib */; };
@@ -679,7 +678,6 @@
 		959CC93F1A25BAED00F8B6CB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		959CC9411A25BAEE00F8B6CB /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		95A13AC81A9341110050331B /* UINavigationBar+Accessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Accessor.swift"; sourceTree = "<group>"; };
-		95A247CF1A7F4A88006A6C84 /* MultilineLabelButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultilineLabelButton.swift; sourceTree = "<group>"; };
 		95A247D11A7FD346006A6C84 /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		95A247D31A7FDA5F006A6C84 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		95E4E99F1A4FFBD700F3C327 /* AnswerActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerActionCell.swift; sourceTree = "<group>"; };
@@ -792,7 +790,6 @@
 				9599FD8A1A9D6BFD007805FA /* Constant.swift */,
 				9569A9141A80AFE4003F58AC /* KeyboardBar.swift */,
 				950FE4CC1A1DA2B500167D09 /* LoadMoreControl.swift */,
-				95A247CF1A7F4A88006A6C84 /* MultilineLabelButton.swift */,
 				950FE4CD1A1DA2B500167D09 /* NavigationController.swift */,
 				950FE4CE1A1DA2B500167D09 /* SegmentedViewController.swift */,
 				950FE4CF1A1DA2B500167D09 /* Sidebar.swift */,
@@ -1711,7 +1708,6 @@
 				956C0EF41A583D2B0053EDCA /* AFHTTPRequestOperationManager.m in Sources */,
 				956C0FC71A583F320053EDCA /* NSCoder+DTCompatibility.m in Sources */,
 				956C0FCA1A583F320053EDCA /* NSMutableString+HTML.m in Sources */,
-				95A247D01A7F4A88006A6C84 /* MultilineLabelButton.swift in Sources */,
 				956C0FCB1A583F320053EDCA /* NSScanner+HTML.m in Sources */,
 				956C0FA51A583F320053EDCA /* DTCoreTextLayoutFrame.m in Sources */,
 				956C0F971A583F320053EDCA /* DTAttributedLabel.m in Sources */,

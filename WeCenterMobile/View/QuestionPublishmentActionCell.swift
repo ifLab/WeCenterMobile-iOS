@@ -8,18 +8,13 @@
 
 class QuestionPublishmentActionCell: ActionCell {
     
+    @IBOutlet weak var questionTitleLabel: UILabel!
     @IBOutlet weak var questionTitleButton: UIButton!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        questionTitleButton.titleLabel!.preferredMaxLayoutWidth = questionTitleButton.bounds.width
-        questionTitleButton.titleLabel!.numberOfLines = 0
-    }
     
     override func update(#action: Action) {
         super.update(action: action)
         let action = action as QuestionPublishmentAction
-        questionTitleButton.setTitle(action.question.title! + action.question.title!, forState: .Normal)
+        questionTitleLabel.text = action.question.title
         questionTitleButton.msr_userInfo = action.question
     }
     
