@@ -15,30 +15,38 @@ class NetworkManager {
     func GET(key: String,
         parameters: NSDictionary?,
         success: ((AnyObject) -> Void)?,
-        failure: ((NSError) -> Void)?) -> Void {
-            let application = UIApplication.sharedApplication()
-            application.networkActivityIndicatorVisible = true
-            manager.GET(paths[key]!,
-                parameters: parameters,
-                success: {
-                    operation, data in
-                    application.networkActivityIndicatorVisible = false
-                    self.handleSuccess(operation: operation, data: data as NSData, success: success, failure: failure)
-                },
-                failure: {
-                    operation, error in
-                    application.networkActivityIndicatorVisible = false
-                    failure?(error)
-                })
+        failure: ((NSError) -> Void)?) {
+            request(key,
+                GETParameters: parameters,
+                POSTParameters: nil,
+                success: success,
+                failure: failure)
     }
     func POST(key: String,
         parameters: NSDictionary?,
         success: ((AnyObject) -> Void)?,
-        failure: ((NSError) -> Void)?) -> Void {
+        failure: ((NSError) -> Void)?) {
+            request(key,
+                GETParameters: nil,
+                POSTParameters: parameters,
+                success: success,
+                failure: failure)
+    }
+    func request(key: String,
+        GETParameters: NSDictionary?,
+        POSTParameters: NSDictionary?,
+        success: ((AnyObject) -> Void)?,
+        failure: ((NSError) -> Void)?) {
             let application = UIApplication.sharedApplication()
             application.networkActivityIndicatorVisible = true
-            manager.POST(paths[key]!,
-                parameters: parameters,
+            var error: NSError? = nil
+            let URLString = manager.requestSerializer.requestWithMethod("GET", URLString: paths[key]!, parameters: GETParameters, error: &error).URL?.absoluteString
+            if error != nil || URLString == nil {
+                failure?(error ?? NSError()) // Needs specification
+                return
+            }
+            manager.POST(URLString!,
+                parameters: POSTParameters,
                 constructingBodyWithBlock: nil,
                 success: {
                     operation, data in
