@@ -24,7 +24,10 @@ class CommentCell: UITableViewCell {
         msr_userInfo = comment
         avatarButton.setImage(comment.user?.avatar, forState: .Normal)
         userNameLabel.text = comment.user?.name
-        bodyLabel.text = comment.body! + comment.body!
+        bodyLabel.text = comment.body
+        if comment.atUser?.name != nil {
+            bodyLabel.text = "@" + comment.atUser!.name! + ": " + (bodyLabel.text ?? "")
+        }
     }
     
     func update(#articleComment: ArticleComment) {

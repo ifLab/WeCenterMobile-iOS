@@ -96,7 +96,8 @@ class AnswerCommentListViewController: UITableViewController {
         alertController.addAction(UIAlertAction(
             title: "回复",
             style: .Default) {
-                action in
+                [weak self] action in
+                self?.textField.text = "@" + cell.userNameLabel.text! + ":" + self!.textField.text!
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
             })
         alertController.addAction(UIAlertAction(
@@ -114,11 +115,8 @@ class AnswerCommentListViewController: UITableViewController {
             })
         presentViewController(alertController, animated: true, completion: nil)
     }
-    func copyCommentBody() {
-        
-    }
     internal func publishComment() {
-        if answer != nil && !textField.text.isEmpty && !(refreshControl?.refreshing ?? true) {
+        if answer != nil && !(refreshControl?.refreshing ?? true) {
             AnswerComment.post(
                 answerID: answer.id,
                 body: textField.text,
@@ -129,8 +127,12 @@ class AnswerCommentListViewController: UITableViewController {
                     self?.refresh()
                 },
                 failure: {
-                    error in
-                    println(error)
+                    [weak self] error in
+                    let ac = UIAlertController(title: (error.userInfo?[NSLocalizedDescriptionKey] as? String) ?? "",
+                        message: nil,
+                        preferredStyle: .Alert)
+                    ac.addAction(UIAlertAction(title: "好", style: .Default, handler: nil))
+                    self?.presentViewController(ac, animated: true, completion: nil)
                 })
         }
     }

@@ -9,12 +9,12 @@
 import UIKit
 
 class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate, UIToolbarDelegate {
-    let topBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 44))
+    let topBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 44))
     let bottomBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 44))
     let avatarButton = BFPaperButton()
     let nameLabel = UILabel()
     let signatureLabel = UILabel()
-    let evaluationButton = BFPaperButton()
+    let evaluationButton = BFPaperButton(frame: CGRect(x: 0, y: 0, width: 80, height: 0))
     var evaluationButtonState: Answer.Evaluation = .None {
         didSet {
             switch evaluationButtonState {
@@ -53,13 +53,17 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         contentTextView.shouldDrawImages = true
         contentTextView.backgroundColor = UIColor.msr_materialGray100()
         contentTextView.textDelegate = self
-        evaluationButton.frame = CGRect(x: view.bounds.width - 80, y: 0, width: 80, height: topBar.bounds.height)
+        contentTextView.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+        evaluationButton.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+        evaluationButton.msr_addVerticalExpandingConstraintsToSuperView()
+        evaluationButton.msr_addEdgeAttachedConstraintToSuperviewAtEdge(.Right)
         evaluationButton.addTarget(self, action: "toggleEvaluation", forControlEvents: .TouchUpInside)
         evaluationButton.backgroundColor = UIColor.clearColor()
         avatarButton.backgroundColor = UIColor.msr_materialGray100()
         avatarButton.frame = CGRect(x: 10, y: 7, width: 30, height: 30)
         avatarButton.layer.masksToBounds = true
         avatarButton.layer.cornerRadius = avatarButton.bounds.width / 2
+        avatarButton.addTarget(self, action: "pushUserViewController", forControlEvents: .TouchUpInside)
         nameLabel.frame.origin = CGPoint(x: avatarButton.frame.origin.x + avatarButton.bounds.width + 10, y: avatarButton.frame.origin.y)
         nameLabel.frame.size = CGSize(width: view.bounds.width - nameLabel.frame.origin.x - evaluationButton.bounds.width, height: avatarButton.bounds.height / 2)
         nameLabel.font = UIFont.systemFontOfSize(12)
@@ -69,8 +73,9 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         signatureLabel.font = nameLabel.font
         signatureLabel.textColor = UIColor.msr_materialGray600()
         view.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
-        bottomBar.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+        topBar.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         topBar.delegate = self
+        bottomBar.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         bottomBar.delegate = self
         let likeItem = UIBarButtonItem(image: UIImage(named: "Star-Line"), style: .Plain, target: nil, action: nil)
         let uselessItem = UIBarButtonItem(image: UIImage(named: "Flag-Line"), style: .Plain, target: nil, action: nil)
@@ -106,14 +111,16 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     override func viewDidAppear(animated: Bool) {
         if firstAppear {
             firstAppear = false
-            msr_navigationWrapperView!.contentView.addSubview(topBar) // Needs change
-            msr_navigationWrapperView!.contentView.addSubview(bottomBar) // Needs change
-            topBar.frame.origin.y += msr_navigationBar!.bounds.height
+            msr_navigationWrapperView!.contentView.addSubview(topBar)
+            msr_navigationWrapperView!.contentView.addSubview(bottomBar)
             contentTextView.contentInset.top += topBar.bounds.height
             contentTextView.contentInset.bottom += bottomBar.bounds.height
             contentTextView.scrollIndicatorInsets.top += topBar.bounds.height
             contentTextView.scrollIndicatorInsets.bottom += bottomBar.bounds.height
+            contentTextView.msr_addAutoExpandingConstraintsToSuperview()
             view.msr_addAutoExpandingConstraintsToSuperview()
+            topBar.msr_addHorizontalExpandingConstraintsToSuperView()
+            topBar.msr_addEdgeAttachedConstraintToSuperviewAtEdge(.Top)
             bottomBar.msr_addHorizontalExpandingConstraintsToSuperView()
             bottomBar.msr_addEdgeAttachedConstraintToSuperviewAtEdge(.Bottom)
         }
@@ -191,6 +198,12 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         }
     }
     
+    internal func pushUserViewController() {
+        if answer?.user != nil {
+            msr_navigationController?.pushViewController(UserViewController(user: answer!.user!), animated: true)
+        }
+    }
+    
     private func sizeWithImageSize(size: CGSize) -> CGSize {
         let maxWidth = view.bounds.width - 20
         if size.width > maxWidth {
@@ -201,7 +214,6 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
             return size
         }
     }
-    
     func positionForBar(bar: UIBarPositioning!) -> UIBarPosition {
         if bar === topBar {
             return .Top

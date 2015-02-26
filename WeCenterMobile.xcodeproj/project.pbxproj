@@ -767,8 +767,8 @@
 		950FE4C01A1DA2B500167D09 /* Msr */ = {
 			isa = PBXGroup;
 			children = (
-				950FE4C21A1DA2B500167D09 /* Data */,
 				950FE4C71A1DA2B500167D09 /* Namespace.swift */,
+				950FE4C21A1DA2B500167D09 /* Data */,
 				950FE4C91A1DA2B500167D09 /* UI */,
 			);
 			path = Msr;
