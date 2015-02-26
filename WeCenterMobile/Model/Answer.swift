@@ -82,10 +82,13 @@ class Answer: NSManagedObject {
                         comment.date = NSDate(timeIntervalSince1970: timeInterval!)
                     }
                     comment.answer = self
-                    let atID = commentData["at_user"]?["uid"] as? NSNumber
+                    var atID: NSNumber? = nil
+                    if let atIDString = commentData["at_user"]?["uid"] as? String {
+                        atID = Msr.Data.IntegerValueOfObject(atIDString)
+                    }
                     if atID != nil {
                         comment.atUser = (dataManager.autoGenerate("User", ID: atID!) as User)
-                        comment.atUser!.name = commentData["at_user"]?["user_name"] as? NSString as? String // This should be a compiler bug.
+                        comment.atUser!.name = (commentData["at_user"]?["user_name"] as String)
                     }
                     array.append(comment)
                 }
