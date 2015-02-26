@@ -118,11 +118,21 @@ class AnswerCommentListViewController: UITableViewController {
         
     }
     internal func publishComment() {
-        
-    }
-    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
-        super.willRotateToInterfaceOrientation(toInterfaceOrientation, duration: duration)
-        keyboardBar.layoutIfNeeded()
+        if answer != nil && !textField.text.isEmpty && !(refreshControl?.refreshing ?? true) {
+            AnswerComment.post(
+                answerID: answer.id,
+                body: textField.text,
+                atUserName: nil,
+                success: {
+                    [weak self] in
+                    self?.refreshControl?.beginRefreshing()
+                    self?.refresh()
+                },
+                failure: {
+                    error in
+                    println(error)
+                })
+        }
     }
     func refresh() {
         answer.fetchComments(

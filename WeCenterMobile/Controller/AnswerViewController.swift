@@ -10,7 +10,7 @@ import UIKit
 
 class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate, UIToolbarDelegate {
     let topBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 44))
-    let bottomBar = UIToolbar(frame: CGRect(x: 0, y: UIScreen.mainScreen().bounds.height - 44, width: UIScreen.mainScreen().bounds.width, height: 44))
+    let bottomBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 44))
     let avatarButton = BFPaperButton()
     let nameLabel = UILabel()
     let signatureLabel = UILabel()
@@ -68,6 +68,8 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         signatureLabel.frame.origin.y += avatarButton.bounds.height / 2
         signatureLabel.font = nameLabel.font
         signatureLabel.textColor = UIColor.materialGray600()
+        view.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+        bottomBar.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         topBar.delegate = self
         bottomBar.delegate = self
         let likeItem = UIBarButtonItem(image: UIImage(named: "Star-Line"), style: .Plain, target: nil, action: nil)
@@ -104,13 +106,16 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     override func viewDidAppear(animated: Bool) {
         if firstAppear {
             firstAppear = false
-            msr_navigationWrapperView!.addSubview(topBar) // Needs change
-            msr_navigationWrapperView!.addSubview(bottomBar) // Needs change
+            msr_navigationWrapperView!.contentView.addSubview(topBar) // Needs change
+            msr_navigationWrapperView!.contentView.addSubview(bottomBar) // Needs change
             topBar.frame.origin.y += msr_navigationBar!.bounds.height
             contentTextView.contentInset.top += topBar.bounds.height
             contentTextView.contentInset.bottom += bottomBar.bounds.height
             contentTextView.scrollIndicatorInsets.top += topBar.bounds.height
             contentTextView.scrollIndicatorInsets.bottom += bottomBar.bounds.height
+            view.msr_addAutoExpandingConstraintsToSuperview()
+            bottomBar.msr_addHorizontalExpandingConstraintsToSuperView()
+            bottomBar.msr_addEdgeAttachedConstraintAtEdge(.Bottom)
         }
     }
     func reloadData() {

@@ -83,7 +83,7 @@ class NetworkManager {
             let info: AnyObject = data["rsm"]!
             /// @TODO: NSLog("\(operation.response.URL!)\n\(info)")
             success?(info)
-            appDelegate.saveContext() // It's not a good idea to be placed here, but this could reduce duplicated codes.
+            appDelegate.saveContext() // It's not a good idea to be placed here, but this could reduce duplicate codes.
         } else {
             var userInfo = [
                 NSLocalizedDescriptionKey: data["err"]!,

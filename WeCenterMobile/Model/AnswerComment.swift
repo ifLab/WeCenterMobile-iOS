@@ -18,5 +18,19 @@ class AnswerComment: NSManagedObject {
     @NSManaged var answer: Answer?
     @NSManaged var atUser: User?
     @NSManaged var user: User?
+    
+    class func post(#answerID: NSNumber, body: String, atUserName: String?, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        networkManager.POST("Post Answer Comment",
+            parameters: [
+                "answer_id": answerID,
+                "message": body
+            ],
+            success: {
+                data in
+                println(data)
+                success?()
+            },
+            failure: failure)
+    }
 
 }
