@@ -115,7 +115,7 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
             contentTextView.scrollIndicatorInsets.bottom += bottomBar.bounds.height
             view.msr_addAutoExpandingConstraintsToSuperview()
             bottomBar.msr_addHorizontalExpandingConstraintsToSuperView()
-            bottomBar.msr_addEdgeAttachedConstraintAtEdge(.Bottom)
+            bottomBar.msr_addEdgeAttachedConstraintToSuperviewAtEdge(.Bottom)
         }
     }
     func reloadData() {
