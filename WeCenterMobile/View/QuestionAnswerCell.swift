@@ -24,11 +24,11 @@ class QuestionAnswerCell: UITableViewCell {
         questionButton.addSubview(questionLabel)
         answerButton.addSubview(answerLabel)
         questionButton.exclusiveTouch = true
-        questionButton.backgroundColor = UIColor.materialGray200()
+        questionButton.backgroundColor = UIColor.msr_materialGray200()
         answerButton.exclusiveTouch = true
-        answerButton.backgroundColor = UIColor.materialGray100()
+        answerButton.backgroundColor = UIColor.msr_materialGray100()
         userButton.exclusiveTouch = true
-        userButton.backgroundColor = UIColor.materialGray200()
+        userButton.backgroundColor = UIColor.msr_materialGray200()
         questionLabel.numberOfLines = 0
         answerLabel.numberOfLines = 4
     }

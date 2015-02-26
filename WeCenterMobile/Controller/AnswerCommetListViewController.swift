@@ -43,7 +43,7 @@ class AnswerCommentListViewController: UITableViewController {
         textField.clearButtonMode = .WhileEditing
         publishButton.setTitle("发布", forState: .Normal) // Needs localization
         publishButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        publishButton.setBackgroundImage(UIImage.msr_rectangleWithColor(UIColor.materialTeal500(), size: CGSize(width: 1, height: 1)), forState: .Normal)
+        publishButton.setBackgroundImage(UIImage.msr_rectangleWithColor(UIColor.msr_materialTeal500(), size: CGSize(width: 1, height: 1)), forState: .Normal)
         publishButton.addTarget(self, action: "publishComment", forControlEvents: .TouchUpInside)
         keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-5-[t]-5-[b(==75)]|", options: nil, metrics: nil, views: views))
         keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[t(>=44)]|", options: nil, metrics: nil, views: views))

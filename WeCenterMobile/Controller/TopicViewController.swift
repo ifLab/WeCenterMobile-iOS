@@ -52,7 +52,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         tableView.addSubview(hideableView)
         hideableView.addSubview(introductionLabel)
         topView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 140)
-        topView.backgroundColor = UIColor.materialGray300()
+        topView.backgroundColor = UIColor.msr_materialGray300()
         topView.delaysContentTouches = false
         topView.layer.masksToBounds = false
         tableView.frame = CGRect(x: 0, y: topView.frame.origin.y + topView.bounds.height, width: view.bounds.width, height: view.frame.height - topView.bounds.height)
@@ -84,12 +84,12 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         countLabel.frame = CGRect(x: titleLabel.frame.origin.x + 2, y: 0, width: titleLabel.bounds.width, height: 24)
         countLabel.center.y = imageButton.center.y + 15
         countLabel.font = UIFont.systemFontOfSize(16)
-        countLabel.textColor = UIColor.materialGray700()
+        countLabel.textColor = UIColor.msr_materialGray700()
         countLabel.numberOfLines = 0
         introductionLabel.frame.size = CGSize(width: hideableView.bounds.width - 30, height: 0)
         introductionLabel.numberOfLines = 0
         introductionLabel.font = UIFont.systemFontOfSize(14)
-        introductionLabel.textColor = UIColor.materialGray800()
+        introductionLabel.textColor = UIColor.msr_materialGray800()
         scrollViewDidScroll(tableView)
     }
     
@@ -157,7 +157,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     func reloadData() {
         titleLabel.text = topic.title
         if topic.imageURL != nil {
-            imageButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: topic.imageURL!), placeholderImage: UIImage.msr_circleWithColor(UIColor.materialGray400(), radius: imageButton.bounds.width / 2))
+            imageButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: topic.imageURL!), placeholderImage: UIImage.msr_circleWithColor(UIColor.msr_materialGray400(), radius: imageButton.bounds.width / 2))
         }
         countLabel.text = "\(topic.focusCount!)人关注"
         introductionLabel.text = topic.introduction

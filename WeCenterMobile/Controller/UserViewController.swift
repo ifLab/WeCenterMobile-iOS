@@ -68,7 +68,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         hideableView.addSubview(favoriteCountView)
         hideableView.addSubview(agreementCountView)
         topView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 200)
-        topView.backgroundColor = UIColor.materialGray300()
+        topView.backgroundColor = UIColor.msr_materialGray300()
         topView.delaysContentTouches = false
         topView.layer.masksToBounds = false
         bottomView.frame = CGRect(x: 0, y: topView.frame.origin.y + topView.bounds.height, width: view.bounds.width, height: view.frame.height - topView.bounds.height)
@@ -98,7 +98,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         hideableView.frame = CGRect(x: 0, y: 0, width: bottomView.bounds.width, height: 0.01)
         hideableView.layer.masksToBounds = false
         signatureLabel.font = UIFont.systemFontOfSize(16)
-        signatureLabel.textColor = UIColor.materialGray900()
+        signatureLabel.textColor = UIColor.msr_materialGray900()
         signatureLabel.numberOfLines = 0
         signatureLabel.textAlignment = .Center
         signatureLabel.frame = CGRect(x: 0, y: 0, width: hideableView.bounds.width, height: 0.01)

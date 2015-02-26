@@ -15,7 +15,7 @@ class UserCell: BFPaperTableViewCell {
         imageView!.layer.cornerRadius = imageView!.bounds.width / 2
         imageView!.layer.masksToBounds = true
         if user.avatarURL != nil {
-            imageView!.setImageWithURL(NSURL(string: user.avatarURL!), placeholderImage: UIImage.msr_circleWithColor(UIColor.materialGray200(), radius: imageView!.bounds.width / 2))
+            imageView!.setImageWithURL(NSURL(string: user.avatarURL!), placeholderImage: UIImage.msr_circleWithColor(UIColor.msr_materialGray200(), radius: imageView!.bounds.width / 2))
         }
         textLabel!.text = user.name
         detailTextLabel!.text = user.signature

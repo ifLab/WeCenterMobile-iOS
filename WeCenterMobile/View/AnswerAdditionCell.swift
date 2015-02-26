@@ -30,7 +30,7 @@ class AnswerAdditionCell: BFPaperTableViewCell {
         additionView.addSubview(additionTextLabel)
         textLabel!.text = ""
         additionImageView.frame = CGRect(x: 0, y: 10, width: 20, height: 20)
-        additionImageView.tintColor = UIColor.materialGray800()
+        additionImageView.tintColor = UIColor.msr_materialGray800()
         additionTextLabel.font = UIFont.systemFontOfSize(12)
         additionTextLabel.text = "添加回答" // Needs localization
         additionTextLabel.frame = CGRect(
@@ -41,7 +41,7 @@ class AnswerAdditionCell: BFPaperTableViewCell {
         additionView.frame = CGRect(x: 0, y: 0, width: additionTextLabel.frame.origin.x + additionTextLabel.bounds.width, height: 40)
         contentView.frame = additionView.bounds
         frame = contentView.bounds
-        backgroundColor = UIColor.materialGray200()
+        backgroundColor = UIColor.msr_materialGray200()
     }
     func update(#width: CGFloat) {
         additionView.center.x = width / 2
@@ -53,7 +53,7 @@ class AnswerAdditionCell: BFPaperTableViewCell {
         CGContextMoveToPoint(context, 0, 0)
         CGContextAddLineToPoint(context, bounds.width, 0)
         CGContextClosePath(context)
-        CGContextSetStrokeColorWithColor(context, UIColor.materialGray400().CGColor)
+        CGContextSetStrokeColorWithColor(context, UIColor.msr_materialGray400().CGColor)
         CGContextStrokePath(context)
     }
 }

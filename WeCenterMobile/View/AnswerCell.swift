@@ -32,11 +32,11 @@ class AnswerCell: BFPaperTableViewCell {
         contentView.addSubview(contentLabel)
         textLabel!.text = ""
         avatarButton.frame = CGRect(x: 10, y: 10, width: 30, height: 30)
-        avatarButton.backgroundColor = UIColor.materialGray200()
+        avatarButton.backgroundColor = UIColor.msr_materialGray200()
         avatarButton.layer.cornerRadius = avatarButton.bounds.width / 2
         avatarButton.layer.masksToBounds = true
         agreementCountLabel.frame = CGRect(x: avatarButton.frame.origin.x, y: avatarButton.frame.origin.y + avatarButton.bounds.height + 5, width: avatarButton.bounds.width, height: 13)
-        agreementCountLabel.backgroundColor = UIColor.materialGray700()
+        agreementCountLabel.backgroundColor = UIColor.msr_materialGray700()
         agreementCountLabel.textColor = UIColor.whiteColor()
         agreementCountLabel.font = UIFont.systemFontOfSize(10)
         agreementCountLabel.textAlignment = .Center
@@ -72,7 +72,7 @@ class AnswerCell: BFPaperTableViewCell {
         CGContextMoveToPoint(context, 0, 0)
         CGContextAddLineToPoint(context, bounds.width, 0)
         CGContextClosePath(context)
-        CGContextSetStrokeColorWithColor(context, UIColor.materialGray400().CGColor)
+        CGContextSetStrokeColorWithColor(context, UIColor.msr_materialGray400().CGColor)
         CGContextStrokePath(context)
     }
 }

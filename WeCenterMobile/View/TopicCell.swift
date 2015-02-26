@@ -15,7 +15,7 @@ class TopicCell: BFPaperTableViewCell {
         imageView!.layer.cornerRadius = imageView!.bounds.width / 2
         imageView!.layer.masksToBounds = true
         if topic.imageURL != nil {
-            imageView!.setImageWithURL(NSURL(string: topic.imageURL!), placeholderImage: UIImage.msr_circleWithColor(UIColor.materialGray200(), radius: imageView!.bounds.width / 2))
+            imageView!.setImageWithURL(NSURL(string: topic.imageURL!), placeholderImage: UIImage.msr_circleWithColor(UIColor.msr_materialGray200(), radius: imageView!.bounds.width / 2))
         }
         textLabel!.text = topic.title
         detailTextLabel!.text = topic.introduction

@@ -25,7 +25,7 @@ class QuestionTitleCell: BFPaperTableViewCell {
     func initialize() {
         contentView.addSubview(titleLabel)
         textLabel!.text = ""
-        backgroundColor = UIColor.materialGray300()
+        backgroundColor = UIColor.msr_materialGray300()
         titleLabel.numberOfLines = 0
         titleLabel.lineBreakMode = .ByCharWrapping
         titleLabel.textColor = UIColor.blackColor()

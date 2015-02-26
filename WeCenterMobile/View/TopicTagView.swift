@@ -14,8 +14,8 @@ class TopicTagView: UIView {
         super.init()
         addSubview(label)
         label.font = UIFont.systemFontOfSize(12)
-        label.textColor = UIColor.materialGray700()
-        backgroundColor = UIColor.materialGray100()
+        label.textColor = UIColor.msr_materialGray700()
+        backgroundColor = UIColor.msr_materialGray100()
         layer.cornerRadius = 3
         layer.masksToBounds = true
         userInteractionEnabled = false

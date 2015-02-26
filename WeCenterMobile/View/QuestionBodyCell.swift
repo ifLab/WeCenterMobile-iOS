@@ -28,9 +28,9 @@ class QuestionBodyCell: DTAttributedTextCell {
             options: [
                 NSTextSizeMultiplierDocumentOption: 1,
                 DTDefaultFontSize: 14,
-                DTDefaultTextColor: UIColor.materialGray600(),
-                DTDefaultLinkColor: UIColor.materialBlue500(),
-                DTDefaultLinkHighlightColor: UIColor.materialPurple300(),
+                DTDefaultTextColor: UIColor.msr_materialGray600(),
+                DTDefaultLinkColor: UIColor.msr_materialBlue500(),
+                DTDefaultLinkHighlightColor: UIColor.msr_materialPurple300(),
                 DTDefaultLineHeightMultiplier: 1.5,
                 DTDefaultLinkDecoration: false
             ])

@@ -42,7 +42,7 @@ class CommentCell: UITableViewCell {
         let width = rect.size.width
         let height = rect.size.height
         CGContextSaveGState(context)
-        CGContextSetStrokeColorWithColor(context, UIColor.materialGray400().CGColor)
+        CGContextSetStrokeColorWithColor(context, UIColor.msr_materialGray400().CGColor)
         CGContextMoveToPoint(context, x, y + height)
         CGContextAddLineToPoint(context, x + width, y + height)
         CGContextStrokePath(context)

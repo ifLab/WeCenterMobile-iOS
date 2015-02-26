@@ -29,18 +29,18 @@ class QuestionFocusCell: UITableViewCell {
        didSet {
             switch focusButtonState {
             case .NotFocusing:
-                focusButton.backgroundColor = UIColor.materialGray500()
+                focusButton.backgroundColor = UIColor.msr_materialGray500()
                 focusButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-                focusButton.tapCircleColor = UIColor.materialGray300()
+                focusButton.tapCircleColor = UIColor.msr_materialGray300()
                 focusButton.setTitle("关注", forState: .Normal) // Needs localization
                 focusButton.userInteractionEnabled = true
                 focusButtonActivityIndicatorView.activityIndicatorViewStyle = .White
                 focusButtonActivityIndicatorView.stopAnimating()
                 break
             case .Focusing:
-                focusButton.backgroundColor = UIColor.materialGray300()
-                focusButton.setTitleColor(UIColor.materialGray800(), forState: .Normal)
-                focusButton.tapCircleColor = UIColor.materialGray500()
+                focusButton.backgroundColor = UIColor.msr_materialGray300()
+                focusButton.setTitleColor(UIColor.msr_materialGray800(), forState: .Normal)
+                focusButton.tapCircleColor = UIColor.msr_materialGray500()
                 focusButton.setTitle("正在关注", forState: .Normal) // Needs localization
                 focusButton.userInteractionEnabled = true
                 focusButtonActivityIndicatorView.activityIndicatorViewStyle = .Gray
@@ -81,7 +81,7 @@ class QuestionFocusCell: UITableViewCell {
         focusButton.addSubview(focusButtonActivityIndicatorView)
         focusButtonState = .Loading
         focusImageView.frame = CGRect(x: 10, y: 10, width: 20, height: 20)
-        focusImageView.tintColor = UIColor.materialGray500()
+        focusImageView.tintColor = UIColor.msr_materialGray500()
         answerImageView.frame.size = focusImageView.bounds.size
         answerImageView.center.y = focusImageView.center.y
         answerImageView.tintColor = focusImageView.tintColor
@@ -98,7 +98,7 @@ class QuestionFocusCell: UITableViewCell {
         answerCountLabel.font = focusCountLabel.font
         answerCountLabel.center.y = focusImageView.center.y
         answerCountLabel.textColor = answerImageView.tintColor
-        backgroundColor = UIColor.materialGray100()
+        backgroundColor = UIColor.msr_materialGray100()
         frame.size.height = focusButton.bounds.height
         contentView.frame.size.height = bounds.height
     }
@@ -130,7 +130,7 @@ class QuestionFocusCell: UITableViewCell {
         CGContextMoveToPoint(context, 0, 0)
         CGContextAddLineToPoint(context, bounds.width, 0)
         CGContextClosePath(context)
-        CGContextSetStrokeColorWithColor(context, UIColor.materialGray400().CGColor)
+        CGContextSetStrokeColorWithColor(context, UIColor.msr_materialGray400().CGColor)
         CGContextStrokePath(context)
     }
     

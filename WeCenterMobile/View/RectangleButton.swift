@@ -14,7 +14,7 @@ class RectangleButton: BFPaperButton {
         super.init()
         frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width / 3, height: 100)
         addSubview(footerLabel)
-        backgroundColor = UIColor.materialGray200()
+        backgroundColor = UIColor.msr_materialGray200()
         layer.contentsScale = UIScreen.mainScreen().scale
         footerLabel.frame = CGRect(x: 0, y: 60, width: bounds.width, height: 40)
         footerLabel.textColor = UIColor.grayColor()

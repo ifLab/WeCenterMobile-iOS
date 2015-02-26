@@ -46,7 +46,7 @@ class TopicTagListCell: UITableViewCell {
         scrollView.backgroundColor = UIColor.clearColor()
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.alwaysBounceHorizontal = true
-        backgroundColor = UIColor.materialGray300()
+        backgroundColor = UIColor.msr_materialGray300()
     }
     func update(#topics: [Topic], width: CGFloat) {
         for topicTagView in topicTagViews {
