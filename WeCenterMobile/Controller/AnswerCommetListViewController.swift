@@ -22,9 +22,6 @@ class AnswerCommentListViewController: UITableViewController {
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
     override func loadView() {
         super.loadView()
         keyboardBar = Msr.UI.KeyboardBar()
@@ -67,22 +64,22 @@ class AnswerCommentListViewController: UITableViewController {
         return answer.comments.count
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let comment = answer.comments.allObjects[indexPath.row] as AnswerComment
+        let comment = answer.comments.allObjects[indexPath.row] as! AnswerComment
         var cell: CommentCell! = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as? CommentCell
         if cell == nil {
-            cell = NSBundle.mainBundle().loadNibNamed(cellNibName, owner: self, options: nil).first as CommentCell
+            cell = NSBundle.mainBundle().loadNibNamed(cellNibName, owner: self, options: nil).first as! CommentCell
         }
         cell.update(answerComment: comment)
         return cell
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let comment = answer.comments.allObjects[indexPath.row] as AnswerComment
+        let comment = answer.comments.allObjects[indexPath.row] as! AnswerComment
         struct _Static {
             static var cell: CommentCell!
             static var id: dispatch_once_t = 0
         }
         dispatch_once(&_Static.id) {
-            _Static.cell = NSBundle.mainBundle().loadNibNamed(self.cellNibName, owner: self, options: nil).first as CommentCell
+            _Static.cell = NSBundle.mainBundle().loadNibNamed(self.cellNibName, owner: self, options: nil).first as! CommentCell
         }
         let cell = _Static.cell
         cell.update(answerComment: comment)
@@ -91,7 +88,7 @@ class AnswerCommentListViewController: UITableViewController {
         return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1 // the height of separator
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as CommentCell
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! CommentCell
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         alertController.addAction(UIAlertAction(
             title: "回复",

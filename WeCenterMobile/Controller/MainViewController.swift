@@ -18,6 +18,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var titles = [
         "首页", // Needs localization
         "发现",
+        "测试",
         "测试"
     ]
     override init() {
@@ -101,6 +102,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             return 60
         }
     }
+    var sc: Msr.UI.SegmentedControl!
     func viewControllerAtIndex(index: Int) -> UIViewController {
         var viewController: UIViewController! = nil
         switch index {
@@ -113,10 +115,34 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         case 2:
             viewController = TestViewController(statusBarStyle: .Default)
             break
+        case 3:
+            viewController = UIViewController()
+            sc = Msr.UI.SegmentedControl(views: [
+                generateLabelWithText("A"),
+                generateLabelWithText("BC"),
+                generateLabelWithText("DEF")])
+            sc.frame = CGRect(x: 0, y: 100, width: 0, height: 0)
+            viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "ADD", style: .Plain, target: self, action: "ADD_NEW_LABEL")
+            viewController.view.addSubview(sc)
+            sc.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+            sc.msr_addHorizontalExpandingConstraintsToSuperview()
+            sc.msr_addHeightConstraintWithValue(50)
+            break
         default:
             break
         }
         return viewController
+    }
+    let generateLabelWithText = {
+        (text: String) -> UILabel in
+        let label = UILabel()
+        label.text = text
+        label.bounds.size = CGSize(width: 80, height: 32)
+        label.backgroundColor = UIColor.msr_randomColor(true)
+        return label
+    }
+    func ADD_NEW_LABEL() {
+        sc.appendSegmentWithView(generateLabelWithText("NEW"), animated: true)
     }
     func showSidebar() {
         sidebar.show(animated: true)

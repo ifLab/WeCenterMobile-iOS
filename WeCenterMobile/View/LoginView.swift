@@ -9,8 +9,8 @@
 import UIKit
 
 class LoginView: Msr.UI.AlertView {
-    let usernameField: UITextField!
-    let passwordField: UITextField!
+    var usernameField: UITextField!
+    var passwordField: UITextField!
     override init() {
         super.init()
         self.cornerRadius = 7

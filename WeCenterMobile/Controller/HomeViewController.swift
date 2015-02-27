@@ -29,10 +29,6 @@ class HomeViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
     override func loadView() {
         super.loadView()
         refreshControl = UIRefreshControl()
@@ -69,7 +65,7 @@ class HomeViewController: UITableViewController {
         }
         var cell: ActionCell! = tableView.dequeueReusableCellWithIdentifier(identifiers[index]) as? ActionCell
         if cell == nil {
-            cell = NSBundle.mainBundle().loadNibNamed(nibNames[index], owner: self, options: nil).first as ActionCell
+            cell = NSBundle.mainBundle().loadNibNamed(nibNames[index], owner: self, options: nil).first as! ActionCell
         }
         cell.userNameButton.addTarget(self, action: "pushUserViewController:", forControlEvents: .TouchUpInside)
         if let cell_ = cell as? QuestionPublishmentActionCell {
@@ -93,7 +89,7 @@ class HomeViewController: UITableViewController {
         }
         dispatch_once(&_Static.id) {
             for nibName in self.nibNames {
-                _Static.cells[nibName] = (NSBundle.mainBundle().loadNibNamed(nibName, owner: self, options: nil).first as ActionCell)
+                _Static.cells[nibName] = (NSBundle.mainBundle().loadNibNamed(nibName, owner: self, options: nil).first as! ActionCell)
             }
         }
         let cell = _Static.cells[nibNames[index]]!
@@ -127,7 +123,7 @@ class HomeViewController: UITableViewController {
             count: count,
             success: {
                 self.page = 1
-                self.actions = (dataManager.fetchAll("Action", error: nil) as [Action]).sorted() {
+                self.actions = (dataManager.fetchAll("Action", error: nil) as! [Action]).sorted() {
                     $0.date.timeIntervalSince1970 > $1.date.timeIntervalSince1970
                 }
 //                for (i, user) in enumerate(map(self.actions, { $0.user }))  {
@@ -162,7 +158,7 @@ class HomeViewController: UITableViewController {
             count: count,
             success: {
                 ++self.page
-                self.actions = (dataManager.fetchAll("Action", error: nil) as [Action]).sorted() {
+                self.actions = (dataManager.fetchAll("Action", error: nil) as! [Action]).sorted() {
                     $0.date.timeIntervalSince1970 > $1.date.timeIntervalSince1970
                 }
                 self.tableView.reloadData()

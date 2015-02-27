@@ -127,7 +127,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         followerButton.addTarget(self, action: "pushFollowerViewController", forControlEvents: .TouchUpInside)
         followingButton.addTarget(self, action: "pushFollowingViewController", forControlEvents: .TouchUpInside)
         askedButton.addTarget(self, action: "pushQuestionViewController", forControlEvents: .TouchUpInside)
-        for subview in hideableView.subviews as [UIView] {
+        for subview in hideableView.subviews as! [UIView] {
             subview.alpha = 0
         }
         if user.id == appDelegate.currentUser!.id {
@@ -233,15 +233,15 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
             self.articleButton.alpha = 1
             self.askedButton.alpha = 1
             self.answeredButton.alpha = 1
-            for subview in self.hideableView.subviews as [UIView] {
+            for subview in self.hideableView.subviews as! [UIView] {
                 subview.alpha = 1
             }
-            for subview in self.bottomView.subviews as [UIView] {
+            for subview in self.bottomView.subviews as! [UIView] {
                 if subview !== self.hideableView {
                     subview.transform = CGAffineTransformMakeTranslation(0, self.hideableView.frame.size.height)
                 }
             }
-            for subview in self.hideableView.subviews as [UIView] {
+            for subview in self.hideableView.subviews as! [UIView] {
                 if subview !== self.signatureLabel {
                     subview.transform = CGAffineTransformMakeTranslation(0, height)
                 }
@@ -250,13 +250,13 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    func scrollViewDidEndDragging(scrollView: UIScrollView!, willDecelerate decelerate: Bool) {
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
             scrollViewDidEndDecelerating(bottomView)
         }
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView!) {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
         if scrollView === bottomView {
             if bottomView.contentOffset.y < 0 {
                 topView.frame.size.height = 200 + -bottomView.contentOffset.y
@@ -269,7 +269,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView!) {
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         if scrollView === bottomView {
             UIView.animateWithDuration(0.5,
                 delay: 0,

@@ -32,7 +32,7 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     }
     var firstAppear = true
     var contentTextView: DTAttributedTextView {
-        return view as DTAttributedTextView
+        return view as! DTAttributedTextView
     }
     var answerID: NSNumber! = nil
     var answer: Answer? = nil
@@ -55,8 +55,8 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         contentTextView.textDelegate = self
         contentTextView.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         evaluationButton.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
-        evaluationButton.msr_addVerticalExpandingConstraintsToSuperView()
-        evaluationButton.msr_addEdgeAttachedConstraintToSuperviewAtEdge(.Right)
+        evaluationButton.msr_addVerticalExpandingConstraintsToSuperview()
+        evaluationButton.msr_addRightAttachedConstraintToSuperview()
         evaluationButton.addTarget(self, action: "toggleEvaluation", forControlEvents: .TouchUpInside)
         evaluationButton.backgroundColor = UIColor.clearColor()
         avatarButton.backgroundColor = UIColor.msr_materialGray100()
@@ -119,10 +119,10 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
             contentTextView.scrollIndicatorInsets.bottom += bottomBar.bounds.height
             contentTextView.msr_addAutoExpandingConstraintsToSuperview()
             view.msr_addAutoExpandingConstraintsToSuperview()
-            topBar.msr_addHorizontalExpandingConstraintsToSuperView()
-            topBar.msr_addEdgeAttachedConstraintToSuperviewAtEdge(.Top)
-            bottomBar.msr_addHorizontalExpandingConstraintsToSuperView()
-            bottomBar.msr_addEdgeAttachedConstraintToSuperviewAtEdge(.Bottom)
+            topBar.msr_addHorizontalExpandingConstraintsToSuperview()
+            topBar.msr_addTopAttachedConstraintToSuperview()
+            bottomBar.msr_addHorizontalExpandingConstraintsToSuperview()
+            bottomBar.msr_addBottomAttachedConstraintToSuperview()
         }
     }
     func reloadData() {
@@ -187,7 +187,7 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     func lazyImageView(lazyImageView: DTLazyImageView!, didChangeImageSize size: CGSize) {
         let predicate = NSPredicate(format: "contentURL == %@", lazyImageView.url)
         var didUpdate = false
-        for attachment in contentTextView.attributedTextContentView.layoutFrame.textAttachmentsWithPredicate(predicate) as [DTTextAttachment] {
+        for attachment in contentTextView.attributedTextContentView.layoutFrame.textAttachmentsWithPredicate(predicate) as! [DTTextAttachment] {
             if attachment.originalSize == CGSizeZero {
                 attachment.originalSize = sizeWithImageSize(size)
                 didUpdate = true
@@ -214,7 +214,7 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
             return size
         }
     }
-    func positionForBar(bar: UIBarPositioning!) -> UIBarPosition {
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         if bar === topBar {
             return .Top
         } else if bar === bottomBar {

@@ -11,7 +11,7 @@ import UIKit
 class TestViewController: UITableViewController {
     var initStatusBarStyle: UIStatusBarStyle! = nil
     init(i: Int = 0, statusBarStyle: UIStatusBarStyle) {
-        super.init(nibName: nil, bundle: nil)
+        super.init(style: .Plain)
         initStatusBarStyle = statusBarStyle
         title = i.description
     }

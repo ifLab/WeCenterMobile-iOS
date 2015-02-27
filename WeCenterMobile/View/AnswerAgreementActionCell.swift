@@ -14,7 +14,7 @@ class AnswerAgreementActionCell: ActionCell {
     
     override func update(#action: Action) {
         super.update(action: action)
-        let action = action as AnswerAgreementAction
+        let action = action as! AnswerAgreementAction
         questionTitleLabel.text = action.answer.question!.title!
         agreementCountLabel.text = "\(action.answer.agreementCount!)"
         answerBodyLabel.text = action.answer.body!

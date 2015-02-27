@@ -14,7 +14,7 @@ class UserTopicListViewController: UITableViewController {
     let count = 10
     init(user: User) {
         self.user = user
-        super.init(nibName: nil, bundle: nil)
+        super.init(style: .Plain)
     }
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -42,11 +42,11 @@ class UserTopicListViewController: UITableViewController {
         return min(user.topics.count, page * count)
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return TopicCell(topic: user.topics.allObjects[indexPath.row] as Topic, reuseIdentifier: "...")
+        return TopicCell(topic: user.topics.allObjects[indexPath.row] as! Topic, reuseIdentifier: "...")
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        msr_navigationController?.pushViewController(TopicViewController(topic: user.topics.allObjects[indexPath.row] as Topic), animated: true)
+        msr_navigationController?.pushViewController(TopicViewController(topic: user.topics.allObjects[indexPath.row] as! Topic), animated: true)
     }
     func refresh() {
         user.fetchTopics(

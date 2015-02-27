@@ -12,7 +12,7 @@ class ArticleAgreementActionCell: ActionCell {
     
     override func update(#action: Action) {
         super.update(action: action)
-        let action = action as ArticleAgreementAction
+        let action = action as! ArticleAgreementAction
         articleTitleLabel.text = action.article.title
         articleTitleLabel.preferredMaxLayoutWidth = articleTitleLabel.bounds.width
     }

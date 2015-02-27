@@ -15,9 +15,21 @@ class DiscoveryViewController: Msr.UI.SegmentedViewController {
             frame: UIScreen.mainScreen().bounds,
             toolBarStyle: .Black,
             viewControllers: [
-                UIViewController(),
-                UIViewController(),
-                UIViewController()
+                {
+                    let vc = UIViewController()
+                    vc.view.backgroundColor = UIColor.purpleColor()
+                    return vc
+                }(),
+                {
+                    let vc = UIViewController()
+                    vc.view.backgroundColor = UIColor.greenColor()
+                    return vc
+                }(),
+                {
+                    let vc = UIViewController()
+                    vc.view.backgroundColor = UIColor.yellowColor()
+                    return vc
+                }(),
             ])
         title = "探索" // Needs localization
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List-Dots"), style: .Bordered, target: self, action: "showSidebar")

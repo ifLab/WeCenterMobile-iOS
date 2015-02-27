@@ -51,7 +51,7 @@ class NetworkManager {
                 success: {
                     operation, data in
                     application.networkActivityIndicatorVisible = false
-                    self.handleSuccess(operation: operation, data: data as NSData, success: success, failure: failure)
+                    self.handleSuccess(operation: operation, data: data as! NSData, success: success, failure: failure)
                 },
                 failure: {
                     operation, error in
@@ -61,7 +61,7 @@ class NetworkManager {
     }
     class func clearCookies() {
         let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-        for cookie in storage.cookies as [NSHTTPCookie] {
+        for cookie in storage.cookies as! [NSHTTPCookie] {
             storage.deleteCookie(cookie)
         }
         NSUserDefaults.standardUserDefaults().removeObjectForKey("Cookies")
@@ -86,8 +86,8 @@ class NetworkManager {
                 userInfo: userInfo)) // Needs specification
             return
         }
-        let data = object as NSDictionary
-        if data["errno"] as NSNumber == successCode {
+        let data = object as! NSDictionary
+        if data["errno"] as! NSNumber == successCode {
             let info: AnyObject = data["rsm"]!
             /// @TODO: NSLog("\(operation.response.URL!)\n\(info)")
             success?(info)
@@ -110,10 +110,10 @@ class NetworkManager {
     }
     let configuration: NSDictionary
     var website: String {
-        return configuration["Website"] as String
+        return configuration["Website"] as! String
     }
     var paths: [String: String] {
-        return configuration["Path"] as [String: String]
+        return configuration["Path"] as! [String: String]
     }
     lazy var manager: AFHTTPRequestOperationManager = {
         let manager = AFHTTPRequestOperationManager(baseURL: NSURL(string: self.website))
@@ -121,9 +121,9 @@ class NetworkManager {
         return manager
     }()
     var successCode: NSNumber {
-        return configuration["Success Code"] as NSNumber
+        return configuration["Success Code"] as! NSNumber
     }
     var internalErrorCode: NSNumber {
-        return configuration["Internal Error Code"] as NSNumber
+        return configuration["Internal Error Code"] as! NSNumber
     }
 }

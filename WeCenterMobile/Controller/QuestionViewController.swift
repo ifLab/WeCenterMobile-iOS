@@ -11,10 +11,10 @@ import UIKit
 class QuestionViewController: UITableViewController, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate {
     var question: Question!
     var answers: [Answer] {
-        return (question.answers.allObjects ?? []) as [Answer]
+        return (question.answers.allObjects ?? []) as! [Answer]
     }
     var topics: [Topic] {
-        return (question.topics.allObjects ?? []) as [Topic]
+        return (question.topics.allObjects ?? []) as! [Topic]
     }
     let identifiers = [
         "QUESTION_TITLE",
@@ -39,9 +39,6 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
     }
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     override func loadView() {
         super.loadView()
@@ -86,28 +83,28 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
             if cell == nil {
                 return QuestionTitleCell(question: question, width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
             } else {
-                (cell as QuestionTitleCell).update(question: question, width: tableView.bounds.width)
+                (cell as! QuestionTitleCell).update(question: question, width: tableView.bounds.width)
                 return cell.bounds.height
             }
         case 1:
             if cell == nil {
                 return TopicTagListCell(topics: topics, width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
             } else {
-                (cell as TopicTagListCell).update(topics: topics, width: tableView.bounds.width)
+                (cell as! TopicTagListCell).update(topics: topics, width: tableView.bounds.width)
                 return cell.bounds.height
             }
         case 2:
             if cell == nil {
                 return QuestionBodyCell(question: question, reuseIdentifier: identifier).bounds.height
             } else {
-                (cell as QuestionBodyCell).update(question: question)
-                return (cell as QuestionBodyCell).requiredRowHeightInTableView(tableView)
+                (cell as! QuestionBodyCell).update(question: question)
+                return (cell as! QuestionBodyCell).requiredRowHeightInTableView(tableView)
             }
         case 3:
             if cell == nil {
                 return QuestionFocusCell(question: question, answerCount: answers.count, width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
             } else {
-                (cell as QuestionFocusCell).update(question: question, answerCount: answers.count, width: tableView.bounds.width)
+                (cell as! QuestionFocusCell).update(question: question, answerCount: answers.count, width: tableView.bounds.width)
                 return cell.bounds.height
             }
         case 4:
@@ -120,7 +117,7 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
             if cell == nil {
                 return AnswerCell(answer: answers[indexPath.row], width: tableView.bounds.width, reuseIdentifier: identifier).bounds.height
             } else {
-                (cell as AnswerCell).update(answer: answers[indexPath.row], width: tableView.bounds.width)
+                (cell as! AnswerCell).update(answer: answers[indexPath.row], width: tableView.bounds.width)
                 return cell.bounds.height
             }
         default:
@@ -138,26 +135,26 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
             if cell == nil {
                 cell = QuestionTitleCell(question: question, width: tableView.bounds.width, reuseIdentifier: identifier)
             } else {
-                (cell as QuestionTitleCell).update(question: question, width: tableView.bounds.width)
+                (cell as! QuestionTitleCell).update(question: question, width: tableView.bounds.width)
             }
             break
         case 1:
             if cell == nil {
                 cell = TopicTagListCell(topics: topics, width: tableView.bounds.width, reuseIdentifier: identifier)
             } else {
-                (cell as TopicTagListCell).update(topics: topics, width: tableView.bounds.width)
+                (cell as! TopicTagListCell).update(topics: topics, width: tableView.bounds.width)
             }
             break
         case 2:
             if cell == nil {
                 cell = QuestionBodyCell(question: question, reuseIdentifier: identifier)
-                NSNotificationCenter.defaultCenter().addObserverForName(DTAttributedTextContentViewDidFinishLayoutNotification, object: (cell as QuestionBodyCell).attributedTextContextView, queue: NSOperationQueue.mainQueue(), usingBlock: {
+                NSNotificationCenter.defaultCenter().addObserverForName(DTAttributedTextContentViewDidFinishLayoutNotification, object: (cell as! QuestionBodyCell).attributedTextContextView, queue: NSOperationQueue.mainQueue(), usingBlock: {
                     notification in
                     self.tableView.reloadData()
                 })
             } else {
-                (cell as QuestionBodyCell).update(question: question)
-                (cell as QuestionBodyCell).textDelegate = self
+                (cell as! QuestionBodyCell).update(question: question)
+                (cell as! QuestionBodyCell).textDelegate = self
             }
             break
         case 3:
@@ -174,7 +171,7 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
             if cell == nil {
                 cell = AnswerAdditionCell(reuseIdentifier: identifier, width: tableView.bounds.width)
             } else {
-                (cell as AnswerAdditionCell).update(width: tableView.bounds.width)
+                (cell as! AnswerAdditionCell).update(width: tableView.bounds.width)
             }
             break
         case 5:
@@ -182,16 +179,16 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
             if cell == nil {
                 cell = AnswerCell(answer: answer, width: tableView.bounds.width, reuseIdentifier: identifier)
             } else {
-                (cell as AnswerCell).update(answer: answer, width: tableView.bounds.width)
+                (cell as! AnswerCell).update(answer: answer, width: tableView.bounds.width)
             }
-            let answerCell = cell as AnswerCell
+            let answerCell = cell as! AnswerCell
             answerCell.avatarButton.setImage(nil, forState: .Normal)
             if answer.user?.avatar != nil {
                 answerCell.avatarButton.setImage(answer.user!.avatar, forState: .Normal)
             } else {
                 answer.user!.fetchAvatar(
                     success: {
-                        if (answerCell.avatarButton.msr_userInfo as User).id == answer.user!.id {
+                        if (answerCell.avatarButton.msr_userInfo as! User).id == answer.user!.id {
                             answerCell.avatarButton.setImage(answer.user!.avatar, forState: .Normal)
                         }
                     },
@@ -229,8 +226,8 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
     func lazyImageView(lazyImageView: DTLazyImageView!, didChangeImageSize size: CGSize) {
         let predicate = NSPredicate(format: "contentURL == %@", lazyImageView.url)
         var didUpdate = false
-        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) as DTAttributedTextCell
-        for attachment in cell.attributedTextContextView.layoutFrame.textAttachmentsWithPredicate(predicate) as [DTTextAttachment] {
+        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) as! DTAttributedTextCell
+        for attachment in cell.attributedTextContextView.layoutFrame.textAttachmentsWithPredicate(predicate) as! [DTTextAttachment] {
             if attachment.originalSize == CGSizeZero {
                 attachment.originalSize = sizeWithImageSize(size)
                 didUpdate = true

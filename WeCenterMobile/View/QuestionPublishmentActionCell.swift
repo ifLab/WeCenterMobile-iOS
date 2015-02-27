@@ -13,7 +13,7 @@ class QuestionPublishmentActionCell: ActionCell {
     
     override func update(#action: Action) {
         super.update(action: action)
-        let action = action as QuestionPublishmentAction
+        let action = action as! QuestionPublishmentAction
         questionTitleLabel.text = action.question.title
         questionTitleButton.msr_userInfo = action.question
     }

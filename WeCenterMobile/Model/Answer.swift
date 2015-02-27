@@ -34,20 +34,20 @@ class Answer: NSManagedObject {
     }
     
     class func fetch(#ID: NSNumber, success: ((Answer) -> Void)?, failure: ((NSError) -> Void)?) {
-        let answer = dataManager.autoGenerate("Answer", ID: ID) as Answer
+        let answer = dataManager.autoGenerate("Answer", ID: ID) as! Answer
         networkManager.GET("Answer Detail",
             parameters: [
                 "id": ID
             ],
             success: {
                 data in
-                answer.id = data["answer_id"] as NSNumber
+                answer.id = data["answer_id"] as! NSNumber
                 answer.body = data["answer_content"] as? String
-                answer.date = NSDate(timeIntervalSince1970: NSTimeInterval(data["add_time"] as NSNumber))
+                answer.date = NSDate(timeIntervalSince1970: NSTimeInterval(data["add_time"] as! NSNumber))
                 answer.agreementCount = data["agree_count"] as? NSNumber
                 answer.commentCount = data["comment_count"] as? NSNumber
-                answer.evaluation = Evaluation(rawValue: (data["vote_value"] as NSNumber).integerValue)
-                answer.user = (dataManager.autoGenerate("User", ID: data["uid"] as NSNumber) as User)
+                answer.evaluation = Evaluation(rawValue: (data["vote_value"] as! NSNumber).integerValue)
+                answer.user = (dataManager.autoGenerate("User", ID: data["uid"] as! NSNumber) as! User)
                 answer.user!.name = data["user_name"] as? String
                 answer.user!.avatarURI = data["avatar_file"] as? String
                 answer.user!.signature = data["signature"] as? String
@@ -65,15 +65,15 @@ class Answer: NSManagedObject {
                 data in
                 var commentsData = [NSDictionary]()
                 if data is [NSDictionary] {
-                    commentsData = data as [NSDictionary]
+                    commentsData = data as! [NSDictionary]
                 }
                 var array = [AnswerComment]()
                 for commentData in commentsData {
-                    let commentID = (commentData["id"] as NSString).integerValue
-                    let comment = dataManager.autoGenerate("AnswerComment", ID: commentID) as AnswerComment
+                    let commentID = (commentData["id"] as! NSString).integerValue
+                    let comment = dataManager.autoGenerate("AnswerComment", ID: commentID) as! AnswerComment
                     if commentData["uid"] != nil {
                         let userID = Msr.Data.IntegerValueOfObject(commentData["uid"]!)
-                        comment.user = (dataManager.autoGenerate("User", ID: userID) as User)
+                        comment.user = (dataManager.autoGenerate("User", ID: userID) as! User)
                         comment.user!.name = commentData["user_name"] as? String
                     }
                     comment.body = commentData["content"] as? String
@@ -87,8 +87,8 @@ class Answer: NSManagedObject {
                         atID = Msr.Data.IntegerValueOfObject(atIDString)
                     }
                     if atID != nil {
-                        comment.atUser = (dataManager.autoGenerate("User", ID: atID!) as User)
-                        comment.atUser!.name = (commentData["at_user"]?["user_name"] as String)
+                        comment.atUser = (dataManager.autoGenerate("User", ID: atID!) as! User)
+                        comment.atUser!.name = (commentData["at_user"]?["user_name"] as! String)
                     }
                     array.append(comment)
                 }

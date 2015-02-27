@@ -235,8 +235,10 @@
 		956C10B51A583F440053EDCA /* NSURL+DTUnshorten.m in Sources */ = {isa = PBXBuildFile; fileRef = 956C10631A583F440053EDCA /* NSURL+DTUnshorten.m */; };
 		956C10BC1A583F440053EDCA /* DTObjectBlockExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 956C10731A583F440053EDCA /* DTObjectBlockExecutor.m */; };
 		956C10BD1A583F440053EDCA /* NSObject+DTRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 956C10751A583F440053EDCA /* NSObject+DTRuntime.m */; };
+		957127591AA00B7E008363E1 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957127581AA00B7E008363E1 /* SegmentedControl.swift */; };
 		9575B17D1A514B4500EFFFB7 /* QuestionPublishmentActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9575B17C1A514B4500EFFFB7 /* QuestionPublishmentActionCell.swift */; };
 		9575B17F1A514C3100EFFFB7 /* QuestionPublishmentActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9575B17E1A514C3100EFFFB7 /* QuestionPublishmentActionCell.xib */; };
+		9576B9DE1AA052190033D540 /* Rect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9576B9DD1AA052190033D540 /* Rect.swift */; };
 		9588F5E91A1D9D1C001BC426 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9588F5E81A1D9D1C001BC426 /* AppDelegate.swift */; };
 		9588F5EC1A1D9D1C001BC426 /* WeCenterMobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9588F5EA1A1D9D1C001BC426 /* WeCenterMobile.xcdatamodeld */; };
 		9588F5F31A1D9D1C001BC426 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9588F5F21A1D9D1C001BC426 /* Images.xcassets */; };
@@ -244,7 +246,6 @@
 		9594CD291A2D0EC10013235C /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9594CD281A2D0EC10013235C /* UIImage+Resize.swift */; };
 		9599FD8B1A9D6BFD007805FA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9599FD8A1A9D6BFD007805FA /* Constant.swift */; };
 		9599FD8D1A9EFD8D007805FA /* UIView+EasyAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9599FD8C1A9EFD8D007805FA /* UIView+EasyAutoLayout.swift */; };
-		9599FD8F1A9F01E3007805FA /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9599FD8E1A9F01E3007805FA /* Edge.swift */; };
 		9599FD911A9F170E007805FA /* UnsafePointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9599FD901A9F170E007805FA /* UnsafePointer.swift */; };
 		959CC93A1A25BAED00F8B6CB /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC9391A25BAED00F8B6CB /* Article.swift */; };
 		959CC93C1A25BAED00F8B6CB /* AnswerComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC93B1A25BAED00F8B6CB /* AnswerComment.swift */; };
@@ -662,8 +663,10 @@
 		956C10741A583F440053EDCA /* NSObject+DTRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DTRuntime.h"; sourceTree = "<group>"; };
 		956C10751A583F440053EDCA /* NSObject+DTRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DTRuntime.m"; sourceTree = "<group>"; };
 		956C10BE1A583F530053EDCA /* DTFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DTFoundation.h; path = WeCenterMobile/External/DTCoreText/Externals/DTFoundation/Core/DTFoundation.h; sourceTree = SOURCE_ROOT; };
+		957127581AA00B7E008363E1 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		9575B17C1A514B4500EFFFB7 /* QuestionPublishmentActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionPublishmentActionCell.swift; sourceTree = "<group>"; };
 		9575B17E1A514C3100EFFFB7 /* QuestionPublishmentActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionPublishmentActionCell.xib; sourceTree = "<group>"; };
+		9576B9DD1AA052190033D540 /* Rect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rect.swift; sourceTree = "<group>"; };
 		9588F5E31A1D9D1C001BC426 /* WeCenterMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeCenterMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9588F5E71A1D9D1C001BC426 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9588F5E81A1D9D1C001BC426 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -676,7 +679,6 @@
 		9594CD281A2D0EC10013235C /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		9599FD8A1A9D6BFD007805FA /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		9599FD8C1A9EFD8D007805FA /* UIView+EasyAutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+EasyAutoLayout.swift"; sourceTree = "<group>"; };
-		9599FD8E1A9F01E3007805FA /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
 		9599FD901A9F170E007805FA /* UnsafePointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsafePointer.swift; sourceTree = "<group>"; };
 		959CC9391A25BAED00F8B6CB /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		959CC93B1A25BAED00F8B6CB /* AnswerComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerComment.swift; sourceTree = "<group>"; };
@@ -795,10 +797,11 @@
 				953D9D5B1A92E30C00992324 /* AutoExpandingView.swift */,
 				953D9D591A91F93300992324 /* CGRect+Accessor.swift */,
 				9599FD8A1A9D6BFD007805FA /* Constant.swift */,
-				9599FD8E1A9F01E3007805FA /* Edge.swift */,
+				9576B9DD1AA052190033D540 /* Rect.swift */,
 				9569A9141A80AFE4003F58AC /* KeyboardBar.swift */,
 				950FE4CC1A1DA2B500167D09 /* LoadMoreControl.swift */,
 				950FE4CD1A1DA2B500167D09 /* NavigationController.swift */,
+				957127581AA00B7E008363E1 /* SegmentedControl.swift */,
 				950FE4CE1A1DA2B500167D09 /* SegmentedViewController.swift */,
 				950FE4CF1A1DA2B500167D09 /* Sidebar.swift */,
 				950FE4D01A1DA2B500167D09 /* UIColor+Material.swift */,
@@ -1570,9 +1573,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9576B9DE1AA052190033D540 /* Rect.swift in Sources */,
 				956C108D1A583F440053EDCA /* DTZipArchiveNode.m in Sources */,
 				9532C8CC1A515E28001A0E4A /* AnswerAgreementActionCell.swift in Sources */,
-				9599FD8F1A9F01E3007805FA /* Edge.swift in Sources */,
 				959CC93A1A25BAED00F8B6CB /* Article.swift in Sources */,
 				956C10B51A583F440053EDCA /* NSURL+DTUnshorten.m in Sources */,
 				956C0FBD1A583F320053EDCA /* DTTextBlock.m in Sources */,
@@ -1743,6 +1746,7 @@
 				956C109B1A583F440053EDCA /* DTPieProgressIndicator.m in Sources */,
 				956C0FA31A583F320053EDCA /* DTCoreTextLayouter.m in Sources */,
 				956C0EFE1A583D2B0053EDCA /* UIAlertView+AFNetworking.m in Sources */,
+				957127591AA00B7E008363E1 /* SegmentedControl.swift in Sources */,
 				950FE7121A1DA2B500167D09 /* LoadMoreControl.swift in Sources */,
 				956C10A01A583F440053EDCA /* DTSidePanelPanGestureRecognizer.m in Sources */,
 				950FE7411A1DA2B500167D09 /* UserCountView.swift in Sources */,

@@ -37,7 +37,7 @@ class DataManager {
         let request = model.fetchRequestTemplateForName(entityName)!
         let results = context.executeFetchRequest(request, error: error)
         if results != nil {
-            return results as [NSManagedObject]
+            return results as! [NSManagedObject]
         } else {
             if error != nil && error.memory == nil {
                 error.memory = NSError() // Needs specification

@@ -23,10 +23,6 @@ class UserAskedQuestionListViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
     override func loadView() {
         super.loadView()
         /// @TODO: UITableView customization
@@ -52,7 +48,7 @@ class UserAskedQuestionListViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = BFPaperTableViewCell(style: .Subtitle, reuseIdentifier: "")
-        let question = user.questions.allObjects[indexPath.row] as Question
+        let question = user.questions.allObjects[indexPath.row] as! Question
         cell.textLabel!.text = question.title
         cell.detailTextLabel!.text = question.body
         return cell
@@ -63,7 +59,7 @@ class UserAskedQuestionListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        msr_navigationController!.pushViewController(QuestionViewController(question: user.questions.allObjects[indexPath.row] as Question), animated: true)
+        msr_navigationController!.pushViewController(QuestionViewController(question: user.questions.allObjects[indexPath.row] as! Question), animated: true)
     }
     
     internal func refresh() {

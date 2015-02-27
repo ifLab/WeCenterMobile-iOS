@@ -10,20 +10,17 @@ import UIKit
 
 class TopicTagListCell: UITableViewCell {
     class ScrollView: UIScrollView {
-        override func touchesShouldBegin(touches: NSSet!, withEvent event: UIEvent!, inContentView view: UIView!) -> Bool {
-            return false
+        override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+            nextResponder()?.touchesBegan(touches as Set<NSObject>, withEvent: event)
         }
-        override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-            nextResponder()?.touchesBegan(touches, withEvent: event)
+        override func touchesCancelled(touches: Set<NSObject>, withEvent event: UIEvent) {
+            nextResponder()?.touchesCancelled(touches as Set<NSObject>, withEvent: event)
         }
-        override func touchesCancelled(touches: NSSet, withEvent event: UIEvent) {
-            nextResponder()?.touchesCancelled(touches, withEvent: event)
+        override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+            nextResponder()?.touchesEnded(touches as Set<NSObject>, withEvent: event)
         }
-        override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-            nextResponder()?.touchesEnded(touches, withEvent: event)
-        }
-        override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
-            nextResponder()?.touchesCancelled(touches, withEvent: event)
+        override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+            nextResponder()?.touchesCancelled(touches as Set<NSObject>, withEvent: event)
         }
     }
     let scrollView = ScrollView()

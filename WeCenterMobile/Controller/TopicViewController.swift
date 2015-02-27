@@ -117,13 +117,13 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
             failure: nil)
     }
     
-    func scrollViewDidEndDragging(scrollView: UIScrollView!, willDecelerate decelerate: Bool) {
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
             scrollViewDidEndDecelerating(tableView)
         }
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView!) {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
         if scrollView === tableView {
             if tableView.contentOffset.y < -self.hideableView.bounds.height {
                 topView.frame.size.height = 140 - tableView.contentOffset.y - hideableView.bounds.height
@@ -136,7 +136,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         }
     }
     
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView!) {
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         if scrollView === tableView {
             UIView.animateWithDuration(0.5,
                 delay: 0,
@@ -277,7 +277,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         } else {
             answer.user?.fetchAvatar(
                 success: {
-                    if (cell.userButton.msr_userInfo as User).id == answer.user!.id {
+                    if (cell.userButton.msr_userInfo as! User).id == answer.user!.id {
                         cell.userButton.setImage(answer.user!.avatar, forState: .Normal)
                     }
                 },
@@ -288,13 +288,13 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     
     func pushUserViewController(userButton: UIButton) {
         if userButton.msr_userInfo != nil {
-            msr_navigationController!.pushViewController(UserViewController(user: userButton.msr_userInfo as User), animated: true)
+            msr_navigationController!.pushViewController(UserViewController(user: userButton.msr_userInfo as! User), animated: true)
         }
     }
     
     func pushQuestionViewController(questionButton: UIButton) {
         if questionButton.msr_userInfo != nil {
-            msr_navigationController!.pushViewController(QuestionViewController(question: questionButton.msr_userInfo as Question), animated: true)
+            msr_navigationController!.pushViewController(QuestionViewController(question: questionButton.msr_userInfo as! Question), animated: true)
         }
     }
     

@@ -14,7 +14,7 @@ let userStrings = Msr.Data.LocalizedStrings(module: "User", bundle: NSBundle.mai
 let discoveryStrings = Msr.Data.LocalizedStrings(module: "Discovery", bundle: NSBundle.mainBundle())
 let welcomeStrings = Msr.Data.LocalizedStrings(module: "Welcome", bundle: NSBundle.mainBundle())
 
-let appDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
 let networkManager = NetworkManager(configuration: NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("Configuration", ofType: "plist")!)!)
 let dataManager = DataManager(managedObjectContext: appDelegate.managedObjectContext!, managedObjectModel: appDelegate.managedObjectModel)
 
@@ -25,8 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let welcomeViewController = WelcomeViewController()
     var mainViewController: MainViewController!
     var currentUser: User?
-
-    func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
+    
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window!.rootViewController = welcomeViewController
 //        NetworkManager.clearCookies()
@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     lazy var applicationDocumentsDirectory: NSURL = {
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls.last as NSURL
+        return urls.last as! NSURL
     }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data."
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
             dict[NSUnderlyingErrorKey] = error
-            error = NSError(domain: networkManager.website, code: networkManager.internalErrorCode.integerValue, userInfo: dict)
+            error = NSError(domain: networkManager.website, code: networkManager.internalErrorCode.integerValue, userInfo: dict as [NSObject : AnyObject])
             NSLog("Unresolved error \(error), \(error!.userInfo)")
             abort()
         }

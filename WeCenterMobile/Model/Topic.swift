@@ -41,7 +41,7 @@ class Topic: NSManagedObject {
     }
     
     class func fetch(#ID: NSNumber, success: ((Topic) -> Void)?, failure: ((NSError) -> Void)?) {
-        let topic = dataManager.autoGenerate("Topic", ID: ID) as Topic
+        let topic = dataManager.autoGenerate("Topic", ID: ID) as! Topic
         networkManager.GET("Topic Detail",
             parameters: [
                 "uid": appDelegate.currentUser!.id,
@@ -52,8 +52,8 @@ class Topic: NSManagedObject {
                 topic.title = data["topic_title"] as? String
                 topic.introduction = data["topic_description"] as? String
                 topic.imageURI = data["topic_pic"] as? String
-                topic.focusCount = (data["focus_count"] as NSString).integerValue
-                topic.focused = (data["has_focus"] as NSNumber == 1)
+                topic.focusCount = (data["focus_count"] as! NSString).integerValue
+                topic.focused = (data["has_focus"] as! NSNumber == 1)
                 success?(topic)
             },
             failure: failure)
@@ -108,12 +108,12 @@ class Topic: NSManagedObject {
             ],
             success: {
                 data in
-                if (data["total_rows"] as NSNumber).integerValue > 0 {
+                if (data["total_rows"] as! NSNumber).integerValue > 0 {
                     var answers = [Answer]()
-                    for value in data["rows"] as [NSDictionary] {
-                        let questionValue = value["question_info"] as NSDictionary
-                        var questionArray = self.questions.allObjects as [Question]
-                        let questionID = questionValue["question_id"] as NSNumber
+                    for value in data["rows"] as! [NSDictionary] {
+                        let questionValue = value["question_info"] as! NSDictionary
+                        var questionArray = self.questions.allObjects as! [Question]
+                        let questionID = questionValue["question_id"] as! NSNumber
                         var question: Question! = questionArray.filter({ $0.id == questionID }).first
                         if question == nil {
                             question = dataManager.autoGenerate("Question", ID: questionID) as? Question
@@ -121,9 +121,9 @@ class Topic: NSManagedObject {
                         }
                         question.title = questionValue["question_content"] as? String
                         self.questions = NSSet(array: questionArray)
-                        let answerValue = value["answer_info"] as NSDictionary
-                        var answerArray = question.answers.allObjects as [Answer]
-                        let answerID = answerValue["answer_id"] as NSNumber
+                        let answerValue = value["answer_info"] as! NSDictionary
+                        var answerArray = question.answers.allObjects as! [Answer]
+                        let answerID = answerValue["answer_id"] as! NSNumber
                         var answer: Answer! = answerArray.filter({ $0.id == answerID }).first
                         if answer == nil {
                             answer = dataManager.autoGenerate("Answer", ID: answerID) as? Answer
@@ -132,8 +132,8 @@ class Topic: NSManagedObject {
                         answer.body = answerValue["answer_content"] as? String
                         answer.agreementCount = answerValue["agree_count"] as? NSNumber
                         question.answers = NSSet(array: answerArray)
-                        let userID = answerValue["uid"] as NSNumber
-                        answer.user = (dataManager.autoGenerate("User", ID: userID) as User)
+                        let userID = answerValue["uid"] as! NSNumber
+                        answer.user = (dataManager.autoGenerate("User", ID: userID) as! User)
                         answer.user!.avatarURI = answerValue["avatar_file"] as? String
                         answers.append(answer)
                     }
