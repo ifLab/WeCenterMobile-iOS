@@ -122,7 +122,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             sc = Msr.UI.SegmentedControl(views: [
                 generateLabelWithText("A"),
                 generateLabelWithText("B"),
-                generateLabelWithText("C")])
+                generateLabelWithText("C"),
+                generateLabelWithText("S")])
             sc.frame = CGRect(x: 0, y: 100, width: 0, height: 0)
             viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "ADD", style: .Plain, target: self, action: "ADD_NEW_LABEL")
             viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "REMOVE", style: .Plain, target: self, action: "REMOVE_LABEL")
@@ -130,7 +131,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             viewController.view.addSubview(slider)
             sc.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
             sc.msr_addHorizontalExpandingConstraintsToSuperview()
-            sc.msr_addHeightConstraintWithValue(50)
+            sc.msr_addHeightConstraintWithValue(32)
             sc.addTarget(self, action: "SEGMENT_VALUE_DID_CHANGED", forControlEvents: .ValueChanged)
             slider.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
             slider.msr_addHorizontalExpandingConstraintsToSuperview()
@@ -153,15 +154,22 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return label
     }
     func ADD_NEW_LABEL() {
-        sc.insertSegmentWithView(generateLabelWithText("new"), atIndex: sc.numberOfSegments > 0 ? 1 : 0, animated: true)
+        sc.insertSegmentWithView(generateLabelWithText("new"), atIndex: sc.numberOfSegments > 1 ? 2 : 0, animated: true)
     }
     func REMOVE_LABEL() {
-        sc.removeSegmentAtIndex(sc.numberOfSegments > 1 ? 1 : 0, animated: true)
+        sc.removeSegmentAtIndex(sc.numberOfSegments > 2 ? 2 : 0, animated: true)
     }
     func CHANGE_INDICATOR_POSITION() {
-        sc.setIndicatorPosition(CGFloat(slider.value) * CGFloat(sc.numberOfSegments - 1), animated: true)
+        if sc.numberOfSegments > 1 {
+            sc.setIndicatorPosition(slider.value * Float(sc.numberOfSegments - 1), animated: true)
+        }
     }
     func SEGMENT_VALUE_DID_CHANGED() {
+        if sc.indicatorPosition == nil || sc.numberOfSegments <= 1 {
+            slider.value = 0
+        } else {
+            slider.value = sc.indicatorPosition! / Float(sc.numberOfSegments - 1)
+        }
         println(sc.selectedSegmentIndex)
     }
     func showSidebar() {
