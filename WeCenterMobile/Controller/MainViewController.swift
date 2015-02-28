@@ -119,8 +119,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             viewController = UIViewController()
             sc = Msr.UI.SegmentedControl(views: [
                 generateLabelWithText("A"),
-                generateLabelWithText("BC"),
-                generateLabelWithText("DEF")])
+                generateLabelWithText("B"),
+                generateLabelWithText("C")])
             sc.frame = CGRect(x: 0, y: 100, width: 0, height: 0)
             viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "ADD", style: .Plain, target: self, action: "ADD_NEW_LABEL")
             viewController.view.addSubview(sc)
@@ -138,11 +138,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let label = UILabel()
         label.text = text
         label.bounds.size = CGSize(width: 80, height: 32)
-        label.backgroundColor = UIColor.msr_randomColor(true)
+        label.backgroundColor = UIColor.msr_randomColor(true).colorWithAlphaComponent(0.2)
+        label.textAlignment = .Center
         return label
     }
     func ADD_NEW_LABEL() {
-        sc.appendSegmentWithView(generateLabelWithText("NEW"), animated: true)
+        sc.insertSegmentWithView(generateLabelWithText("new"), atIndex: sc.numberOfSegments > 0 ? 1 : 0, animated: true)
     }
     func showSidebar() {
         sidebar.show(animated: true)
