@@ -123,6 +123,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 generateLabelWithText("C")])
             sc.frame = CGRect(x: 0, y: 100, width: 0, height: 0)
             viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "ADD", style: .Plain, target: self, action: "ADD_NEW_LABEL")
+            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "REMOVE", style: .Plain, target: self, action: "REMOVE_LABEL")
             viewController.view.addSubview(sc)
             sc.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
             sc.msr_addHorizontalExpandingConstraintsToSuperview()
@@ -144,6 +145,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     func ADD_NEW_LABEL() {
         sc.insertSegmentWithView(generateLabelWithText("new"), atIndex: sc.numberOfSegments > 0 ? 1 : 0, animated: true)
+    }
+    func REMOVE_LABEL() {
+        sc.removeSegmentAtIndex(sc.numberOfSegments > 1 ? 1 : 0, animated: true)
     }
     func showSidebar() {
         sidebar.show(animated: true)
