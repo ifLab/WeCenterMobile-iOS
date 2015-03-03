@@ -19,6 +19,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         "首页", // Needs localization
         "发现",
         "测试",
+        "测试",
         "测试"
     ]
     override init() {
@@ -104,6 +105,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     var sc: Msr.UI.SegmentedControl!
     var slider: UISlider!
+    var button: UIButton!
+    var toolBar: UIToolbar!
     func viewControllerAtIndex(index: Int) -> UIViewController {
         var viewController: UIViewController! = nil
         switch index {
@@ -119,58 +122,67 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         case 3:
             viewController = UIViewController()
             slider = UISlider(frame: CGRectZero)
-            sc = Msr.UI.SegmentedControl(views: [
-                generateLabelWithText("A"),
-                generateLabelWithText("B"),
-                generateLabelWithText("C"),
-                generateLabelWithText("S")])
-            sc.frame = CGRect(x: 0, y: 100, width: 0, height: 0)
-            viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "ADD", style: .Plain, target: self, action: "ADD_NEW_LABEL")
-            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "REMOVE", style: .Plain, target: self, action: "REMOVE_LABEL")
+            button = UIButton(frame: CGRectZero)
+            toolBar = UIToolbar()
+            sc = Msr.UI.SegmentedControl(segments: [
+                Msr.UI.SegmentedControl.DefaultSegment(title: "A", image: nil)])
             viewController.view.addSubview(sc)
             viewController.view.addSubview(slider)
+            viewController.view.addSubview(button)
             sc.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
             sc.msr_addHorizontalExpandingConstraintsToSuperview()
-            sc.msr_addHeightConstraintWithValue(32)
+            sc.msr_addHeightConstraintWithValue(60)
+            sc.msr_addTopAttachedConstraintToSuperview()
+            viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "ADD", style: .Plain, target: self, action: "ADD_NEW_LABEL")
+            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "REMOVE", style: .Plain, target: self, action: "REMOVE_LABEL")
             sc.addTarget(self, action: "SEGMENT_VALUE_DID_CHANGED", forControlEvents: .ValueChanged)
             slider.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
             slider.msr_addHorizontalExpandingConstraintsToSuperview()
             slider.msr_addTopAttachedConstraintToSuperview()
-            slider.msr_topAttachedConstraint!.constant = 200
+            slider.msr_topAttachedConstraint!.constant = 100
             slider.addTarget(self, action: "CHANGE_INDICATOR_POSITION", forControlEvents: .ValueChanged)
+            button.setTitle("CHANGE INDICATOR TINT COLOR", forState: .Normal)
+            button.setBackgroundImage(UIImage.msr_rectangleWithColor(sc.indicator.tintColor, size: CGSize(width: 1, height: 1)), forState: .Normal)
+            button.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+            button.msr_addHorizontalExpandingConstraintsToSuperview()
+            button.msr_addTopAttachedConstraintToSuperview()
+            button.msr_topAttachedConstraint!.constant = 200
+            button.msr_addHeightConstraintWithValue(44)
+            button.addTarget(self, action: "CHANGE_INDICATOR_TINT_COLOR", forControlEvents: .TouchUpInside)
+            sc.backgroundView = toolBar
+            break
+        case 4:
+            viewController = Msr.UI.SegmentedViewController()
             break
         default:
             break
         }
         return viewController
     }
-    let generateLabelWithText = {
-        (text: String) -> UILabel in
-        let label = UILabel()
-        label.text = text
-        label.bounds.size = CGSize(width: 80, height: 32)
-        label.backgroundColor = UIColor.msr_randomColor(true).colorWithAlphaComponent(0.2)
-        label.textAlignment = .Center
-        return label
-    }
     func ADD_NEW_LABEL() {
-        sc.insertSegmentWithView(generateLabelWithText("new"), atIndex: sc.numberOfSegments > 1 ? 2 : 0, animated: true)
+        sc.insertSegment(Msr.UI.SegmentedControl.DefaultSegment(title: "NEW", image: UIImage.msr_rectangleWithColor(UIColor.purpleColor(), size: CGSize(width: 20, height: 20))), atIndex: sc.numberOfSegments >= 1 ? 1 : 0, animated: true)
     }
     func REMOVE_LABEL() {
-        sc.removeSegmentAtIndex(sc.numberOfSegments > 2 ? 2 : 0, animated: true)
+        sc.removeSegmentAtIndex(sc.numberOfSegments > 1 ? 1 : 0, animated: true)
     }
     func CHANGE_INDICATOR_POSITION() {
-        if sc.numberOfSegments > 1 {
-            sc.setIndicatorPosition(slider.value * Float(sc.numberOfSegments - 1), animated: true)
+        if sc.numberOfSegments >= 1 {
+            sc.setIndicatorPosition(slider.value * Float(sc.numberOfSegments - 1), animated: false)
         }
     }
     func SEGMENT_VALUE_DID_CHANGED() {
-        if sc.indicatorPosition == nil || sc.numberOfSegments <= 1 {
-            slider.value = 0
-        } else {
-            slider.value = sc.indicatorPosition! / Float(sc.numberOfSegments - 1)
+        if !slider.tracking {
+            if sc.indicatorPosition == nil || sc.numberOfSegments <= 1 {
+                slider.value = 0
+            } else {
+                slider.value = sc.indicatorPosition! / Float(sc.numberOfSegments - 1)
+            }
         }
         println(sc.selectedSegmentIndex)
+    }
+    func CHANGE_INDICATOR_TINT_COLOR() {
+        sc.indicator.tintColor = UIColor.msr_randomColor(true)
+        button.setBackgroundImage(UIImage.msr_rectangleWithColor(sc.indicator.tintColor, size: CGSize(width: 1, height: 1)), forState: .Normal)
     }
     func showSidebar() {
         sidebar.show(animated: true)

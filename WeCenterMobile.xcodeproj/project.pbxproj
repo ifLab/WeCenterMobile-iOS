@@ -244,7 +244,6 @@
 		9588F5F31A1D9D1C001BC426 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9588F5F21A1D9D1C001BC426 /* Images.xcassets */; };
 		9588F6021A1D9D1C001BC426 /* WeCenterMobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9588F6011A1D9D1C001BC426 /* WeCenterMobileTests.swift */; };
 		9594CD291A2D0EC10013235C /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9594CD281A2D0EC10013235C /* UIImage+Resize.swift */; };
-		9599FD8B1A9D6BFD007805FA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9599FD8A1A9D6BFD007805FA /* Constant.swift */; };
 		9599FD8D1A9EFD8D007805FA /* UIView+EasyAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9599FD8C1A9EFD8D007805FA /* UIView+EasyAutoLayout.swift */; };
 		9599FD911A9F170E007805FA /* UnsafePointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9599FD901A9F170E007805FA /* UnsafePointer.swift */; };
 		959CC93A1A25BAED00F8B6CB /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC9391A25BAED00F8B6CB /* Article.swift */; };
@@ -256,6 +255,10 @@
 		95A247D21A7FD346006A6C84 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95A247D11A7FD346006A6C84 /* CommentCell.xib */; };
 		95A247D41A7FDA5F006A6C84 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A247D31A7FDA5F006A6C84 /* CommentCell.swift */; };
 		95B6E6B91A232E2400F31BE3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9588F5F41A1D9D1C001BC426 /* LaunchScreen.xib */; };
+		95B72EBF1AA5BD2F00075ED7 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B72EBE1AA5BD2F00075ED7 /* Constant.swift */; };
+		95B72EC11AA5BDE200075ED7 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B72EC01AA5BDE200075ED7 /* Indicator.swift */; };
+		95B72EC31AA5BEBD00075ED7 /* Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B72EC21AA5BEBD00075ED7 /* Segment.swift */; };
+		95B72EC51AA5C36A00075ED7 /* SegmentWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B72EC41AA5C36A00075ED7 /* SegmentWrapper.swift */; };
 		95E4E9A01A4FFBD700F3C327 /* AnswerActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4E99F1A4FFBD700F3C327 /* AnswerActionCell.swift */; };
 		95E4E9A21A50040100F3C327 /* AnswerActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95E4E9A11A50040100F3C327 /* AnswerActionCell.xib */; };
 		95E5355A1A49DCFD00D7B76B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535591A49DCFD00D7B76B /* HomeViewController.swift */; };
@@ -677,7 +680,6 @@
 		9588F6001A1D9D1C001BC426 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9588F6011A1D9D1C001BC426 /* WeCenterMobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeCenterMobileTests.swift; sourceTree = "<group>"; };
 		9594CD281A2D0EC10013235C /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
-		9599FD8A1A9D6BFD007805FA /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		9599FD8C1A9EFD8D007805FA /* UIView+EasyAutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+EasyAutoLayout.swift"; sourceTree = "<group>"; };
 		9599FD901A9F170E007805FA /* UnsafePointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsafePointer.swift; sourceTree = "<group>"; };
 		959CC9391A25BAED00F8B6CB /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
@@ -688,6 +690,10 @@
 		95A13AC81A9341110050331B /* UINavigationBar+Accessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Accessor.swift"; sourceTree = "<group>"; };
 		95A247D11A7FD346006A6C84 /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		95A247D31A7FDA5F006A6C84 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		95B72EBE1AA5BD2F00075ED7 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		95B72EC01AA5BDE200075ED7 /* Indicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
+		95B72EC21AA5BEBD00075ED7 /* Segment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
+		95B72EC41AA5C36A00075ED7 /* SegmentWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentWrapper.swift; sourceTree = "<group>"; };
 		95E4E99F1A4FFBD700F3C327 /* AnswerActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerActionCell.swift; sourceTree = "<group>"; };
 		95E4E9A11A50040100F3C327 /* AnswerActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerActionCell.xib; sourceTree = "<group>"; };
 		95E535591A49DCFD00D7B76B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -796,13 +802,16 @@
 				95F542921A91F8EA00B10CD4 /* AnimationInfo.swift */,
 				953D9D5B1A92E30C00992324 /* AutoExpandingView.swift */,
 				953D9D591A91F93300992324 /* CGRect+Accessor.swift */,
-				9599FD8A1A9D6BFD007805FA /* Constant.swift */,
+				95B72EBE1AA5BD2F00075ED7 /* Constant.swift */,
 				9576B9DD1AA052190033D540 /* Rect.swift */,
+				95B72EC01AA5BDE200075ED7 /* Indicator.swift */,
 				9569A9141A80AFE4003F58AC /* KeyboardBar.swift */,
 				950FE4CC1A1DA2B500167D09 /* LoadMoreControl.swift */,
 				950FE4CD1A1DA2B500167D09 /* NavigationController.swift */,
+				95B72EC21AA5BEBD00075ED7 /* Segment.swift */,
 				957127581AA00B7E008363E1 /* SegmentedControl.swift */,
 				950FE4CE1A1DA2B500167D09 /* SegmentedViewController.swift */,
+				95B72EC41AA5C36A00075ED7 /* SegmentWrapper.swift */,
 				950FE4CF1A1DA2B500167D09 /* Sidebar.swift */,
 				950FE4D01A1DA2B500167D09 /* UIColor+Material.swift */,
 				950FE4D11A1DA2B500167D09 /* UIColor+Random.swift */,
@@ -1587,6 +1596,7 @@
 				959CC9421A25BAEE00F8B6CB /* Answer.swift in Sources */,
 				956C0FA41A583F320053EDCA /* DTCoreTextLayoutFrame+Cursor.m in Sources */,
 				956C0FB01A583F320053EDCA /* DTHTMLParserNode.m in Sources */,
+				95B72EC31AA5BEBD00075ED7 /* Segment.swift in Sources */,
 				956C0F0F1A583EF70053EDCA /* BFPaperTableViewCell.m in Sources */,
 				956C10AC1A583F440053EDCA /* NSData+DTCrypto.m in Sources */,
 				956C0F931A583F320053EDCA /* default.css.c in Sources */,
@@ -1656,6 +1666,7 @@
 				956C10AE1A583F440053EDCA /* NSFileWrapper+DTCopying.m in Sources */,
 				956C10831A583F440053EDCA /* DTReachability.m in Sources */,
 				956C0F9F1A583F320053EDCA /* DTCoreTextFontCollection.m in Sources */,
+				95B72EC11AA5BDE200075ED7 /* Indicator.swift in Sources */,
 				956C0FCF1A583F320053EDCA /* UIFont+DTCoreText.m in Sources */,
 				950FE70C1A1DA2B500167D09 /* Type.swift in Sources */,
 				956C10B21A583F440053EDCA /* NSString+DTURLEncoding.m in Sources */,
@@ -1702,7 +1713,6 @@
 				959CC93C1A25BAED00F8B6CB /* AnswerComment.swift in Sources */,
 				956C0FB71A583F320053EDCA /* DTLinkButton.m in Sources */,
 				950FE50D1A1DA2B500167D09 /* UserListViewController.swift in Sources */,
-				9599FD8B1A9D6BFD007805FA /* Constant.swift in Sources */,
 				950FE7301A1DA2B500167D09 /* QuestionPublishmentAction.swift in Sources */,
 				956C10B11A583F440053EDCA /* NSString+DTPaths.m in Sources */,
 				950FE50C1A1DA2B500167D09 /* TopicViewController.swift in Sources */,
@@ -1727,6 +1737,7 @@
 				956C0F971A583F320053EDCA /* DTAttributedLabel.m in Sources */,
 				950FE7111A1DA2B500167D09 /* AlertView.swift in Sources */,
 				953D9D5A1A91F93300992324 /* CGRect+Accessor.swift in Sources */,
+				95B72EC51AA5C36A00075ED7 /* SegmentWrapper.swift in Sources */,
 				950FE72E1A1DA2B500167D09 /* Question.swift in Sources */,
 				956C0F021A583D2B0053EDCA /* UIRefreshControl+AFNetworking.m in Sources */,
 				950FE71E1A1DA2B500167D09 /* AnswerAction.swift in Sources */,
@@ -1754,6 +1765,7 @@
 				950FE73F1A1DA2B500167D09 /* TopicTagView.swift in Sources */,
 				956C0FBF1A583F320053EDCA /* DTVideoTextAttachment.m in Sources */,
 				956C0FB31A583F320053EDCA /* DTIframeTextAttachment.m in Sources */,
+				95B72EBF1AA5BD2F00075ED7 /* Constant.swift in Sources */,
 				950FE72F1A1DA2B500167D09 /* QuestionFocusingAction.swift in Sources */,
 				956C0FC51A583F320053EDCA /* NSAttributedStringRunDelegates.m in Sources */,
 				956C10811A583F440053EDCA /* DTHTMLParser.m in Sources */,
