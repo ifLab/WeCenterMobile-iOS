@@ -13,7 +13,7 @@ class Action: NSManagedObject {
 
     @NSManaged var date: NSDate
     @NSManaged var id: NSNumber
-    @NSManaged var user: User
+    @NSManaged var user: User?
     
     class func get(#ID: NSNumber, error: NSErrorPointer) -> Action? {
         return dataManager.fetch("Action", ID: ID, error: error) as? Action

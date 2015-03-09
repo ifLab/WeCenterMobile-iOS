@@ -54,8 +54,7 @@ class AnswerCommentListViewController: UITableViewController {
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        msr_navigationWrapperView!.addSubview(keyboardBar)
-        
+        msr_navigationControllerWrapperController!.view.addSubview(keyboardBar)
     }
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

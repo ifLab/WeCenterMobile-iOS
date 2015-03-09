@@ -55,7 +55,7 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         contentTextView.textDelegate = self
         contentTextView.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         evaluationButton.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
-        evaluationButton.msr_addVerticalExpandingConstraintsToSuperview()
+        evaluationButton.msr_addVerticalEdgeAttachedConstraintsToSuperview()
         evaluationButton.msr_addRightAttachedConstraintToSuperview()
         evaluationButton.addTarget(self, action: "toggleEvaluation", forControlEvents: .TouchUpInside)
         evaluationButton.backgroundColor = UIColor.clearColor()
@@ -111,17 +111,17 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     override func viewDidAppear(animated: Bool) {
         if firstAppear {
             firstAppear = false
-            msr_navigationWrapperView!.contentView.addSubview(topBar)
-            msr_navigationWrapperView!.contentView.addSubview(bottomBar)
+            msr_navigationControllerWrapperController!.view!.addSubview(topBar)
+            msr_navigationControllerWrapperController!.view!.addSubview(bottomBar)
             contentTextView.contentInset.top += topBar.bounds.height
             contentTextView.contentInset.bottom += bottomBar.bounds.height
             contentTextView.scrollIndicatorInsets.top += topBar.bounds.height
             contentTextView.scrollIndicatorInsets.bottom += bottomBar.bounds.height
-            contentTextView.msr_addAutoExpandingConstraintsToSuperview()
-            view.msr_addAutoExpandingConstraintsToSuperview()
-            topBar.msr_addHorizontalExpandingConstraintsToSuperview()
+            contentTextView.msr_addAllEdgeAttachedConstraintsToSuperview()
+            view.msr_addAllEdgeAttachedConstraintsToSuperview()
+            topBar.msr_addHorizontalEdgeAttachedConstraintsToSuperview()
             topBar.msr_addTopAttachedConstraintToSuperview()
-            bottomBar.msr_addHorizontalExpandingConstraintsToSuperview()
+            bottomBar.msr_addHorizontalEdgeAttachedConstraintsToSuperview()
             bottomBar.msr_addBottomAttachedConstraintToSuperview()
         }
     }

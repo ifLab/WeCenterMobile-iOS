@@ -262,6 +262,7 @@
 		95E4E9A01A4FFBD700F3C327 /* AnswerActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4E99F1A4FFBD700F3C327 /* AnswerActionCell.swift */; };
 		95E4E9A21A50040100F3C327 /* AnswerActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95E4E9A11A50040100F3C327 /* AnswerActionCell.xib */; };
 		95E5355A1A49DCFD00D7B76B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535591A49DCFD00D7B76B /* HomeViewController.swift */; };
+		95F0E7DA1AA8779000C85514 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F0E7D91AA8779000C85514 /* Weak.swift */; };
 		95F542931A91F8EA00B10CD4 /* AnimationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F542921A91F8EA00B10CD4 /* AnimationInfo.swift */; };
 /* End PBXBuildFile section */
 
@@ -323,7 +324,7 @@
 		950FE4DD1A1DA2B500167D09 /* ArticlePublishmentAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlePublishmentAction.swift; sourceTree = "<group>"; };
 		950FE4DF1A1DA2B500167D09 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		950FE4E01A1DA2B500167D09 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		950FE4EA1A1DA2B500167D09 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		950FE4EA1A1DA2B500167D09 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Question.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		950FE4EB1A1DA2B500167D09 /* QuestionFocusingAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionFocusingAction.swift; sourceTree = "<group>"; };
 		950FE4EC1A1DA2B500167D09 /* QuestionPublishmentAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionPublishmentAction.swift; sourceTree = "<group>"; };
 		950FE4ED1A1DA2B500167D09 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
@@ -685,8 +686,8 @@
 		959CC9391A25BAED00F8B6CB /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		959CC93B1A25BAED00F8B6CB /* AnswerComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerComment.swift; sourceTree = "<group>"; };
 		959CC93D1A25BAED00F8B6CB /* ArticleComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleComment.swift; sourceTree = "<group>"; };
-		959CC93F1A25BAED00F8B6CB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		959CC9411A25BAEE00F8B6CB /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		959CC93F1A25BAED00F8B6CB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = User.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		959CC9411A25BAEE00F8B6CB /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Answer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		95A13AC81A9341110050331B /* UINavigationBar+Accessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Accessor.swift"; sourceTree = "<group>"; };
 		95A247D11A7FD346006A6C84 /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		95A247D31A7FDA5F006A6C84 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
@@ -697,6 +698,7 @@
 		95E4E99F1A4FFBD700F3C327 /* AnswerActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerActionCell.swift; sourceTree = "<group>"; };
 		95E4E9A11A50040100F3C327 /* AnswerActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerActionCell.xib; sourceTree = "<group>"; };
 		95E535591A49DCFD00D7B76B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		95F0E7D91AA8779000C85514 /* Weak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
 		95F542921A91F8EA00B10CD4 /* AnimationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -790,6 +792,7 @@
 				950FE4C51A1DA2B500167D09 /* Type.swift */,
 				9532C8CF1A517012001A0E4A /* ValueConvertor.swift */,
 				9599FD901A9F170E007805FA /* UnsafePointer.swift */,
+				95F0E7D91AA8779000C85514 /* Weak.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1662,6 +1665,7 @@
 				956C107D1A583F440053EDCA /* DTCoreGraphicsUtils.m in Sources */,
 				956C0F9B1A583F320053EDCA /* DTBreakHTMLElement.m in Sources */,
 				953BF5BA1A51A6F200B804B8 /* ArticlePublishmentActionCell.swift in Sources */,
+				95F0E7DA1AA8779000C85514 /* Weak.swift in Sources */,
 				956C10951A583F440053EDCA /* UIView+DTActionHandlers.m in Sources */,
 				956C10AE1A583F440053EDCA /* NSFileWrapper+DTCopying.m in Sources */,
 				956C10831A583F440053EDCA /* DTReachability.m in Sources */,

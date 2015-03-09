@@ -12,8 +12,8 @@ class ActionCell: UITableViewCell {
     @IBOutlet weak var userNameButton: UIButton!
     
     func update(#action: Action) {
-        userNameButton.setTitle(action.user.name, forState: .Normal)
-        userAvatarView.image = action.user.avatar
+        userNameButton.setTitle(action.user?.name, forState: .Normal)
+        userAvatarView.image = action.user?.avatar
         userNameButton.msr_userInfo = action.user
     }
     

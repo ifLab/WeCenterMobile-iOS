@@ -47,7 +47,7 @@ class Answer: NSManagedObject {
                 answer.agreementCount = data["agree_count"] as? NSNumber
                 answer.commentCount = data["comment_count"] as? NSNumber
                 answer.evaluation = Evaluation(rawValue: (data["vote_value"] as! NSNumber).integerValue)
-                answer.user = (dataManager.autoGenerate("User", ID: data["uid"] as! NSNumber) as! User)
+                answer.user = (dataManager.autoGenerate("User", ID: Msr.Data.IntegerValueOfObject((data as! NSDictionary)["uid"]!)) as! User)
                 answer.user!.name = data["user_name"] as? String
                 answer.user!.avatarURI = data["avatar_file"] as? String
                 answer.user!.signature = data["signature"] as? String
