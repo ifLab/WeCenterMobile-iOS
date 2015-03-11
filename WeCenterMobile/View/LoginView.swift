@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginView: Msr.UI.AlertView {
+class LoginView: MSRAlertView {
     var usernameField: UITextField!
     var passwordField: UITextField!
     override init() {
@@ -33,10 +33,10 @@ class LoginView: Msr.UI.AlertView {
         passwordField = newTextField()
         passwordField.secureTextEntry = true
         usernameField.attributedPlaceholder = NSAttributedString(
-            string: welcomeStrings["Username"],
+            string: welcomeStrings("Username"),
             attributes: [NSForegroundColorAttributeName: UIColor.blackColor()])
         passwordField.attributedPlaceholder = NSAttributedString(
-            string: welcomeStrings["Password"],
+            string: welcomeStrings("Password"),
             attributes: [NSForegroundColorAttributeName: UIColor.blackColor()])
         usernameField.center = CGPoint(x: contentView.center.x, y: 35)
         passwordField.center = CGPoint(x: contentView.center.x, y: 85)

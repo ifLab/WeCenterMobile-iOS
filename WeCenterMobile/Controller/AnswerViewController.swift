@@ -31,9 +31,7 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         }
     }
     var firstAppear = true
-    var contentTextView: DTAttributedTextView {
-        return view as! DTAttributedTextView
-    }
+    var contentTextView = DTAttributedTextView()
     var answerID: NSNumber! = nil
     var answer: Answer? = nil
     init(answerID: NSNumber) {
@@ -44,7 +42,10 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         fatalError("init(coder:) has not been implemented")
     }
     override func loadView() {
-        view = DTAttributedTextView(frame: UIScreen.mainScreen().bounds)
+        super.loadView()
+        view.addSubview(contentTextView)
+        view.addSubview(topBar)
+        view.addSubview(bottomBar)
         topBar.addSubview(avatarButton)
         topBar.addSubview(nameLabel)
         topBar.addSubview(signatureLabel)
@@ -111,18 +112,24 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     override func viewDidAppear(animated: Bool) {
         if firstAppear {
             firstAppear = false
-            msr_navigationControllerWrapperController!.view!.addSubview(topBar)
-            msr_navigationControllerWrapperController!.view!.addSubview(bottomBar)
+            view.addSubview(topBar)
+            view.addSubview(bottomBar)
             contentTextView.contentInset.top += topBar.bounds.height
             contentTextView.contentInset.bottom += bottomBar.bounds.height
             contentTextView.scrollIndicatorInsets.top += topBar.bounds.height
             contentTextView.scrollIndicatorInsets.bottom += bottomBar.bounds.height
             contentTextView.msr_addAllEdgeAttachedConstraintsToSuperview()
             view.msr_addAllEdgeAttachedConstraintsToSuperview()
-            topBar.msr_addHorizontalEdgeAttachedConstraintsToSuperview()
-            topBar.msr_addTopAttachedConstraintToSuperview()
-            bottomBar.msr_addHorizontalEdgeAttachedConstraintsToSuperview()
-            bottomBar.msr_addBottomAttachedConstraintToSuperview()
+            view.addConstraint(NSLayoutConstraint(item: topBar, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 1, constant: 0))
+            view.addConstraint(NSLayoutConstraint(item: bottomBar, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 1, constant: 0))
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[top][topBar]-(>=0)-[bottomBar][bottom]",
+                options: nil,
+                metrics: nil,
+                views: [
+                    "top": topLayoutGuide,
+                    "bottom": bottomLayoutGuide,
+                    "topBar": topBar,
+                    "bottomBar": bottomBar]))
         }
     }
     func reloadData() {

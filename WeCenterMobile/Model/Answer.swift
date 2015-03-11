@@ -47,7 +47,7 @@ class Answer: NSManagedObject {
                 answer.agreementCount = data["agree_count"] as? NSNumber
                 answer.commentCount = data["comment_count"] as? NSNumber
                 answer.evaluation = Evaluation(rawValue: (data["vote_value"] as! NSNumber).integerValue)
-                answer.user = (dataManager.autoGenerate("User", ID: Msr.Data.IntegerValueOfObject((data as! NSDictionary)["uid"]!)) as! User)
+                answer.user = (dataManager.autoGenerate("User", ID: Int(msr_object: (data as! NSDictionary)["uid"]!)) as! User)
                 answer.user!.name = data["user_name"] as? String
                 answer.user!.avatarURI = data["avatar_file"] as? String
                 answer.user!.signature = data["signature"] as? String
@@ -72,7 +72,7 @@ class Answer: NSManagedObject {
                     let commentID = (commentData["id"] as! NSString).integerValue
                     let comment = dataManager.autoGenerate("AnswerComment", ID: commentID) as! AnswerComment
                     if commentData["uid"] != nil {
-                        let userID = Msr.Data.IntegerValueOfObject(commentData["uid"]!)
+                        let userID = Int(msr_object: commentData["uid"]!)
                         comment.user = (dataManager.autoGenerate("User", ID: userID) as! User)
                         comment.user!.name = commentData["user_name"] as? String
                     }
@@ -84,7 +84,7 @@ class Answer: NSManagedObject {
                     comment.answer = self
                     var atID: NSNumber? = nil
                     if let atIDString = commentData["at_user"]?["uid"] as? String {
-                        atID = Msr.Data.IntegerValueOfObject(atIDString)
+                        atID = Int(msr_object: atIDString)
                     }
                     if atID != nil {
                         comment.atUser = (dataManager.autoGenerate("User", ID: atID!) as! User)

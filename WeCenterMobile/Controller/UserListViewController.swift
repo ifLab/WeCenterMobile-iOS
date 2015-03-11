@@ -44,14 +44,14 @@ class UserListViewController: UITableViewController {
     }
     override func loadView() {
         super.loadView()
-        self.listType = .Unknown
         tableView.separatorStyle = .None
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
-        msr_loadMoreControl = Msr.UI.LoadMoreControl()
+        msr_loadMoreControl = MSRLoadMoreControl()
         msr_loadMoreControl!.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
     }
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         refreshControl!.beginRefreshing()
         refresh()
     }
@@ -71,25 +71,36 @@ class UserListViewController: UITableViewController {
         msr_navigationController!.pushViewController(UserViewController(user: users[indexPath.row]), animated: true)
     }
     func refresh() {
-        let success: () -> Void = {
-            self.page = 1
-            self.refreshControl!.endRefreshing()
-            self.tableView.reloadData()
-        }
-        let failure: (NSError) -> Void = {
-            error in
-            self.refreshControl!.endRefreshing()
-            self.tableView.reloadData()
-        }
-        switch listType! {
-        case .UserFollower:
-            user?.fetchFollowers(page: 1, count: count, success: success, failure: failure)
-            break
-        case .UserFollowing:
-            user?.fetchFollowings(page: 1, count: count, success: success, failure: failure)
-            break
-        default:
-            break
+        if user == nil {
+            User.fetch(
+                ID: ID,
+                success: {
+                    [weak self] user in
+                    self?.refresh()
+                    return
+                },
+                failure: nil)
+        } else {
+            let success: () -> Void = {
+                self.page = 1
+                self.refreshControl!.endRefreshing()
+                self.tableView.reloadData()
+            }
+            let failure: (NSError) -> Void = {
+                error in
+                self.refreshControl!.endRefreshing()
+                self.tableView.reloadData()
+            }
+            switch listType! {
+            case .UserFollower:
+                user?.fetchFollowers(page: 1, count: count, success: success, failure: failure)
+                break
+            case .UserFollowing:
+                user?.fetchFollowings(page: 1, count: count, success: success, failure: failure)
+                break
+            default:
+                break
+            }
         }
     }
     func loadMore() {

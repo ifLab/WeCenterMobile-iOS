@@ -89,7 +89,7 @@ class NetworkManager {
         let data = object as! NSDictionary
         if data["errno"] as! NSNumber == successCode {
             let info: AnyObject = data["rsm"]!
-//            NSLog("\(operation.response.URL!)\n\(info)")
+            NSLog("\(operation.response.URL!)\n\(info)")
             success?(info)
             appDelegate.saveContext() // It's not a good idea to be placed here, but this could reduce duplicate codes.
         } else {
@@ -104,7 +104,7 @@ class NetworkManager {
                 domain: website,
                 code: self.internalErrorCode.integerValue,
                 userInfo: userInfo)
-//            NSLog("\(error)")
+            NSLog("\(error)")
             failure?(error) // Needs specification
         }
     }

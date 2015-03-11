@@ -131,17 +131,17 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
             subview.alpha = 0
         }
         if user.id == appDelegate.currentUser!.id {
-            topicButton.footerLabel.text = userStrings["My topics"]
-            followingButton.footerLabel.text = userStrings["My following"]
-            followerButton.footerLabel.text = userStrings["My follower"]
+            topicButton.footerLabel.text = userStrings("My topics")
+            followingButton.footerLabel.text = userStrings("My following")
+            followerButton.footerLabel.text = userStrings("My follower")
         } else {
-            topicButton.footerLabel.text = userStrings["His topics"]
-            followingButton.footerLabel.text = userStrings["His following"]
-            followerButton.footerLabel.text = userStrings["His follower"]
+            topicButton.footerLabel.text = userStrings("His topics")
+            followingButton.footerLabel.text = userStrings("His following")
+            followerButton.footerLabel.text = userStrings("His follower")
         }
-        articleButton.footerLabel.text = userStrings["Article"]
-        askedButton.footerLabel.text = userStrings["Asked"]
-        answeredButton.footerLabel.text = userStrings["Answered"]
+        articleButton.footerLabel.text = userStrings("Article")
+        askedButton.footerLabel.text = userStrings("Asked")
+        answeredButton.footerLabel.text = userStrings("Answered")
         scrollViewDidScroll(bottomView)
     }
     

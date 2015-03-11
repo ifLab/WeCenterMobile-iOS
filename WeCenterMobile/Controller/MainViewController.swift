@@ -9,8 +9,8 @@
 import UIKit
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var contentViewController: Msr.UI.NavigationController! = nil
-    let sidebar = Msr.UI.Sidebar(width: 200, blurEffectStyle: .Light)
+    var contentViewController: MSRNavigationController! = nil
+    let sidebar = MSRSidebar(width: 200, blurEffectStyle: .Light)
     var tableView: UITableView! = nil
     var user: User? {
         return appDelegate.currentUser
@@ -24,7 +24,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     ]
     override init() {
         super.init(nibName: nil, bundle: nil)
-        contentViewController = Msr.UI.NavigationController(rootViewController: viewControllerAtIndex(0))
+        contentViewController = MSRNavigationController(rootViewController: viewControllerAtIndex(0))
         addChildViewController(contentViewController)
     }
     required init(coder aDecoder: NSCoder) {
@@ -103,8 +103,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             return 60
         }
     }
-    var svc: Msr.UI.SegmentedViewController!
-    var sc: Msr.UI.SegmentedControl!
+    var svc: MSRSegmentedViewController!
+    var sc: MSRSegmentedControl!
     var slider: UISlider!
     var button: UIButton!
     var toolBar: UIToolbar!
@@ -125,11 +125,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             slider = UISlider(frame: CGRectZero)
             button = UIButton(frame: CGRectZero)
             toolBar = UIToolbar()
-            sc = Msr.UI.SegmentedControl(segments: [
-                Msr.UI.SegmentedControl.DefaultSegment(title: "个人收藏", image: UIImage.msr_rectangleWithColor(UIColor.blackColor(), size: CGSize(width: 20, height: 20))),
-                Msr.UI.SegmentedControl.DefaultSegment(title: "最近通话", image: UIImage.msr_rectangleWithColor(UIColor.blackColor(), size: CGSize(width: 20, height: 20))),
-                Msr.UI.SegmentedControl.DefaultSegment(title: "通讯录", image: UIImage.msr_rectangleWithColor(UIColor.blackColor(), size: CGSize(width: 20, height: 20))),
-                Msr.UI.SegmentedControl.DefaultSegment(title: "拨号键盘", image: UIImage.msr_rectangleWithColor(UIColor.blackColor(), size: CGSize(width: 20, height: 20)))])
+            sc = MSRSegmentedControl(segments: [
+                MSRDefaultSegment(title: "个人收藏", image: UIImage.msr_rectangleWithColor(UIColor.blackColor(), size: CGSize(width: 20, height: 20))),
+                MSRDefaultSegment(title: "最近通话", image: UIImage.msr_rectangleWithColor(UIColor.blackColor(), size: CGSize(width: 20, height: 20))),
+                MSRDefaultSegment(title: "通讯录", image: UIImage.msr_rectangleWithColor(UIColor.blackColor(), size: CGSize(width: 20, height: 20))),
+                MSRDefaultSegment(title: "拨号键盘", image: UIImage.msr_rectangleWithColor(UIColor.blackColor(), size: CGSize(width: 20, height: 20)))])
             viewController.view.addSubview(sc)
             viewController.view.addSubview(slider)
             viewController.view.addSubview(button)
@@ -155,7 +155,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             button.msr_addHeightConstraintWithValue(44)
             button.addTarget(self, action: "CHANGE_SEGMENTED_CONTROL_TINT_COLOR", forControlEvents: .TouchUpInside)
             sc.backgroundView = toolBar
-            sc.indicator = Msr.UI.UnderlineIndicator()
+            sc.indicator = MSRSegmentedControlUnderlineIndicator()
             break
         case 4:
             var viewControllers = [UIViewController]()
@@ -163,11 +163,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let vc = UIViewController()
                 vc.view = UIScrollView()
                 (vc.view as! UIScrollView).alwaysBounceVertical = true
-                vc.view.backgroundColor = UIColor.msr_randomColor(true)
+                vc.view.backgroundColor = UIColor.msr_randomColor(opaque: true)
                 vc.title = "第\(i)个"
                 viewControllers.append(vc)
             }
-            svc = Msr.UI.SegmentedViewController(viewControllers: viewControllers)
+            svc = MSRSegmentedViewController(viewControllers: viewControllers)
             svc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "ADD", style: .Plain, target: self, action: "ADD_NEW_VIEW_CONTROLLER")
             svc.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "REMOVE", style: .Plain, target: self, action: "REMOVE_VIEW_CONTROLLER")
             viewController = svc
@@ -178,7 +178,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return viewController
     }
     func ADD_NEW_LABEL() {
-        sc.insertSegment(Msr.UI.SegmentedControl.DefaultSegment(title: "NEW", image: UIImage.msr_rectangleWithColor(UIColor.purpleColor(), size: CGSize(width: 20, height: 20))), atIndex: sc.numberOfSegments >= 1 ? 1 : 0, animated: true)
+        sc.insertSegment(MSRDefaultSegment(title: "NEW", image: UIImage.msr_rectangleWithColor(UIColor.purpleColor(), size: CGSize(width: 20, height: 20))), atIndex: sc.numberOfSegments >= 1 ? 1 : 0, animated: true)
     }
     func REMOVE_LABEL() {
         sc.removeSegmentAtIndex(sc.numberOfSegments > 1 ? 1 : 0, animated: true)
@@ -189,7 +189,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let vc = UIViewController()
                 vc.view = UIScrollView()
                 (vc.view as! UIScrollView).alwaysBounceVertical = true
-                vc.view.backgroundColor = UIColor.msr_randomColor(true)
+                vc.view.backgroundColor = UIColor.msr_randomColor(opaque: true)
                 vc.title = "NEW"
                 return vc
             }(),
@@ -216,7 +216,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         println("index: \(sc.selectedSegmentIndex), position: \(sc.indicatorPosition), index changed: \(sc.selectedSegmentIndexChanged), by user interaction: \(sc.valueChangedByUserInteraction)")
     }
     func CHANGE_SEGMENTED_CONTROL_TINT_COLOR() {
-        sc.tintColor = UIColor.msr_randomColor(true)
+        sc.tintColor = UIColor.msr_randomColor(opaque: true)
         button.setBackgroundImage(UIImage.msr_rectangleWithColor(sc.tintColor, size: CGSize(width: 1, height: 1)), forState: .Normal)
     }
     func showSidebar() {

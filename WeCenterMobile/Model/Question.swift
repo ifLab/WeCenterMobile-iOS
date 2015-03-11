@@ -53,7 +53,7 @@ class Question: NSManagedObject {
                     answer.body = value["answer_content"] as? String
                     answer.agreementCount = value["agree_count"] as? NSNumber
                     if answer.user == nil {
-                        answer.user = (dataManager.autoGenerate("User", ID: Msr.Data.IntegerValueOfObject(value["uid"]!)) as! User)
+                        answer.user = (dataManager.autoGenerate("User", ID: Int(msr_object: value["uid"]!)) as! User)
                     }
                     answer.user!.name = value["user_name"] as? String
                     answer.user!.avatarURI = value["avatar_file"] as? String

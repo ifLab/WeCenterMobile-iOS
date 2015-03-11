@@ -10,9 +10,17 @@ import Foundation
 import UIKit
 import CoreData
 
-let userStrings = Msr.Data.LocalizedStrings(module: "User", bundle: NSBundle.mainBundle())
-let discoveryStrings = Msr.Data.LocalizedStrings(module: "Discovery", bundle: NSBundle.mainBundle())
-let welcomeStrings = Msr.Data.LocalizedStrings(module: "Welcome", bundle: NSBundle.mainBundle())
+let userStrings: (String) -> String = {
+    return NSLocalizedString($0, tableName: "User", comment: "")
+}
+
+let discoveryStrings: (String) -> String = {
+    return NSLocalizedString($0, tableName: "Discovery", comment: "")
+}
+
+let welcomeStrings: (String) -> String = {
+    return NSLocalizedString($0, tableName: "Welcome", comment: "")
+}
 
 let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
 let networkManager = NetworkManager(configuration: NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("Configuration", ofType: "plist")!)!)

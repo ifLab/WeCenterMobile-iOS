@@ -20,7 +20,7 @@ class TestViewController: UITableViewController {
     }
     override func loadView() {
         super.loadView()
-        let color = UIColor.msr_randomColor(true)
+        let color = UIColor.msr_randomColor(opaque: true)
         var red = CGFloat(0)
         var green = CGFloat(0)
         var blue = CGFloat(0)

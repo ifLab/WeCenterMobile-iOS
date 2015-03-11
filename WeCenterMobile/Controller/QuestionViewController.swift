@@ -186,7 +186,7 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
             if answer.user?.avatar != nil {
                 answerCell.avatarButton.setImage(answer.user!.avatar, forState: .Normal)
             } else {
-                answer.user!.fetchAvatar(
+                answer.user?.fetchAvatar(
                     success: {
                         if (answerCell.avatarButton.msr_userInfo as! User).id == answer.user!.id {
                             answerCell.avatarButton.setImage(answer.user!.avatar, forState: .Normal)

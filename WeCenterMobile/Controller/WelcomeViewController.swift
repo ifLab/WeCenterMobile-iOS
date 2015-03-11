@@ -24,9 +24,8 @@ class WelcomeViewController: UIViewController {
         super.loadView()
         let welcomeView = WelcomeView()
         welcomeView.loginButton.addTarget(self, action: "showLoginView", forControlEvents: .TouchUpInside)
-        typealias AlertAction = Msr.UI.AlertAction
-        loginView.addAction(AlertAction(title: welcomeStrings["Cancel"], style: .Cancel) { action in })
-        loginView.addAction(AlertAction(title: welcomeStrings["Login"], style: .Default) {
+        loginView.addAction(MSRAlertAction(title: welcomeStrings("Cancel"), style: .Cancel) { action in })
+        loginView.addAction(MSRAlertAction(title: welcomeStrings("Login"), style: .Default) {
             action in
             User.loginWithName(self.loginView.usernameField.text,
                 password: self.loginView.passwordField.text,

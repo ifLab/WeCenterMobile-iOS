@@ -12,7 +12,7 @@ class AnswerCommentListViewController: UITableViewController {
     private var answer: Answer!
     let cellReuseIdentifier = "CommentCell"
     let cellNibName = "CommentCell"
-    var keyboardBar: Msr.UI.KeyboardBar!
+    var keyboardBar: MSRKeyboardBar!
     let textField = UITextField()
     let publishButton = UIButton()
     init(answer: Answer) {
@@ -24,7 +24,7 @@ class AnswerCommentListViewController: UITableViewController {
     }
     override func loadView() {
         super.loadView()
-        keyboardBar = Msr.UI.KeyboardBar()
+        keyboardBar = MSRKeyboardBar()
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         tableView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
@@ -54,7 +54,7 @@ class AnswerCommentListViewController: UITableViewController {
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        msr_navigationControllerWrapperController!.view.addSubview(keyboardBar)
+        msr_navigationWrapperController!.view.addSubview(keyboardBar)
     }
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

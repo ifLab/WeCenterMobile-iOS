@@ -33,7 +33,7 @@ class HomeViewController: UITableViewController {
         super.loadView()
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
-        msr_loadMoreControl = Msr.UI.LoadMoreControl()
+        msr_loadMoreControl = MSRLoadMoreControl()
         msr_loadMoreControl!.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
         title = "首页" // Needs localization
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List-Dots"), style: .Bordered, target: self, action: "showSidebar")

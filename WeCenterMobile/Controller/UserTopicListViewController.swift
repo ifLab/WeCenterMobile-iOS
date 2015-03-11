@@ -23,7 +23,7 @@ class UserTopicListViewController: UITableViewController {
         super.loadView()
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
-        msr_loadMoreControl = Msr.UI.LoadMoreControl()
+        msr_loadMoreControl = MSRLoadMoreControl()
         msr_loadMoreControl!.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
         tableView.separatorStyle = .None
     }
