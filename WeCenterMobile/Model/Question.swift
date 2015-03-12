@@ -16,6 +16,7 @@ class Question: NSManagedObject {
     @NSManaged var id: NSNumber
     @NSManaged var title: String?
     @NSManaged var answers: NSSet
+    @NSManaged var featuredObject: FeaturedQuestionAnswer?
     @NSManaged var questionFocusingActions: NSSet
     @NSManaged var questionPublishmentActions: NSSet
     @NSManaged var topics: NSSet
@@ -24,12 +25,12 @@ class Question: NSManagedObject {
     var focusing: Bool? = nil
     
     class func get(#ID: NSNumber, error: NSErrorPointer) -> Question? {
-        return dataManager.fetch("Question", ID: ID, error: error) as? Question
+        return DataManager.defaultManager!.fetch("Question", ID: ID, error: error) as? Question
     }
     
     class func fetch(#ID: NSNumber, success: ((Question) -> Void)?, failure: ((NSError) -> Void)?) {
-        let question = dataManager.autoGenerate("Question", ID: ID) as! Question
-        networkManager.GET("Question Detail",
+        let question = DataManager.defaultManager!.autoGenerate("Question", ID: ID) as! Question
+        NetworkManager.defaultManager!.GET("Question Detail",
             parameters: [
                 "id": ID
             ],
@@ -46,14 +47,14 @@ class Question: NSManagedObject {
                     let answerID = value["answer_id"] as! NSNumber
                     var answer: Answer! = answerArray.filter({ $0.id == answerID }).first
                     if answer == nil {
-                        answer = dataManager.autoGenerate("Answer", ID: answerID) as! Answer
+                        answer = DataManager.defaultManager!.autoGenerate("Answer", ID: answerID) as! Answer
                         answerArray.append(answer)
                     }
                     answer.question = question
                     answer.body = value["answer_content"] as? String
                     answer.agreementCount = value["agree_count"] as? NSNumber
                     if answer.user == nil {
-                        answer.user = (dataManager.autoGenerate("User", ID: Int(msr_object: value["uid"]!)) as! User)
+                        answer.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: value["uid"]!)) as! User)
                     }
                     answer.user!.name = value["user_name"] as? String
                     answer.user!.avatarURI = value["avatar_file"] as? String
@@ -64,7 +65,7 @@ class Question: NSManagedObject {
                     let topicID = value["topic_id"] as! NSNumber
                     var topic: Topic! = topicArray.filter({ $0.id == topicID }).first
                     if topic == nil {
-                        topic = dataManager.autoGenerate("Topic", ID: topicID) as! Topic
+                        topic = DataManager.defaultManager!.autoGenerate("Topic", ID: topicID) as! Topic
                         topicArray.append(topic)
                     }
                     topic.title = value["topic_title"] as? String
@@ -75,7 +76,7 @@ class Question: NSManagedObject {
     }
     
     func toggleFocus(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
-        networkManager.GET("Focus Question",
+        NetworkManager.defaultManager!.GET("Focus Question",
             parameters: [
                 "question_id": id
             ],

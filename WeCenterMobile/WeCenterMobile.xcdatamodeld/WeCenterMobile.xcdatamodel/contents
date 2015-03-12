@@ -14,6 +14,7 @@
         <relationship name="answerActions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AnswerAction" inverseName="answer" inverseEntity="AnswerAction" syncable="YES"/>
         <relationship name="answerAgreementActions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AnswerAgreementAction" inverseName="answer" inverseEntity="AnswerAgreementAction" syncable="YES"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AnswerComment" inverseName="answer" inverseEntity="AnswerComment" syncable="YES"/>
+        <relationship name="featuredObject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FeaturedQuestionAnswer" inverseName="answers" inverseEntity="FeaturedQuestionAnswer" syncable="YES"/>
         <relationship name="question" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Question" inverseName="answers" inverseEntity="Question" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="answers" inverseEntity="User" syncable="YES"/>
     </entity>
@@ -40,6 +41,7 @@
         <relationship name="articleAgreementActions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ArticleAgreementAction" inverseName="article" inverseEntity="ArticleAgreementAction" syncable="YES"/>
         <relationship name="articlePublishmentActions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ArticlePublishmentAction" inverseName="article" inverseEntity="ArticlePublishmentAction" syncable="YES"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ArticleComment" inverseName="article" inverseEntity="ArticleComment" syncable="YES"/>
+        <relationship name="featuredObject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FeaturedArticle" inverseName="article" inverseEntity="FeaturedArticle" syncable="YES"/>
         <relationship name="topics" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Topic" inverseName="articles" inverseEntity="Topic" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="articles" inverseEntity="User" syncable="YES"/>
     </entity>
@@ -58,12 +60,23 @@
     <entity name="ArticlePublishmentAction" representedClassName="WeCenterMobile.ArticlePublishmentAction" parentEntity="Action" syncable="YES">
         <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="articlePublishmentActions" inverseEntity="Article" syncable="YES"/>
     </entity>
+    <entity name="FeaturedArticle" representedClassName="FeaturedArticle" parentEntity="FeaturedObject" syncable="YES">
+        <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="featuredObject" inverseEntity="Article" syncable="YES"/>
+    </entity>
+    <entity name="FeaturedObject" representedClassName="FeaturedObject" isAbstract="YES" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="FeaturedQuestionAnswer" representedClassName="FeaturedQuestionAnswer" parentEntity="FeaturedObject" syncable="YES">
+        <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Answer" inverseName="featuredObject" inverseEntity="Answer" syncable="YES"/>
+        <relationship name="question" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Question" inverseName="featuredObject" inverseEntity="Question" syncable="YES"/>
+    </entity>
     <entity name="Question" representedClassName="WeCenterMobile.Question" syncable="YES">
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="focusCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Answer" inverseName="question" inverseEntity="Answer" syncable="YES"/>
+        <relationship name="featuredObject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FeaturedQuestionAnswer" inverseName="question" inverseEntity="FeaturedQuestionAnswer" syncable="YES"/>
         <relationship name="questionFocusingActions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="QuestionFocusingAction" inverseName="question" inverseEntity="QuestionFocusingAction" syncable="YES"/>
         <relationship name="questionPublishmentActions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="QuestionPublishmentAction" inverseName="question" inverseEntity="QuestionPublishmentAction" syncable="YES"/>
         <relationship name="topics" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Topic" inverseName="questions" inverseEntity="Topic" syncable="YES"/>
@@ -132,18 +145,21 @@
     <fetchRequest name="User_By_ID" entity="User" predicateString="id == $ID"/>
     <elements>
         <element name="Action" positionX="450" positionY="216" width="128" height="90"/>
-        <element name="Answer" positionX="450" positionY="522" width="128" height="195"/>
+        <element name="Answer" positionX="450" positionY="522" width="128" height="210"/>
         <element name="AnswerAction" positionX="450" positionY="369" width="128" height="60"/>
         <element name="AnswerAgreementAction" positionX="450" positionY="437" width="128" height="60"/>
         <element name="AnswerComment" positionX="448" positionY="729" width="128" height="150"/>
-        <element name="Article" positionX="583" positionY="521" width="128" height="180"/>
+        <element name="Article" positionX="583" positionY="521" width="128" height="195"/>
         <element name="ArticleAgreementAction" positionX="583" positionY="437" width="128" height="60"/>
         <element name="ArticleComment" positionX="583" positionY="711" width="128" height="150"/>
         <element name="ArticlePublishmentAction" positionX="583" positionY="369" width="128" height="60"/>
-        <element name="Question" positionX="315" positionY="522" width="128" height="180"/>
+        <element name="Question" positionX="315" positionY="522" width="128" height="195"/>
         <element name="QuestionFocusingAction" positionX="315" positionY="437" width="128" height="60"/>
         <element name="QuestionPublishmentAction" positionX="315" positionY="369" width="128" height="60"/>
         <element name="Topic" positionX="720" positionY="369" width="128" height="178"/>
         <element name="User" positionX="180" positionY="368" width="128" height="463"/>
+        <element name="FeaturedQuestionAnswer" positionX="396" positionY="378" width="128" height="75"/>
+        <element name="FeaturedArticle" positionX="405" positionY="387" width="128" height="60"/>
+        <element name="FeaturedObject" positionX="414" positionY="396" width="128" height="60"/>
     </elements>
 </model>

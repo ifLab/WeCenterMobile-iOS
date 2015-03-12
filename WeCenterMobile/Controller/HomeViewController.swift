@@ -123,7 +123,7 @@ class HomeViewController: UITableViewController {
             count: count,
             success: {
                 self.page = 1
-                self.actions = (dataManager.fetchAll("Action", error: nil) as! [Action]).sorted() {
+                self.actions = (DataManager.defaultManager!.fetchAll("Action", error: nil) as! [Action]).sorted() {
                     $0.date.timeIntervalSince1970 > $1.date.timeIntervalSince1970
                 }
 //                for (i, user) in enumerate(map(self.actions, { $0.user }))  {
@@ -158,7 +158,7 @@ class HomeViewController: UITableViewController {
             count: count,
             success: {
                 ++self.page
-                self.actions = (dataManager.fetchAll("Action", error: nil) as! [Action]).sorted() {
+                self.actions = (DataManager.defaultManager!.fetchAll("Action", error: nil) as! [Action]).sorted() {
                     $0.date.timeIntervalSince1970 > $1.date.timeIntervalSince1970
                 }
                 self.tableView.reloadData()

@@ -8,10 +8,18 @@
 
 import Foundation
 
-class NetworkManager {
-    init(configuration: NSDictionary) {
+class NetworkManager: NSObject {
+    required init?(configuration: NSDictionary) {
         self.configuration = configuration
+        super.init()
+        if configuration["Website"] as? String == nil
+        || configuration["Path"] as? [String: String] == nil
+        || configuration["Success Code"] as? NSNumber == nil
+        || configuration["Internal Error Code"] as? NSNumber == nil {
+            return nil
+        }
     }
+    static var defaultManager = NetworkManager(configuration: NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("Configuration", ofType: "plist")!)!)
     func GET(key: String,
         parameters: NSDictionary?,
         success: ((AnyObject) -> Void)?,
@@ -37,25 +45,24 @@ class NetworkManager {
         POSTParameters: NSDictionary?,
         success: ((AnyObject) -> Void)?,
         failure: ((NSError) -> Void)?) {
-            let application = UIApplication.sharedApplication()
-            application.networkActivityIndicatorVisible = true
             var error: NSError? = nil
             let URLString = manager.requestSerializer.requestWithMethod("GET", URLString: paths[key]!, parameters: GETParameters, error: &error).URL?.absoluteString
             if error != nil || URLString == nil {
                 failure?(error ?? NSError()) // Needs specification
                 return
             }
+            AFNetworkActivityIndicatorManager.sharedManager().incrementActivityCount()
             manager.POST(URLString!,
                 parameters: POSTParameters,
                 constructingBodyWithBlock: nil,
                 success: {
                     operation, data in
-                    application.networkActivityIndicatorVisible = false
+                    AFNetworkActivityIndicatorManager.sharedManager().decrementActivityCount()
                     self.handleSuccess(operation: operation, data: data as! NSData, success: success, failure: failure)
                 },
                 failure: {
                     operation, error in
-                    application.networkActivityIndicatorVisible = false
+                    AFNetworkActivityIndicatorManager.sharedManager().decrementActivityCount()
                     failure?(error)
                 })
     }
@@ -80,10 +87,12 @@ class NetworkManager {
             if operation.error != nil {
                 userInfo[NSUnderlyingErrorKey] = operation.error
             }
-            failure?(NSError(
+            let error = NSError(
                 domain: website,
                 code: self.internalErrorCode.integerValue,
-                userInfo: userInfo)) // Needs specification
+                userInfo: userInfo)
+            NSLog("\(operation.response.URL!)\n\(error)\n\(NSString(data: data, encoding: NSUTF8StringEncoding)))")
+            failure?(error)
             return
         }
         let data = object as! NSDictionary
@@ -91,7 +100,7 @@ class NetworkManager {
             let info: AnyObject = data["rsm"]!
             NSLog("\(operation.response.URL!)\n\(info)")
             success?(info)
-            appDelegate.saveContext() // It's not a good idea to be placed here, but this could reduce duplicate codes.
+            DataManager.defaultManager!.saveChanges(nil) // It's not a good idea to be placed here, but this could reduce duplicate codes.
         } else {
             var userInfo = [
                 NSLocalizedDescriptionKey: data["err"]!,
@@ -105,18 +114,19 @@ class NetworkManager {
                 code: self.internalErrorCode.integerValue,
                 userInfo: userInfo)
             NSLog("\(error)")
-            failure?(error) // Needs specification
+            failure?(error)
         }
     }
-    let configuration: NSDictionary
+    private let configuration: NSDictionary
     var website: String {
         return configuration["Website"] as! String
     }
     var paths: [String: String] {
         return configuration["Path"] as! [String: String]
     }
-    lazy var manager: AFHTTPRequestOperationManager = {
-        let manager = AFHTTPRequestOperationManager(baseURL: NSURL(string: self.website))
+    private lazy var manager: AFHTTPRequestOperationManager = {
+        [weak self] in
+        let manager = AFHTTPRequestOperationManager(baseURL: NSURL(string: self?.website ?? ""))
         manager.responseSerializer = AFHTTPResponseSerializer()
         return manager
     }()

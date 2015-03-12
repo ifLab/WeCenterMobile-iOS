@@ -17,6 +17,7 @@ class Article: NSManagedObject {
     @NSManaged var title: String?
     @NSManaged var articleAgreementActions: NSSet
     @NSManaged var articlePublishmentActions: NSSet
+    @NSManaged var featuredObject: FeaturedArticle
     @NSManaged var topics: NSSet
     @NSManaged var user: User?
     @NSManaged var comments: NSSet

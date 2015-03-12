@@ -24,7 +24,7 @@ class Topic: NSManagedObject {
     var focused: Bool? = nil
     
     var imageURL: String? {
-        return (imageURI == nil) ? nil : networkManager.website + networkManager.paths["Topic Image"]! + imageURI!
+        return (imageURI == nil) ? nil : NetworkManager.defaultManager!.website + NetworkManager.defaultManager!.paths["Topic Image"]! + imageURI!
     }
     
     var image: UIImage? {
@@ -37,12 +37,12 @@ class Topic: NSManagedObject {
     }
     
     class func get(#ID: NSNumber, error: NSErrorPointer) -> Topic? {
-        return dataManager.fetch("Topic", ID: ID, error: error) as? Topic
+        return DataManager.defaultManager!.fetch("Topic", ID: ID, error: error) as? Topic
     }
     
     class func fetch(#ID: NSNumber, success: ((Topic) -> Void)?, failure: ((NSError) -> Void)?) {
-        let topic = dataManager.autoGenerate("Topic", ID: ID) as! Topic
-        networkManager.GET("Topic Detail",
+        let topic = DataManager.defaultManager!.autoGenerate("Topic", ID: ID) as! Topic
+        NetworkManager.defaultManager!.GET("Topic Detail",
             parameters: [
                 "uid": appDelegate.currentUser!.id,
                 "topic_id": ID
@@ -72,7 +72,7 @@ class Topic: NSManagedObject {
     }
     
     func cancleFocus(#userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
-        networkManager.POST("Focus Topic",
+        NetworkManager.defaultManager!.POST("Focus Topic",
             parameters: [
                 "uid": userID,
                 "topic_id": id,
@@ -87,7 +87,7 @@ class Topic: NSManagedObject {
     }
     
     func focus(#userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
-        networkManager.POST("Focus Topic",
+        NetworkManager.defaultManager!.POST("Focus Topic",
             parameters: [
                 "uid": userID,
                 "topic_id": id,
@@ -102,7 +102,7 @@ class Topic: NSManagedObject {
     }
     
     func fetchOutstandingAnswers(#success: (([Answer]) -> Void)?, failure: ((NSError) -> Void)?) {
-        networkManager.GET("Topic Outstanding Answer List",
+        NetworkManager.defaultManager!.GET("Topic Outstanding Answer List",
             parameters: [
                 "id": id
             ],
@@ -116,7 +116,7 @@ class Topic: NSManagedObject {
                         let questionID = questionValue["question_id"] as! NSNumber
                         var question: Question! = questionArray.filter({ $0.id == questionID }).first
                         if question == nil {
-                            question = dataManager.autoGenerate("Question", ID: questionID) as? Question
+                            question = DataManager.defaultManager!.autoGenerate("Question", ID: questionID) as? Question
                             questionArray.append(question)
                         }
                         question.title = questionValue["question_content"] as? String
@@ -126,14 +126,14 @@ class Topic: NSManagedObject {
                         let answerID = answerValue["answer_id"] as! NSNumber
                         var answer: Answer! = answerArray.filter({ $0.id == answerID }).first
                         if answer == nil {
-                            answer = dataManager.autoGenerate("Answer", ID: answerID) as? Answer
+                            answer = DataManager.defaultManager!.autoGenerate("Answer", ID: answerID) as? Answer
                             answerArray.append(answer)
                         }
                         answer.body = answerValue["answer_content"] as? String
                         answer.agreementCount = answerValue["agree_count"] as? NSNumber
                         question.answers = NSSet(array: answerArray)
                         let userID = answerValue["uid"] as! NSNumber
-                        answer.user = (dataManager.autoGenerate("User", ID: userID) as! User)
+                        answer.user = (DataManager.defaultManager!.autoGenerate("User", ID: userID) as! User)
                         answer.user!.avatarURI = answerValue["avatar_file"] as? String
                         answers.append(answer)
                     }

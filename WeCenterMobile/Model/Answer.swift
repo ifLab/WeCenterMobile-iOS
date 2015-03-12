@@ -19,6 +19,7 @@ class Answer: NSManagedObject {
     @NSManaged var answerActions: NSSet
     @NSManaged var answerAgreementActions: NSSet
     @NSManaged var comments: NSSet
+    @NSManaged var featuredObject: FeaturedQuestionAnswer?
     @NSManaged var question: Question?
     @NSManaged var user: User?
     
@@ -30,12 +31,12 @@ class Answer: NSManagedObject {
     var evaluation: Evaluation? = nil
     
     class func get(#ID: NSNumber, error: NSErrorPointer) -> Answer? {
-        return dataManager.fetch("Answer", ID: ID, error: error) as? Answer
+        return DataManager.defaultManager!.fetch("Answer", ID: ID, error: error) as? Answer
     }
     
     class func fetch(#ID: NSNumber, success: ((Answer) -> Void)?, failure: ((NSError) -> Void)?) {
-        let answer = dataManager.autoGenerate("Answer", ID: ID) as! Answer
-        networkManager.GET("Answer Detail",
+        let answer = DataManager.defaultManager!.autoGenerate("Answer", ID: ID) as! Answer
+        NetworkManager.defaultManager!.GET("Answer Detail",
             parameters: [
                 "id": ID
             ],
@@ -47,7 +48,7 @@ class Answer: NSManagedObject {
                 answer.agreementCount = data["agree_count"] as? NSNumber
                 answer.commentCount = data["comment_count"] as? NSNumber
                 answer.evaluation = Evaluation(rawValue: (data["vote_value"] as! NSNumber).integerValue)
-                answer.user = (dataManager.autoGenerate("User", ID: Int(msr_object: (data as! NSDictionary)["uid"]!)) as! User)
+                answer.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: (data as! NSDictionary)["uid"]!)) as! User)
                 answer.user!.name = data["user_name"] as? String
                 answer.user!.avatarURI = data["avatar_file"] as? String
                 answer.user!.signature = data["signature"] as? String
@@ -57,7 +58,7 @@ class Answer: NSManagedObject {
     }
     
     func fetchComments(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
-        networkManager.GET("Answer Comment List",
+        NetworkManager.defaultManager!.GET("Answer Comment List",
             parameters: [
                 "id": id
             ],
@@ -70,10 +71,10 @@ class Answer: NSManagedObject {
                 var array = [AnswerComment]()
                 for commentData in commentsData {
                     let commentID = (commentData["id"] as! NSString).integerValue
-                    let comment = dataManager.autoGenerate("AnswerComment", ID: commentID) as! AnswerComment
+                    let comment = DataManager.defaultManager!.autoGenerate("AnswerComment", ID: commentID) as! AnswerComment
                     if commentData["uid"] != nil {
                         let userID = Int(msr_object: commentData["uid"]!)
-                        comment.user = (dataManager.autoGenerate("User", ID: userID) as! User)
+                        comment.user = (DataManager.defaultManager!.autoGenerate("User", ID: userID) as! User)
                         comment.user!.name = commentData["user_name"] as? String
                     }
                     comment.body = commentData["content"] as? String
@@ -87,7 +88,7 @@ class Answer: NSManagedObject {
                         atID = Int(msr_object: atIDString)
                     }
                     if atID != nil {
-                        comment.atUser = (dataManager.autoGenerate("User", ID: atID!) as! User)
+                        comment.atUser = (DataManager.defaultManager!.autoGenerate("User", ID: atID!) as! User)
                         comment.atUser!.name = (commentData["at_user"]?["user_name"] as! String)
                     }
                     array.append(comment)

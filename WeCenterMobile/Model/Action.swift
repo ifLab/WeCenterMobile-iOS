@@ -9,6 +9,15 @@
 import Foundation
 import CoreData
 
+enum ActionTypeID: Int {
+    case QuestionPublishment = 101
+    case QuestionFocusing = 105
+    case Answer = 201
+    case AnswerAgreement = 204
+    case ArticlePublishment = 501
+    case ArticleAgreement = 502
+}
+
 class Action: NSManagedObject {
 
     @NSManaged var date: NSDate
@@ -16,7 +25,7 @@ class Action: NSManagedObject {
     @NSManaged var user: User?
     
     class func get(#ID: NSNumber, error: NSErrorPointer) -> Action? {
-        return dataManager.fetch("Action", ID: ID, error: error) as? Action
+        return DataManager.defaultManager!.fetch("Action", ID: ID, error: error) as? Action
     }
     
 }
