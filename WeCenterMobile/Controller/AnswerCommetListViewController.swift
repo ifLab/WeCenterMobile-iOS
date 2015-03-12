@@ -9,7 +9,15 @@
 import UIKit
 
 class AnswerCommentListViewController: UITableViewController {
-    private var answer: Answer!
+    private var answer: Answer! {
+        didSet {
+            if answer != nil {
+                let defaultDate = NSDate(timeIntervalSince1970: 0)
+                comments = sorted(answer.comments) { ($0.date ?? defaultDate).timeIntervalSince1970 >= ($1.date ?? defaultDate).timeIntervalSince1970 }
+            }
+        }
+    }
+    var comments: [AnswerComment] = []
     let cellReuseIdentifier = "CommentCell"
     let cellNibName = "CommentCell"
     var keyboardBar: MSRKeyboardBar!
@@ -60,10 +68,10 @@ class AnswerCommentListViewController: UITableViewController {
         return 1
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return answer.comments.count
+        return comments.count
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let comment = answer.comments.allObjects[indexPath.row] as! AnswerComment
+        let comment = comments[indexPath.row]
         var cell: CommentCell! = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as? CommentCell
         if cell == nil {
             cell = NSBundle.mainBundle().loadNibNamed(cellNibName, owner: self, options: nil).first as! CommentCell
@@ -72,7 +80,7 @@ class AnswerCommentListViewController: UITableViewController {
         return cell
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let comment = answer.comments.allObjects[indexPath.row] as! AnswerComment
+        let comment = comments[indexPath.row]
         struct _Static {
             static var cell: CommentCell!
             static var id: dispatch_once_t = 0

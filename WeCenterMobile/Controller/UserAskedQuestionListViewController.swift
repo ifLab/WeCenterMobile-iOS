@@ -10,7 +10,15 @@ import UIKit
 
 class UserAskedQuestionListViewController: UITableViewController {
     
-    var user: User!
+    var user: User! {
+        didSet {
+            if user != nil {
+                let defaultDate = NSDate(timeIntervalSince1970: 0)
+                questions = sorted(user.questions) { ($0.date ?? defaultDate).timeIntervalSince1970 >= ($1.date ?? defaultDate).timeIntervalSince1970 }
+            }
+        }
+    }
+    var questions: [Question] = []
     var page = 0
     let count = 20
     
@@ -43,12 +51,12 @@ class UserAskedQuestionListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return min(page * count, user.questions.count)
+        return min(page * count, questions.count)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = BFPaperTableViewCell(style: .Subtitle, reuseIdentifier: "")
-        let question = user.questions.allObjects[indexPath.row] as! Question
+        let question = questions[indexPath.row]
         cell.textLabel!.text = question.title
         cell.detailTextLabel!.text = question.body
         return cell
@@ -59,7 +67,7 @@ class UserAskedQuestionListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        msr_navigationController!.pushViewController(QuestionViewController(question: user.questions.allObjects[indexPath.row] as! Question), animated: true)
+        msr_navigationController!.pushViewController(QuestionViewController(question: questions[indexPath.row]), animated: true)
     }
     
     internal func refresh() {

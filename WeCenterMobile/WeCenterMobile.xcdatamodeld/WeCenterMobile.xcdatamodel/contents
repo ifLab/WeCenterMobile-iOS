@@ -72,9 +72,12 @@
     </entity>
     <entity name="Question" representedClassName="WeCenterMobile.Question" syncable="YES">
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="focusCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updateDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="viewCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Answer" inverseName="question" inverseEntity="Answer" syncable="YES"/>
         <relationship name="featuredObject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FeaturedQuestionAnswer" inverseName="question" inverseEntity="FeaturedQuestionAnswer" syncable="YES"/>
         <relationship name="questionFocusingActions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="QuestionFocusingAction" inverseName="question" inverseEntity="QuestionFocusingAction" syncable="YES"/>
@@ -153,13 +156,13 @@
         <element name="ArticleAgreementAction" positionX="583" positionY="437" width="128" height="60"/>
         <element name="ArticleComment" positionX="583" positionY="711" width="128" height="150"/>
         <element name="ArticlePublishmentAction" positionX="583" positionY="369" width="128" height="60"/>
-        <element name="Question" positionX="315" positionY="522" width="128" height="195"/>
+        <element name="FeaturedArticle" positionX="405" positionY="387" width="128" height="60"/>
+        <element name="FeaturedObject" positionX="414" positionY="396" width="128" height="60"/>
+        <element name="FeaturedQuestionAnswer" positionX="396" positionY="378" width="128" height="75"/>
+        <element name="Question" positionX="315" positionY="522" width="128" height="240"/>
         <element name="QuestionFocusingAction" positionX="315" positionY="437" width="128" height="60"/>
         <element name="QuestionPublishmentAction" positionX="315" positionY="369" width="128" height="60"/>
         <element name="Topic" positionX="720" positionY="369" width="128" height="178"/>
         <element name="User" positionX="180" positionY="368" width="128" height="463"/>
-        <element name="FeaturedQuestionAnswer" positionX="396" positionY="378" width="128" height="75"/>
-        <element name="FeaturedArticle" positionX="405" positionY="387" width="128" height="60"/>
-        <element name="FeaturedObject" positionX="414" positionY="396" width="128" height="60"/>
     </elements>
 </model>

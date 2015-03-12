@@ -28,17 +28,17 @@ class User: NSManagedObject {
     @NSManaged var signature: String?
     @NSManaged var thankCount: NSNumber?
     @NSManaged var topicFocusCount: NSNumber?
-    @NSManaged var actions: NSSet
-    @NSManaged var answers: NSSet
-    @NSManaged var articles: NSSet
-    @NSManaged var answerComments: NSSet
-    @NSManaged var answerCommentsMentioned: NSSet
-    @NSManaged var followers: NSSet
-    @NSManaged var followings: NSSet
-    @NSManaged var questions: NSSet
-    @NSManaged var topics: NSSet
-    @NSManaged var articleComments: NSSet
-    @NSManaged var articleCommentsMentioned: NSSet
+    @NSManaged var actions: Set<Action>
+    @NSManaged var answers: Set<Answer>
+    @NSManaged var articles: Set<Article>
+    @NSManaged var answerComments: Set<AnswerComment>
+    @NSManaged var answerCommentsMentioned: Set<AnswerComment>
+    @NSManaged var followers: Set<User>
+    @NSManaged var followings: Set<User>
+    @NSManaged var questions: Set<Question>
+    @NSManaged var topics: Set<Topic>
+    @NSManaged var articleComments: Set<ArticleComment>
+    @NSManaged var articleCommentsMentioned: Set<ArticleComment>
     
     enum Gender: Int {
         case Male = 1
@@ -99,7 +99,8 @@ class User: NSManagedObject {
                 user.answerFavoriteCount = (data["answer_favorite_count"] as! NSString).integerValue
                 user.followed = (data["has_focus"] as! NSNumber == 1)
                 success?(user)
-            }, failure: failure)
+            },
+            failure: failure)
     }
     
     func fetchFollowings(#page: Int, count: Int, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
@@ -112,19 +113,14 @@ class User: NSManagedObject {
             success: {
                 data in
                 if (data["total_rows"] as! NSString).integerValue > 0 {
-                    var array = self.followings.allObjects as! [User]
                     for value in data["rows"] as! [NSDictionary] {
                         let userID = (value["uid"] as! NSString).integerValue
-                        var user: User! = array.filter({ $0.id == userID }).first
-                        if user == nil {
-                            user = DataManager.defaultManager!.autoGenerate("User", ID: (value["uid"] as! NSString).integerValue) as! User
-                            array.append(user)
-                        }
+                        let user = DataManager.defaultManager!.autoGenerate("User", ID: (value["uid"] as! NSString).integerValue) as! User
                         user.name = value["user_name"] as? String
                         user.avatarURI = value["avatar_file"] as? String
                         user.signature = value["signature"] as? String
+                        self.followings.insert(user)
                     }
-                    self.followings = NSSet(array: array)
                     success?()
                 } else {
                     failure?(NSError()) // Needs specification
@@ -143,19 +139,14 @@ class User: NSManagedObject {
             success: {
                 data in
                 if (data["total_rows"] as! NSString).integerValue > 0 {
-                    var array = self.followers.allObjects as! [User]
                     for value in data["rows"] as! [NSDictionary] {
                         let userID = (value["uid"] as! NSString).integerValue
-                        var user: User! = array.filter({ $0.id == userID }).first
-                        if user == nil {
-                            user = DataManager.defaultManager!.autoGenerate("User", ID: (value["uid"] as! NSString).integerValue) as! User
-                            array.append(user)
-                        }
+                        let user = DataManager.defaultManager!.autoGenerate("User", ID: (value["uid"] as! NSString).integerValue) as! User
                         user.name = value["user_name"] as? String
                         user.avatarURI = value["avatar_file"] as? String
                         user.signature = value["signature"] as? String
+                        self.followers.insert(user)
                     }
-                    self.followers = NSSet(array: array)
                     success?()
                 } else {
                     failure?(NSError()) // Needs specification
@@ -174,20 +165,14 @@ class User: NSManagedObject {
             success: {
                 data in
                 if (((data["total_rows"] as? NSString)?.integerValue) ?? (data["total_rows"] as? NSNumber)?.integerValue ?? 0) > 0 {
-                    var array = self.topics.allObjects as! [Topic]
                     for value in data["rows"] as! [NSDictionary] {
                         let topicID = (value["topic_id"] as! NSString).integerValue
-                        var topic: Topic! = array.filter({ $0.id == topicID }).first
-                        if topic == nil {
-                            topic = DataManager.defaultManager!.autoGenerate("Topic", ID: topicID) as! Topic
-                            array.append(topic)
-                        }
+                        let topic = DataManager.defaultManager!.autoGenerate("Topic", ID: topicID) as! Topic
                         topic.title = value["topic_title"] as? String
                         topic.introduction = value["topic_description"] as? String
                         topic.imageURI = value["topic_pic"] as? String
-                        array.append(topic)
+                        self.topics.insert(topic)
                     }
-                    self.topics = NSSet(array: array)
                     success?()
                 } else {
                     failure?(NSError()) // Needs specification
@@ -211,19 +196,14 @@ class User: NSManagedObject {
                     } else {
                         questionsData = data["rows"] as! [NSDictionary]
                     }
-                    var array = self.questions.allObjects as! [Question]
                     for questionData in questionsData {
                         let questionID = (questionData["id"] as! NSString).integerValue
-                        var question: Question! = array.filter({ $0.id == questionID }).first
-                        if question == nil {
-                            question = DataManager.defaultManager!.autoGenerate("Question", ID: questionID) as! Question
-                            array.append(question)
-                        }
+                        let question = DataManager.defaultManager!.autoGenerate("Question", ID: questionID) as! Question
                         question.user = self
                         question.title = questionData["title"] as? String
                         question.body = questionData["detail"] as? String
+                        self.questions.insert(question)
                     }
-                    self.questions = NSSet(array: array)
                 }
                 success?()
             },

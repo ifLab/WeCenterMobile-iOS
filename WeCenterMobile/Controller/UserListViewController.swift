@@ -17,27 +17,30 @@ class UserListViewController: UITableViewController {
     }
     var listType: ListType?
     var ID: NSNumber! = nil
-    var user: User? {
-        return User.get(ID: ID, error: nil)
-    }
-    var users: [User] {
-        switch listType! {
-        case .UserFollower:
-            return (user?.followers.allObjects ?? []) as! [User]
-        case .UserFollowing:
-            return (user?.followings.allObjects ?? []) as! [User]
-        case .QuestionFollwer:
-            return []
-        default:
-            return []
+    var user: User! {
+        didSet {
+            if user != nil {
+                switch listType {
+                case .Some(.UserFollower):
+                    users = sorted(user.followers) { $0.name <= $1.name }
+                    break
+                case .Some(.UserFollowing):
+                    users = sorted(user.followings) { $0.name <= $1.name }
+                    break
+                default:
+                    break
+                }
+            }
         }
     }
+    var users: [User] = []
     var page = 1
     let count = 20
     init(ID: NSNumber, listType: ListType) {
         super.init(style: .Plain)
         self.listType = listType
         self.ID = ID
+        user = User.get(ID: ID, error: nil)
     }
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

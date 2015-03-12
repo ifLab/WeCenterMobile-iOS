@@ -19,8 +19,8 @@ class DataManager: NSObject {
         persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
         let directory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last as! NSURL
         let url = directory.URLByAppendingPathComponent(name + ".sqlite")
-//        NetworkManager.clearCookies()
-//        NSFileManager.defaultManager().removeItemAtURL(url, error: nil)
+        NetworkManager.clearCookies()
+        NSFileManager.defaultManager().removeItemAtURL(url, error: nil)
         var error: NSError? = nil
         if persistentStoreCoordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
             let dict = NSMutableDictionary()

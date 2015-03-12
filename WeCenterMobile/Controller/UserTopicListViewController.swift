@@ -9,7 +9,12 @@
 import UIKit
 
 class UserTopicListViewController: UITableViewController {
-    var user: User
+    var user: User {
+        didSet {
+            topics = sorted(user.topics) { $0.title <= $1.title }
+        }
+    }
+    var topics: [Topic] = []
     var page = 1
     let count = 10
     init(user: User) {
@@ -39,14 +44,14 @@ class UserTopicListViewController: UITableViewController {
         return 1
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return min(user.topics.count, page * count)
+        return min(topics.count, page * count)
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return TopicCell(topic: user.topics.allObjects[indexPath.row] as! Topic, reuseIdentifier: "...")
+        return TopicCell(topic: topics[indexPath.row], reuseIdentifier: "...")
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        msr_navigationController?.pushViewController(TopicViewController(topic: user.topics.allObjects[indexPath.row] as! Topic), animated: true)
+        msr_navigationController?.pushViewController(TopicViewController(topic: topics[indexPath.row]), animated: true)
     }
     func refresh() {
         user.fetchTopics(

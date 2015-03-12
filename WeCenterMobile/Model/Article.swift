@@ -15,11 +15,11 @@ class Article: NSManagedObject {
     @NSManaged var body: String?
     @NSManaged var id: NSNumber
     @NSManaged var title: String?
-    @NSManaged var articleAgreementActions: NSSet
-    @NSManaged var articlePublishmentActions: NSSet
+    @NSManaged var articleAgreementActions: Set<ArticleAgreementAction>
+    @NSManaged var articlePublishmentActions: Set<ArticlePublishmentAction>
     @NSManaged var featuredObject: FeaturedArticle
-    @NSManaged var topics: NSSet
+    @NSManaged var topics: Set<Topic>
     @NSManaged var user: User?
-    @NSManaged var comments: NSSet
+    @NSManaged var comments: Set<ArticleComment>
 
 }

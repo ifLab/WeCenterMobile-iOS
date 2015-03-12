@@ -9,13 +9,17 @@
 import UIKit
 
 class QuestionViewController: UITableViewController, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate {
-    var question: Question!
-    var answers: [Answer] {
-        return (question.answers.allObjects ?? []) as! [Answer]
+    var question: Question! {
+        didSet {
+            if question != nil {
+                let defaultDate = NSDate(timeIntervalSince1970: 0)
+                answers = sorted(question.answers) { ($0.date ?? defaultDate).timeIntervalSince1970 >= ($1.date ?? defaultDate).timeIntervalSince1970 }
+                topics = sorted(question.topics) { $0.title <= $1.title }
+            }
+        }
     }
-    var topics: [Topic] {
-        return (question.topics.allObjects ?? []) as! [Topic]
-    }
+    var answers: [Answer] = []
+    var topics: [Topic] = []
     let identifiers = [
         "QUESTION_TITLE",
         "TOPIC",
@@ -67,7 +71,7 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 5 {
-            return question.answers.count ?? 0
+            return answers.count ?? 0
         } else {
             return 1
         }

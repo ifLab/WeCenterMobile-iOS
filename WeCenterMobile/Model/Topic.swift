@@ -16,9 +16,9 @@ class Topic: NSManagedObject {
     @NSManaged var imageURI: String?
     @NSManaged var introduction: String?
     @NSManaged var title: String?
-    @NSManaged var articles: NSSet
-    @NSManaged var questions: NSSet
-    @NSManaged var users: NSSet
+    @NSManaged var articles: Set<Article>
+    @NSManaged var questions: Set<Question>
+    @NSManaged var users: Set<User>
     @NSManaged var imageData: NSData?
     
     var focused: Bool? = nil
@@ -112,26 +112,16 @@ class Topic: NSManagedObject {
                     var answers = [Answer]()
                     for value in data["rows"] as! [NSDictionary] {
                         let questionValue = value["question_info"] as! NSDictionary
-                        var questionArray = self.questions.allObjects as! [Question]
                         let questionID = questionValue["question_id"] as! NSNumber
-                        var question: Question! = questionArray.filter({ $0.id == questionID }).first
-                        if question == nil {
-                            question = DataManager.defaultManager!.autoGenerate("Question", ID: questionID) as? Question
-                            questionArray.append(question)
-                        }
+                        let question = DataManager.defaultManager!.autoGenerate("Question", ID: questionID) as! Question
+                        self.questions.insert(question)
                         question.title = questionValue["question_content"] as? String
-                        self.questions = NSSet(array: questionArray)
                         let answerValue = value["answer_info"] as! NSDictionary
-                        var answerArray = question.answers.allObjects as! [Answer]
                         let answerID = answerValue["answer_id"] as! NSNumber
-                        var answer: Answer! = answerArray.filter({ $0.id == answerID }).first
-                        if answer == nil {
-                            answer = DataManager.defaultManager!.autoGenerate("Answer", ID: answerID) as? Answer
-                            answerArray.append(answer)
-                        }
+                        let answer = DataManager.defaultManager!.autoGenerate("Answer", ID: answerID) as! Answer
+                        question.answers.insert(answer)
                         answer.body = answerValue["answer_content"] as? String
                         answer.agreementCount = answerValue["agree_count"] as? NSNumber
-                        question.answers = NSSet(array: answerArray)
                         let userID = answerValue["uid"] as! NSNumber
                         answer.user = (DataManager.defaultManager!.autoGenerate("User", ID: userID) as! User)
                         answer.user!.avatarURI = answerValue["avatar_file"] as? String

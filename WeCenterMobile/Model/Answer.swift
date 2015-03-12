@@ -16,9 +16,9 @@ class Answer: NSManagedObject {
     @NSManaged var commentCount: NSNumber?
     @NSManaged var date: NSDate?
     @NSManaged var id: NSNumber
-    @NSManaged var answerActions: NSSet
-    @NSManaged var answerAgreementActions: NSSet
-    @NSManaged var comments: NSSet
+    @NSManaged var answerActions: Set<AnswerAction>
+    @NSManaged var answerAgreementActions: Set<AnswerAgreementAction>
+    @NSManaged var comments: Set<AnswerComment>
     @NSManaged var featuredObject: FeaturedQuestionAnswer?
     @NSManaged var question: Question?
     @NSManaged var user: User?
@@ -68,7 +68,6 @@ class Answer: NSManagedObject {
                 if data is [NSDictionary] {
                     commentsData = data as! [NSDictionary]
                 }
-                var array = [AnswerComment]()
                 for commentData in commentsData {
                     let commentID = (commentData["id"] as! NSString).integerValue
                     let comment = DataManager.defaultManager!.autoGenerate("AnswerComment", ID: commentID) as! AnswerComment
@@ -91,9 +90,8 @@ class Answer: NSManagedObject {
                         comment.atUser = (DataManager.defaultManager!.autoGenerate("User", ID: atID!) as! User)
                         comment.atUser!.name = (commentData["at_user"]?["user_name"] as! String)
                     }
-                    array.append(comment)
+                    self.comments.insert(comment)
                 }
-                self.comments = NSSet(array: array)
                 success?()
             },
             failure: failure)

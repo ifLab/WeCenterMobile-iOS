@@ -12,6 +12,6 @@ import CoreData
 class FeaturedQuestionAnswer: FeaturedObject {
 
     @NSManaged var question: Question
-    @NSManaged var answers: NSSet
+    @NSManaged var answers: Set<Answer>
 
 }
