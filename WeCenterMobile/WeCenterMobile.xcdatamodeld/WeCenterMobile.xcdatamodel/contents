@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7527" systemVersion="14C109" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7527" systemVersion="14C1510" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Action" representedClassName="WeCenterMobile.Action" isAbstract="YES" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -68,6 +68,7 @@
     </entity>
     <entity name="FeaturedQuestionAnswer" representedClassName="FeaturedQuestionAnswer" parentEntity="FeaturedObject" syncable="YES">
         <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Answer" inverseName="featuredObject" inverseEntity="Answer" syncable="YES"/>
+        <relationship name="answerUsers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="featuredQuestionAnswers" inverseEntity="User" syncable="YES"/>
         <relationship name="question" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Question" inverseName="featuredObject" inverseEntity="Question" syncable="YES"/>
     </entity>
     <entity name="Question" representedClassName="WeCenterMobile.Question" syncable="YES">
@@ -127,6 +128,7 @@
         <relationship name="articleComments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ArticleComment" inverseName="user" inverseEntity="ArticleComment" syncable="YES"/>
         <relationship name="articleCommentsMentioned" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ArticleComment" inverseName="atUser" inverseEntity="ArticleComment" syncable="YES"/>
         <relationship name="articles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Article" inverseName="user" inverseEntity="Article" syncable="YES"/>
+        <relationship name="featuredQuestionAnswers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FeaturedQuestionAnswer" inverseName="answerUsers" inverseEntity="FeaturedQuestionAnswer" syncable="YES"/>
         <relationship name="followers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="followings" inverseEntity="User" syncable="YES"/>
         <relationship name="followings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="followers" inverseEntity="User" syncable="YES"/>
         <relationship name="questions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Question" inverseName="user" inverseEntity="Question" syncable="YES"/>
@@ -158,11 +160,11 @@
         <element name="ArticlePublishmentAction" positionX="583" positionY="369" width="128" height="60"/>
         <element name="FeaturedArticle" positionX="405" positionY="387" width="128" height="60"/>
         <element name="FeaturedObject" positionX="414" positionY="396" width="128" height="60"/>
-        <element name="FeaturedQuestionAnswer" positionX="396" positionY="378" width="128" height="75"/>
+        <element name="FeaturedQuestionAnswer" positionX="396" positionY="378" width="128" height="90"/>
         <element name="Question" positionX="315" positionY="522" width="128" height="240"/>
         <element name="QuestionFocusingAction" positionX="315" positionY="437" width="128" height="60"/>
         <element name="QuestionPublishmentAction" positionX="315" positionY="369" width="128" height="60"/>
         <element name="Topic" positionX="720" positionY="369" width="128" height="178"/>
-        <element name="User" positionX="180" positionY="368" width="128" height="463"/>
+        <element name="User" positionX="180" positionY="368" width="128" height="480"/>
     </elements>
 </model>

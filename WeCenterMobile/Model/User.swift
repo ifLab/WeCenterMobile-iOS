@@ -33,6 +33,7 @@ class User: NSManagedObject {
     @NSManaged var articles: Set<Article>
     @NSManaged var answerComments: Set<AnswerComment>
     @NSManaged var answerCommentsMentioned: Set<AnswerComment>
+    @NSManaged var featuredQuestionAnswers: Set<FeaturedQuestionAnswer>
     @NSManaged var followers: Set<User>
     @NSManaged var followings: Set<User>
     @NSManaged var questions: Set<Question>

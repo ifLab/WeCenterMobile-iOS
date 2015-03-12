@@ -13,5 +13,6 @@ class FeaturedQuestionAnswer: FeaturedObject {
 
     @NSManaged var question: Question
     @NSManaged var answers: Set<Answer>
+    @NSManaged var answerUsers: Set<User>
 
 }
