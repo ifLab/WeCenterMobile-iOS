@@ -10,36 +10,39 @@ import Foundation
 import CoreData
 
 class DataManager: NSObject {
-    required init?(name: String) {
+    required init?(name: String?) {
         super.init()
         managedObjectModel = NSManagedObjectModel(contentsOfURL: NSBundle.mainBundle().URLForResource("WeCenterMobile", withExtension: "momd")!)
         if managedObjectModel == nil {
             return nil
         }
-        persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-        let directory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last as! NSURL
-        let url = directory.URLByAppendingPathComponent(name + ".sqlite")
-        NetworkManager.clearCookies()
-        NSFileManager.defaultManager().removeItemAtURL(url, error: nil)
-        var error: NSError? = nil
-        if persistentStoreCoordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
-            let dict = NSMutableDictionary()
-            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data."
-            dict[NSLocalizedFailureReasonErrorKey] = "There was an error creating or loading the application's saved data."
-            dict[NSUnderlyingErrorKey] = error
-            error = NSError(
-                domain: NetworkManager.defaultManager!.website,
-                code: NetworkManager.defaultManager!.internalErrorCode.integerValue,
-                userInfo: dict as [NSObject: AnyObject])
-            NSLog("Unresolved error \(error), \(error!.userInfo)")
-            return nil
+        if name != nil {
+            let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
+            let directory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last as! NSURL
+            let url = directory.URLByAppendingPathComponent(name! + ".sqlite")
+//        NetworkManager.clearCookies()
+//        NSFileManager.defaultManager().removeItemAtURL(url, error: nil)
+            var error: NSError? = nil
+            if persistentStoreCoordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
+                let dict = NSMutableDictionary()
+                dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data."
+                dict[NSLocalizedFailureReasonErrorKey] = "There was an error creating or loading the application's saved data."
+                dict[NSUnderlyingErrorKey] = error
+                error = NSError(
+                    domain: NetworkManager.defaultManager!.website,
+                    code: NetworkManager.defaultManager!.internalErrorCode.integerValue,
+                    userInfo: dict as [NSObject: AnyObject])
+                NSLog("Unresolved error \(error), \(error!.userInfo)")
+                return nil
+            }
+            managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+            managedObjectContext!.persistentStoreCoordinator = persistentStoreCoordinator
         }
-        managedObjectContext = NSManagedObjectContext()
-        managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
     }
-    static var defaultManager = DataManager(name: "WeCenterMobile")
+    static var defaultManager = DataManager(name: "WeCenterMobile") // for creating cached objects
+    static var temporaryManager = DataManager(name: nil) // for creating temporary objects
     func create(entityName: String) -> NSManagedObject {
-        let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedObjectContext)!
+        let entity = managedObjectModel.entitiesByName[entityName] as! NSEntityDescription
         return NSManagedObject(entity: entity, insertIntoManagedObjectContext: managedObjectContext)
     }
     func fetch(entityName: String, ID: NSNumber, error: NSErrorPointer) -> NSManagedObject? {
@@ -47,7 +50,7 @@ class DataManager: NSObject {
             substitutionVariables: [
                 "ID": ID
             ])!
-        let results = managedObjectContext.executeFetchRequest(request, error: error)
+        let results = managedObjectContext?.executeFetchRequest(request, error: error)
         if results != nil && results!.count != 0 {
             return results?[0] as? NSManagedObject
         } else {
@@ -59,7 +62,7 @@ class DataManager: NSObject {
     }
     func fetchAll(entityName: String, error: NSErrorPointer) -> [NSManagedObject] {
         let request = managedObjectModel.fetchRequestTemplateForName(entityName)!
-        let results = managedObjectContext.executeFetchRequest(request, error: error)
+        let results = managedObjectContext?.executeFetchRequest(request, error: error)
         if results != nil {
             return results as! [NSManagedObject]
         } else {
@@ -78,14 +81,13 @@ class DataManager: NSObject {
         return object!
     }
     func removeAllObjectsWithEntityName(entityName: String) {
-        managedObjectContext.msr_deleteAllObjectsWithEntityName(entityName)
+        managedObjectContext?.msr_deleteAllObjectsWithEntityName(entityName)
     }
     func saveChanges(error: NSErrorPointer) {
-        if managedObjectContext.hasChanges {
-            managedObjectContext.save(error)
+        if managedObjectContext?.hasChanges ?? false {
+            managedObjectContext?.save(error)
         }
     }
     private var managedObjectModel: NSManagedObjectModel!
-    private var managedObjectContext: NSManagedObjectContext!
-    private var persistentStoreCoordinator: NSPersistentStoreCoordinator!
+    private var managedObjectContext: NSManagedObjectContext?
 }
