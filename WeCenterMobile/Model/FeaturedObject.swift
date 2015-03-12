@@ -29,12 +29,12 @@ class FeaturedObject: NSManagedObject {
                         switch typeID {
                         case .QuestionAnswer:
                             let featuredQuestionAnswer = DataManager.defaultManager!.create("FeaturedQuestionAnswer") as! FeaturedQuestionAnswer
-                            let question: Question = DataManager.defaultManager!.autoGenerate("Question", ID: Int(msr_object: object["question_id"]!)) as! Question
+                            let question = DataManager.defaultManager!.autoGenerate("Question", ID: Int(msr_object: object["question_id"]!)) as! Question
                             featuredQuestionAnswer.question = question
                             question.featuredObject!.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: object["add_time"]!))
                             question.date = question.featuredObject!.date
                             question.title = (object["question_content"] as! String)
-                            question.updateDate = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: object["update_time"]!))
+                            question.updatedDate = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: object["update_time"]!))
                             question.viewCount = Int(msr_object: object["view_count"]!)
                             question.focusCount = Int(msr_object: object["focus_count"]!)
                             if let userInfo = object["user_info"] as? NSDictionary {
@@ -86,31 +86,30 @@ class FeaturedObject: NSManagedObject {
                             featuredObjects.append(featuredQuestionAnswer)
                             break
                         case .Article:
-//        {
-//            "id": 18,
-//            "title": "关于新手学吉他一些建议",
-//            "comments": 1,
-//            "views": 151,
-//            "add_time": 1413519617,
-//            "post_type": "article",
-//            "topics": [
-//            {
-//            "topic_id": 122,
-//            "topic_title": "吉他社"
-//            },
-//            {
-//            "topic_id": 124,
-//            "topic_title": "学吉他"
-//            }
-//            ],
-//            "user_info": {
-//                "uid": 62,
-//                "user_name": "helloWorld",
-//                "avatar_file": "000/00/00/62_avatar_max.jpg"
-//            }
-//        }
+                            let featuredArticle = DataManager.defaultManager!.create("FeaturedArticle") as! FeaturedArticle
+                            let article = DataManager.defaultManager!.autoGenerate("Article", ID: Int(msr_object: object["id"]!)) as! Article
+                            featuredArticle.article = article
+                            featuredArticle.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: object["add_time"]!))
+                            article.title = (object["title"] as! String)
+                            article.date = featuredArticle.date
+                            article.viewCount = Int(msr_object: object["views"]!)
+                            var topics = Set<Topic>()
+                            if let topicsInfo = object["topics"] as? [NSDictionary] {
+                                for topicInfo in topicsInfo {
+                                    let topic = DataManager.defaultManager!.autoGenerate("Topic", ID: Int(msr_object: topicInfo["topic_id"]!)) as! Topic
+                                    topic.title = (topicInfo["topic_title"] as! String)
+                                    topics.insert(topic)
+                                }
+                            }
+                            if let userInfo = object["user_info"] as? NSDictionary {
+                                let user = DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: userInfo["uid"]!)) as! User
+                                user.name = (userInfo["user_name"] as! String)
+                                user.avatarURI = userInfo["avatar_file"] as? String
+                            }
+                            featuredObjects.append(featuredArticle)
                             break
                         }
+                        success?(featuredObjects)
                     } else {
                         failure?(NSError()) // Needs specification
                     }

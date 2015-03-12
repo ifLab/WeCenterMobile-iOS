@@ -17,7 +17,7 @@ class Question: NSManagedObject {
     @NSManaged var focusCount: NSNumber?
     @NSManaged var id: NSNumber
     @NSManaged var title: String?
-    @NSManaged var updateDate: NSDate?
+    @NSManaged var updatedDate: NSDate?
     @NSManaged var answers: Set<Answer>
     @NSManaged var featuredObject: FeaturedQuestionAnswer?
     @NSManaged var questionFocusingActions: Set<QuestionFocusingAction>

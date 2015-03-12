@@ -36,8 +36,10 @@
     <entity name="Article" representedClassName="WeCenterMobile.Article" syncable="YES">
         <attribute name="agreementCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="viewCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="articleAgreementActions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ArticleAgreementAction" inverseName="article" inverseEntity="ArticleAgreementAction" syncable="YES"/>
         <relationship name="articlePublishmentActions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ArticlePublishmentAction" inverseName="article" inverseEntity="ArticlePublishmentAction" syncable="YES"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ArticleComment" inverseName="article" inverseEntity="ArticleComment" syncable="YES"/>
@@ -77,7 +79,7 @@
         <attribute name="focusCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="updateDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="updatedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="viewCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Answer" inverseName="question" inverseEntity="Answer" syncable="YES"/>
         <relationship name="featuredObject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FeaturedQuestionAnswer" inverseName="question" inverseEntity="FeaturedQuestionAnswer" syncable="YES"/>
@@ -154,7 +156,7 @@
         <element name="AnswerAction" positionX="450" positionY="369" width="128" height="60"/>
         <element name="AnswerAgreementAction" positionX="450" positionY="437" width="128" height="60"/>
         <element name="AnswerComment" positionX="448" positionY="729" width="128" height="150"/>
-        <element name="Article" positionX="583" positionY="521" width="128" height="195"/>
+        <element name="Article" positionX="583" positionY="521" width="128" height="225"/>
         <element name="ArticleAgreementAction" positionX="583" positionY="437" width="128" height="60"/>
         <element name="ArticleComment" positionX="583" positionY="711" width="128" height="150"/>
         <element name="ArticlePublishmentAction" positionX="583" positionY="369" width="128" height="60"/>

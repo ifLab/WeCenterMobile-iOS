@@ -13,8 +13,10 @@ class Article: NSManagedObject {
 
     @NSManaged var agreementCount: NSNumber?
     @NSManaged var body: String?
+    @NSManaged var date: NSDate?
     @NSManaged var id: NSNumber
     @NSManaged var title: String?
+    @NSManaged var viewCount: NSNumber?
     @NSManaged var articleAgreementActions: Set<ArticleAgreementAction>
     @NSManaged var articlePublishmentActions: Set<ArticlePublishmentAction>
     @NSManaged var featuredObject: FeaturedArticle
