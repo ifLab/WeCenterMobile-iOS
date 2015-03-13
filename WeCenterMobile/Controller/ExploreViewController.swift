@@ -29,9 +29,15 @@ class ExploreViewController: MSRSegmentedViewController, MSRSegmentedViewControl
         }
         setViewControllers(vcs, animated: false)
         selectViewControllerAtIndex(0, animated: false)
+        msr_segmentedViewController(self, didSelectViewController: vcs[0])
         delegate = self
         segmentedControl.indicator = MSRSegmentedControlBlockIndicator()
         segmentedControl.tintColor = UIColor.orangeColor()
+    }
+    
+    override func loadView() {
+        super.loadView()
+        view.backgroundColor = UIColor.lightGrayColor()
     }
     
     func msr_segmentedViewController(segmentedViewController: MSRSegmentedViewController, didSelectViewController viewController: UIViewController) {

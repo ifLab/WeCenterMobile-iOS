@@ -72,8 +72,6 @@ class HomeViewController: UITableViewController {
             cell_.questionTitleButton.addTarget(self, action: "pushQuestionViewController:", forControlEvents: .TouchUpInside)
         }
         cell.update(action: action)
-        cell.setNeedsUpdateConstraints()
-        cell.updateConstraintsIfNeeded()
         return cell
     }
     
@@ -94,11 +92,7 @@ class HomeViewController: UITableViewController {
         }
         let cell = _Static.cells[nibNames[index]]!
         cell.update(action: action)
-        cell.setNeedsUpdateConstraints()
-        cell.updateConstraintsIfNeeded()
-//        let className = NSStringFromClass(action.classForCoder).stringByReplacingOccurrencesOfString("WeCenterMobile.", withString: "", options: .CaseInsensitiveSearch, range: nil)
-//        println("\(indexPath.row). \(action.user.name!), \(className): \(cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height)")
-        return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+        return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1
     }
     
     func showSidebar() {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -35,13 +35,13 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里是问题标题，可能会很长，但最多显示两行。" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jc-Rr-Jcv">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="这里是问题标题，可能会很长，但最多显示两行。" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jc-Rr-Jcv" customClass="MSRMultilineLabel" customModule="WeCenterMobile" customModuleProvider="target">
                         <rect key="frame" x="16" y="41" width="288" height="34"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKs-on-CNr">
+                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDJ-yo-GHP">
                         <rect key="frame" x="16" y="41" width="288" height="34"/>
                         <state key="normal">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -49,11 +49,11 @@
                     </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="MDJ-yo-GHP" firstAttribute="trailing" secondItem="5jc-Rr-Jcv" secondAttribute="trailing" id="0a2-GS-nm7"/>
                     <constraint firstItem="mHp-Tt-t3H" firstAttribute="top" secondItem="WGM-nr-lCl" secondAttribute="topMargin" id="6ug-lX-soA"/>
-                    <constraint firstItem="5jc-Rr-Jcv" firstAttribute="centerX" secondItem="ZKs-on-CNr" secondAttribute="centerX" id="7cs-db-GnJ"/>
                     <constraint firstItem="mHp-Tt-t3H" firstAttribute="leading" secondItem="WGM-nr-lCl" secondAttribute="leadingMargin" constant="8" id="AYc-Dz-Qkm"/>
-                    <constraint firstItem="5jc-Rr-Jcv" firstAttribute="height" secondItem="ZKs-on-CNr" secondAttribute="height" id="G48-EX-GHI"/>
                     <constraint firstItem="Vi0-CQ-N80" firstAttribute="width" secondItem="b97-go-u5w" secondAttribute="width" id="KHa-at-3n6"/>
+                    <constraint firstItem="MDJ-yo-GHP" firstAttribute="top" secondItem="5jc-Rr-Jcv" secondAttribute="top" id="LfL-LY-dS0"/>
                     <constraint firstItem="mHp-Tt-t3H" firstAttribute="bottom" secondItem="mFC-Xq-H90" secondAttribute="bottom" id="OJ5-gK-eMv"/>
                     <constraint firstItem="Vi0-CQ-N80" firstAttribute="top" secondItem="WGM-nr-lCl" secondAttribute="top" id="SVO-ef-MLk"/>
                     <constraint firstItem="mHp-Tt-t3H" firstAttribute="top" secondItem="mFC-Xq-H90" secondAttribute="top" id="Sf2-ez-Kzq"/>
@@ -61,18 +61,18 @@
                     <constraint firstItem="mFC-Xq-H90" firstAttribute="leading" secondItem="mHp-Tt-t3H" secondAttribute="trailing" constant="5" id="dZY-0o-cNH"/>
                     <constraint firstItem="Vi0-CQ-N80" firstAttribute="centerY" secondItem="b97-go-u5w" secondAttribute="centerY" id="iel-Ra-tml"/>
                     <constraint firstAttribute="bottomMargin" secondItem="5jc-Rr-Jcv" secondAttribute="bottom" id="kIk-6E-45d"/>
-                    <constraint firstItem="5jc-Rr-Jcv" firstAttribute="centerY" secondItem="ZKs-on-CNr" secondAttribute="centerY" id="mDS-02-VKO"/>
+                    <constraint firstItem="MDJ-yo-GHP" firstAttribute="bottom" secondItem="5jc-Rr-Jcv" secondAttribute="bottom" id="l3g-hz-arE"/>
                     <constraint firstItem="5jc-Rr-Jcv" firstAttribute="top" secondItem="mHp-Tt-t3H" secondAttribute="bottom" id="p9q-c4-61d"/>
                     <constraint firstItem="Vi0-CQ-N80" firstAttribute="height" secondItem="b97-go-u5w" secondAttribute="height" id="qGc-a1-MX0"/>
                     <constraint firstItem="Vi0-CQ-N80" firstAttribute="centerX" secondItem="b97-go-u5w" secondAttribute="centerX" id="sqQ-6l-1QN"/>
-                    <constraint firstItem="5jc-Rr-Jcv" firstAttribute="width" secondItem="ZKs-on-CNr" secondAttribute="width" id="yCx-JS-lEP"/>
                     <constraint firstItem="Vi0-CQ-N80" firstAttribute="leading" secondItem="WGM-nr-lCl" secondAttribute="leading" id="yPt-wb-GH6"/>
                     <constraint firstItem="5jc-Rr-Jcv" firstAttribute="leading" secondItem="WGM-nr-lCl" secondAttribute="leadingMargin" constant="8" id="z4H-ty-9sI"/>
                     <constraint firstItem="mHp-Tt-t3H" firstAttribute="baseline" secondItem="mFC-Xq-H90" secondAttribute="baseline" id="zS3-yH-279"/>
+                    <constraint firstItem="MDJ-yo-GHP" firstAttribute="leading" secondItem="5jc-Rr-Jcv" secondAttribute="leading" id="zp8-JI-lxA"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="questionTitleButton" destination="ZKs-on-CNr" id="DQq-5S-0v1"/>
+                <outlet property="questionTitleButton" destination="MDJ-yo-GHP" id="Ywk-3l-2Hr"/>
                 <outlet property="questionTitleLabel" destination="5jc-Rr-Jcv" id="bBT-Bd-5Dt"/>
                 <outlet property="userAvatarView" destination="Vi0-CQ-N80" id="5kn-NP-LWR"/>
                 <outlet property="userNameButton" destination="mHp-Tt-t3H" id="Sd4-JY-bxn"/>

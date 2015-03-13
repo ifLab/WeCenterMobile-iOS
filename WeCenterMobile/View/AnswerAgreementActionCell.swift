@@ -18,7 +18,7 @@ class AnswerAgreementActionCell: ActionCell {
         questionTitleLabel.text = action.answer.question!.title!
         agreementCountLabel.text = "\(action.answer.agreementCount!)"
         answerBodyLabel.text = action.answer.body!
-        questionTitleLabel.preferredMaxLayoutWidth = questionTitleLabel.bounds.width
-        answerBodyLabel.preferredMaxLayoutWidth = answerBodyLabel.bounds.width
+        setNeedsLayout()
+        layoutIfNeeded()
     }
 }

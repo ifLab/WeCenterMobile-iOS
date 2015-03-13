@@ -21,11 +21,6 @@ enum FeaturedObjectListType: String {
     case Recommended = "reommended"
 }
 
-//per_page (int) 可选，默认10
-//page (int) 可选，默认1
-//day (int) 可选，默认30
-//is_recommend (int) 可选，有1和0两种值，默认0 [如果你是要返回“推荐”栏目的数据，这个参数值设为1，sort_type可以不设]
-
 class FeaturedObject: NSManagedObject {
 
     @NSManaged var date: NSDate
@@ -42,6 +37,10 @@ class FeaturedObject: NSManagedObject {
                 data in
                 let dataManager = DataManager.temporaryManager! // Will move to DataManager.defaultManager in future.
                 var featuredObjects = [FeaturedObject]()
+                if Int(msr_object: data["total_rows"]!!) <= 0 {
+                    failure?(NSError()) // Needs specification
+                    return
+                }
                 for (id, object) in data["rows"] as! [String: NSDictionary] {
                     if let typeID = FeaturedObjectTypeID(rawValue: object["post_type"] as! String) {
                         switch typeID {

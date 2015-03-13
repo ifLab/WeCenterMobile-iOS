@@ -14,6 +14,7 @@ class ArticlePublishmentActionCell: ActionCell {
         super.update(action: action)
         let action = action as! ArticlePublishmentAction
         articleTitleLabel.text = action.article.title
-        articleTitleLabel.preferredMaxLayoutWidth = articleTitleLabel.bounds.width
+        setNeedsLayout()
+        layoutIfNeeded()
     }
 }

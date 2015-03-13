@@ -14,7 +14,8 @@ class QuestionFocusingActionCell: ActionCell {
         super.update(action: action)
         let action = action as! QuestionFocusingAction
         questionTitleLabel.text = action.question.title
-        questionTitleLabel.preferredMaxLayoutWidth = questionTitleLabel.bounds.width
+        setNeedsLayout()
+        layoutIfNeeded()
     }
     
 }

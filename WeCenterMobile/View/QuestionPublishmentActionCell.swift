@@ -16,6 +16,8 @@ class QuestionPublishmentActionCell: ActionCell {
         let action = action as! QuestionPublishmentAction
         questionTitleLabel.text = action.question.title
         questionTitleButton.msr_userInfo = action.question
+        setNeedsLayout()
+        layoutIfNeeded()
     }
     
 }

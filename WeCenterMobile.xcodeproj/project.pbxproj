@@ -275,6 +275,12 @@
 		95E4E9A21A50040100F3C327 /* AnswerActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95E4E9A11A50040100F3C327 /* AnswerActionCell.xib */; };
 		95E5355A1A49DCFD00D7B76B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535591A49DCFD00D7B76B /* HomeViewController.swift */; };
 		95F380BB1AB269690070A7FB /* FeaturedObjectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F380BA1AB269690070A7FB /* FeaturedObjectListViewController.swift */; };
+		95F380BD1AB282840070A7FB /* FeaturedQuestionAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95F380BC1AB282840070A7FB /* FeaturedQuestionAnswerCell.xib */; };
+		95F380BF1AB2BCB20070A7FB /* FeaturedQuestionAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F380BE1AB2BCB20070A7FB /* FeaturedQuestionAnswerCell.swift */; };
+		95F380C11AB2C34A0070A7FB /* FeaturedObjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F380C01AB2C34A0070A7FB /* FeaturedObjectCell.swift */; };
+		95F380C31AB2C4490070A7FB /* FeaturedArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F380C21AB2C4490070A7FB /* FeaturedArticleCell.swift */; };
+		95F380C51AB2C70B0070A7FB /* FeaturedArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95F380C41AB2C70B0070A7FB /* FeaturedArticleCell.xib */; };
+		95F380C71AB33CC50070A7FB /* MSRMultilineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F380C61AB33CC50070A7FB /* MSRMultilineLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -722,6 +728,12 @@
 		95E4E9A11A50040100F3C327 /* AnswerActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerActionCell.xib; sourceTree = "<group>"; };
 		95E535591A49DCFD00D7B76B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HomeViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		95F380BA1AB269690070A7FB /* FeaturedObjectListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedObjectListViewController.swift; sourceTree = "<group>"; };
+		95F380BC1AB282840070A7FB /* FeaturedQuestionAnswerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeaturedQuestionAnswerCell.xib; sourceTree = "<group>"; };
+		95F380BE1AB2BCB20070A7FB /* FeaturedQuestionAnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedQuestionAnswerCell.swift; sourceTree = "<group>"; };
+		95F380C01AB2C34A0070A7FB /* FeaturedObjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedObjectCell.swift; sourceTree = "<group>"; };
+		95F380C21AB2C4490070A7FB /* FeaturedArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedArticleCell.swift; sourceTree = "<group>"; };
+		95F380C41AB2C70B0070A7FB /* FeaturedArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeaturedArticleCell.xib; sourceTree = "<group>"; };
+		95F380C61AB33CC50070A7FB /* MSRMultilineLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRMultilineLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -844,6 +856,11 @@
 				950FE4F31A1DA2B500167D09 /* AnswerCell.swift */,
 				95A247D31A7FDA5F006A6C84 /* CommentCell.swift */,
 				95A247D11A7FD346006A6C84 /* CommentCell.xib */,
+				95F380C01AB2C34A0070A7FB /* FeaturedObjectCell.swift */,
+				95F380BE1AB2BCB20070A7FB /* FeaturedQuestionAnswerCell.swift */,
+				95F380BC1AB282840070A7FB /* FeaturedQuestionAnswerCell.xib */,
+				95F380C21AB2C4490070A7FB /* FeaturedArticleCell.swift */,
+				95F380C41AB2C70B0070A7FB /* FeaturedArticleCell.xib */,
 				950FE4F41A1DA2B500167D09 /* LoginView.swift */,
 				950FE4F71A1DA2B500167D09 /* QuestionAnswerCell.swift */,
 				950FE4F81A1DA2B500167D09 /* QuestionBodyCell.swift */,
@@ -1477,6 +1494,7 @@
 				95C2EA051AB0516800F2A326 /* MSRFrameEdge.swift */,
 				95C2EA061AB0516800F2A326 /* MSRKeyboardBar.swift */,
 				95C2EA071AB0516800F2A326 /* MSRLoadMoreControl.swift */,
+				95F380C61AB33CC50070A7FB /* MSRMultilineLabel.swift */,
 				95C2EA081AB0516800F2A326 /* MSRNavigationController.swift */,
 				95C2EA091AB0516800F2A326 /* MSRNavigationWrapperController.swift */,
 				95C2EA0A1AB0516800F2A326 /* MSRSegment.swift */,
@@ -1607,6 +1625,8 @@
 				953BF5BC1A51A70D00B804B8 /* ArticlePublishmentActionCell.xib in Resources */,
 				950FE1261A1DA2A400167D09 /* User.strings in Resources */,
 				9574126B1AAFC22F0077FCE6 /* default.css in Resources */,
+				95F380C51AB2C70B0070A7FB /* FeaturedArticleCell.xib in Resources */,
+				95F380BD1AB282840070A7FB /* FeaturedQuestionAnswerCell.xib in Resources */,
 				9532C8CE1A515E3A001A0E4A /* AnswerAgreementActionCell.xib in Resources */,
 				95A247D21A7FD346006A6C84 /* CommentCell.xib in Resources */,
 			);
@@ -1649,6 +1669,7 @@
 				956E71A21AAFC50500A3FD7D /* DTLog.m in Sources */,
 				959CC9421A25BAEE00F8B6CB /* Answer.swift in Sources */,
 				956C0F0F1A583EF70053EDCA /* BFPaperTableViewCell.m in Sources */,
+				95F380C71AB33CC50070A7FB /* MSRMultilineLabel.swift in Sources */,
 				957412741AAFC22F0077FCE6 /* DTBreakHTMLElement.m in Sources */,
 				956E71A11AAFC50500A3FD7D /* DTHTMLParser.m in Sources */,
 				95C2EA491AB1101F00F2A326 /* FeaturedObject.swift in Sources */,
@@ -1662,6 +1683,7 @@
 				95C2EA2D1AB0516800F2A326 /* MSRAutoExpandingView.swift in Sources */,
 				956E719F1AAFC50500A3FD7D /* DTFolderMonitor.m in Sources */,
 				95C2EA271AB0516800F2A326 /* MSRSegmentWrapper.swift in Sources */,
+				95F380C31AB2C4490070A7FB /* FeaturedArticleCell.swift in Sources */,
 				956E71D11AAFC50500A3FD7D /* NSString+DTPaths.m in Sources */,
 				953BF5B81A51937100B804B8 /* ActionCell.swift in Sources */,
 				957412771AAFC22F0077FCE6 /* DTCoreTextConstants.m in Sources */,
@@ -1696,6 +1718,7 @@
 				9574129B1AAFC22F0077FCE6 /* NSAttributedString+DTDebug.m in Sources */,
 				957412751AAFC22F0077FCE6 /* DTColor+Compatibility.m in Sources */,
 				956E72051AAFC53B00A3FD7D /* AFHTTPRequestOperation.m in Sources */,
+				95F380BF1AB2BCB20070A7FB /* FeaturedQuestionAnswerCell.swift in Sources */,
 				956E72141AAFC53B00A3FD7D /* UIRefreshControl+AFNetworking.m in Sources */,
 				950FE7391A1DA2B500167D09 /* QuestionBodyCell.swift in Sources */,
 				956E72081AAFC53B00A3FD7D /* AFNetworkReachabilityManager.m in Sources */,
@@ -1853,6 +1876,7 @@
 				956E71C31AAFC50500A3FD7D /* DTTiledLayerWithoutFade.m in Sources */,
 				956E71B91AAFC50500A3FD7D /* DTAnimatedGIF.m in Sources */,
 				957412781AAFC22F0077FCE6 /* DTCoreTextFontCollection.m in Sources */,
+				95F380C11AB2C34A0070A7FB /* FeaturedObjectCell.swift in Sources */,
 				957412861AAFC22F0077FCE6 /* DTHorizontalRuleHTMLElement.m in Sources */,
 				95C2EA301AB0516800F2A326 /* MSRLoadMoreControl.swift in Sources */,
 				95C2EA2E1AB0516800F2A326 /* MSRFrameEdge.swift in Sources */,
