@@ -115,7 +115,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             viewController = HomeViewController(user: appDelegate.currentUser!)
             break
         case 1:
-            viewController = DiscoveryViewController()
+            viewController = ExploreViewController()
             break
         case 2:
             viewController = TestViewController(statusBarStyle: .Default)

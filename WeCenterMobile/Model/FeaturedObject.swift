@@ -14,13 +14,30 @@ enum FeaturedObjectTypeID: String {
     case Article = "article"
 }
 
+enum FeaturedObjectListType: String {
+    case New = "new"
+    case Hot = "hot"
+    case Unsolved = "unresponsive"
+    case Recommended = "reommended"
+}
+
+//per_page (int) 可选，默认10
+//page (int) 可选，默认1
+//day (int) 可选，默认30
+//is_recommend (int) 可选，有1和0两种值，默认0 [如果你是要返回“推荐”栏目的数据，这个参数值设为1，sort_type可以不设]
+
 class FeaturedObject: NSManagedObject {
 
     @NSManaged var date: NSDate
     
-    class func fetchFeaturedObjects(#success: (([FeaturedObject]) -> Void)?, failure: ((NSError) -> Void)?) {
+    class func fetchFeaturedObjects(#page: Int, count: Int, type: FeaturedObjectListType, success: (([FeaturedObject]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("Explore List",
-            parameters: [:],
+            parameters: [
+                "page": page - 1,
+                "per_page": count,
+                // "day": 30,
+                "is_recommend": type == .Recommended ? 1 : 0,
+                "sort_type": type.rawValue],
             success: {
                 data in
                 let dataManager = DataManager.temporaryManager! // Will move to DataManager.defaultManager in future.
