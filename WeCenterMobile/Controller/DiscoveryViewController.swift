@@ -21,5 +21,20 @@ class DiscoveryViewController: MSRSegmentedViewController {
         segmentedControl.tintColor = UIColor.orangeColor()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        FeaturedObject.fetchFeaturedObjects(
+            success: {
+                objects in
+                println(objects)
+                return
+            },
+            failure: {
+                error in
+                println(error)
+                return
+            })
+    }
+    
 }
 

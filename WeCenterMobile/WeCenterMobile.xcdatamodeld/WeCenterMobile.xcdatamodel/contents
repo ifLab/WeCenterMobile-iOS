@@ -62,13 +62,13 @@
     <entity name="ArticlePublishmentAction" representedClassName="WeCenterMobile.ArticlePublishmentAction" parentEntity="Action" syncable="YES">
         <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="articlePublishmentActions" inverseEntity="Article" syncable="YES"/>
     </entity>
-    <entity name="FeaturedArticle" representedClassName="FeaturedArticle" parentEntity="FeaturedObject" syncable="YES">
+    <entity name="FeaturedArticle" representedClassName="WeCenterMobile.FeaturedArticle" parentEntity="FeaturedObject" syncable="YES">
         <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="featuredObject" inverseEntity="Article" syncable="YES"/>
     </entity>
-    <entity name="FeaturedObject" representedClassName="FeaturedObject" isAbstract="YES" syncable="YES">
+    <entity name="FeaturedObject" representedClassName="WeCenterMobile.FeaturedObject" isAbstract="YES" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
-    <entity name="FeaturedQuestionAnswer" representedClassName="FeaturedQuestionAnswer" parentEntity="FeaturedObject" syncable="YES">
+    <entity name="FeaturedQuestionAnswer" representedClassName="WeCenterMobile.FeaturedQuestionAnswer" parentEntity="FeaturedObject" syncable="YES">
         <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Answer" inverseName="featuredObject" inverseEntity="Answer" syncable="YES"/>
         <relationship name="answerUsers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="featuredQuestionAnswers" inverseEntity="User" syncable="YES"/>
         <relationship name="question" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Question" inverseName="featuredObject" inverseEntity="Question" syncable="YES"/>

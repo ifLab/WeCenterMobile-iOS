@@ -18,43 +18,44 @@ class FeaturedObject: NSManagedObject {
 
     @NSManaged var date: NSDate
     
-    func fetchFeaturedObjects(success: (([FeaturedObject]) -> Void)?, failure: ((NSError) -> Void)?) {
+    class func fetchFeaturedObjects(#success: (([FeaturedObject]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("Explore List",
             parameters: [:],
             success: {
                 data in
+                let dataManager = DataManager.temporaryManager! // Will move to DataManager.defaultManager in future.
                 var featuredObjects = [FeaturedObject]()
-                for object in data as! [NSDictionary] {
+                for (id, object) in data["rows"] as! [String: NSDictionary] {
                     if let typeID = FeaturedObjectTypeID(rawValue: object["post_type"] as! String) {
                         switch typeID {
                         case .QuestionAnswer:
-                            let featuredQuestionAnswer = DataManager.defaultManager!.create("FeaturedQuestionAnswer") as! FeaturedQuestionAnswer
-                            let question = DataManager.defaultManager!.autoGenerate("Question", ID: Int(msr_object: object["question_id"]!)) as! Question
+                            let featuredQuestionAnswer = dataManager.create("FeaturedQuestionAnswer") as! FeaturedQuestionAnswer
+                            let question = dataManager.autoGenerate("Question", ID: Int(msr_object: object["question_id"]!)) as! Question
                             featuredQuestionAnswer.question = question
-                            question.featuredObject!.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: object["add_time"]!))
-                            question.date = question.featuredObject!.date
+                            featuredQuestionAnswer.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: object["add_time"]!))
+                            question.date = featuredQuestionAnswer.date
                             question.title = (object["question_content"] as! String)
                             question.updatedDate = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: object["update_time"]!))
                             question.viewCount = Int(msr_object: object["view_count"]!)
                             question.focusCount = Int(msr_object: object["focus_count"]!)
                             if let userInfo = object["user_info"] as? NSDictionary {
-                                question.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: userInfo["uid"]!)) as! User)
-                                question.user!.name = (userInfo["helloWorld"] as! String)
-                                question.user!.avatarURI = (userInfo["avatar_file"] as! String)
+                                question.user = (dataManager.autoGenerate("User", ID: Int(msr_object: userInfo["uid"]!)) as! User)
+                                question.user!.name = (userInfo["user_name"] as! String)
+                                question.user!.avatarURI = userInfo["avatar_file"] as? String
                             } else {
                                 question.user = nil
                             }
                             var topics = Set<Topic>()
                             if let topicsInfo = object["topics"] as? [NSDictionary] {
                                 for topicInfo in topicsInfo {
-                                    let topic = DataManager.defaultManager!.autoGenerate("Topic", ID: Int(msr_object: topicInfo["topic_id"]!)) as! Topic
+                                    let topic = dataManager.autoGenerate("Topic", ID: Int(msr_object: topicInfo["topic_id"]!)) as! Topic
                                     topic.title = (topicInfo["topic_title"] as! String)
                                 }
                             }
                             question.topics = topics
                             var featuredUsers = Set<User>()
                             for (userID, userInfo) in object["answer_users"] as? [String: NSDictionary] ?? [:] {
-                                let user = DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: userID)) as! User
+                                let user = dataManager.autoGenerate("User", ID: Int(msr_object: userID)) as! User
                                 user.name = userInfo["user_name"] as? String ?? ""
                                 user.avatarURI = userInfo["avatar_file"] as? String
                                 featuredUsers.insert(user)
@@ -71,23 +72,24 @@ class FeaturedObject: NSManagedObject {
                                  *  }
                                  */
                                 if !((answerInfo["answer_content"] ?? NSNull()) is NSNull) {
-                                    let answer = DataManager.temporaryManager!.create("Answer") as! Answer // Cause no answer ID.
+                                    let answer = dataManager.create("Answer") as! Answer // Cause no answer ID.
                                     if let userInfo = answerInfo["user_info"] as? NSDictionary {
-                                        answer.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: userInfo["uid"]!)) as! User)
+                                        answer.user = (dataManager.autoGenerate("User", ID: Int(msr_object: userInfo["uid"]!)) as! User)
                                         answer.user!.name = (userInfo["user_name"] as! String)
                                         answer.user!.avatarURI = userInfo["avatar_file"] as? String // Might be NSNull here.
                                         featuredAnswers.insert(answer)
                                     }
                                     answer.body = (answerInfo["answer_content"] as! String)
-                                    question.featuredObject!.answers = featuredAnswers
+                                    // question.answers.insert(answer) // Bad connections cause no answer ID.
+                                    featuredQuestionAnswer.answers = featuredAnswers
                                 }
                             }
                             featuredQuestionAnswer.answers = featuredAnswers
                             featuredObjects.append(featuredQuestionAnswer)
                             break
                         case .Article:
-                            let featuredArticle = DataManager.defaultManager!.create("FeaturedArticle") as! FeaturedArticle
-                            let article = DataManager.defaultManager!.autoGenerate("Article", ID: Int(msr_object: object["id"]!)) as! Article
+                            let featuredArticle = dataManager.create("FeaturedArticle") as! FeaturedArticle
+                            let article = dataManager.autoGenerate("Article", ID: Int(msr_object: object["id"]!)) as! Article
                             featuredArticle.article = article
                             featuredArticle.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: object["add_time"]!))
                             article.title = (object["title"] as! String)
@@ -96,13 +98,13 @@ class FeaturedObject: NSManagedObject {
                             var topics = Set<Topic>()
                             if let topicsInfo = object["topics"] as? [NSDictionary] {
                                 for topicInfo in topicsInfo {
-                                    let topic = DataManager.defaultManager!.autoGenerate("Topic", ID: Int(msr_object: topicInfo["topic_id"]!)) as! Topic
+                                    let topic = dataManager.autoGenerate("Topic", ID: Int(msr_object: topicInfo["topic_id"]!)) as! Topic
                                     topic.title = (topicInfo["topic_title"] as! String)
                                     topics.insert(topic)
                                 }
                             }
                             if let userInfo = object["user_info"] as? NSDictionary {
-                                let user = DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: userInfo["uid"]!)) as! User
+                                let user = dataManager.autoGenerate("User", ID: Int(msr_object: userInfo["uid"]!)) as! User
                                 user.name = (userInfo["user_name"] as! String)
                                 user.avatarURI = userInfo["avatar_file"] as? String
                             }
