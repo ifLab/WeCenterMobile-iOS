@@ -19,7 +19,7 @@
 		<key>Answer Detail</key>
 		<string>?/api/question/answer_detail/</string>
 		<key>Explore List</key>
-		<string>?/api/explore_ios/</string>
+		<string>?/api/explore/</string>
 		<key>Question Detail</key>
 		<string>?/api/question/question/</string>
 		<key>Focus Question</key>

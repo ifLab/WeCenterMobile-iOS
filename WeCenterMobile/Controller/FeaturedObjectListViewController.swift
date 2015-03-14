@@ -28,11 +28,13 @@ class FeaturedObjectListViewController: UITableViewController {
         super.loadView()
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+        refreshControl!.tintColor = UIColor.whiteColor()
         msr_loadMoreControl = MSRLoadMoreControl()
         msr_loadMoreControl!.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
         tableView.contentInset.top = _MSRSegmentedControlDefaultHeightAtTop + 64 // Thanks to the bad implementation of MSRSegmentedViewController
         tableView.separatorStyle = .None
         tableView.scrollIndicatorInsets.top = tableView.contentInset.top
+        view.backgroundColor = UIColor.darkGrayColor()
         for i in 0..<nibNames.count {
             tableView.registerNib(UINib(nibName: nibNames[i], bundle: NSBundle.mainBundle()), forCellReuseIdentifier: identifiers[i])
         }

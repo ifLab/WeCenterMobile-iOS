@@ -31,17 +31,33 @@ class ExploreViewController: MSRSegmentedViewController, MSRSegmentedViewControl
         selectViewControllerAtIndex(0, animated: false)
         msr_segmentedViewController(self, didSelectViewController: vcs[0])
         delegate = self
-        segmentedControl.indicator = MSRSegmentedControlBlockIndicator()
-        segmentedControl.tintColor = UIColor.orangeColor()
     }
     
     override func loadView() {
         super.loadView()
-        view.backgroundColor = UIColor.lightGrayColor()
+        segmentedControl.indicator = MSRSegmentedControlOverlineIndicator()
+        segmentedControl.tintColor = UIColor.msr_materialLime()
+        (segmentedControl.backgroundView as! UIToolbar).barStyle = .Black
+        view.backgroundColor = UIColor.darkGrayColor()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List"), style: .Plain, target: self, action: "showSidebar")
+        navigationItem.leftBarButtonItem!.tintColor = UIColor.whiteColor()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController!.navigationBar.barStyle = .Black
     }
     
     func msr_segmentedViewController(segmentedViewController: MSRSegmentedViewController, didSelectViewController viewController: UIViewController) {
         (viewController as! FeaturedObjectListViewController).segmentedViewControllerDidSelectSelf(segmentedViewController)
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
+    func showSidebar() {
+        appDelegate.mainViewController.sidebar.toggleShow(animated: true)
     }
     
 }

@@ -41,12 +41,12 @@ class FeaturedObject: NSManagedObject {
                     failure?(NSError()) // Needs specification
                     return
                 }
-                for (id, object) in data["rows"] as! [String: NSDictionary] {
+                for object in data["rows"] as! [NSDictionary] {
                     if let typeID = FeaturedObjectTypeID(rawValue: object["post_type"] as! String) {
                         switch typeID {
                         case .QuestionAnswer:
-                            let featuredQuestionAnswer = dataManager.create("FeaturedQuestionAnswer") as! FeaturedQuestionAnswer
                             let question = dataManager.autoGenerate("Question", ID: Int(msr_object: object["question_id"]!)) as! Question
+                            let featuredQuestionAnswer = dataManager.autoGenerate("FeaturedQuestionAnswer", ID: question.id) as! FeaturedQuestionAnswer
                             featuredQuestionAnswer.question = question
                             featuredQuestionAnswer.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: object["add_time"]!))
                             question.date = featuredQuestionAnswer.date
@@ -73,7 +73,9 @@ class FeaturedObject: NSManagedObject {
                             for (userID, userInfo) in object["answer_users"] as? [String: NSDictionary] ?? [:] {
                                 let user = dataManager.autoGenerate("User", ID: Int(msr_object: userID)) as! User
                                 user.name = userInfo["user_name"] as? String ?? ""
-                                user.avatarURI = userInfo["avatar_file"] as? String
+                                var avatarURI = userInfo["avatar_file"] as? String
+                                avatarURI = avatarURI == "" ? nil : avatarURI
+                                user.avatarURI = avatarURI
                                 featuredUsers.insert(user)
                             }
                             featuredQuestionAnswer.answerUsers = featuredUsers
@@ -92,20 +94,23 @@ class FeaturedObject: NSManagedObject {
                                     if let userInfo = answerInfo["user_info"] as? NSDictionary {
                                         answer.user = (dataManager.autoGenerate("User", ID: Int(msr_object: userInfo["uid"]!)) as! User)
                                         answer.user!.name = (userInfo["user_name"] as! String)
-                                        answer.user!.avatarURI = userInfo["avatar_file"] as? String // Might be NSNull here.
+                                        var avatarURI = userInfo["avatar_file"] as? String // Might be NSNull or "" here.
+                                        avatarURI = avatarURI == "" ? nil : avatarURI
+                                        answer.user!.avatarURI = avatarURI
                                         featuredAnswers.insert(answer)
+                                    } else {
+                                        answer.user = nil
                                     }
                                     answer.body = (answerInfo["answer_content"] as! String)
                                     // question.answers.insert(answer) // Bad connections cause no answer ID.
-                                    featuredQuestionAnswer.answers = featuredAnswers
                                 }
                             }
                             featuredQuestionAnswer.answers = featuredAnswers
                             featuredObjects.append(featuredQuestionAnswer)
                             break
                         case .Article:
-                            let featuredArticle = dataManager.create("FeaturedArticle") as! FeaturedArticle
                             let article = dataManager.autoGenerate("Article", ID: Int(msr_object: object["id"]!)) as! Article
+                            let featuredArticle = dataManager.autoGenerate("FeaturedArticle", ID: article.id) as! FeaturedArticle
                             featuredArticle.article = article
                             featuredArticle.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: object["add_time"]!))
                             article.title = (object["title"] as! String)
@@ -122,7 +127,12 @@ class FeaturedObject: NSManagedObject {
                             if let userInfo = object["user_info"] as? NSDictionary {
                                 let user = dataManager.autoGenerate("User", ID: Int(msr_object: userInfo["uid"]!)) as! User
                                 user.name = (userInfo["user_name"] as! String)
-                                user.avatarURI = userInfo["avatar_file"] as? String
+                                var avatarURI = userInfo["avatar_file"] as? String
+                                avatarURI = avatarURI == "" ? nil : avatarURI
+                                user.avatarURI = avatarURI
+                                article.user = user
+                            } else {
+                                article.user = nil
                             }
                             featuredObjects.append(featuredArticle)
                             break

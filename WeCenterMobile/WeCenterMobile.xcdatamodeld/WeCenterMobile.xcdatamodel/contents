@@ -63,12 +63,14 @@
         <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="articlePublishmentActions" inverseEntity="Article" syncable="YES"/>
     </entity>
     <entity name="FeaturedArticle" representedClassName="WeCenterMobile.FeaturedArticle" parentEntity="FeaturedObject" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="featuredObject" inverseEntity="Article" syncable="YES"/>
     </entity>
     <entity name="FeaturedObject" representedClassName="WeCenterMobile.FeaturedObject" isAbstract="YES" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
     <entity name="FeaturedQuestionAnswer" representedClassName="WeCenterMobile.FeaturedQuestionAnswer" parentEntity="FeaturedObject" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Answer" inverseName="featuredObject" inverseEntity="Answer" syncable="YES"/>
         <relationship name="answerUsers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="featuredQuestionAnswers" inverseEntity="User" syncable="YES"/>
         <relationship name="question" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Question" inverseName="featuredObject" inverseEntity="Question" syncable="YES"/>
@@ -145,6 +147,8 @@
     <fetchRequest name="Article_By_ID" entity="Article" predicateString="id == $ID"/>
     <fetchRequest name="ArticleAgreementAction_By_ID" entity="ArticleAgreementAction" predicateString="id == $ID"/>
     <fetchRequest name="ArticlePublishmentAction_By_ID" entity="ArticlePublishmentAction" predicateString="id == $ID"/>
+    <fetchRequest name="FeaturedArticle_By_ID" entity="FeaturedArticle" predicateString="id == $ID"/>
+    <fetchRequest name="FeaturedQuestionAnswer_By_ID" entity="FeaturedQuestionAnswer" predicateString="id == $ID"/>
     <fetchRequest name="Question_By_ID" entity="Question" predicateString="id == $ID"/>
     <fetchRequest name="QuestionFocusingAction_By_ID" entity="QuestionFocusingAction" predicateString="id == $ID"/>
     <fetchRequest name="QuestionPublishmentAction_By_ID" entity="QuestionPublishmentAction" predicateString="id == $ID"/>
@@ -160,9 +164,9 @@
         <element name="ArticleAgreementAction" positionX="583" positionY="437" width="128" height="60"/>
         <element name="ArticleComment" positionX="583" positionY="711" width="128" height="150"/>
         <element name="ArticlePublishmentAction" positionX="583" positionY="369" width="128" height="60"/>
-        <element name="FeaturedArticle" positionX="405" positionY="387" width="128" height="60"/>
+        <element name="FeaturedArticle" positionX="405" positionY="387" width="128" height="75"/>
         <element name="FeaturedObject" positionX="414" positionY="396" width="128" height="60"/>
-        <element name="FeaturedQuestionAnswer" positionX="396" positionY="378" width="128" height="90"/>
+        <element name="FeaturedQuestionAnswer" positionX="396" positionY="378" width="128" height="105"/>
         <element name="Question" positionX="315" positionY="522" width="128" height="240"/>
         <element name="QuestionFocusingAction" positionX="315" positionY="437" width="128" height="60"/>
         <element name="QuestionPublishmentAction" positionX="315" positionY="369" width="128" height="60"/>

@@ -11,6 +11,7 @@ import CoreData
 
 class FeaturedArticle: FeaturedObject {
 
+    @NSManaged var id: NSNumber
     @NSManaged var article: Article
 
 }
