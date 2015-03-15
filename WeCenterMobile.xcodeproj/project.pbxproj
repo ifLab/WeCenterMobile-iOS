@@ -281,6 +281,7 @@
 		95F380C31AB2C4490070A7FB /* FeaturedArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F380C21AB2C4490070A7FB /* FeaturedArticleCell.swift */; };
 		95F380C51AB2C70B0070A7FB /* FeaturedArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95F380C41AB2C70B0070A7FB /* FeaturedArticleCell.xib */; };
 		95F380C71AB33CC50070A7FB /* MSRMultilineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F380C61AB33CC50070A7FB /* MSRMultilineLabel.swift */; };
+		95F380C91AB56A950070A7FB /* FeaturedQuestionAnswerCellWithoutAnswer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95F380C81AB56A950070A7FB /* FeaturedQuestionAnswerCellWithoutAnswer.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -734,6 +735,7 @@
 		95F380C21AB2C4490070A7FB /* FeaturedArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedArticleCell.swift; sourceTree = "<group>"; };
 		95F380C41AB2C70B0070A7FB /* FeaturedArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeaturedArticleCell.xib; sourceTree = "<group>"; };
 		95F380C61AB33CC50070A7FB /* MSRMultilineLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRMultilineLabel.swift; sourceTree = "<group>"; };
+		95F380C81AB56A950070A7FB /* FeaturedQuestionAnswerCellWithoutAnswer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeaturedQuestionAnswerCellWithoutAnswer.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -859,6 +861,7 @@
 				95F380C01AB2C34A0070A7FB /* FeaturedObjectCell.swift */,
 				95F380BE1AB2BCB20070A7FB /* FeaturedQuestionAnswerCell.swift */,
 				95F380BC1AB282840070A7FB /* FeaturedQuestionAnswerCell.xib */,
+				95F380C81AB56A950070A7FB /* FeaturedQuestionAnswerCellWithoutAnswer.xib */,
 				95F380C21AB2C4490070A7FB /* FeaturedArticleCell.swift */,
 				95F380C41AB2C70B0070A7FB /* FeaturedArticleCell.xib */,
 				950FE4F41A1DA2B500167D09 /* LoginView.swift */,
@@ -1616,6 +1619,7 @@
 				950FE1241A1DA2A400167D09 /* Configuration.plist in Resources */,
 				9532C8CA1A51548B001A0E4A /* QuestionFocusingActionCell.xib in Resources */,
 				953BF5C01A51C50800B804B8 /* ArticleAgreementActionCell.xib in Resources */,
+				95F380C91AB56A950070A7FB /* FeaturedQuestionAnswerCellWithoutAnswer.xib in Resources */,
 				950FE1251A1DA2A400167D09 /* Discovery.strings in Resources */,
 				95B6E6B91A232E2400F31BE3 /* LaunchScreen.xib in Resources */,
 				95E4E9A21A50040100F3C327 /* AnswerActionCell.xib in Resources */,
