@@ -14,25 +14,6 @@ class ExploreViewController: MSRSegmentedViewController, MSRSegmentedViewControl
         return .Top
     }
     
-    override func msr_initialize() {
-        super.msr_initialize()
-        let titles: [FeaturedObjectListType: String] = [
-            .Recommended: "推荐",
-            .Hot: "热门",
-            .New: "最新",
-            .Unsolved: "等待回答"]
-        var vcs = [UIViewController]()
-        for (type, title) in titles {
-            let vc = FeaturedObjectListViewController(type: type)
-            vc.title = title
-            vcs.append(vc)
-        }
-        setViewControllers(vcs, animated: false)
-        selectViewControllerAtIndex(0, animated: false)
-        msr_segmentedViewController(self, didSelectViewController: vcs[0])
-        delegate = self
-    }
-    
     override func loadView() {
         super.loadView()
         segmentedControl.indicator = MSRSegmentedControlUnderlineIndicator()
@@ -44,13 +25,36 @@ class ExploreViewController: MSRSegmentedViewController, MSRSegmentedViewControl
         navigationItem.leftBarButtonItem!.tintColor = UIColor.whiteColor()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         navigationController!.navigationBar.barStyle = .Black
+        delegate = self
     }
     
-    func msr_segmentedViewController(segmentedViewController: MSRSegmentedViewController, didSelectViewController viewController: UIViewController) {
-        (viewController as! FeaturedObjectListViewController).segmentedViewControllerDidSelectSelf(segmentedViewController)
+    var firstAppear = true
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if firstAppear {
+            firstAppear = false
+            let titles: [(FeaturedObjectListType, String)] = [
+                (.Recommended, "推荐"),
+                (.Hot, "热门"),
+                (.New, "最新"),
+                (.Unsolved, "等待回答")]
+            // [FeaturedObjectListType: String] is not SequenceType
+            var vcs: [UIViewController] = map(titles, {
+                (type, title) in
+                let vc = FeaturedObjectListViewController(type: type)
+                vc.title = title
+                return vc
+            })
+            setViewControllers(vcs, animated: false)
+        }
+    }
+    
+    func msr_segmentedViewController(segmentedViewController: MSRSegmentedViewController, didSelectViewController viewController: UIViewController?) {
+        (viewController as? FeaturedObjectListViewController)?.segmentedViewControllerDidSelectSelf(segmentedViewController)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

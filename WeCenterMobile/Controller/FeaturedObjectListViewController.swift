@@ -146,15 +146,11 @@ class FeaturedObjectListViewController: UITableViewController {
             })
     }
     func loadMore() {
-        println(page)
         FeaturedObject.fetchFeaturedObjects(page: page + 1, count: count, type: type,
             success: {
                 [weak self] objects in
                 self?.page = self!.page + 1
-                let lastIndexBefore = self?.objects.count ?? 0 - 1
                 self?.objects.extend(objects)
-                let lastIndexAfter = self?.objects.count ?? 0 - 1
-                var indexPaths = map(lastIndexBefore..<lastIndexAfter, { NSIndexPath(forRow: $0, inSection: 0) })
                 self?.tableView.reloadData()
                 self?.tableView.footer.endRefreshing()
                 return
