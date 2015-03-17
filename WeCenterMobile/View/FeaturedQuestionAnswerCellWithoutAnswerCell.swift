@@ -1,31 +1,31 @@
 //
-//  FeaturedArticleCell.swift
+//  FeaturedQuestionAnswerCellWithoutAnswerCell.swift
 //  WeCenterMobile
 //
-//  Created by Darren Liu on 15/3/13.
+//  Created by Darren Liu on 15/3/15.
 //  Copyright (c) 2015年 Beijing Information Science and Technology University. All rights reserved.
 //
 
 import UIKit
 
-class FeaturedArticleCell: FeaturedObjectCell {
+class FeaturedQuestionAnswerCellWithoutAnswerCell: FeaturedObjectCell {
     
+    @IBOutlet weak var innerView: UIView!
     @IBOutlet weak var userAvatarView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var articleTitle: UILabel!
-    @IBOutlet weak var innerView: UIView!
-    @IBOutlet weak var articleTagLabel: UILabel!
+    @IBOutlet weak var questionTitleLabel: UILabel!
+    @IBOutlet weak var questionTagLabel: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
         userAvatarView.layer.masksToBounds = true
-        articleTagLabel.layer.masksToBounds = false
-        articleTagLabel.layer.shadowColor = UIColor.msr_materialBlueGray900().CGColor
-        articleTagLabel.layer.shadowPath = UIBezierPath(rect: articleTagLabel.bounds).CGPath
-        articleTagLabel.layer.shadowOpacity = 1
-        articleTagLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
-        articleTagLabel.layer.shadowRadius = 1
+        userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
+        questionTagLabel.layer.masksToBounds = false
+        questionTagLabel.layer.shadowColor = UIColor.msr_materialBrown900().CGColor
+        questionTagLabel.layer.shadowPath = UIBezierPath(rect: questionTagLabel.bounds).CGPath
+        questionTagLabel.layer.shadowOpacity = 1
+        questionTagLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
+        questionTagLabel.layer.shadowRadius = 1
     }
     
     override func update(#object: FeaturedObject) {
@@ -33,9 +33,11 @@ class FeaturedArticleCell: FeaturedObjectCell {
         if !objectChanged {
             return
         }
-        let object = object as! FeaturedArticle
+        let object = object as! FeaturedQuestionAnswer
+        let question = object.question
+        let user = question.user
+        let userID = user?.id.integerValue
         userAvatarView.image = UIImage(named: "DefaultAvatar")
-        let user = object.article.user
         userAvatarView.msr_userInfo = user?.avatarURL
         if user?.avatarURL != nil {
             user?.fetchAvatar(
@@ -48,8 +50,8 @@ class FeaturedArticleCell: FeaturedObjectCell {
                 },
                 failure: nil)
         }
-        userNameLabel.text = object.article.user?.name ?? "匿名用户"
-        articleTitle.text = object.article.title
+        userNameLabel.text = user?.name ?? "匿名用户"
+        questionTitleLabel.text = question.title
         setNeedsLayout()
         layoutIfNeeded()
     }

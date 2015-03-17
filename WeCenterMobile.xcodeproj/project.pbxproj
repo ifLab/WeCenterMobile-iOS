@@ -58,6 +58,19 @@
 		950FE7E81A1DA53A00167D09 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7D31A1DA4F900167D09 /* libxml2.dylib */; };
 		950FE7E91A1DA53A00167D09 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7D11A1DA4F300167D09 /* libsqlite3.dylib */; };
 		950FE7EA1A1DA53A00167D09 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7CF1A1DA4EC00167D09 /* libz.dylib */; };
+		951D2F821AB7F85500DCB678 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 951D2F6A1AB7F85500DCB678 /* MJRefresh.bundle */; };
+		951D2F831AB7F85500DCB678 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D2F6D1AB7F85500DCB678 /* MJRefreshComponent.m */; };
+		951D2F841AB7F85500DCB678 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D2F6F1AB7F85500DCB678 /* MJRefreshConst.m */; };
+		951D2F851AB7F85500DCB678 /* MJRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D2F711AB7F85500DCB678 /* MJRefreshFooter.m */; };
+		951D2F861AB7F85500DCB678 /* MJRefreshGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D2F731AB7F85500DCB678 /* MJRefreshGifFooter.m */; };
+		951D2F871AB7F85500DCB678 /* MJRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D2F751AB7F85500DCB678 /* MJRefreshGifHeader.m */; };
+		951D2F881AB7F85500DCB678 /* MJRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D2F771AB7F85500DCB678 /* MJRefreshHeader.m */; };
+		951D2F891AB7F85500DCB678 /* MJRefreshLegendFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D2F791AB7F85500DCB678 /* MJRefreshLegendFooter.m */; };
+		951D2F8A1AB7F85500DCB678 /* MJRefreshLegendHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D2F7B1AB7F85500DCB678 /* MJRefreshLegendHeader.m */; };
+		951D2F8B1AB7F85500DCB678 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D2F7D1AB7F85500DCB678 /* UIScrollView+MJExtension.m */; };
+		951D2F8C1AB7F85500DCB678 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D2F7F1AB7F85500DCB678 /* UIScrollView+MJRefresh.m */; };
+		951D2F8D1AB7F85500DCB678 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D2F811AB7F85500DCB678 /* UIView+MJExtension.m */; };
+		951D2F8F1AB7F8C000DCB678 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 951D2F8E1AB7F8C000DCB678 /* Images.xcassets */; };
 		9532C8C81A51547B001A0E4A /* QuestionFocusingActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9532C8C71A51547B001A0E4A /* QuestionFocusingActionCell.swift */; };
 		9532C8CA1A51548B001A0E4A /* QuestionFocusingActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9532C8C91A51548B001A0E4A /* QuestionFocusingActionCell.xib */; };
 		9532C8CC1A515E28001A0E4A /* AnswerAgreementActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9532C8CB1A515E28001A0E4A /* AnswerAgreementActionCell.swift */; };
@@ -218,8 +231,8 @@
 		957412A81AAFC22F0077FCE6 /* UIFont+DTCoreText.m in Sources */ = {isa = PBXBuildFile; fileRef = 9574126A1AAFC22F0077FCE6 /* UIFont+DTCoreText.m */; };
 		9575B17D1A514B4500EFFFB7 /* QuestionPublishmentActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9575B17C1A514B4500EFFFB7 /* QuestionPublishmentActionCell.swift */; };
 		9575B17F1A514C3100EFFFB7 /* QuestionPublishmentActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9575B17E1A514C3100EFFFB7 /* QuestionPublishmentActionCell.xib */; };
+		9583E3351AB6812400067F37 /* MSRLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583E3341AB6812400067F37 /* MSRLayoutGuide.swift */; };
 		9588F5E91A1D9D1C001BC426 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9588F5E81A1D9D1C001BC426 /* AppDelegate.swift */; };
-		9588F5F31A1D9D1C001BC426 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9588F5F21A1D9D1C001BC426 /* Images.xcassets */; };
 		9588F6021A1D9D1C001BC426 /* WeCenterMobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9588F6011A1D9D1C001BC426 /* WeCenterMobileTests.swift */; };
 		959CC93A1A25BAED00F8B6CB /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC9391A25BAED00F8B6CB /* Article.swift */; };
 		959CC93C1A25BAED00F8B6CB /* AnswerComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC93B1A25BAED00F8B6CB /* AnswerComment.swift */; };
@@ -281,7 +294,8 @@
 		95F380C31AB2C4490070A7FB /* FeaturedArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F380C21AB2C4490070A7FB /* FeaturedArticleCell.swift */; };
 		95F380C51AB2C70B0070A7FB /* FeaturedArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95F380C41AB2C70B0070A7FB /* FeaturedArticleCell.xib */; };
 		95F380C71AB33CC50070A7FB /* MSRMultilineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F380C61AB33CC50070A7FB /* MSRMultilineLabel.swift */; };
-		95F380C91AB56A950070A7FB /* FeaturedQuestionAnswerCellWithoutAnswer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95F380C81AB56A950070A7FB /* FeaturedQuestionAnswerCellWithoutAnswer.xib */; };
+		95F380C91AB56A950070A7FB /* FeaturedQuestionAnswerCellWithoutAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95F380C81AB56A950070A7FB /* FeaturedQuestionAnswerCellWithoutAnswerCell.xib */; };
+		95FC9D331AB5C40F00247731 /* FeaturedQuestionAnswerCellWithoutAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FC9D321AB5C40F00247731 /* FeaturedQuestionAnswerCellWithoutAnswerCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -354,6 +368,31 @@
 		950FE7DB1A1DA51400167D09 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		950FE7DD1A1DA51900167D09 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		950FE7DF1A1DA52000167D09 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		951D2F6A1AB7F85500DCB678 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
+		951D2F6B1AB7F85500DCB678 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
+		951D2F6C1AB7F85500DCB678 /* MJRefreshComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshComponent.h; sourceTree = "<group>"; };
+		951D2F6D1AB7F85500DCB678 /* MJRefreshComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshComponent.m; sourceTree = "<group>"; };
+		951D2F6E1AB7F85500DCB678 /* MJRefreshConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshConst.h; sourceTree = "<group>"; };
+		951D2F6F1AB7F85500DCB678 /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
+		951D2F701AB7F85500DCB678 /* MJRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooter.h; sourceTree = "<group>"; };
+		951D2F711AB7F85500DCB678 /* MJRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshFooter.m; sourceTree = "<group>"; };
+		951D2F721AB7F85500DCB678 /* MJRefreshGifFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshGifFooter.h; sourceTree = "<group>"; };
+		951D2F731AB7F85500DCB678 /* MJRefreshGifFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshGifFooter.m; sourceTree = "<group>"; };
+		951D2F741AB7F85500DCB678 /* MJRefreshGifHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshGifHeader.h; sourceTree = "<group>"; };
+		951D2F751AB7F85500DCB678 /* MJRefreshGifHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshGifHeader.m; sourceTree = "<group>"; };
+		951D2F761AB7F85500DCB678 /* MJRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshHeader.h; sourceTree = "<group>"; };
+		951D2F771AB7F85500DCB678 /* MJRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshHeader.m; sourceTree = "<group>"; };
+		951D2F781AB7F85500DCB678 /* MJRefreshLegendFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshLegendFooter.h; sourceTree = "<group>"; };
+		951D2F791AB7F85500DCB678 /* MJRefreshLegendFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshLegendFooter.m; sourceTree = "<group>"; };
+		951D2F7A1AB7F85500DCB678 /* MJRefreshLegendHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshLegendHeader.h; sourceTree = "<group>"; };
+		951D2F7B1AB7F85500DCB678 /* MJRefreshLegendHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshLegendHeader.m; sourceTree = "<group>"; };
+		951D2F7C1AB7F85500DCB678 /* UIScrollView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJExtension.h"; sourceTree = "<group>"; };
+		951D2F7D1AB7F85500DCB678 /* UIScrollView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJExtension.m"; sourceTree = "<group>"; };
+		951D2F7E1AB7F85500DCB678 /* UIScrollView+MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJRefresh.h"; sourceTree = "<group>"; };
+		951D2F7F1AB7F85500DCB678 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
+		951D2F801AB7F85500DCB678 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
+		951D2F811AB7F85500DCB678 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		951D2F8E1AB7F8C000DCB678 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9532C8C71A51547B001A0E4A /* QuestionFocusingActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionFocusingActionCell.swift; sourceTree = "<group>"; };
 		9532C8C91A51548B001A0E4A /* QuestionFocusingActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionFocusingActionCell.xib; sourceTree = "<group>"; };
 		9532C8CB1A515E28001A0E4A /* AnswerAgreementActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerAgreementActionCell.swift; sourceTree = "<group>"; };
@@ -668,10 +707,10 @@
 		9574126A1AAFC22F0077FCE6 /* UIFont+DTCoreText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+DTCoreText.m"; sourceTree = "<group>"; };
 		9575B17C1A514B4500EFFFB7 /* QuestionPublishmentActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionPublishmentActionCell.swift; sourceTree = "<group>"; };
 		9575B17E1A514C3100EFFFB7 /* QuestionPublishmentActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionPublishmentActionCell.xib; sourceTree = "<group>"; };
+		9583E3341AB6812400067F37 /* MSRLayoutGuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRLayoutGuide.swift; sourceTree = "<group>"; };
 		9588F5E31A1D9D1C001BC426 /* WeCenterMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeCenterMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9588F5E71A1D9D1C001BC426 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9588F5E81A1D9D1C001BC426 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9588F5F21A1D9D1C001BC426 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9588F5F51A1D9D1C001BC426 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9588F5FB1A1D9D1C001BC426 /* WeCenterMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeCenterMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9588F6001A1D9D1C001BC426 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -735,7 +774,8 @@
 		95F380C21AB2C4490070A7FB /* FeaturedArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedArticleCell.swift; sourceTree = "<group>"; };
 		95F380C41AB2C70B0070A7FB /* FeaturedArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeaturedArticleCell.xib; sourceTree = "<group>"; };
 		95F380C61AB33CC50070A7FB /* MSRMultilineLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRMultilineLabel.swift; sourceTree = "<group>"; };
-		95F380C81AB56A950070A7FB /* FeaturedQuestionAnswerCellWithoutAnswer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeaturedQuestionAnswerCellWithoutAnswer.xib; sourceTree = "<group>"; };
+		95F380C81AB56A950070A7FB /* FeaturedQuestionAnswerCellWithoutAnswerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeaturedQuestionAnswerCellWithoutAnswerCell.xib; sourceTree = "<group>"; };
+		95FC9D321AB5C40F00247731 /* FeaturedQuestionAnswerCellWithoutAnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedQuestionAnswerCellWithoutAnswerCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -807,6 +847,7 @@
 				956C0F101A583F070053EDCA /* UIColor+BFPaperColors */,
 				956E70F01AAFC50400A3FD7D /* DTFoundation */,
 				957411ED1AAFC22F0077FCE6 /* DTCoreText */,
+				951D2F691AB7F85500DCB678 /* MJRefresh */,
 				95C2E9F01AB0516800F2A326 /* Msr */,
 			);
 			path = External;
@@ -861,7 +902,8 @@
 				95F380C01AB2C34A0070A7FB /* FeaturedObjectCell.swift */,
 				95F380BE1AB2BCB20070A7FB /* FeaturedQuestionAnswerCell.swift */,
 				95F380BC1AB282840070A7FB /* FeaturedQuestionAnswerCell.xib */,
-				95F380C81AB56A950070A7FB /* FeaturedQuestionAnswerCellWithoutAnswer.xib */,
+				95FC9D321AB5C40F00247731 /* FeaturedQuestionAnswerCellWithoutAnswerCell.swift */,
+				95F380C81AB56A950070A7FB /* FeaturedQuestionAnswerCellWithoutAnswerCell.xib */,
 				95F380C21AB2C4490070A7FB /* FeaturedArticleCell.swift */,
 				95F380C41AB2C70B0070A7FB /* FeaturedArticleCell.xib */,
 				950FE4F41A1DA2B500167D09 /* LoginView.swift */,
@@ -894,6 +936,38 @@
 				950FE7CF1A1DA4EC00167D09 /* libz.dylib */,
 			);
 			name = Framework;
+			sourceTree = "<group>";
+		};
+		951D2F691AB7F85500DCB678 /* MJRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				951D2F6A1AB7F85500DCB678 /* MJRefresh.bundle */,
+				951D2F6B1AB7F85500DCB678 /* MJRefresh.h */,
+				951D2F6C1AB7F85500DCB678 /* MJRefreshComponent.h */,
+				951D2F6D1AB7F85500DCB678 /* MJRefreshComponent.m */,
+				951D2F6E1AB7F85500DCB678 /* MJRefreshConst.h */,
+				951D2F6F1AB7F85500DCB678 /* MJRefreshConst.m */,
+				951D2F701AB7F85500DCB678 /* MJRefreshFooter.h */,
+				951D2F711AB7F85500DCB678 /* MJRefreshFooter.m */,
+				951D2F721AB7F85500DCB678 /* MJRefreshGifFooter.h */,
+				951D2F731AB7F85500DCB678 /* MJRefreshGifFooter.m */,
+				951D2F741AB7F85500DCB678 /* MJRefreshGifHeader.h */,
+				951D2F751AB7F85500DCB678 /* MJRefreshGifHeader.m */,
+				951D2F761AB7F85500DCB678 /* MJRefreshHeader.h */,
+				951D2F771AB7F85500DCB678 /* MJRefreshHeader.m */,
+				951D2F781AB7F85500DCB678 /* MJRefreshLegendFooter.h */,
+				951D2F791AB7F85500DCB678 /* MJRefreshLegendFooter.m */,
+				951D2F7A1AB7F85500DCB678 /* MJRefreshLegendHeader.h */,
+				951D2F7B1AB7F85500DCB678 /* MJRefreshLegendHeader.m */,
+				951D2F7C1AB7F85500DCB678 /* UIScrollView+MJExtension.h */,
+				951D2F7D1AB7F85500DCB678 /* UIScrollView+MJExtension.m */,
+				951D2F7E1AB7F85500DCB678 /* UIScrollView+MJRefresh.h */,
+				951D2F7F1AB7F85500DCB678 /* UIScrollView+MJRefresh.m */,
+				951D2F801AB7F85500DCB678 /* UIView+MJExtension.h */,
+				951D2F811AB7F85500DCB678 /* UIView+MJExtension.m */,
+			);
+			name = MJRefresh;
+			path = MJRefresh/MJRefreshExample/MJRefreshExample/MJRefresh;
 			sourceTree = "<group>";
 		};
 		956C0F041A583DE70053EDCA /* BFPaperButton */ = {
@@ -1427,8 +1501,8 @@
 				950FE4F01A1DA2B500167D09 /* View */,
 				950FE1291A1DA2B300167D09 /* Controller */,
 				950FE13B1A1DA2B300167D09 /* External */,
-				9588F5F21A1D9D1C001BC426 /* Images.xcassets */,
 				9588F5F41A1D9D1C001BC426 /* LaunchScreen.xib */,
+				951D2F8E1AB7F8C000DCB678 /* Images.xcassets */,
 				956E70ED1AAFC4E100A3FD7D /* WeCenterMobile.xcdatamodeld */,
 				9588F5E61A1D9D1C001BC426 /* Supporting Files */,
 			);
@@ -1509,6 +1583,7 @@
 				95C2EA101AB0516800F2A326 /* MSRSegmentedControlRainbowBlockIndicator.swift */,
 				95C2EA111AB0516800F2A326 /* MSRSegmentedControlUnderlineIndicator.swift */,
 				95C2EA121AB0516800F2A326 /* MSRSegmentedViewController.swift */,
+				9583E3341AB6812400067F37 /* MSRLayoutGuide.swift */,
 				95C2EA131AB0516800F2A326 /* MSRSidebar.swift */,
 				95C2EA141AB0516800F2A326 /* NSObject+MSRUserInfo.swift */,
 				95C2EA151AB0516800F2A326 /* UIColor+MSRMaterialColor.swift */,
@@ -1619,12 +1694,13 @@
 				950FE1241A1DA2A400167D09 /* Configuration.plist in Resources */,
 				9532C8CA1A51548B001A0E4A /* QuestionFocusingActionCell.xib in Resources */,
 				953BF5C01A51C50800B804B8 /* ArticleAgreementActionCell.xib in Resources */,
-				95F380C91AB56A950070A7FB /* FeaturedQuestionAnswerCellWithoutAnswer.xib in Resources */,
+				95F380C91AB56A950070A7FB /* FeaturedQuestionAnswerCellWithoutAnswerCell.xib in Resources */,
 				950FE1251A1DA2A400167D09 /* Discovery.strings in Resources */,
 				95B6E6B91A232E2400F31BE3 /* LaunchScreen.xib in Resources */,
 				95E4E9A21A50040100F3C327 /* AnswerActionCell.xib in Resources */,
 				950FE1271A1DA2A400167D09 /* Welcome.strings in Resources */,
-				9588F5F31A1D9D1C001BC426 /* Images.xcassets in Resources */,
+				951D2F821AB7F85500DCB678 /* MJRefresh.bundle in Resources */,
+				951D2F8F1AB7F8C000DCB678 /* Images.xcassets in Resources */,
 				9575B17F1A514C3100EFFFB7 /* QuestionPublishmentActionCell.xib in Resources */,
 				953BF5BC1A51A70D00B804B8 /* ArticlePublishmentActionCell.xib in Resources */,
 				950FE1261A1DA2A400167D09 /* User.strings in Resources */,
@@ -1651,12 +1727,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				956E72111AAFC53B00A3FD7D /* UIButton+AFNetworking.m in Sources */,
+				951D2F851AB7F85500DCB678 /* MJRefreshFooter.m in Sources */,
 				95C2EA471AB059D200F2A326 /* MSRActivityIndicator.swift in Sources */,
 				95C2EA381AB0516800F2A326 /* MSRSegmentedControlOverlineIndicator.swift in Sources */,
 				9532C8CC1A515E28001A0E4A /* AnswerAgreementActionCell.swift in Sources */,
 				957412A51AAFC22F0077FCE6 /* NSString+CSS.m in Sources */,
 				959CC93A1A25BAED00F8B6CB /* Article.swift in Sources */,
 				95C2EA451AB0516800F2A326 /* UIView+MSRKeyboardUtility.swift in Sources */,
+				951D2F8C1AB7F85500DCB678 /* UIScrollView+MJRefresh.m in Sources */,
 				950FE50E1A1DA2B500167D09 /* UserAskedQuestionListViewController.swift in Sources */,
 				957412A31AAFC22F0077FCE6 /* NSMutableString+HTML.m in Sources */,
 				9574129C1AAFC22F0077FCE6 /* NSAttributedString+HTML.m in Sources */,
@@ -1673,8 +1751,10 @@
 				956E71A21AAFC50500A3FD7D /* DTLog.m in Sources */,
 				959CC9421A25BAEE00F8B6CB /* Answer.swift in Sources */,
 				956C0F0F1A583EF70053EDCA /* BFPaperTableViewCell.m in Sources */,
+				951D2F891AB7F85500DCB678 /* MJRefreshLegendFooter.m in Sources */,
 				95F380C71AB33CC50070A7FB /* MSRMultilineLabel.swift in Sources */,
 				957412741AAFC22F0077FCE6 /* DTBreakHTMLElement.m in Sources */,
+				9583E3351AB6812400067F37 /* MSRLayoutGuide.swift in Sources */,
 				956E71A11AAFC50500A3FD7D /* DTHTMLParser.m in Sources */,
 				95C2EA491AB1101F00F2A326 /* FeaturedObject.swift in Sources */,
 				9574127C1AAFC22F0077FCE6 /* DTCoreTextLayouter.m in Sources */,
@@ -1739,6 +1819,7 @@
 				956E71B81AAFC50500A3FD7D /* DTActivityTitleView.m in Sources */,
 				956E71BA1AAFC50500A3FD7D /* DTCustomColoredAccessory.m in Sources */,
 				957412881AAFC22F0077FCE6 /* DTHTMLElement.m in Sources */,
+				951D2F881AB7F85500DCB678 /* MJRefreshHeader.m in Sources */,
 				956E71961AAFC50500A3FD7D /* DTASN1BitString.m in Sources */,
 				956E71B41AAFC50500A3FD7D /* DTAlertView.m in Sources */,
 				953BF5BA1A51A6F200B804B8 /* ArticlePublishmentActionCell.swift in Sources */,
@@ -1774,6 +1855,7 @@
 				957412731AAFC22F0077FCE6 /* DTAttributedTextView.m in Sources */,
 				95C2EA281AB0516800F2A326 /* MSRSidebarHandle.swift in Sources */,
 				9575B17D1A514B4500EFFFB7 /* QuestionPublishmentActionCell.swift in Sources */,
+				95FC9D331AB5C40F00247731 /* FeaturedQuestionAnswerCellWithoutAnswerCell.swift in Sources */,
 				95C2EA4B1AB1102000F2A326 /* FeaturedQuestionAnswer.swift in Sources */,
 				950FE5111A1DA2B500167D09 /* WelcomeViewController.swift in Sources */,
 				9574128B1AAFC22F0077FCE6 /* DTHTMLWriter.m in Sources */,
@@ -1789,16 +1871,19 @@
 				956E719E1AAFC50500A3FD7D /* DTExtendedFileAttributes.m in Sources */,
 				956E72101AAFC53B00A3FD7D /* UIAlertView+AFNetworking.m in Sources */,
 				957412911AAFC22F0077FCE6 /* DTListItemHTMLElement.m in Sources */,
+				951D2F861AB7F85500DCB678 /* MJRefreshGifFooter.m in Sources */,
 				957412971AAFC22F0077FCE6 /* DTTextHTMLElement.m in Sources */,
 				957412951AAFC22F0077FCE6 /* DTTextAttachmentHTMLElement.m in Sources */,
 				956E719D1AAFC50500A3FD7D /* DTCoreGraphicsUtils.m in Sources */,
 				950FE7381A1DA2B500167D09 /* QuestionAnswerCell.swift in Sources */,
+				951D2F8B1AB7F85500DCB678 /* UIScrollView+MJExtension.m in Sources */,
 				956E71BF1AAFC50500A3FD7D /* DTSidePanelControllerSegue.m in Sources */,
 				957412791AAFC22F0077FCE6 /* DTCoreTextFontDescriptor.m in Sources */,
 				95C2EA2F1AB0516800F2A326 /* MSRKeyboardBar.swift in Sources */,
 				956E719B1AAFC50500A3FD7D /* DTBase64Coding.m in Sources */,
 				956E71DC1AAFC50500A3FD7D /* DTObjectBlockExecutor.m in Sources */,
 				956E71D21AAFC50500A3FD7D /* NSString+DTURLEncoding.m in Sources */,
+				951D2F871AB7F85500DCB678 /* MJRefreshGifHeader.m in Sources */,
 				9574129E1AAFC22F0077FCE6 /* NSAttributedStringRunDelegates.m in Sources */,
 				959CC93C1A25BAED00F8B6CB /* AnswerComment.swift in Sources */,
 				950FE50D1A1DA2B500167D09 /* UserListViewController.swift in Sources */,
@@ -1827,6 +1912,7 @@
 				956E71981AAFC50500A3FD7D /* DTASN1Serialization.m in Sources */,
 				956E71991AAFC50500A3FD7D /* DTAsyncFileDeleter.m in Sources */,
 				956E71C61AAFC50500A3FD7D /* NSURL+DTAppLinks.m in Sources */,
+				951D2F8A1AB7F85500DCB678 /* MJRefreshLegendHeader.m in Sources */,
 				950FE7211A1DA2B500167D09 /* ArticleAgreementAction.swift in Sources */,
 				95F380BB1AB269690070A7FB /* FeaturedObjectListViewController.swift in Sources */,
 				95C2EA411AB0516800F2A326 /* UIImage+MSRResize.swift in Sources */,
@@ -1861,6 +1947,7 @@
 				956E720B1AAFC53B00A3FD7D /* AFURLRequestSerialization.m in Sources */,
 				956E72091AAFC53B00A3FD7D /* AFSecurityPolicy.m in Sources */,
 				9588F5E91A1D9D1C001BC426 /* AppDelegate.swift in Sources */,
+				951D2F831AB7F85500DCB678 /* MJRefreshComponent.m in Sources */,
 				9574128F1AAFC22F0077FCE6 /* DTLazyImageView.m in Sources */,
 				956E71C71AAFC50500A3FD7D /* UIApplication+DTNetworkActivity.m in Sources */,
 				9574126E1AAFC22F0077FCE6 /* DTAccessibilityViewProxy.m in Sources */,
@@ -1886,6 +1973,7 @@
 				95C2EA2E1AB0516800F2A326 /* MSRFrameEdge.swift in Sources */,
 				956E71B11AAFC50500A3FD7D /* unzip.c in Sources */,
 				9574127B1AAFC22F0077FCE6 /* DTCoreTextGlyphRun.m in Sources */,
+				951D2F8D1AB7F85500DCB678 /* UIView+MJExtension.m in Sources */,
 				950FE71F1A1DA2B500167D09 /* AnswerAgreementAction.swift in Sources */,
 				956E720C1AAFC53B00A3FD7D /* AFURLResponseSerialization.m in Sources */,
 				956E71B21AAFC50500A3FD7D /* zip.c in Sources */,
@@ -1895,6 +1983,7 @@
 				957412701AAFC22F0077FCE6 /* DTAttributedLabel.m in Sources */,
 				957412A71AAFC22F0077FCE6 /* NSString+Paragraphs.m in Sources */,
 				956E71C41AAFC50500A3FD7D /* DTStripedLayer.m in Sources */,
+				951D2F841AB7F85500DCB678 /* MJRefreshConst.m in Sources */,
 				950FE50F1A1DA2B500167D09 /* UserTopicListViewController.swift in Sources */,
 				95C2EA211AB0516800F2A326 /* Numeric+MSRInitializer.swift in Sources */,
 				956E71B31AAFC50500A3FD7D /* DTActionSheet.m in Sources */,

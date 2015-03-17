@@ -35,10 +35,11 @@ class ExploreViewController: MSRSegmentedViewController, MSRSegmentedViewControl
     
     override func loadView() {
         super.loadView()
-        segmentedControl.indicator = MSRSegmentedControlOverlineIndicator()
-        segmentedControl.tintColor = UIColor.msr_materialLime()
+        segmentedControl.indicator = MSRSegmentedControlUnderlineIndicator()
+        segmentedControl.tintColor = UIColor.msr_materialBrown200()
+        segmentedControl.indicator.tintColor = UIColor.msr_materialBrown500()
         (segmentedControl.backgroundView as! UIToolbar).barStyle = .Black
-        view.backgroundColor = UIColor.darkGrayColor()
+        view.backgroundColor = UIColor.msr_materialBrown900()
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List"), style: .Plain, target: self, action: "showSidebar")
         navigationItem.leftBarButtonItem!.tintColor = UIColor.whiteColor()
     }

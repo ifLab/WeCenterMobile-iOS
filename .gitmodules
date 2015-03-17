@@ -13,3 +13,6 @@
 [submodule "WeCenterMobile/External/BFPaperTableViewCell"]
 	path = WeCenterMobile/External/BFPaperTableViewCell
 	url = https://github.com/bfeher/BFPaperTableViewCell.git
+[submodule "WeCenterMobile/External/MJRefresh"]
+	path = WeCenterMobile/External/MJRefresh
+	url = https://github.com/CoderMJLee/MJRefresh.git

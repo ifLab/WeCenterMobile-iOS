@@ -9,5 +9,10 @@
 import UIKit
 
 class FeaturedObjectCell: UITableViewCell {
-    func update(#object: FeaturedObject) {} // Does nothing, just defines a protocol.
+    var object: FeaturedObject?
+    var objectChanged: Bool = true
+    func update(#object: FeaturedObject) {
+        objectChanged = self.object !== object
+        self.object = object
+    }
 }

@@ -43,10 +43,12 @@ class FeaturedObject: NSManagedObject {
                 }
                 for object in data["rows"] as! [NSDictionary] {
                     if let typeID = FeaturedObjectTypeID(rawValue: object["post_type"] as! String) {
+                        var featuredObject: FeaturedObject!
                         switch typeID {
                         case .QuestionAnswer:
                             let question = dataManager.autoGenerate("Question", ID: Int(msr_object: object["question_id"]!)) as! Question
                             let featuredQuestionAnswer = dataManager.autoGenerate("FeaturedQuestionAnswer", ID: question.id) as! FeaturedQuestionAnswer
+                            featuredObject = featuredQuestionAnswer
                             featuredQuestionAnswer.question = question
                             featuredQuestionAnswer.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: object["add_time"]!))
                             question.date = featuredQuestionAnswer.date
@@ -106,11 +108,11 @@ class FeaturedObject: NSManagedObject {
                                 }
                             }
                             featuredQuestionAnswer.answers = featuredAnswers
-                            featuredObjects.append(featuredQuestionAnswer)
                             break
                         case .Article:
                             let article = dataManager.autoGenerate("Article", ID: Int(msr_object: object["id"]!)) as! Article
                             let featuredArticle = dataManager.autoGenerate("FeaturedArticle", ID: article.id) as! FeaturedArticle
+                            featuredObject = featuredArticle
                             featuredArticle.article = article
                             featuredArticle.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: object["add_time"]!))
                             article.title = (object["title"] as! String)
@@ -134,14 +136,15 @@ class FeaturedObject: NSManagedObject {
                             } else {
                                 article.user = nil
                             }
-                            featuredObjects.append(featuredArticle)
                             break
                         }
-                        success?(featuredObjects)
+                        featuredObjects.append(featuredObject)
                     } else {
                         failure?(NSError()) // Needs specification
+                        return
                     }
                 }
+                success?(featuredObjects)
             },
             failure: failure)
     }
