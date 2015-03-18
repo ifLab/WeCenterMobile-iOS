@@ -9,6 +9,9 @@
 import Foundation
 import CoreData
 
+let UserDefaultsCookiesKey = "WeCenterMobile_DefaultCookies"
+let UserDefaultsUserIDKey = "WeCenterMobile_DefaultUserID"
+
 class User: NSManagedObject {
 
     @NSManaged var agreementCount: NSNumber?
@@ -211,12 +214,15 @@ class User: NSManagedObject {
             failure: failure)
     }
     
-    class func loginWithCookieAndCacheInStorage(#success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
-        let data = NSUserDefaults.standardUserDefaults().objectForKey("Cookies") as? NSData
-        if data == nil {
+    class func loginWithCookiesAndCacheInStorage(#success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let data = defaults.objectForKey(UserDefaultsCookiesKey) as? NSData
+        let userID = defaults.objectForKey(UserDefaultsUserIDKey) as? NSNumber
+        var error: NSError? = nil
+        if data == nil || userID == nil {
             var userInfo = [
-                NSLocalizedDescriptionKey: "Could not find any cookies in storage.",
-                NSLocalizedFailureReasonErrorKey: "You've never logged in before or cookies have been cleared.",
+                NSLocalizedDescriptionKey: "Could not find any cookies or cache in storage.",
+                NSLocalizedFailureReasonErrorKey: "You've never logged in before or cookies and cache have been cleared."
             ]
             failure?(NSError(
                 domain: NetworkManager.defaultManager!.website,
@@ -228,19 +234,19 @@ class User: NSManagedObject {
             for cookie in cookies {
                 storage.setCookie(cookie)
             }
-            NetworkManager.defaultManager!.GET("User UID",
-                parameters: nil,
-                success: {
-                    data in
-                    var error: NSError? = nil
-                    let user = self.get(ID: Int(msr_object: (data as! NSDictionary)["uid"]!), error: &error)
-                    if user != nil {
-                        success?(user!)
-                    } else {
-                        failure?(error ?? NSError()) // Needs specification
-                    }
-                },
-                failure: failure)
+            if let user = get(ID: userID!, error: &error) {
+                success?(user)
+            } else {
+                var userInfo = [
+                    NSLocalizedDescriptionKey: "Cookies and user ID were found, but no such user in cache.",
+                    NSLocalizedFailureReasonErrorKey: "Caches have been cleared before.",
+                    NSLocalizedRecoverySuggestionErrorKey: "By accessing \"User Basic Information\" with cookies in header, you can get the basic infomation of current user. Cookies have been set into header."
+                ]
+                failure?(NSError(
+                    domain: NetworkManager.defaultManager!.website,
+                    code: NetworkManager.defaultManager!.internalErrorCode.integerValue,
+                    userInfo: userInfo))
+            }
         }
     }
     
@@ -255,13 +261,14 @@ class User: NSManagedObject {
                 data in
                 let cookies = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies as! [NSHTTPCookie]
                 let cookiesData = NSKeyedArchiver.archivedDataWithRootObject(cookies)
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setObject(cookiesData, forKey: "Cookies")
-                defaults.synchronize()
                 let user = DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: (data as! NSDictionary)["uid"]!)) as! User
                 user.name = data["user_name"] as? String
                 user.avatarURI = data["avatar_file"] as? String
-                self.loginWithCookieAndCacheInStorage(success: success, failure: failure)
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(cookiesData, forKey: UserDefaultsCookiesKey)
+                defaults.setObject(user.id, forKey: UserDefaultsUserIDKey)
+                defaults.synchronize()
+                self.loginWithCookiesAndCacheInStorage(success: success, failure: failure)
             },
             failure: failure)
     }

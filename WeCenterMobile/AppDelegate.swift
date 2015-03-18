@@ -40,22 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window!.rootViewController = welcomeViewController
         window!.makeKeyAndVisible()
-//        User.loginWithCookieAndCacheInStorage(
-//            success: {
-//                user in
-//                self.currentUser = user
-//                self.window!.makeKeyAndVisible()
-//                dispatch_async(dispatch_get_main_queue()) {
-//                    self.mainViewController = MainViewController()
-//                    self.mainViewController.modalTransitionStyle = .CrossDissolve
-//                    self.welcomeViewController.presentViewController(self.mainViewController, animated: true, completion: nil)
-//                }
-//            },
-//            failure: {
-//                error in
-//                self.window!.makeKeyAndVisible()
-//                println(error)
-//            })
         return true
     }
     

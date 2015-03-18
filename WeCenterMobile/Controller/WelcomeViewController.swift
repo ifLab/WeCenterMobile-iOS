@@ -28,15 +28,33 @@ class WelcomeViewController: UIViewController {
         loginView.loginButton.addTarget(self, action: "login", forControlEvents: .TouchUpInside)
     }
     
+    var firstAppear: Bool = true
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if firstAppear {
+            firstAppear = false
+            User.loginWithCookiesAndCacheInStorage(
+                success: {
+                    [weak self] user in
+                    appDelegate.currentUser = user
+                    self?.presentMainViewController()
+                },
+                failure: {
+                    [weak self] error in
+                    println(error)
+                    return
+                })
+        }
+    }
+    
     func login() {
         User.loginWithName(loginView.userNameField.text,
             password: loginView.passwordField.text,
             success: {
                 [weak self] user in
                 appDelegate.currentUser = user
-                appDelegate.mainViewController = MainViewController()
-                appDelegate.mainViewController.modalTransitionStyle = .CrossDissolve
-                self?.presentViewController(appDelegate.mainViewController, animated: true, completion: nil)
+                self?.presentMainViewController()
             },
             failure: {
                 [weak self] error in
@@ -44,6 +62,12 @@ class WelcomeViewController: UIViewController {
                 ac.addAction(UIAlertAction(title: "好", style: .Default, handler: nil))
                 self?.presentViewController(ac, animated: true, completion: nil)
             })
+    }
+    
+    func presentMainViewController() {
+        appDelegate.mainViewController = MainViewController()
+        appDelegate.mainViewController.modalTransitionStyle = .CrossDissolve
+        presentViewController(appDelegate.mainViewController, animated: true, completion: nil)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
