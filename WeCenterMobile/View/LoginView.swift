@@ -8,43 +8,43 @@
 
 import UIKit
 
-class LoginView: MSRAlertView {
-    var usernameField: UITextField!
-    var passwordField: UITextField!
-    override init() {
-        super.init()
-        self.cornerRadius = 7
-        let cornerRadius = self.cornerRadius
-        let borderColor = UIColor.blackColor().CGColor
-        var newTextField = {
-            () -> UITextField in
-            let textField = UITextField(frame: CGRect(x: 0, y: 0, width: 230, height: 35))
-            textField.layer.borderColor = borderColor
-            textField.layer.borderWidth = 1
-            textField.layer.cornerRadius = cornerRadius
-            textField.textColor = UIColor.blackColor()
-            textField.tintColor = UIColor.whiteColor()
-            textField.textAlignment = .Center
-            textField.keyboardAppearance = .Default
-            textField.clearButtonMode = .WhileEditing
-            return textField
-        }
-        usernameField = newTextField()
-        passwordField = newTextField()
-        passwordField.secureTextEntry = true
-        usernameField.attributedPlaceholder = NSAttributedString(
-            string: welcomeStrings("Username"),
-            attributes: [NSForegroundColorAttributeName: UIColor.blackColor()])
-        passwordField.attributedPlaceholder = NSAttributedString(
-            string: welcomeStrings("Password"),
-            attributes: [NSForegroundColorAttributeName: UIColor.blackColor()])
-        usernameField.center = CGPoint(x: contentView.center.x, y: 35)
-        passwordField.center = CGPoint(x: contentView.center.x, y: 85)
-        usernameField.delegate = self
-        passwordField.delegate = self
-        backgroundColor = UIColor.whiteColor()
-        contentView.bounds = CGRect(origin: CGPointZero, size: CGSize(width: contentView.bounds.width, height: 120))
-        contentView.addSubview(usernameField)
-        contentView.addSubview(passwordField)
+class LoginView: UIView, UIScrollViewDelegate {
+    
+    @IBOutlet var userNameField: UITextField!
+    @IBOutlet var passwordField: UITextField!
+    @IBOutlet weak var userNameImageView: UIImageView!
+    @IBOutlet weak var passwordImageView: UIImageView!
+    @IBOutlet weak var userNameFieldUnderlineHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var passwordFieldUnderlineHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var loginButton: UIButton!
+    
+    lazy var tapGestureRecognizer: UITapGestureRecognizer = {
+        return UITapGestureRecognizer(target: self, action: "didTapBlankArea:")
+    }()
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        userNameImageView.image = userNameImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
+        passwordImageView.image = passwordImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
+        userNameField.attributedPlaceholder = NSAttributedString(string: userNameField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])
+        passwordField.attributedPlaceholder = NSAttributedString(string: passwordField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])
+        userNameField.tintColor = UIColor.lightTextColor()
+        passwordField.tintColor = UIColor.lightTextColor()
+        userNameFieldUnderlineHeightConstraint.constant = 0.5
+        passwordFieldUnderlineHeightConstraint.constant = 0.5
+        scrollView.delegate = self
+        scrollView.addGestureRecognizer(tapGestureRecognizer)
     }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        msr_resignFirstResponderOfAllSubviews()
+    }
+    
+    func didTapBlankArea(gestureRecognizer: UITapGestureRecognizer) {
+        if tapGestureRecognizer === gestureRecognizer {
+            msr_resignFirstResponderOfAllSubviews()
+        }
+    }
+    
 }

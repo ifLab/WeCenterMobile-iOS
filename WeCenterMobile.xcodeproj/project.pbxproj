@@ -48,7 +48,6 @@
 		950FE73F1A1DA2B500167D09 /* TopicTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4FE1A1DA2B500167D09 /* TopicTagView.swift */; };
 		950FE7401A1DA2B500167D09 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4FF1A1DA2B500167D09 /* UserCell.swift */; };
 		950FE7411A1DA2B500167D09 /* UserCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE5001A1DA2B500167D09 /* UserCountView.swift */; };
-		950FE7421A1DA2B500167D09 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE5011A1DA2B500167D09 /* WelcomeView.swift */; };
 		950FE7E21A1DA53A00167D09 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7DF1A1DA52000167D09 /* CoreText.framework */; };
 		950FE7E31A1DA53A00167D09 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7DD1A1DA51900167D09 /* UIKit.framework */; };
 		950FE7E41A1DA53A00167D09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7DB1A1DA51400167D09 /* Foundation.framework */; };
@@ -80,6 +79,7 @@
 		953BF5BC1A51A70D00B804B8 /* ArticlePublishmentActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 953BF5BB1A51A70D00B804B8 /* ArticlePublishmentActionCell.xib */; };
 		953BF5BE1A51C4F700B804B8 /* ArticleAgreementActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953BF5BD1A51C4F700B804B8 /* ArticleAgreementActionCell.swift */; };
 		953BF5C01A51C50800B804B8 /* ArticleAgreementActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 953BF5BF1A51C50800B804B8 /* ArticleAgreementActionCell.xib */; };
+		953F7DC91AB9B89600AD3363 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 953F7DC81AB9B89600AD3363 /* LoginView.xib */; };
 		956C0F071A583DE70053EDCA /* BFPaperButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 956C0F061A583DE70053EDCA /* BFPaperButton.m */; };
 		956C0F0F1A583EF70053EDCA /* BFPaperTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 956C0F0E1A583EF70053EDCA /* BFPaperTableViewCell.m */; };
 		956C0F131A583F070053EDCA /* UIColor+BFPaperColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 956C0F121A583F070053EDCA /* UIColor+BFPaperColors.m */; };
@@ -234,6 +234,7 @@
 		9583E3351AB6812400067F37 /* MSRLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583E3341AB6812400067F37 /* MSRLayoutGuide.swift */; };
 		9588F5E91A1D9D1C001BC426 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9588F5E81A1D9D1C001BC426 /* AppDelegate.swift */; };
 		9588F6021A1D9D1C001BC426 /* WeCenterMobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9588F6011A1D9D1C001BC426 /* WeCenterMobileTests.swift */; };
+		958CB5BB1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CB5BA1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift */; };
 		959CC93A1A25BAED00F8B6CB /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC9391A25BAED00F8B6CB /* Article.swift */; };
 		959CC93C1A25BAED00F8B6CB /* AnswerComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC93B1A25BAED00F8B6CB /* AnswerComment.swift */; };
 		959CC93E1A25BAED00F8B6CB /* ArticleComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC93D1A25BAED00F8B6CB /* ArticleComment.swift */; };
@@ -358,7 +359,6 @@
 		950FE4FE1A1DA2B500167D09 /* TopicTagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicTagView.swift; sourceTree = "<group>"; };
 		950FE4FF1A1DA2B500167D09 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		950FE5001A1DA2B500167D09 /* UserCountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCountView.swift; sourceTree = "<group>"; };
-		950FE5011A1DA2B500167D09 /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		950FE7CF1A1DA4EC00167D09 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		950FE7D11A1DA4F300167D09 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		950FE7D31A1DA4F900167D09 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -402,6 +402,7 @@
 		953BF5BB1A51A70D00B804B8 /* ArticlePublishmentActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticlePublishmentActionCell.xib; sourceTree = "<group>"; };
 		953BF5BD1A51C4F700B804B8 /* ArticleAgreementActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleAgreementActionCell.swift; sourceTree = "<group>"; };
 		953BF5BF1A51C50800B804B8 /* ArticleAgreementActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleAgreementActionCell.xib; sourceTree = "<group>"; };
+		953F7DC81AB9B89600AD3363 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		956C0F051A583DE70053EDCA /* BFPaperButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPaperButton.h; sourceTree = "<group>"; };
 		956C0F061A583DE70053EDCA /* BFPaperButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFPaperButton.m; sourceTree = "<group>"; };
 		956C0F0D1A583EF70053EDCA /* BFPaperTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPaperTableViewCell.h; sourceTree = "<group>"; };
@@ -715,6 +716,7 @@
 		9588F5FB1A1D9D1C001BC426 /* WeCenterMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeCenterMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9588F6001A1D9D1C001BC426 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9588F6011A1D9D1C001BC426 /* WeCenterMobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeCenterMobileTests.swift; sourceTree = "<group>"; };
+		958CB5BA1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionPublishmentViewController.swift; sourceTree = "<group>"; };
 		959CC9391A25BAED00F8B6CB /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		959CC93B1A25BAED00F8B6CB /* AnswerComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnswerComment.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		959CC93D1A25BAED00F8B6CB /* ArticleComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleComment.swift; sourceTree = "<group>"; };
@@ -826,6 +828,7 @@
 				95E535591A49DCFD00D7B76B /* HomeViewController.swift */,
 				950FE12F1A1DA2B300167D09 /* MainViewController.swift */,
 				950FE1331A1DA2B300167D09 /* QuestionViewController.swift */,
+				958CB5BA1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift */,
 				950FE1341A1DA2B300167D09 /* TopicListViewController.swift */,
 				950FE1351A1DA2B300167D09 /* TopicViewController.swift */,
 				950FE1361A1DA2B300167D09 /* UserListViewController.swift */,
@@ -907,6 +910,7 @@
 				95F380C21AB2C4490070A7FB /* FeaturedArticleCell.swift */,
 				95F380C41AB2C70B0070A7FB /* FeaturedArticleCell.xib */,
 				950FE4F41A1DA2B500167D09 /* LoginView.swift */,
+				953F7DC81AB9B89600AD3363 /* LoginView.xib */,
 				950FE4F71A1DA2B500167D09 /* QuestionAnswerCell.swift */,
 				950FE4F81A1DA2B500167D09 /* QuestionBodyCell.swift */,
 				950FE4F91A1DA2B500167D09 /* QuestionFocusCell.swift */,
@@ -917,7 +921,6 @@
 				950FE4FE1A1DA2B500167D09 /* TopicTagView.swift */,
 				950FE4FF1A1DA2B500167D09 /* UserCell.swift */,
 				950FE5001A1DA2B500167D09 /* UserCountView.swift */,
-				950FE5011A1DA2B500167D09 /* WelcomeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1693,6 +1696,7 @@
 			files = (
 				950FE1241A1DA2A400167D09 /* Configuration.plist in Resources */,
 				9532C8CA1A51548B001A0E4A /* QuestionFocusingActionCell.xib in Resources */,
+				953F7DC91AB9B89600AD3363 /* LoginView.xib in Resources */,
 				953BF5C01A51C50800B804B8 /* ArticleAgreementActionCell.xib in Resources */,
 				95F380C91AB56A950070A7FB /* FeaturedQuestionAnswerCellWithoutAnswerCell.xib in Resources */,
 				950FE1251A1DA2A400167D09 /* Discovery.strings in Resources */,
@@ -1793,7 +1797,6 @@
 				9574129F1AAFC22F0077FCE6 /* NSCharacterSet+HTML.m in Sources */,
 				957412921AAFC22F0077FCE6 /* DTObjectTextAttachment.m in Sources */,
 				95C2EA371AB0516800F2A326 /* MSRSegmentedControlLinearIndicator.swift in Sources */,
-				950FE7421A1DA2B500167D09 /* WelcomeView.swift in Sources */,
 				95C2EA361AB0516800F2A326 /* MSRSegmentedControlIndicator.swift in Sources */,
 				956E72131AAFC53B00A3FD7D /* UIProgressView+AFNetworking.m in Sources */,
 				956E71971AAFC50500A3FD7D /* DTASN1Parser.m in Sources */,
@@ -1910,6 +1913,7 @@
 				950FE71E1A1DA2B500167D09 /* AnswerAction.swift in Sources */,
 				950FE73D1A1DA2B500167D09 /* TopicCell.swift in Sources */,
 				956E71981AAFC50500A3FD7D /* DTASN1Serialization.m in Sources */,
+				958CB5BB1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift in Sources */,
 				956E71991AAFC50500A3FD7D /* DTAsyncFileDeleter.m in Sources */,
 				956E71C61AAFC50500A3FD7D /* NSURL+DTAppLinks.m in Sources */,
 				951D2F8A1AB7F85500DCB678 /* MJRefreshLegendHeader.m in Sources */,

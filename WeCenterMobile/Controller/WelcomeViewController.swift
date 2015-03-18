@@ -10,7 +10,9 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
     
-    let loginView = LoginView()
+    lazy var loginView: LoginView = {
+        return NSBundle.mainBundle().loadNibNamed("LoginView", owner: self, options: nil).first as! LoginView
+    }()
     
     override init() {
         super.init(nibName: nil, bundle: nil)
@@ -22,28 +24,26 @@ class WelcomeViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        let welcomeView = WelcomeView()
-        welcomeView.loginButton.addTarget(self, action: "showLoginView", forControlEvents: .TouchUpInside)
-        loginView.addAction(MSRAlertAction(title: welcomeStrings("Cancel"), style: .Cancel) { action in })
-        loginView.addAction(MSRAlertAction(title: welcomeStrings("Login"), style: .Default) {
-            action in
-            User.loginWithName(self.loginView.usernameField.text,
-                password: self.loginView.passwordField.text,
-                success: {
-                    user in
-                    appDelegate.currentUser = user
-                    appDelegate.mainViewController = MainViewController()
-                    appDelegate.mainViewController.modalTransitionStyle = .CrossDissolve
-                    appDelegate.window!.rootViewController!.presentViewController(appDelegate.mainViewController, animated: true, completion: nil)
-                },
-                failure: nil)
-            })
-        view = welcomeView
-        view.addSubview(loginView)
+        view = loginView
+        loginView.loginButton.addTarget(self, action: "login", forControlEvents: .TouchUpInside)
     }
     
-    func showLoginView() {
-        loginView.show()
+    func login() {
+        User.loginWithName(loginView.userNameField.text,
+            password: loginView.passwordField.text,
+            success: {
+                [weak self] user in
+                appDelegate.currentUser = user
+                appDelegate.mainViewController = MainViewController()
+                appDelegate.mainViewController.modalTransitionStyle = .CrossDissolve
+                self?.presentViewController(appDelegate.mainViewController, animated: true, completion: nil)
+            },
+            failure: {
+                [weak self] error in
+                let ac: UIAlertController = UIAlertController(title: "登录失败", message: error.userInfo?[NSLocalizedDescriptionKey] as? String, preferredStyle: .Alert)
+                ac.addAction(UIAlertAction(title: "好", style: .Default, handler: nil))
+                self?.presentViewController(ac, animated: true, completion: nil)
+            })
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
