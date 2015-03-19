@@ -14,120 +14,214 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LoginViewBackground" translatesAutoresizingMaskIntoConstraints="NO" id="1bi-dr-Hxk">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </imageView>
-                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CCS-z5-wBK">
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CCS-z5-wBK" userLabel="Dark Blur Effect View">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fHI-02-goA">
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fHI-02-goA" userLabel="Container">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="black" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNo-9M-oLj">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b96-0o-LfR">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b96-0o-LfR" userLabel="Width Constraint View">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" id="KzY-Md-dri"/>
                                         </constraints>
                                     </view>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yW5-jY-fWl">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yW5-jY-fWl" userLabel="Height Constraint View">
                                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="600"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" id="oRM-D4-UxI"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="用户名" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="udd-FZ-fBL">
-                                        <rect key="frame" x="212" y="260" width="218" height="28"/>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ca0-jd-EQE" userLabel="User Name Text Field Vibrancy Left View">
+                                        <rect key="frame" x="180" y="298" width="20" height="20"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="bDf-Bg-Q2q" userLabel="Container">
+                                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User_icon" translatesAutoresizingMaskIntoConstraints="NO" id="BdF-S1-7uz" userLabel="Image View">
+                                                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                                    <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="BdF-S1-7uz" firstAttribute="top" secondItem="bDf-Bg-Q2q" secondAttribute="top" id="5BZ-l0-cFe"/>
+                                                <constraint firstAttribute="trailing" secondItem="BdF-S1-7uz" secondAttribute="trailing" id="JN1-Le-Cqm"/>
+                                                <constraint firstItem="BdF-S1-7uz" firstAttribute="leading" secondItem="bDf-Bg-Q2q" secondAttribute="leading" id="RvK-zs-hs2"/>
+                                                <constraint firstAttribute="bottom" secondItem="BdF-S1-7uz" secondAttribute="bottom" id="mP7-IQ-rZg"/>
+                                            </constraints>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="ca0-jd-EQE" secondAttribute="height" multiplier="1:1" id="XS9-AH-Zed"/>
+                                            <constraint firstAttribute="width" constant="20" id="eDP-Ve-0TJ"/>
+                                        </constraints>
+                                        <vibrancyEffect>
+                                            <blurEffect style="dark"/>
+                                        </vibrancyEffect>
+                                    </visualEffectView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="用户名" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="udd-FZ-fBL" userLabel="User Name Text Field">
+                                        <rect key="frame" x="212" y="295" width="208" height="28"/>
                                         <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Yq-sB-DlH">
-                                        <rect key="frame" x="175" y="294" width="250" height="1"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                    <visualEffectView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IVK-wE-vao" userLabel="User Name Text Field Vibrancy Underline View">
+                                        <rect key="frame" x="175" y="329" width="250" height="1"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="UtA-jB-Llo" userLabel="Container">
+                                            <rect key="frame" x="0.0" y="0.0" width="250" height="1"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        </view>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="PCF-P9-VcM"/>
-                                            <constraint firstAttribute="width" constant="250" id="d00-I6-hL1"/>
+                                            <constraint firstAttribute="height" constant="1" id="hM0-4V-H7P"/>
                                         </constraints>
-                                    </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User_icon" translatesAutoresizingMaskIntoConstraints="NO" id="BdF-S1-7uz">
-                                        <rect key="frame" x="180" y="263" width="20" height="20"/>
-                                        <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        <vibrancyEffect>
+                                            <blurEffect style="dark"/>
+                                        </vibrancyEffect>
+                                    </visualEffectView>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LgQ-wj-5QD" userLabel="Password Text Field Vibrancy Left View">
+                                        <rect key="frame" x="180" y="348" width="20" height="20"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="DkH-xZ-o65" userLabel="Container">
+                                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lock_icon" translatesAutoresizingMaskIntoConstraints="NO" id="pN7-74-iLI" userLabel="Image View">
+                                                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                                    <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="pN7-74-iLI" secondAttribute="bottom" id="6eT-nU-LPl"/>
+                                                <constraint firstItem="pN7-74-iLI" firstAttribute="leading" secondItem="DkH-xZ-o65" secondAttribute="leading" id="I58-x5-ihy"/>
+                                                <constraint firstAttribute="trailing" secondItem="pN7-74-iLI" secondAttribute="trailing" id="ZN6-Ox-kac"/>
+                                                <constraint firstItem="pN7-74-iLI" firstAttribute="top" secondItem="DkH-xZ-o65" secondAttribute="top" id="qok-of-ZbZ"/>
+                                            </constraints>
+                                        </view>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="BdF-S1-7uz" secondAttribute="height" multiplier="1:1" id="M7j-Iq-Hq5"/>
-                                            <constraint firstAttribute="width" constant="20" id="bmO-9W-qWo"/>
+                                            <constraint firstAttribute="width" secondItem="LgQ-wj-5QD" secondAttribute="height" multiplier="1:1" id="77V-TF-s5W"/>
+                                            <constraint firstAttribute="width" constant="20" id="I9f-I3-Aj5"/>
                                         </constraints>
-                                    </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rMi-4B-gzc">
-                                        <rect key="frame" x="212" y="310" width="208" height="28"/>
+                                        <vibrancyEffect>
+                                            <blurEffect style="dark"/>
+                                        </vibrancyEffect>
+                                    </visualEffectView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rMi-4B-gzc" userLabel="Password Text Field">
+                                        <rect key="frame" x="212" y="345" width="208" height="28"/>
                                         <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                     </textField>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wzk-Hn-Ojd">
-                                        <rect key="frame" x="175" y="344" width="250" height="1"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dvc-PF-fid" userLabel="Login Button Vibrancy View">
+                                        <rect key="frame" x="175" y="440" width="250" height="40"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cCS-yF-qZn" userLabel="Container">
+                                            <rect key="frame" x="0.0" y="0.0" width="250" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tl7-4e-iot">
+                                                    <rect key="frame" x="0.0" y="0.0" width="250" height="40"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Tl7-4e-iot" firstAttribute="leading" secondItem="cCS-yF-qZn" secondAttribute="leading" id="3nd-c5-vh0"/>
+                                                <constraint firstItem="Tl7-4e-iot" firstAttribute="top" secondItem="cCS-yF-qZn" secondAttribute="top" id="GhX-2m-t9k"/>
+                                                <constraint firstAttribute="trailing" secondItem="Tl7-4e-iot" secondAttribute="trailing" id="Hzk-Cq-Dtn"/>
+                                                <constraint firstAttribute="bottom" secondItem="Tl7-4e-iot" secondAttribute="bottom" id="Qid-Gw-2NQ"/>
+                                            </constraints>
+                                        </view>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="b2i-kB-J7q"/>
+                                            <constraint firstAttribute="width" constant="250" id="T0w-WS-5Wu"/>
+                                            <constraint firstAttribute="height" constant="40" id="xUV-PH-6oI"/>
                                         </constraints>
-                                    </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lock_icon" translatesAutoresizingMaskIntoConstraints="NO" id="pN7-74-iLI">
-                                        <rect key="frame" x="180" y="313" width="20" height="20"/>
-                                        <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="20" id="OJR-zJ-Z3b"/>
-                                            <constraint firstAttribute="width" secondItem="pN7-74-iLI" secondAttribute="height" multiplier="1:1" id="qnf-s4-kju"/>
-                                        </constraints>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tl7-4e-iot">
-                                        <rect key="frame" x="175" y="395" width="250" height="50"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="LZk-uF-bB2"/>
-                                            <constraint firstAttribute="width" constant="250" id="iyE-Au-fdt"/>
-                                        </constraints>
-                                        <state key="normal" title="登录">
-                                            <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
-                                        </state>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WeCenter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sb-rR-uL6">
-                                        <rect key="frame" x="175" y="129" width="250" height="66"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="48"/>
-                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        <vibrancyEffect>
+                                            <blurEffect style="dark"/>
+                                        </vibrancyEffect>
+                                    </visualEffectView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QDq-u0-G2S" userLabel="Login Button Label">
+                                        <rect key="frame" x="175" y="440" width="250" height="40"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAZ-cG-20t" userLabel="Title Text Field Vibrancy View">
+                                        <rect key="frame" x="152" y="72" width="296" height="88"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="a0G-ld-bxI" userLabel="Contrainer">
+                                            <rect key="frame" x="0.0" y="0.0" width="296" height="88"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WeCenter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sb-rR-uL6" userLabel="Title Text Field">
+                                                    <rect key="frame" x="0.0" y="0.0" width="296" height="88"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="64"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="7sb-rR-uL6" secondAttribute="bottom" id="4gH-Cg-fcj"/>
+                                                <constraint firstItem="7sb-rR-uL6" firstAttribute="leading" secondItem="a0G-ld-bxI" secondAttribute="leading" id="6cP-wz-I1l"/>
+                                                <constraint firstAttribute="trailing" secondItem="7sb-rR-uL6" secondAttribute="trailing" id="Liy-wm-qrc"/>
+                                                <constraint firstItem="7sb-rR-uL6" firstAttribute="top" secondItem="a0G-ld-bxI" secondAttribute="top" id="elh-lw-KrH"/>
+                                            </constraints>
+                                        </view>
+                                        <vibrancyEffect>
+                                            <blurEffect style="dark"/>
+                                        </vibrancyEffect>
+                                    </visualEffectView>
+                                    <visualEffectView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WIT-5W-JNf" userLabel="Password Text Field Vibrancy Underline View">
+                                        <rect key="frame" x="175" y="379" width="250" height="1"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="UH3-0o-C7S" userLabel="Container">
+                                            <rect key="frame" x="0.0" y="0.0" width="250" height="1"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="KA1-qT-VIS"/>
+                                        </constraints>
+                                        <vibrancyEffect>
+                                            <blurEffect style="dark"/>
+                                        </vibrancyEffect>
+                                    </visualEffectView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="9Yq-sB-DlH" firstAttribute="trailing" secondItem="Tl7-4e-iot" secondAttribute="trailing" id="1TL-30-eiF"/>
-                                    <constraint firstItem="9Yq-sB-DlH" firstAttribute="top" secondItem="udd-FZ-fBL" secondAttribute="bottom" constant="6" id="1Xp-WX-psC"/>
                                     <constraint firstItem="b96-0o-LfR" firstAttribute="leading" secondItem="xNo-9M-oLj" secondAttribute="leading" id="32i-dA-trp"/>
+                                    <constraint firstItem="WIT-5W-JNf" firstAttribute="trailing" secondItem="QDq-u0-G2S" secondAttribute="trailing" id="4O1-z7-L6i"/>
                                     <constraint firstAttribute="bottom" secondItem="yW5-jY-fWl" secondAttribute="bottom" id="8BG-Oa-tmG"/>
-                                    <constraint firstItem="Tl7-4e-iot" firstAttribute="top" secondItem="9Yq-sB-DlH" secondAttribute="bottom" constant="100" id="96g-oe-EqZ"/>
-                                    <constraint firstItem="9Yq-sB-DlH" firstAttribute="top" secondItem="BdF-S1-7uz" secondAttribute="bottom" constant="11" id="D0z-00-WxO"/>
-                                    <constraint firstItem="9Yq-sB-DlH" firstAttribute="leading" secondItem="BdF-S1-7uz" secondAttribute="leading" constant="-5" id="FLF-4r-yaD"/>
-                                    <constraint firstItem="7sb-rR-uL6" firstAttribute="leading" secondItem="Tl7-4e-iot" secondAttribute="leading" id="GwU-Z7-Ydy"/>
+                                    <constraint firstItem="ca0-jd-EQE" firstAttribute="leading" secondItem="IVK-wE-vao" secondAttribute="leading" constant="5" id="9A9-bd-WE9"/>
+                                    <constraint firstItem="WIT-5W-JNf" firstAttribute="top" secondItem="rMi-4B-gzc" secondAttribute="bottom" constant="6" id="C8r-hJ-nCZ"/>
+                                    <constraint firstItem="QDq-u0-G2S" firstAttribute="trailing" secondItem="Dvc-PF-fid" secondAttribute="trailing" id="CHy-4R-IMd"/>
+                                    <constraint firstItem="udd-FZ-fBL" firstAttribute="leading" secondItem="ca0-jd-EQE" secondAttribute="trailing" constant="12" id="ECN-5t-uv9"/>
+                                    <constraint firstItem="WIT-5W-JNf" firstAttribute="leading" secondItem="QDq-u0-G2S" secondAttribute="leading" id="KUk-4b-5GM"/>
                                     <constraint firstAttribute="height" secondItem="yW5-jY-fWl" secondAttribute="height" id="NLF-0s-jnD"/>
-                                    <constraint firstAttribute="centerX" secondItem="Tl7-4e-iot" secondAttribute="centerX" id="NZa-hf-F19"/>
                                     <constraint firstItem="yW5-jY-fWl" firstAttribute="leading" secondItem="xNo-9M-oLj" secondAttribute="leading" id="NmK-Pb-oAM"/>
-                                    <constraint firstItem="Tl7-4e-iot" firstAttribute="top" secondItem="Wzk-Hn-Ojd" secondAttribute="bottom" constant="50" id="O0x-oJ-1jH"/>
-                                    <constraint firstItem="udd-FZ-fBL" firstAttribute="trailing" secondItem="9Yq-sB-DlH" secondAttribute="trailing" constant="5" id="Pil-bf-5Am"/>
-                                    <constraint firstItem="9Yq-sB-DlH" firstAttribute="leading" secondItem="Tl7-4e-iot" secondAttribute="leading" id="Qqm-27-TfL"/>
-                                    <constraint firstItem="Wzk-Hn-Ojd" firstAttribute="leading" secondItem="pN7-74-iLI" secondAttribute="leading" constant="-5" id="SBC-qZ-CJ2"/>
-                                    <constraint firstAttribute="centerY" secondItem="Tl7-4e-iot" secondAttribute="centerY" constant="-120" id="Shk-lO-383"/>
-                                    <constraint firstItem="Wzk-Hn-Ojd" firstAttribute="top" secondItem="rMi-4B-gzc" secondAttribute="bottom" constant="6" id="Spc-VY-ieC"/>
+                                    <constraint firstItem="QDq-u0-G2S" firstAttribute="top" secondItem="Dvc-PF-fid" secondAttribute="top" id="OrJ-RG-q4x"/>
+                                    <constraint firstItem="IVK-wE-vao" firstAttribute="leading" secondItem="QDq-u0-G2S" secondAttribute="leading" id="Pcy-oU-QlK"/>
+                                    <constraint firstItem="WIT-5W-JNf" firstAttribute="trailing" secondItem="rMi-4B-gzc" secondAttribute="trailing" constant="5" id="QnJ-Jl-OrV"/>
+                                    <constraint firstAttribute="centerX" secondItem="Dvc-PF-fid" secondAttribute="centerX" id="RdE-aM-KTH"/>
+                                    <constraint firstItem="IVK-wE-vao" firstAttribute="trailing" secondItem="QDq-u0-G2S" secondAttribute="trailing" id="TEb-KK-8Lu"/>
+                                    <constraint firstItem="IVK-wE-vao" firstAttribute="top" secondItem="ca0-jd-EQE" secondAttribute="bottom" constant="11" id="Urt-aq-plz"/>
                                     <constraint firstItem="yW5-jY-fWl" firstAttribute="top" secondItem="b96-0o-LfR" secondAttribute="bottom" id="V8T-VA-yjV"/>
-                                    <constraint firstItem="7sb-rR-uL6" firstAttribute="trailing" secondItem="Tl7-4e-iot" secondAttribute="trailing" id="fBq-hg-gcZ"/>
-                                    <constraint firstItem="Wzk-Hn-Ojd" firstAttribute="trailing" secondItem="Tl7-4e-iot" secondAttribute="trailing" id="fof-hw-Fox"/>
+                                    <constraint firstItem="QDq-u0-G2S" firstAttribute="top" secondItem="IVK-wE-vao" secondAttribute="bottom" constant="110" id="Wv5-lK-iiT"/>
+                                    <constraint firstItem="WIT-5W-JNf" firstAttribute="top" secondItem="LgQ-wj-5QD" secondAttribute="bottom" constant="11" id="Zas-Vy-Sjw"/>
+                                    <constraint firstItem="QDq-u0-G2S" firstAttribute="top" secondItem="WIT-5W-JNf" secondAttribute="bottom" constant="60" id="bmU-NA-FgM"/>
+                                    <constraint firstItem="rMi-4B-gzc" firstAttribute="leading" secondItem="LgQ-wj-5QD" secondAttribute="trailing" constant="12" id="d1n-jE-ETk"/>
+                                    <constraint firstItem="QDq-u0-G2S" firstAttribute="bottom" secondItem="Dvc-PF-fid" secondAttribute="bottom" id="eK2-t1-wMN"/>
+                                    <constraint firstItem="QDq-u0-G2S" firstAttribute="top" secondItem="bAZ-cG-20t" secondAttribute="bottom" constant="280" id="f3C-Ii-MTS"/>
+                                    <constraint firstAttribute="centerY" secondItem="Dvc-PF-fid" secondAttribute="centerY" constant="-160" id="j3G-Ch-j6H"/>
                                     <constraint firstItem="b96-0o-LfR" firstAttribute="top" secondItem="xNo-9M-oLj" secondAttribute="top" id="jbi-Hp-8NN"/>
-                                    <constraint firstItem="Wzk-Hn-Ojd" firstAttribute="leading" secondItem="Tl7-4e-iot" secondAttribute="leading" id="kHu-hd-unX"/>
+                                    <constraint firstAttribute="centerX" secondItem="bAZ-cG-20t" secondAttribute="centerX" id="jeS-Qb-wWv"/>
                                     <constraint firstAttribute="trailing" secondItem="b96-0o-LfR" secondAttribute="trailing" id="km0-nW-bUW"/>
-                                    <constraint firstItem="rMi-4B-gzc" firstAttribute="leading" secondItem="pN7-74-iLI" secondAttribute="trailing" constant="12" id="lxB-RN-Kgb"/>
-                                    <constraint firstItem="Wzk-Hn-Ojd" firstAttribute="trailing" secondItem="rMi-4B-gzc" secondAttribute="trailing" constant="5" id="o6l-dy-5jN"/>
+                                    <constraint firstItem="IVK-wE-vao" firstAttribute="trailing" secondItem="udd-FZ-fBL" secondAttribute="trailing" constant="5" id="mgH-Gf-M3n"/>
+                                    <constraint firstItem="IVK-wE-vao" firstAttribute="top" secondItem="udd-FZ-fBL" secondAttribute="bottom" constant="6" id="nIc-lF-pb4"/>
+                                    <constraint firstItem="QDq-u0-G2S" firstAttribute="leading" secondItem="Dvc-PF-fid" secondAttribute="leading" id="qAS-Bf-KZo"/>
                                     <constraint firstAttribute="width" secondItem="b96-0o-LfR" secondAttribute="width" id="sWc-ES-CdD"/>
-                                    <constraint firstItem="Tl7-4e-iot" firstAttribute="top" secondItem="7sb-rR-uL6" secondAttribute="bottom" constant="200" id="tpc-AL-eQf"/>
-                                    <constraint firstItem="Wzk-Hn-Ojd" firstAttribute="top" secondItem="pN7-74-iLI" secondAttribute="bottom" constant="11" id="ubr-ix-cg9"/>
-                                    <constraint firstItem="udd-FZ-fBL" firstAttribute="leading" secondItem="BdF-S1-7uz" secondAttribute="trailing" constant="12" id="wuC-QB-ReZ"/>
+                                    <constraint firstItem="LgQ-wj-5QD" firstAttribute="leading" secondItem="WIT-5W-JNf" secondAttribute="leading" constant="5" id="wVu-Pd-iwM"/>
+                                    <constraint firstAttribute="centerX" secondItem="Dvc-PF-fid" secondAttribute="centerX" id="zhG-bK-UuQ"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -155,32 +249,14 @@
             <connections>
                 <outlet property="loginButton" destination="Tl7-4e-iot" id="TfM-Ds-ar4"/>
                 <outlet property="passwordField" destination="rMi-4B-gzc" id="Cye-qk-IF0"/>
-                <outlet property="passwordFieldUnderlineHeightConstraint" destination="b2i-kB-J7q" id="QVN-X2-G89"/>
+                <outlet property="passwordFieldUnderlineHeightConstraint" destination="KA1-qT-VIS" id="6sU-6H-Wza"/>
                 <outlet property="passwordImageView" destination="pN7-74-iLI" id="d0Q-Lf-Nh5"/>
                 <outlet property="scrollView" destination="xNo-9M-oLj" id="soc-oc-se0"/>
                 <outlet property="userNameField" destination="udd-FZ-fBL" id="z33-Iy-8wV"/>
-                <outlet property="userNameFieldUnderlineHeightConstraint" destination="PCF-P9-VcM" id="HAS-bA-rNV"/>
+                <outlet property="userNameFieldUnderlineHeightConstraint" destination="hM0-4V-H7P" id="IqT-sz-Y29"/>
                 <outlet property="userNameImageView" destination="BdF-S1-7uz" id="RMz-aF-hW2"/>
             </connections>
         </view>
-        <viewController id="giF-rg-wo1">
-            <layoutGuides>
-                <viewControllerLayoutGuide type="top" id="g0R-3F-gTV"/>
-                <viewControllerLayoutGuide type="bottom" id="QFA-0p-qhf"/>
-            </layoutGuides>
-            <view key="view" contentMode="scaleToFill" id="cI4-Od-tcF">
-                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            </view>
-        </viewController>
-        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uZc-CZ-JSs">
-            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-            <nil key="highlightedColor"/>
-        </label>
     </objects>
     <resources>
         <image name="Lock_icon" width="150" height="146"/>

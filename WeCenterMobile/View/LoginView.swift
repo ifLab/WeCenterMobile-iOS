@@ -33,6 +33,8 @@ class LoginView: UIView, UIScrollViewDelegate {
         passwordField.tintColor = UIColor.lightTextColor()
         userNameFieldUnderlineHeightConstraint.constant = 0.5
         passwordFieldUnderlineHeightConstraint.constant = 0.5
+        loginButton.setImage(UIImage.msr_roundedRectangleWithColor(UIColor.msr_materialGray300(), size: loginButton.bounds.size, cornerRadius: (5, 5, 5, 5)), forState: .Normal)
+        loginButton.setImage(UIImage.msr_roundedRectangleWithColor(UIColor.msr_materialGray600(), size: loginButton.bounds.size, cornerRadius: (5, 5, 5, 5)), forState: .Highlighted)
         scrollView.delegate = self
         scrollView.addGestureRecognizer(tapGestureRecognizer)
     }
