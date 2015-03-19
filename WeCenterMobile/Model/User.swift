@@ -89,18 +89,19 @@ class User: NSManagedObject {
             ],
             success: {
                 data in
+                let data = data as! NSDictionary
                 let user = DataManager.defaultManager!.autoGenerate("User", ID: ID) as! User
                 user.id = ID
                 user.name = data["user_name"] as? String
                 user.avatarURI = data["avatar_file"] as? String
-                user.followerCount = (data["fans_count"] as! NSString).integerValue
-                user.followingCount = (data["friend_count"] as! NSString).integerValue
-                user.questionCount = (data["question_count"] as! NSString).integerValue
-                user.answerCount = (data["answer_count"] as! NSString).integerValue
-                user.topicFocusCount = (data["topic_focus_count"] as! NSString).integerValue
-                user.agreementCount = (data["agree_count"] as! NSString).integerValue
-                user.thankCount = (data["thanks_count"] as! NSString).integerValue
-                user.answerFavoriteCount = (data["answer_favorite_count"] as! NSString).integerValue
+                user.followerCount = Int(msr_object: data["fans_count"])
+                user.followingCount = Int(msr_object: data["friend_count"])
+                user.questionCount = Int(msr_object: data["question_count"])
+                user.answerCount = Int(msr_object: data["answer_count"])
+                user.topicFocusCount = Int(msr_object: data["topic_focus_count"])
+                user.agreementCount = Int(msr_object: data["agree_count"])
+                user.thankCount = Int(msr_object: data["thanks_count"])
+                user.answerFavoriteCount = Int(msr_object: data["answer_favorite_count"])
                 user.followed = (data["has_focus"] as! NSNumber == 1)
                 success?(user)
             },
@@ -116,10 +117,10 @@ class User: NSManagedObject {
             ],
             success: {
                 data in
-                if (data["total_rows"] as! NSString).integerValue > 0 {
+                if Int(msr_object: data["total_rows"]!!) > 0 {
                     for value in data["rows"] as! [NSDictionary] {
-                        let userID = (value["uid"] as! NSString).integerValue
-                        let user = DataManager.defaultManager!.autoGenerate("User", ID: (value["uid"] as! NSString).integerValue) as! User
+                        let userID = Int(msr_object: value["uid"])
+                        let user = DataManager.defaultManager!.autoGenerate("User", ID: userID!) as! User
                         user.name = value["user_name"] as? String
                         user.avatarURI = value["avatar_file"] as? String
                         user.signature = value["signature"] as? String
@@ -142,10 +143,10 @@ class User: NSManagedObject {
             ],
             success: {
                 data in
-                if (data["total_rows"] as! NSString).integerValue > 0 {
+                if Int(msr_object: data["total_rows"]!!) > 0 {
                     for value in data["rows"] as! [NSDictionary] {
-                        let userID = (value["uid"] as! NSString).integerValue
-                        let user = DataManager.defaultManager!.autoGenerate("User", ID: (value["uid"] as! NSString).integerValue) as! User
+                        let userID = Int(msr_object: value["uid"])!
+                        let user = DataManager.defaultManager!.autoGenerate("User", ID: userID) as! User
                         user.name = value["user_name"] as? String
                         user.avatarURI = value["avatar_file"] as? String
                         user.signature = value["signature"] as? String
@@ -168,9 +169,9 @@ class User: NSManagedObject {
             ],
             success: {
                 data in
-                if (((data["total_rows"] as? NSString)?.integerValue) ?? (data["total_rows"] as? NSNumber)?.integerValue ?? 0) > 0 {
+                if Int(msr_object: data["total_rows"]!!) > 0 {
                     for value in data["rows"] as! [NSDictionary] {
-                        let topicID = (value["topic_id"] as! NSString).integerValue
+                        let topicID = Int(msr_object: value["topic_id"])!
                         let topic = DataManager.defaultManager!.autoGenerate("Topic", ID: topicID) as! Topic
                         topic.title = value["topic_title"] as? String
                         topic.introduction = value["topic_description"] as? String
@@ -193,7 +194,7 @@ class User: NSManagedObject {
             ],
             success: {
                 data in
-                if (data["total_rows"] as! NSString).integerValue > 0 {
+                if Int(msr_object: data["total_rows"]!!) > 0 {
                     var questionsData = [NSDictionary]()
                     if data["rows"] is NSDictionary {
                         questionsData = [data["rows"] as! NSDictionary]
@@ -201,7 +202,7 @@ class User: NSManagedObject {
                         questionsData = data["rows"] as! [NSDictionary]
                     }
                     for questionData in questionsData {
-                        let questionID = (questionData["id"] as! NSString).integerValue
+                        let questionID = Int(msr_object: questionData["id"])!
                         let question = DataManager.defaultManager!.autoGenerate("Question", ID: questionID) as! Question
                         question.user = self
                         question.title = questionData["title"] as? String
@@ -261,7 +262,7 @@ class User: NSManagedObject {
                 data in
                 let cookies = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies as! [NSHTTPCookie]
                 let cookiesData = NSKeyedArchiver.archivedDataWithRootObject(cookies)
-                let user = DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: (data as! NSDictionary)["uid"]!)) as! User
+                let user = DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: (data as! NSDictionary)["uid"])!) as! User
                 user.name = data["user_name"] as? String
                 user.avatarURI = data["avatar_file"] as? String
                 let defaults = NSUserDefaults.standardUserDefaults()
@@ -283,9 +284,9 @@ class User: NSManagedObject {
                 data in
                 let value = data[0] as! NSDictionary
                 self.name = value["user_name"] as? String
-                self.genderValue = value["sex"] is NSNull ? Gender.Secret.rawValue : (value["sex"] as! NSString).integerValue
-                self.birthday = (value["birthday"] as? NSString)?.integerValue
-                self.jobID = (value["job_id"] as! NSString).integerValue
+                self.genderValue = value["sex"] is NSNull ? Gender.Secret.rawValue : Int(msr_object: value["sex"])
+                self.birthday = Int(msr_object: value["birthday"])
+                self.jobID = Int(msr_object: value["job_id"])
                 self.signature = value["signature"] as? String
                 success?()
             },
@@ -339,116 +340,116 @@ class User: NSManagedObject {
                 if rows > 0 {
                     let objects = data["rows"] as! [[String: AnyObject]]
                     for object in objects {
-                        let typeID = ActionTypeID(rawValue: (object["associate_action"] as! NSNumber).integerValue)!
+                        let typeID = ActionTypeID(rawValue: Int(msr_object: object["associate_action"])!)!
                         var action_: Action!
                         switch typeID {
                         case .AnswerAgreement:
-                            let action = DataManager.defaultManager!.autoGenerate("AnswerAgreementAction", ID: Int(msr_object: object["history_id"]!)) as! AnswerAgreementAction
+                            let action = DataManager.defaultManager!.autoGenerate("AnswerAgreementAction", ID: Int(msr_object: object["history_id"]!)!) as! AnswerAgreementAction
                             action_ = action
                             action.date = NSDate(timeIntervalSince1970: (object["add_time"] as! NSNumber).doubleValue)
                             let userInfo = object["user_info"] as? NSDictionary
                             if userInfo != nil {
-                                action.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: userInfo!["uid"]!)) as! User)
+                                action.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: userInfo!["uid"])!) as! User)
                                 action.user!.name = (userInfo!["user_name"] as! String)
                                 action.user!.avatarURI = (userInfo!["user_name"] as! String)
                             } else {
                                 action.user = nil
                             }
                             let answerInfo = object["answer_info"] as! NSDictionary
-                            action.answer = DataManager.defaultManager!.autoGenerate("Answer", ID: Int(msr_object: answerInfo["answer_id"]!)) as! Answer
-                            action.answer.question = (DataManager.defaultManager!.autoGenerate("Question", ID: Int(msr_object: answerInfo["question_id"]!)) as! Question)
+                            action.answer = DataManager.defaultManager!.autoGenerate("Answer", ID: Int(msr_object: answerInfo["answer_id"])!) as! Answer
+                            action.answer.question = (DataManager.defaultManager!.autoGenerate("Question", ID: Int(msr_object: answerInfo["question_id"])!) as! Question)
                             action.answer.body = (answerInfo["answer_content"] as! String)
                             action.answer.agreementCount = (answerInfo["agree_count"] as! NSNumber)
-                            action.answer.evaluation = Answer.Evaluation(rawValue: Int(msr_object: answerInfo["agree_status"]!))!
+                            action.answer.evaluation = Answer.Evaluation(rawValue: Int(msr_object: answerInfo["agree_status"])!)!
                             let questionInfo = object["question_info"] as! NSDictionary
-                            action.answer.question = (DataManager.defaultManager!.autoGenerate("Question", ID: Int(msr_object: questionInfo["question_id"]!)) as! Question)
+                            action.answer.question = (DataManager.defaultManager!.autoGenerate("Question", ID: Int(msr_object: questionInfo["question_id"])!) as! Question)
                             action.answer.question!.title = (questionInfo["question_content"] as! String)
                             break
                         case .QuestionFocusing:
-                            let action = DataManager.defaultManager!.autoGenerate("QuestionFocusingAction", ID: Int(msr_object: object["history_id"]!)) as! QuestionFocusingAction
+                            let action = DataManager.defaultManager!.autoGenerate("QuestionFocusingAction", ID: Int(msr_object: object["history_id"])!) as! QuestionFocusingAction
                             action_ = action
                             action.date = NSDate(timeIntervalSince1970: (object["add_time"] as! NSNumber).doubleValue)
                             let userInfo = object["user_info"] as? NSDictionary
                             if userInfo != nil {
-                                action.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: userInfo!["uid"]!)) as! User)
+                                action.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: userInfo!["uid"])!) as! User)
                                 action.user!.name = (userInfo!["user_name"] as! String)
                                 action.user!.avatarURI = (userInfo!["avatar_file"] as! String)
                             } else {
                                 action.user = nil
                             }
                             let questionInfo = object["question_info"] as! NSDictionary
-                            action.question = DataManager.defaultManager!.autoGenerate("Question", ID: Int(msr_object: questionInfo["question_id"]!)) as! Question
+                            action.question = DataManager.defaultManager!.autoGenerate("Question", ID: Int(msr_object: questionInfo["question_id"])!) as! Question
                             action.question.title = (questionInfo["question_content"] as! String)
                             break
                         case .QuestionPublishment:
-                            let action = DataManager.defaultManager!.autoGenerate("QuestionPublishmentAction", ID: Int(msr_object: object["history_id"]!)) as! QuestionPublishmentAction
+                            let action = DataManager.defaultManager!.autoGenerate("QuestionPublishmentAction", ID: Int(msr_object: object["history_id"])!) as! QuestionPublishmentAction
                             action_ = action
                             action.date = NSDate(timeIntervalSince1970: (object["add_time"] as! NSNumber).doubleValue)
                             let userInfo = object["user_info"] as? NSDictionary
                             if userInfo != nil {
-                                action.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: userInfo!["uid"]!)) as! User)
+                                action.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: userInfo!["uid"])!) as! User)
                                 action.user!.name = (userInfo!["user_name"] as! String)
                                 action.user!.avatarURI = (userInfo!["avatar_file"] as! String)
                             } else {
                                 action.user = nil
                             }
                             let questionInfo = object["question_info"] as! NSDictionary
-                            action.question = DataManager.defaultManager!.autoGenerate("Question", ID: Int(msr_object: questionInfo["question_id"]!)) as! Question
+                            action.question = DataManager.defaultManager!.autoGenerate("Question", ID: Int(msr_object: questionInfo["question_id"])!) as! Question
                             action.question.title = (questionInfo["question_content"] as! String)
                             action.question.user = action.user
                             break
                         case .ArticleAgreement:
-                            let action = DataManager.defaultManager!.autoGenerate("ArticleAgreementAction", ID: Int(msr_object: object["history_id"]!)) as! ArticleAgreementAction
+                            let action = DataManager.defaultManager!.autoGenerate("ArticleAgreementAction", ID: Int(msr_object: object["history_id"])!) as! ArticleAgreementAction
                             action_ = action
                             action.date = NSDate(timeIntervalSince1970: (object["add_time"] as! NSNumber).doubleValue)
                             let userInfo = object["user_info"] as? NSDictionary
                             if userInfo != nil {
-                                action.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: userInfo!["uid"]!)) as! User)
+                                action.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: userInfo!["uid"])!) as! User)
                                 action.user!.name = (userInfo!["user_name"] as! String)
                                 action.user!.avatarURI = (userInfo!["avatar_file"] as! String)
                             } else {
                                 action.user = nil
                             }
                             let articleInfo = object["article_info"] as! NSDictionary
-                            action.article = DataManager.defaultManager!.autoGenerate("Article", ID: Int(msr_object: articleInfo["id"]!)) as! Article
+                            action.article = DataManager.defaultManager!.autoGenerate("Article", ID: Int(msr_object: articleInfo["id"])!) as! Article
                             action.article.title = (articleInfo["title"] as! String)
                             break
                         case .Answer:
-                            let action = DataManager.defaultManager!.autoGenerate("AnswerAction", ID: Int(msr_object: object["history_id"]!)) as! AnswerAction
+                            let action = DataManager.defaultManager!.autoGenerate("AnswerAction", ID: Int(msr_object: object["history_id"])!) as! AnswerAction
                             action_ = action
                             action.date = NSDate(timeIntervalSince1970: (object["add_time"] as! NSNumber).doubleValue)
                             let userInfo = object["user_info"] as? NSDictionary
                             if userInfo != nil {
-                                action.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: userInfo!["uid"]!)) as! User)
+                                action.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: userInfo!["uid"])!) as! User)
                                 action.user!.name = (userInfo!["user_name"] as! String)
                                 action.user!.avatarURI = (userInfo!["avatar_file"] as! String)
                             } else {
                                 action.user = nil
                             }
                             let answerInfo = object["answer_info"] as! NSDictionary
-                            action.answer = DataManager.defaultManager!.autoGenerate("Answer", ID: Int(msr_object: answerInfo["answer_id"]!)) as! Answer
+                            action.answer = DataManager.defaultManager!.autoGenerate("Answer", ID: Int(msr_object: answerInfo["answer_id"])!) as! Answer
                             action.answer.body = (answerInfo["answer_content"] as! String)
                             action.answer.agreementCount = (answerInfo["agree_count"] as! NSNumber)
-                            action.answer.evaluation = Answer.Evaluation(rawValue: Int(msr_object: answerInfo["agree_status"]!))!
+                            action.answer.evaluation = Answer.Evaluation(rawValue: Int(msr_object: answerInfo["agree_status"])!)!
                             let questionInfo = object["question_info"] as! NSDictionary
-                            action.answer.question = (DataManager.defaultManager!.autoGenerate("Question", ID: Int(msr_object: questionInfo["question_id"]!)) as! Question)
+                            action.answer.question = (DataManager.defaultManager!.autoGenerate("Question", ID: Int(msr_object: questionInfo["question_id"])!) as! Question)
                             action.answer.question!.title = (questionInfo["question_content"] as! String)
                             action.answer.user = action.user
                             break
                         case .ArticlePublishment:
-                            let action = DataManager.defaultManager!.autoGenerate("ArticlePublishmentAction", ID: Int(msr_object: object["history_id"]!)) as! ArticlePublishmentAction
+                            let action = DataManager.defaultManager!.autoGenerate("ArticlePublishmentAction", ID: Int(msr_object: object["history_id"])!) as! ArticlePublishmentAction
                             action_ = action
                             action.date = NSDate(timeIntervalSince1970: (object["add_time"] as! NSNumber).doubleValue)
                             let userInfo = object["user_info"] as? NSDictionary
                             if userInfo != nil {
-                                action.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: userInfo!["uid"]!)) as! User)
+                                action.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: userInfo!["uid"])!) as! User)
                                 action.user!.name = (userInfo!["user_name"] as! String)
                                 action.user!.avatarURI = (userInfo!["avatar_file"] as! String)
                             } else {
                                 action.user = nil
                             }
                             let articleInfo = object["article_info"] as! NSDictionary
-                            action.article = DataManager.defaultManager!.autoGenerate("Article", ID: Int(msr_object: articleInfo["id"]!)) as! Article
+                            action.article = DataManager.defaultManager!.autoGenerate("Article", ID: Int(msr_object: articleInfo["id"])!) as! Article
                             action.article.title = (articleInfo["title"] as! String)
                             action.article.user = action.user
                             break

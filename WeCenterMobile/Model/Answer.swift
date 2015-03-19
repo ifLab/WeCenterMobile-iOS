@@ -47,8 +47,8 @@ class Answer: NSManagedObject {
                 answer.date = NSDate(timeIntervalSince1970: NSTimeInterval(data["add_time"] as! NSNumber))
                 answer.agreementCount = data["agree_count"] as? NSNumber
                 answer.commentCount = data["comment_count"] as? NSNumber
-                answer.evaluation = Evaluation(rawValue: (data["vote_value"] as! NSNumber).integerValue)
-                answer.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: (data as! NSDictionary)["uid"]!)) as! User)
+                answer.evaluation = Evaluation(rawValue: Int(msr_object: data["vote_value"]!!) ?? 0)
+                answer.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: (data as! NSDictionary)["uid"])!) as! User)
                 answer.user!.name = data["user_name"] as? String
                 answer.user!.avatarURI = data["avatar_file"] as? String
                 answer.user!.signature = data["signature"] as? String
@@ -69,10 +69,10 @@ class Answer: NSManagedObject {
                     commentsData = data as! [NSDictionary]
                 }
                 for commentData in commentsData {
-                    let commentID = (commentData["id"] as! NSString).integerValue
+                    let commentID = Int(msr_object: commentData["id"])!
                     let comment = DataManager.defaultManager!.autoGenerate("AnswerComment", ID: commentID) as! AnswerComment
                     if commentData["uid"] != nil {
-                        let userID = Int(msr_object: commentData["uid"]!)
+                        let userID = Int(msr_object: commentData["uid"])!
                         comment.user = (DataManager.defaultManager!.autoGenerate("User", ID: userID) as! User)
                         comment.user!.name = commentData["user_name"] as? String
                     }

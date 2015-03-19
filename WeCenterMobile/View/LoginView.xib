@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="black" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNo-9M-oLj">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="black" bouncesZoom="NO" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="xNo-9M-oLj">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b96-0o-LfR" userLabel="Width Constraint View">
@@ -251,7 +251,6 @@
                 <outlet property="passwordField" destination="rMi-4B-gzc" id="Cye-qk-IF0"/>
                 <outlet property="passwordFieldUnderlineHeightConstraint" destination="KA1-qT-VIS" id="6sU-6H-Wza"/>
                 <outlet property="passwordImageView" destination="pN7-74-iLI" id="d0Q-Lf-Nh5"/>
-                <outlet property="scrollView" destination="xNo-9M-oLj" id="soc-oc-se0"/>
                 <outlet property="userNameField" destination="udd-FZ-fBL" id="z33-Iy-8wV"/>
                 <outlet property="userNameFieldUnderlineHeightConstraint" destination="hM0-4V-H7P" id="IqT-sz-Y29"/>
                 <outlet property="userNameImageView" destination="BdF-S1-7uz" id="RMz-aF-hW2"/>
@@ -260,7 +259,7 @@
     </objects>
     <resources>
         <image name="Lock_icon" width="150" height="146"/>
-        <image name="LoginViewBackground" width="368" height="511"/>
+        <image name="LoginViewBackground" width="351" height="511"/>
         <image name="User_icon" width="150" height="146"/>
     </resources>
 </document>

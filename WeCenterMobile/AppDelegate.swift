@@ -33,10 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var currentUser: User?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-//        let directory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last as! NSURL
-//        let url = directory.URLByAppendingPathComponent("WeCenterMobile.sqlite")
-//        NSFileManager.defaultManager().removeItemAtURL(url, error: nil)
-//        NetworkManager.clearCookies()
+        NetworkManager.clearCookies()
+        let directory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last as! NSURL
+        let url = directory.URLByAppendingPathComponent("WeCenterMobile.sqlite")
+        NSFileManager.defaultManager().removeItemAtURL(url, error: nil)
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window!.rootViewController = welcomeViewController
         window!.makeKeyAndVisible()

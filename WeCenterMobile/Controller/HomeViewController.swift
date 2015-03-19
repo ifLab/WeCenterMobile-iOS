@@ -37,7 +37,7 @@ class HomeViewController: UITableViewController {
         msr_loadMoreControl!.addTarget(self, action: "loadMore", forControlEvents: .ValueChanged)
         title = "首页" // Needs localization
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List-Dots"), style: .Bordered, target: self, action: "showSidebar")
-//        tableView.rowHeight = UITableViewAutomaticDimension
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Compose"), style: .Bordered, target: self, action: "showQuestionPublishmentViewController")
         for i in 0..<nibNames.count {
             tableView.registerNib(UINib(nibName: nibNames[i], bundle: NSBundle.mainBundle()), forCellReuseIdentifier: identifiers[i])
         }
@@ -97,6 +97,11 @@ class HomeViewController: UITableViewController {
     
     func showSidebar() {
         appDelegate.mainViewController.sidebar.show(animated: true)
+    }
+    
+    func showQuestionPublishmentViewController() {
+        let vc = NSBundle.mainBundle().loadNibNamed("QuestionPublishmentViewController", owner: self, options: nil).first as! QuestionPublishmentViewController
+        presentViewController(vc, animated: true, completion: nil)
     }
     
     func pushUserViewController(sender: UIButton) {

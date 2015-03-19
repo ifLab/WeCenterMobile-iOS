@@ -52,7 +52,7 @@ class Topic: NSManagedObject {
                 topic.title = data["topic_title"] as? String
                 topic.introduction = data["topic_description"] as? String
                 topic.imageURI = data["topic_pic"] as? String
-                topic.focusCount = (data["focus_count"] as! NSString).integerValue
+                topic.focusCount = Int(msr_object: data["focus_count"]!!)
                 topic.focused = (data["has_focus"] as! NSNumber == 1)
                 success?(topic)
             },
@@ -108,7 +108,7 @@ class Topic: NSManagedObject {
             ],
             success: {
                 data in
-                if (data["total_rows"] as! NSNumber).integerValue > 0 {
+                if Int(msr_object: data["total_rows"]!!) > 0 {
                     var answers = [Answer]()
                     for value in data["rows"] as! [NSDictionary] {
                         let questionValue = value["question_info"] as! NSDictionary

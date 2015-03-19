@@ -71,7 +71,8 @@ class NetworkManager: NSObject {
         for cookie in storage.cookies as! [NSHTTPCookie] {
             storage.deleteCookie(cookie)
         }
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("Cookies")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(UserDefaultsCookiesKey)
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(UserDefaultsUserIDKey)
         NSUserDefaults.standardUserDefaults().synchronize()
         NSURLCache.sharedURLCache().removeAllCachedResponses()
     }

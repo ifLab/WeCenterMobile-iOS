@@ -243,6 +243,9 @@
 		95A247D21A7FD346006A6C84 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95A247D11A7FD346006A6C84 /* CommentCell.xib */; };
 		95A247D41A7FDA5F006A6C84 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A247D31A7FDA5F006A6C84 /* CommentCell.swift */; };
 		95B6E6B91A232E2400F31BE3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9588F5F41A1D9D1C001BC426 /* LaunchScreen.xib */; };
+		95B9BDC11ABAA27700692889 /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B9BDC01ABAA27700692889 /* TLTagsControl.m */; };
+		95B9BDC31ABAA67900692889 /* QuestionPublishmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95B9BDC21ABAA67900692889 /* QuestionPublishmentViewController.xib */; };
+		95B9BE681ABAEF1A00692889 /* ZFTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B9BE671ABAEF1A00692889 /* ZFTokenField.m */; };
 		95C2EA1E1AB0516800F2A326 /* Array+MSRAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2E9F31AB0516800F2A326 /* Array+MSRAccessor.swift */; };
 		95C2EA1F1AB0516800F2A326 /* MSRWeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2E9F41AB0516800F2A326 /* MSRWeak.swift */; };
 		95C2EA201AB0516800F2A326 /* NSManagedObjectContext+MSROperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2E9F51AB0516800F2A326 /* NSManagedObjectContext+MSROperations.swift */; };
@@ -724,6 +727,11 @@
 		959CC9411A25BAEE00F8B6CB /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Answer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		95A247D11A7FD346006A6C84 /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		95A247D31A7FDA5F006A6C84 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		95B9BDBF1ABAA27700692889 /* TLTagsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTagsControl.h; sourceTree = "<group>"; };
+		95B9BDC01ABAA27700692889 /* TLTagsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTagsControl.m; sourceTree = "<group>"; };
+		95B9BDC21ABAA67900692889 /* QuestionPublishmentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionPublishmentViewController.xib; sourceTree = "<group>"; };
+		95B9BE661ABAEF1A00692889 /* ZFTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFTokenField.h; sourceTree = "<group>"; };
+		95B9BE671ABAEF1A00692889 /* ZFTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFTokenField.m; sourceTree = "<group>"; };
 		95C2E9F31AB0516800F2A326 /* Array+MSRAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+MSRAccessor.swift"; sourceTree = "<group>"; };
 		95C2E9F41AB0516800F2A326 /* MSRWeak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRWeak.swift; sourceTree = "<group>"; };
 		95C2E9F51AB0516800F2A326 /* NSManagedObjectContext+MSROperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+MSROperations.swift"; sourceTree = "<group>"; };
@@ -763,7 +771,7 @@
 		95C2EA1B1AB0516800F2A326 /* UIView+MSREasyAutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+MSREasyAutoLayout.swift"; sourceTree = "<group>"; };
 		95C2EA1C1AB0516800F2A326 /* UIView+MSRKeyboardUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+MSRKeyboardUtility.swift"; sourceTree = "<group>"; };
 		95C2EA461AB059D200F2A326 /* MSRActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRActivityIndicator.swift; sourceTree = "<group>"; };
-		95C2EA481AB1101F00F2A326 /* FeaturedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedObject.swift; sourceTree = "<group>"; };
+		95C2EA481AB1101F00F2A326 /* FeaturedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FeaturedObject.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		95C2EA4A1AB1102000F2A326 /* FeaturedQuestionAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedQuestionAnswer.swift; sourceTree = "<group>"; };
 		95C2EA4C1AB1102000F2A326 /* FeaturedArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedArticle.swift; sourceTree = "<group>"; };
 		95E4E99F1A4FFBD700F3C327 /* AnswerActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerActionCell.swift; sourceTree = "<group>"; };
@@ -829,6 +837,7 @@
 				950FE12F1A1DA2B300167D09 /* MainViewController.swift */,
 				950FE1331A1DA2B300167D09 /* QuestionViewController.swift */,
 				958CB5BA1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift */,
+				95B9BDC21ABAA67900692889 /* QuestionPublishmentViewController.xib */,
 				950FE1341A1DA2B300167D09 /* TopicListViewController.swift */,
 				950FE1351A1DA2B300167D09 /* TopicViewController.swift */,
 				950FE1361A1DA2B300167D09 /* UserListViewController.swift */,
@@ -852,6 +861,8 @@
 				957411ED1AAFC22F0077FCE6 /* DTCoreText */,
 				951D2F691AB7F85500DCB678 /* MJRefresh */,
 				95C2E9F01AB0516800F2A326 /* Msr */,
+				95B9BDBE1ABAA27700692889 /* TLTagsContol */,
+				95B9BE651ABAEF1A00692889 /* ZFTokenField */,
 			);
 			path = External;
 			sourceTree = "<group>";
@@ -1539,6 +1550,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		95B9BDBE1ABAA27700692889 /* TLTagsContol */ = {
+			isa = PBXGroup;
+			children = (
+				95B9BDBF1ABAA27700692889 /* TLTagsControl.h */,
+				95B9BDC01ABAA27700692889 /* TLTagsControl.m */,
+			);
+			name = TLTagsContol;
+			path = TLTagsControl/TLTagsContol;
+			sourceTree = "<group>";
+		};
+		95B9BE651ABAEF1A00692889 /* ZFTokenField */ = {
+			isa = PBXGroup;
+			children = (
+				95B9BE661ABAEF1A00692889 /* ZFTokenField.h */,
+				95B9BE671ABAEF1A00692889 /* ZFTokenField.m */,
+			);
+			name = ZFTokenField;
+			path = ZFTokenField/Classes;
+			sourceTree = "<group>";
+		};
 		95C2E9F01AB0516800F2A326 /* Msr */ = {
 			isa = PBXGroup;
 			children = (
@@ -1706,6 +1737,7 @@
 				951D2F821AB7F85500DCB678 /* MJRefresh.bundle in Resources */,
 				951D2F8F1AB7F8C000DCB678 /* Images.xcassets in Resources */,
 				9575B17F1A514C3100EFFFB7 /* QuestionPublishmentActionCell.xib in Resources */,
+				95B9BDC31ABAA67900692889 /* QuestionPublishmentViewController.xib in Resources */,
 				953BF5BC1A51A70D00B804B8 /* ArticlePublishmentActionCell.xib in Resources */,
 				950FE1261A1DA2A400167D09 /* User.strings in Resources */,
 				9574126B1AAFC22F0077FCE6 /* default.css in Resources */,
@@ -1924,6 +1956,7 @@
 				956E71CF1AAFC50500A3FD7D /* NSMutableArray+DTMoving.m in Sources */,
 				956E71AD1AAFC50500A3FD7D /* DTZipArchiveNode.m in Sources */,
 				950FE7351A1DA2B500167D09 /* AnswerCell.swift in Sources */,
+				95B9BDC11ABAA27700692889 /* TLTagsControl.m in Sources */,
 				956E71CE1AAFC50500A3FD7D /* NSFileWrapper+DTCopying.m in Sources */,
 				950FE7411A1DA2B500167D09 /* UserCountView.swift in Sources */,
 				957412721AAFC22F0077FCE6 /* DTAttributedTextContentView.m in Sources */,
@@ -1987,6 +2020,7 @@
 				957412701AAFC22F0077FCE6 /* DTAttributedLabel.m in Sources */,
 				957412A71AAFC22F0077FCE6 /* NSString+Paragraphs.m in Sources */,
 				956E71C41AAFC50500A3FD7D /* DTStripedLayer.m in Sources */,
+				95B9BE681ABAEF1A00692889 /* ZFTokenField.m in Sources */,
 				951D2F841AB7F85500DCB678 /* MJRefreshConst.m in Sources */,
 				950FE50F1A1DA2B500167D09 /* UserTopicListViewController.swift in Sources */,
 				95C2EA211AB0516800F2A326 /* Numeric+MSRInitializer.swift in Sources */,

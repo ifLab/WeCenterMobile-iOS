@@ -16,15 +16,11 @@ class LoginView: UIView, UIScrollViewDelegate {
     @IBOutlet weak var passwordImageView: UIImageView!
     @IBOutlet weak var userNameFieldUnderlineHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var passwordFieldUnderlineHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var loginButton: UIButton!
-    
-    lazy var tapGestureRecognizer: UITapGestureRecognizer = {
-        return UITapGestureRecognizer(target: self, action: "didTapBlankArea:")
-    }()
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        UITextView()
         userNameImageView.image = userNameImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
         passwordImageView.image = passwordImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
         userNameField.attributedPlaceholder = NSAttributedString(string: userNameField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])
@@ -35,18 +31,10 @@ class LoginView: UIView, UIScrollViewDelegate {
         passwordFieldUnderlineHeightConstraint.constant = 0.5
         loginButton.setImage(UIImage.msr_roundedRectangleWithColor(UIColor.msr_materialGray300(), size: loginButton.bounds.size, cornerRadius: (5, 5, 5, 5)), forState: .Normal)
         loginButton.setImage(UIImage.msr_roundedRectangleWithColor(UIColor.msr_materialGray600(), size: loginButton.bounds.size, cornerRadius: (5, 5, 5, 5)), forState: .Highlighted)
-        scrollView.delegate = self
-        scrollView.addGestureRecognizer(tapGestureRecognizer)
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         msr_resignFirstResponderOfAllSubviews()
-    }
-    
-    func didTapBlankArea(gestureRecognizer: UITapGestureRecognizer) {
-        if tapGestureRecognizer === gestureRecognizer {
-            msr_resignFirstResponderOfAllSubviews()
-        }
     }
     
 }
