@@ -27,6 +27,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
         tagsField.delegate = self
         tagsField.dataSource = self
         tagsField.textField.textColor = UIColor.lightTextColor()
+        tagsField.textField.font = UIFont.systemFontOfSize(14)
         tagsField.textField.attributedPlaceholder = NSAttributedString(string: "...", attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])
         tagsField.reloadData()
     }
@@ -51,6 +52,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
         let tag = tags[Int(index)]
         let label = UILabel()
         label.text = tag
+        label.font = UIFont.systemFontOfSize(14)
         label.sizeToFit()
         label.frame.size.height = lineHeightForTokenInField(tagsField)
         label.backgroundColor = UIColor.lightTextColor()
