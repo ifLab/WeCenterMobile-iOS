@@ -74,6 +74,7 @@
 		9532C8CA1A51548B001A0E4A /* QuestionFocusingActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9532C8C91A51548B001A0E4A /* QuestionFocusingActionCell.xib */; };
 		9532C8CC1A515E28001A0E4A /* AnswerAgreementActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9532C8CB1A515E28001A0E4A /* AnswerAgreementActionCell.swift */; };
 		9532C8CE1A515E3A001A0E4A /* AnswerAgreementActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9532C8CD1A515E3A001A0E4A /* AnswerAgreementActionCell.xib */; };
+		95387BFF1ABEA456004DF8EB /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95387BFE1ABEA456004DF8EB /* String+MD5.swift */; };
 		953BF5B81A51937100B804B8 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953BF5B71A51937100B804B8 /* ActionCell.swift */; };
 		953BF5BA1A51A6F200B804B8 /* ArticlePublishmentActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953BF5B91A51A6F200B804B8 /* ArticlePublishmentActionCell.swift */; };
 		953BF5BC1A51A70D00B804B8 /* ArticlePublishmentActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 953BF5BB1A51A70D00B804B8 /* ArticlePublishmentActionCell.xib */; };
@@ -242,6 +243,7 @@
 		959CC9421A25BAEE00F8B6CB /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC9411A25BAEE00F8B6CB /* Answer.swift */; };
 		95A247D21A7FD346006A6C84 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95A247D11A7FD346006A6C84 /* CommentCell.xib */; };
 		95A247D41A7FDA5F006A6C84 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A247D31A7FDA5F006A6C84 /* CommentCell.swift */; };
+		95B1D9DA1ABE0CF200BEC8BD /* MediaPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B1D9D91ABE0CF200BEC8BD /* MediaPickerController.swift */; };
 		95B6E6B91A232E2400F31BE3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9588F5F41A1D9D1C001BC426 /* LaunchScreen.xib */; };
 		95B9BDC11ABAA27700692889 /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B9BDC01ABAA27700692889 /* TLTagsControl.m */; };
 		95B9BDC31ABAA67900692889 /* QuestionPublishmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95B9BDC21ABAA67900692889 /* QuestionPublishmentViewController.xib */; };
@@ -288,6 +290,16 @@
 		95C2EA491AB1101F00F2A326 /* FeaturedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2EA481AB1101F00F2A326 /* FeaturedObject.swift */; };
 		95C2EA4B1AB1102000F2A326 /* FeaturedQuestionAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2EA4A1AB1102000F2A326 /* FeaturedQuestionAnswer.swift */; };
 		95C2EA4D1AB1102000F2A326 /* FeaturedArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2EA4C1AB1102000F2A326 /* FeaturedArticle.swift */; };
+		95E403C11ABDE85200C18A44 /* MSRCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E403C01ABDE85200C18A44 /* MSRCollectionView.swift */; };
+		95E403FF1ABDEC3000C18A44 /* UIImage+UzysExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E403E51ABDEC3000C18A44 /* UIImage+UzysExtension.m */; };
+		95E404001ABDEC3000C18A44 /* UzysAppearanceConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E403E71ABDEC3000C18A44 /* UzysAppearanceConfig.m */; };
+		95E404011ABDEC3000C18A44 /* UzysAssetPickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 95E403E81ABDEC3000C18A44 /* UzysAssetPickerController.bundle */; };
+		95E404021ABDEC3000C18A44 /* UzysAssetsPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E403EA1ABDEC3000C18A44 /* UzysAssetsPickerController.m */; };
+		95E404031ABDEC3000C18A44 /* UzysAssetsPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95E403EB1ABDEC3000C18A44 /* UzysAssetsPickerController.xib */; };
+		95E404041ABDEC3000C18A44 /* UzysAssetsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E403EE1ABDEC3000C18A44 /* UzysAssetsViewCell.m */; };
+		95E404051ABDEC3000C18A44 /* UzysGroupPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E403F01ABDEC3000C18A44 /* UzysGroupPickerView.m */; };
+		95E404061ABDEC3000C18A44 /* UzysGroupViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E403F21ABDEC3000C18A44 /* UzysGroupViewCell.m */; };
+		95E404071ABDEC3000C18A44 /* UzysWrapperPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E403F41ABDEC3000C18A44 /* UzysWrapperPickerController.m */; };
 		95E4E9A01A4FFBD700F3C327 /* AnswerActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4E99F1A4FFBD700F3C327 /* AnswerActionCell.swift */; };
 		95E4E9A21A50040100F3C327 /* AnswerActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95E4E9A11A50040100F3C327 /* AnswerActionCell.xib */; };
 		95E5355A1A49DCFD00D7B76B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535591A49DCFD00D7B76B /* HomeViewController.swift */; };
@@ -400,6 +412,7 @@
 		9532C8C91A51548B001A0E4A /* QuestionFocusingActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionFocusingActionCell.xib; sourceTree = "<group>"; };
 		9532C8CB1A515E28001A0E4A /* AnswerAgreementActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerAgreementActionCell.swift; sourceTree = "<group>"; };
 		9532C8CD1A515E3A001A0E4A /* AnswerAgreementActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerAgreementActionCell.xib; sourceTree = "<group>"; };
+		95387BFE1ABEA456004DF8EB /* String+MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MD5.swift"; sourceTree = "<group>"; };
 		953BF5B71A51937100B804B8 /* ActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		953BF5B91A51A6F200B804B8 /* ArticlePublishmentActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlePublishmentActionCell.swift; sourceTree = "<group>"; };
 		953BF5BB1A51A70D00B804B8 /* ArticlePublishmentActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticlePublishmentActionCell.xib; sourceTree = "<group>"; };
@@ -727,6 +740,7 @@
 		959CC9411A25BAEE00F8B6CB /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Answer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		95A247D11A7FD346006A6C84 /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		95A247D31A7FDA5F006A6C84 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		95B1D9D91ABE0CF200BEC8BD /* MediaPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPickerController.swift; sourceTree = "<group>"; };
 		95B9BDBF1ABAA27700692889 /* TLTagsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTagsControl.h; sourceTree = "<group>"; };
 		95B9BDC01ABAA27700692889 /* TLTagsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTagsControl.m; sourceTree = "<group>"; };
 		95B9BDC21ABAA67900692889 /* QuestionPublishmentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionPublishmentViewController.xib; sourceTree = "<group>"; };
@@ -774,6 +788,24 @@
 		95C2EA481AB1101F00F2A326 /* FeaturedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FeaturedObject.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		95C2EA4A1AB1102000F2A326 /* FeaturedQuestionAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedQuestionAnswer.swift; sourceTree = "<group>"; };
 		95C2EA4C1AB1102000F2A326 /* FeaturedArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedArticle.swift; sourceTree = "<group>"; };
+		95E403C01ABDE85200C18A44 /* MSRCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRCollectionView.swift; sourceTree = "<group>"; };
+		95E403E41ABDEC3000C18A44 /* UIImage+UzysExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+UzysExtension.h"; sourceTree = "<group>"; };
+		95E403E51ABDEC3000C18A44 /* UIImage+UzysExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+UzysExtension.m"; sourceTree = "<group>"; };
+		95E403E61ABDEC3000C18A44 /* UzysAppearanceConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysAppearanceConfig.h; sourceTree = "<group>"; };
+		95E403E71ABDEC3000C18A44 /* UzysAppearanceConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysAppearanceConfig.m; sourceTree = "<group>"; };
+		95E403E81ABDEC3000C18A44 /* UzysAssetPickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UzysAssetPickerController.bundle; sourceTree = "<group>"; };
+		95E403E91ABDEC3000C18A44 /* UzysAssetsPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysAssetsPickerController.h; sourceTree = "<group>"; };
+		95E403EA1ABDEC3000C18A44 /* UzysAssetsPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysAssetsPickerController.m; sourceTree = "<group>"; };
+		95E403EB1ABDEC3000C18A44 /* UzysAssetsPickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UzysAssetsPickerController.xib; sourceTree = "<group>"; };
+		95E403EC1ABDEC3000C18A44 /* UzysAssetsPickerController_Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysAssetsPickerController_Configuration.h; sourceTree = "<group>"; };
+		95E403ED1ABDEC3000C18A44 /* UzysAssetsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysAssetsViewCell.h; sourceTree = "<group>"; };
+		95E403EE1ABDEC3000C18A44 /* UzysAssetsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysAssetsViewCell.m; sourceTree = "<group>"; };
+		95E403EF1ABDEC3000C18A44 /* UzysGroupPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysGroupPickerView.h; sourceTree = "<group>"; };
+		95E403F01ABDEC3000C18A44 /* UzysGroupPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysGroupPickerView.m; sourceTree = "<group>"; };
+		95E403F11ABDEC3000C18A44 /* UzysGroupViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysGroupViewCell.h; sourceTree = "<group>"; };
+		95E403F21ABDEC3000C18A44 /* UzysGroupViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysGroupViewCell.m; sourceTree = "<group>"; };
+		95E403F31ABDEC3000C18A44 /* UzysWrapperPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysWrapperPickerController.h; sourceTree = "<group>"; };
+		95E403F41ABDEC3000C18A44 /* UzysWrapperPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysWrapperPickerController.m; sourceTree = "<group>"; };
 		95E4E99F1A4FFBD700F3C327 /* AnswerActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerActionCell.swift; sourceTree = "<group>"; };
 		95E4E9A11A50040100F3C327 /* AnswerActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerActionCell.xib; sourceTree = "<group>"; };
 		95E535591A49DCFD00D7B76B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HomeViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -835,6 +867,7 @@
 				950FE12E1A1DA2B300167D09 /* TestViewController.swift */,
 				95E535591A49DCFD00D7B76B /* HomeViewController.swift */,
 				950FE12F1A1DA2B300167D09 /* MainViewController.swift */,
+				95B1D9D91ABE0CF200BEC8BD /* MediaPickerController.swift */,
 				950FE1331A1DA2B300167D09 /* QuestionViewController.swift */,
 				958CB5BA1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift */,
 				95B9BDC21ABAA67900692889 /* QuestionPublishmentViewController.xib */,
@@ -862,6 +895,7 @@
 				951D2F691AB7F85500DCB678 /* MJRefresh */,
 				95C2E9F01AB0516800F2A326 /* Msr */,
 				95B9BDBE1ABAA27700692889 /* TLTagsContol */,
+				95E403E31ABDEC3000C18A44 /* UzysAssetsPickerController */,
 				95B9BE651ABAEF1A00692889 /* ZFTokenField */,
 			);
 			path = External;
@@ -1587,6 +1621,7 @@
 				95C2E9F51AB0516800F2A326 /* NSManagedObjectContext+MSROperations.swift */,
 				95C2E9F61AB0516800F2A326 /* Numeric+MSRInitializer.swift */,
 				95C2E9F71AB0516800F2A326 /* UnsafePointer+MSRInitializer.swift */,
+				95387BFE1ABEA456004DF8EB /* String+MD5.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1602,6 +1637,7 @@
 				95C2EA021AB0516800F2A326 /* MSRAlertView.swift */,
 				95C2EA031AB0516800F2A326 /* MSRAnimationInfo.swift */,
 				95C2EA041AB0516800F2A326 /* MSRAutoExpandingView.swift */,
+				95E403C01ABDE85200C18A44 /* MSRCollectionView.swift */,
 				95C2EA051AB0516800F2A326 /* MSRFrameEdge.swift */,
 				95C2EA061AB0516800F2A326 /* MSRKeyboardBar.swift */,
 				95C2EA071AB0516800F2A326 /* MSRLoadMoreControl.swift */,
@@ -1640,6 +1676,31 @@
 				95C2E9FF1AB0516800F2A326 /* MSRSidebarHandle.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		95E403E31ABDEC3000C18A44 /* UzysAssetsPickerController */ = {
+			isa = PBXGroup;
+			children = (
+				95E403E41ABDEC3000C18A44 /* UIImage+UzysExtension.h */,
+				95E403E51ABDEC3000C18A44 /* UIImage+UzysExtension.m */,
+				95E403E61ABDEC3000C18A44 /* UzysAppearanceConfig.h */,
+				95E403E71ABDEC3000C18A44 /* UzysAppearanceConfig.m */,
+				95E403E81ABDEC3000C18A44 /* UzysAssetPickerController.bundle */,
+				95E403E91ABDEC3000C18A44 /* UzysAssetsPickerController.h */,
+				95E403EA1ABDEC3000C18A44 /* UzysAssetsPickerController.m */,
+				95E403EB1ABDEC3000C18A44 /* UzysAssetsPickerController.xib */,
+				95E403EC1ABDEC3000C18A44 /* UzysAssetsPickerController_Configuration.h */,
+				95E403ED1ABDEC3000C18A44 /* UzysAssetsViewCell.h */,
+				95E403EE1ABDEC3000C18A44 /* UzysAssetsViewCell.m */,
+				95E403EF1ABDEC3000C18A44 /* UzysGroupPickerView.h */,
+				95E403F01ABDEC3000C18A44 /* UzysGroupPickerView.m */,
+				95E403F11ABDEC3000C18A44 /* UzysGroupViewCell.h */,
+				95E403F21ABDEC3000C18A44 /* UzysGroupViewCell.m */,
+				95E403F31ABDEC3000C18A44 /* UzysWrapperPickerController.h */,
+				95E403F41ABDEC3000C18A44 /* UzysWrapperPickerController.m */,
+			);
+			name = UzysAssetsPickerController;
+			path = UzysAssetsPickerController/UzysAssetsPickerController/Library;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1733,12 +1794,14 @@
 				950FE1251A1DA2A400167D09 /* Discovery.strings in Resources */,
 				95B6E6B91A232E2400F31BE3 /* LaunchScreen.xib in Resources */,
 				95E4E9A21A50040100F3C327 /* AnswerActionCell.xib in Resources */,
+				95E404011ABDEC3000C18A44 /* UzysAssetPickerController.bundle in Resources */,
 				950FE1271A1DA2A400167D09 /* Welcome.strings in Resources */,
 				951D2F821AB7F85500DCB678 /* MJRefresh.bundle in Resources */,
 				951D2F8F1AB7F8C000DCB678 /* Images.xcassets in Resources */,
 				9575B17F1A514C3100EFFFB7 /* QuestionPublishmentActionCell.xib in Resources */,
 				95B9BDC31ABAA67900692889 /* QuestionPublishmentViewController.xib in Resources */,
 				953BF5BC1A51A70D00B804B8 /* ArticlePublishmentActionCell.xib in Resources */,
+				95E404031ABDEC3000C18A44 /* UzysAssetsPickerController.xib in Resources */,
 				950FE1261A1DA2A400167D09 /* User.strings in Resources */,
 				9574126B1AAFC22F0077FCE6 /* default.css in Resources */,
 				95F380C51AB2C70B0070A7FB /* FeaturedArticleCell.xib in Resources */,
@@ -1794,6 +1857,7 @@
 				956E71A11AAFC50500A3FD7D /* DTHTMLParser.m in Sources */,
 				95C2EA491AB1101F00F2A326 /* FeaturedObject.swift in Sources */,
 				9574127C1AAFC22F0077FCE6 /* DTCoreTextLayouter.m in Sources */,
+				95E403FF1ABDEC3000C18A44 /* UIImage+UzysExtension.m in Sources */,
 				957412821AAFC22F0077FCE6 /* DTCSSListStyle.m in Sources */,
 				957412811AAFC22F0077FCE6 /* DTCoreTextParagraphStyle.m in Sources */,
 				957412991AAFC22F0077FCE6 /* DTWebVideoView.m in Sources */,
@@ -1892,7 +1956,9 @@
 				9575B17D1A514B4500EFFFB7 /* QuestionPublishmentActionCell.swift in Sources */,
 				95FC9D331AB5C40F00247731 /* FeaturedQuestionAnswerCellWithoutAnswerCell.swift in Sources */,
 				95C2EA4B1AB1102000F2A326 /* FeaturedQuestionAnswer.swift in Sources */,
+				95E404061ABDEC3000C18A44 /* UzysGroupViewCell.m in Sources */,
 				950FE5111A1DA2B500167D09 /* WelcomeViewController.swift in Sources */,
+				95E404051ABDEC3000C18A44 /* UzysGroupPickerView.m in Sources */,
 				9574128B1AAFC22F0077FCE6 /* DTHTMLWriter.m in Sources */,
 				95C2EA3F1AB0516800F2A326 /* UIColor+MSRRandomColor.swift in Sources */,
 				956E71CD1AAFC50500A3FD7D /* NSDictionary+DTError.m in Sources */,
@@ -1903,6 +1969,7 @@
 				956E71CB1AAFC50500A3FD7D /* NSArray+DTError.m in Sources */,
 				95C2EA2A1AB0516800F2A326 /* MSRAlertAction.swift in Sources */,
 				957412761AAFC22F0077FCE6 /* DTColorFunctions.m in Sources */,
+				95E404071ABDEC3000C18A44 /* UzysWrapperPickerController.m in Sources */,
 				956E719E1AAFC50500A3FD7D /* DTExtendedFileAttributes.m in Sources */,
 				956E72101AAFC53B00A3FD7D /* UIAlertView+AFNetworking.m in Sources */,
 				957412911AAFC22F0077FCE6 /* DTListItemHTMLElement.m in Sources */,
@@ -1914,10 +1981,12 @@
 				951D2F8B1AB7F85500DCB678 /* UIScrollView+MJExtension.m in Sources */,
 				956E71BF1AAFC50500A3FD7D /* DTSidePanelControllerSegue.m in Sources */,
 				957412791AAFC22F0077FCE6 /* DTCoreTextFontDescriptor.m in Sources */,
+				95387BFF1ABEA456004DF8EB /* String+MD5.swift in Sources */,
 				95C2EA2F1AB0516800F2A326 /* MSRKeyboardBar.swift in Sources */,
 				956E719B1AAFC50500A3FD7D /* DTBase64Coding.m in Sources */,
 				956E71DC1AAFC50500A3FD7D /* DTObjectBlockExecutor.m in Sources */,
 				956E71D21AAFC50500A3FD7D /* NSString+DTURLEncoding.m in Sources */,
+				95E404041ABDEC3000C18A44 /* UzysAssetsViewCell.m in Sources */,
 				951D2F871AB7F85500DCB678 /* MJRefreshGifHeader.m in Sources */,
 				9574129E1AAFC22F0077FCE6 /* NSAttributedStringRunDelegates.m in Sources */,
 				959CC93C1A25BAED00F8B6CB /* AnswerComment.swift in Sources */,
@@ -1956,6 +2025,7 @@
 				956E71CF1AAFC50500A3FD7D /* NSMutableArray+DTMoving.m in Sources */,
 				956E71AD1AAFC50500A3FD7D /* DTZipArchiveNode.m in Sources */,
 				950FE7351A1DA2B500167D09 /* AnswerCell.swift in Sources */,
+				95E404021ABDEC3000C18A44 /* UzysAssetsPickerController.m in Sources */,
 				95B9BDC11ABAA27700692889 /* TLTagsControl.m in Sources */,
 				956E71CE1AAFC50500A3FD7D /* NSFileWrapper+DTCopying.m in Sources */,
 				950FE7411A1DA2B500167D09 /* UserCountView.swift in Sources */,
@@ -1975,6 +2045,7 @@
 				957412A21AAFC22F0077FCE6 /* NSMutableAttributedString+HTML.m in Sources */,
 				950FE5061A1DA2B500167D09 /* TestViewController.swift in Sources */,
 				95C2EA431AB0516800F2A326 /* UINavigationBar+MSRAccessor.swift in Sources */,
+				95E404001ABDEC3000C18A44 /* UzysAppearanceConfig.m in Sources */,
 				959CC9401A25BAED00F8B6CB /* User.swift in Sources */,
 				959CC93E1A25BAED00F8B6CB /* ArticleComment.swift in Sources */,
 				956E72151AAFC53B00A3FD7D /* UIWebView+AFNetworking.m in Sources */,
@@ -2003,6 +2074,7 @@
 				956E71A41AAFC50500A3FD7D /* DTScriptExpression.m in Sources */,
 				956E71C31AAFC50500A3FD7D /* DTTiledLayerWithoutFade.m in Sources */,
 				956E71B91AAFC50500A3FD7D /* DTAnimatedGIF.m in Sources */,
+				95B1D9DA1ABE0CF200BEC8BD /* MediaPickerController.swift in Sources */,
 				957412781AAFC22F0077FCE6 /* DTCoreTextFontCollection.m in Sources */,
 				95F380C11AB2C34A0070A7FB /* FeaturedObjectCell.swift in Sources */,
 				957412861AAFC22F0077FCE6 /* DTHorizontalRuleHTMLElement.m in Sources */,
@@ -2021,6 +2093,7 @@
 				957412A71AAFC22F0077FCE6 /* NSString+Paragraphs.m in Sources */,
 				956E71C41AAFC50500A3FD7D /* DTStripedLayer.m in Sources */,
 				95B9BE681ABAEF1A00692889 /* ZFTokenField.m in Sources */,
+				95E403C11ABDE85200C18A44 /* MSRCollectionView.swift in Sources */,
 				951D2F841AB7F85500DCB678 /* MJRefreshConst.m in Sources */,
 				950FE50F1A1DA2B500167D09 /* UserTopicListViewController.swift in Sources */,
 				95C2EA211AB0516800F2A326 /* Numeric+MSRInitializer.swift in Sources */,
@@ -2183,6 +2256,10 @@
 				INFOPLIST_FILE = WeCenterMobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = WeCenterMobile/Bridge.h;
@@ -2205,6 +2282,10 @@
 				INFOPLIST_FILE = WeCenterMobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = WeCenterMobile/Bridge.h;

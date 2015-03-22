@@ -20,6 +20,8 @@
 		<string>?/api/question/answer_detail/</string>
 		<key>Explore List</key>
 		<string>?/api/explore/</string>
+		<key>Upload Attach</key>
+		<string>?/api/publish/attach_upload/</string>
 		<key>Question Detail</key>
 		<string>?/api/question/question/</string>
 		<key>Focus Question</key>

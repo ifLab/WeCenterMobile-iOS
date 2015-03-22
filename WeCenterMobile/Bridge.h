@@ -7,14 +7,12 @@
 //
 
 #import "AFNetworking.h"
+#import <CommonCrypto/CommonDigest.h>
 #import "UIKit+AFNetworking.h"
-
-#define deprecated(string)
 #import "BFPaperButton.h"
 #import "BFPaperTableViewCell.h"
-#undef deprecated
-
 #import "DTCoreText.h"
 #import "MJRefresh.h"
 #import "TLTagsControl.h"
+#import "UzysAssetsPickerController.h"
 #import "ZFTokenField.h"
