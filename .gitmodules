@@ -25,3 +25,6 @@
 [submodule "WeCenterMobile/External/UzysAssetsPickerController"]
 	path = WeCenterMobile/External/UzysAssetsPickerController
 	url = https://github.com/uzysjung/UzysAssetsPickerController.git
+[submodule "WeCenterMobile/External/EAColourfulProgressView"]
+	path = WeCenterMobile/External/EAColourfulProgressView
+	url = https://github.com/Eddpt/EAColourfulProgressView

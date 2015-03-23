@@ -27,6 +27,7 @@ class NetworkManager: NSObject {
             request(key,
                 GETParameters: parameters,
                 POSTParameters: nil,
+                constructingBodyWithBlock: nil,
                 success: success,
                 failure: failure)
     }
@@ -37,12 +38,14 @@ class NetworkManager: NSObject {
             request(key,
                 GETParameters: nil,
                 POSTParameters: parameters,
+                constructingBodyWithBlock: nil,
                 success: success,
                 failure: failure)
     }
     func request(key: String,
         GETParameters: NSDictionary?,
         POSTParameters: NSDictionary?,
+        constructingBodyWithBlock: ((AFMultipartFormData?) -> Void)?,
         success: ((AnyObject) -> Void)?,
         failure: ((NSError) -> Void)?) {
             var error: NSError? = nil
@@ -51,7 +54,6 @@ class NetworkManager: NSObject {
                 failure?(error ?? NSError()) // Needs specification
                 return
             }
-            AFNetworkActivityIndicatorManager.sharedManager().incrementActivityCount()
             manager.POST(URLString!,
                 parameters: POSTParameters,
                 constructingBodyWithBlock: nil,

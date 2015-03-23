@@ -12,6 +12,7 @@
 #import "BFPaperButton.h"
 #import "BFPaperTableViewCell.h"
 #import "DTCoreText.h"
+#import "EAColourfulProgressView.h"
 #import "MJRefresh.h"
 #import "TLTagsControl.h"
 #import "UzysAssetsPickerController.h"

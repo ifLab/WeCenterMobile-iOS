@@ -70,11 +70,12 @@
 		951D2F8C1AB7F85500DCB678 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D2F7F1AB7F85500DCB678 /* UIScrollView+MJRefresh.m */; };
 		951D2F8D1AB7F85500DCB678 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D2F811AB7F85500DCB678 /* UIView+MJExtension.m */; };
 		951D2F8F1AB7F8C000DCB678 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 951D2F8E1AB7F8C000DCB678 /* Images.xcassets */; };
+		951FAC761ABFCEA30083E221 /* EAColourfulProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 951FAC751ABFCEA30083E221 /* EAColourfulProgressView.m */; };
 		9532C8C81A51547B001A0E4A /* QuestionFocusingActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9532C8C71A51547B001A0E4A /* QuestionFocusingActionCell.swift */; };
 		9532C8CA1A51548B001A0E4A /* QuestionFocusingActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9532C8C91A51548B001A0E4A /* QuestionFocusingActionCell.xib */; };
 		9532C8CC1A515E28001A0E4A /* AnswerAgreementActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9532C8CB1A515E28001A0E4A /* AnswerAgreementActionCell.swift */; };
 		9532C8CE1A515E3A001A0E4A /* AnswerAgreementActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9532C8CD1A515E3A001A0E4A /* AnswerAgreementActionCell.xib */; };
-		95387BFF1ABEA456004DF8EB /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95387BFE1ABEA456004DF8EB /* String+MD5.swift */; };
+		95387BFF1ABEA456004DF8EB /* String+Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95387BFE1ABEA456004DF8EB /* String+Encryption.swift */; };
 		953BF5B81A51937100B804B8 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953BF5B71A51937100B804B8 /* ActionCell.swift */; };
 		953BF5BA1A51A6F200B804B8 /* ArticlePublishmentActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953BF5B91A51A6F200B804B8 /* ArticlePublishmentActionCell.swift */; };
 		953BF5BC1A51A70D00B804B8 /* ArticlePublishmentActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 953BF5BB1A51A70D00B804B8 /* ArticlePublishmentActionCell.xib */; };
@@ -408,11 +409,13 @@
 		951D2F801AB7F85500DCB678 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		951D2F811AB7F85500DCB678 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		951D2F8E1AB7F8C000DCB678 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		951FAC741ABFCEA30083E221 /* EAColourfulProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAColourfulProgressView.h; sourceTree = "<group>"; };
+		951FAC751ABFCEA30083E221 /* EAColourfulProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAColourfulProgressView.m; sourceTree = "<group>"; };
 		9532C8C71A51547B001A0E4A /* QuestionFocusingActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionFocusingActionCell.swift; sourceTree = "<group>"; };
 		9532C8C91A51548B001A0E4A /* QuestionFocusingActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionFocusingActionCell.xib; sourceTree = "<group>"; };
 		9532C8CB1A515E28001A0E4A /* AnswerAgreementActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerAgreementActionCell.swift; sourceTree = "<group>"; };
 		9532C8CD1A515E3A001A0E4A /* AnswerAgreementActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerAgreementActionCell.xib; sourceTree = "<group>"; };
-		95387BFE1ABEA456004DF8EB /* String+MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MD5.swift"; sourceTree = "<group>"; };
+		95387BFE1ABEA456004DF8EB /* String+Encryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Encryption.swift"; sourceTree = "<group>"; };
 		953BF5B71A51937100B804B8 /* ActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		953BF5B91A51A6F200B804B8 /* ArticlePublishmentActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlePublishmentActionCell.swift; sourceTree = "<group>"; };
 		953BF5BB1A51A70D00B804B8 /* ArticlePublishmentActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticlePublishmentActionCell.xib; sourceTree = "<group>"; };
@@ -892,6 +895,7 @@
 				956C0F101A583F070053EDCA /* UIColor+BFPaperColors */,
 				956E70F01AAFC50400A3FD7D /* DTFoundation */,
 				957411ED1AAFC22F0077FCE6 /* DTCoreText */,
+				951FAC731ABFCEA30083E221 /* EAColourfulProgressView */,
 				951D2F691AB7F85500DCB678 /* MJRefresh */,
 				95C2E9F01AB0516800F2A326 /* Msr */,
 				95B9BDBE1ABAA27700692889 /* TLTagsContol */,
@@ -1016,6 +1020,16 @@
 			);
 			name = MJRefresh;
 			path = MJRefresh/MJRefreshExample/MJRefreshExample/MJRefresh;
+			sourceTree = "<group>";
+		};
+		951FAC731ABFCEA30083E221 /* EAColourfulProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				951FAC741ABFCEA30083E221 /* EAColourfulProgressView.h */,
+				951FAC751ABFCEA30083E221 /* EAColourfulProgressView.m */,
+			);
+			name = EAColourfulProgressView;
+			path = EAColourfulProgressView/EAColourfulProgressView;
 			sourceTree = "<group>";
 		};
 		956C0F041A583DE70053EDCA /* BFPaperButton */ = {
@@ -1621,7 +1635,7 @@
 				95C2E9F51AB0516800F2A326 /* NSManagedObjectContext+MSROperations.swift */,
 				95C2E9F61AB0516800F2A326 /* Numeric+MSRInitializer.swift */,
 				95C2E9F71AB0516800F2A326 /* UnsafePointer+MSRInitializer.swift */,
-				95387BFE1ABEA456004DF8EB /* String+MD5.swift */,
+				95387BFE1ABEA456004DF8EB /* String+Encryption.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1902,6 +1916,7 @@
 				957412751AAFC22F0077FCE6 /* DTColor+Compatibility.m in Sources */,
 				956E72051AAFC53B00A3FD7D /* AFHTTPRequestOperation.m in Sources */,
 				95F380BF1AB2BCB20070A7FB /* FeaturedQuestionAnswerCell.swift in Sources */,
+				951FAC761ABFCEA30083E221 /* EAColourfulProgressView.m in Sources */,
 				956E72141AAFC53B00A3FD7D /* UIRefreshControl+AFNetworking.m in Sources */,
 				950FE7391A1DA2B500167D09 /* QuestionBodyCell.swift in Sources */,
 				956E72081AAFC53B00A3FD7D /* AFNetworkReachabilityManager.m in Sources */,
@@ -1981,7 +1996,7 @@
 				951D2F8B1AB7F85500DCB678 /* UIScrollView+MJExtension.m in Sources */,
 				956E71BF1AAFC50500A3FD7D /* DTSidePanelControllerSegue.m in Sources */,
 				957412791AAFC22F0077FCE6 /* DTCoreTextFontDescriptor.m in Sources */,
-				95387BFF1ABEA456004DF8EB /* String+MD5.swift in Sources */,
+				95387BFF1ABEA456004DF8EB /* String+Encryption.swift in Sources */,
 				95C2EA2F1AB0516800F2A326 /* MSRKeyboardBar.swift in Sources */,
 				956E719B1AAFC50500A3FD7D /* DTBase64Coding.m in Sources */,
 				956E71DC1AAFC50500A3FD7D /* DTObjectBlockExecutor.m in Sources */,

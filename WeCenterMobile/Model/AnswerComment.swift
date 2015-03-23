@@ -23,6 +23,7 @@ class AnswerComment: NSManagedObject {
         NetworkManager.defaultManager!.request("Post Answer Comment",
             GETParameters: ["answer_id": answerID],
             POSTParameters: ["message": body],
+            constructingBodyWithBlock: nil,
             success: {
                 data in
                 success?()

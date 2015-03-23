@@ -73,9 +73,6 @@ class FeaturedObjectListViewController: UITableViewController {
             index += o.answers.count == 0 ? 1 : 0
         }
         var cell: FeaturedObjectCell! = tableView.dequeueReusableCellWithIdentifier(identifiers[index], forIndexPath: indexPath) as? FeaturedObjectCell
-        if cell == nil {
-            cell = NSBundle.mainBundle().loadNibNamed(nibName, owner: self.tableView, options: nil).first as! FeaturedObjectCell
-        }
         cell.update(object: object)
         return cell
     }

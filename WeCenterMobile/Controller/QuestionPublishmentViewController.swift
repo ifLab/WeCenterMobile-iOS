@@ -15,6 +15,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tagsField: ZFTokenField!
     @IBOutlet weak var imageCollectionView: UICollectionView!
+    @IBOutlet weak var progressView: EAColourfulProgressView!
     
     let identifiers = ["ImageCell", "ButtonCell"]
     let imageViewTag = 23333
@@ -28,6 +29,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
     var imageAdditonButton = UIButton()
     
     var timeKey: NSTimeInterval = NSDate(timeIntervalSinceNow: 0).timeIntervalSince1970
+    let queue = NSOperationQueue()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,13 +38,15 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
         scrollView.alwaysBounceVertical = true
         tagsField.textField.textColor = UIColor.lightTextColor()
         tagsField.textField.font = UIFont.systemFontOfSize(14)
-        tagsField.textField.attributedPlaceholder = NSAttributedString(string: "...", attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])
+        tagsField.textField.attributedPlaceholder = NSAttributedString(string: "输入并以换行键添加，可添加多个", attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])
         tagsField.textField.keyboardAppearance = .Dark
         for identifier in identifiers {
             imageCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: identifier)
         }
         imageCollectionView.backgroundColor = UIColor.clearColor()
         imageAdditonButton.setImage(UIImage(named: "AddButton"), forState: .Normal)
+        progressView.layer.masksToBounds = true
+        progressView.layer.cornerRadius = progressView.bounds.height / 2
     }
     
     override func viewDidLoad() {
@@ -155,17 +159,26 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
         }
         var end = images.count
         imageCollectionView.reloadData()
+        var jpegs = [NSData]()
         for i in begin..<end {
+            jpegs.append(UIImageJPEGRepresentation(images[i], 1))
+        }
+        for jpeg in jpegs {
 //            let cell = imageCollectionView.cellForItemAtIndexPath(NSIndexPath(forRow: i, inSection: 0))
 //            let activityIndicatorView = cell!.contentView.viewWithTag(activityIndicatorViewTag) as! UIActivityIndicatorView
 //            activityIndicatorView.startAnimating()
-            println(images[i])
             NetworkManager.defaultManager!.request("Upload Attach",
                 GETParameters: [
                     "id": "question",
                     "attach_access_key": "\(timeKey)".msr_MD5EncryptedString],
-                POSTParameters: [
-                    "qqfile": images[i]],
+                POSTParameters: nil,
+                constructingBodyWithBlock: {
+                    [weak self] data in
+                    if let self_ = self {
+                        data?.appendPartWithFileData(jpeg, name: "qqfile", fileName: "image.jpg", mimeType: "image/jpeg")
+                    }
+                    return
+                },
                 success: {
                     data in
                     println(data)
