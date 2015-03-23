@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ObjectiveC
 
 class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTokenFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UzysAssetsPickerControllerDelegate {
     
@@ -15,21 +16,20 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tagsField: ZFTokenField!
     @IBOutlet weak var imageCollectionView: UICollectionView!
-    @IBOutlet weak var progressView: EAColourfulProgressView!
     
     let identifiers = ["ImageCell", "ButtonCell"]
     let imageViewTag = 23333
-    let activityIndicatorViewTag = 23334
+    let progressViewTag = 23334
     let buttonTag = 23335
-    
-    var activityIndicatorViews = [UIActivityIndicatorView]()
+    let overlayViewTag = 23336
     
     var tags = [String]()
     var images = [UIImage]()
+    var uploadingProgresses = [Int]()
+    let maxProgress = 100
     var imageAdditonButton = UIButton()
     
     var timeKey: NSTimeInterval = NSDate(timeIntervalSinceNow: 0).timeIntervalSince1970
-    let queue = NSOperationQueue()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,8 +45,6 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
         }
         imageCollectionView.backgroundColor = UIColor.clearColor()
         imageAdditonButton.setImage(UIImage(named: "AddButton"), forState: .Normal)
-        progressView.layer.masksToBounds = true
-        progressView.layer.cornerRadius = progressView.bounds.height / 2
     }
     
     override func viewDidLoad() {
@@ -106,40 +104,71 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        println("RELOADING CELL AT (\(indexPath.row))")
         let cell: UICollectionViewCell!
         if indexPath.row < images.count {
             cell = imageCollectionView.dequeueReusableCellWithReuseIdentifier(identifiers[0], forIndexPath: indexPath) as! UICollectionViewCell
-            var imageView = cell.contentView.viewWithTag(imageViewTag) as? UIImageView
+            var imageView: UIImageView! = cell.contentView.viewWithTag(imageViewTag) as? UIImageView
             if imageView == nil {
                 imageView = UIImageView()
-                imageView!.tag = imageViewTag
-                cell.contentView.addSubview(imageView!)
-                imageView!.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
-                imageView!.msr_addAllEdgeAttachedConstraintsToSuperview()
-            }
-            var activityIndicatorView = cell.contentView.viewWithTag(activityIndicatorViewTag) as? UIActivityIndicatorView
-            if activityIndicatorView == nil {
-                activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-                activityIndicatorView!.tag = activityIndicatorViewTag
-                cell.contentView.insertSubview(activityIndicatorView!, aboveSubview: imageView!)
-                activityIndicatorView!.backgroundColor = UIColor.msr_materialBlueGray800().colorWithAlphaComponent(0.7)
-                activityIndicatorView!.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
-                activityIndicatorView!.msr_addAllEdgeAttachedConstraintsToSuperview()
+                imageView.tag = imageViewTag
+                cell.contentView.addSubview(imageView)
+                imageView.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+                imageView.msr_addAllEdgeAttachedConstraintsToSuperview()
             }
             imageView!.image = images[indexPath.row]
-            cell.backgroundColor = UIColor.msr_randomColor(opaque: true)
+            var overlayView: UIView! = cell.contentView.viewWithTag(overlayViewTag)
+            if overlayView == nil {
+                overlayView = UIView()
+                overlayView.tag = overlayViewTag
+                cell.contentView.insertSubview(overlayView, aboveSubview: imageView)
+                overlayView.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+                overlayView.msr_addAllEdgeAttachedConstraintsToSuperview()
+                overlayView.backgroundColor = scrollView.backgroundColor!.colorWithAlphaComponent(0.6)
+            }
+            var progressView: EAColourfulProgressView! = cell.contentView.viewWithTag(progressViewTag) as? EAColourfulProgressView
+            if progressView == nil {
+                progressView = NSBundle.mainBundle().loadNibNamed("ImageUploadingProgressBar", owner: self, options: nil).first as! EAColourfulProgressView
+                progressView.tag = progressViewTag
+                progressView.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+                progressView.msr_addHeightConstraintWithValue(8)
+                cell.contentView.insertSubview(progressView, aboveSubview: overlayView)
+                progressView.msr_addHorizontalEdgeAttachedConstraintsToSuperview()
+                progressView.msr_addBottomAttachedConstraintToSuperview()
+                progressView.maximumValue = UInt(self.maxProgress)
+            }
+            let maxProgress = self.maxProgress
+            let uploadingProgress = Int(uploadingProgresses[indexPath.row])
+            println("\(indexPath.row): \(uploadingProgress) of \(maxProgress)")
+            UIView.animateWithDuration(0.5,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 0.7,
+                options: .BeginFromCurrentState,
+                animations: {
+                    overlayView.alpha = uploadingProgress == maxProgress ? 0 : 1
+                    progressView.alpha = uploadingProgress == maxProgress ? 0 : 1
+                    progressView.updateToCurrentValue(maxProgress - uploadingProgress, animated: false)
+                    return
+                },
+                completion: {
+                    finished in
+                    if uploadingProgress == maxProgress {
+                        progressView.updateToCurrentValue(1, animated: false)
+                    }
+                })
         } else {
             cell = imageCollectionView.dequeueReusableCellWithReuseIdentifier(identifiers[1], forIndexPath: indexPath) as! UICollectionViewCell
-            var button = cell.contentView.viewWithTag(buttonTag) as? UIButton
+            var button: UIButton! = cell.contentView.viewWithTag(buttonTag) as? UIButton
             if button == nil {
                 button = UIButton()
-                button!.tag = buttonTag
-                cell.contentView.addSubview(button!)
-                button!.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
-                button!.msr_addAllEdgeAttachedConstraintsToSuperview()
-                button!.setImage(UIImage(named: "MSRAddButton")!.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
-                button!.imageView!.tintColor = UIColor.msr_materialBlueGray800()
-                button!.addTarget(self, action: "showPickerController", forControlEvents: .TouchUpInside)
+                button.tag = buttonTag
+                cell.contentView.addSubview(button)
+                button.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+                button.msr_addAllEdgeAttachedConstraintsToSuperview()
+                button.setImage(UIImage(named: "MSRAddButton")!.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+                button.imageView!.tintColor = UIColor.msr_materialBlueGray800()
+                button.addTarget(self, action: "showPickerController", forControlEvents: .TouchUpInside)
             }
         }
         return cell
@@ -149,25 +178,19 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
     
     func uzysAssetsPickerController(picker: UzysAssetsPickerController!, didFinishPickingAssets assets: [AnyObject]!) {
         let rs = map(assets, { ($0 as! ALAsset).defaultRepresentation() })
-        var begin = images.count
+        var images = [UIImage]()
         for r in rs {
             let image = UIImage(
-                CGImage: r.fullResolutionImage().takeRetainedValue(),
+                CGImage: r.fullResolutionImage().retain().takeRetainedValue(),
                 scale: CGFloat(r.scale()),
                 orientation: UIImageOrientation(rawValue: r.orientation().rawValue)!)!
             images.append(image)
+            uploadingProgresses.append(0)
         }
-        var end = images.count
+        self.images.extend(images)
         imageCollectionView.reloadData()
-        var jpegs = [NSData]()
-        for i in begin..<end {
-            jpegs.append(UIImageJPEGRepresentation(images[i], 1))
-        }
-        for jpeg in jpegs {
-//            let cell = imageCollectionView.cellForItemAtIndexPath(NSIndexPath(forRow: i, inSection: 0))
-//            let activityIndicatorView = cell!.contentView.viewWithTag(activityIndicatorViewTag) as! UIActivityIndicatorView
-//            activityIndicatorView.startAnimating()
-            NetworkManager.defaultManager!.request("Upload Attach",
+        for image in images {
+            let operation = NetworkManager.defaultManager!.request("Upload Attach",
                 GETParameters: [
                     "id": "question",
                     "attach_access_key": "\(timeKey)".msr_MD5EncryptedString],
@@ -175,7 +198,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                 constructingBodyWithBlock: {
                     [weak self] data in
                     if let self_ = self {
-                        data?.appendPartWithFileData(jpeg, name: "qqfile", fileName: "image.jpg", mimeType: "image/jpeg")
+                        data?.appendPartWithFileData(UIImagePNGRepresentation(image), name: "qqfile", fileName: "image.png", mimeType: "image/png")
                     }
                     return
                 },
@@ -185,36 +208,45 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                     return
                 },
                 failure: {
-                    error in
+                    [weak self] error in
                     println(error)
+                    if let self_ = self {
+                        if let index = find(self_.images, image) {
+                            self_.images.removeAtIndex(index)
+                            self_.uploadingProgresses.removeAtIndex(index)
+                            self_.imageCollectionView.reloadData()
+                        }
+                    }
                     return
-                })
+            })
+            operation!.setUploadProgressBlock() {
+                [weak self] bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
+                if let self_ = self {
+                    if let index = find(self_.images, image) {
+//                        println("\(index): sent \(totalBytesWritten) of \(totalBytesExpectedToWrite)")
+                        self_.uploadingProgresses[index] = Int(totalBytesWritten * Int64(self_.maxProgress) / totalBytesExpectedToWrite)
+                        self_.imageCollectionView.reloadItemsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)])
+                    }
+                }
+                return
+            }
         }
     }
+    
     
     func uzysAssetsPickerControllerDidExceedMaximumNumberOfSelection(picker: UzysAssetsPickerController!) {
         
     }
     
     func showPickerController() {
-        let pc = MediaPickerController()
-        let c = UzysAppearanceConfig.sharedConfig()
+        let c = UzysAppearanceConfig()
         c.cameraImageName = "Camera-Line"
         c.closeImageName = "X"
         c.finishSelectionButtonColor = UIColor.msr_materialBlueGray()
-//        @property (nonatomic, strong) NSString *assetSelectedImageName;
-//        //deselected photo/video checkmark
-//        @property (nonatomic, strong) NSString *assetDeselectedImageName;
-//        @property (nonatomic, strong) NSString *assetsGroupSelectedImageName;
-//        @property (nonatomic, strong) NSString *cameraImageName;
-//        @property (nonatomic, strong) NSString *closeImageName;
-//        @property (nonatomic, strong) UIColor *finishSelectionButtonColor;
-//        UzysAppearanceConfig *appearanceConfig = [[UzysAppearanceConfig alloc] init];
-//        appearanceConfig.finishSelectionButtonColor = [UIColor blueColor];
-//        appearanceConfig.assetsGroupSelectedImageName = @"checker.png";
-//        [UzysAssetsPickerController setUpAppearanceConfig:appearanceConfig];
+        UzysAssetsPickerController.setUpAppearanceConfig(c)
+        let pc = MediaPickerController()
         pc.delegate = self
-        pc.maximumNumberOfSelectionPhoto = 1
+        pc.maximumNumberOfSelectionPhoto = 10
         pc.maximumNumberOfSelectionVideo = 0
         presentViewController(pc, animated: true, completion: nil)
     }
@@ -228,6 +260,10 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
     }
     
     func preview() {
+    }
+    
+    deinit {
+        
     }
     
 }

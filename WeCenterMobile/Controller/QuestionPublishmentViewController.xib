@@ -134,40 +134,6 @@
                             <constraint firstAttribute="width" id="Cr3-Ox-6T2"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nwx-5w-J7u" customClass="EAColourfulProgressView">
-                        <rect key="frame" x="67" y="317" width="513" height="8"/>
-                        <color key="backgroundColor" red="0.21568627450980393" green="0.27843137254901962" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="8" id="bA1-qB-5AK"/>
-                        </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="initialFillColor">
-                                <color key="value" red="0.92549019607843142" green="0.93725490196078431" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="currentValue">
-                                <integer key="value" value="90"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
-                                <integer key="value" value="100"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="showLabels" value="NO"/>
-                            <userDefinedRuntimeAttribute type="number" keyPath="borderLineWidth">
-                                <integer key="value" value="3"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="2"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="finalFillColor">
-                                <color key="value" red="0.92549019607843142" green="0.93725490196078431" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="twoThirdsFillColor">
-                                <color key="value" red="0.92549019607843142" green="0.93725490196078431" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="oneThirdFillColor">
-                                <color key="value" red="0.92549019607843142" green="0.93725490196078431" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </view>
                 </subviews>
                 <color key="backgroundColor" red="0.14901960784313725" green="0.19607843137254902" blue="0.2196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
@@ -181,16 +147,13 @@
                     <constraint firstItem="27g-RU-ov9" firstAttribute="trailing" secondItem="nII-7t-xr7" secondAttribute="trailing" id="DHT-zr-8x0"/>
                     <constraint firstItem="c6k-jd-I4H" firstAttribute="trailing" secondItem="nII-7t-xr7" secondAttribute="trailing" id="F2V-Nt-B4x"/>
                     <constraint firstItem="nII-7t-xr7" firstAttribute="leading" secondItem="TmV-AG-2V1" secondAttribute="leading" id="FA9-vm-29U"/>
-                    <constraint firstItem="nwx-5w-J7u" firstAttribute="top" secondItem="c6k-jd-I4H" secondAttribute="bottom" constant="20" id="InT-Sa-KOb"/>
                     <constraint firstItem="T5o-Lk-JPA" firstAttribute="trailing" secondItem="rEx-kq-Qoi" secondAttribute="trailing" id="IwN-IR-dJv"/>
-                    <constraint firstItem="nwx-5w-J7u" firstAttribute="leading" secondItem="nII-7t-xr7" secondAttribute="leading" id="LSG-MM-VEZ"/>
                     <constraint firstItem="nII-7t-xr7" firstAttribute="leading" secondItem="H2a-Wa-IVn" secondAttribute="trailing" constant="5" id="LXp-d1-MgZ"/>
                     <constraint firstItem="zri-Yv-UU9" firstAttribute="top" secondItem="27g-RU-ov9" secondAttribute="top" constant="7" id="MHR-xF-gn6"/>
                     <constraint firstItem="H2a-Wa-IVn" firstAttribute="top" secondItem="nII-7t-xr7" secondAttribute="top" id="NBn-1V-3lA"/>
                     <constraint firstAttribute="centerX" secondItem="dbk-Cj-v32" secondAttribute="centerX" id="P2O-h3-xgE"/>
                     <constraint firstItem="TmV-AG-2V1" firstAttribute="top" secondItem="nII-7t-xr7" secondAttribute="bottom" constant="20" id="PSs-5v-H7X"/>
                     <constraint firstItem="T5o-Lk-JPA" firstAttribute="top" secondItem="nII-7t-xr7" secondAttribute="top" constant="7" id="PtJ-HN-xDr"/>
-                    <constraint firstItem="yF7-eB-smy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="nwx-5w-J7u" secondAttribute="bottom" id="QjY-tY-g5q"/>
                     <constraint firstAttribute="trailing" secondItem="yF7-eB-smy" secondAttribute="trailing" constant="20" id="SmA-FV-eaB"/>
                     <constraint firstItem="eS2-1X-Qqo" firstAttribute="top" secondItem="TmV-AG-2V1" secondAttribute="top" constant="7" id="Ujs-jx-dJb"/>
                     <constraint firstItem="yF7-eB-smy" firstAttribute="leading" secondItem="ifC-f3-ehn" secondAttribute="leading" constant="20" id="YGf-On-0gi"/>
@@ -200,7 +163,6 @@
                     <constraint firstItem="c6k-jd-I4H" firstAttribute="top" secondItem="27g-RU-ov9" secondAttribute="bottom" constant="20" id="gS5-HA-ZAr"/>
                     <constraint firstItem="27g-RU-ov9" firstAttribute="top" secondItem="TmV-AG-2V1" secondAttribute="bottom" constant="20" id="hy4-cq-OrT"/>
                     <constraint firstItem="tg6-Ah-A8L" firstAttribute="top" secondItem="ifC-f3-ehn" secondAttribute="top" id="nQG-p9-llS"/>
-                    <constraint firstItem="nwx-5w-J7u" firstAttribute="trailing" secondItem="nII-7t-xr7" secondAttribute="trailing" id="pxM-yG-cpx"/>
                     <constraint firstItem="H2a-Wa-IVn" firstAttribute="leading" secondItem="T5o-Lk-JPA" secondAttribute="trailing" constant="10" id="q2J-It-rki"/>
                     <constraint firstItem="27g-RU-ov9" firstAttribute="leading" secondItem="nII-7t-xr7" secondAttribute="leading" id="qDo-t0-eh5"/>
                     <constraint firstAttribute="centerX" secondItem="yF7-eB-smy" secondAttribute="centerX" id="ti8-P1-3jj"/>
@@ -214,7 +176,6 @@
                 <outlet property="dismissButton" destination="acd-KU-H29" id="4Mk-pI-uDm"/>
                 <outlet property="imageCollectionView" destination="c6k-jd-I4H" id="Fe9-Qo-68i"/>
                 <outlet property="previewButton" destination="7eu-mt-QDv" id="mpW-vt-Bm9"/>
-                <outlet property="progressView" destination="nwx-5w-J7u" id="ZPF-hr-USF"/>
                 <outlet property="scrollView" destination="ifC-f3-ehn" id="ZaO-I5-Hbn"/>
                 <outlet property="tagsField" destination="TmV-AG-2V1" id="crj-Tq-pxY"/>
             </connections>

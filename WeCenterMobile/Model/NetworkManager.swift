@@ -23,8 +23,8 @@ class NetworkManager: NSObject {
     func GET(key: String,
         parameters: NSDictionary?,
         success: ((AnyObject) -> Void)?,
-        failure: ((NSError) -> Void)?) {
-            request(key,
+        failure: ((NSError) -> Void)?) -> AFHTTPRequestOperation? {
+            return request(key,
                 GETParameters: parameters,
                 POSTParameters: nil,
                 constructingBodyWithBlock: nil,
@@ -34,8 +34,8 @@ class NetworkManager: NSObject {
     func POST(key: String,
         parameters: NSDictionary?,
         success: ((AnyObject) -> Void)?,
-        failure: ((NSError) -> Void)?) {
-            request(key,
+        failure: ((NSError) -> Void)?) -> AFHTTPRequestOperation? {
+            return request(key,
                 GETParameters: nil,
                 POSTParameters: parameters,
                 constructingBodyWithBlock: nil,
@@ -45,18 +45,18 @@ class NetworkManager: NSObject {
     func request(key: String,
         GETParameters: NSDictionary?,
         POSTParameters: NSDictionary?,
-        constructingBodyWithBlock: ((AFMultipartFormData?) -> Void)?,
+        constructingBodyWithBlock block: ((AFMultipartFormData?) -> Void)?,
         success: ((AnyObject) -> Void)?,
-        failure: ((NSError) -> Void)?) {
+        failure: ((NSError) -> Void)?) -> AFHTTPRequestOperation? {
             var error: NSError? = nil
             let URLString = manager.requestSerializer.requestWithMethod("GET", URLString: paths[key]!, parameters: GETParameters, error: &error).URL?.absoluteString
             if error != nil || URLString == nil {
                 failure?(error ?? NSError()) // Needs specification
-                return
+                return nil
             }
-            manager.POST(URLString!,
+            return manager.POST(URLString!,
                 parameters: POSTParameters,
-                constructingBodyWithBlock: nil,
+                constructingBodyWithBlock: block,
                 success: {
                     operation, data in
                     AFNetworkActivityIndicatorManager.sharedManager().decrementActivityCount()

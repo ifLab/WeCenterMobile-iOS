@@ -249,6 +249,7 @@
 		95B9BDC11ABAA27700692889 /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B9BDC01ABAA27700692889 /* TLTagsControl.m */; };
 		95B9BDC31ABAA67900692889 /* QuestionPublishmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95B9BDC21ABAA67900692889 /* QuestionPublishmentViewController.xib */; };
 		95B9BE681ABAEF1A00692889 /* ZFTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B9BE671ABAEF1A00692889 /* ZFTokenField.m */; };
+		95C2DF931AC02E9400E350C2 /* ImageUploadingProgressBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C2DF911AC0275100E350C2 /* ImageUploadingProgressBar.xib */; };
 		95C2EA1E1AB0516800F2A326 /* Array+MSRAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2E9F31AB0516800F2A326 /* Array+MSRAccessor.swift */; };
 		95C2EA1F1AB0516800F2A326 /* MSRWeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2E9F41AB0516800F2A326 /* MSRWeak.swift */; };
 		95C2EA201AB0516800F2A326 /* NSManagedObjectContext+MSROperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2E9F51AB0516800F2A326 /* NSManagedObjectContext+MSROperations.swift */; };
@@ -749,6 +750,7 @@
 		95B9BDC21ABAA67900692889 /* QuestionPublishmentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionPublishmentViewController.xib; sourceTree = "<group>"; };
 		95B9BE661ABAEF1A00692889 /* ZFTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFTokenField.h; sourceTree = "<group>"; };
 		95B9BE671ABAEF1A00692889 /* ZFTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFTokenField.m; sourceTree = "<group>"; };
+		95C2DF911AC0275100E350C2 /* ImageUploadingProgressBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageUploadingProgressBar.xib; sourceTree = "<group>"; };
 		95C2E9F31AB0516800F2A326 /* Array+MSRAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+MSRAccessor.swift"; sourceTree = "<group>"; };
 		95C2E9F41AB0516800F2A326 /* MSRWeak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRWeak.swift; sourceTree = "<group>"; };
 		95C2E9F51AB0516800F2A326 /* NSManagedObjectContext+MSROperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+MSROperations.swift"; sourceTree = "<group>"; };
@@ -958,6 +960,7 @@
 				95F380C81AB56A950070A7FB /* FeaturedQuestionAnswerCellWithoutAnswerCell.xib */,
 				95F380C21AB2C4490070A7FB /* FeaturedArticleCell.swift */,
 				95F380C41AB2C70B0070A7FB /* FeaturedArticleCell.xib */,
+				95C2DF911AC0275100E350C2 /* ImageUploadingProgressBar.xib */,
 				950FE4F41A1DA2B500167D09 /* LoginView.swift */,
 				953F7DC81AB9B89600AD3363 /* LoginView.xib */,
 				950FE4F71A1DA2B500167D09 /* QuestionAnswerCell.swift */,
@@ -1800,6 +1803,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95C2DF931AC02E9400E350C2 /* ImageUploadingProgressBar.xib in Resources */,
 				950FE1241A1DA2A400167D09 /* Configuration.plist in Resources */,
 				9532C8CA1A51548B001A0E4A /* QuestionFocusingActionCell.xib in Resources */,
 				953F7DC91AB9B89600AD3363 /* LoginView.xib in Resources */,
