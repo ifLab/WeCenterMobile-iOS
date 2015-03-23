@@ -23,8 +23,10 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
     let buttonTag = 23335
     let overlayViewTag = 23336
     
+    let dataLock = NSLock()
     var tags = [String]()
     var images = [UIImage]()
+    var operations = [AFHTTPRequestOperation]()
     var uploadingProgresses = [Int]()
     let maxProgress = 100
     var imageAdditonButton = UIButton()
@@ -104,9 +106,13 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        println("RELOADING CELL AT (\(indexPath.row))")
         let cell: UICollectionViewCell!
+        dataLock.lock()
         if indexPath.row < images.count {
+            let image = images[indexPath.row]
+            let maxProgress = self.maxProgress
+            let uploadingProgress = Int(uploadingProgresses[indexPath.row])
+            dataLock.unlock()
             cell = imageCollectionView.dequeueReusableCellWithReuseIdentifier(identifiers[0], forIndexPath: indexPath) as! UICollectionViewCell
             var imageView: UIImageView! = cell.contentView.viewWithTag(imageViewTag) as? UIImageView
             if imageView == nil {
@@ -137,9 +143,6 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                 progressView.msr_addBottomAttachedConstraintToSuperview()
                 progressView.maximumValue = UInt(self.maxProgress)
             }
-            let maxProgress = self.maxProgress
-            let uploadingProgress = Int(uploadingProgresses[indexPath.row])
-            println("\(indexPath.row): \(uploadingProgress) of \(maxProgress)")
             UIView.animateWithDuration(0.5,
                 delay: 0,
                 usingSpringWithDamping: 1,
@@ -158,6 +161,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                     }
                 })
         } else {
+            dataLock.unlock()
             cell = imageCollectionView.dequeueReusableCellWithReuseIdentifier(identifiers[1], forIndexPath: indexPath) as! UICollectionViewCell
             var button: UIButton! = cell.contentView.viewWithTag(buttonTag) as? UIButton
             if button == nil {
@@ -174,61 +178,94 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
         return cell
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        dataLock.lock()
+        if indexPath.row < images.count {
+            let index = indexPath.row
+            images.removeAtIndex(index)
+            uploadingProgresses.removeAtIndex(index)
+            operations[index].cancel()
+            operations.removeAtIndex(index)
+            imageCollectionView.reloadData()
+        }
+        dataLock.unlock()
+    }
+    
     // MARK: - UzysAssetsPickerControllerDelegate
     
     func uzysAssetsPickerController(picker: UzysAssetsPickerController!, didFinishPickingAssets assets: [AnyObject]!) {
-        let rs = map(assets, { ($0 as! ALAsset).defaultRepresentation() })
-        var images = [UIImage]()
-        for r in rs {
-            let image = UIImage(
-                CGImage: r.fullResolutionImage().retain().takeRetainedValue(),
-                scale: CGFloat(r.scale()),
-                orientation: UIImageOrientation(rawValue: r.orientation().rawValue)!)!
-            images.append(image)
-            uploadingProgresses.append(0)
-        }
-        self.images.extend(images)
-        imageCollectionView.reloadData()
-        for image in images {
-            let operation = NetworkManager.defaultManager!.request("Upload Attach",
-                GETParameters: [
-                    "id": "question",
-                    "attach_access_key": "\(timeKey)".msr_MD5EncryptedString],
-                POSTParameters: nil,
-                constructingBodyWithBlock: {
-                    [weak self] data in
-                    if let self_ = self {
-                        data?.appendPartWithFileData(UIImagePNGRepresentation(image), name: "qqfile", fileName: "image.png", mimeType: "image/png")
-                    }
-                    return
-                },
-                success: {
-                    data in
-                    println(data)
-                    return
-                },
-                failure: {
-                    [weak self] error in
-                    println(error)
-                    if let self_ = self {
-                        if let index = find(self_.images, image) {
-                            self_.images.removeAtIndex(index)
-                            self_.uploadingProgresses.removeAtIndex(index)
-                            self_.imageCollectionView.reloadData()
-                        }
-                    }
-                    return
-            })
-            operation!.setUploadProgressBlock() {
-                [weak self] bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
-                if let self_ = self {
-                    if let index = find(self_.images, image) {
-//                        println("\(index): sent \(totalBytesWritten) of \(totalBytesExpectedToWrite)")
-                        self_.uploadingProgresses[index] = Int(totalBytesWritten * Int64(self_.maxProgress) / totalBytesExpectedToWrite)
-                        self_.imageCollectionView.reloadItemsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)])
-                    }
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            [weak self] in
+            if let self_ = self {
+                let rs = map(assets, { ($0 as! ALAsset).defaultRepresentation() })
+                var images = [UIImage]()
+                var uploadingProgress = [Int]()
+                for r in rs {
+                    let image = UIImage(
+                        CGImage: r.fullResolutionImage().retain().takeRetainedValue(),
+                        scale: CGFloat(r.scale()),
+                        orientation: UIImageOrientation(rawValue: r.orientation().rawValue)!)!
+                    images.append(image)
+                    uploadingProgress.append(0)
                 }
-                return
+                let pngs = map(images) {
+                    return UIImagePNGRepresentation($0)!
+                }
+                self_.dataLock.lock()
+                self_.images.extend(images)
+                self_.uploadingProgresses.extend(uploadingProgress)
+                for i in 0..<images.count {
+                    let operation = NetworkManager.defaultManager!.request("Upload Attach",
+                        GETParameters: [
+                            "id": "question",
+                            "attach_access_key": "\(self_.timeKey)".msr_MD5EncryptedString],
+                        POSTParameters: nil,
+                        constructingBodyWithBlock: {
+                            [weak self_] data in
+                            data?.appendPartWithFileData(pngs[i], name: "qqfile", fileName: "image.png", mimeType: "image/png")
+                            return
+                        },
+                        success: {
+                            data in
+                            println(data)
+                            return
+                        },
+                        failure: {
+                            [weak self_] error in
+                            println(error)
+                            if let self_ = self_ {
+                                self_.dataLock.lock()
+                                if let index = find(self_.images, images[i]) {
+                                    self_.images.removeAtIndex(index)
+                                    self_.uploadingProgresses.removeAtIndex(index)
+                                    self_.operations[index].cancel()
+                                    self_.operations.removeAtIndex(index)
+                                    self_.dataLock.unlock()
+                                    self_.imageCollectionView.reloadData()
+                                } else {
+                                    self_.dataLock.unlock()
+                                }
+                            }
+                            return
+                        })!
+                    operation.setUploadProgressBlock() {
+                        [weak self_] bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
+                        if let self_ = self_ {
+                            self_.dataLock.lock()
+                            if let index = find(self_.images, images[i]) {
+                                self_.uploadingProgresses[index] = Int(totalBytesWritten * Int64(self_.maxProgress) / totalBytesExpectedToWrite)
+                                self_.dataLock.unlock()
+                                self_.imageCollectionView.reloadItemsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)])
+                            } else {
+                                self_.dataLock.unlock()
+                            }
+                        }
+                        return
+                    }
+                    self_.operations.append(operation)
+                }
+                self_.dataLock.unlock()
+                self_.imageCollectionView.reloadData()
             }
         }
     }
