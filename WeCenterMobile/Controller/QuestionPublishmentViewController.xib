@@ -170,6 +170,7 @@
                     <constraint firstItem="zri-Yv-UU9" firstAttribute="trailing" secondItem="T5o-Lk-JPA" secondAttribute="trailing" id="uGw-Qg-eqL"/>
                     <constraint firstItem="tg6-Ah-A8L" firstAttribute="height" secondItem="ifC-f3-ehn" secondAttribute="height" id="ucu-Qb-TMX"/>
                     <constraint firstAttribute="trailing" secondItem="nII-7t-xr7" secondAttribute="trailing" constant="20" id="ulg-RT-ztv"/>
+                    <constraint firstItem="yF7-eB-smy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="c6k-jd-I4H" secondAttribute="bottom" constant="20" id="vtB-UV-1LU"/>
                 </constraints>
             </scrollView>
             <connections>

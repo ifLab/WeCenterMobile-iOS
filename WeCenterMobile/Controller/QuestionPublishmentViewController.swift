@@ -23,7 +23,6 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
     let buttonTag = 23335
     let overlayViewTag = 23336
     
-    let dataLock = NSLock()
     var tags = [String]()
     var images = [UIImage]()
     var operations = [AFHTTPRequestOperation]()
@@ -107,12 +106,10 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: UICollectionViewCell!
-        dataLock.lock()
-        if indexPath.row < images.count {
-            let image = images[indexPath.row]
+        if indexPath.item < images.count {
+            let image = images[indexPath.item]
             let maxProgress = self.maxProgress
-            let uploadingProgress = Int(uploadingProgresses[indexPath.row])
-            dataLock.unlock()
+            let uploadingProgress = Int(uploadingProgresses[indexPath.item])
             cell = imageCollectionView.dequeueReusableCellWithReuseIdentifier(identifiers[0], forIndexPath: indexPath) as! UICollectionViewCell
             var imageView: UIImageView! = cell.contentView.viewWithTag(imageViewTag) as? UIImageView
             if imageView == nil {
@@ -122,7 +119,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                 imageView.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
                 imageView.msr_addAllEdgeAttachedConstraintsToSuperview()
             }
-            imageView!.image = images[indexPath.row]
+            imageView!.image = images[indexPath.item]
             var overlayView: UIView! = cell.contentView.viewWithTag(overlayViewTag)
             if overlayView == nil {
                 overlayView = UIView()
@@ -130,7 +127,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                 cell.contentView.insertSubview(overlayView, aboveSubview: imageView)
                 overlayView.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
                 overlayView.msr_addAllEdgeAttachedConstraintsToSuperview()
-                overlayView.backgroundColor = scrollView.backgroundColor!.colorWithAlphaComponent(0.6)
+                overlayView.backgroundColor = scrollView.backgroundColor!.colorWithAlphaComponent(0.7)
             }
             var progressView: EAColourfulProgressView! = cell.contentView.viewWithTag(progressViewTag) as? EAColourfulProgressView
             if progressView == nil {
@@ -141,7 +138,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                 cell.contentView.insertSubview(progressView, aboveSubview: overlayView)
                 progressView.msr_addHorizontalEdgeAttachedConstraintsToSuperview()
                 progressView.msr_addBottomAttachedConstraintToSuperview()
-                progressView.maximumValue = UInt(self.maxProgress)
+                progressView.maximumValue = UInt(maxProgress)
             }
             UIView.animateWithDuration(0.5,
                 delay: 0,
@@ -157,11 +154,10 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                 completion: {
                     finished in
                     if uploadingProgress == maxProgress {
-                        progressView.updateToCurrentValue(1, animated: false)
+                        progressView.updateToCurrentValue(0, animated: false)
                     }
                 })
         } else {
-            dataLock.unlock()
             cell = imageCollectionView.dequeueReusableCellWithReuseIdentifier(identifiers[1], forIndexPath: indexPath) as! UICollectionViewCell
             var button: UIButton! = cell.contentView.viewWithTag(buttonTag) as? UIButton
             if button == nil {
@@ -178,17 +174,13 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
         return cell
     }
     
+    func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return indexPath.item < images.count
+    }
+    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        dataLock.lock()
-        if indexPath.row < images.count {
-            let index = indexPath.row
-            images.removeAtIndex(index)
-            uploadingProgresses.removeAtIndex(index)
-            operations[index].cancel()
-            operations.removeAtIndex(index)
-            imageCollectionView.reloadData()
-        }
-        dataLock.unlock()
+        removeDataAtIndex(indexPath.item)
+        imageCollectionView.deleteItemsAtIndexPaths([indexPath])
     }
     
     // MARK: - UzysAssetsPickerControllerDelegate
@@ -211,68 +203,65 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                 let pngs = map(images) {
                     return UIImagePNGRepresentation($0)!
                 }
-                self_.dataLock.lock()
-                self_.images.extend(images)
-                self_.uploadingProgresses.extend(uploadingProgress)
-                for i in 0..<images.count {
-                    let operation = NetworkManager.defaultManager!.request("Upload Attach",
-                        GETParameters: [
-                            "id": "question",
-                            "attach_access_key": "\(self_.timeKey)".msr_MD5EncryptedString],
-                        POSTParameters: nil,
-                        constructingBodyWithBlock: {
-                            [weak self_] data in
-                            data?.appendPartWithFileData(pngs[i], name: "qqfile", fileName: "image.png", mimeType: "image/png")
-                            return
-                        },
-                        success: {
-                            data in
-                            println(data)
-                            return
-                        },
-                        failure: {
-                            [weak self_] error in
-                            println(error)
-                            if let self_ = self_ {
-                                self_.dataLock.lock()
-                                if let index = find(self_.images, images[i]) {
-                                    self_.images.removeAtIndex(index)
-                                    self_.uploadingProgresses.removeAtIndex(index)
-                                    self_.operations[index].cancel()
-                                    self_.operations.removeAtIndex(index)
-                                    self_.dataLock.unlock()
-                                    self_.imageCollectionView.reloadData()
-                                } else {
-                                    self_.dataLock.unlock()
+                dispatch_async(dispatch_get_main_queue()) {
+                    self_.images.extend(images)
+                    self_.uploadingProgresses.extend(uploadingProgress)
+                    for i in 0..<images.count {
+                        let image = images[i]
+                        let png = pngs[i]
+                        let operation = NetworkManager.defaultManager!.request("Upload Attach",
+                            GETParameters: [
+                                "id": "question",
+                                "attach_access_key": "\(self_.timeKey)".msr_MD5EncryptedString],
+                            POSTParameters: nil,
+                            constructingBodyWithBlock: {
+                                data in
+                                data?.appendPartWithFileData(png, name: "qqfile", fileName: "image.png", mimeType: "image/png")
+                                return
+                            },
+                            success: {
+                                data in
+                                println(data)
+                                return
+                            },
+                            failure: {
+                                error in
+                                println(error)
+                                var message = error.userInfo?[NSLocalizedDescriptionKey] as? String
+                                if message == nil && error.code != NSURLErrorCancelled {
+                                    message = "未知错误"
                                 }
+                                if message != nil {
+                                    let ac = UIAlertController(title: "上传失败", message: message!, preferredStyle: .Alert) // Needs localization
+                                    ac.addAction(UIAlertAction(title: "好", style: .Default, handler: nil))
+                                    self_.presentViewController(ac, animated: true, completion: nil)
+                                }
+                                if let index = find(self_.images, image) {
+                                    self_.removeDataAtIndex(index)
+                                    self_.imageCollectionView.deleteItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
+                                }
+                                return
+                            })!
+                        operation.setUploadProgressBlock() {
+                            bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
+                            if let index = find(self_.images, image) {
+                                self_.uploadingProgresses[index] = Int(totalBytesWritten * Int64(self_.maxProgress) / totalBytesExpectedToWrite)
+                                self_.imageCollectionView.reloadItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
                             }
                             return
-                        })!
-                    operation.setUploadProgressBlock() {
-                        [weak self_] bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
-                        if let self_ = self_ {
-                            self_.dataLock.lock()
-                            if let index = find(self_.images, images[i]) {
-                                self_.uploadingProgresses[index] = Int(totalBytesWritten * Int64(self_.maxProgress) / totalBytesExpectedToWrite)
-                                self_.dataLock.unlock()
-                                self_.imageCollectionView.reloadItemsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)])
-                            } else {
-                                self_.dataLock.unlock()
-                            }
                         }
-                        return
+                        self_.operations.append(operation)
                     }
-                    self_.operations.append(operation)
+                    self_.imageCollectionView.reloadData()
                 }
-                self_.dataLock.unlock()
-                self_.imageCollectionView.reloadData()
             }
         }
     }
     
-    
     func uzysAssetsPickerControllerDidExceedMaximumNumberOfSelection(picker: UzysAssetsPickerController!) {
-        
+        let ac = UIAlertController(title: "已达到上限", message: "您一次最多勾选\(picker.maximumNumberOfSelectionPhoto)张图片", preferredStyle: .Alert)
+        ac.addAction(UIAlertAction(title: "好", style: .Default, handler: nil)) // Needs localization
+        picker.presentViewController(ac, animated: true, completion: nil)
     }
     
     func showPickerController() {
@@ -288,6 +277,13 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
         presentViewController(pc, animated: true, completion: nil)
     }
     
+    func removeDataAtIndex(index: Int) {
+        images.removeAtIndex(index)
+        uploadingProgresses.removeAtIndex(index)
+        operations[index].cancel()
+        operations.removeAtIndex(index)
+    }
+    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
@@ -300,7 +296,9 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
     }
     
     deinit {
-        
+        for o in operations {
+            o.cancel()
+        }
     }
     
 }

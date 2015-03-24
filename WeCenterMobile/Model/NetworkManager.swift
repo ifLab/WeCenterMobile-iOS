@@ -54,6 +54,7 @@ class NetworkManager: NSObject {
                 failure?(error ?? NSError()) // Needs specification
                 return nil
             }
+            AFNetworkActivityIndicatorManager.sharedManager().incrementActivityCount()
             return manager.POST(URLString!,
                 parameters: POSTParameters,
                 constructingBodyWithBlock: block,
