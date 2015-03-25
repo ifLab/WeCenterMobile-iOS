@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var currentUser: User?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+        AFNetworkActivityIndicatorManager.sharedManager().enabled = true
 //        NetworkManager.clearCookies()
 //        let directory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last as! NSURL
 //        let url = directory.URLByAppendingPathComponent("WeCenterMobile.sqlite")
