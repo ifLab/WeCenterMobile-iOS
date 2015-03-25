@@ -84,5 +84,31 @@ class Question: NSManagedObject {
             },
             failure: failure)
     }
+    
+    func post(#attachKey: String, success: ((Question) -> Void)?, failure: ((NSError) -> Void)?) {
+        let topics = [Topic](self.topics)
+        var topicsParameter = ""
+        if topics.count == 1 {
+            topicsParameter = topics[0].title!
+        } else if topics.count > 1 {
+            topicsParameter = topics[1..<topics.endIndex].reduce(topics[0].title!, combine: { return $0 + "," + $1.title! })
+        }
+        NetworkManager.defaultManager!.POST("Post Question",
+            parameters: [
+                "question_content": title!,
+                "question_detail": body!,
+                "attach_access_key": attachKey,
+                "topics": topicsParameter
+            ],
+            success: {
+                data in
+                let question = DataManager.defaultManager!.autoGenerate("Question", ID: Int(msr_object: data["question_id"])!) as! Question
+                question.title = self.title
+                question.body = self.body
+                success?(question)
+                return
+            },
+            failure: failure)
+    }
 
 }

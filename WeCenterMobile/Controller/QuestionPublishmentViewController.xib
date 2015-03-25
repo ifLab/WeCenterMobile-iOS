@@ -42,7 +42,7 @@
                                     <constraint firstAttribute="height" constant="50" id="XoI-5t-HAc"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="预览">
+                                <state key="normal" title="发布">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -174,11 +174,13 @@
                 </constraints>
             </scrollView>
             <connections>
+                <outlet property="bodyField" destination="27g-RU-ov9" id="hTo-w2-cck"/>
                 <outlet property="dismissButton" destination="acd-KU-H29" id="4Mk-pI-uDm"/>
                 <outlet property="imageCollectionView" destination="c6k-jd-I4H" id="Fe9-Qo-68i"/>
-                <outlet property="previewButton" destination="7eu-mt-QDv" id="mpW-vt-Bm9"/>
+                <outlet property="publishButton" destination="7eu-mt-QDv" id="tOU-Ij-fXH"/>
                 <outlet property="scrollView" destination="ifC-f3-ehn" id="ZaO-I5-Hbn"/>
                 <outlet property="tagsField" destination="TmV-AG-2V1" id="crj-Tq-pxY"/>
+                <outlet property="titleField" destination="nII-7t-xr7" id="Dsm-UR-ZFc"/>
             </connections>
             <point key="canvasLocation" x="334" y="1061"/>
         </viewController>

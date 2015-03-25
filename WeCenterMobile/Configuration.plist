@@ -56,6 +56,8 @@
 		<string>api/my_question.php</string>
 		<key>Post Answer Comment</key>
 		<string>?/question/ajax/save_answer_comment/</string>
+		<key>Post Question</key>
+		<string>?/api/publish/publish_question/</string>
 	</dict>
 	<key>Success Code</key>
 	<integer>1</integer>

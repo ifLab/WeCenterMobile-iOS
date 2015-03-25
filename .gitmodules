@@ -28,3 +28,6 @@
 [submodule "WeCenterMobile/External/EAColourfulProgressView"]
 	path = WeCenterMobile/External/EAColourfulProgressView
 	url = https://github.com/Eddpt/EAColourfulProgressView
+[submodule "WeCenterMobile/External/SVProgressHUD"]
+	path = WeCenterMobile/External/SVProgressHUD
+	url = https://github.com/TransitApp/SVProgressHUD.git

@@ -237,6 +237,7 @@
 		9588F5E91A1D9D1C001BC426 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9588F5E81A1D9D1C001BC426 /* AppDelegate.swift */; };
 		9588F6021A1D9D1C001BC426 /* WeCenterMobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9588F6011A1D9D1C001BC426 /* WeCenterMobileTests.swift */; };
 		958CB5BB1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CB5BA1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift */; };
+		958FF4D71AC270820073022F /* String+MSROperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958FF4D61AC270820073022F /* String+MSROperations.swift */; };
 		959CC93A1A25BAED00F8B6CB /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC9391A25BAED00F8B6CB /* Article.swift */; };
 		959CC93C1A25BAED00F8B6CB /* AnswerComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC93B1A25BAED00F8B6CB /* AnswerComment.swift */; };
 		959CC93E1A25BAED00F8B6CB /* ArticleComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC93D1A25BAED00F8B6CB /* ArticleComment.swift */; };
@@ -292,6 +293,9 @@
 		95C2EA491AB1101F00F2A326 /* FeaturedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2EA481AB1101F00F2A326 /* FeaturedObject.swift */; };
 		95C2EA4B1AB1102000F2A326 /* FeaturedQuestionAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2EA4A1AB1102000F2A326 /* FeaturedQuestionAnswer.swift */; };
 		95C2EA4D1AB1102000F2A326 /* FeaturedArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2EA4C1AB1102000F2A326 /* FeaturedArticle.swift */; };
+		95E060D81AC2507300C6750C /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E060D31AC2507300C6750C /* SVIndefiniteAnimatedView.m */; };
+		95E060D91AC2507300C6750C /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 95E060D51AC2507300C6750C /* SVProgressHUD.bundle */; };
+		95E060DA1AC2507300C6750C /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E060D71AC2507300C6750C /* SVProgressHUD.m */; };
 		95E403C11ABDE85200C18A44 /* MSRCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E403C01ABDE85200C18A44 /* MSRCollectionView.swift */; };
 		95E403FF1ABDEC3000C18A44 /* UIImage+UzysExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E403E51ABDEC3000C18A44 /* UIImage+UzysExtension.m */; };
 		95E404001ABDEC3000C18A44 /* UzysAppearanceConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E403E71ABDEC3000C18A44 /* UzysAppearanceConfig.m */; };
@@ -737,6 +741,7 @@
 		9588F6001A1D9D1C001BC426 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9588F6011A1D9D1C001BC426 /* WeCenterMobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeCenterMobileTests.swift; sourceTree = "<group>"; };
 		958CB5BA1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionPublishmentViewController.swift; sourceTree = "<group>"; };
+		958FF4D61AC270820073022F /* String+MSROperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MSROperations.swift"; sourceTree = "<group>"; };
 		959CC9391A25BAED00F8B6CB /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		959CC93B1A25BAED00F8B6CB /* AnswerComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnswerComment.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		959CC93D1A25BAED00F8B6CB /* ArticleComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleComment.swift; sourceTree = "<group>"; };
@@ -793,6 +798,12 @@
 		95C2EA481AB1101F00F2A326 /* FeaturedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FeaturedObject.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		95C2EA4A1AB1102000F2A326 /* FeaturedQuestionAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedQuestionAnswer.swift; sourceTree = "<group>"; };
 		95C2EA4C1AB1102000F2A326 /* FeaturedArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedArticle.swift; sourceTree = "<group>"; };
+		95E060D21AC2507300C6750C /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		95E060D31AC2507300C6750C /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		95E060D41AC2507300C6750C /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		95E060D51AC2507300C6750C /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		95E060D61AC2507300C6750C /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		95E060D71AC2507300C6750C /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		95E403C01ABDE85200C18A44 /* MSRCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRCollectionView.swift; sourceTree = "<group>"; };
 		95E403E41ABDEC3000C18A44 /* UIImage+UzysExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+UzysExtension.h"; sourceTree = "<group>"; };
 		95E403E51ABDEC3000C18A44 /* UIImage+UzysExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+UzysExtension.m"; sourceTree = "<group>"; };
@@ -900,6 +911,7 @@
 				951FAC731ABFCEA30083E221 /* EAColourfulProgressView */,
 				951D2F691AB7F85500DCB678 /* MJRefresh */,
 				95C2E9F01AB0516800F2A326 /* Msr */,
+				95E060D11AC2507300C6750C /* SVProgressHUD */,
 				95B9BDBE1ABAA27700692889 /* TLTagsContol */,
 				95E403E31ABDEC3000C18A44 /* UzysAssetsPickerController */,
 				95B9BE651ABAEF1A00692889 /* ZFTokenField */,
@@ -1639,6 +1651,7 @@
 				95C2E9F61AB0516800F2A326 /* Numeric+MSRInitializer.swift */,
 				95C2E9F71AB0516800F2A326 /* UnsafePointer+MSRInitializer.swift */,
 				95387BFE1ABEA456004DF8EB /* String+Encryption.swift */,
+				958FF4D61AC270820073022F /* String+MSROperations.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1693,6 +1706,20 @@
 				95C2E9FF1AB0516800F2A326 /* MSRSidebarHandle.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		95E060D11AC2507300C6750C /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				95E060D21AC2507300C6750C /* SVIndefiniteAnimatedView.h */,
+				95E060D31AC2507300C6750C /* SVIndefiniteAnimatedView.m */,
+				95E060D41AC2507300C6750C /* SVProgressHUD-Prefix.pch */,
+				95E060D51AC2507300C6750C /* SVProgressHUD.bundle */,
+				95E060D61AC2507300C6750C /* SVProgressHUD.h */,
+				95E060D71AC2507300C6750C /* SVProgressHUD.m */,
+			);
+			name = SVProgressHUD;
+			path = SVProgressHUD/SVProgressHUD;
 			sourceTree = "<group>";
 		};
 		95E403E31ABDEC3000C18A44 /* UzysAssetsPickerController */ = {
@@ -1822,6 +1849,7 @@
 				95E404031ABDEC3000C18A44 /* UzysAssetsPickerController.xib in Resources */,
 				950FE1261A1DA2A400167D09 /* User.strings in Resources */,
 				9574126B1AAFC22F0077FCE6 /* default.css in Resources */,
+				95E060D91AC2507300C6750C /* SVProgressHUD.bundle in Resources */,
 				95F380C51AB2C70B0070A7FB /* FeaturedArticleCell.xib in Resources */,
 				95F380BD1AB282840070A7FB /* FeaturedQuestionAnswerCell.xib in Resources */,
 				9532C8CE1A515E3A001A0E4A /* AnswerAgreementActionCell.xib in Resources */,
@@ -1918,6 +1946,7 @@
 				9574128D1AAFC22F0077FCE6 /* DTImage+HTML.m in Sources */,
 				9574129B1AAFC22F0077FCE6 /* NSAttributedString+DTDebug.m in Sources */,
 				957412751AAFC22F0077FCE6 /* DTColor+Compatibility.m in Sources */,
+				95E060D81AC2507300C6750C /* SVIndefiniteAnimatedView.m in Sources */,
 				956E72051AAFC53B00A3FD7D /* AFHTTPRequestOperation.m in Sources */,
 				95F380BF1AB2BCB20070A7FB /* FeaturedQuestionAnswerCell.swift in Sources */,
 				951FAC761ABFCEA30083E221 /* EAColourfulProgressView.m in Sources */,
@@ -1967,6 +1996,7 @@
 				950FE5041A1DA2B500167D09 /* AnswerCommetListViewController.swift in Sources */,
 				956E71D41AAFC50500A3FD7D /* NSURL+DTComparing.m in Sources */,
 				950FE73B1A1DA2B500167D09 /* QuestionTitleCell.swift in Sources */,
+				95E060DA1AC2507300C6750C /* SVProgressHUD.m in Sources */,
 				9574126D1AAFC22F0077FCE6 /* DTAccessibilityElement.m in Sources */,
 				957412A41AAFC22F0077FCE6 /* NSScanner+HTML.m in Sources */,
 				956E71A01AAFC50500A3FD7D /* DTFoundationConstants.m in Sources */,
@@ -1980,6 +2010,7 @@
 				95E404051ABDEC3000C18A44 /* UzysGroupPickerView.m in Sources */,
 				9574128B1AAFC22F0077FCE6 /* DTHTMLWriter.m in Sources */,
 				95C2EA3F1AB0516800F2A326 /* UIColor+MSRRandomColor.swift in Sources */,
+				958FF4D71AC270820073022F /* String+MSROperations.swift in Sources */,
 				956E71CD1AAFC50500A3FD7D /* NSDictionary+DTError.m in Sources */,
 				957412891AAFC22F0077FCE6 /* DTHTMLParserNode.m in Sources */,
 				956E72071AAFC53B00A3FD7D /* AFHTTPSessionManager.m in Sources */,

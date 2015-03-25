@@ -61,6 +61,7 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
         Question.fetch(ID: question.id,
             success: {
                 question in
+                println(question)
                 self.question = question
                 self.tableView.reloadData()
             },
@@ -152,14 +153,14 @@ class QuestionViewController: UITableViewController, DTAttributedTextContentView
         case 2:
             if cell == nil {
                 cell = QuestionBodyCell(question: question, reuseIdentifier: identifier)
-                NSNotificationCenter.defaultCenter().addObserverForName(DTAttributedTextContentViewDidFinishLayoutNotification, object: (cell as! QuestionBodyCell).attributedTextContextView, queue: NSOperationQueue.mainQueue(), usingBlock: {
-                    notification in
-                    self.tableView.reloadData()
-                })
             } else {
                 (cell as! QuestionBodyCell).update(question: question)
                 (cell as! QuestionBodyCell).textDelegate = self
             }
+            NSNotificationCenter.defaultCenter().addObserverForName(DTAttributedTextContentViewDidFinishLayoutNotification, object: (cell as! QuestionBodyCell).attributedTextContextView, queue: NSOperationQueue.mainQueue(), usingBlock: {
+                notification in
+                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+            })
             break
         case 3:
             if cell == nil {
