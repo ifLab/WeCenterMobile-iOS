@@ -55,7 +55,7 @@ class UserAskedQuestionListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = BFPaperTableViewCell(style: .Subtitle, reuseIdentifier: "")
+        let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "")
         let question = questions[indexPath.row]
         cell.textLabel!.text = question.title
         cell.detailTextLabel!.text = question.body

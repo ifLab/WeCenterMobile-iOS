@@ -72,7 +72,7 @@ class FeaturedObjectListViewController: UITableViewController {
         if let o = object as? FeaturedQuestionAnswer {
             index += o.answers.count == 0 ? 1 : 0
         }
-        var cell: FeaturedObjectCell! = tableView.dequeueReusableCellWithIdentifier(identifiers[index], forIndexPath: indexPath) as? FeaturedObjectCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(identifiers[index], forIndexPath: indexPath) as! FeaturedObjectCell
         cell.update(object: object)
         return cell
     }

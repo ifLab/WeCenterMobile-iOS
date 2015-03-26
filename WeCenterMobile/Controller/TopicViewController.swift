@@ -18,7 +18,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     
     var topView = UIScrollView()
     var hideableView = UIView()
-    var imageButton = BFPaperButton(raised: false)
+    var imageButton = UIButton()
     var imageButtonState = ImageButtonState.Normal
     var imageButtonTimer: NSTimer? = nil
     var imageActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
@@ -73,8 +73,6 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
         imageButton.addTarget(self, action: "toggleImageButtonImage", forControlEvents: .TouchUpInside)
         imageButton.addTarget(self, action: "delayHidingImageButtonImage", forControlEvents: .TouchDown)
         imageButton.imageView!.frame = imageButton.bounds
-        imageButton.usesSmartColor = false
-        imageButton.tapCircleColor = UIColor(white: 1, alpha: 0.5)
         imageActivityIndicatorView.frame = imageButton.bounds
         imageActivityIndicatorView.userInteractionEnabled = false
         titleLabel.frame = CGRect(x: imageButton.frame.origin.x + imageButton.frame.width + 20, y: 0, width: 160, height: 26)

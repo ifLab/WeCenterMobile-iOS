@@ -14,7 +14,7 @@ class QuestionFocusCell: UITableViewCell {
     let answerImageView = UIImageView(image: UIImage(named: "Chat_icon")!.imageWithRenderingMode(.AlwaysTemplate))
     let focusCountLabel = UILabel()
     let answerCountLabel = UILabel()
-    let focusButton = BFPaperButton()
+    let focusButton = UIButton()
     let focusButtonActivityIndicatorView = UIActivityIndicatorView()
     
     private let offset = CGFloat(15)
@@ -31,7 +31,6 @@ class QuestionFocusCell: UITableViewCell {
             case .NotFocusing:
                 focusButton.backgroundColor = UIColor.msr_materialGray500()
                 focusButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-                focusButton.tapCircleColor = UIColor.msr_materialGray300()
                 focusButton.setTitle("关注", forState: .Normal) // Needs localization
                 focusButton.userInteractionEnabled = true
                 focusButtonActivityIndicatorView.activityIndicatorViewStyle = .White
@@ -40,7 +39,6 @@ class QuestionFocusCell: UITableViewCell {
             case .Focusing:
                 focusButton.backgroundColor = UIColor.msr_materialGray300()
                 focusButton.setTitleColor(UIColor.msr_materialGray800(), forState: .Normal)
-                focusButton.tapCircleColor = UIColor.msr_materialGray500()
                 focusButton.setTitle("正在关注", forState: .Normal) // Needs localization
                 focusButton.userInteractionEnabled = true
                 focusButtonActivityIndicatorView.activityIndicatorViewStyle = .Gray
@@ -87,7 +85,6 @@ class QuestionFocusCell: UITableViewCell {
         answerImageView.tintColor = focusImageView.tintColor
         focusButton.frame.size = CGSize(width: 100, height: 40)
         focusButton.center.y = focusImageView.center.y
-        focusButton.cornerRadius = 0
         focusButton.titleLabel!.font = .systemFontOfSize(14)
         focusButtonActivityIndicatorView.bounds.size = focusButton.bounds.size
         focusButtonActivityIndicatorView.center = CGPoint(x: focusButton.bounds.width / 2, y: focusButton.bounds.height / 2)

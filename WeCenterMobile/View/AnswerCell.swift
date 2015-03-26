@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnswerCell: BFPaperTableViewCell {
+class AnswerCell: UITableViewCell {
     let avatarButton = UIButton()
     let agreementCountLabel = UILabel()
     let nameLabel = UILabel()

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TopicCell: BFPaperTableViewCell {
+class TopicCell: UITableViewCell {
     init(topic: Topic, reuseIdentifier: String?) {
         super.init(style: .Subtitle, reuseIdentifier: reuseIdentifier)
         imageView!.bounds.size = CGSize(width: 50, height: 50)

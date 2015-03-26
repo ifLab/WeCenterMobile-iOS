@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnswerAdditionCell: BFPaperTableViewCell {
+class AnswerAdditionCell: UITableViewCell {
     let additionView = UIView()
     let additionImageView = UIImageView(image: UIImage(named: "Add_icon")!.imageWithRenderingMode(.AlwaysTemplate))
     let additionTextLabel = UILabel()

@@ -10,11 +10,11 @@ import UIKit
 
 class QuestionAnswerCell: UITableViewCell {
 
-    var questionButton = BFPaperButton(raised: false)
+    var questionButton = UIButton()
     var questionLabel = UILabel()
-    var answerButton = BFPaperButton(raised: false)
+    var answerButton = UIButton()
     var answerLabel = UILabel()
-    var userButton = BFPaperButton(raised: false)
+    var userButton = UIButton()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

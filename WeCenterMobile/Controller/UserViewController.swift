@@ -18,7 +18,7 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     
     var topView = UIScrollView()
     var bottomView = UIScrollView()
-    var avatarButton = BFPaperButton(raised: false)
+    var avatarButton = UIButton()
     var avatarButtonState = AvatarButtonState.Normal
     var avatarButtonTimer: NSTimer? = nil
     var avatarActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
@@ -86,8 +86,6 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         avatarButton.addTarget(self, action: "delayHidingAvatarButtonImage", forControlEvents: .TouchDown)
         avatarButton.imageView!.frame = avatarButton.bounds
         avatarButton.imageView!.alpha = 0
-        avatarButton.usesSmartColor = false
-        avatarButton.tapCircleColor = UIColor(white: 1, alpha: 0.5)
         avatarActivityIndicatorView.frame = avatarButton.frame
         avatarActivityIndicatorView.userInteractionEnabled = false
         nameLabel.frame = CGRect(x: 0, y: avatarButton.frame.origin.y + avatarButton.bounds.height + 20, width: topView.bounds.width, height: 26)

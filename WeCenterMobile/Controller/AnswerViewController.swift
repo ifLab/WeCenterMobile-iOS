@@ -11,10 +11,10 @@ import UIKit
 class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate, UIToolbarDelegate {
     let topBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 44))
     let bottomBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 44))
-    let avatarButton = BFPaperButton()
+    let avatarButton = UIButton()
     let nameLabel = UILabel()
     let signatureLabel = UILabel()
-    let evaluationButton = BFPaperButton(frame: CGRect(x: 0, y: 0, width: 80, height: 0))
+    let evaluationButton = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 0))
     var evaluationButtonState: Answer.Evaluation = .None {
         didSet {
             switch evaluationButtonState {

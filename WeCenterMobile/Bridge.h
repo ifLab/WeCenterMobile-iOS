@@ -9,8 +9,6 @@
 #import "AFNetworking.h"
 #import <CommonCrypto/CommonDigest.h>
 #import "UIKit+AFNetworking.h"
-#import "BFPaperButton.h"
-#import "BFPaperTableViewCell.h"
 #import "DTCoreText.h"
 #import "EAColourfulProgressView.h"
 #import "MJRefresh.h"

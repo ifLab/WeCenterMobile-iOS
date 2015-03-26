@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RectangleButton: BFPaperButton {
+class RectangleButton: UIButton {
     let footerLabel = UILabel()
     override init() {
         super.init()

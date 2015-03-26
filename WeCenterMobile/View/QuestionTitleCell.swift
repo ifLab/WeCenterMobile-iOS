@@ -8,7 +8,7 @@
 
 import Foundation
 
-class QuestionTitleCell: BFPaperTableViewCell {
+class QuestionTitleCell: UITableViewCell {
     let titleLabel = UILabel()
     init(question: Question?, width: CGFloat, reuseIdentifier: String?) {
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
