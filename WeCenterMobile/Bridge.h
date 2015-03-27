@@ -9,7 +9,6 @@
 #import "AFNetworking.h"
 #import <CommonCrypto/CommonDigest.h>
 #import "UIKit+AFNetworking.h"
-#import "DTCoreText.h"
 #import "EAColourfulProgressView.h"
 #import "MJRefresh.h"
 #import <objc/runtime.h>

@@ -7,14 +7,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="397" id="Ttg-UX-eA7" customClass="QuestionDetailCell" customModule="WeCenterMobile" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="397"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="284" id="Ttg-UX-eA7" customClass="QuestionDetailCell" customModule="WeCenterMobile" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="284"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ttg-UX-eA7" id="ZDb-S3-kf6">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lN4-3r-m5n">
-                        <rect key="frame" x="4" y="4" width="312" height="390"/>
+                        <rect key="frame" x="4" y="4" width="312" height="277"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wym-Or-nsg">
                                 <rect key="frame" x="0.0" y="50" width="312" height="54"/>
@@ -70,12 +70,8 @@
                                     <constraint firstItem="TEe-Dx-6MM" firstAttribute="leading" secondItem="0f3-ZC-AsG" secondAttribute="leading" constant="15" id="pzX-6h-2lk"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d87-qM-daE" customClass="DTAttributedLabel">
-                                <rect key="frame" x="0.0" y="104" width="312" height="236"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QFz-p8-KrG">
-                                <rect key="frame" x="0.0" y="340" width="312" height="50"/>
+                                <rect key="frame" x="0.0" y="227" width="312" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6d3-Le-Pzd">
                                         <rect key="frame" x="212" y="0.0" width="100" height="50"/>
@@ -134,20 +130,39 @@
                                     <constraint firstItem="pI9-BH-HLi" firstAttribute="leading" secondItem="01w-d2-AEg" secondAttribute="trailing" constant="10" id="nsy-sX-BOF"/>
                                 </constraints>
                             </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWz-zP-k7h">
+                                <rect key="frame" x="0.0" y="104" width="312" height="60"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="问题详情，会显示很多很多行，包括文字、图片、链接等等。" translatesAutoresizingMaskIntoConstraints="NO" id="AoF-0x-ExT">
+                                        <rect key="frame" x="5" y="5" width="302" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="AoF-0x-ExT" firstAttribute="leading" secondItem="cWz-zP-k7h" secondAttribute="leading" constant="5" id="DBv-WL-BbQ"/>
+                                    <constraint firstItem="AoF-0x-ExT" firstAttribute="top" secondItem="cWz-zP-k7h" secondAttribute="top" constant="5" id="Phu-hb-AO9"/>
+                                    <constraint firstAttribute="bottom" secondItem="AoF-0x-ExT" secondAttribute="bottom" constant="5" id="SHi-uf-9fb"/>
+                                    <constraint firstAttribute="trailing" secondItem="AoF-0x-ExT" secondAttribute="trailing" constant="5" id="dGE-Mz-aPa"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.47450980392156861" green="0.33333333333333331" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="QFz-p8-KrG" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cWz-zP-k7h" secondAttribute="bottom" id="Bqb-Xs-gEH"/>
                             <constraint firstAttribute="trailing" secondItem="QFz-p8-KrG" secondAttribute="trailing" id="FpI-hB-TDN"/>
-                            <constraint firstItem="d87-qM-daE" firstAttribute="leading" secondItem="lN4-3r-m5n" secondAttribute="leading" id="JiD-vR-39a"/>
                             <constraint firstItem="wym-Or-nsg" firstAttribute="leading" secondItem="lN4-3r-m5n" secondAttribute="leading" id="KNr-gq-bfJ"/>
                             <constraint firstItem="0f3-ZC-AsG" firstAttribute="leading" secondItem="lN4-3r-m5n" secondAttribute="leading" id="P51-HE-hj0"/>
-                            <constraint firstItem="QFz-p8-KrG" firstAttribute="top" secondItem="d87-qM-daE" secondAttribute="bottom" id="Sg6-x6-2st"/>
+                            <constraint firstAttribute="trailing" secondItem="cWz-zP-k7h" secondAttribute="trailing" id="Q0R-gp-z5P"/>
                             <constraint firstItem="QFz-p8-KrG" firstAttribute="leading" secondItem="lN4-3r-m5n" secondAttribute="leading" id="VCc-dL-fbI"/>
                             <constraint firstItem="0f3-ZC-AsG" firstAttribute="top" secondItem="lN4-3r-m5n" secondAttribute="top" id="Yhi-tw-Icv"/>
                             <constraint firstAttribute="bottom" secondItem="QFz-p8-KrG" secondAttribute="bottom" id="ZoF-MO-Sr7"/>
                             <constraint firstItem="wym-Or-nsg" firstAttribute="top" secondItem="0f3-ZC-AsG" secondAttribute="bottom" id="b2m-HG-qD8"/>
-                            <constraint firstItem="d87-qM-daE" firstAttribute="top" secondItem="wym-Or-nsg" secondAttribute="bottom" id="c5w-tO-0h8"/>
-                            <constraint firstAttribute="trailing" secondItem="d87-qM-daE" secondAttribute="trailing" id="eT0-iI-Sud"/>
+                            <constraint firstItem="cWz-zP-k7h" firstAttribute="top" secondItem="wym-Or-nsg" secondAttribute="bottom" id="lQ2-pp-iJc"/>
+                            <constraint firstItem="cWz-zP-k7h" firstAttribute="leading" secondItem="lN4-3r-m5n" secondAttribute="leading" id="p4l-Og-TCx"/>
                             <constraint firstAttribute="trailing" secondItem="wym-Or-nsg" secondAttribute="trailing" id="qmu-V6-4Yu"/>
                             <constraint firstAttribute="trailing" secondItem="0f3-ZC-AsG" secondAttribute="trailing" id="zVE-BP-Uus"/>
                         </constraints>
@@ -166,14 +181,14 @@
                 <outlet property="focusButton" destination="6d3-Le-Pzd" id="41M-7J-NFS"/>
                 <outlet property="focusCountImageView" destination="iXD-34-OLV" id="2eh-h4-wz7"/>
                 <outlet property="focusCountLabel" destination="xDB-fj-had" id="NUW-ne-ErQ"/>
-                <outlet property="questionBodyLabel" destination="d87-qM-daE" id="Wdt-4q-bfY"/>
+                <outlet property="questionBodyView" destination="AoF-0x-ExT" id="gCK-to-8tF"/>
                 <outlet property="questionTitleLabel" destination="VrX-Vb-vFe" id="ihG-Qj-CfC"/>
                 <outlet property="userNameLabel" destination="Fxn-Ox-ijp" id="rbf-QN-Yoe"/>
                 <outlet property="userSignatureLabel" destination="YYc-0z-geK" id="LVl-xp-EVB"/>
                 <outlet property="viewCountImageView" destination="01w-d2-AEg" id="qoe-gi-Lm6"/>
                 <outlet property="viewCountLabel" destination="pI9-BH-HLi" id="UOd-nj-e1g"/>
             </connections>
-            <point key="canvasLocation" x="537" y="428.5"/>
+            <point key="canvasLocation" x="537" y="372"/>
         </tableViewCell>
     </objects>
     <resources>

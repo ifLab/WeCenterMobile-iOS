@@ -34,7 +34,6 @@ class QuestionViewController: UITableViewController {
         for i in 0..<identifiers.count {
             tableView.registerNib(UINib(nibName: nibNames[i], bundle: NSBundle.mainBundle()), forCellReuseIdentifier: identifiers[i])
         }
-        println(questionDetailCell)
         title = "问题详情" // Needs localization
         msr_navigationBar!.barStyle = .Black
         msr_navigationBar!.tintColor = UIColor.whiteColor()
@@ -52,19 +51,11 @@ class QuestionViewController: UITableViewController {
                     self_.tableView.reloadData()
                 }
                 return
-                
             }, failure: {
                 error in
                 println(error)
                 return
             })
-        NSNotificationCenter.defaultCenter().addObserverForName(DTAttributedTextContentViewDidFinishLayoutNotification, object: nil, queue: NSOperationQueue.mainQueue()) {
-            [weak self] notification in
-            if let self_ = self {
-                self_.questionDetailCell.questionBodyLabel.sizeToFit()
-                self_.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .None)
-            }
-        }
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -76,7 +67,6 @@ class QuestionViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println("RELOADING")
         var cell: QuestionDetailBaseCell! = nil
         if indexPath.section == 0 {
             cell = questionDetailCell
@@ -95,18 +85,17 @@ class QuestionViewController: UITableViewController {
                 _Static.cells[nibName] = (NSBundle.mainBundle().loadNibNamed(nibName, owner: self.tableView, options: nil).first as! QuestionDetailBaseCell)
             }
         }
-        var cell: QuestionDetailBaseCell!
         if indexPath.section == 0 {
             if questionDetailCell == nil {
                 questionDetailCell = NSBundle.mainBundle().loadNibNamed(nibNames[0], owner: tableView, options: nil).first as! QuestionDetailCell
+                questionDetailCell.update(object: question)
             }
-            cell = questionDetailCell
+            return questionDetailCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1
         } else {
             var cell = _Static.cells[nibNames[indexPath.section]]!
-            cell = questionDetailCell
+            return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1
            // cell.update(object: /* object */)
         }
-        return cell.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1
     }
     
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {

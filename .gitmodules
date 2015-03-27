@@ -19,9 +19,6 @@
 [submodule "WeCenterMobile/External/SVProgressHUD"]
 	path = WeCenterMobile/External/SVProgressHUD
 	url = https://github.com/TransitApp/SVProgressHUD.git
-[submodule "WeCenterMobile/External/DTCoreText"]
-	path = WeCenterMobile/External/DTCoreText
-	url = https://github.com/Cocoanetics/DTCoreText.git
 [submodule "WeCenterMobile/External/AFNetworking"]
 	path = WeCenterMobile/External/AFNetworking
 	url = https://github.com/AFNetworking/AFNetworking.git

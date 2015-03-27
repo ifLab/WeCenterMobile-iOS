@@ -14,6 +14,4 @@
 @import QuartzCore;
 @import UIKit;
 
-#import "DTFoundation.h"
-
 #endif
