@@ -15,8 +15,8 @@ class FeaturedObjectListViewController: UITableViewController {
     var objects: [FeaturedObject] = []
     let count = 10
     let objectTypes = [FeaturedQuestionAnswer.self, FeaturedQuestionAnswer.self, FeaturedArticle.self]
-    let identifiers = ["FeaturedQuestionAnswerCell", "FeaturedQuestionAnswerCellWithoutAnswerCell", "FeaturedArticleCell"]
-    let nibNames = ["FeaturedQuestionAnswerCell", "FeaturedQuestionAnswerCellWithoutAnswerCell", "FeaturedArticleCell"]
+    let identifiers = ["FeaturedQuestionAnswerCell", "FeaturedQuestionAnswerCellWithoutAnswer", "FeaturedArticleCell"]
+    let nibNames = ["FeaturedQuestionAnswerCell", "FeaturedQuestionAnswerCellWithoutAnswer", "FeaturedArticleCell"]
     init(type: FeaturedObjectListType) {
         self.type = type
         super.init(style: .Plain)
@@ -107,7 +107,7 @@ class FeaturedObjectListViewController: UITableViewController {
         if let o = object as? FeaturedQuestionAnswer {
             index += o.answers.count == 0 ? 1 : 0
         }
-        return ["FeaturedQuestionAnswerCell": 140, "FeaturedQuestionAnswerCellWithoutAnswerCell": 70, "FeaturedArticleCell": 70][nibNames[index]]!
+        return ["FeaturedQuestionAnswerCell": 140, "FeaturedQuestionAnswerCellWithoutAnswer": 70, "FeaturedArticleCell": 70][nibNames[index]]!
     }
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false

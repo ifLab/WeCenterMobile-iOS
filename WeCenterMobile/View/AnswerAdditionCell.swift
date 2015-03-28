@@ -2,58 +2,22 @@
 //  AnswerAdditionCell.swift
 //  WeCenterMobile
 //
-//  Created by Darren Liu on 14/8/25.
-//  Copyright (c) 2014年 ifLab. All rights reserved.
+//  Created by Darren Liu on 15/3/29.
+//  Copyright (c) 2015年 Beijing Information Science and Technology University. All rights reserved.
 //
 
 import UIKit
 
 class AnswerAdditionCell: UITableViewCell {
-    let additionView = UIView()
-    let additionImageView = UIImageView(image: UIImage(named: "Add_icon")!.imageWithRenderingMode(.AlwaysTemplate))
-    let additionTextLabel = UILabel()
-    init(reuseIdentifier: String?, width: CGFloat) {
-        super.init(style: .Default, reuseIdentifier: reuseIdentifier)
-        initialize()
-        update(width: width)
+    
+    @IBOutlet weak var answerAdditionImageView: UIImageView!
+    @IBOutlet weak var answerAdditionButton: UIButton!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        answerAdditionImageView.image = answerAdditionImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
+        answerAdditionButton.setBackgroundImage(UIImage.msr_rectangleWithColor(answerAdditionButton.backgroundColor!, size: CGSize(width: 1, height: 1)), forState: .Normal)
+        answerAdditionButton.backgroundColor = UIColor.clearColor()
     }
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        initialize()
-    }
-    func initialize() {
-        contentView.addSubview(additionView)
-        additionView.addSubview(additionImageView)
-        additionView.addSubview(additionTextLabel)
-        textLabel!.text = ""
-        additionImageView.frame = CGRect(x: 0, y: 10, width: 20, height: 20)
-        additionImageView.tintColor = UIColor.msr_materialGray800()
-        additionTextLabel.font = UIFont.systemFontOfSize(12)
-        additionTextLabel.text = "添加回答" // Needs localization
-        additionTextLabel.frame = CGRect(
-            origin: CGPoint(x: additionImageView.frame.origin.x + additionImageView.bounds.width + 10, y: 0),
-            size: additionTextLabel.sizeThatFits(CGRectInfinite.size))
-        additionTextLabel.center.y = additionImageView.center.y
-        additionTextLabel.textColor = additionImageView.tintColor
-        additionView.frame = CGRect(x: 0, y: 0, width: additionTextLabel.frame.origin.x + additionTextLabel.bounds.width, height: 40)
-        contentView.frame = additionView.bounds
-        frame = contentView.bounds
-        backgroundColor = UIColor.msr_materialGray200()
-    }
-    func update(#width: CGFloat) {
-        additionView.center.x = width / 2
-    }
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
-        let context = UIGraphicsGetCurrentContext()
-        CGContextBeginPath(context)
-        CGContextMoveToPoint(context, 0, 0)
-        CGContextAddLineToPoint(context, bounds.width, 0)
-        CGContextClosePath(context)
-        CGContextSetStrokeColorWithColor(context, UIColor.msr_materialGray400().CGColor)
-        CGContextStrokePath(context)
-    }
+
 }

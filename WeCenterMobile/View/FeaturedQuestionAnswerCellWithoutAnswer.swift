@@ -1,5 +1,5 @@
 //
-//  FeaturedQuestionAnswerCellWithoutAnswerCell.swift
+//  FeaturedQuestionAnswerCellWithoutAnswer.swift
 //  WeCenterMobile
 //
 //  Created by Darren Liu on 15/3/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeaturedQuestionAnswerCellWithoutAnswerCell: FeaturedObjectCell {
+class FeaturedQuestionAnswerCellWithoutAnswer: FeaturedObjectCell {
     
     @IBOutlet weak var innerView: UIView!
     @IBOutlet weak var userAvatarView: UIImageView!

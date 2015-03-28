@@ -8,11 +8,9 @@
 
 import UIKit
 
-class QuestionDetailCell: QuestionDetailBaseCell, NSLayoutManagerDelegate {
+class QuestionDetailCell: UITableViewCell, NSLayoutManagerDelegate {
     
-    var question: Question? {
-        return super.object as? Question
-    }
+    var question: Question?
     
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userSignatureLabel: UILabel!
@@ -23,6 +21,7 @@ class QuestionDetailCell: QuestionDetailBaseCell, NSLayoutManagerDelegate {
     @IBOutlet weak var viewCountImageView: UIImageView!
     @IBOutlet weak var focusCountImageView: UIImageView!
     @IBOutlet weak var focusButton: UIButton!
+    @IBOutlet weak var userAvatarView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,67 +29,48 @@ class QuestionDetailCell: QuestionDetailBaseCell, NSLayoutManagerDelegate {
         focusCountImageView.image = focusCountImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
         focusButton.setBackgroundImage(UIImage.msr_rectangleWithColor(focusButton.backgroundColor!, size: CGSize(width: 1, height: 1)), forState: .Normal)
         focusButton.backgroundColor = UIColor.clearColor()
-        questionBodyView.layoutManager.delegate = self
+        userAvatarView.layer.masksToBounds = true
+        userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
     }
     
-    override func update(#object: AnyObject?) {
-        super.update(object: object)
+    func update(#object: Question?) {
+        question = object
         if let question = question {
             userNameLabel.text = question.user?.name ?? "匿名用户"
             userSignatureLabel.text = question.user?.signature ?? ""
             questionTitleLabel.text = question.title
-//            let attributedString = NSAttributedString(
-//                HTMLData: (question.body ?? "").dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true),
-//                options: [
-//                    NSTextSizeMultiplierDocumentOption: 1,
-//                    DTDefaultFontName: UIFont.systemFontOfSize(14).fontName,
-//                    DTDefaultFontSize: 14,
-//                    DTDefaultTextColor: UIColor.lightTextColor(),
-//                    DTDefaultLinkColor: UIColor.msr_materialBlue500(),
-//                    DTDefaultLinkHighlightColor: UIColor.msr_materialPurple300(),
-//                    DTDefaultLineHeightMultiplier: 1.5,
-//                    DTDefaultLinkDecoration: false],
-//                documentAttributes: nil)
+            userAvatarView.image = UIImage(named: "DefaultAvatar")
+            userAvatarView.msr_userInfo = question.user
+            if let avatar = question.user?.avatar {
+                userAvatarView.image = avatar
+            }
+            var user = question.user
+            if user?.avatarURL != nil {
+                user?.fetchAvatar(
+                    success: {
+                        [weak self] in
+                        if let user_ = self?.userAvatarView.msr_userInfo as? User {
+                            if user_.id == user?.id {
+                                self?.userAvatarView.image = user?.avatar
+                            }
+                        }
+                    },
+                    failure: {
+                        error in
+                        println(error)
+                        return
+                    })
+            }
             var dict: NSDictionary?
-            var begin = NSDate().timeIntervalSince1970
             let attributedString = NSMutableAttributedString(
                 data: (question.body ?? "").dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
                 options: [
                     NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
                     NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding,
-                    NSBackgroundColorDocumentAttribute: UIColor.clearColor()],
+                    NSBackgroundColorDocumentAttribute: UIColor.clearColor(),
+                    NSViewSizeDocumentAttribute: NSValue(CGSize: CGSize(width: questionBodyView.bounds.width, height: CGFloat.max))],
                 documentAttributes: &dict,
                 error: nil)!
-//            attributedString.beginEditing()
-//            attributedString.setAttributes([
-//                NSFontAttributeName: UIFont.systemFontOfSize(14),
-//                NSForegroundColorAttributeName: UIColor.lightTextColor()],
-//                range: NSRange(location: 0, length: attributedString.length))
-//            attributedString.endEditing()
-            attributedString.enumerateAttributesInRange(NSRange(location: 0, length: attributedString.length),
-                options: NSAttributedStringEnumerationOptions.allZeros) {
-                    [weak self] values, range, stop in
-                    if let self_ = self {
-                        if let attachment = values[NSAttachmentAttributeName] as? NSTextAttachment {
-                            println(values)
-                            println(attachment)
-                            println(attachment.contents)
-                            println(attachment.fileType)
-                            println(attachment.fileWrapper?.fileAttributes)
-                            println()
-                            if let image = attachment.image {
-                                var size = image.size
-                                if size.width > self_.questionBodyView.bounds.width {
-                                    let scale = self_.questionBodyView.bounds.width / size.width
-                                    attachment.image = UIImage(CGImage: image.CGImage, scale: scale, orientation: .Up)
-                                }
-                                
-                            }
-                            
-                        } else {
-                        }
-                    }
-            }
             questionBodyView.attributedText = attributedString
             viewCountLabel.text = "\(question.viewCount ?? 0)"
             focusCountLabel.text = "\(question.focusCount ?? 0)"
@@ -99,9 +79,34 @@ class QuestionDetailCell: QuestionDetailBaseCell, NSLayoutManagerDelegate {
         layoutIfNeeded()
     }
     
-    func layoutManager(layoutManager: NSLayoutManager, boundingBoxForControlGlyphAtIndex glyphIndex: Int, forTextContainer textContainer: NSTextContainer, proposedLineFragment proposedRect: CGRect, glyphPosition: CGPoint, characterIndex charIndex: Int) -> CGRect {
-        println(proposedRect)
-        return proposedRect
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let attributedString = NSMutableAttributedString(attributedString: questionBodyView.attributedText)
+        attributedString.beginEditing()
+        attributedString.enumerateAttributesInRange(NSRange(location: 0, length: attributedString.length),
+            options: NSAttributedStringEnumerationOptions.allZeros) {
+                [weak self] values, range, stop in
+                if let self_ = self {
+                    if let attachment = values[NSAttachmentAttributeName] as? NSTextAttachment {
+                        if let image = attachment.imageForBounds(attachment.bounds, textContainer: NSTextContainer(), characterIndex: range.location) {
+                            var size = image.size
+                            let attachment = NSTextAttachment()
+                            if size.width > self_.questionBodyView.bounds.width {
+                                let scale = (self_.questionBodyView.bounds.width) / size.width
+                                attachment.image = UIImage(CGImage: image.msr_imageOfSize(CGSize(width: size.width * scale, height: size.height * scale)).CGImage, scale: 1, orientation: image.imageOrientation) // UIImage(CGImage: image.CGImage, scale: scale, orientation: .Up)
+                                attributedString.addAttribute(NSAttachmentAttributeName, value: attachment, range: range)
+                            }
+                        }
+                    } else {
+                        attributedString.setAttributes([
+                            NSFontAttributeName: UIFont.systemFontOfSize(14),
+                            NSForegroundColorAttributeName: UIColor.lightTextColor()],
+                            range: range)
+                    }
+                }
+        }
+        attributedString.endEditing()
+        questionBodyView.attributedText = attributedString
     }
     
 }

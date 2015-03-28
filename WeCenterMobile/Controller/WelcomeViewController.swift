@@ -42,7 +42,7 @@ class WelcomeViewController: UIViewController {
                 },
                 failure: {
                     [weak self] error in
-                    println(error)
+                    NSLog("%@, %@, %@", __FILE__, __LINE__, __FUNCTION__, error)
                     return
                 })
         }

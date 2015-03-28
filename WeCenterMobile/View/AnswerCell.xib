@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="85" id="KGk-i7-Jjw" customClass="AnswerCell" customModule="WeCenterMobile" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GSX-kv-RA3">
+                        <rect key="frame" x="4" y="2" width="312" height="80"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1F-v6-mj6">
+                                <rect key="frame" x="48" y="10" width="42" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="FFj-ii-RC7">
+                                <rect key="frame" x="10" y="10" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="JTy-4N-je2"/>
+                                    <constraint firstAttribute="width" secondItem="FFj-ii-RC7" secondAttribute="height" multiplier="1:1" id="YEy-sg-QTD"/>
+                                    <constraint firstAttribute="height" constant="30" id="hqf-8n-nen"/>
+                                    <constraint firstAttribute="width" constant="30" id="i9u-MJ-6US"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里是问题回答，可能会很长，但最多显示三行。" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mtw-Xp-N6Z" customClass="MSRMultilineLabel" customModule="WeCenterMobile" customModuleProvider="target">
+                                <rect key="frame" x="48" y="32" width="254" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.47450980392156861" green="0.33333333333333331" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="a1F-v6-mj6" firstAttribute="leading" secondItem="FFj-ii-RC7" secondAttribute="trailing" constant="8" id="1w4-Vl-VGY"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Mtw-Xp-N6Z" secondAttribute="bottom" constant="10" id="DHk-La-ach"/>
+                            <constraint firstAttribute="trailing" secondItem="Mtw-Xp-N6Z" secondAttribute="trailing" constant="10" id="GUi-zH-ZLK"/>
+                            <constraint firstItem="FFj-ii-RC7" firstAttribute="top" secondItem="GSX-kv-RA3" secondAttribute="top" constant="10" id="VTX-RJ-gKe"/>
+                            <constraint firstItem="a1F-v6-mj6" firstAttribute="top" secondItem="FFj-ii-RC7" secondAttribute="top" id="l0c-ku-m9U"/>
+                            <constraint firstItem="Mtw-Xp-N6Z" firstAttribute="leading" secondItem="a1F-v6-mj6" secondAttribute="leading" id="leJ-2d-fqe"/>
+                            <constraint firstItem="Mtw-Xp-N6Z" firstAttribute="top" secondItem="a1F-v6-mj6" secondAttribute="bottom" constant="5" id="qln-DW-UYa"/>
+                            <constraint firstItem="FFj-ii-RC7" firstAttribute="leading" secondItem="GSX-kv-RA3" secondAttribute="leading" constant="10" id="wXB-mU-ijz"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="GSX-kv-RA3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="aqG-o7-NJi"/>
+                    <constraint firstItem="GSX-kv-RA3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="cT5-iN-9Dc"/>
+                    <constraint firstAttribute="trailing" secondItem="GSX-kv-RA3" secondAttribute="trailing" constant="4" id="gMg-CB-Hgb"/>
+                    <constraint firstAttribute="bottom" secondItem="GSX-kv-RA3" secondAttribute="bottom" constant="2" id="hF7-2M-K5E"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="answerBodyLabel" destination="Mtw-Xp-N6Z" id="J4U-85-aJg"/>
+                <outlet property="userAvatarView" destination="FFj-ii-RC7" id="m0K-n7-mAf"/>
+                <outlet property="userNameLabel" destination="a1F-v6-mj6" id="PmM-iX-yUG"/>
+            </connections>
+            <point key="canvasLocation" x="233" y="367.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="DefaultAvatar" width="62" height="62"/>
+    </resources>
+</document>
