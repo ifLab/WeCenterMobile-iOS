@@ -27,7 +27,7 @@ class QuestionDetailCell: UITableViewCell, NSLayoutManagerDelegate {
         super.awakeFromNib()
         viewCountImageView.image = viewCountImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
         focusCountImageView.image = focusCountImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
-        focusButton.setBackgroundImage(UIImage.msr_rectangleWithColor(focusButton.backgroundColor!, size: CGSize(width: 1, height: 1)), forState: .Normal)
+        focusButton.msr_setBackgroundImageWithColor(focusButton.backgroundColor!)
         focusButton.backgroundColor = UIColor.clearColor()
         userAvatarView.layer.masksToBounds = true
         userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2

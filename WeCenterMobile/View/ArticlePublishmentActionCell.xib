@@ -16,6 +16,13 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y3l-NF-CHn">
                         <rect key="frame" x="4" y="2" width="312" height="77"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8hR-TA-PPt">
+                                <rect key="frame" x="0.0" y="0.0" width="312" height="77"/>
+                                <color key="backgroundColor" red="0.32941176470588235" green="0.43137254901960786" blue="0.47843137254901963" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                             <imageView userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="TYJ-l7-shr">
                                 <rect key="frame" x="10" y="10" width="30" height="30"/>
                                 <constraints>
@@ -27,7 +34,7 @@
                                 <rect key="frame" x="98" y="10" width="70" height="17"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIO-yO-Dub">
@@ -44,13 +51,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.32941176470588235" green="0.43137254901960786" blue="0.47843137254901963" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="qAC-jz-aFP" firstAttribute="top" secondItem="ZIO-yO-Dub" secondAttribute="top" id="1G4-ri-0it"/>
                             <constraint firstItem="TYJ-l7-shr" firstAttribute="top" secondItem="ZIO-yO-Dub" secondAttribute="top" id="44V-ce-evw"/>
+                            <constraint firstItem="8hR-TA-PPt" firstAttribute="leading" secondItem="Y3l-NF-CHn" secondAttribute="leading" id="7T4-8Y-QBr"/>
+                            <constraint firstAttribute="bottom" secondItem="8hR-TA-PPt" secondAttribute="bottom" id="DbK-D0-gof"/>
                             <constraint firstItem="TYJ-l7-shr" firstAttribute="top" secondItem="Y3l-NF-CHn" secondAttribute="top" constant="10" id="EOe-8O-DGN"/>
                             <constraint firstItem="TYJ-l7-shr" firstAttribute="leading" secondItem="Y3l-NF-CHn" secondAttribute="leading" constant="10" id="HOn-9J-JQR"/>
                             <constraint firstItem="qAC-jz-aFP" firstAttribute="leading" secondItem="ZIO-yO-Dub" secondAttribute="trailing" constant="8" id="KVr-P9-PjH"/>
+                            <constraint firstItem="8hR-TA-PPt" firstAttribute="top" secondItem="Y3l-NF-CHn" secondAttribute="top" id="V9H-Pq-8pF"/>
+                            <constraint firstAttribute="trailing" secondItem="8hR-TA-PPt" secondAttribute="trailing" id="VXl-HO-f5c"/>
                             <constraint firstAttribute="trailing" secondItem="sYM-8z-WXX" secondAttribute="trailing" constant="10" id="a7B-Vb-1Jx"/>
                             <constraint firstItem="sYM-8z-WXX" firstAttribute="top" secondItem="ZIO-yO-Dub" secondAttribute="bottom" constant="5" id="aiL-xg-uaJ"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="sYM-8z-WXX" secondAttribute="bottom" constant="10" id="dF8-Ug-kcB"/>
@@ -69,6 +80,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="articleButton" destination="8hR-TA-PPt" id="QpA-Af-eFk"/>
                 <outlet property="articleTitleLabel" destination="sYM-8z-WXX" id="kdI-ns-9hK"/>
                 <outlet property="userAvatarView" destination="TYJ-l7-shr" id="tvZ-r8-qjw"/>
                 <outlet property="userNameLabel" destination="ZIO-yO-Dub" id="21a-Lz-lYj"/>

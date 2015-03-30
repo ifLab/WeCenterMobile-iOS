@@ -11,7 +11,15 @@ class QuestionPublishmentActionCell: ActionCell {
     @IBOutlet weak var userAvatarView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var questionTitleLabel: UILabel!
-    @IBOutlet weak var questionTitleButton: UIButton!
+    @IBOutlet weak var questionButton: UIButton!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        userAvatarView.layer.masksToBounds = true
+        userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
+        questionButton.msr_setBackgroundImageWithColor(questionButton.backgroundColor!)
+        questionButton.backgroundColor = UIColor.clearColor()
+    }
     
     override func update(#action: Action) {
         super.update(action: action)
@@ -19,7 +27,7 @@ class QuestionPublishmentActionCell: ActionCell {
         userAvatarView.wc_updateWithUser(action.user)
         userNameLabel.text = action.user?.name ?? "匿名用户"
         questionTitleLabel.text = action.question.title!
-        questionTitleButton.msr_userInfo = action.question
+        questionButton.msr_userInfo = action.question
         setNeedsLayout()
         layoutIfNeeded()
     }

@@ -13,6 +13,18 @@ class AnswerAgreementActionCell: ActionCell {
     @IBOutlet weak var questionTitleLabel: UILabel!
     @IBOutlet weak var agreementCountLabel: UILabel!
     @IBOutlet weak var answerBodyLabel: UILabel!
+    @IBOutlet weak var questionButton: UIButton!
+    @IBOutlet weak var answerButton: UIButton!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        userAvatarView.layer.masksToBounds = true
+        userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
+        questionButton.msr_setBackgroundImageWithColor(questionButton.backgroundColor!)
+        answerButton.msr_setBackgroundImageWithColor(answerButton.backgroundColor!)
+        questionButton.backgroundColor = UIColor.clearColor()
+        answerButton.backgroundColor = UIColor.clearColor()
+    }
     
     override func update(#action: Action) {
         super.update(action: action)

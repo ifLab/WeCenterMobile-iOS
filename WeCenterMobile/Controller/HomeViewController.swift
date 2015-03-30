@@ -81,7 +81,7 @@ class HomeViewController: UITableViewController {
             cell = NSBundle.mainBundle().loadNibNamed(nibNames[index], owner: self, options: nil).first as! ActionCell
         }
         if let cell_ = cell as? QuestionPublishmentActionCell {
-            cell_.questionTitleButton.addTarget(self, action: "pushQuestionViewController:", forControlEvents: .TouchUpInside)
+            cell_.questionButton.addTarget(self, action: "pushQuestionViewController:", forControlEvents: .TouchUpInside)
         }
         cell.update(action: action)
         return cell

@@ -23,34 +23,11 @@ class AnswerCell: UITableViewCell {
         userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
     }
     
-    func update(#object: Answer) {
-        answer = object
-        if let answer = answer {
-            userNameLabel.text = answer.user?.name ?? "匿名用户"
-            answerBodyLabel.text = answer.body?.stringByReplacingOccurrencesOfString("\n", withString: "", options: NSStringCompareOptions.allZeros, range: nil)
-            let user = answer.user
-            userAvatarView.image = UIImage(named: "DefaultAvatar")
-            userAvatarView.msr_userInfo = user
-            if let avatar = user?.avatar {
-                userAvatarView.image = avatar
-            }
-            if user?.avatarURL != nil {
-                user?.fetchAvatar(
-                    success: {
-                        [weak self] in
-                        if let user_ = self?.userAvatarView.msr_userInfo as? User {
-                            if user_.id == user?.id {
-                                self!.userAvatarView.image = user?.avatar
-                            }
-                        }
-                    },
-                    failure: {
-                        error in
-                        NSLog(__FILE__, __FUNCTION__, error)
-                        return
-                    })
-            }
-        }
+    func update(#answer: Answer) {
+        self.answer = answer
+        userNameLabel.text = answer.user?.name ?? "匿名用户"
+        answerBodyLabel.text = answer.body?.stringByReplacingOccurrencesOfString("\n", withString: "", options: NSStringCompareOptions.allZeros, range: nil)
+        userAvatarView.wc_updateWithUser(answer.user)
         setNeedsLayout()
         layoutIfNeeded()
     }

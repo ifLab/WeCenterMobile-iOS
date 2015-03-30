@@ -34,20 +34,7 @@ class FeaturedArticleCell: FeaturedObjectCell {
             return
         }
         let object = object as! FeaturedArticle
-        userAvatarView.image = UIImage(named: "DefaultAvatar")
-        let user = object.article.user
-        userAvatarView.msr_userInfo = user?.avatarURL
-        if user?.avatarURL != nil {
-            user?.fetchAvatar(
-                success: {
-                    [weak self] in
-                    if (self?.userAvatarView.msr_userInfo as? String) == user?.avatarURL {
-                        self?.userAvatarView.image = user?.avatar
-                    }
-                    return
-                },
-                failure: nil)
-        }
+        userAvatarView.wc_updateWithUser(object.article.user)
         userNameLabel.text = object.article.user?.name ?? "匿名用户"
         articleTitle.text = object.article.title
         setNeedsLayout()

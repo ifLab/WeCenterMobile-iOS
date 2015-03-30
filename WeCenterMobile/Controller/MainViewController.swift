@@ -150,7 +150,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             slider.msr_topAttachedConstraint!.constant = 200
             slider.addTarget(self, action: "CHANGE_INDICATOR_POSITION", forControlEvents: .ValueChanged)
             button.setTitle("CHANGE TINT COLOR", forState: .Normal)
-            button.setBackgroundImage(UIImage.msr_rectangleWithColor(sc.indicator.tintColor, size: CGSize(width: 1, height: 1)), forState: .Normal)
+            button.msr_setBackgroundImageWithColor(sc.indicator.tintColor)
             button.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
             button.msr_addHorizontalEdgeAttachedConstraintsToSuperview()
             button.msr_addTopAttachedConstraintToSuperview()
@@ -220,7 +220,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     func CHANGE_SEGMENTED_CONTROL_TINT_COLOR() {
         sc.tintColor = UIColor.msr_randomColor(opaque: true)
-        button.setBackgroundImage(UIImage.msr_rectangleWithColor(sc.tintColor, size: CGSize(width: 1, height: 1)), forState: .Normal)
+        button.msr_setBackgroundImageWithColor(sc.tintColor)
     }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return contentViewController.preferredStatusBarStyle()

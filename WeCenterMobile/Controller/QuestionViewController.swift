@@ -95,7 +95,7 @@ class QuestionViewController: UITableViewController {
             return answerAdditionCell
         } else {
             let answerCell = tableView.dequeueReusableCellWithIdentifier(answerCellIdentifier, forIndexPath: indexPath) as! AnswerCell
-            answerCell.update(object: answers[indexPath.row])
+            answerCell.update(answer: answers[indexPath.row])
             return answerCell
         }
     }
@@ -118,7 +118,7 @@ class QuestionViewController: UITableViewController {
         } else if indexPath.section == 1 {
             cell = answerAdditionCell
         } else {
-            _Static.answerCell.update(object: answers[indexPath.row])
+            _Static.answerCell.update(answer: answers[indexPath.row])
             cell = _Static.answerCell
         }
         return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1

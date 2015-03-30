@@ -16,6 +16,13 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yyd-oR-Hfx">
                         <rect key="frame" x="4" y="2" width="312" height="77"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjb-UV-fRo">
+                                <rect key="frame" x="0.0" y="0.0" width="312" height="77"/>
+                                <color key="backgroundColor" red="0.3294117647" green="0.43137254899999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                             <imageView userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="qmm-v1-ZL4">
                                 <rect key="frame" x="10" y="10" width="30" height="30"/>
                                 <constraints>
@@ -27,7 +34,7 @@
                                 <rect key="frame" x="98" y="10" width="70" height="17"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCV-FE-j8d">
@@ -44,16 +51,20 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.3294117647" green="0.43137254899999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="qmm-v1-ZL4" firstAttribute="top" secondItem="CCV-FE-j8d" secondAttribute="top" id="09Y-nO-fDU"/>
+                            <constraint firstAttribute="trailing" secondItem="gjb-UV-fRo" secondAttribute="trailing" id="JO4-yz-Se1"/>
                             <constraint firstAttribute="trailing" secondItem="Ycs-Q6-Wgm" secondAttribute="trailing" constant="10" id="MLt-zB-qlC"/>
                             <constraint firstItem="cBk-ie-EeU" firstAttribute="top" secondItem="CCV-FE-j8d" secondAttribute="top" id="b8l-zO-7bJ"/>
                             <constraint firstItem="CCV-FE-j8d" firstAttribute="leading" secondItem="qmm-v1-ZL4" secondAttribute="trailing" constant="8" id="bBW-YF-kSo"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ycs-Q6-Wgm" secondAttribute="bottom" constant="10" id="bYB-pd-HsW"/>
+                            <constraint firstItem="gjb-UV-fRo" firstAttribute="top" secondItem="Yyd-oR-Hfx" secondAttribute="top" id="eSP-zI-2I6"/>
+                            <constraint firstItem="gjb-UV-fRo" firstAttribute="leading" secondItem="Yyd-oR-Hfx" secondAttribute="leading" id="jF2-XS-8VZ"/>
                             <constraint firstItem="qmm-v1-ZL4" firstAttribute="top" secondItem="Yyd-oR-Hfx" secondAttribute="top" constant="10" id="kKr-Gu-2Ml"/>
                             <constraint firstItem="Ycs-Q6-Wgm" firstAttribute="top" secondItem="CCV-FE-j8d" secondAttribute="bottom" constant="5" id="mn8-dW-pnM"/>
                             <constraint firstItem="qmm-v1-ZL4" firstAttribute="leading" secondItem="Yyd-oR-Hfx" secondAttribute="leading" constant="10" id="oPu-DD-g8H"/>
+                            <constraint firstAttribute="bottom" secondItem="gjb-UV-fRo" secondAttribute="bottom" id="pRQ-db-BM2"/>
                             <constraint firstItem="CCV-FE-j8d" firstAttribute="leading" secondItem="Ycs-Q6-Wgm" secondAttribute="leading" id="vi4-6j-HpH"/>
                             <constraint firstItem="cBk-ie-EeU" firstAttribute="leading" secondItem="CCV-FE-j8d" secondAttribute="trailing" constant="8" id="xze-IH-FRq"/>
                         </constraints>
@@ -69,6 +80,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="articleButton" destination="gjb-UV-fRo" id="3H4-er-itd"/>
                 <outlet property="articleTitleLabel" destination="Ycs-Q6-Wgm" id="Ewo-k6-oz1"/>
                 <outlet property="userAvatarView" destination="qmm-v1-ZL4" id="bFC-A1-YSw"/>
                 <outlet property="userNameLabel" destination="CCV-FE-j8d" id="nIv-ur-oBw"/>

@@ -51,8 +51,8 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
         super.awakeFromNib()
         dismissButton.addTarget(self, action: "dismiss", forControlEvents: .TouchUpInside)
         publishButton.addTarget(self, action: "publish", forControlEvents: .TouchUpInside)
-        dismissButton.setBackgroundImage(UIImage.msr_rectangleWithColor(dismissButton.backgroundColor!, size: CGSize(width: 1, height: 1)), forState: .Normal)
-        publishButton.setBackgroundImage(UIImage.msr_rectangleWithColor(publishButton.backgroundColor!, size: CGSize(width: 1, height: 1)), forState: .Normal)
+        dismissButton.msr_setBackgroundImageWithColor(dismissButton.backgroundColor!)
+        publishButton.msr_setBackgroundImageWithColor(publishButton.backgroundColor!)
         dismissButton.backgroundColor = UIColor.clearColor()
         publishButton.backgroundColor = UIColor.clearColor()
         scrollView.alwaysBounceVertical = true

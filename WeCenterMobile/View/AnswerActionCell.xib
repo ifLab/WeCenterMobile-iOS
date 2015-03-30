@@ -19,6 +19,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GvD-Rw-hyz">
                                 <rect key="frame" x="0.0" y="0.0" width="312" height="76"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hH0-zf-UYf">
+                                        <rect key="frame" x="0.0" y="0.0" width="312" height="76"/>
+                                        <color key="backgroundColor" red="0.42745098039215684" green="0.29803921568627451" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                     <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="cS3-2I-IdC">
                                         <rect key="frame" x="10" y="10" width="30" height="30"/>
                                         <constraints>
@@ -30,7 +37,7 @@
                                         <rect key="frame" x="98" y="10" width="70" height="17"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58E-eF-nlg">
@@ -57,20 +64,24 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.42745098039215684" green="0.29803921568627451" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="hH0-zf-UYf" firstAttribute="leading" secondItem="GvD-Rw-hyz" secondAttribute="leading" id="042-0i-dCd"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="S4s-kS-ZKc" secondAttribute="bottom" constant="10" id="AEh-4w-7vT"/>
                                     <constraint firstItem="S4s-kS-ZKc" firstAttribute="top" secondItem="58E-eF-nlg" secondAttribute="bottom" constant="5" id="Ed8-kY-HUZ"/>
                                     <constraint firstItem="58E-eF-nlg" firstAttribute="top" secondItem="cS3-2I-IdC" secondAttribute="top" id="Feq-Sr-3cs"/>
                                     <constraint firstItem="S4s-kS-ZKc" firstAttribute="leading" secondItem="58E-eF-nlg" secondAttribute="leading" id="HqD-9z-NPx"/>
                                     <constraint firstItem="bdj-Qr-hPE" firstAttribute="trailing" secondItem="cS3-2I-IdC" secondAttribute="trailing" id="Ic6-hS-N4G"/>
                                     <constraint firstItem="cS3-2I-IdC" firstAttribute="leading" secondItem="GvD-Rw-hyz" secondAttribute="leading" constant="10" id="QMa-3Q-3ba"/>
+                                    <constraint firstItem="hH0-zf-UYf" firstAttribute="top" secondItem="GvD-Rw-hyz" secondAttribute="top" id="QeK-yo-KK5"/>
                                     <constraint firstItem="bdj-Qr-hPE" firstAttribute="top" secondItem="cS3-2I-IdC" secondAttribute="bottom" constant="5" id="YVj-yC-JJh"/>
+                                    <constraint firstAttribute="bottom" secondItem="hH0-zf-UYf" secondAttribute="bottom" id="c42-a6-YFl"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="bdj-Qr-hPE" secondAttribute="bottom" constant="10" id="hnB-FX-bDG"/>
                                     <constraint firstAttribute="trailing" secondItem="S4s-kS-ZKc" secondAttribute="trailing" constant="10" id="iJb-Sl-ZVV"/>
                                     <constraint firstItem="Ggg-bz-rSA" firstAttribute="top" secondItem="58E-eF-nlg" secondAttribute="top" id="iuM-mH-Ftt"/>
                                     <constraint firstItem="58E-eF-nlg" firstAttribute="leading" secondItem="cS3-2I-IdC" secondAttribute="trailing" constant="8" id="mtq-BM-E2b"/>
                                     <constraint firstItem="Ggg-bz-rSA" firstAttribute="leading" secondItem="58E-eF-nlg" secondAttribute="trailing" constant="8" id="sNO-DG-gcm"/>
+                                    <constraint firstAttribute="trailing" secondItem="hH0-zf-UYf" secondAttribute="trailing" id="t1I-an-xfd"/>
                                     <constraint firstItem="cS3-2I-IdC" firstAttribute="top" secondItem="GvD-Rw-hyz" secondAttribute="top" constant="10" id="xhE-Hy-hP7"/>
                                     <constraint firstItem="bdj-Qr-hPE" firstAttribute="leading" secondItem="cS3-2I-IdC" secondAttribute="leading" id="z4X-ie-yDy"/>
                                 </constraints>
@@ -78,6 +89,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2LB-QA-Pk8">
                                 <rect key="frame" x="0.0" y="76" width="312" height="54"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0dW-Ob-2OR">
+                                        <rect key="frame" x="0.0" y="0.0" width="312" height="54"/>
+                                        <color key="backgroundColor" red="0.36470588235294116" green="0.25098039215686274" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="这是回答的预览，也可能会很长，但最多会显示三行。" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fsr-EP-fEg" customClass="MSRMultilineLabel" customModule="WeCenterMobile" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="292" height="34"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -86,16 +104,20 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.36470588235294116" green="0.25098039215686274" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="0dW-Ob-2OR" firstAttribute="leading" secondItem="2LB-QA-Pk8" secondAttribute="leading" id="Dk0-Uj-idu"/>
                                     <constraint firstAttribute="bottom" secondItem="Fsr-EP-fEg" secondAttribute="bottom" constant="10" id="HGA-WM-U88"/>
                                     <constraint firstAttribute="trailing" secondItem="Fsr-EP-fEg" secondAttribute="trailing" constant="10" id="JTi-eg-rvv"/>
+                                    <constraint firstItem="0dW-Ob-2OR" firstAttribute="top" secondItem="2LB-QA-Pk8" secondAttribute="top" id="Mmp-VO-c3o"/>
                                     <constraint firstItem="Fsr-EP-fEg" firstAttribute="leading" secondItem="2LB-QA-Pk8" secondAttribute="leading" constant="10" id="PG9-uC-5oQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="0dW-Ob-2OR" secondAttribute="bottom" id="URj-xv-ZXS"/>
                                     <constraint firstItem="Fsr-EP-fEg" firstAttribute="top" secondItem="2LB-QA-Pk8" secondAttribute="top" constant="10" id="gL6-DZ-cFG"/>
+                                    <constraint firstAttribute="trailing" secondItem="0dW-Ob-2OR" secondAttribute="trailing" id="qgK-LQ-Tb6"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="2LB-QA-Pk8" secondAttribute="bottom" id="9wp-sI-JFH"/>
                             <constraint firstAttribute="trailing" secondItem="2LB-QA-Pk8" secondAttribute="trailing" id="GUg-Yz-Kxu"/>
@@ -119,6 +141,8 @@
             <connections>
                 <outlet property="agreementCountLabel" destination="bdj-Qr-hPE" id="uuF-L1-sKO"/>
                 <outlet property="answerBodyLabel" destination="Fsr-EP-fEg" id="MF2-Ct-kJP"/>
+                <outlet property="answerButton" destination="0dW-Ob-2OR" id="HgT-rn-Jay"/>
+                <outlet property="questionButton" destination="hH0-zf-UYf" id="ZX9-q0-ABn"/>
                 <outlet property="questionTitleLabel" destination="S4s-kS-ZKc" id="jDw-DB-BRf"/>
                 <outlet property="userAvatarView" destination="cS3-2I-IdC" id="Ojp-vB-j8V"/>
                 <outlet property="userNameLabel" destination="58E-eF-nlg" id="iZv-xH-zgW"/>

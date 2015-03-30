@@ -34,24 +34,9 @@ class FeaturedQuestionAnswerCellWithoutAnswer: FeaturedObjectCell {
             return
         }
         let object = object as! FeaturedQuestionAnswer
-        let question = object.question
-        let user = question.user
-        let userID = user?.id.integerValue
-        userAvatarView.image = UIImage(named: "DefaultAvatar")
-        userAvatarView.msr_userInfo = user?.avatarURL
-        if user?.avatarURL != nil {
-            user?.fetchAvatar(
-                success: {
-                    [weak self] in
-                    if (self?.userAvatarView.msr_userInfo as? String) == user?.avatarURL {
-                        self?.userAvatarView.image = user?.avatar
-                    }
-                    return
-                },
-                failure: nil)
-        }
-        userNameLabel.text = user?.name ?? "匿名用户"
-        questionTitleLabel.text = question.title
+        userAvatarView.wc_updateWithUser(object.question.user)
+        userNameLabel.text = object.question.user?.name ?? "匿名用户"
+        questionTitleLabel.text = object.question.title
         setNeedsLayout()
         layoutIfNeeded()
     }

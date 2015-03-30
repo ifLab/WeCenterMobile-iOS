@@ -16,6 +16,13 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TuC-IT-i7f">
                         <rect key="frame" x="4" y="2" width="312" height="75"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nyd-HC-dqu">
+                                <rect key="frame" x="0.0" y="0.0" width="312" height="75"/>
+                                <color key="backgroundColor" red="0.42745098039215684" green="0.29803921568627451" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                             <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="Vi0-CQ-N80">
                                 <rect key="frame" x="8" y="8" width="30" height="30"/>
                                 <constraints>
@@ -27,15 +34,9 @@
                                 <rect key="frame" x="96" y="8" width="84" height="17"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GaF-kR-TC1">
-                                <rect key="frame" x="46" y="30" width="256" height="34"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="这里是问题标题，可能会很长，但最多显示两行。" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jc-Rr-Jcv" customClass="MSRMultilineLabel" customModule="WeCenterMobile" customModuleProvider="target">
                                 <rect key="frame" x="46" y="30" width="256" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -49,22 +50,22 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.42745098039215684" green="0.29803921568627451" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="5jc-Rr-Jcv" secondAttribute="trailing" constant="10" id="13e-Fm-bmq"/>
-                            <constraint firstItem="GaF-kR-TC1" firstAttribute="leading" secondItem="5jc-Rr-Jcv" secondAttribute="leading" id="2Ae-SB-Wgt"/>
                             <constraint firstItem="5jc-Rr-Jcv" firstAttribute="leading" secondItem="A1j-w0-q5y" secondAttribute="leading" id="6CK-UX-ik2"/>
-                            <constraint firstItem="GaF-kR-TC1" firstAttribute="bottom" secondItem="5jc-Rr-Jcv" secondAttribute="bottom" id="C7K-UH-ooZ"/>
                             <constraint firstItem="5jc-Rr-Jcv" firstAttribute="top" secondItem="A1j-w0-q5y" secondAttribute="bottom" constant="5" id="I6g-El-xYc"/>
                             <constraint firstItem="Vi0-CQ-N80" firstAttribute="top" secondItem="TuC-IT-i7f" secondAttribute="top" constant="8" id="Nw6-bK-miv"/>
                             <constraint firstItem="A1j-w0-q5y" firstAttribute="leading" secondItem="Vi0-CQ-N80" secondAttribute="trailing" constant="8" id="O8A-Zb-Ai2"/>
-                            <constraint firstItem="GaF-kR-TC1" firstAttribute="top" secondItem="5jc-Rr-Jcv" secondAttribute="top" id="Sch-nN-4gk"/>
+                            <constraint firstAttribute="trailing" secondItem="nyd-HC-dqu" secondAttribute="trailing" id="Pp9-2d-tDy"/>
                             <constraint firstItem="mFC-Xq-H90" firstAttribute="top" secondItem="A1j-w0-q5y" secondAttribute="top" id="ZiK-JQ-sI4"/>
                             <constraint firstItem="Vi0-CQ-N80" firstAttribute="leading" secondItem="TuC-IT-i7f" secondAttribute="leading" constant="8" id="Zkk-Zk-jEM"/>
+                            <constraint firstItem="nyd-HC-dqu" firstAttribute="top" secondItem="TuC-IT-i7f" secondAttribute="top" id="aab-rX-LUJ"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="5jc-Rr-Jcv" secondAttribute="bottom" constant="10" id="bET-TG-2Eo"/>
+                            <constraint firstItem="nyd-HC-dqu" firstAttribute="leading" secondItem="TuC-IT-i7f" secondAttribute="leading" id="cDd-em-ZTD"/>
                             <constraint firstItem="mFC-Xq-H90" firstAttribute="leading" secondItem="A1j-w0-q5y" secondAttribute="trailing" constant="8" id="e0f-TU-tEQ"/>
                             <constraint firstItem="A1j-w0-q5y" firstAttribute="top" secondItem="Vi0-CQ-N80" secondAttribute="top" id="jo0-hJ-lVT"/>
-                            <constraint firstItem="GaF-kR-TC1" firstAttribute="trailing" secondItem="5jc-Rr-Jcv" secondAttribute="trailing" id="pOe-nk-v63"/>
+                            <constraint firstAttribute="bottom" secondItem="nyd-HC-dqu" secondAttribute="bottom" id="p9i-ad-Fbm"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -78,7 +79,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="questionTitleButton" destination="GaF-kR-TC1" id="bN2-2r-koY"/>
+                <outlet property="questionButton" destination="nyd-HC-dqu" id="Fd2-t3-Kfe"/>
                 <outlet property="questionTitleLabel" destination="5jc-Rr-Jcv" id="bBT-Bd-5Dt"/>
                 <outlet property="userAvatarView" destination="Vi0-CQ-N80" id="Imq-x3-e7h"/>
                 <outlet property="userNameLabel" destination="A1j-w0-q5y" id="T7t-C9-743"/>

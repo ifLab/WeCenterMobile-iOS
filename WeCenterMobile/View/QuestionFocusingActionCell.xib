@@ -16,6 +16,13 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K88-qH-BQh">
                         <rect key="frame" x="4" y="2" width="312" height="79"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkN-MQ-QhU">
+                                <rect key="frame" x="0.0" y="0.0" width="312" height="79"/>
+                                <color key="backgroundColor" red="0.42745098039215684" green="0.29803921568627451" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                             <imageView userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="abL-Jr-aIq">
                                 <rect key="frame" x="10" y="10" width="30" height="30"/>
                                 <constraints>
@@ -27,7 +34,7 @@
                                 <rect key="frame" x="98" y="10" width="84" height="17"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8O-pb-zIM">
@@ -44,13 +51,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.42745098039215684" green="0.29803921568627451" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="E8O-pb-zIM" firstAttribute="top" secondItem="RSn-F3-x5H" secondAttribute="top" id="3Ef-0y-4El"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Nch-Qz-l4t" secondAttribute="bottom" constant="10" id="4Sh-cR-8Z2"/>
+                            <constraint firstAttribute="trailing" secondItem="fkN-MQ-QhU" secondAttribute="trailing" id="8bb-pY-N6w"/>
                             <constraint firstItem="Nch-Qz-l4t" firstAttribute="top" secondItem="E8O-pb-zIM" secondAttribute="bottom" constant="5" id="D4e-ax-4aa"/>
                             <constraint firstItem="E8O-pb-zIM" firstAttribute="leading" secondItem="abL-Jr-aIq" secondAttribute="trailing" constant="8" id="F0J-ho-uUU"/>
+                            <constraint firstItem="fkN-MQ-QhU" firstAttribute="leading" secondItem="K88-qH-BQh" secondAttribute="leading" id="N3Q-JE-Cjq"/>
+                            <constraint firstItem="fkN-MQ-QhU" firstAttribute="top" secondItem="K88-qH-BQh" secondAttribute="top" id="b1Q-SA-3b9"/>
                             <constraint firstAttribute="trailing" secondItem="Nch-Qz-l4t" secondAttribute="trailing" constant="10" id="btg-W7-cCm"/>
+                            <constraint firstAttribute="bottom" secondItem="fkN-MQ-QhU" secondAttribute="bottom" id="rFq-pS-phq"/>
                             <constraint firstItem="abL-Jr-aIq" firstAttribute="leading" secondItem="K88-qH-BQh" secondAttribute="leading" constant="10" id="uAE-Nm-i1w"/>
                             <constraint firstItem="abL-Jr-aIq" firstAttribute="top" secondItem="K88-qH-BQh" secondAttribute="top" constant="10" id="uKV-nJ-wXq"/>
                             <constraint firstItem="E8O-pb-zIM" firstAttribute="leading" secondItem="Nch-Qz-l4t" secondAttribute="leading" id="uS0-SE-m7N"/>
@@ -69,6 +80,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="questionButton" destination="fkN-MQ-QhU" id="bd4-zC-88e"/>
                 <outlet property="questionTitleLabel" destination="Nch-Qz-l4t" id="a6F-B0-QnC"/>
                 <outlet property="userAvatarView" destination="abL-Jr-aIq" id="miX-vb-WZ5"/>
                 <outlet property="userNameLabel" destination="E8O-pb-zIM" id="zsJ-DF-hAp"/>

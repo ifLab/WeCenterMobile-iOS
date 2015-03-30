@@ -11,6 +11,15 @@ class QuestionFocusingActionCell: ActionCell {
     @IBOutlet weak var userAvatarView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var questionTitleLabel: UILabel!
+    @IBOutlet weak var questionButton: UIButton!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        userAvatarView.layer.masksToBounds = true
+        userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
+        questionButton.msr_setBackgroundImageWithColor(questionButton.backgroundColor!)
+        questionButton.backgroundColor = UIColor.clearColor()
+    }
     
     override func update(#action: Action) {
         super.update(action: action)

@@ -48,38 +48,10 @@ class FeaturedQuestionAnswerCell: FeaturedObjectCell {
         let object = object as! FeaturedQuestionAnswer
         let question = object.question
         let answer = object.answers.first
-        questionUserAvatarView.image = UIImage(named: "DefaultAvatar")
-        questionUserAvatarView.msr_userInfo = question.user
-        if let urlString = question.user?.avatarURL {
-            let userID = question.user?.id.integerValue
-            question.user!.fetchAvatar(
-                success: {
-                    [weak self] in
-                    if let user = self?.questionUserAvatarView.msr_userInfo as? User {
-                        if user.id == userID {
-                            self?.questionUserAvatarView.image = user.avatar
-                        }
-                    }
-                },
-                failure: nil)
-        }
+        questionUserAvatarView.wc_updateWithUser(question.user)
         questionUserNameLabel.text = question.user?.name
         questionTitleLabel.text = question.title
-        answerUserAvatarView.image = UIImage(named: "DefaultAvatar")
-        answerUserAvatarView.msr_userInfo = answer?.user
-        if let urlString = answer?.user?.avatarURL {
-            let userID = answer!.user!.id.integerValue
-            answer!.user!.fetchAvatar(
-                success: {
-                    [weak self] in
-                    if let user = self?.answerUserAvatarView.msr_userInfo as? User {
-                        if user.id == userID {
-                            self?.answerUserAvatarView.image = user.avatar
-                        }
-                    }
-                },
-                failure: nil)
-        }
+        answerUserAvatarView.wc_updateWithUser(answer?.user)
         answerUserNameLabel.text = answer?.user?.name ?? "匿名用户"
         answerBodyLabel.text = answer?.body ?? ""
         setNeedsLayout()

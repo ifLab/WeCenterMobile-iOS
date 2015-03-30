@@ -7,23 +7,30 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AnswerAgreementActionCell" rowHeight="138" id="azr-tY-gnL" customClass="AnswerAgreementActionCell" customModule="WeCenterMobile" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="138"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AnswerAgreementActionCell" rowHeight="136" id="azr-tY-gnL" customClass="AnswerAgreementActionCell" customModule="WeCenterMobile" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="136"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="azr-tY-gnL" id="tpp-OK-KYx">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uVW-K7-MNH">
-                        <rect key="frame" x="4" y="2" width="312" height="133"/>
+                        <rect key="frame" x="4" y="2" width="312" height="130"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FAD-LQ-0sS">
-                                <rect key="frame" x="0.0" y="0.0" width="312" height="79"/>
+                                <rect key="frame" x="0.0" y="0.0" width="312" height="76"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8C-XK-Adr">
+                                        <rect key="frame" x="0.0" y="0.0" width="312" height="76"/>
+                                        <color key="backgroundColor" red="0.42745098039215684" green="0.29803921568627451" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="赞同该回答" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZkF-Tc-i4l">
                                         <rect key="frame" x="98" y="10" width="70" height="17"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="这里是问题标题，可能会很长，但最多显示两行。" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7D-Wm-AdH" customClass="MSRMultilineLabel" customModule="WeCenterMobile" customModuleProvider="target">
@@ -54,9 +61,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.42745098039215684" green="0.29803921568627451" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="dGy-aq-e5I" firstAttribute="top" secondItem="Ici-gG-Qr9" secondAttribute="top" id="0Oc-Qa-11S"/>
+                                    <constraint firstAttribute="bottom" secondItem="M8C-XK-Adr" secondAttribute="bottom" id="6eC-F3-b0r"/>
                                     <constraint firstItem="M7D-Wm-AdH" firstAttribute="top" secondItem="dGy-aq-e5I" secondAttribute="bottom" constant="5" id="8jh-A1-aok"/>
                                     <constraint firstItem="dGy-aq-e5I" firstAttribute="top" secondItem="ZkF-Tc-i4l" secondAttribute="top" id="DhO-cD-NBG"/>
                                     <constraint firstItem="dGy-aq-e5I" firstAttribute="leading" secondItem="M7D-Wm-AdH" secondAttribute="leading" id="EGe-aY-a1r"/>
@@ -65,7 +73,10 @@
                                     <constraint firstItem="JSL-KN-ZHd" firstAttribute="top" secondItem="Ici-gG-Qr9" secondAttribute="bottom" constant="5" id="JrM-pE-qAh"/>
                                     <constraint firstItem="Ici-gG-Qr9" firstAttribute="leading" secondItem="JSL-KN-ZHd" secondAttribute="leading" id="Kcy-Ea-9w0"/>
                                     <constraint firstItem="dGy-aq-e5I" firstAttribute="leading" secondItem="Ici-gG-Qr9" secondAttribute="trailing" constant="8" id="QzY-bE-Szw"/>
+                                    <constraint firstItem="M8C-XK-Adr" firstAttribute="leading" secondItem="FAD-LQ-0sS" secondAttribute="leading" id="TOt-Fm-dGL"/>
+                                    <constraint firstAttribute="trailing" secondItem="M8C-XK-Adr" secondAttribute="trailing" id="aMf-xO-N2F"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="JSL-KN-ZHd" secondAttribute="bottom" constant="10" id="cbK-om-fh8"/>
+                                    <constraint firstItem="M8C-XK-Adr" firstAttribute="top" secondItem="FAD-LQ-0sS" secondAttribute="top" id="hPQ-xI-6IP"/>
                                     <constraint firstAttribute="trailing" secondItem="M7D-Wm-AdH" secondAttribute="trailing" constant="10" id="iIB-33-y6D"/>
                                     <constraint firstItem="ZkF-Tc-i4l" firstAttribute="leading" secondItem="dGy-aq-e5I" secondAttribute="trailing" constant="8" id="rAL-7i-JhZ"/>
                                     <constraint firstItem="Ici-gG-Qr9" firstAttribute="leading" secondItem="FAD-LQ-0sS" secondAttribute="leading" constant="10" id="ubj-Mw-C8N"/>
@@ -73,8 +84,15 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jwc-BL-ukB">
-                                <rect key="frame" x="0.0" y="79" width="312" height="54"/>
+                                <rect key="frame" x="0.0" y="76" width="312" height="54"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vbm-GW-bc9">
+                                        <rect key="frame" x="0.0" y="0.0" width="312" height="54"/>
+                                        <color key="backgroundColor" red="0.36470588235294116" green="0.25098039215686274" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="这是回答的预览，也可能会很长，但最多会显示三行。" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zi6-PX-u5r" customClass="MSRMultilineLabel" customModule="WeCenterMobile" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="292" height="34"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -83,16 +101,20 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.36470588235294116" green="0.25098039215686274" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Vbm-GW-bc9" secondAttribute="trailing" id="AQ6-OV-KZV"/>
+                                    <constraint firstItem="Vbm-GW-bc9" firstAttribute="top" secondItem="Jwc-BL-ukB" secondAttribute="top" id="Fw1-h8-hXx"/>
                                     <constraint firstItem="Zi6-PX-u5r" firstAttribute="leading" secondItem="Jwc-BL-ukB" secondAttribute="leading" constant="10" id="GQ5-yc-XOr"/>
                                     <constraint firstItem="Zi6-PX-u5r" firstAttribute="top" secondItem="Jwc-BL-ukB" secondAttribute="top" constant="10" id="bdU-SJ-fyF"/>
                                     <constraint firstAttribute="bottom" secondItem="Zi6-PX-u5r" secondAttribute="bottom" constant="10" id="d2d-rh-Sts"/>
+                                    <constraint firstItem="Vbm-GW-bc9" firstAttribute="leading" secondItem="Jwc-BL-ukB" secondAttribute="leading" id="eVN-cu-VZN"/>
                                     <constraint firstAttribute="trailing" secondItem="Zi6-PX-u5r" secondAttribute="trailing" constant="10" id="m9e-85-pEe"/>
+                                    <constraint firstAttribute="bottom" secondItem="Vbm-GW-bc9" secondAttribute="bottom" id="tNp-ta-zAZ"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Jwc-BL-ukB" secondAttribute="trailing" id="0Q7-tv-KCn"/>
                             <constraint firstItem="FAD-LQ-0sS" firstAttribute="leading" secondItem="uVW-K7-MNH" secondAttribute="leading" id="3Zo-hX-V1U"/>
@@ -107,7 +129,7 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="uVW-K7-MNH" firstAttribute="leading" secondItem="tpp-OK-KYx" secondAttribute="leading" constant="4" id="F1g-ML-Ww4"/>
-                    <constraint firstAttribute="bottom" secondItem="uVW-K7-MNH" secondAttribute="bottom" constant="2" id="kCN-95-rLj"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="uVW-K7-MNH" secondAttribute="bottom" constant="2" id="kCN-95-rLj"/>
                     <constraint firstItem="uVW-K7-MNH" firstAttribute="top" secondItem="tpp-OK-KYx" secondAttribute="top" constant="2" id="kcj-mz-QZJ"/>
                     <constraint firstAttribute="trailing" secondItem="uVW-K7-MNH" secondAttribute="trailing" constant="4" id="ppg-gB-KZ9"/>
                 </constraints>
@@ -116,11 +138,13 @@
             <connections>
                 <outlet property="agreementCountLabel" destination="JSL-KN-ZHd" id="Hev-KA-twF"/>
                 <outlet property="answerBodyLabel" destination="Zi6-PX-u5r" id="z5q-0A-t84"/>
+                <outlet property="answerButton" destination="Vbm-GW-bc9" id="Whw-fV-Qka"/>
+                <outlet property="questionButton" destination="M8C-XK-Adr" id="oHJ-RG-S4C"/>
                 <outlet property="questionTitleLabel" destination="M7D-Wm-AdH" id="ELg-Oo-XXB"/>
                 <outlet property="userAvatarView" destination="Ici-gG-Qr9" id="9j0-9Q-sgG"/>
                 <outlet property="userNameLabel" destination="dGy-aq-e5I" id="H6V-tB-ds0"/>
             </connections>
-            <point key="canvasLocation" x="699" y="377"/>
+            <point key="canvasLocation" x="699" y="376"/>
         </tableViewCell>
     </objects>
     <resources>
