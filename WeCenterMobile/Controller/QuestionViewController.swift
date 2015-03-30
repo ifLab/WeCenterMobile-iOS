@@ -62,11 +62,11 @@ class QuestionViewController: UITableViewController {
                     if let user = question.user {
                         user.fetchProfile(
                             success: {
-                                self_.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .None)
+                                self_.tableView.reloadData()
                             },
                             failure: {
                                 error in
-                                NSLog("%@, %@, %@", __FILE__, __LINE__, __FUNCTION__, error)
+                                NSLog(__FILE__, __FUNCTION__, error)
                                 return
                             })
                     }
@@ -74,7 +74,7 @@ class QuestionViewController: UITableViewController {
                 return
             }, failure: {
                 error in
-                NSLog("%@, %@, %@", __FILE__, __LINE__, __FUNCTION__, error)
+                NSLog(__FILE__, __FUNCTION__, error)
                 return
             })
     }

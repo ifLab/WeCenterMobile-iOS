@@ -46,7 +46,7 @@ class AnswerCell: UITableViewCell {
                     },
                     failure: {
                         error in
-                        NSLog("%@, %@, %@", __FILE__, __LINE__, __FUNCTION__, error)
+                        NSLog(__FILE__, __FUNCTION__, error)
                         return
                     })
             }

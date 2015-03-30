@@ -2,85 +2,91 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="QuestionPublishmentActionCell" rowHeight="84" id="YPk-aW-kq2" customClass="QuestionPublishmentActionCell" customModule="WeCenterMobile" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="QuestionPublishmentActionCell" rowHeight="80" id="YPk-aW-kq2" customClass="QuestionPublishmentActionCell" customModule="WeCenterMobile" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YPk-aW-kq2" id="WGM-nr-lCl">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vi0-CQ-N80">
-                        <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TuC-IT-i7f">
+                        <rect key="frame" x="4" y="2" width="312" height="75"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="Vi0-CQ-N80">
+                                <rect key="frame" x="8" y="8" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="3WN-OG-UmV"/>
+                                    <constraint firstAttribute="width" secondItem="Vi0-CQ-N80" secondAttribute="height" multiplier="1:1" id="D1g-CS-TxK"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="提了一个问题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFC-Xq-H90">
+                                <rect key="frame" x="96" y="8" width="84" height="17"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GaF-kR-TC1">
+                                <rect key="frame" x="46" y="30" width="256" height="34"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="这里是问题标题，可能会很长，但最多显示两行。" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jc-Rr-Jcv" customClass="MSRMultilineLabel" customModule="WeCenterMobile" customModuleProvider="target">
+                                <rect key="frame" x="46" y="30" width="256" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A1j-w0-q5y">
+                                <rect key="frame" x="46" y="8" width="42" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.42745098039215684" green="0.29803921568627451" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="48" id="8PC-KG-bbz"/>
-                            <constraint firstAttribute="width" constant="48" id="aMx-ro-h8b"/>
+                            <constraint firstAttribute="trailing" secondItem="5jc-Rr-Jcv" secondAttribute="trailing" constant="10" id="13e-Fm-bmq"/>
+                            <constraint firstItem="GaF-kR-TC1" firstAttribute="leading" secondItem="5jc-Rr-Jcv" secondAttribute="leading" id="2Ae-SB-Wgt"/>
+                            <constraint firstItem="5jc-Rr-Jcv" firstAttribute="leading" secondItem="A1j-w0-q5y" secondAttribute="leading" id="6CK-UX-ik2"/>
+                            <constraint firstItem="GaF-kR-TC1" firstAttribute="bottom" secondItem="5jc-Rr-Jcv" secondAttribute="bottom" id="C7K-UH-ooZ"/>
+                            <constraint firstItem="5jc-Rr-Jcv" firstAttribute="top" secondItem="A1j-w0-q5y" secondAttribute="bottom" constant="5" id="I6g-El-xYc"/>
+                            <constraint firstItem="Vi0-CQ-N80" firstAttribute="top" secondItem="TuC-IT-i7f" secondAttribute="top" constant="8" id="Nw6-bK-miv"/>
+                            <constraint firstItem="A1j-w0-q5y" firstAttribute="leading" secondItem="Vi0-CQ-N80" secondAttribute="trailing" constant="8" id="O8A-Zb-Ai2"/>
+                            <constraint firstItem="GaF-kR-TC1" firstAttribute="top" secondItem="5jc-Rr-Jcv" secondAttribute="top" id="Sch-nN-4gk"/>
+                            <constraint firstItem="mFC-Xq-H90" firstAttribute="top" secondItem="A1j-w0-q5y" secondAttribute="top" id="ZiK-JQ-sI4"/>
+                            <constraint firstItem="Vi0-CQ-N80" firstAttribute="leading" secondItem="TuC-IT-i7f" secondAttribute="leading" constant="8" id="Zkk-Zk-jEM"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="5jc-Rr-Jcv" secondAttribute="bottom" constant="10" id="bET-TG-2Eo"/>
+                            <constraint firstItem="mFC-Xq-H90" firstAttribute="leading" secondItem="A1j-w0-q5y" secondAttribute="trailing" constant="8" id="e0f-TU-tEQ"/>
+                            <constraint firstItem="A1j-w0-q5y" firstAttribute="top" secondItem="Vi0-CQ-N80" secondAttribute="top" id="jo0-hJ-lVT"/>
+                            <constraint firstItem="GaF-kR-TC1" firstAttribute="trailing" secondItem="5jc-Rr-Jcv" secondAttribute="trailing" id="pOe-nk-v63"/>
                         </constraints>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserAvatarMask" translatesAutoresizingMaskIntoConstraints="NO" id="b97-go-u5w">
-                        <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
-                    </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHp-Tt-t3H">
-                        <rect key="frame" x="16" y="8" width="36" height="33"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <state key="normal" title="用户名"/>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="提了一个问题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFC-Xq-H90">
-                        <rect key="frame" x="57" y="8" width="72" height="33"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="这里是问题标题，可能会很长，但最多显示两行。" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jc-Rr-Jcv" customClass="MSRMultilineLabel" customModule="WeCenterMobile" customModuleProvider="target">
-                        <rect key="frame" x="16" y="41" width="288" height="34"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDJ-yo-GHP">
-                        <rect key="frame" x="16" y="41" width="288" height="34"/>
-                        <state key="normal">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                    </button>
+                    </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="MDJ-yo-GHP" firstAttribute="trailing" secondItem="5jc-Rr-Jcv" secondAttribute="trailing" id="0a2-GS-nm7"/>
-                    <constraint firstItem="mHp-Tt-t3H" firstAttribute="top" secondItem="WGM-nr-lCl" secondAttribute="topMargin" id="6ug-lX-soA"/>
-                    <constraint firstItem="mHp-Tt-t3H" firstAttribute="leading" secondItem="WGM-nr-lCl" secondAttribute="leadingMargin" constant="8" id="AYc-Dz-Qkm"/>
-                    <constraint firstItem="Vi0-CQ-N80" firstAttribute="width" secondItem="b97-go-u5w" secondAttribute="width" id="KHa-at-3n6"/>
-                    <constraint firstItem="MDJ-yo-GHP" firstAttribute="top" secondItem="5jc-Rr-Jcv" secondAttribute="top" id="LfL-LY-dS0"/>
-                    <constraint firstItem="mHp-Tt-t3H" firstAttribute="bottom" secondItem="mFC-Xq-H90" secondAttribute="bottom" id="OJ5-gK-eMv"/>
-                    <constraint firstItem="Vi0-CQ-N80" firstAttribute="top" secondItem="WGM-nr-lCl" secondAttribute="top" id="SVO-ef-MLk"/>
-                    <constraint firstItem="mHp-Tt-t3H" firstAttribute="top" secondItem="mFC-Xq-H90" secondAttribute="top" id="Sf2-ez-Kzq"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="5jc-Rr-Jcv" secondAttribute="trailing" constant="8" id="cg5-uP-c14"/>
-                    <constraint firstItem="mFC-Xq-H90" firstAttribute="leading" secondItem="mHp-Tt-t3H" secondAttribute="trailing" constant="5" id="dZY-0o-cNH"/>
-                    <constraint firstItem="Vi0-CQ-N80" firstAttribute="centerY" secondItem="b97-go-u5w" secondAttribute="centerY" id="iel-Ra-tml"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="5jc-Rr-Jcv" secondAttribute="bottom" id="kIk-6E-45d"/>
-                    <constraint firstItem="MDJ-yo-GHP" firstAttribute="bottom" secondItem="5jc-Rr-Jcv" secondAttribute="bottom" id="l3g-hz-arE"/>
-                    <constraint firstItem="5jc-Rr-Jcv" firstAttribute="top" secondItem="mHp-Tt-t3H" secondAttribute="bottom" id="p9q-c4-61d"/>
-                    <constraint firstItem="Vi0-CQ-N80" firstAttribute="height" secondItem="b97-go-u5w" secondAttribute="height" id="qGc-a1-MX0"/>
-                    <constraint firstItem="Vi0-CQ-N80" firstAttribute="centerX" secondItem="b97-go-u5w" secondAttribute="centerX" id="sqQ-6l-1QN"/>
-                    <constraint firstItem="Vi0-CQ-N80" firstAttribute="leading" secondItem="WGM-nr-lCl" secondAttribute="leading" id="yPt-wb-GH6"/>
-                    <constraint firstItem="5jc-Rr-Jcv" firstAttribute="leading" secondItem="WGM-nr-lCl" secondAttribute="leadingMargin" constant="8" id="z4H-ty-9sI"/>
-                    <constraint firstItem="mHp-Tt-t3H" firstAttribute="baseline" secondItem="mFC-Xq-H90" secondAttribute="baseline" id="zS3-yH-279"/>
-                    <constraint firstItem="MDJ-yo-GHP" firstAttribute="leading" secondItem="5jc-Rr-Jcv" secondAttribute="leading" id="zp8-JI-lxA"/>
+                    <constraint firstItem="TuC-IT-i7f" firstAttribute="leading" secondItem="WGM-nr-lCl" secondAttribute="leading" constant="4" id="BwH-gg-xD6"/>
+                    <constraint firstAttribute="trailing" secondItem="TuC-IT-i7f" secondAttribute="trailing" constant="4" id="S2X-nC-uqe"/>
+                    <constraint firstItem="TuC-IT-i7f" firstAttribute="top" secondItem="WGM-nr-lCl" secondAttribute="top" constant="2" id="Wck-qy-6h7"/>
+                    <constraint firstAttribute="bottom" secondItem="TuC-IT-i7f" secondAttribute="bottom" constant="2" id="swY-pj-bHp"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="questionTitleButton" destination="MDJ-yo-GHP" id="Ywk-3l-2Hr"/>
+                <outlet property="questionTitleButton" destination="GaF-kR-TC1" id="bN2-2r-koY"/>
                 <outlet property="questionTitleLabel" destination="5jc-Rr-Jcv" id="bBT-Bd-5Dt"/>
-                <outlet property="userAvatarView" destination="Vi0-CQ-N80" id="5kn-NP-LWR"/>
-                <outlet property="userNameButton" destination="mHp-Tt-t3H" id="Sd4-JY-bxn"/>
+                <outlet property="userAvatarView" destination="Vi0-CQ-N80" id="Imq-x3-e7h"/>
+                <outlet property="userNameLabel" destination="A1j-w0-q5y" id="T7t-C9-743"/>
             </connections>
-            <point key="canvasLocation" x="699" y="350"/>
+            <point key="canvasLocation" x="699" y="348"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="UserAvatarMask" width="48" height="48"/>
+        <image name="DefaultAvatar" width="62" height="62"/>
     </resources>
 </document>

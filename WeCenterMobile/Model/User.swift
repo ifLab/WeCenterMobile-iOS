@@ -328,7 +328,7 @@ class User: NSManagedObject {
         }
     }
     
-    func fetchRelatedActions(#page: Int, count: Int, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchRelatedActions(#page: Int, count: Int, success: (([Action]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("Home List",
             parameters: [
                 "page": page - 1,
@@ -338,6 +338,7 @@ class User: NSManagedObject {
                 data in
                 let rows = data["total_rows"] as! Int
                 if rows > 0 {
+                    var actions = [Action]()
                     let objects = data["rows"] as! [[String: AnyObject]]
                     for object in objects {
                         let typeID = ActionTypeID(rawValue: Int(msr_object: object["associate_action"])!)!
@@ -456,8 +457,9 @@ class User: NSManagedObject {
                         default:
                             break
                         }
+                        actions.append(action_)
                     }
-                    success?()
+                    success?(actions)
                 } else {
                     failure?(NSError()) // Needs specification
                 }

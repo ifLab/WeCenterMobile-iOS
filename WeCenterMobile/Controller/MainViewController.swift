@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var contentViewController: MSRNavigationController! = nil
-    let sidebar = MSRSidebar(width: 200, blurEffectStyle: .Light)
+    let sidebar = MSRSidebar(width: 200, edge: .Left)
     var tableView: UITableView! = nil
     var user: User? {
         return appDelegate.currentUser
@@ -25,6 +25,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     override init() {
         super.init(nibName: nil, bundle: nil)
         contentViewController = MSRNavigationController(rootViewController: viewControllerAtIndex(0))
+        contentViewController.view.backgroundColor = UIColor.msr_materialBrown900()
         addChildViewController(contentViewController)
     }
     required init(coder aDecoder: NSCoder) {
@@ -32,7 +33,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     override func loadView() {
         super.loadView()
-        tableView = UITableView(frame: sidebar.contentView.bounds, style: .Grouped)
+        tableView = UITableView(frame: CGRectZero, style: .Grouped)
+        tableView.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         view.addSubview(contentViewController.view)
         view.insertSubview(sidebar, aboveSubview: contentViewController.view)
         tableView.backgroundColor = UIColor.clearColor()
@@ -42,6 +44,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.separatorStyle = .SingleLineEtched
         tableView.showsVerticalScrollIndicator = false
         sidebar.contentView.addSubview(tableView)
+        tableView.msr_addAllEdgeAttachedConstraintsToSuperview()
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
@@ -58,7 +61,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         var cell: UITableViewCell! = tableView.dequeueReusableCellWithIdentifier(identifier) as? UITableViewCell
         if cell == nil {
             cell = UITableViewCell(style: .Default, reuseIdentifier: identifier)
-            cell.textLabel!.textColor = UIColor.blackColor()
+            cell.textLabel!.textColor = UIColor.lightTextColor()
             cell.backgroundColor = UIColor.clearColor()
             cell.selectedBackgroundView = UIView(frame: CGRect(origin: CGPointZero, size: cell.bounds.size))
             cell.selectedBackgroundView.backgroundColor = UIColor(white: 0, alpha: 0.1)
@@ -77,7 +80,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 cell.textLabel!.text = appDelegate.currentUser?.name
             } else if indexPath.section == 1 {
                 cell.imageView!.image = UIImage.msr_circleWithColor(UIColor(white: 0, alpha: 0.2), radius: 20)
-                cell.imageView!.tintColor = UIColor.blackColor()
+                cell.imageView!.tintColor = UIColor.whiteColor()
                 cell.imageView!.layer.contentsScale = UIScreen.mainScreen().scale
                 cell.textLabel!.text = titles[indexPath.row]
             } else {
@@ -87,7 +90,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        sidebar.hide(animated: true)
+        sidebar.collapse()
         if indexPath.section == 0 {
             contentViewController.setViewControllers([UserViewController(user: appDelegate.currentUser!)], animated: true)
         } else if indexPath.section == 1 {
@@ -218,9 +221,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func CHANGE_SEGMENTED_CONTROL_TINT_COLOR() {
         sc.tintColor = UIColor.msr_randomColor(opaque: true)
         button.setBackgroundImage(UIImage.msr_rectangleWithColor(sc.tintColor, size: CGSize(width: 1, height: 1)), forState: .Normal)
-    }
-    func showSidebar() {
-        sidebar.show(animated: true)
     }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return contentViewController.preferredStatusBarStyle()

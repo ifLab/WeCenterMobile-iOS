@@ -23,6 +23,7 @@ class ExploreViewController: MSRSegmentedViewController, MSRSegmentedViewControl
         view.backgroundColor = UIColor.msr_materialBrown900()
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List"), style: .Plain, target: self, action: "showSidebar")
         navigationItem.leftBarButtonItem!.tintColor = UIColor.whiteColor()
+        scrollView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
     }
     
     override func viewDidLoad() {
@@ -62,7 +63,7 @@ class ExploreViewController: MSRSegmentedViewController, MSRSegmentedViewControl
     }
     
     func showSidebar() {
-        appDelegate.mainViewController.sidebar.toggleShow(animated: true)
+        appDelegate.mainViewController.sidebar.expand()
     }
     
 }

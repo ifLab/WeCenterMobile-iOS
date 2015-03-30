@@ -8,13 +8,17 @@
 
 class QuestionPublishmentActionCell: ActionCell {
     
+    @IBOutlet weak var userAvatarView: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var questionTitleLabel: UILabel!
     @IBOutlet weak var questionTitleButton: UIButton!
     
     override func update(#action: Action) {
         super.update(action: action)
         let action = action as! QuestionPublishmentAction
-        questionTitleLabel.text = action.question.title
+        userAvatarView.wc_updateWithUser(action.user)
+        userNameLabel.text = action.user?.name ?? "匿名用户"
+        questionTitleLabel.text = action.question.title!
         questionTitleButton.msr_userInfo = action.question
         setNeedsLayout()
         layoutIfNeeded()

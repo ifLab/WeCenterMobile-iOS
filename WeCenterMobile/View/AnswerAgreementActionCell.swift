@@ -8,6 +8,8 @@
 
 class AnswerAgreementActionCell: ActionCell {
     
+    @IBOutlet weak var userAvatarView: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var questionTitleLabel: UILabel!
     @IBOutlet weak var agreementCountLabel: UILabel!
     @IBOutlet weak var answerBodyLabel: UILabel!
@@ -15,6 +17,8 @@ class AnswerAgreementActionCell: ActionCell {
     override func update(#action: Action) {
         super.update(action: action)
         let action = action as! AnswerAgreementAction
+        userAvatarView.wc_updateWithUser(action.user)
+        userNameLabel.text = action.user?.name ?? "匿名用户"
         questionTitleLabel.text = action.answer.question!.title!
         agreementCountLabel.text = "\(action.answer.agreementCount!)"
         answerBodyLabel.text = action.answer.body!
