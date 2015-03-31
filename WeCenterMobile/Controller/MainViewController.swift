@@ -12,6 +12,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var contentViewController: MSRNavigationController! = nil
     let sidebar = MSRSidebar(width: 200, edge: .Left)
     var tableView: UITableView! = nil
+    lazy var userCell: SidebarUserCell = {
+        [weak self] in
+        let cell = NSBundle.mainBundle().loadNibNamed("SidebarUserCell", owner: self?.tableView, options: nil).first as! SidebarUserCell
+        cell.update(user: appDelegate.currentUser)
+        return cell
+    }()
     lazy var cells: [SidebarCategoryCell] = {
         [weak self] in
         return map([
@@ -71,22 +77,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell
         if indexPath.section == 0 {
-            cell = UITableViewCell()
-            cell.textLabel!.textColor = UIColor.whiteColor()
-            cell.backgroundColor = UIColor.clearColor()
-            cell.selectedBackgroundView = UIView(frame: CGRect(origin: CGPointZero, size: cell.bounds.size))
-            cell.selectedBackgroundView.backgroundColor = UIColor(white: 0, alpha: 0.1)
-//            appDelegate.currentUser!.fetchAvatar(
-//                success: {
-//                    let size = CGSize(width: 50, height: 50)
-//                    cell.imageView!.image = appDelegate.currentUser!.avatar?.msr_imageOfSize(size)
-//                    cell.imageView!.sizeToFit()
-//                    cell.imageView!.layer.cornerRadius = cell.imageView!.bounds.width / 2
-//                    cell.imageView!.layer.masksToBounds = true
-//                    self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .None)
-//                },
-//                failure: nil)
-            cell.textLabel!.text = appDelegate.currentUser?.name
+            cell = userCell
         } else if indexPath.section == 1 {
             cell = cells[indexPath.row]
         } else {
@@ -106,7 +97,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 100
+            return 140
         } else {
             return 60
         }

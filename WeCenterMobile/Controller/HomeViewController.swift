@@ -107,6 +107,10 @@ class HomeViewController: UITableViewController {
         return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1
     }
     
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 80
+    }
+    
     func showSidebar() {
         appDelegate.mainViewController.sidebar.expand()
     }

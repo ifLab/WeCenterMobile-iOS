@@ -158,6 +158,8 @@
 		95C47D4B1AC9C2BE00A56879 /* UIButton+MSRSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C47D4A1AC9C2BE00A56879 /* UIButton+MSRSetter.swift */; };
 		95C47D4D1ACA51E200A56879 /* SidebarCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C47D4C1ACA51E200A56879 /* SidebarCategoryCell.swift */; };
 		95C47D4F1ACA51F200A56879 /* SidebarCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C47D4E1ACA51F200A56879 /* SidebarCategoryCell.xib */; };
+		95C47D511ACAB7FE00A56879 /* SidebarUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C47D501ACAB7FE00A56879 /* SidebarUserCell.swift */; };
+		95C47D531ACAB81000A56879 /* SidebarUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C47D521ACAB81000A56879 /* SidebarUserCell.xib */; };
 		95C893771AC7365D00B7B385 /* MSRSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C893761AC7365D00B7B385 /* MSRSidebar.swift */; };
 		95DFE8DB1AC711790027FB79 /* AnswerAdditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DFE8DA1AC711790027FB79 /* AnswerAdditionCell.swift */; };
 		95DFE8DD1AC711970027FB79 /* AnswerAdditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95DFE8DC1AC711970027FB79 /* AnswerAdditionCell.xib */; };
@@ -399,6 +401,8 @@
 		95C47D4A1AC9C2BE00A56879 /* UIButton+MSRSetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+MSRSetter.swift"; sourceTree = "<group>"; };
 		95C47D4C1ACA51E200A56879 /* SidebarCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarCategoryCell.swift; sourceTree = "<group>"; };
 		95C47D4E1ACA51F200A56879 /* SidebarCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarCategoryCell.xib; sourceTree = "<group>"; };
+		95C47D501ACAB7FE00A56879 /* SidebarUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarUserCell.swift; sourceTree = "<group>"; };
+		95C47D521ACAB81000A56879 /* SidebarUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarUserCell.xib; sourceTree = "<group>"; };
 		95C893761AC7365D00B7B385 /* MSRSidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRSidebar.swift; sourceTree = "<group>"; };
 		95DFE8DA1AC711790027FB79 /* AnswerAdditionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnswerAdditionCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		95DFE8DC1AC711970027FB79 /* AnswerAdditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerAdditionCell.xib; sourceTree = "<group>"; };
@@ -583,6 +587,8 @@
 				950FE4FB1A1DA2B500167D09 /* RectangleButton.swift */,
 				95C47D4C1ACA51E200A56879 /* SidebarCategoryCell.swift */,
 				95C47D4E1ACA51F200A56879 /* SidebarCategoryCell.xib */,
+				95C47D501ACAB7FE00A56879 /* SidebarUserCell.swift */,
+				95C47D521ACAB81000A56879 /* SidebarUserCell.xib */,
 				950FE4FC1A1DA2B500167D09 /* TopicCell.swift */,
 				9595435D1AC94DEE008C48D7 /* UIImageView+User.swift */,
 				950FE4FF1A1DA2B500167D09 /* UserCell.swift */,
@@ -984,6 +990,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95C2DF931AC02E9400E350C2 /* ImageUploadingProgressBar.xib in Resources */,
+				95C47D531ACAB81000A56879 /* SidebarUserCell.xib in Resources */,
 				950FE1241A1DA2A400167D09 /* Configuration.plist in Resources */,
 				9532C8CA1A51548B001A0E4A /* QuestionFocusingActionCell.xib in Resources */,
 				953F7DC91AB9B89600AD3363 /* LoginView.xib in Resources */,
@@ -1158,6 +1165,7 @@
 				95428D831AC2FAD0009F70B8 /* QuestionDetailCell.swift in Sources */,
 				95B1D9DA1ABE0CF200BEC8BD /* MediaPickerController.swift in Sources */,
 				95F380C11AB2C34A0070A7FB /* FeaturedObjectCell.swift in Sources */,
+				95C47D511ACAB7FE00A56879 /* SidebarUserCell.swift in Sources */,
 				95C2EA301AB0516800F2A326 /* MSRLoadMoreControl.swift in Sources */,
 				95C2EA2E1AB0516800F2A326 /* MSRFrameEdge.swift in Sources */,
 				951D2F8D1AB7F85500DCB678 /* UIView+MJExtension.m in Sources */,

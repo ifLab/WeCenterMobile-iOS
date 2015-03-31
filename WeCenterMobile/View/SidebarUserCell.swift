@@ -1,5 +1,5 @@
 //
-//  SidebarCategoryCell.swift
+//  SidebarUserCell.swift
 //  WeCenterMobile
 //
 //  Created by Darren Liu on 15/3/31.
@@ -8,13 +8,15 @@
 
 import UIKit
 
-class SidebarCategoryCell: UITableViewCell {
+class SidebarUserCell: UITableViewCell {
     
-    @IBOutlet weak var categoryImageView: UIImageView!
-    @IBOutlet weak var categoryTitleLabel: UILabel!
+    @IBOutlet weak var userAvatarView: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        userAvatarView.layer.masksToBounds = true
+        userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
         selectedBackgroundView = UIView()
         selectedBackgroundView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
         let backgroundIndicator = UIView()
@@ -26,9 +28,9 @@ class SidebarCategoryCell: UITableViewCell {
         backgroundIndicator.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
     }
     
-    func update(#image: UIImage, title: String) {
-        categoryImageView.image = image.imageWithRenderingMode(.AlwaysTemplate)
-        categoryTitleLabel.text = title
+    func update(#user: User?) {
+        userAvatarView.wc_updateWithUser(user)
+        userNameLabel.text = user?.name ?? "加载中……"
         setNeedsLayout()
         layoutIfNeeded()
     }

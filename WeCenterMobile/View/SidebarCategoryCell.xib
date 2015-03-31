@@ -14,7 +14,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SidebarTest" translatesAutoresizingMaskIntoConstraints="NO" id="bSh-0f-Cvq">
-                        <rect key="frame" x="25" y="12" width="25" height="25"/>
+                        <rect key="frame" x="40" y="12" width="25" height="25"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="25" id="OMn-gz-xtE"/>
@@ -22,7 +22,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="测试" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzo-RJ-AxR">
-                        <rect key="frame" x="90" y="14" width="34" height="21"/>
+                        <rect key="frame" x="105" y="14" width="34" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -30,7 +30,7 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="bSh-0f-Cvq" firstAttribute="leading" secondItem="hGa-fi-04N" secondAttribute="leading" constant="25" id="0Ta-yg-imx"/>
+                    <constraint firstItem="bSh-0f-Cvq" firstAttribute="leading" secondItem="hGa-fi-04N" secondAttribute="leading" constant="40" id="0Ta-yg-imx"/>
                     <constraint firstItem="bzo-RJ-AxR" firstAttribute="centerY" secondItem="bSh-0f-Cvq" secondAttribute="centerY" id="5pj-lc-V6J"/>
                     <constraint firstAttribute="centerY" secondItem="bSh-0f-Cvq" secondAttribute="centerY" id="DCo-ye-AIc"/>
                     <constraint firstItem="bzo-RJ-AxR" firstAttribute="leading" secondItem="bSh-0f-Cvq" secondAttribute="trailing" constant="40" id="KmE-80-XYc"/>
