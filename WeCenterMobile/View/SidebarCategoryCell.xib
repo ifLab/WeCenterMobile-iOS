@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="73" id="FOO-ub-sSG" customClass="SidebarCategoryCell" customModule="WeCenterMobile" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FOO-ub-sSG" id="hGa-fi-04N">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SidebarTest" translatesAutoresizingMaskIntoConstraints="NO" id="bSh-0f-Cvq">
+                        <rect key="frame" x="25" y="12" width="25" height="25"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="OMn-gz-xtE"/>
+                            <constraint firstAttribute="width" secondItem="bSh-0f-Cvq" secondAttribute="height" multiplier="1:1" id="bKS-rE-y70"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="测试" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzo-RJ-AxR">
+                        <rect key="frame" x="90" y="14" width="34" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="bSh-0f-Cvq" firstAttribute="leading" secondItem="hGa-fi-04N" secondAttribute="leading" constant="25" id="0Ta-yg-imx"/>
+                    <constraint firstItem="bzo-RJ-AxR" firstAttribute="centerY" secondItem="bSh-0f-Cvq" secondAttribute="centerY" id="5pj-lc-V6J"/>
+                    <constraint firstAttribute="centerY" secondItem="bSh-0f-Cvq" secondAttribute="centerY" id="DCo-ye-AIc"/>
+                    <constraint firstItem="bzo-RJ-AxR" firstAttribute="leading" secondItem="bSh-0f-Cvq" secondAttribute="trailing" constant="40" id="KmE-80-XYc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="categoryImageView" destination="bSh-0f-Cvq" id="BIq-2P-EWD"/>
+                <outlet property="categoryTitleLabel" destination="bzo-RJ-AxR" id="Dqq-wu-Vmo"/>
+            </connections>
+            <point key="canvasLocation" x="43" y="325.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="SidebarTest" width="25" height="25"/>
+    </resources>
+</document>

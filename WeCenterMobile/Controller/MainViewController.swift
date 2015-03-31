@@ -12,20 +12,28 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var contentViewController: MSRNavigationController! = nil
     let sidebar = MSRSidebar(width: 200, edge: .Left)
     var tableView: UITableView! = nil
+    lazy var cells: [SidebarCategoryCell] = {
+        [weak self] in
+        return map([
+            ("Home", "首页"),
+            ("Explore", "发现"),
+            ("Test", "测试"),
+            ("Test", "测试"),
+            ("Test", "测试"),
+            ("Logout", "注销")]) {
+                let cell = NSBundle.mainBundle().loadNibNamed("SidebarCategoryCell", owner: self?.tableView, options: nil).first as! SidebarCategoryCell
+                cell.update(image: UIImage(named: "Sidebar" + $0.0)!, title: $0.1)
+                return cell
+            }
+    }()
     var user: User? {
         return appDelegate.currentUser
     }
-    var titles = [
-        "首页", // Needs localization
-        "发现",
-        "测试",
-        "测试",
-        "测试"
-    ]
     override init() {
         super.init(nibName: nil, bundle: nil)
         contentViewController = MSRNavigationController(rootViewController: viewControllerAtIndex(0))
         contentViewController.view.backgroundColor = UIColor.msr_materialBrown900()
+        contentViewController.gesture.requireGestureRecognizerToFail(sidebar.screenEdgePanGestureRecognizer)
         addChildViewController(contentViewController)
     }
     required init(coder aDecoder: NSCoder) {
@@ -41,51 +49,48 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = UIColor.clearColor()
-        tableView.separatorStyle = .SingleLineEtched
+        tableView.separatorStyle = .None
         tableView.showsVerticalScrollIndicator = false
         sidebar.contentView.addSubview(tableView)
         tableView.msr_addAllEdgeAttachedConstraintsToSuperview()
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1), animated: false, scrollPosition: .None)
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 1 {
-            return titles.count
+            return cells.count - 1
         } else {
             return 1
         }
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let identifier = "\(indexPath)"
-        var cell: UITableViewCell! = tableView.dequeueReusableCellWithIdentifier(identifier) as? UITableViewCell
-        if cell == nil {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: identifier)
-            cell.textLabel!.textColor = UIColor.lightTextColor()
+        let cell: UITableViewCell
+        if indexPath.section == 0 {
+            cell = UITableViewCell()
+            cell.textLabel!.textColor = UIColor.whiteColor()
             cell.backgroundColor = UIColor.clearColor()
             cell.selectedBackgroundView = UIView(frame: CGRect(origin: CGPointZero, size: cell.bounds.size))
             cell.selectedBackgroundView.backgroundColor = UIColor(white: 0, alpha: 0.1)
-            if indexPath.section == 0 {
-                appDelegate.currentUser!.fetchAvatar(
-                    success: {
-                        let size = CGSize(width: 50, height: 50)
-                        cell.imageView!.image = appDelegate.currentUser!.avatar?.msr_imageOfSize(size)
-                        cell.imageView!.sizeToFit()
-                        cell.imageView!.layer.cornerRadius = cell.imageView!.bounds.width / 2
-                        cell.imageView!.layer.masksToBounds = true
-                        self.tableView.reloadData()
-                        tableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1), animated: false, scrollPosition: .None)
-                    },
-                    failure: nil)
-                cell.textLabel!.text = appDelegate.currentUser?.name
-            } else if indexPath.section == 1 {
-                cell.imageView!.image = UIImage.msr_circleWithColor(UIColor(white: 0, alpha: 0.2), radius: 20)
-                cell.imageView!.tintColor = UIColor.whiteColor()
-                cell.imageView!.layer.contentsScale = UIScreen.mainScreen().scale
-                cell.textLabel!.text = titles[indexPath.row]
-            } else {
-                cell.textLabel!.text = "注销"
-            }
+//            appDelegate.currentUser!.fetchAvatar(
+//                success: {
+//                    let size = CGSize(width: 50, height: 50)
+//                    cell.imageView!.image = appDelegate.currentUser!.avatar?.msr_imageOfSize(size)
+//                    cell.imageView!.sizeToFit()
+//                    cell.imageView!.layer.cornerRadius = cell.imageView!.bounds.width / 2
+//                    cell.imageView!.layer.masksToBounds = true
+//                    self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .None)
+//                },
+//                failure: nil)
+            cell.textLabel!.text = appDelegate.currentUser?.name
+        } else if indexPath.section == 1 {
+            cell = cells[indexPath.row]
+        } else {
+            cell = cells.last!
         }
         return cell
     }
