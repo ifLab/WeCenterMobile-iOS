@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		95054E221ACBC2D900C1848B /* String+MSREncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95054E211ACBC2D900C1848B /* String+MSREncoding.swift */; };
-		95054E291ACBE1E700C1848B /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 95054E251ACBE1E700C1848B /* HTMLNode.m */; };
-		95054E2A1ACBE1E700C1848B /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 95054E271ACBE1E700C1848B /* HTMLParser.m */; };
 		950FE1241A1DA2A400167D09 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 950FE1161A1DA2A400167D09 /* Configuration.plist */; };
 		950FE1251A1DA2A400167D09 /* Discovery.strings in Resources */ = {isa = PBXBuildFile; fileRef = 950FE1181A1DA2A400167D09 /* Discovery.strings */; };
 		950FE1261A1DA2A400167D09 /* User.strings in Resources */ = {isa = PBXBuildFile; fileRef = 950FE11A1A1DA2A400167D09 /* User.strings */; };
@@ -296,7 +294,6 @@
 		95C47D511ACAB7FE00A56879 /* SidebarUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C47D501ACAB7FE00A56879 /* SidebarUserCell.swift */; };
 		95C47D531ACAB81000A56879 /* SidebarUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C47D521ACAB81000A56879 /* SidebarUserCell.xib */; };
 		95C893771AC7365D00B7B385 /* MSRSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C893761AC7365D00B7B385 /* MSRSidebar.swift */; };
-		95CC53B11ACCD0E20037A603 /* HTMLNode+Swift.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CC53B01ACCD0E20037A603 /* HTMLNode+Swift.m */; };
 		95DFE8DB1AC711790027FB79 /* AnswerAdditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DFE8DA1AC711790027FB79 /* AnswerAdditionCell.swift */; };
 		95DFE8DD1AC711970027FB79 /* AnswerAdditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95DFE8DC1AC711970027FB79 /* AnswerAdditionCell.xib */; };
 		95DFE8E01AC71E810027FB79 /* AnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DFE8DE1AC71E810027FB79 /* AnswerCell.swift */; };
@@ -340,10 +337,6 @@
 
 /* Begin PBXFileReference section */
 		95054E211ACBC2D900C1848B /* String+MSREncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MSREncoding.swift"; sourceTree = "<group>"; };
-		95054E241ACBE1E700C1848B /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
-		95054E251ACBE1E700C1848B /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
-		95054E261ACBE1E700C1848B /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
-		95054E271ACBE1E700C1848B /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
 		950FE1161A1DA2A400167D09 /* Configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Configuration.plist; sourceTree = "<group>"; };
 		950FE1191A1DA2A400167D09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Discovery.strings; sourceTree = "<group>"; };
 		950FE11B1A1DA2A400167D09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/User.strings; sourceTree = "<group>"; };
@@ -809,8 +802,6 @@
 		95C47D501ACAB7FE00A56879 /* SidebarUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarUserCell.swift; sourceTree = "<group>"; };
 		95C47D521ACAB81000A56879 /* SidebarUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarUserCell.xib; sourceTree = "<group>"; };
 		95C893761AC7365D00B7B385 /* MSRSidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRSidebar.swift; sourceTree = "<group>"; };
-		95CC53B01ACCD0E20037A603 /* HTMLNode+Swift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HTMLNode+Swift.m"; sourceTree = "<group>"; };
-		95CC53B21ACCD0EF0037A603 /* HTMLNode+Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HTMLNode+Swift.h"; sourceTree = "<group>"; };
 		95DFE8DA1AC711790027FB79 /* AnswerAdditionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnswerAdditionCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		95DFE8DC1AC711970027FB79 /* AnswerAdditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerAdditionCell.xib; sourceTree = "<group>"; };
 		95DFE8DE1AC71E810027FB79 /* AnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnswerCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -880,17 +871,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		95054E231ACBE1E700C1848B /* Objective-C-HTML-Parser */ = {
-			isa = PBXGroup;
-			children = (
-				95054E241ACBE1E700C1848B /* HTMLNode.h */,
-				95054E251ACBE1E700C1848B /* HTMLNode.m */,
-				95054E261ACBE1E700C1848B /* HTMLParser.h */,
-				95054E271ACBE1E700C1848B /* HTMLParser.m */,
-			);
-			path = "Objective-C-HTML-Parser";
-			sourceTree = "<group>";
-		};
 		950FE1171A1DA2A400167D09 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
@@ -935,7 +915,6 @@
 				951FAC731ABFCEA30083E221 /* EAColourfulProgressView */,
 				951D2F691AB7F85500DCB678 /* MJRefresh */,
 				95C2E9F01AB0516800F2A326 /* Msr */,
-				95054E231ACBE1E700C1848B /* Objective-C-HTML-Parser */,
 				95E060D11AC2507300C6750C /* SVProgressHUD */,
 				95B9BDBE1ABAA27700692889 /* TLTagsContol */,
 				95E403E31ABDEC3000C18A44 /* UzysAssetsPickerController */,
@@ -966,8 +945,6 @@
 				950FE4EC1A1DA2B500167D09 /* QuestionPublishmentAction.swift */,
 				950FE4ED1A1DA2B500167D09 /* Topic.swift */,
 				959CC93F1A25BAED00F8B6CB /* User.swift */,
-				95CC53B21ACCD0EF0037A603 /* HTMLNode+Swift.h */,
-				95CC53B01ACCD0E20037A603 /* HTMLNode+Swift.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1976,7 +1953,6 @@
 				951D1F641ACD1E750072D555 /* DTReachability.m in Sources */,
 				951D2F881AB7F85500DCB678 /* MJRefreshHeader.m in Sources */,
 				951D1E7F1ACD1E4E0072D555 /* DTCoreTextConstants.m in Sources */,
-				95054E2A1ACBE1E700C1848B /* HTMLParser.m in Sources */,
 				953BF5BA1A51A6F200B804B8 /* ArticlePublishmentActionCell.swift in Sources */,
 				951D1E951ACD1E4E0072D555 /* DTImage+HTML.m in Sources */,
 				950FE7251A1DA2B500167D09 /* NetworkManager.swift in Sources */,
@@ -2064,7 +2040,6 @@
 				951D1FA41ACD26C40072D555 /* QuestionHeaderCell.swift in Sources */,
 				95C2EA3B1AB0516800F2A326 /* MSRSegmentedViewController.swift in Sources */,
 				951D1F571ACD1E750072D555 /* DTASN1BitString.m in Sources */,
-				95CC53B11ACCD0E20037A603 /* HTMLNode+Swift.m in Sources */,
 				951D1F6C1ACD1E750072D555 /* DTZipArchive.m in Sources */,
 				950FE72E1A1DA2B500167D09 /* Question.swift in Sources */,
 				951D1E9A1ACD1E4E0072D555 /* DTObjectTextAttachment.m in Sources */,
@@ -2148,7 +2123,6 @@
 				956E720C1AAFC53B00A3FD7D /* AFURLResponseSerialization.m in Sources */,
 				95C2EA2B1AB0516800F2A326 /* MSRAlertView.swift in Sources */,
 				95C2EA351AB0516800F2A326 /* MSRSegmentedControlBlockIndicator.swift in Sources */,
-				95054E291ACBE1E700C1848B /* HTMLNode.m in Sources */,
 				951D1E9E1ACD1E4E0072D555 /* DTTextBlock.m in Sources */,
 				95B9BE681ABAEF1A00692889 /* ZFTokenField.m in Sources */,
 				951D1E791ACD1E4E0072D555 /* DTAttributedTextCell.m in Sources */,
