@@ -24,29 +24,30 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4eb-7d-elG">
-                                <rect key="frame" x="50" y="10" width="247" height="17"/>
+                                <rect key="frame" x="50" y="17" width="42" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里是提问者的个人签名。" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dug-HJ-XrQ">
-                                <rect key="frame" x="50" y="27" width="247" height="17"/>
+                                <rect key="frame" x="102" y="17" width="168" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.36470588240000001" green="0.25098039220000001" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.30588235294117649" green="0.20392156862745098" blue="0.1803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Dug-HJ-XrQ" firstAttribute="leading" secondItem="dRY-Ng-QXy" secondAttribute="trailing" constant="10" id="3bB-mX-xUs"/>
-                            <constraint firstAttribute="centerY" secondItem="dRY-Ng-QXy" secondAttribute="centerY" id="AwZ-2r-3vx"/>
-                            <constraint firstItem="Dug-HJ-XrQ" firstAttribute="top" secondItem="4eb-7d-elG" secondAttribute="bottom" id="K20-H6-cB6"/>
+                            <constraint firstItem="dRY-Ng-QXy" firstAttribute="centerY" secondItem="4eb-7d-elG" secondAttribute="centerY" id="09F-zW-OKY"/>
+                            <constraint firstItem="dRY-Ng-QXy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="NjE-ws-DoJ" secondAttribute="top" constant="5" id="7R5-vY-sFQ"/>
                             <constraint firstAttribute="height" constant="50" id="UTm-4i-3Q5"/>
-                            <constraint firstAttribute="trailing" secondItem="Dug-HJ-XrQ" secondAttribute="trailing" constant="15" id="YIO-TE-Zqg"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Dug-HJ-XrQ" secondAttribute="trailing" constant="15" id="YIO-TE-Zqg"/>
                             <constraint firstItem="4eb-7d-elG" firstAttribute="leading" secondItem="dRY-Ng-QXy" secondAttribute="trailing" constant="10" id="bc4-WM-r5b"/>
+                            <constraint firstItem="Dug-HJ-XrQ" firstAttribute="centerY" secondItem="4eb-7d-elG" secondAttribute="centerY" id="cGy-yi-JZM"/>
                             <constraint firstItem="dRY-Ng-QXy" firstAttribute="leading" secondItem="NjE-ws-DoJ" secondAttribute="leading" constant="10" id="eul-2v-ByB"/>
-                            <constraint firstAttribute="trailing" secondItem="4eb-7d-elG" secondAttribute="trailing" constant="15" id="mIQ-qK-m6J"/>
-                            <constraint firstItem="4eb-7d-elG" firstAttribute="top" secondItem="dRY-Ng-QXy" secondAttribute="top" id="nOl-4c-Aun"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dRY-Ng-QXy" secondAttribute="bottom" constant="5" id="irS-tO-xTx"/>
+                            <constraint firstItem="Dug-HJ-XrQ" firstAttribute="leading" secondItem="4eb-7d-elG" secondAttribute="trailing" constant="10" id="oV9-Il-fxU"/>
+                            <constraint firstAttribute="centerY" secondItem="dRY-Ng-QXy" secondAttribute="centerY" id="tkl-v8-pmv"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -64,7 +65,7 @@
                 <outlet property="userNameLabel" destination="4eb-7d-elG" id="CAk-bw-7UX"/>
                 <outlet property="userSignatureLabel" destination="Dug-HJ-XrQ" id="aB5-lj-OuF"/>
             </connections>
-            <point key="canvasLocation" x="537" y="485"/>
+            <point key="canvasLocation" x="537" y="484.5"/>
         </tableViewCell>
     </objects>
     <resources>

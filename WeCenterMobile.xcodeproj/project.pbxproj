@@ -184,6 +184,8 @@
 		951D1FAC1ACD65610072D555 /* QuestionBodyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 951D1FAB1ACD65610072D555 /* QuestionBodyCell.xib */; };
 		951D1FAF1ACD66FE0072D555 /* QuestionTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951D1FAD1ACD66FE0072D555 /* QuestionTitleCell.swift */; };
 		951D1FB01ACD66FE0072D555 /* QuestionTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 951D1FAE1ACD66FE0072D555 /* QuestionTitleCell.xib */; };
+		951D1FB21ACE550B0072D555 /* QuestionTagListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951D1FB11ACE550B0072D555 /* QuestionTagListCell.swift */; };
+		951D1FB41ACE551A0072D555 /* QuestionTagListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 951D1FB31ACE551A0072D555 /* QuestionTagListCell.xib */; };
 		951D2F821AB7F85500DCB678 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 951D2F6A1AB7F85500DCB678 /* MJRefresh.bundle */; };
 		951D2F831AB7F85500DCB678 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D2F6D1AB7F85500DCB678 /* MJRefreshComponent.m */; };
 		951D2F841AB7F85500DCB678 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D2F6F1AB7F85500DCB678 /* MJRefreshConst.m */; };
@@ -246,7 +248,6 @@
 		95A247D41A7FDA5F006A6C84 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A247D31A7FDA5F006A6C84 /* CommentCell.swift */; };
 		95B1D9DA1ABE0CF200BEC8BD /* MediaPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B1D9D91ABE0CF200BEC8BD /* MediaPickerController.swift */; };
 		95B6E6B91A232E2400F31BE3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9588F5F41A1D9D1C001BC426 /* LaunchScreen.xib */; };
-		95B9BDC11ABAA27700692889 /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B9BDC01ABAA27700692889 /* TLTagsControl.m */; };
 		95B9BDC31ABAA67900692889 /* QuestionPublishmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95B9BDC21ABAA67900692889 /* QuestionPublishmentViewController.xib */; };
 		95B9BE681ABAEF1A00692889 /* ZFTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B9BE671ABAEF1A00692889 /* ZFTokenField.m */; };
 		95C2DF931AC02E9400E350C2 /* ImageUploadingProgressBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C2DF911AC0275100E350C2 /* ImageUploadingProgressBar.xib */; };
@@ -654,6 +655,8 @@
 		951D1FAB1ACD65610072D555 /* QuestionBodyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionBodyCell.xib; sourceTree = "<group>"; };
 		951D1FAD1ACD66FE0072D555 /* QuestionTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTitleCell.swift; sourceTree = "<group>"; };
 		951D1FAE1ACD66FE0072D555 /* QuestionTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionTitleCell.xib; sourceTree = "<group>"; };
+		951D1FB11ACE550B0072D555 /* QuestionTagListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTagListCell.swift; sourceTree = "<group>"; };
+		951D1FB31ACE551A0072D555 /* QuestionTagListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionTagListCell.xib; sourceTree = "<group>"; };
 		951D2F6A1AB7F85500DCB678 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		951D2F6B1AB7F85500DCB678 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		951D2F6C1AB7F85500DCB678 /* MJRefreshComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshComponent.h; sourceTree = "<group>"; };
@@ -752,8 +755,6 @@
 		95A247D11A7FD346006A6C84 /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		95A247D31A7FDA5F006A6C84 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		95B1D9D91ABE0CF200BEC8BD /* MediaPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPickerController.swift; sourceTree = "<group>"; };
-		95B9BDBF1ABAA27700692889 /* TLTagsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTagsControl.h; sourceTree = "<group>"; };
-		95B9BDC01ABAA27700692889 /* TLTagsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTagsControl.m; sourceTree = "<group>"; };
 		95B9BDC21ABAA67900692889 /* QuestionPublishmentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionPublishmentViewController.xib; sourceTree = "<group>"; };
 		95B9BE661ABAEF1A00692889 /* ZFTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFTokenField.h; sourceTree = "<group>"; };
 		95B9BE671ABAEF1A00692889 /* ZFTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFTokenField.m; sourceTree = "<group>"; };
@@ -916,7 +917,6 @@
 				951D2F691AB7F85500DCB678 /* MJRefresh */,
 				95C2E9F01AB0516800F2A326 /* Msr */,
 				95E060D11AC2507300C6750C /* SVProgressHUD */,
-				95B9BDBE1ABAA27700692889 /* TLTagsContol */,
 				95E403E31ABDEC3000C18A44 /* UzysAssetsPickerController */,
 				95B9BE651ABAEF1A00692889 /* ZFTokenField */,
 			);
@@ -988,6 +988,8 @@
 				951D1FA71ACD27480072D555 /* QuestionFooterCell.xib */,
 				951D1FA31ACD26C40072D555 /* QuestionHeaderCell.swift */,
 				951D1FA91ACD276E0072D555 /* QuestionHeaderCell.xib */,
+				951D1FB11ACE550B0072D555 /* QuestionTagListCell.swift */,
+				951D1FB31ACE551A0072D555 /* QuestionTagListCell.xib */,
 				951D1FAD1ACD66FE0072D555 /* QuestionTitleCell.swift */,
 				951D1FAE1ACD66FE0072D555 /* QuestionTitleCell.xib */,
 				950FE4FB1A1DA2B500167D09 /* RectangleButton.swift */,
@@ -1598,16 +1600,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		95B9BDBE1ABAA27700692889 /* TLTagsContol */ = {
-			isa = PBXGroup;
-			children = (
-				95B9BDBF1ABAA27700692889 /* TLTagsControl.h */,
-				95B9BDC01ABAA27700692889 /* TLTagsControl.m */,
-			);
-			name = TLTagsContol;
-			path = TLTagsControl/TLTagsContol;
-			sourceTree = "<group>";
-		};
 		95B9BE651ABAEF1A00692889 /* ZFTokenField */ = {
 			isa = PBXGroup;
 			children = (
@@ -1833,6 +1825,7 @@
 				951D2F821AB7F85500DCB678 /* MJRefresh.bundle in Resources */,
 				951D1E741ACD1E4E0072D555 /* default.css in Resources */,
 				951D2F8F1AB7F8C000DCB678 /* Images.xcassets in Resources */,
+				951D1FB41ACE551A0072D555 /* QuestionTagListCell.xib in Resources */,
 				9575B17F1A514C3100EFFFB7 /* QuestionPublishmentActionCell.xib in Resources */,
 				95B9BDC31ABAA67900692889 /* QuestionPublishmentViewController.xib in Resources */,
 				951D1FA81ACD27480072D555 /* QuestionFooterCell.xib in Resources */,
@@ -1987,6 +1980,7 @@
 				951D1F6E1ACD1E750072D555 /* DTZipArchiveNode.m in Sources */,
 				950FE5111A1DA2B500167D09 /* WelcomeViewController.swift in Sources */,
 				951D1E841ACD1E4E0072D555 /* DTCoreTextLayouter.m in Sources */,
+				951D1FB21ACE550B0072D555 /* QuestionTagListCell.swift in Sources */,
 				95E404051ABDEC3000C18A44 /* UzysGroupPickerView.m in Sources */,
 				951D1F801ACD1E750072D555 /* DTSidePanelControllerSegue.m in Sources */,
 				951D1EAD1ACD1E4E0072D555 /* NSString+CSS.m in Sources */,
@@ -2057,7 +2051,6 @@
 				95F380BB1AB269690070A7FB /* FeaturedObjectListViewController.swift in Sources */,
 				95C2EA411AB0516800F2A326 /* UIImage+MSRResize.swift in Sources */,
 				95E404021ABDEC3000C18A44 /* UzysAssetsPickerController.m in Sources */,
-				95B9BDC11ABAA27700692889 /* TLTagsControl.m in Sources */,
 				951D1E9C1ACD1E4E0072D555 /* DTTextAttachment.m in Sources */,
 				951D1F791ACD1E750072D555 /* DTActivityTitleView.m in Sources */,
 				950FE7411A1DA2B500167D09 /* UserCountView.swift in Sources */,

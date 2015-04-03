@@ -4,9 +4,6 @@
 [submodule "WeCenterMobile/External/MJRefresh"]
 	path = WeCenterMobile/External/MJRefresh
 	url = https://github.com/CoderMJLee/MJRefresh.git
-[submodule "WeCenterMobile/External/TLTagsControl"]
-	path = WeCenterMobile/External/TLTagsControl
-	url = https://github.com/ali312/TLTagsControl.git
 [submodule "WeCenterMobile/External/ZFTokenField"]
 	path = WeCenterMobile/External/ZFTokenField
 	url = https://github.com/Msr-B/ZFTokenField

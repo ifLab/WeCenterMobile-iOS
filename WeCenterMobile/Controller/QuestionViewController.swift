@@ -29,6 +29,10 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         [weak self] in
         return NSBundle.mainBundle().loadNibNamed("QuestionTitleCell", owner: self?.tableView, options: nil).first as! QuestionTitleCell
     }()
+    lazy var questionTagListCell: QuestionTagListCell = {
+        [weak self] in
+        return NSBundle.mainBundle().loadNibNamed("QuestionTagListCell", owner: self?.tableView, options: nil).first as! QuestionTagListCell
+    }()
     lazy var questionBodyCell: QuestionBodyCell = {
         [weak self] in
         let c = NSBundle.mainBundle().loadNibNamed("QuestionBodyCell", owner: self?.tableView, options: nil).first as! QuestionBodyCell
@@ -61,7 +65,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     
     override func loadView() {
         super.loadView()
-        tableView.backgroundColor = UIColor.msr_materialBrown900()
+        view.backgroundColor = UIColor.msr_materialBrown900()
         tableView.separatorStyle = .None
         tableView.registerNib(UINib(nibName: answerCellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: answerCellIdentifier)
         title = "问题详情" // Needs localization
@@ -100,11 +104,11 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 6
+        return 7
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return [1, 1, 1, 1, 1, answers.count][section]
+        return [1, 1, 1, 1, 1, 1, answers.count][section]
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -116,12 +120,15 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
             questionTitleCell.update(question: question)
             return questionTitleCell
         case 2:
+            questionTagListCell.update(question: question)
+            return questionTagListCell
+        case 3:
             questionBodyCell.update(question: question)
             return questionBodyCell
-        case 3:
+        case 4:
             questionFooterCell.update(question: question)
             return questionFooterCell
-        case 4:
+        case 5:
             return answerAdditionCell
         default:
             let answerCell = tableView.dequeueReusableCellWithIdentifier(answerCellIdentifier, forIndexPath: indexPath) as! AnswerCell
@@ -149,12 +156,15 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
             questionTitleCell.update(question: question)
             return questionTitleCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
         case 2:
+            questionTagListCell.update(question: question)
+            return questionTagListCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+        case 3:
             questionBodyCell.update(question: question)
             return questionBodyCell.requiredRowHeightInTableView(tableView)
-        case 3:
+        case 4:
             questionFooterCell.update(question: question)
             return questionFooterCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
-        case 4:
+        case 5:
             return answerAdditionCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
         default:
             _Static.answerCell.update(answer: answers[indexPath.row])

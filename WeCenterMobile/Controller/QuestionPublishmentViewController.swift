@@ -401,7 +401,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                                     topics.insert(topic)
                                 }
                                 question.topics = topics
-                                var body = self_.titleField.text ?? ""
+                                var body = self_.bodyField.text ?? ""
                                 for id in self_.attachIDs {
                                     body += "\n[attach]\(id)[/attach]"
                                 }
