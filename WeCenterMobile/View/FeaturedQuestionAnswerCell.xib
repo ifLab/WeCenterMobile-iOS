@@ -75,6 +75,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rQX-8G-30s">
                                 <rect key="frame" x="0.0" y="0.0" width="347" height="76"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eII-aS-rNb">
+                                        <rect key="frame" x="0.0" y="0.0" width="347" height="76"/>
+                                        <color key="backgroundColor" red="0.42745098039215684" green="0.29803921568627451" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" red="0.49803921568627452" green="0.49803921568627452" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里是问题标题，可能会很长，但最多显示两行。" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DlJ-Dm-MLo" customClass="MSRMultilineLabel" customModule="WeCenterMobile" customModuleProvider="target">
                                         <rect key="frame" x="48" y="32" width="289" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -106,23 +113,27 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.42745098039215684" green="0.29803921568627451" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="SwL-3Y-lTl" firstAttribute="top" secondItem="fc8-Fo-BJf" secondAttribute="top" id="3Jl-yk-cDQ"/>
+                                    <constraint firstItem="eII-aS-rNb" firstAttribute="top" secondItem="rQX-8G-30s" secondAttribute="top" id="6B5-Q1-oqC"/>
                                     <constraint firstItem="fc8-Fo-BJf" firstAttribute="top" secondItem="rQX-8G-30s" secondAttribute="top" constant="10" id="7MY-16-9e5"/>
+                                    <constraint firstAttribute="bottom" secondItem="eII-aS-rNb" secondAttribute="bottom" id="A7a-2y-8Ar"/>
                                     <constraint firstAttribute="trailing" secondItem="EH3-fL-TvU" secondAttribute="trailing" id="BIT-hE-Woi"/>
                                     <constraint firstItem="SwL-3Y-lTl" firstAttribute="leading" secondItem="fc8-Fo-BJf" secondAttribute="trailing" constant="8" id="FWD-Lq-7HS"/>
                                     <constraint firstItem="SwL-3Y-lTl" firstAttribute="leading" secondItem="DlJ-Dm-MLo" secondAttribute="leading" id="M9A-SA-9lw"/>
                                     <constraint firstItem="fc8-Fo-BJf" firstAttribute="leading" secondItem="rQX-8G-30s" secondAttribute="leading" constant="10" id="PFG-PQ-DCt"/>
                                     <constraint firstAttribute="trailing" secondItem="DlJ-Dm-MLo" secondAttribute="trailing" constant="10" id="VXB-8a-PUr"/>
+                                    <constraint firstItem="eII-aS-rNb" firstAttribute="leading" secondItem="rQX-8G-30s" secondAttribute="leading" id="eCf-FP-C6d"/>
                                     <constraint firstItem="SwL-3Y-lTl" firstAttribute="top" secondItem="EH3-fL-TvU" secondAttribute="top" id="f3v-K6-T90"/>
                                     <constraint firstItem="DlJ-Dm-MLo" firstAttribute="top" secondItem="SwL-3Y-lTl" secondAttribute="bottom" constant="5" id="h55-YS-NnG"/>
+                                    <constraint firstAttribute="trailing" secondItem="eII-aS-rNb" secondAttribute="trailing" id="qW3-zA-HOo"/>
                                     <constraint firstItem="SwL-3Y-lTl" firstAttribute="bottom" secondItem="EH3-fL-TvU" secondAttribute="bottom" id="uhv-oh-QPz"/>
                                     <constraint firstAttribute="bottom" secondItem="DlJ-Dm-MLo" secondAttribute="bottom" constant="10" id="zWp-rL-NPo"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="p4l-Jg-hoE" firstAttribute="top" secondItem="rQX-8G-30s" secondAttribute="bottom" id="2b2-zX-SSW"/>
                             <constraint firstItem="rQX-8G-30s" firstAttribute="leading" secondItem="UCW-5c-u4B" secondAttribute="leading" id="3Ms-pO-S9L"/>
@@ -134,6 +145,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="UCW-5c-u4B" firstAttribute="top" secondItem="t2S-gB-fQt" secondAttribute="top" constant="2" id="R8B-HD-h4i"/>
                     <constraint firstAttribute="bottom" secondItem="UCW-5c-u4B" secondAttribute="bottom" constant="2" id="pBH-au-7ng"/>
@@ -148,6 +160,7 @@
                 <outlet property="answerUserAvatarView" destination="9iG-Si-VCk" id="zrP-G8-pOF"/>
                 <outlet property="answerUserNameLabel" destination="YZS-rd-0VC" id="5vY-Pb-3uq"/>
                 <outlet property="innerView" destination="UCW-5c-u4B" id="Qcn-h0-xMO"/>
+                <outlet property="questionButton" destination="eII-aS-rNb" id="zah-We-hDy"/>
                 <outlet property="questionTagLabel" destination="EH3-fL-TvU" id="mZh-l3-efd"/>
                 <outlet property="questionTitleLabel" destination="DlJ-Dm-MLo" id="Anp-Mn-T9p"/>
                 <outlet property="questionUserAvatarView" destination="fc8-Fo-BJf" id="olz-OT-Ufb"/>

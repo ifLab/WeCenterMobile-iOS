@@ -73,6 +73,9 @@ class FeaturedObjectListViewController: UITableViewController {
             index += o.answers.count == 0 ? 1 : 0
         }
         let cell = tableView.dequeueReusableCellWithIdentifier(identifiers[index], forIndexPath: indexPath) as! FeaturedObjectCell
+        if let cell = cell as? FeaturedQuestionAnswerCell {
+            cell.questionButton.addTarget(self, action: "pushQuestionViewController:", forControlEvents: .TouchUpInside)
+        }
         cell.update(object: object)
         return cell
     }
@@ -123,6 +126,11 @@ class FeaturedObjectListViewController: UITableViewController {
             break
         default:
             break
+        }
+    }
+    func pushQuestionViewController(sender: UIButton) {
+        if let question = sender.msr_userInfo as? Question {
+            msr_navigationController!.pushViewController(QuestionViewController(question: question), animated: true)
         }
     }
     func refresh() {

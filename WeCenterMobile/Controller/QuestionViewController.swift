@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuestionViewController: UITableViewController {
+class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, QuestionBodyCellLinkButtonDelegate {
     
     var question: Question {
         didSet {
@@ -21,9 +21,29 @@ class QuestionViewController: UITableViewController {
     let answerCellIdentifier = "AnswerCell"
     let answerCellNibName = "AnswerCell"
     
-    lazy var questionDetailCell: QuestionDetailCell = {
+    lazy var questionHeaderCell: QuestionHeaderCell = {
         [weak self] in
-        return NSBundle.mainBundle().loadNibNamed("QuestionDetailCell", owner: self?.tableView, options: nil).first as! QuestionDetailCell
+        return NSBundle.mainBundle().loadNibNamed("QuestionHeaderCell", owner: self?.tableView, options: nil).first as! QuestionHeaderCell
+    }()
+    lazy var questionTitleCell: QuestionTitleCell = {
+        [weak self] in
+        return NSBundle.mainBundle().loadNibNamed("QuestionTitleCell", owner: self?.tableView, options: nil).first as! QuestionTitleCell
+    }()
+    lazy var questionBodyCell: QuestionBodyCell = {
+        [weak self] in
+        let c = NSBundle.mainBundle().loadNibNamed("QuestionBodyCell", owner: self?.tableView, options: nil).first as! QuestionBodyCell
+        c.lazyImageViewDelegate = self
+        c.linkButtonDelegate = self
+        NSNotificationCenter.defaultCenter().addObserverForName(DTAttributedTextContentViewDidFinishLayoutNotification, object: c.attributedTextContextView, queue: NSOperationQueue.mainQueue()) {
+            [weak self] notification in
+            self?.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .None)
+            return
+        }
+        return c
+    }()
+    lazy var questionFooterCell: QuestionFooterCell = {
+        [weak self] in
+        return NSBundle.mainBundle().loadNibNamed("QuestionFooterCell", owner: self?.tableView, options: nil).first as! QuestionFooterCell
     }()
     lazy var answerAdditionCell: AnswerAdditionCell = {
         [weak self] in
@@ -80,20 +100,30 @@ class QuestionViewController: UITableViewController {
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 6
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return [1, 1, answers.count][section]
+        return [1, 1, 1, 1, 1, answers.count][section]
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            questionDetailCell.update(object: question)
-            return questionDetailCell
-        } else if indexPath.section == 1 {
+        switch indexPath.section {
+        case 0:
+            questionHeaderCell.update(user: question.user)
+            return questionHeaderCell
+        case 1:
+            questionTitleCell.update(question: question)
+            return questionTitleCell
+        case 2:
+            questionBodyCell.update(question: question)
+            return questionBodyCell
+        case 3:
+            questionFooterCell.update(question: question)
+            return questionFooterCell
+        case 4:
             return answerAdditionCell
-        } else {
+        default:
             let answerCell = tableView.dequeueReusableCellWithIdentifier(answerCellIdentifier, forIndexPath: indexPath) as! AnswerCell
             answerCell.update(answer: answers[indexPath.row])
             return answerCell
@@ -111,17 +141,69 @@ class QuestionViewController: UITableViewController {
                 _Static.answerCell = NSBundle.mainBundle().loadNibNamed(self_.answerCellNibName, owner: self_.tableView, options: nil).first as! AnswerCell
             }
         }
-        var cell: UITableViewCell!
-        if indexPath.section == 0 {
-            questionDetailCell.update(object: question)
-            cell = questionDetailCell
-        } else if indexPath.section == 1 {
-            cell = answerAdditionCell
-        } else {
+        switch indexPath.section {
+        case 0:
+            questionHeaderCell.update(user: question.user)
+            return questionHeaderCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+        case 1:
+            questionTitleCell.update(question: question)
+            return questionTitleCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+        case 2:
+            questionBodyCell.update(question: question)
+            return questionBodyCell.requiredRowHeightInTableView(tableView)
+        case 3:
+            questionFooterCell.update(question: question)
+            return questionFooterCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+        case 4:
+            return answerAdditionCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+        default:
             _Static.answerCell.update(answer: answers[indexPath.row])
-            cell = _Static.answerCell
+            return _Static.answerCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
         }
-        return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1
+    }
+    
+    func lazyImageView(lazyImageView: DTLazyImageView!, didChangeImageSize size: CGSize) {
+        let predicate = NSPredicate(format: "contentURL == %@", lazyImageView.url)
+        let attachments = questionBodyCell.attributedTextContextView.layoutFrame.textAttachmentsWithPredicate(predicate) as? [DTImageTextAttachment] ?? []
+        for attachment in attachments {
+            attachment.originalSize = size
+            let v = questionBodyCell.attributedTextContextView
+            let maxWidth = v.bounds.width - v.edgeInsets.left - v.edgeInsets.right
+            if size.width > maxWidth {
+                let scale = maxWidth / size.width
+                attachment.displaySize = CGSize(width: size.width * scale, height: size.height * scale)
+            }
+        }
+        questionBodyCell.attributedTextContextView.layouter = nil
+        questionBodyCell.attributedTextContextView.relayoutText()
+    }
+    
+    func didLongPressLinkButton(linkButton: DTLinkButton) {
+        presentLinkAlertControllerWithURL(linkButton.URL)
+    }
+    
+    func didPressLinkButton(linkButton: DTLinkButton) {
+        presentLinkAlertControllerWithURL(linkButton.URL)
+    }
+    
+    func presentLinkAlertControllerWithURL(URL: NSURL) {
+        let ac = UIAlertController(title: "链接", message: URL.absoluteString, preferredStyle: .ActionSheet)
+        ac.addAction(UIAlertAction(title: "跳转到 Safari", style: .Default) {
+            action in
+            UIApplication.sharedApplication().openURL(URL)
+        })
+        ac.addAction(UIAlertAction(title: "复制到剪贴板", style: .Default) {
+            [weak self] action in
+            UIPasteboard.generalPasteboard().string = URL.absoluteString
+            let ac = UIAlertController(title: "已复制", message: nil, preferredStyle: .Alert)
+            self?.presentViewController(ac, animated: true, completion: {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC / 2)), dispatch_get_main_queue()) {
+                    ac.dismissViewControllerAnimated(true, completion: nil)
+                }
+            })
+        })
+        ac.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        presentViewController(ac, animated: true, completion: nil)
     }
     
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {

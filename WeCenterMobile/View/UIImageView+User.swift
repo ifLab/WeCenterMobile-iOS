@@ -28,11 +28,7 @@ extension UIImageView {
                         }
                     }
                 },
-                failure: {
-                    error in
-                    println(__FILE__, __FUNCTION__, error)
-                    return
-            })
+                failure: nil)
         }
     }
     

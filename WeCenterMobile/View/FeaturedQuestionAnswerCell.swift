@@ -19,6 +19,7 @@ class FeaturedQuestionAnswerCell: FeaturedObjectCell {
     @IBOutlet weak var innerView: UIView!
     @IBOutlet weak var questionTagLabel: UILabel!
     @IBOutlet weak var answerTagLabel: UILabel!
+    @IBOutlet weak var questionButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,6 +39,8 @@ class FeaturedQuestionAnswerCell: FeaturedObjectCell {
         answerTagLabel.layer.shadowOpacity = 1
         answerTagLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
         answerTagLabel.layer.shadowRadius = 1
+        questionButton.msr_setBackgroundImageWithColor(questionButton.backgroundColor!)
+        questionButton.backgroundColor = UIColor.clearColor()
     }
     
     override func update(#object: FeaturedObject) {
@@ -54,6 +57,7 @@ class FeaturedQuestionAnswerCell: FeaturedObjectCell {
         answerUserAvatarView.wc_updateWithUser(answer?.user)
         answerUserNameLabel.text = answer?.user?.name ?? "匿名用户"
         answerBodyLabel.text = answer?.body ?? ""
+        questionButton.msr_userInfo = question
         setNeedsLayout()
         layoutIfNeeded()
     }

@@ -22,3 +22,9 @@
 [submodule "WeCenterMobile/External/AFNetworking"]
 	path = WeCenterMobile/External/AFNetworking
 	url = https://github.com/AFNetworking/AFNetworking.git
+[submodule "WeCenterMobile/External/Objective-C-HTML-Parser"]
+	path = WeCenterMobile/External/Objective-C-HTML-Parser
+	url = https://github.com/zootreeves/Objective-C-HMTL-Parser.git
+[submodule "WeCenterMobile/External/DTCoreText"]
+	path = WeCenterMobile/External/DTCoreText
+	url = https://github.com/Cocoanetics/DTCoreText.git

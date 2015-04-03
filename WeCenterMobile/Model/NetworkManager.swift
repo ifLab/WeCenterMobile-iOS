@@ -95,7 +95,7 @@ class NetworkManager: NSObject {
                 domain: website,
                 code: self.internalErrorCode.integerValue,
                 userInfo: userInfo)
-            NSLog("\(operation.response.URL!)\n\(error)\n\(NSString(data: data, encoding: NSUTF8StringEncoding)))")
+//            NSLog("\(operation.response.URL!)\n\(error)\n\(NSString(data: data, encoding: NSUTF8StringEncoding)))")
             failure?(error)
             return
         }
