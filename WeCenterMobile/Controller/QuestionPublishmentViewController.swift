@@ -335,6 +335,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
     
     func removeDataAtIndex(index: Int) {
         images.removeAtIndex(index)
+        attachIDs.removeAtIndex(index)
         uploadingProgresses.removeAtIndex(index)
         operations[index].cancel()
         operations.removeAtIndex(index)
