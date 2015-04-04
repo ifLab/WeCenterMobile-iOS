@@ -113,7 +113,7 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         button.showsTouchWhenHighlighted = true
         button.minimumHitSize = CGSize(width: 44, height: 44)
         button.addTarget(self, action: "didPressLinkButton:", forControlEvents: .TouchUpInside)
-        button.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "didLongPressLinkButton:"))
+        button.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "handleLongPressGesture:"))
         return button
     }
     
@@ -160,6 +160,12 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     
     func pushCommentListViewController() {
         msr_navigationController!.pushViewController(AnswerCommentListViewController(answer: answer), animated: true)
+    }
+    
+    func handleLongPressGesture(recoginizer: UILongPressGestureRecognizer) {
+        if recoginizer.state == .Began {
+            didLongPressLinkButton(recoginizer.view as! DTLinkButton)
+        }
     }
     
     
