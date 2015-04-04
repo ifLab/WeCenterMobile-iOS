@@ -9,23 +9,16 @@
 import UIKit
 
 class AnswerCommentListViewController: UITableViewController {
-    private var answer: Answer! {
-        didSet {
-            if answer != nil {
-                let defaultDate = NSDate(timeIntervalSince1970: 0)
-                comments = sorted(answer.comments) { ($0.date ?? defaultDate).timeIntervalSince1970 >= ($1.date ?? defaultDate).timeIntervalSince1970 }
-            }
-        }
-    }
-    var comments: [AnswerComment] = []
+    private var answer: Answer
+    var comments = [AnswerComment]()
     let cellReuseIdentifier = "CommentCell"
     let cellNibName = "CommentCell"
     var keyboardBar: MSRKeyboardBar!
     let textField = UITextField()
     let publishButton = UIButton()
     init(answer: Answer) {
-        super.init(style: .Plain)
         self.answer = answer
+        super.init(style: .Plain)
     }
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -37,6 +30,8 @@ class AnswerCommentListViewController: UITableViewController {
         refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         tableView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         tableView.separatorStyle = .None
+        tableView.contentInset.bottom = 44
+        tableView.keyboardDismissMode = .OnDrag
         title = "评论"
         let views = ["t": textField, "b": publishButton]
         for (k, v) in views {
@@ -120,18 +115,28 @@ class AnswerCommentListViewController: UITableViewController {
         presentViewController(alertController, animated: true, completion: nil)
     }
     internal func publishComment() {
-        if answer != nil && !(refreshControl?.refreshing ?? true) {
-            AnswerComment.post(
-                answerID: answer.id,
-                body: textField.text,
-                atUserName: nil,
+        if !(refreshControl?.refreshing ?? true) {
+            textField.resignFirstResponder()
+            let manager = DataManager.temporaryManager!
+            let comment = manager.create("AnswerComment") as! AnswerComment
+            comment.answer = (manager.create("Answer") as! Answer)
+            comment.answer!.id = answer.id
+            comment.body = textField.text
+            SVProgressHUD.showWithMaskType(.Gradient)
+            comment.post(
                 success: {
                     [weak self] in
+                    SVProgressHUD.dismiss()
+                    SVProgressHUD.showSuccessWithStatus("已发布", maskType: .Gradient)
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC / 2)), dispatch_get_main_queue()) {
+                        SVProgressHUD.dismiss()
+                    }
+                    self?.textField.text = ""
                     self?.refreshControl?.beginRefreshing()
                     self?.refresh()
-                },
-                failure: {
+                }, failure: {
                     [weak self] error in
+                    SVProgressHUD.dismiss()
                     let ac = UIAlertController(title: (error.userInfo?[NSLocalizedDescriptionKey] as? String) ?? "",
                         message: nil,
                         preferredStyle: .Alert)
@@ -143,7 +148,8 @@ class AnswerCommentListViewController: UITableViewController {
     func refresh() {
         answer.fetchComments(
             success: {
-                [weak self] in
+                [weak self] comments in
+                self?.comments = comments
                 self?.tableView.reloadData()
                 self?.refreshControl!.endRefreshing()
             },

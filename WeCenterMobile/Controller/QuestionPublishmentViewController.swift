@@ -412,10 +412,10 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                                     success: {
                                         question in
                                         SVProgressHUD.dismiss()
-                                        let ac = UIAlertController(title: "发布成功", message: nil, preferredStyle: .Alert)
-                                        self_.presentViewController(ac, animated: true, completion: nil)
-                                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC)), dispatch_get_main_queue()) {
-                                            self_.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+                                        SVProgressHUD.showSuccessWithStatus("已发布", maskType: .Gradient)
+                                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC / 2)), dispatch_get_main_queue()) {
+                                            SVProgressHUD.dismiss()
+                                            self_.dismissViewControllerAnimated(true, completion: nil)
                                         }
                                     },
                                     failure: {

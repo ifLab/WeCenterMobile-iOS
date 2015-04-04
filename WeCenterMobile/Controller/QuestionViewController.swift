@@ -206,12 +206,10 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         ac.addAction(UIAlertAction(title: "复制到剪贴板", style: .Default) {
             [weak self] action in
             UIPasteboard.generalPasteboard().string = URL.absoluteString
-            let ac = UIAlertController(title: "已复制", message: nil, preferredStyle: .Alert)
-            self?.presentViewController(ac, animated: true, completion: {
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC / 2)), dispatch_get_main_queue()) {
-                    ac.dismissViewControllerAnimated(true, completion: nil)
-                }
-            })
+            SVProgressHUD.showSuccessWithStatus("已复制", maskType: .Gradient)
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC / 2)), dispatch_get_main_queue()) {
+                SVProgressHUD.dismiss()
+            }
         })
         ac.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
         presentViewController(ac, animated: true, completion: nil)

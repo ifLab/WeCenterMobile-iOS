@@ -19,10 +19,10 @@ class AnswerComment: NSManagedObject {
     @NSManaged var atUser: User?
     @NSManaged var user: User?
     
-    class func post(#answerID: NSNumber, body: String, atUserName: String?, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func post(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.request("Post Answer Comment",
-            GETParameters: ["answer_id": answerID],
-            POSTParameters: ["message": body],
+            GETParameters: ["answer_id": answer!.id],
+            POSTParameters: ["message": body!],
             constructingBodyWithBlock: nil,
             success: {
                 data in

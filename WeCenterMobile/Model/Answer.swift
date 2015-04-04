@@ -57,7 +57,7 @@ class Answer: NSManagedObject {
             failure: failure)
     }
     
-    func fetchComments(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchComments(#success: (([AnswerComment]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("Answer Comment List",
             parameters: [
                 "id": id
@@ -68,6 +68,7 @@ class Answer: NSManagedObject {
                 if data is [NSDictionary] {
                     commentsData = data as! [NSDictionary]
                 }
+                var comments = [AnswerComment]()
                 for commentData in commentsData {
                     let commentID = Int(msr_object: commentData["id"])!
                     let comment = DataManager.defaultManager!.autoGenerate("AnswerComment", ID: commentID) as! AnswerComment
@@ -91,8 +92,9 @@ class Answer: NSManagedObject {
                         comment.atUser!.name = (commentData["at_user"]?["user_name"] as! String)
                     }
                     self.comments.insert(comment)
+                    comments.append(comment)
                 }
-                success?()
+                success?(comments)
             },
             failure: failure)
     }
