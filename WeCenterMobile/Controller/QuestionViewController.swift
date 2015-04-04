@@ -132,6 +132,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
             return answerAdditionCell
         default:
             let answerCell = tableView.dequeueReusableCellWithIdentifier(answerCellIdentifier, forIndexPath: indexPath) as! AnswerCell
+            answerCell.answerButton.addTarget(self, action: "pushAnswerViewController:", forControlEvents: .TouchUpInside)
             answerCell.update(answer: answers[indexPath.row])
             return answerCell
         }
@@ -214,6 +215,12 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         })
         ac.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
         presentViewController(ac, animated: true, completion: nil)
+    }
+    
+    func pushAnswerViewController(answerButton: UIButton) {
+        if let answer = answerButton.msr_userInfo as? Answer {
+            msr_navigationController!.pushViewController(AnswerViewController(answer: answer), animated: true)
+        }
     }
     
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {

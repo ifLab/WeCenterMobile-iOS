@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <visualEffectView opaque="NO" contentMode="scaleToFill" id="12f-U1-oc0" customClass="AnswerBottomBar" customModule="WeCenterMobile" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ztf-ia-SrY">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IyO-g9-gaH">
+                        <rect key="frame" x="160" y="0.0" width="160" height="50"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <state key="normal" image="Conversation-Line">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVB-xu-sLs">
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="50"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <state key="normal" image="Action-Line"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="IyO-g9-gaH" firstAttribute="leading" secondItem="EVB-xu-sLs" secondAttribute="trailing" id="4Pn-af-faM"/>
+                    <constraint firstAttribute="bottom" secondItem="IyO-g9-gaH" secondAttribute="bottom" id="D56-uP-6T3"/>
+                    <constraint firstItem="IyO-g9-gaH" firstAttribute="width" secondItem="EVB-xu-sLs" secondAttribute="width" id="FiY-62-Wo0"/>
+                    <constraint firstAttribute="trailing" secondItem="IyO-g9-gaH" secondAttribute="trailing" id="H3g-l5-CbK"/>
+                    <constraint firstItem="EVB-xu-sLs" firstAttribute="top" secondItem="Ztf-ia-SrY" secondAttribute="top" id="Qei-rs-4eP"/>
+                    <constraint firstItem="IyO-g9-gaH" firstAttribute="top" secondItem="Ztf-ia-SrY" secondAttribute="top" id="Rle-m0-Rnu"/>
+                    <constraint firstItem="EVB-xu-sLs" firstAttribute="leading" secondItem="Ztf-ia-SrY" secondAttribute="leading" id="ZDY-YM-xOr"/>
+                    <constraint firstAttribute="bottom" secondItem="EVB-xu-sLs" secondAttribute="bottom" id="lCa-Hh-DSR"/>
+                </constraints>
+            </view>
+            <blurEffect style="dark"/>
+            <connections>
+                <outlet property="commentButton" destination="IyO-g9-gaH" id="CTc-af-PvS"/>
+                <outlet property="shareButton" destination="EVB-xu-sLs" id="dNd-iV-Oa9"/>
+            </connections>
+            <point key="canvasLocation" x="171" y="304"/>
+        </visualEffectView>
+    </objects>
+    <resources>
+        <image name="Action-Line" width="22" height="29"/>
+        <image name="Conversation-Line" width="30" height="24"/>
+    </resources>
+</document>

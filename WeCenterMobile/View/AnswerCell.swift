@@ -15,18 +15,23 @@ class AnswerCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var answerBodyLabel: MSRMultilineLabel!
     @IBOutlet weak var userAvatarView: UIImageView!
+    @IBOutlet weak var answerAgreementCountCell: UILabel!
+    @IBOutlet weak var answerButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         userAvatarView.layer.masksToBounds = true
         userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
+        answerButton.msr_setBackgroundImageWithColor(answerButton.backgroundColor!)
+        answerButton.backgroundColor = UIColor.clearColor()
     }
     
     func update(#answer: Answer) {
         self.answer = answer
         userNameLabel.text = answer.user?.name ?? "匿名用户"
         answerBodyLabel.text = answer.body?.stringByReplacingOccurrencesOfString("\n", withString: "", options: NSStringCompareOptions.allZeros, range: nil)
+        answerAgreementCountCell.text = "\(answer.agreementCount ?? 0)"
+        answerButton.msr_userInfo = answer
         userAvatarView.wc_updateWithUser(answer.user)
         setNeedsLayout()
         layoutIfNeeded()

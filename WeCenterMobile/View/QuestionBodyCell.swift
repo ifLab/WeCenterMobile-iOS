@@ -35,7 +35,7 @@ class QuestionBodyCell: DTAttributedTextCell, DTAttributedTextContentViewDelegat
                 DTDefaultTextColor: UIColor.whiteColor(),
                 DTDefaultLineHeightMultiplier: 1.5,
                 DTDefaultLinkColor: UIColor.msr_materialPurple100(),
-                DTDefaultLinkDecoration: true,
+                DTDefaultLinkDecoration: true
             ])
         let string = NSMutableAttributedString(attributedString: attributedString)
         var url: NSURL?

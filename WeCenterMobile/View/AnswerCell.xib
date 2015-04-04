@@ -17,6 +17,13 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GSX-kv-RA3">
                         <rect key="frame" x="4" y="2" width="312" height="80"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVP-6o-5HU">
+                                <rect key="frame" x="0.0" y="0.0" width="312" height="80"/>
+                                <color key="backgroundColor" red="0.47450980392156861" green="0.33333333333333331" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1F-v6-mj6">
                                 <rect key="frame" x="48" y="10" width="42" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -38,16 +45,31 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhb-FR-cg4">
+                                <rect key="frame" x="10" y="45" width="30" height="12"/>
+                                <color key="backgroundColor" red="0.55294117647058827" green="0.43137254901960786" blue="0.38823529411764707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.47450980392156861" green="0.33333333333333331" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="a1F-v6-mj6" firstAttribute="leading" secondItem="FFj-ii-RC7" secondAttribute="trailing" constant="8" id="1w4-Vl-VGY"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Mtw-Xp-N6Z" secondAttribute="bottom" constant="10" id="DHk-La-ach"/>
                             <constraint firstAttribute="trailing" secondItem="Mtw-Xp-N6Z" secondAttribute="trailing" constant="10" id="GUi-zH-ZLK"/>
+                            <constraint firstItem="tVP-6o-5HU" firstAttribute="top" secondItem="GSX-kv-RA3" secondAttribute="top" id="NG1-8V-VHl"/>
+                            <constraint firstItem="FFj-ii-RC7" firstAttribute="leading" secondItem="xhb-FR-cg4" secondAttribute="leading" id="RtJ-sP-RnR"/>
+                            <constraint firstItem="tVP-6o-5HU" firstAttribute="leading" secondItem="GSX-kv-RA3" secondAttribute="leading" id="UPf-9H-k3O"/>
                             <constraint firstItem="FFj-ii-RC7" firstAttribute="top" secondItem="GSX-kv-RA3" secondAttribute="top" constant="10" id="VTX-RJ-gKe"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xhb-FR-cg4" secondAttribute="bottom" constant="10" id="WCo-dL-H70"/>
+                            <constraint firstItem="FFj-ii-RC7" firstAttribute="trailing" secondItem="xhb-FR-cg4" secondAttribute="trailing" id="eBM-8D-yny"/>
                             <constraint firstItem="a1F-v6-mj6" firstAttribute="top" secondItem="FFj-ii-RC7" secondAttribute="top" id="l0c-ku-m9U"/>
                             <constraint firstItem="Mtw-Xp-N6Z" firstAttribute="leading" secondItem="a1F-v6-mj6" secondAttribute="leading" id="leJ-2d-fqe"/>
+                            <constraint firstAttribute="trailing" secondItem="tVP-6o-5HU" secondAttribute="trailing" id="oeB-K0-vGs"/>
                             <constraint firstItem="Mtw-Xp-N6Z" firstAttribute="top" secondItem="a1F-v6-mj6" secondAttribute="bottom" constant="5" id="qln-DW-UYa"/>
+                            <constraint firstItem="xhb-FR-cg4" firstAttribute="top" secondItem="FFj-ii-RC7" secondAttribute="bottom" constant="5" id="sCw-aO-zvd"/>
+                            <constraint firstAttribute="bottom" secondItem="tVP-6o-5HU" secondAttribute="bottom" id="uj0-OQ-eos"/>
                             <constraint firstItem="FFj-ii-RC7" firstAttribute="leading" secondItem="GSX-kv-RA3" secondAttribute="leading" constant="10" id="wXB-mU-ijz"/>
                         </constraints>
                     </view>
@@ -62,7 +84,9 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="answerAgreementCountCell" destination="xhb-FR-cg4" id="Dxv-Xw-uQK"/>
                 <outlet property="answerBodyLabel" destination="Mtw-Xp-N6Z" id="J4U-85-aJg"/>
+                <outlet property="answerButton" destination="tVP-6o-5HU" id="kjS-JA-hOt"/>
                 <outlet property="userAvatarView" destination="FFj-ii-RC7" id="m0K-n7-mAf"/>
                 <outlet property="userNameLabel" destination="a1F-v6-mj6" id="PmM-iX-yUG"/>
             </connections>
