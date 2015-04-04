@@ -27,28 +27,34 @@ class AnswerCommentListViewController: UITableViewController {
         super.loadView()
         keyboardBar = MSRKeyboardBar()
         refreshControl = UIRefreshControl()
+        refreshControl!.tintColor = UIColor.whiteColor()
         refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         tableView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         tableView.separatorStyle = .None
-        tableView.contentInset.bottom = 44
+        tableView.contentInset.bottom = 50
         tableView.keyboardDismissMode = .OnDrag
+        tableView.backgroundColor = UIColor.msr_materialBrown900()
+        msr_navigationBar!.barStyle = .Black
+        msr_navigationBar!.tintColor = UIColor.whiteColor()
         title = "评论"
         let views = ["t": textField, "b": publishButton]
         for (k, v) in views {
             v.setTranslatesAutoresizingMaskIntoConstraints(false)
             keyboardBar.addSubview(v)
         }
-        textField.placeholder = "在此处输入评论……"
+        textField.keyboardAppearance = .Dark
+        textField.textColor = UIColor.whiteColor()
+        textField.attributedPlaceholder = NSAttributedString(string: "在此处输入评论……", attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor()])
         textField.borderStyle = .None
         textField.clearButtonMode = .WhileEditing
         publishButton.setTitle("发布", forState: .Normal) // Needs localization
         publishButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        publishButton.msr_setBackgroundImageWithColor(UIColor.msr_materialTeal500())
+        publishButton.msr_setBackgroundImageWithColor(UIColor.msr_materialBrown500())
         publishButton.addTarget(self, action: "publishComment", forControlEvents: .TouchUpInside)
         keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-5-[t]-5-[b(==75)]|", options: nil, metrics: nil, views: views))
-        keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[t(>=44)]|", options: nil, metrics: nil, views: views))
-        keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[b(>=44)]|", options: nil, metrics: nil, views: views))
-        keyboardBar.backgroundColor = UIColor.whiteColor()
+        keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[t(>=50)]|", options: nil, metrics: nil, views: views))
+        keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[b(>=50)]|", options: nil, metrics: nil, views: views))
+        keyboardBar.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,10 +73,7 @@ class AnswerCommentListViewController: UITableViewController {
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let comment = comments[indexPath.row]
-        var cell: CommentCell! = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as? CommentCell
-        if cell == nil {
-            cell = NSBundle.mainBundle().loadNibNamed(cellNibName, owner: self, options: nil).first as! CommentCell
-        }
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! CommentCell
         cell.update(answerComment: comment)
         return cell
     }
@@ -85,8 +88,6 @@ class AnswerCommentListViewController: UITableViewController {
         }
         let cell = _Static.cell
         cell.update(answerComment: comment)
-        cell.setNeedsUpdateConstraints()
-        cell.updateConstraintsIfNeeded()
         return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1 // the height of separator
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -158,5 +159,8 @@ class AnswerCommentListViewController: UITableViewController {
                 self?.tableView.reloadData()
                 self?.refreshControl!.endRefreshing()
             })
+    }
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
 }

@@ -146,7 +146,7 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         let dateFormatter = NSDateFormatter()
         dateFormatter.timeZone = NSTimeZone.localTimeZone()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        var html = answer.body == nil ? "加载中……" : answer.body! + "<br><p align=\"right\"><font color=\"#a1887f\">\(dateFormatter.stringFromDate(answer.date!))</font></p>"
+        var html = answer.date == nil ? answer.body ?? "加载中……" : answer.body! + "<br><p align=\"right\"><font color=\"#a1887f\">\(dateFormatter.stringFromDate(answer.date!))</font></p>"
         answerBodyView.attributedString = NSAttributedString(
             HTMLData: html.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true),
             options: options,

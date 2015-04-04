@@ -1675,6 +1675,7 @@
 				9583E3341AB6812400067F37 /* MSRLayoutGuide.swift */,
 				95C893761AC7365D00B7B385 /* MSRSidebar.swift */,
 				95C2EA141AB0516800F2A326 /* NSObject+MSRUserInfo.swift */,
+				95C47D4A1AC9C2BE00A56879 /* UIButton+MSRSetter.swift */,
 				95C2EA151AB0516800F2A326 /* UIColor+MSRMaterialColor.swift */,
 				95C2EA161AB0516800F2A326 /* UIColor+MSRRandomColor.swift */,
 				95C2EA171AB0516800F2A326 /* UIColor+MSRRGBA.swift */,
@@ -1683,7 +1684,6 @@
 				95C2EA1A1AB0516800F2A326 /* UINavigationBar+MSRAccessor.swift */,
 				95C2EA1B1AB0516800F2A326 /* UIView+MSREasyAutoLayout.swift */,
 				95C2EA1C1AB0516800F2A326 /* UIView+MSRKeyboardUtility.swift */,
-				95C47D4A1AC9C2BE00A56879 /* UIButton+MSRSetter.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
