@@ -47,7 +47,9 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     }()
     lazy var questionFooterCell: QuestionFooterCell = {
         [weak self] in
-        return NSBundle.mainBundle().loadNibNamed("QuestionFooterCell", owner: self?.tableView, options: nil).first as! QuestionFooterCell
+        let c = NSBundle.mainBundle().loadNibNamed("QuestionFooterCell", owner: self?.tableView, options: nil).first as! QuestionFooterCell
+        c.focusButton.addTarget(self, action: "toggleFocus", forControlEvents: .TouchUpInside)
+        return c
     }()
     lazy var answerAdditionCell: AnswerAdditionCell = {
         [weak self] in
@@ -220,6 +222,27 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         if let answer = answerButton.msr_userInfo as? Answer {
             msr_navigationController!.pushViewController(AnswerViewController(answer: answer), animated: true)
         }
+    }
+    
+    func toggleFocus() {
+        var focusing = question.focusing
+        question.focusing = nil
+        reloadQuestionFooterCell()
+        question.toggleFocus(
+            success: {
+                [weak self] in
+                self?.reloadQuestionFooterCell()
+                return
+            },
+            failure: {
+                [weak self] error in
+                self?.question.focusing = focusing
+                self?.reloadQuestionFooterCell()
+            })
+    }
+    
+    func reloadQuestionFooterCell() {
+        tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 4)], withRowAnimation: .None)
     }
     
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {

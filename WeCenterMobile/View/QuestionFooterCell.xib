@@ -55,9 +55,13 @@
                                     <constraint firstAttribute="width" secondItem="plz-v8-W51" secondAttribute="height" multiplier="1:1" id="jUL-xo-pl0"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="yM8-fA-yJG">
+                                <rect key="frame" x="212" y="0.0" width="100" height="50"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.36470588240000001" green="0.25098039220000001" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Mu9-8Y-Hin" firstAttribute="trailing" secondItem="yM8-fA-yJG" secondAttribute="trailing" id="3Um-gz-YLD"/>
                             <constraint firstAttribute="trailing" secondItem="Mu9-8Y-Hin" secondAttribute="trailing" id="6Jd-7Q-dKh"/>
                             <constraint firstItem="plz-v8-W51" firstAttribute="width" secondItem="plz-v8-W51" secondAttribute="height" multiplier="1:1" id="BUw-t2-pKB"/>
                             <constraint firstItem="M27-gc-u5L" firstAttribute="centerY" secondItem="plz-v8-W51" secondAttribute="centerY" id="NEj-ts-3HQ"/>
@@ -65,11 +69,14 @@
                             <constraint firstAttribute="centerY" secondItem="plz-v8-W51" secondAttribute="centerY" id="Zfj-HZ-jKd"/>
                             <constraint firstAttribute="bottom" secondItem="Mu9-8Y-Hin" secondAttribute="bottom" id="aFO-8c-gET"/>
                             <constraint firstItem="plz-v8-W51" firstAttribute="leading" secondItem="HGs-Qd-1Sh" secondAttribute="trailing" constant="10" id="ajj-Ra-udM"/>
+                            <constraint firstItem="Mu9-8Y-Hin" firstAttribute="top" secondItem="yM8-fA-yJG" secondAttribute="top" id="bYE-va-9XR"/>
                             <constraint firstItem="HGs-Qd-1Sh" firstAttribute="leading" secondItem="UB0-Zo-Ww5" secondAttribute="trailing" constant="10" id="hCL-gc-aAK"/>
                             <constraint firstItem="M27-gc-u5L" firstAttribute="leading" secondItem="plz-v8-W51" secondAttribute="trailing" constant="10" id="hi6-u2-r5m"/>
+                            <constraint firstItem="Mu9-8Y-Hin" firstAttribute="leading" secondItem="yM8-fA-yJG" secondAttribute="leading" id="i2z-1E-cJj"/>
                             <constraint firstAttribute="centerY" secondItem="UB0-Zo-Ww5" secondAttribute="centerY" id="kPZ-bU-g5b"/>
                             <constraint firstAttribute="height" constant="50" id="lZp-do-BoS"/>
                             <constraint firstItem="UB0-Zo-Ww5" firstAttribute="leading" secondItem="zdn-QN-RGl" secondAttribute="leading" constant="10" id="qfw-xo-phd"/>
+                            <constraint firstItem="Mu9-8Y-Hin" firstAttribute="bottom" secondItem="yM8-fA-yJG" secondAttribute="bottom" id="tYf-e0-Ix0"/>
                             <constraint firstItem="Mu9-8Y-Hin" firstAttribute="top" secondItem="zdn-QN-RGl" secondAttribute="top" id="u8K-VY-FeM"/>
                         </constraints>
                     </view>
@@ -84,6 +91,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="focusActivityIndicatorView" destination="yM8-fA-yJG" id="0Ye-cF-Xfz"/>
                 <outlet property="focusButton" destination="Mu9-8Y-Hin" id="dQs-0z-7hX"/>
                 <outlet property="focusCountImageView" destination="plz-v8-W51" id="QXa-kT-99l"/>
                 <outlet property="focusCountLabel" destination="M27-gc-u5L" id="ehM-q6-3gV"/>

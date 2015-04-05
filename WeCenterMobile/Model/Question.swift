@@ -78,8 +78,13 @@ class Question: NSManagedObject {
                 "question_id": id
             ],
             success: {
-                data in
-                self.focusing = (data["type"] as! String == "add")
+                [weak self] data in
+                if let self_ = self {
+                    self_.focusing = (data["type"] as! String == "add")
+                    if self_.focusCount != nil {
+                        self_.focusCount = self_.focusCount!.integerValue + (self!.focusing! ? 1 : -1)
+                    }
+                }
                 success?()
             },
             failure: failure)
