@@ -68,6 +68,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         view.backgroundColor = UIColor.msr_materialBrown900()
         tableView.separatorStyle = .None
         tableView.registerNib(UINib(nibName: answerCellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: answerCellIdentifier)
+        tableView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
         title = "问题详情" // Needs localization
         msr_navigationBar!.barStyle = .Black
         msr_navigationBar!.tintColor = UIColor.whiteColor()

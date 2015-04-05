@@ -34,6 +34,7 @@ class AnswerCommentListViewController: UITableViewController {
         tableView.contentInset.bottom = 50
         tableView.keyboardDismissMode = .OnDrag
         tableView.backgroundColor = UIColor.msr_materialBrown900()
+        tableView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
         msr_navigationBar!.barStyle = .Black
         msr_navigationBar!.tintColor = UIColor.whiteColor()
         title = "评论"
