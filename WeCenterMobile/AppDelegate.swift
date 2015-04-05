@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let directory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last as! NSURL
 //        let url = directory.URLByAppendingPathComponent("WeCenterMobile.sqlite")
 //        NSFileManager.defaultManager().removeItemAtURL(url, error: nil)
+        DTAttributedTextContentView.setLayerClass(DTTiledLayerWithoutFade.self)
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window!.rootViewController = welcomeViewController
         window!.makeKeyAndVisible()
