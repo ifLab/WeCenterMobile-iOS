@@ -65,9 +65,19 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         fatalError("init(coder:) has not been implemented")
     }
     
+    private var headerImageView: UIImageView! // for keeping weak property in header
+    private var headerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in header
+
     override func loadView() {
         super.loadView()
         view.backgroundColor = UIColor.msr_materialBrown900()
+        let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
+        header.textColor = UIColor.whiteColor()
+        headerImageView = header.valueForKey("arrowImage") as! UIImageView
+        headerImageView.tintColor = UIColor.whiteColor()
+        headerImageView.image = headerImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
+        headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
+        headerActivityIndicatorView.activityIndicatorViewStyle = .White
         tableView.separatorStyle = .None
         tableView.registerNib(UINib(nibName: answerCellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: answerCellIdentifier)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
@@ -78,32 +88,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.reloadData()
-        Question.fetch(
-            ID: question.id,
-            success: {
-                [weak self] question in
-                if let self_ = self {
-                    self_.question = question
-                    self_.tableView.reloadData()
-                    if let user = question.user {
-                        user.fetchProfile(
-                            success: {
-                                self_.tableView.reloadData()
-                            },
-                            failure: {
-                                error in
-                                NSLog(__FILE__, __FUNCTION__, error)
-                                return
-                            })
-                    }
-                }
-                return
-            }, failure: {
-                error in
-                NSLog(__FILE__, __FUNCTION__, error)
-                return
-            })
+        tableView.header.beginRefreshing()
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -239,6 +224,37 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
                 self?.question.focusing = focusing
                 self?.reloadQuestionFooterCell()
             })
+    }
+    
+    func refresh() {
+        Question.fetch(
+            ID: question.id,
+            success: {
+                [weak self] question in
+                if let self_ = self {
+                    self_.question = question
+                    self_.tableView.reloadData()
+                    if let user = question.user {
+                        user.fetchProfile(
+                            success: {
+                                self_.tableView.header.endRefreshing()
+                                self_.tableView.reloadData()
+                            },
+                            failure: {
+                                error in
+                                self_.tableView.header.endRefreshing()
+                                NSLog(__FILE__, __FUNCTION__, error)
+                                return
+                        })
+                    }
+                }
+                return
+            }, failure: {
+                [weak self] error in
+                self?.tableView.header.endRefreshing()
+                NSLog(__FILE__, __FUNCTION__, error)
+                return
+        })
     }
     
     func reloadQuestionFooterCell() {
