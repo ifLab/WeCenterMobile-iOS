@@ -12,6 +12,7 @@ class HomeViewController: UITableViewController {
     
     let count = 20
     var page = 1
+    var shouldReloadAfterLoadingMore = true
     
     var user: User!
     var actions = [Action]()
@@ -50,11 +51,6 @@ class HomeViewController: UITableViewController {
         headerImageView.image = headerImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
         headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
         headerActivityIndicatorView.activityIndicatorViewStyle = .White
-        let footer = tableView.addLegendFooterWithRefreshingTarget(self, refreshingAction: "loadMore")
-        footer.textColor = UIColor.whiteColor()
-        footer.automaticallyRefresh = false
-        footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
-        footerActivityIndicatorView.activityIndicatorViewStyle = .White
     }
     
     override func viewDidLoad() {
@@ -131,38 +127,58 @@ class HomeViewController: UITableViewController {
         }
     }
     internal func refresh() {
+        shouldReloadAfterLoadingMore = false
+        tableView.footer?.endRefreshing()
         user.fetchRelatedActions(
             page: 1,
             count: count,
             success: {
-                actions in
-                self.page = 1
-                self.actions = actions
-                self.tableView.reloadData()
-                self.tableView.header.endRefreshing()
+                [weak self] actions in
+                if let self_ = self {
+                    self_.page = 1
+                    self_.actions = actions
+                    self_.tableView.reloadData()
+                    self_.tableView.header.endRefreshing()
+                    if self_.tableView.footer == nil {
+                        let footer = self_.tableView.addLegendFooterWithRefreshingTarget(self, refreshingAction: "loadMore")
+                        footer.textColor = UIColor.whiteColor()
+                        footer.automaticallyRefresh = false
+                        self_.footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
+                        self_.footerActivityIndicatorView.activityIndicatorViewStyle = .White
+                    }
+                }
             },
             failure: {
-                error in
-                self.tableView.reloadData()
-                self.tableView.header.endRefreshing()
+                [weak self] error in
+                self?.tableView.header.endRefreshing()
+                return
             })
     }
     
     internal func loadMore() {
+        if tableView.header.isRefreshing() {
+            tableView.footer.endRefreshing()
+            return
+        }
+        shouldReloadAfterLoadingMore = true
         user.fetchRelatedActions(
             page: page + 1,
             count: count,
             success: {
-                actions in
-                ++self.page
-                self.actions.extend(actions)
-                self.tableView.reloadData()
-                self.tableView.footer.endRefreshing()
+                [weak self] actions in
+                if let self_ = self {
+                    if self_.shouldReloadAfterLoadingMore ?? false {
+                        self_.page = self!.page + 1
+                        self_.actions.extend(actions)
+                        self_.tableView.reloadData()
+                    }
+                    self_.tableView.footer.endRefreshing()
+                }
             },
             failure: {
-                error in
-                self.tableView.reloadData()
-                self.tableView.footer.endRefreshing()
+                [weak self] error in
+                self?.tableView.footer.endRefreshing()
+                return
             })
     }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

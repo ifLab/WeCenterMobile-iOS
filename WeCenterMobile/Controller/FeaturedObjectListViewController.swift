@@ -13,6 +13,7 @@ class FeaturedObjectListViewController: UITableViewController {
     var firstSelected = true
     var page = 1
     var objects: [FeaturedObject] = []
+    var shouldReloadAfterLoadingMore = true
     let count = 10
     let objectTypes = [FeaturedQuestionAnswer.self, FeaturedQuestionAnswer.self, FeaturedArticle.self]
     let identifiers = ["FeaturedQuestionAnswerCell", "FeaturedQuestionAnswerCellWithoutAnswer", "FeaturedArticleCell"]
@@ -32,28 +33,19 @@ class FeaturedObjectListViewController: UITableViewController {
             tableView.registerNib(UINib(nibName: nibNames[i], bundle: NSBundle.mainBundle()), forCellReuseIdentifier: identifiers[i])
         }
     }
-    private var header: MJRefreshLegendHeader!
-    private var footer: MJRefreshLegendFooter!
     private var headerImageView: UIImageView! // for keeping weak property in header
     private var headerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in header
     private var footerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in footer
     func segmentedViewControllerDidSelectSelf(segmentedViewController: MSRSegmentedViewController) {
         if firstSelected {
             firstSelected = false
-            if header == nil {
-                header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
-                header.textColor = UIColor.whiteColor()
-                headerImageView = header.valueForKey("arrowImage") as! UIImageView
-                headerImageView.tintColor = UIColor.whiteColor()
-                headerImageView.image = headerImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
-                headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
-                headerActivityIndicatorView.activityIndicatorViewStyle = .White
-                footer = tableView.addLegendFooterWithRefreshingTarget(self, refreshingAction: "loadMore")
-                footer.textColor = UIColor.whiteColor()
-                footer.automaticallyRefresh = false
-                footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
-                footerActivityIndicatorView.activityIndicatorViewStyle = .White
-            }
+            let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
+            header.textColor = UIColor.whiteColor()
+            headerImageView = header.valueForKey("arrowImage") as! UIImageView
+            headerImageView.tintColor = UIColor.whiteColor()
+            headerImageView.image = headerImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
+            headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
+            headerActivityIndicatorView.activityIndicatorViewStyle = .White
             tableView.header.beginRefreshing()
         }
     }
@@ -134,6 +126,8 @@ class FeaturedObjectListViewController: UITableViewController {
         }
     }
     func refresh() {
+        shouldReloadAfterLoadingMore = false
+        tableView.footer?.endRefreshing()
         FeaturedObject.fetchFeaturedObjects(page: 1, count: count, type: type,
             success: {
                 [weak self] objects in
@@ -141,28 +135,40 @@ class FeaturedObjectListViewController: UITableViewController {
                 self?.objects = objects
                 self?.tableView.reloadData()
                 self?.tableView.header.endRefreshing()
+                if self?.tableView.footer == nil {
+                    let footer = self!.tableView.addLegendFooterWithRefreshingTarget(self, refreshingAction: "loadMore")
+                    footer.textColor = UIColor.whiteColor()
+                    footer.automaticallyRefresh = false
+                    self?.footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
+                    self?.footerActivityIndicatorView.activityIndicatorViewStyle = .White
+                }
                 return
             },
             failure: {
                 [weak self] error in
-                self?.tableView.reloadData()
                 self?.tableView.header.endRefreshing()
                 return
             })
     }
     func loadMore() {
+        if tableView.header.isRefreshing() {
+            tableView.footer.endRefreshing()
+            return
+        }
+        shouldReloadAfterLoadingMore = true
         FeaturedObject.fetchFeaturedObjects(page: page + 1, count: count, type: type,
             success: {
                 [weak self] objects in
-                self?.page = self!.page + 1
-                self?.objects.extend(objects)
-                self?.tableView.reloadData()
-                self?.tableView.footer.endRefreshing()
+                if self?.shouldReloadAfterLoadingMore ?? false {
+                    self?.page = self!.page + 1
+                    self?.objects.extend(objects)
+                    self?.tableView.reloadData()
+                    self?.tableView.footer.endRefreshing()
+                }
                 return
             },
             failure: {
                 [weak self] error in
-                self?.tableView.reloadData()
                 self?.tableView.footer.endRefreshing()
                 return
             })
