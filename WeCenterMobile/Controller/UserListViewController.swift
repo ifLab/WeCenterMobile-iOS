@@ -15,32 +15,15 @@ class UserListViewController: UITableViewController {
         case QuestionFollwer = 3
         case Unknown
     }
-    var listType: ListType?
-    var ID: NSNumber! = nil
-    var user: User! {
-        didSet {
-            if user != nil {
-                switch listType {
-                case .Some(.UserFollower):
-                    users = sorted(user.followers) { $0.name <= $1.name }
-                    break
-                case .Some(.UserFollowing):
-                    users = sorted(user.followings) { $0.name <= $1.name }
-                    break
-                default:
-                    break
-                }
-            }
-        }
-    }
+    let listType: ListType
+    var user: User
     var users: [User] = []
     var page = 1
     let count = 20
-    init(ID: NSNumber, listType: ListType) {
-        super.init(style: .Plain)
+    init(user: User, listType: ListType) {
         self.listType = listType
-        self.ID = ID
-        user = User.get(ID: ID, error: nil)
+        self.user = user
+        super.init(style: .Plain)
     }
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -74,41 +57,34 @@ class UserListViewController: UITableViewController {
         msr_navigationController!.pushViewController(UserViewController(user: users[indexPath.row]), animated: true)
     }
     func refresh() {
-        if user == nil {
-            User.fetch(
-                ID: ID,
-                success: {
-                    [weak self] user in
-                    self?.refresh()
-                    return
-                },
-                failure: nil)
-        } else {
-            let success: () -> Void = {
-                self.page = 1
-                self.refreshControl!.endRefreshing()
-                self.tableView.reloadData()
-            }
-            let failure: (NSError) -> Void = {
-                error in
-                self.refreshControl!.endRefreshing()
-                self.tableView.reloadData()
-            }
-            switch listType! {
-            case .UserFollower:
-                user?.fetchFollowers(page: 1, count: count, success: success, failure: failure)
-                break
-            case .UserFollowing:
-                user?.fetchFollowings(page: 1, count: count, success: success, failure: failure)
-                break
-            default:
-                break
-            }
+        let success: ([User]) -> Void = {
+            users in
+            self.page = 1
+            self.users = users
+            self.refreshControl!.endRefreshing()
+            self.tableView.reloadData()
+        }
+        let failure: (NSError) -> Void = {
+            error in
+            self.refreshControl!.endRefreshing()
+            self.tableView.reloadData()
+        }
+        switch listType {
+        case .UserFollower:
+            user.fetchFollowers(page: 1, count: count, success: success, failure: failure)
+            break
+        case .UserFollowing:
+            user.fetchFollowings(page: 1, count: count, success: success, failure: failure)
+            break
+        default:
+            break
         }
     }
     func loadMore() {
-        let success: () -> Void = {
+        let success: ([User]) -> Void = {
+            users in
             ++self.page
+            self.users.extend(users)
             self.msr_loadMoreControl?.endLoadingMore()
             self.tableView.reloadData()
         }
@@ -117,12 +93,12 @@ class UserListViewController: UITableViewController {
             self.msr_loadMoreControl?.endLoadingMore()
             return
         }
-        switch listType! {
+        switch listType {
         case .UserFollower:
-            user?.fetchFollowers(page: page + 1, count: count, success: success, failure: failure)
+            user.fetchFollowers(page: page + 1, count: count, success: success, failure: failure)
             break
         case .UserFollowing:
-            user?.fetchFollowings(page: page + 1, count: count, success: success, failure: failure)
+            user.fetchFollowings(page: page + 1, count: count, success: success, failure: failure)
             break
         default:
             break

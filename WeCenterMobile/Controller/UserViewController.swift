@@ -377,11 +377,11 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
     }
     
     internal func pushFollowerViewController() {
-        msr_navigationController!.pushViewController(UserListViewController(ID: user.id, listType: .UserFollower), animated: true)
+        msr_navigationController!.pushViewController(UserListViewController(user: user, listType: .UserFollower), animated: true)
     }
     
     internal func pushFollowingViewController() {
-        msr_navigationController!.pushViewController(UserListViewController(ID: user.id, listType: .UserFollowing), animated: true)
+        msr_navigationController!.pushViewController(UserListViewController(user: user, listType: .UserFollowing), animated: true)
     }
     
     internal func pushQuestionViewController() {

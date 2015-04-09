@@ -10,21 +10,14 @@ import UIKit
 
 class UserAskedQuestionListViewController: UITableViewController {
     
-    var user: User! {
-        didSet {
-            if user != nil {
-                let defaultDate = NSDate(timeIntervalSince1970: 0)
-                questions = sorted(user.questions) { ($0.date ?? defaultDate).timeIntervalSince1970 >= ($1.date ?? defaultDate).timeIntervalSince1970 }
-            }
-        }
-    }
-    var questions: [Question] = []
+    var user: User
+    var questions = [Question]()
     var page = 0
     let count = 20
     
     init(user: User) {
-        super.init(style: .Plain)
         self.user = user
+        super.init(style: .Plain)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -75,7 +68,9 @@ class UserAskedQuestionListViewController: UITableViewController {
             page: 1,
             count: count,
             success: {
+                questions in
                 self.page = 1
+                self.questions = questions
                 self.refreshControl!.endRefreshing()
                 self.tableView.reloadData()
             },
@@ -91,7 +86,9 @@ class UserAskedQuestionListViewController: UITableViewController {
             page: page + 1,
             count: count,
             success: {
+                questions in
                 self.page += 1
+                self.questions.extend(questions)
                 self.msr_loadMoreControl!.endLoadingMore()
                 self.tableView.reloadData()
             },

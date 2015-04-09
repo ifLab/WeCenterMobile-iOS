@@ -95,14 +95,14 @@ class NetworkManager: NSObject {
                 domain: website,
                 code: self.internalErrorCode.integerValue,
                 userInfo: userInfo)
-//            NSLog("\(operation.response.URL!)\n\(error)\n\(NSString(data: data, encoding: NSUTF8StringEncoding)))")
+            NSLog("\(operation.response.URL!)\n\(error)\n\(NSString(data: data, encoding: NSUTF8StringEncoding)))")
             failure?(error)
             return
         }
         let data = object as! NSDictionary
         if data["errno"] as! NSNumber == successCode {
             let info: AnyObject = data["rsm"]!
-//            NSLog("\(operation.response.URL!)\n\(info)")
+            NSLog("\(operation.response.URL!)\n\(info)")
             success?(info)
             DataManager.defaultManager!.saveChanges(nil) // It's not a good idea to be placed here, but this could reduce duplicate codes.
         } else {

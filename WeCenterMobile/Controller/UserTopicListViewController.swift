@@ -9,11 +9,7 @@
 import UIKit
 
 class UserTopicListViewController: UITableViewController {
-    var user: User {
-        didSet {
-            topics = sorted(user.topics) { $0.title <= $1.title }
-        }
-    }
+    var user: User
     var topics: [Topic] = []
     var page = 1
     let count = 10
@@ -58,7 +54,9 @@ class UserTopicListViewController: UITableViewController {
             page: 1,
             count: count,
             success: {
+                topics in
                 self.page = 1
+                self.topics = topics
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
             }, failure: {
@@ -72,7 +70,9 @@ class UserTopicListViewController: UITableViewController {
             page: page + 1,
             count: count,
             success: {
+                topics in
                 ++self.page
+                self.topics.extend(topics)
                 self.tableView.reloadData()
                 self.msr_loadMoreControl?.endLoadingMore()
             },

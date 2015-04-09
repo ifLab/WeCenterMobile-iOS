@@ -108,7 +108,7 @@ class User: NSManagedObject {
             failure: failure)
     }
     
-    func fetchFollowings(#page: Int, count: Int, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchFollowings(#page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("User Following List",
             parameters: [
                 "uid": id,
@@ -118,6 +118,7 @@ class User: NSManagedObject {
             success: {
                 data in
                 if Int(msr_object: data["total_rows"]!!) > 0 {
+                    var users = [User]()
                     for value in data["rows"] as! [NSDictionary] {
                         let userID = Int(msr_object: value["uid"])
                         let user = DataManager.defaultManager!.autoGenerate("User", ID: userID!) as! User
@@ -125,8 +126,9 @@ class User: NSManagedObject {
                         user.avatarURI = value["avatar_file"] as? String
                         user.signature = value["signature"] as? String
                         self.followings.insert(user)
+                        users.append(user)
                     }
-                    success?()
+                    success?(users)
                 } else {
                     failure?(NSError()) // Needs specification
                 }
@@ -134,7 +136,7 @@ class User: NSManagedObject {
             failure: failure)
     }
     
-    func fetchFollowers(#page: Int, count: Int, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchFollowers(#page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("User Follower List",
             parameters: [
                 "uid": id,
@@ -144,6 +146,7 @@ class User: NSManagedObject {
             success: {
                 data in
                 if Int(msr_object: data["total_rows"]!!) > 0 {
+                    var users = [User]()
                     for value in data["rows"] as! [NSDictionary] {
                         let userID = Int(msr_object: value["uid"])!
                         let user = DataManager.defaultManager!.autoGenerate("User", ID: userID) as! User
@@ -151,8 +154,9 @@ class User: NSManagedObject {
                         user.avatarURI = value["avatar_file"] as? String
                         user.signature = value["signature"] as? String
                         self.followers.insert(user)
+                        users.append(user)
                     }
-                    success?()
+                    success?(users)
                 } else {
                     failure?(NSError()) // Needs specification
                 }
@@ -160,7 +164,7 @@ class User: NSManagedObject {
             failure: failure)
     }
     
-    func fetchTopics(#page: Int, count: Int, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchTopics(#page: Int, count: Int, success: (([Topic]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("User Topic List",
             parameters: [
                 "uid": id,
@@ -170,6 +174,7 @@ class User: NSManagedObject {
             success: {
                 data in
                 if Int(msr_object: data["total_rows"]!!) > 0 {
+                    var topics = [Topic]()
                     for value in data["rows"] as! [NSDictionary] {
                         let topicID = Int(msr_object: value["topic_id"])!
                         let topic = DataManager.defaultManager!.autoGenerate("Topic", ID: topicID) as! Topic
@@ -177,8 +182,9 @@ class User: NSManagedObject {
                         topic.introduction = value["topic_description"] as? String
                         topic.imageURI = value["topic_pic"] as? String
                         self.topics.insert(topic)
+                        topics.append(topic)
                     }
-                    success?()
+                    success?(topics)
                 } else {
                     failure?(NSError()) // Needs specification
                 }
@@ -187,13 +193,14 @@ class User: NSManagedObject {
             failure: failure)
     }
     
-    func fetchQuestions(#page: Int, count: Int, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchQuestions(#page: Int, count: Int, success: (([Question]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("User Question List",
             parameters: [
                 "uid": id
             ],
             success: {
                 data in
+                var questions = [Question]()
                 if Int(msr_object: data["total_rows"]!!) > 0 {
                     var questionsData = [NSDictionary]()
                     if data["rows"] is NSDictionary {
@@ -208,9 +215,10 @@ class User: NSManagedObject {
                         question.title = questionData["title"] as? String
                         question.body = questionData["detail"] as? String
                         self.questions.insert(question)
+                        questions.append(question)
                     }
                 }
-                success?()
+                success?(questions)
             },
             failure: failure)
     }
