@@ -23,7 +23,8 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     
     lazy var questionHeaderCell: QuestionHeaderCell = {
         [weak self] in
-        return NSBundle.mainBundle().loadNibNamed("QuestionHeaderCell", owner: self?.tableView, options: nil).first as! QuestionHeaderCell
+        let c = NSBundle.mainBundle().loadNibNamed("QuestionHeaderCell", owner: self?.tableView, options: nil).first as! QuestionHeaderCell
+        return c
     }()
     lazy var questionTitleCell: QuestionTitleCell = {
         [weak self] in

@@ -218,6 +218,9 @@
 		953BF5C01A51C50800B804B8 /* ArticleAgreementActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 953BF5BF1A51C50800B804B8 /* ArticleAgreementActionCell.xib */; };
 		953F7DC91AB9B89600AD3363 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 953F7DC81AB9B89600AD3363 /* LoginView.xib */; };
 		95428D831AC2FAD0009F70B8 /* QuestionBodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95428D821AC2FAD0009F70B8 /* QuestionBodyCell.swift */; };
+		954EBD871AD65BBA0060B8F3 /* UserViewControllerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954EBD861AD65BBA0060B8F3 /* UserViewControllerHeaderView.swift */; };
+		954EBD891AD65BE30060B8F3 /* UserViewControllerHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 954EBD881AD65BE30060B8F3 /* UserViewControllerHeaderView.xib */; };
+		955770721AD68E960060A120 /* UIImageView+MSRSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955770711AD68E960060A120 /* UIImageView+MSRSetter.swift */; };
 		956E70EF1AAFC4E100A3FD7D /* WeCenterMobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 956E70ED1AAFC4E100A3FD7D /* WeCenterMobile.xcdatamodeld */; };
 		956E72051AAFC53B00A3FD7D /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 956E71E11AAFC53B00A3FD7D /* AFHTTPRequestOperation.m */; };
 		956E72061AAFC53B00A3FD7D /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 956E71E31AAFC53B00A3FD7D /* AFHTTPRequestOperationManager.m */; };
@@ -706,6 +709,9 @@
 		953BF5BF1A51C50800B804B8 /* ArticleAgreementActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleAgreementActionCell.xib; sourceTree = "<group>"; };
 		953F7DC81AB9B89600AD3363 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		95428D821AC2FAD0009F70B8 /* QuestionBodyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = QuestionBodyCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		954EBD861AD65BBA0060B8F3 /* UserViewControllerHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewControllerHeaderView.swift; sourceTree = "<group>"; };
+		954EBD881AD65BE30060B8F3 /* UserViewControllerHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserViewControllerHeaderView.xib; sourceTree = "<group>"; };
+		955770711AD68E960060A120 /* UIImageView+MSRSetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+MSRSetter.swift"; sourceTree = "<group>"; };
 		956E70EE1AAFC4E100A3FD7D /* WeCenterMobile.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeCenterMobile.xcdatamodel; sourceTree = "<group>"; };
 		956E71E01AAFC53B00A3FD7D /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		956E71E11AAFC53B00A3FD7D /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -1014,6 +1020,8 @@
 				9595435D1AC94DEE008C48D7 /* UIImageView+User.swift */,
 				950FE4FF1A1DA2B500167D09 /* UserCell.swift */,
 				950FE5001A1DA2B500167D09 /* UserCountView.swift */,
+				954EBD861AD65BBA0060B8F3 /* UserViewControllerHeaderView.swift */,
+				954EBD881AD65BE30060B8F3 /* UserViewControllerHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1681,6 +1689,7 @@
 				95C2EA171AB0516800F2A326 /* UIColor+MSRRGBA.swift */,
 				95C2EA181AB0516800F2A326 /* UIImage+MSRResize.swift */,
 				95C2EA191AB0516800F2A326 /* UIImage+MSRShape.swift */,
+				955770711AD68E960060A120 /* UIImageView+MSRSetter.swift */,
 				95C2EA1A1AB0516800F2A326 /* UINavigationBar+MSRAccessor.swift */,
 				95C2EA1B1AB0516800F2A326 /* UIView+MSREasyAutoLayout.swift */,
 				95C2EA1C1AB0516800F2A326 /* UIView+MSRKeyboardUtility.swift */,
@@ -1829,6 +1838,7 @@
 				95F380C91AB56A950070A7FB /* FeaturedQuestionAnswerCellWithoutAnswer.xib in Resources */,
 				95DFE8DD1AC711970027FB79 /* AnswerAdditionCell.xib in Resources */,
 				950FE1251A1DA2A400167D09 /* Discovery.strings in Resources */,
+				954EBD891AD65BE30060B8F3 /* UserViewControllerHeaderView.xib in Resources */,
 				95B6E6B91A232E2400F31BE3 /* LaunchScreen.xib in Resources */,
 				95E4E9A21A50040100F3C327 /* AnswerActionCell.xib in Resources */,
 				951D1FAA1ACD276E0072D555 /* QuestionHeaderCell.xib in Resources */,
@@ -2060,6 +2070,7 @@
 				950FE73D1A1DA2B500167D09 /* TopicCell.swift in Sources */,
 				951D1F691ACD1E750072D555 /* DTSQLiteFunctions.m in Sources */,
 				951D1F661ACD1E750072D555 /* DTScriptVariable.m in Sources */,
+				954EBD871AD65BBA0060B8F3 /* UserViewControllerHeaderView.swift in Sources */,
 				958CB5BB1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift in Sources */,
 				951D1E7E1ACD1E4E0072D555 /* DTColorFunctions.m in Sources */,
 				951D2F8A1AB7F85500DCB678 /* MJRefreshLegendHeader.m in Sources */,
@@ -2068,6 +2079,7 @@
 				95C2EA411AB0516800F2A326 /* UIImage+MSRResize.swift in Sources */,
 				95E404021ABDEC3000C18A44 /* UzysAssetsPickerController.m in Sources */,
 				951D1E9C1ACD1E4E0072D555 /* DTTextAttachment.m in Sources */,
+				955770721AD68E960060A120 /* UIImageView+MSRSetter.swift in Sources */,
 				951D1F791ACD1E750072D555 /* DTActivityTitleView.m in Sources */,
 				950FE7411A1DA2B500167D09 /* UserCountView.swift in Sources */,
 				95C2EA3A1AB0516800F2A326 /* MSRSegmentedControlUnderlineIndicator.swift in Sources */,
