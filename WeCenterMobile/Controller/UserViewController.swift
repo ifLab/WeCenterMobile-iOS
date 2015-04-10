@@ -156,7 +156,24 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
-            pushFollowingUserListViewController()
+            switch indexPath.item {
+            case 0:
+                break
+            case 1:
+                break
+            case 2:
+                break
+            case 3:
+                break
+            case 4:
+                msr_navigationController!.pushViewController(UserListViewController(user: user, listType: .UserFollowing), animated: true)
+                break
+            case 5:
+                msr_navigationController!.pushViewController(UserListViewController(user: user, listType: .UserFollower), animated: true)
+                break
+            default:
+                break
+            }
         } else {
             if user.isCurrentUser {
                 // ...
@@ -185,10 +202,6 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
             return user.followed != nil || user.isCurrentUser
         }
         return true
-    }
-    
-    func pushFollowingUserListViewController() {
-        msr_navigationController!.pushViewController(UserListViewController(user: user, listType: .UserFollowing), animated: true)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

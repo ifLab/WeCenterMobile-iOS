@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="102" id="m9T-Kr-6Ap" customClass="UserListViewControllerCell" customModule="WeCenterMobile" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m9T-Kr-6Ap" id="JcW-gN-phg">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Ia-OR-BIM">
+                        <rect key="frame" x="15" y="26" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="6Ia-OR-BIM" secondAttribute="height" multiplier="1:1" id="ce8-12-dir"/>
+                            <constraint firstAttribute="width" constant="50" id="jwK-cZ-58t"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Nq-Dr-yYX">
+                        <rect key="frame" x="80" y="44" width="225" height="15"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIJ-Ja-PVa">
+                                <rect key="frame" x="0.0" y="0.0" width="30" height="15"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="文字">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="15" name="STHeitiSC-Light"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YIJ-Ja-PVa" secondAttribute="trailing" id="9vS-7t-hYL"/>
+                            <constraint firstItem="YIJ-Ja-PVa" firstAttribute="top" secondItem="2Nq-Dr-yYX" secondAttribute="top" id="ieZ-Vs-phe"/>
+                            <constraint firstItem="YIJ-Ja-PVa" firstAttribute="leading" secondItem="2Nq-Dr-yYX" secondAttribute="leading" id="k1O-j2-JU5"/>
+                            <constraint firstAttribute="bottom" secondItem="YIJ-Ja-PVa" secondAttribute="bottom" id="wmq-VG-vW5"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="6Ia-OR-BIM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="JcW-gN-phg" secondAttribute="top" constant="15" id="Ah6-Ed-Cdf"/>
+                    <constraint firstItem="2Nq-Dr-yYX" firstAttribute="centerY" secondItem="6Ia-OR-BIM" secondAttribute="centerY" id="CfC-vZ-PhO"/>
+                    <constraint firstItem="2Nq-Dr-yYX" firstAttribute="leading" secondItem="6Ia-OR-BIM" secondAttribute="trailing" constant="15" id="D1N-DX-28i"/>
+                    <constraint firstItem="6Ia-OR-BIM" firstAttribute="leading" secondItem="JcW-gN-phg" secondAttribute="leading" constant="15" id="Jti-Rz-wBh"/>
+                    <constraint firstAttribute="centerY" secondItem="6Ia-OR-BIM" secondAttribute="centerY" id="Qc6-Rk-BTt"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6Ia-OR-BIM" secondAttribute="bottom" constant="15" id="RjU-XW-dXc"/>
+                    <constraint firstAttribute="trailing" secondItem="2Nq-Dr-yYX" secondAttribute="trailing" constant="15" id="Z0d-NM-sjH"/>
+                    <constraint firstItem="2Nq-Dr-yYX" firstAttribute="height" relation="lessThanOrEqual" secondItem="6Ia-OR-BIM" secondAttribute="height" id="h2V-Tq-XXP"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="userAvatarView" destination="6Ia-OR-BIM" id="1rf-2X-8oB"/>
+                <outlet property="userLabel" destination="YIJ-Ja-PVa" id="7Jw-9S-4fS"/>
+            </connections>
+            <point key="canvasLocation" x="208" y="305"/>
+        </tableViewCell>
+    </objects>
+</document>
