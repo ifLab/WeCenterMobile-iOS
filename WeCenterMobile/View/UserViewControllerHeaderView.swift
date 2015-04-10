@@ -83,10 +83,6 @@ class UserViewControllerHeaderView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let progress = (max(bounds.height, minHeight) - minHeight) / (maxHeight - minHeight)
-        bottomView.alpha = max(0, progress * 2 - 1)
-        backgroundImageView.alpha = progress
-        userSignatureLabel.alpha = max(0, progress * 2 - 1)
         let userAvatarViewBeginSize = CGSize(width: 32, height: 32)
         let userAvatarViewEndSize = CGSize(width: 80, height: 80)
         let titleBeginWidth = userAvatarViewBeginSize.width + 10 + userNameLabel.bounds.width
@@ -96,10 +92,14 @@ class UserViewControllerHeaderView: UIView {
         var userAvatarViewEndFrame = CGRect(origin: CGPoint(x: backButtonEndFrame.msr_right + 10, y: backButtonEndFrame.msr_center.y - userAvatarViewEndSize.height / 2), size: userAvatarViewEndSize)
         let userNameLabelBeginFrame = CGRect(origin: CGPoint(x: userAvatarViewBeginFrame.msr_right + 10, y: userAvatarViewBeginFrame.msr_center.y - userNameLabel.bounds.height / 2), size: userNameLabel.bounds.size)
         var userNameLabelEndFrame = CGRect(origin: CGPoint(x: userAvatarViewEndFrame.msr_right + 15, y: userAvatarViewEndFrame.msr_top), size: userNameLabel.bounds.size)
+        let progress = Double((max(bounds.height, minHeight) - minHeight) / (maxHeight - minHeight))
+        bottomView.alpha = CGFloat(max(0, progress * 2 - 1))
+        backgroundImageView.alpha = CGFloat(progress)
+        userSignatureLabel.alpha = CGFloat(max(0, progress * 2 - 1))
         if progress <= 1 {
-            backButton.frame = frameWithBeginFrame(backButtonBeginFrame, endFrame: backButtonEndFrame, progress: progress)
-            userAvatarView.frame = frameWithBeginFrame(userAvatarViewBeginFrame, endFrame: userAvatarViewEndFrame, progress: progress)
-            userNameLabel.frame = frameWithBeginFrame(userNameLabelBeginFrame, endFrame: userNameLabelEndFrame, progress: progress)
+            backButton.frame = MSRLinearInterpolation(backButtonBeginFrame, backButtonEndFrame, progress)
+            userAvatarView.frame = MSRLinearInterpolation(userAvatarViewBeginFrame, userAvatarViewEndFrame, progress)
+            userNameLabel.frame = MSRLinearInterpolation(userNameLabelBeginFrame, userNameLabelEndFrame, progress)
         } else {
             let offset = (bounds.height - maxHeight) / 2
             backButtonEndFrame.origin.y += offset
@@ -112,18 +112,6 @@ class UserViewControllerHeaderView: UIView {
         userAvatarView.layer.cornerRadius = userAvatarView.frame.width / 2
         userSignatureLabel.frame = CGRect(x: userNameLabel.frame.msr_left, y: userNameLabel.frame.msr_bottom + 5, width: bounds.width - userNameLabel.frame.msr_left - 10, height: userAvatarView.frame.height - userNameLabel.frame.height - 5)
         userSignatureLabel.sizeToFit()
-    }
-    
-    func frameWithBeginFrame(beginFrame: CGRect, endFrame: CGRect, progress: CGFloat) -> CGRect {
-        return CGRect(
-            x: valueWithBeginValue(beginFrame.origin.x, endValue: endFrame.origin.x, progress: progress),
-            y: valueWithBeginValue(beginFrame.origin.y, endValue: endFrame.origin.y, progress: progress),
-            width: valueWithBeginValue(beginFrame.width, endValue: endFrame.width, progress: progress),
-            height: valueWithBeginValue(beginFrame.height, endValue: endFrame.height, progress: progress))
-    }
-    
-    func valueWithBeginValue(beginValue: CGFloat, endValue: CGFloat, progress: CGFloat) -> CGFloat {
-        return (endValue - beginValue) * progress + beginValue
     }
     
 }
