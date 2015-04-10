@@ -32,15 +32,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 return cell
             }
     }()
-    override init() {
-        super.init(nibName: nil, bundle: nil)
+    convenience init() {
+        self.init(nibName: nil, bundle: nil)
         contentViewController = MSRNavigationController(rootViewController: viewControllerAtIndex(0))
         contentViewController.view.backgroundColor = UIColor.msr_materialBrown900()
         contentViewController.interactivePopGestureRecognizer.requireGestureRecognizerToFail(sidebar.screenEdgePanGestureRecognizer)
         addChildViewController(contentViewController)
-    }
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     override func loadView() {
         super.loadView()

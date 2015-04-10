@@ -18,7 +18,7 @@ class AnswerCommentListViewController: UITableViewController {
     let publishButton = UIButton()
     init(answer: Answer) {
         self.answer = answer
-        super.init(style: .Plain)
+        super.init(nibName: nil, bundle: nil)
     }
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

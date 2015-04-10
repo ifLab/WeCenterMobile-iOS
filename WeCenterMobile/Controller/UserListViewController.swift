@@ -24,7 +24,7 @@ class UserListViewController: UITableViewController {
     init(user: User, listType: UserListType) {
         self.listType = listType
         self.user = user
-        super.init(style: .Plain)
+        super.init(nibName: nil, bundle: nil)
         let titles: [UserListType: String] = [
             .UserFollowing: "\(user.name!) 关注的用户",
             .UserFollower: "\(user.name!) 的追随者"]

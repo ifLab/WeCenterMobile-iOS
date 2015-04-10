@@ -59,7 +59,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     
     init(question: Question) {
         self.question = question
-        super.init(style: .Plain)
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init(coder aDecoder: NSCoder) {

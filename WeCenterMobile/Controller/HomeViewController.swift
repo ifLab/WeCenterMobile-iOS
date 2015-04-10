@@ -22,21 +22,22 @@ class HomeViewController: UITableViewController {
     let nibNames = ["AnswerActionCell", "QuestionPublishmentActionCell", "QuestionFocusingActionCell", "AnswerAgreementActionCell", "ArticlePublishmentActionCell", "ArticleAgreementActionCell"]
     
     init(user: User) {
-        super.init(style: .Plain)
+        super.init(nibName: nil, bundle: nil)
         self.user = user
     }
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     private var headerImageView: UIImageView! // for keeping weak property in header
     private var headerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in header
     private var footerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in footer
     override func loadView() {
         super.loadView()
         title = "首页" // Needs localization
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List"), style: .Bordered, target: self, action: "showSidebar")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Compose"), style: .Bordered, target: self, action: "showQuestionPublishmentViewController")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List"), style: .Plain, target: self, action: "showSidebar")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Compose"), style: .Plain, target: self, action: "showQuestionPublishmentViewController")
         for i in 0..<nibNames.count {
             tableView.registerNib(UINib(nibName: nibNames[i], bundle: NSBundle.mainBundle()), forCellReuseIdentifier: identifiers[i])
         }

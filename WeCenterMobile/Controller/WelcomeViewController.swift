@@ -14,12 +14,8 @@ class WelcomeViewController: UIViewController {
         return NSBundle.mainBundle().loadNibNamed("LoginView", owner: self, options: nil).first as! LoginView
     }()
     
-    override init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    convenience init() {
+        self.init(nibName: nil, bundle: nil)
     }
     
     override func loadView() {
