@@ -37,14 +37,10 @@ class WelcomeViewController: UIViewController {
             User.loginWithCookiesAndCacheInStorage(
                 success: {
                     [weak self] user in
-                    appDelegate.currentUser = user
+                    User.currentUser = user
                     self?.presentMainViewController()
                 },
-                failure: {
-                    [weak self] error in
-                    NSLog(__FILE__, __FUNCTION__, error)
-                    return
-                })
+                failure: nil)
         }
     }
     
@@ -53,7 +49,7 @@ class WelcomeViewController: UIViewController {
             password: loginView.passwordField.text,
             success: {
                 [weak self] user in
-                appDelegate.currentUser = user
+                User.currentUser = user
                 self?.presentMainViewController()
             },
             failure: {

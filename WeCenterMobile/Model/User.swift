@@ -13,7 +13,13 @@ let UserDefaultsCookiesKey = "WeCenterMobile_DefaultCookies"
 let UserDefaultsUserIDKey = "WeCenterMobile_DefaultUserID"
 
 class User: NSManagedObject {
+    
+    static var currentUser: User? = nil
 
+    var isCurrentUser: Bool {
+        return id == User.currentUser?.id
+    }
+    
     @NSManaged var agreementCount: NSNumber?
     @NSManaged var answerCount: NSNumber?
     @NSManaged var answerFavoriteCount: NSNumber?

@@ -35,10 +35,8 @@
 		950FE7301A1DA2B500167D09 /* QuestionPublishmentAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4EC1A1DA2B500167D09 /* QuestionPublishmentAction.swift */; };
 		950FE7311A1DA2B500167D09 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4ED1A1DA2B500167D09 /* Topic.swift */; };
 		950FE7361A1DA2B500167D09 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4F41A1DA2B500167D09 /* LoginView.swift */; };
-		950FE73C1A1DA2B500167D09 /* RectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4FB1A1DA2B500167D09 /* RectangleButton.swift */; };
 		950FE73D1A1DA2B500167D09 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4FC1A1DA2B500167D09 /* TopicCell.swift */; };
 		950FE7401A1DA2B500167D09 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4FF1A1DA2B500167D09 /* UserCell.swift */; };
-		950FE7411A1DA2B500167D09 /* UserCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE5001A1DA2B500167D09 /* UserCountView.swift */; };
 		950FE7E21A1DA53A00167D09 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7DF1A1DA52000167D09 /* CoreText.framework */; };
 		950FE7E31A1DA53A00167D09 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7DD1A1DA51900167D09 /* UIKit.framework */; };
 		950FE7E41A1DA53A00167D09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7DB1A1DA51400167D09 /* Foundation.framework */; };
@@ -221,6 +219,11 @@
 		954EBD871AD65BBA0060B8F3 /* UserViewControllerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954EBD861AD65BBA0060B8F3 /* UserViewControllerHeaderView.swift */; };
 		954EBD891AD65BE30060B8F3 /* UserViewControllerHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 954EBD881AD65BE30060B8F3 /* UserViewControllerHeaderView.xib */; };
 		955770721AD68E960060A120 /* UIImageView+MSRSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955770711AD68E960060A120 /* UIImageView+MSRSetter.swift */; };
+		955770741AD74DA20060A120 /* UserViewControllerBodyViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955770731AD74DA20060A120 /* UserViewControllerBodyViewCell.swift */; };
+		955770761AD74DB00060A120 /* UserViewControllerBodyViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 955770751AD74DB00060A120 /* UserViewControllerBodyViewCell.xib */; };
+		955770781AD757B30060A120 /* UIImage+MSRColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955770771AD757B30060A120 /* UIImage+MSRColor.swift */; };
+		9557707A1AD77D410060A120 /* UserViewControllerBottomButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955770791AD77D410060A120 /* UserViewControllerBottomButtonCell.swift */; };
+		9557707C1AD77D500060A120 /* UserViewControllerBottomButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9557707B1AD77D500060A120 /* UserViewControllerBottomButtonCell.xib */; };
 		956E70EF1AAFC4E100A3FD7D /* WeCenterMobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 956E70ED1AAFC4E100A3FD7D /* WeCenterMobile.xcdatamodeld */; };
 		956E72051AAFC53B00A3FD7D /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 956E71E11AAFC53B00A3FD7D /* AFHTTPRequestOperation.m */; };
 		956E72061AAFC53B00A3FD7D /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 956E71E31AAFC53B00A3FD7D /* AFHTTPRequestOperationManager.m */; };
@@ -381,10 +384,8 @@
 		950FE4ED1A1DA2B500167D09 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Topic.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		950FE4EF1A1DA2B500167D09 /* Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.h; sourceTree = "<group>"; };
 		950FE4F41A1DA2B500167D09 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		950FE4FB1A1DA2B500167D09 /* RectangleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleButton.swift; sourceTree = "<group>"; };
 		950FE4FC1A1DA2B500167D09 /* TopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
 		950FE4FF1A1DA2B500167D09 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
-		950FE5001A1DA2B500167D09 /* UserCountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCountView.swift; sourceTree = "<group>"; };
 		950FE7CF1A1DA4EC00167D09 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		950FE7D11A1DA4F300167D09 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		950FE7D31A1DA4F900167D09 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -712,6 +713,11 @@
 		954EBD861AD65BBA0060B8F3 /* UserViewControllerHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewControllerHeaderView.swift; sourceTree = "<group>"; };
 		954EBD881AD65BE30060B8F3 /* UserViewControllerHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserViewControllerHeaderView.xib; sourceTree = "<group>"; };
 		955770711AD68E960060A120 /* UIImageView+MSRSetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+MSRSetter.swift"; sourceTree = "<group>"; };
+		955770731AD74DA20060A120 /* UserViewControllerBodyViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewControllerBodyViewCell.swift; sourceTree = "<group>"; };
+		955770751AD74DB00060A120 /* UserViewControllerBodyViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserViewControllerBodyViewCell.xib; sourceTree = "<group>"; };
+		955770771AD757B30060A120 /* UIImage+MSRColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+MSRColor.swift"; sourceTree = "<group>"; };
+		955770791AD77D410060A120 /* UserViewControllerBottomButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewControllerBottomButtonCell.swift; sourceTree = "<group>"; };
+		9557707B1AD77D500060A120 /* UserViewControllerBottomButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserViewControllerBottomButtonCell.xib; sourceTree = "<group>"; };
 		956E70EE1AAFC4E100A3FD7D /* WeCenterMobile.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeCenterMobile.xcdatamodel; sourceTree = "<group>"; };
 		956E71E01AAFC53B00A3FD7D /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		956E71E11AAFC53B00A3FD7D /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -1011,7 +1017,6 @@
 				951D1FB31ACE551A0072D555 /* QuestionTagListCell.xib */,
 				951D1FAD1ACD66FE0072D555 /* QuestionTitleCell.swift */,
 				951D1FAE1ACD66FE0072D555 /* QuestionTitleCell.xib */,
-				950FE4FB1A1DA2B500167D09 /* RectangleButton.swift */,
 				95C47D4C1ACA51E200A56879 /* SidebarCategoryCell.swift */,
 				95C47D4E1ACA51F200A56879 /* SidebarCategoryCell.xib */,
 				95C47D501ACAB7FE00A56879 /* SidebarUserCell.swift */,
@@ -1019,9 +1024,12 @@
 				950FE4FC1A1DA2B500167D09 /* TopicCell.swift */,
 				9595435D1AC94DEE008C48D7 /* UIImageView+User.swift */,
 				950FE4FF1A1DA2B500167D09 /* UserCell.swift */,
-				950FE5001A1DA2B500167D09 /* UserCountView.swift */,
 				954EBD861AD65BBA0060B8F3 /* UserViewControllerHeaderView.swift */,
 				954EBD881AD65BE30060B8F3 /* UserViewControllerHeaderView.xib */,
+				955770731AD74DA20060A120 /* UserViewControllerBodyViewCell.swift */,
+				955770751AD74DB00060A120 /* UserViewControllerBodyViewCell.xib */,
+				955770791AD77D410060A120 /* UserViewControllerBottomButtonCell.swift */,
+				9557707B1AD77D500060A120 /* UserViewControllerBottomButtonCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1687,6 +1695,7 @@
 				95C2EA151AB0516800F2A326 /* UIColor+MSRMaterialColor.swift */,
 				95C2EA161AB0516800F2A326 /* UIColor+MSRRandomColor.swift */,
 				95C2EA171AB0516800F2A326 /* UIColor+MSRRGBA.swift */,
+				955770771AD757B30060A120 /* UIImage+MSRColor.swift */,
 				95C2EA181AB0516800F2A326 /* UIImage+MSRResize.swift */,
 				95C2EA191AB0516800F2A326 /* UIImage+MSRShape.swift */,
 				955770711AD68E960060A120 /* UIImageView+MSRSetter.swift */,
@@ -1830,6 +1839,7 @@
 			files = (
 				951D1FB01ACD66FE0072D555 /* QuestionTitleCell.xib in Resources */,
 				95C2DF931AC02E9400E350C2 /* ImageUploadingProgressBar.xib in Resources */,
+				9557707C1AD77D500060A120 /* UserViewControllerBottomButtonCell.xib in Resources */,
 				95C47D531ACAB81000A56879 /* SidebarUserCell.xib in Resources */,
 				950FE1241A1DA2A400167D09 /* Configuration.plist in Resources */,
 				9532C8CA1A51548B001A0E4A /* QuestionFocusingActionCell.xib in Resources */,
@@ -1847,6 +1857,7 @@
 				951D1FBC1ACE95AB0072D555 /* AnswerTopBar.xib in Resources */,
 				950FE1271A1DA2A400167D09 /* Welcome.strings in Resources */,
 				951D2F821AB7F85500DCB678 /* MJRefresh.bundle in Resources */,
+				955770761AD74DB00060A120 /* UserViewControllerBodyViewCell.xib in Resources */,
 				951D1E741ACD1E4E0072D555 /* default.css in Resources */,
 				951D2F8F1AB7F8C000DCB678 /* Images.xcassets in Resources */,
 				951D1FB41ACE551A0072D555 /* QuestionTagListCell.xib in Resources */,
@@ -1967,6 +1978,7 @@
 				950FE5101A1DA2B500167D09 /* UserViewController.swift in Sources */,
 				95C2EA401AB0516800F2A326 /* UIColor+MSRRGBA.swift in Sources */,
 				956E72061AAFC53B00A3FD7D /* AFHTTPRequestOperationManager.m in Sources */,
+				955770781AD757B30060A120 /* UIImage+MSRColor.swift in Sources */,
 				951D1F871ACD1E750072D555 /* NSURL+DTAppLinks.m in Sources */,
 				951D1F641ACD1E750072D555 /* DTReachability.m in Sources */,
 				951D2F881AB7F85500DCB678 /* MJRefreshHeader.m in Sources */,
@@ -2058,6 +2070,7 @@
 				951D1F6F1ACD1E750072D555 /* DTZipArchivePKZip.m in Sources */,
 				95C2EA1F1AB0516800F2A326 /* MSRWeak.swift in Sources */,
 				951D1FA41ACD26C40072D555 /* QuestionHeaderCell.swift in Sources */,
+				955770741AD74DA20060A120 /* UserViewControllerBodyViewCell.swift in Sources */,
 				95C2EA3B1AB0516800F2A326 /* MSRSegmentedViewController.swift in Sources */,
 				951D1F571ACD1E750072D555 /* DTASN1BitString.m in Sources */,
 				951D1F6C1ACD1E750072D555 /* DTZipArchive.m in Sources */,
@@ -2069,6 +2082,7 @@
 				950FE71E1A1DA2B500167D09 /* AnswerAction.swift in Sources */,
 				950FE73D1A1DA2B500167D09 /* TopicCell.swift in Sources */,
 				951D1F691ACD1E750072D555 /* DTSQLiteFunctions.m in Sources */,
+				9557707A1AD77D410060A120 /* UserViewControllerBottomButtonCell.swift in Sources */,
 				951D1F661ACD1E750072D555 /* DTScriptVariable.m in Sources */,
 				954EBD871AD65BBA0060B8F3 /* UserViewControllerHeaderView.swift in Sources */,
 				958CB5BB1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift in Sources */,
@@ -2081,7 +2095,6 @@
 				951D1E9C1ACD1E4E0072D555 /* DTTextAttachment.m in Sources */,
 				955770721AD68E960060A120 /* UIImageView+MSRSetter.swift in Sources */,
 				951D1F791ACD1E750072D555 /* DTActivityTitleView.m in Sources */,
-				950FE7411A1DA2B500167D09 /* UserCountView.swift in Sources */,
 				95C2EA3A1AB0516800F2A326 /* MSRSegmentedControlUnderlineIndicator.swift in Sources */,
 				95C2EA201AB0516800F2A326 /* NSManagedObjectContext+MSROperations.swift in Sources */,
 				95C2EA221AB0516800F2A326 /* UnsafePointer+MSRInitializer.swift in Sources */,
@@ -2118,7 +2131,6 @@
 				950FE5071A1DA2B500167D09 /* MainViewController.swift in Sources */,
 				951D1F761ACD1E750072D555 /* UIView+DTActionHandlers.m in Sources */,
 				956E720A1AAFC53B00A3FD7D /* AFURLConnectionOperation.m in Sources */,
-				950FE73C1A1DA2B500167D09 /* RectangleButton.swift in Sources */,
 				95C2EA4D1AB1102000F2A326 /* FeaturedArticle.swift in Sources */,
 				951D1E7B1ACD1E4E0072D555 /* DTAttributedTextView.m in Sources */,
 				950FE7311A1DA2B500167D09 /* Topic.swift in Sources */,

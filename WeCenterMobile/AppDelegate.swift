@@ -30,7 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let welcomeViewController = WelcomeViewController()
     var mainViewController: MainViewController!
-    var currentUser: User?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         AFNetworkActivityIndicatorManager.sharedManager().enabled = true

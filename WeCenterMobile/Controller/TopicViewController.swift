@@ -27,7 +27,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
     var introductionLabel = UILabel()
     var tableView = UITableView(frame: CGRectZero, style: .Plain)
     var tableViewCellReuseIdentifier = "WE_CENTER_MOBILE@TOPIC_VIEW_CONTROLLER+TABLE_VIEW-QUESTION_ANSWER_CELL-REUSE_IDENTIFIER"
-    var outstandingAnswerButton = RectangleCoverButton()
+    // var outstandingAnswerButton = RectangleCoverButton()
 
     var topic: Topic
     var answers = [Answer]()
@@ -227,7 +227,7 @@ class TopicViewController: UIViewController, UIScrollViewDelegate, UITableViewDe
                 imageButton.userInteractionEnabled = false
                 preventHidingImageButtonImage()
                 topic.toggleFocus(
-                    userID: appDelegate.currentUser!.id,
+                    userID: User.currentUser!.id,
                     success: {
                         self.tryHidingImageButtonImage()
                         self.imageActivityIndicatorView.stopAnimating()

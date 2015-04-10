@@ -28,7 +28,7 @@
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Love_icon" translatesAutoresizingMaskIntoConstraints="NO" id="4NV-Wo-0Vl">
                                                 <rect key="frame" x="29" y="12" width="22" height="22"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="22" id="lSz-KM-1O6"/>
                                                     <constraint firstAttribute="width" secondItem="4NV-Wo-0Vl" secondAttribute="height" multiplier="1:1" id="mHg-m5-tNh"/>
@@ -37,7 +37,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="感谢数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8JH-2a-hZe">
                                                 <rect key="frame" x="22" y="37" width="36" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -54,7 +54,7 @@
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Like_icon" translatesAutoresizingMaskIntoConstraints="NO" id="et4-sZ-6ob">
                                                 <rect key="frame" x="29" y="11" width="22" height="22"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="22" id="XOx-wl-HRz"/>
                                                     <constraint firstAttribute="width" secondItem="et4-sZ-6ob" secondAttribute="height" multiplier="1:1" id="nnX-ss-Zhx"/>
@@ -63,7 +63,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赞数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRO-aW-LgR">
                                                 <rect key="frame" x="28" y="37" width="24" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -80,7 +80,7 @@
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Star_icon" translatesAutoresizingMaskIntoConstraints="NO" id="3Oe-gg-BLq">
                                                 <rect key="frame" x="28" y="10" width="24" height="24"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="3Oe-gg-BLq" secondAttribute="height" multiplier="1:1" id="C8f-qN-x7O"/>
                                                     <constraint firstAttribute="width" constant="24" id="Ibm-7B-UBH"/>
@@ -89,7 +89,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收藏数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvR-Hq-8gk">
                                                 <rect key="frame" x="22" y="37" width="36" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -106,7 +106,7 @@
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tick_icon" translatesAutoresizingMaskIntoConstraints="NO" id="t3U-xT-eZ3">
                                                 <rect key="frame" x="28" y="10" width="24" height="24"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="t3U-xT-eZ3" secondAttribute="height" multiplier="1:1" id="URX-za-LiL"/>
                                                     <constraint firstAttribute="width" constant="24" id="rgi-rT-zyh"/>
@@ -115,7 +115,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赞同数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gye-n7-1uz">
                                                 <rect key="frame" x="22" y="37" width="36" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>

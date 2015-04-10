@@ -8,25 +8,32 @@
 
 import UIKit
 
-class UserViewController: UIViewController, UIScrollViewDelegate {
+class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     lazy var header: UserViewControllerHeaderView = {
         let v =  NSBundle.mainBundle().loadNibNamed("UserViewControllerHeaderView", owner: nil, options: nil).first as! UserViewControllerHeaderView
         v.msr_addHeightConstraintWithValue(v.maxHeight)
         return v
     }()
-    lazy var bodyView: UIScrollView = {
+    
+    let bodyViewCellReuseIdentifier = "UserViewControllerBodyViewCell"
+    let bottomButtonCellReuseIdentifier = "UserViewControllerBottomButtonCell"
+    
+    lazy var bodyView: UICollectionView = {
         [weak self] in
-        let v = UIScrollView()
+        let v = UICollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
         v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         v.alwaysBounceVertical = true
         v.contentInset.top = self?.header.maxHeight ?? 0
         v.scrollIndicatorInsets.top = self?.header.minHeight ?? 0
         v.contentOffset.y = -v.contentInset.top
+        v.backgroundColor = UIColor.clearColor()
         v.delegate = self
+        v.dataSource = self
         return v
     }()
-    let user: User
+    
+    var user: User
     
     init(user: User) {
         self.user = user
@@ -41,32 +48,39 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
         super.loadView()
         view.addSubview(bodyView)
         view.addSubview(header)
-        view.backgroundColor = UIColor.msr_materialBrown900()
+        view.backgroundColor = UIColor.msr_materialGray900()
         bodyView.msr_addAllEdgeAttachedConstraintsToSuperview()
+        bodyView.registerNib(UINib(nibName: "UserViewControllerBodyViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: bodyViewCellReuseIdentifier)
+        bodyView.registerNib(UINib(nibName: "UserViewControllerBottomButtonCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: bottomButtonCellReuseIdentifier)
         header.msr_addHorizontalEdgeAttachedConstraintsToSuperview()
         header.msr_addTopAttachedConstraintToSuperview()
+        bodyView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
+        bodyView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
         msr_navigationBar!.hidden = true
+        automaticallyAdjustsScrollViewInsets = false
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadData()
         bodyView.contentSize = CGSize(width: 1, height: 1000)
-        user.fetchProfile(
+        User.fetch(ID: user.id,
             success: {
-                [weak self] in
+                [weak self] user in
+                self?.user = user
                 self?.reloadData()
                 return
             },
-            failure: {
-                error in
-                NSLog("%@", error)
-                return
-            })
+            failure: nil)
     }
     
+    var mainColor: UIColor!
+    
     func reloadData() {
+        mainColor = user.avatar?.msr_averageColorWithAccuracy(0.5)?.colorWithAlphaComponent(0.2) ?? UIColor.clearColor()
+        bodyView.backgroundColor = mainColor
         header.update(user)
+        bodyView.reloadData()
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -75,6 +89,106 @@ class UserViewController: UIViewController, UIScrollViewDelegate {
             header.msr_heightConstraint!.constant = max(header.maxHeight - offset, header.minHeight)
             header.layoutIfNeeded()
         }
+    }
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return [6, 1][section]
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        if indexPath.section == 0 {
+            let cell = bodyView.dequeueReusableCellWithReuseIdentifier(bodyViewCellReuseIdentifier, forIndexPath: indexPath) as! UserViewControllerBodyViewCell
+            let titles = ["提问", "回答", "文章", "话题", "关注中", "追随者"]
+            let counts = map([user.questionCount, user.answerCount, NSNumber?(0), user.topicFocusCount, user.followingCount, user.followerCount]) {
+                return $0?.description ?? "..."
+            }
+            cell.titleLabel.text = titles[indexPath.item]
+            cell.countLabel.text = counts[indexPath.item]
+            return cell
+        } else {
+            let cell = bodyView.dequeueReusableCellWithReuseIdentifier(bottomButtonCellReuseIdentifier, forIndexPath: indexPath) as! UserViewControllerBottomButtonCell
+            if user.isCurrentUser {
+                cell.textLabel.text = "修改信息"
+                cell.textLabel.textColor = UIColor.whiteColor()
+                cell.activityIndicatorView.stopAnimating()
+            } else {
+                if let followed = user.followed {
+                    cell.textLabel.text = followed ? "已关注" : "关注"
+                    cell.textLabel.textColor = followed ? UIColor.lightTextColor() : UIColor.whiteColor()
+                    cell.activityIndicatorView.stopAnimating()
+                } else {
+                    cell.textLabel.text = ""
+                    cell.activityIndicatorView.startAnimating()
+                }
+            }
+            return cell
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        if indexPath.section == 0 {
+            let length = collectionView.bounds.width / 3 - 2 / 3
+            return CGSize(width: length, height: length)
+        } else {
+            return CGSize(width: collectionView.bounds.width, height: 50)
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        if section == 0 {
+            return UIEdgeInsets(top: 1, left: 0, bottom: 1, right: 0)
+        } else {
+            return UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 0 {
+            pushFollowingUserListViewController()
+        } else {
+            if user.isCurrentUser {
+                // ...
+            } else {
+                let followed = user.followed
+                user.followed = nil
+                collectionView.reloadItemsAtIndexPaths([indexPath])
+                user.toggleFollow(
+                    success: {
+                        collectionView.reloadItemsAtIndexPaths([indexPath])
+                        return
+                    },
+                    failure: {
+                        [weak self] error in
+                        self?.user.followed = followed
+                        collectionView.reloadItemsAtIndexPaths([indexPath])
+                        return
+                    })
+            }
+        }
+        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+    }
+    
+    func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if indexPath.section == 1 {
+            return user.followed != nil || user.isCurrentUser
+        }
+        return true
+    }
+    
+    func pushFollowingUserListViewController() {
+        msr_navigationController!.pushViewController(UserListViewController(user: user, listType: .UserFollowing), animated: true)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

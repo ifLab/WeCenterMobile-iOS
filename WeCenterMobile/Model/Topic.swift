@@ -44,7 +44,7 @@ class Topic: NSManagedObject {
         let topic = DataManager.defaultManager!.autoGenerate("Topic", ID: ID) as! Topic
         NetworkManager.defaultManager!.GET("Topic Detail",
             parameters: [
-                "uid": appDelegate.currentUser!.id,
+                "uid": User.currentUser!.id,
                 "topic_id": ID
             ],
             success: {

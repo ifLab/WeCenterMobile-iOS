@@ -15,7 +15,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     lazy var userCell: SidebarUserCell = {
         [weak self] in
         let cell = NSBundle.mainBundle().loadNibNamed("SidebarUserCell", owner: self?.tableView, options: nil).first as! SidebarUserCell
-        cell.update(user: appDelegate.currentUser)
+        cell.update(user: User.currentUser)
         return cell
     }()
     lazy var cells: [SidebarCategoryCell] = {
@@ -32,14 +32,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 return cell
             }
     }()
-    var user: User? {
-        return appDelegate.currentUser
-    }
     override init() {
         super.init(nibName: nil, bundle: nil)
         contentViewController = MSRNavigationController(rootViewController: viewControllerAtIndex(0))
         contentViewController.view.backgroundColor = UIColor.msr_materialBrown900()
-        contentViewController.gesture.requireGestureRecognizerToFail(sidebar.screenEdgePanGestureRecognizer)
+        contentViewController.interactivePopGestureRecognizer.requireGestureRecognizerToFail(sidebar.screenEdgePanGestureRecognizer)
         addChildViewController(contentViewController)
     }
     required init(coder aDecoder: NSCoder) {
@@ -88,7 +85,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         sidebar.collapse()
         if indexPath.section == 0 {
-            contentViewController.setViewControllers([UserViewController(user: appDelegate.currentUser!)], animated: true)
+            contentViewController.setViewControllers([UserViewController(user: User.currentUser!)], animated: true)
         } else if indexPath.section == 1 {
             contentViewController.setViewControllers([viewControllerAtIndex(indexPath.row)], animated: true)
         } else {
@@ -111,7 +108,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         var viewController: UIViewController! = nil
         switch index {
         case 0:
-            viewController = HomeViewController(user: appDelegate.currentUser!)
+            viewController = HomeViewController(user: User.currentUser!)
             break
         case 1:
             viewController = ExploreViewController()

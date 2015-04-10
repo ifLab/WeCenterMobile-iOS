@@ -77,11 +77,7 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
                 self?.reloadData()
                 return
             },
-            failure: {
-                error in
-                NSLog("%@", error)
-                return
-            })
+            failure: nil)
     }
     
     override func viewDidAppear(animated: Bool) {

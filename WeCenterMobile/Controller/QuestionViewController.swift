@@ -244,7 +244,6 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
                             failure: {
                                 error in
                                 self_.tableView.header.endRefreshing()
-                                NSLog(__FILE__, __FUNCTION__, error)
                                 return
                         })
                     }
@@ -253,7 +252,6 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
             }, failure: {
                 [weak self] error in
                 self?.tableView.header.endRefreshing()
-                NSLog(__FILE__, __FUNCTION__, error)
                 return
         })
     }
