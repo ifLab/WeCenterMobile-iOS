@@ -20,7 +20,6 @@
 		950FE50C1A1DA2B500167D09 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1351A1DA2B300167D09 /* TopicViewController.swift */; };
 		950FE50D1A1DA2B500167D09 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1361A1DA2B300167D09 /* UserListViewController.swift */; };
 		950FE50E1A1DA2B500167D09 /* UserAskedQuestionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1371A1DA2B300167D09 /* UserAskedQuestionListViewController.swift */; };
-		950FE50F1A1DA2B500167D09 /* UserTopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1381A1DA2B300167D09 /* UserTopicListViewController.swift */; };
 		950FE5101A1DA2B500167D09 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1391A1DA2B300167D09 /* UserViewController.swift */; };
 		950FE5111A1DA2B500167D09 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE13A1A1DA2B300167D09 /* WelcomeViewController.swift */; };
 		950FE71C1A1DA2B500167D09 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4D71A1DA2B500167D09 /* Action.swift */; };
@@ -35,7 +34,6 @@
 		950FE7301A1DA2B500167D09 /* QuestionPublishmentAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4EC1A1DA2B500167D09 /* QuestionPublishmentAction.swift */; };
 		950FE7311A1DA2B500167D09 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4ED1A1DA2B500167D09 /* Topic.swift */; };
 		950FE7361A1DA2B500167D09 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4F41A1DA2B500167D09 /* LoginView.swift */; };
-		950FE73D1A1DA2B500167D09 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4FC1A1DA2B500167D09 /* TopicCell.swift */; };
 		950FE7E21A1DA53A00167D09 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7DF1A1DA52000167D09 /* CoreText.framework */; };
 		950FE7E31A1DA53A00167D09 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7DD1A1DA51900167D09 /* UIKit.framework */; };
 		950FE7E41A1DA53A00167D09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7DB1A1DA51400167D09 /* Foundation.framework */; };
@@ -203,6 +201,8 @@
 		951D2F8F1AB7F8C000DCB678 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 951D2F8E1AB7F8C000DCB678 /* Images.xcassets */; };
 		951FAC761ABFCEA30083E221 /* EAColourfulProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 951FAC751ABFCEA30083E221 /* EAColourfulProgressView.m */; };
 		9520AB151AC2C94600637C84 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9520AB141AC2C94600637C84 /* QuestionViewController.swift */; };
+		952E62051AD93D7700E65F87 /* TopicListViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952E62041AD93D7700E65F87 /* TopicListViewControllerCell.swift */; };
+		952E62071AD93D8D00E65F87 /* TopicListViewControllerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 952E62061AD93D8D00E65F87 /* TopicListViewControllerCell.xib */; };
 		9532C8C81A51547B001A0E4A /* QuestionFocusingActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9532C8C71A51547B001A0E4A /* QuestionFocusingActionCell.swift */; };
 		9532C8CA1A51548B001A0E4A /* QuestionFocusingActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9532C8C91A51548B001A0E4A /* QuestionFocusingActionCell.xib */; };
 		9532C8CC1A515E28001A0E4A /* AnswerAgreementActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9532C8CB1A515E28001A0E4A /* AnswerAgreementActionCell.swift */; };
@@ -252,7 +252,7 @@
 		95891E5D1AD83ADA007D5DF7 /* MSRCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95891E5C1AD83ADA007D5DF7 /* MSRCollectionView.swift */; };
 		958CB5BB1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CB5BA1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift */; };
 		958FF4D71AC270820073022F /* String+MSROperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958FF4D61AC270820073022F /* String+MSROperations.swift */; };
-		9595435E1AC94DEE008C48D7 /* UIImageView+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9595435D1AC94DEE008C48D7 /* UIImageView+User.swift */; };
+		9595435E1AC94DEE008C48D7 /* UIImageView+DataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9595435D1AC94DEE008C48D7 /* UIImageView+DataObject.swift */; };
 		959CC93A1A25BAED00F8B6CB /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC9391A25BAED00F8B6CB /* Article.swift */; };
 		959CC93C1A25BAED00F8B6CB /* AnswerComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC93B1A25BAED00F8B6CB /* AnswerComment.swift */; };
 		959CC93E1A25BAED00F8B6CB /* ArticleComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CC93D1A25BAED00F8B6CB /* ArticleComment.swift */; };
@@ -370,7 +370,6 @@
 		950FE1351A1DA2B300167D09 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		950FE1361A1DA2B300167D09 /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		950FE1371A1DA2B300167D09 /* UserAskedQuestionListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAskedQuestionListViewController.swift; sourceTree = "<group>"; };
-		950FE1381A1DA2B300167D09 /* UserTopicListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTopicListViewController.swift; sourceTree = "<group>"; };
 		950FE1391A1DA2B300167D09 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		950FE13A1A1DA2B300167D09 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = WelcomeViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		950FE4D71A1DA2B500167D09 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Action.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -386,7 +385,6 @@
 		950FE4ED1A1DA2B500167D09 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Topic.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		950FE4EF1A1DA2B500167D09 /* Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.h; sourceTree = "<group>"; };
 		950FE4F41A1DA2B500167D09 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		950FE4FC1A1DA2B500167D09 /* TopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
 		950FE7CF1A1DA4EC00167D09 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		950FE7D11A1DA4F300167D09 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		950FE7D31A1DA4F900167D09 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -699,6 +697,8 @@
 		951FAC741ABFCEA30083E221 /* EAColourfulProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAColourfulProgressView.h; sourceTree = "<group>"; };
 		951FAC751ABFCEA30083E221 /* EAColourfulProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAColourfulProgressView.m; sourceTree = "<group>"; };
 		9520AB141AC2C94600637C84 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = QuestionViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		952E62041AD93D7700E65F87 /* TopicListViewControllerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListViewControllerCell.swift; sourceTree = "<group>"; };
+		952E62061AD93D8D00E65F87 /* TopicListViewControllerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicListViewControllerCell.xib; sourceTree = "<group>"; };
 		9532C8C71A51547B001A0E4A /* QuestionFocusingActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionFocusingActionCell.swift; sourceTree = "<group>"; };
 		9532C8C91A51548B001A0E4A /* QuestionFocusingActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionFocusingActionCell.xib; sourceTree = "<group>"; };
 		9532C8CB1A515E28001A0E4A /* AnswerAgreementActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerAgreementActionCell.swift; sourceTree = "<group>"; };
@@ -772,7 +772,7 @@
 		95891E5C1AD83ADA007D5DF7 /* MSRCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRCollectionView.swift; sourceTree = "<group>"; };
 		958CB5BA1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = QuestionPublishmentViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		958FF4D61AC270820073022F /* String+MSROperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MSROperations.swift"; sourceTree = "<group>"; };
-		9595435D1AC94DEE008C48D7 /* UIImageView+User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "UIImageView+User.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		9595435D1AC94DEE008C48D7 /* UIImageView+DataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "UIImageView+DataObject.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		959CC9391A25BAED00F8B6CB /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		959CC93B1A25BAED00F8B6CB /* AnswerComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnswerComment.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		959CC93D1A25BAED00F8B6CB /* ArticleComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleComment.swift; sourceTree = "<group>"; };
@@ -925,7 +925,6 @@
 				950FE1351A1DA2B300167D09 /* TopicViewController.swift */,
 				950FE1361A1DA2B300167D09 /* UserListViewController.swift */,
 				950FE1371A1DA2B300167D09 /* UserAskedQuestionListViewController.swift */,
-				950FE1381A1DA2B300167D09 /* UserTopicListViewController.swift */,
 				950FE1391A1DA2B300167D09 /* UserViewController.swift */,
 				950FE13A1A1DA2B300167D09 /* WelcomeViewController.swift */,
 			);
@@ -1025,8 +1024,9 @@
 				95C47D4E1ACA51F200A56879 /* SidebarCategoryCell.xib */,
 				95C47D501ACAB7FE00A56879 /* SidebarUserCell.swift */,
 				95C47D521ACAB81000A56879 /* SidebarUserCell.xib */,
-				950FE4FC1A1DA2B500167D09 /* TopicCell.swift */,
-				9595435D1AC94DEE008C48D7 /* UIImageView+User.swift */,
+				952E62041AD93D7700E65F87 /* TopicListViewControllerCell.swift */,
+				952E62061AD93D8D00E65F87 /* TopicListViewControllerCell.xib */,
+				9595435D1AC94DEE008C48D7 /* UIImageView+DataObject.swift */,
 				9557707D1AD817BE0060A120 /* UserListViewControllerCell.swift */,
 				955770811AD81D660060A120 /* UserListViewControllerCell.xib */,
 				954EBD861AD65BBA0060B8F3 /* UserViewControllerHeaderView.swift */,
@@ -1845,6 +1845,7 @@
 			files = (
 				951D1FB01ACD66FE0072D555 /* QuestionTitleCell.xib in Resources */,
 				95C2DF931AC02E9400E350C2 /* ImageUploadingProgressBar.xib in Resources */,
+				952E62071AD93D8D00E65F87 /* TopicListViewControllerCell.xib in Resources */,
 				9557707C1AD77D500060A120 /* UserViewControllerBottomButtonCell.xib in Resources */,
 				95C47D531ACAB81000A56879 /* SidebarUserCell.xib in Resources */,
 				950FE1241A1DA2A400167D09 /* Configuration.plist in Resources */,
@@ -1911,6 +1912,7 @@
 				951D1F941ACD1E750072D555 /* NSString+DTUtilities.m in Sources */,
 				951D1E941ACD1E4E0072D555 /* DTIframeTextAttachment.m in Sources */,
 				951D2F8C1AB7F85500DCB678 /* UIScrollView+MJRefresh.m in Sources */,
+				952E62051AD93D7700E65F87 /* TopicListViewControllerCell.swift in Sources */,
 				951D1E811ACD1E4E0072D555 /* DTCoreTextFontDescriptor.m in Sources */,
 				951D1F651ACD1E750072D555 /* DTScriptExpression.m in Sources */,
 				950FE50E1A1DA2B500167D09 /* UserAskedQuestionListViewController.swift in Sources */,
@@ -2071,7 +2073,7 @@
 				951D1E8E1ACD1E4E0072D555 /* DTHorizontalRuleHTMLElement.m in Sources */,
 				951D1F721ACD1E750072D555 /* unzip.c in Sources */,
 				951D1F9E1ACD1E750072D555 /* NSObject+DTRuntime.m in Sources */,
-				9595435E1AC94DEE008C48D7 /* UIImageView+User.swift in Sources */,
+				9595435E1AC94DEE008C48D7 /* UIImageView+DataObject.swift in Sources */,
 				951D1F751ACD1E750072D555 /* DTAlertView.m in Sources */,
 				951D1E971ACD1E4E0072D555 /* DTLazyImageView.m in Sources */,
 				951D1F7F1ACD1E750072D555 /* DTSidePanelController.m in Sources */,
@@ -2089,7 +2091,6 @@
 				95C2EA2C1AB0516800F2A326 /* MSRAnimationInfo.swift in Sources */,
 				951D1E761ACD1E4E0072D555 /* DTAccessibilityViewProxy.m in Sources */,
 				950FE71E1A1DA2B500167D09 /* AnswerAction.swift in Sources */,
-				950FE73D1A1DA2B500167D09 /* TopicCell.swift in Sources */,
 				951D1F691ACD1E750072D555 /* DTSQLiteFunctions.m in Sources */,
 				9557707A1AD77D410060A120 /* UserViewControllerBottomButtonCell.swift in Sources */,
 				951D1F661ACD1E750072D555 /* DTScriptVariable.m in Sources */,
@@ -2177,7 +2178,6 @@
 				951D1EAF1ACD1E4E0072D555 /* NSString+Paragraphs.m in Sources */,
 				951D1E901ACD1E4E0072D555 /* DTHTMLElement.m in Sources */,
 				951D1F881ACD1E750072D555 /* UIApplication+DTNetworkActivity.m in Sources */,
-				950FE50F1A1DA2B500167D09 /* UserTopicListViewController.swift in Sources */,
 				951D1F5E1ACD1E750072D555 /* DTCoreGraphicsUtils.m in Sources */,
 				95C2EA211AB0516800F2A326 /* Numeric+MSRInitializer.swift in Sources */,
 			);

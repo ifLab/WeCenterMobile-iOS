@@ -164,6 +164,7 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
             case 2:
                 break
             case 3:
+                msr_navigationController!.pushViewController(TopicListViewController(user: user), animated: true)
                 break
             case 4:
                 msr_navigationController!.pushViewController(UserListViewController(user: user, listType: .UserFollowing), animated: true)

@@ -27,6 +27,30 @@ extension UIImageView {
                             }
                         }
                     }
+                    return
+                },
+                failure: nil)
+        }
+    }
+    
+    func wc_updateWithTopic(topic: Topic?) {
+        msr_userInfo = topic
+        image = UIImage(named: "User_Follow")
+        if topic?.image != nil {
+            image = topic!.image!
+        }
+        if topic?.imageURL != nil {
+            topic?.fetchImage(
+                success: {
+                    [weak self] in
+                    if let self_ = self {
+                        if let topic_ = self_.msr_userInfo as? Topic {
+                            if topic_.id == topic?.id {
+                                self_.image = topic!.image!
+                            }
+                        }
+                    }
+                    return
                 },
                 failure: nil)
         }

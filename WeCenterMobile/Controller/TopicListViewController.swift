@@ -8,18 +8,54 @@
 
 import UIKit
 
+@objc enum TopicListType: Int {
+    case User
+    case Static
+}
+
 class TopicListViewController: UITableViewController {
-    var topics: [Topic]
+    var page = 1
+    let count = 10
+    var user: User? = nil
+    var topics = [Topic]()
+    var listType: TopicListType
     init(topics: [Topic]) {
         self.topics = topics
-        super.init(style: .Plain)
+        self.listType = .Static
+        super.init(nibName: nil, bundle: nil)
+    }
+    init(user: User) {
+        self.user = user
+        self.listType = .User
+        super.init(nibName: nil, bundle: nil)
     }
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    private var headerImageView: UIImageView! // for keeping weak property in header
+    private var headerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in header
+    private var footerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in footer
+    let cellReuseIdentifier = "TopicListViewControllerCell"
+    override func loadView() {
+        super.loadView()
+        view.backgroundColor = UIColor.msr_materialGray900()
+        tableView.separatorStyle = .None
+        tableView.registerNib(UINib(nibName: "TopicListViewControllerCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
+        if listType != .Static {
+            let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
+            header.textColor = UIColor.whiteColor()
+            headerImageView = header.valueForKey("arrowImage") as! UIImageView
+            headerImageView.tintColor = UIColor.whiteColor()
+            headerImageView.image = headerImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
+            headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
+            headerActivityIndicatorView.activityIndicatorViewStyle = .White
+        }
+        msr_navigationBar!.barStyle = .Black
+        msr_navigationBar!.tintColor = UIColor.whiteColor()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.reloadData()
+        tableView.header.beginRefreshing()
     }
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -28,12 +64,82 @@ class TopicListViewController: UITableViewController {
         return topics.count
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return TopicCell(topic: topics[indexPath.row], reuseIdentifier: "")
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! TopicListViewControllerCell
+        cell.update(topic: topics[indexPath.row])
+        return cell
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 80
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         msr_navigationController!.pushViewController(TopicViewController(topic: topics[indexPath.row]), animated: true)
+    }
+    var shouldReloadAfterLoadingMore = true
+    func refresh() {
+        shouldReloadAfterLoadingMore = false
+        tableView.footer?.endRefreshing()
+        switch listType {
+        case .User:
+            user!.fetchTopics(
+                page: 1,
+                count: count,
+                success: {
+                    [weak self] topics in
+                    self?.page = 1
+                    self?.topics = topics
+                    self?.tableView.reloadData()
+                    self?.tableView.header.endRefreshing()
+                    if self?.tableView.footer == nil {
+                        let footer = self!.tableView.addLegendFooterWithRefreshingTarget(self, refreshingAction: "loadMore")
+                        footer.textColor = UIColor.whiteColor()
+                        footer.automaticallyRefresh = false
+                        self?.footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
+                        self?.footerActivityIndicatorView.activityIndicatorViewStyle = .White
+                    }
+                    return
+                },
+                failure: {
+                    [weak self] error in
+                    self?.tableView.header.endRefreshing()
+                    return
+                })
+            break
+        default:
+            break
+        }
+    }
+    func loadMore() {
+        if tableView.header.isRefreshing() {
+            tableView.footer!.endRefreshing()
+            return
+        }
+        shouldReloadAfterLoadingMore = true
+        switch listType {
+        case .User:
+            user!.fetchTopics(
+                page: page + 1,
+                count: count,
+                success: {
+                    [weak self] topics in
+                    if self?.shouldReloadAfterLoadingMore ?? false {
+                        self?.page = self!.page + 1
+                        self?.topics.extend(topics)
+                        self?.tableView.reloadData()
+                    }
+                    self?.tableView.footer.endRefreshing()
+                    return
+                },
+                failure: {
+                    [weak self] error in
+                    self?.tableView.footer.endRefreshing()
+                    return
+                })
+            break
+        default:
+            break
+        }
+    }
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
 }

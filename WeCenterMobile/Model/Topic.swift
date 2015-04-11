@@ -134,5 +134,27 @@ class Topic: NSManagedObject {
             },
             failure: failure)
     }
+    
+    private let imageView = UIImageView()
+    
+    func fetchImage(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        if imageURL != nil {
+            imageView.setImageWithURLRequest(NSURLRequest(URL: NSURL(string: imageURL!)!),
+                placeholderImage: nil,
+                success: {
+                    [weak self] request, response, image in
+                    self?.image = image
+                    success?()
+                    return
+                },
+                failure: {
+                    request, response, error in
+                    failure?(error)
+                    return
+            })
+        } else {
+            failure?(NSError()) // Needs specification
+        }
+    }
 
 }

@@ -8,11 +8,10 @@
 
 import UIKit
 
-enum UserListType: Int {
+@objc enum UserListType: Int {
     case UserFollowing = 1
     case UserFollower = 2
     case QuestionFollwer = 3
-    case Unknown
 }
 
 class UserListViewController: UITableViewController {
@@ -39,7 +38,7 @@ class UserListViewController: UITableViewController {
     let cellReuseIdentifier = "UserListViewControllerCell"
     override func loadView() {
         super.loadView()
-        view.backgroundColor = UIColor.msr_materialBlueGray900()
+        view.backgroundColor = UIColor.msr_materialGray900()
         tableView.separatorStyle = .None
         tableView.registerNib(UINib(nibName: "UserListViewControllerCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
