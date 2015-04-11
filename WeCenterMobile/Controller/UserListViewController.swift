@@ -24,10 +24,6 @@ class UserListViewController: UITableViewController {
         self.listType = listType
         self.user = user
         super.init(nibName: nil, bundle: nil)
-        let titles: [UserListType: String] = [
-            .UserFollowing: "\(user.name!) 关注的用户",
-            .UserFollower: "\(user.name!) 的追随者"]
-        self.title = titles[listType]!
     }
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -38,9 +34,15 @@ class UserListViewController: UITableViewController {
     let cellReuseIdentifier = "UserListViewControllerCell"
     override func loadView() {
         super.loadView()
+        let titles: [UserListType: String] = [
+            .UserFollowing: "\(user.name!) 关注的用户",
+            .UserFollower: "\(user.name!) 的追随者"]
+        self.title = titles[listType]!
         view.backgroundColor = UIColor.msr_materialGray900()
         tableView.separatorStyle = .None
         tableView.registerNib(UINib(nibName: "UserListViewControllerCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
+        tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
+        tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
         let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
         header.textColor = UIColor.whiteColor()
         headerImageView = header.valueForKey("arrowImage") as! UIImageView

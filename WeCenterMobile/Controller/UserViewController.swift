@@ -54,6 +54,8 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         bodyView.registerNib(UINib(nibName: "UserViewControllerBottomButtonCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: bottomButtonCellReuseIdentifier)
         header.msr_addHorizontalEdgeAttachedConstraintsToSuperview()
         header.msr_addTopAttachedConstraintToSuperview()
+        header.backButton.hidden = msr_navigationController!.viewControllers.count == 1
+        header.backButton.addTarget(self, action: "didPressBackButton", forControlEvents: .TouchUpInside)
         bodyView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
         bodyView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
         msr_navigationBar!.hidden = true
@@ -203,6 +205,10 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
             return user.followed != nil || user.isCurrentUser
         }
         return true
+    }
+    
+    func didPressBackButton() {
+        msr_navigationController!.popViewController(animated: true)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

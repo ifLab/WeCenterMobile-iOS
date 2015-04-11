@@ -9,9 +9,25 @@
 import UIKit
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var contentViewController: MSRNavigationController! = nil
+    lazy var contentViewController: MSRNavigationController = {
+        [weak self] in
+        let vc = MSRNavigationController(rootViewController: self!.viewControllerAtIndex(0))
+        vc.view.backgroundColor = UIColor.msr_materialBrown900()
+        return vc
+    }()
     let sidebar = MSRSidebar(width: 200, edge: .Left)
-    var tableView: UITableView! = nil
+    lazy var tableView: UITableView = {
+        [weak self] in
+        let v = UITableView(frame: CGRectZero, style: .Grouped)
+        v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+        v.backgroundColor = UIColor.clearColor()
+        v.delegate = self
+        v.dataSource = self
+        v.separatorColor = UIColor.clearColor()
+        v.separatorStyle = .None
+        v.showsVerticalScrollIndicator = false
+        return v
+    }()
     lazy var userCell: SidebarUserCell = {
         [weak self] in
         let cell = NSBundle.mainBundle().loadNibNamed("SidebarUserCell", owner: self?.tableView, options: nil).first as! SidebarUserCell
@@ -34,23 +50,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }()
     convenience init() {
         self.init(nibName: nil, bundle: nil)
-        contentViewController = MSRNavigationController(rootViewController: viewControllerAtIndex(0))
-        contentViewController.view.backgroundColor = UIColor.msr_materialBrown900()
-        contentViewController.interactivePopGestureRecognizer.requireGestureRecognizerToFail(sidebar.screenEdgePanGestureRecognizer)
-        addChildViewController(contentViewController)
     }
     override func loadView() {
         super.loadView()
-        tableView = UITableView(frame: CGRectZero, style: .Grouped)
-        tableView.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+        contentViewController.interactivePopGestureRecognizer.requireGestureRecognizerToFail(sidebar.screenEdgePanGestureRecognizer)
+        addChildViewController(contentViewController)
         view.addSubview(contentViewController.view)
         view.insertSubview(sidebar, aboveSubview: contentViewController.view)
-        tableView.backgroundColor = UIColor.clearColor()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorColor = UIColor.clearColor()
-        tableView.separatorStyle = .None
-        tableView.showsVerticalScrollIndicator = false
         sidebar.contentView.addSubview(tableView)
         tableView.msr_addAllEdgeAttachedConstraintsToSuperview()
     }

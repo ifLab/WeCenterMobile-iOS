@@ -38,9 +38,12 @@ class TopicListViewController: UITableViewController {
     let cellReuseIdentifier = "TopicListViewControllerCell"
     override func loadView() {
         super.loadView()
+        title = listType == .User ? "\(user!.name!) 关注的话题" : "话题"
         view.backgroundColor = UIColor.msr_materialGray900()
         tableView.separatorStyle = .None
         tableView.registerNib(UINib(nibName: "TopicListViewControllerCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
+        tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
+        tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
         if listType != .Static {
             let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
             header.textColor = UIColor.whiteColor()
