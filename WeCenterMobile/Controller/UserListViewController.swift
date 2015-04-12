@@ -40,6 +40,7 @@ class UserListViewController: UITableViewController {
         self.title = titles[listType]!
         view.backgroundColor = UIColor.msr_materialGray900()
         tableView.separatorStyle = .None
+        tableView.indicatorStyle = .White
         tableView.registerNib(UINib(nibName: "UserListViewControllerCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)

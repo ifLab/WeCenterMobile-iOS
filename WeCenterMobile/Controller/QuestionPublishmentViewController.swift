@@ -56,6 +56,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
         dismissButton.backgroundColor = UIColor.clearColor()
         publishButton.backgroundColor = UIColor.clearColor()
         scrollView.alwaysBounceVertical = true
+        scrollView.indicatorStyle = .White
         tagsField.textField.textColor = UIColor.lightTextColor()
         tagsField.textField.font = UIFont.systemFontOfSize(14)
         tagsField.textField.attributedPlaceholder = NSAttributedString(string: "输入并以换行键添加，可添加多个", attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])

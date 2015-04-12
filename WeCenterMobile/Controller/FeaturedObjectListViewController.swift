@@ -29,6 +29,7 @@ class FeaturedObjectListViewController: UITableViewController {
         super.loadView()
         view.backgroundColor = UIColor.clearColor()
         tableView.separatorStyle = .None
+        tableView.indicatorStyle = .White
         for i in 0..<nibNames.count {
             tableView.registerNib(UINib(nibName: nibNames[i], bundle: NSBundle.mainBundle()), forCellReuseIdentifier: identifiers[i])
         }

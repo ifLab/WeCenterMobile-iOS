@@ -42,6 +42,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         v.dataSource = self
         v.separatorStyle = .None
         v.backgroundColor = UIColor.clearColor()
+        v.indicatorStyle = .White
         v.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
         v.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
         return v

@@ -27,6 +27,7 @@ class UserAskedQuestionListViewController: UITableViewController {
     override func loadView() {
         super.loadView()
         /// @TODO: UITableView customization
+        tableView.indicatorStyle = .White
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         msr_loadMoreControl = MSRLoadMoreControl()

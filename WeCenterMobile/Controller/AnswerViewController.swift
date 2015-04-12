@@ -62,6 +62,7 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         view.addConstraint(NSLayoutConstraint(item: bottomBar, attribute: .Bottom, relatedBy: .Equal, toItem: bottomLayoutGuide, attribute: .Top, multiplier: 1, constant: 0))
         answerBodyView.frame = view.bounds
         answerBodyView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
+        answerBodyView.indicatorStyle = .White
         view.backgroundColor = UIColor.msr_materialBrown900()
         msr_navigationBar!.barStyle = .Black
         msr_navigationBar!.tintColor = UIColor.whiteColor()

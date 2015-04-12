@@ -24,6 +24,7 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         let v = UICollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
         v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         v.alwaysBounceVertical = true
+        v.indicatorStyle = .White
         v.contentInset.top = self?.header.maxHeight ?? 0
         v.scrollIndicatorInsets.top = self?.header.minHeight ?? 0
         v.contentOffset.y = -v.contentInset.top

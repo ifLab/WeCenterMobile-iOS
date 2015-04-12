@@ -41,6 +41,7 @@ class TopicListViewController: UITableViewController {
         title = listType == .User ? "\(user!.name!) 关注的话题" : "话题"
         view.backgroundColor = UIColor.msr_materialGray900()
         tableView.separatorStyle = .None
+        tableView.indicatorStyle = .White
         tableView.registerNib(UINib(nibName: "TopicListViewControllerCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
