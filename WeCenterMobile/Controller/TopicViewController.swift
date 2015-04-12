@@ -11,7 +11,8 @@ import UIKit
 class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var topic: Topic
-    var answers = DataManager.defaultManager!.fetchAll("Answer", error: nil) as! [Answer] // [Answer]()
+    var answers = DataManager.defaultManager!.fetchAll("Answer", error: nil) as! [Answer]
+    // WARN: - Should be [Answer]()
     
     init(topic: Topic) {
         self.topic = topic
@@ -22,7 +23,12 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         fatalError("init(coder:) has not been implemented")
     }
     
-    let header = NSBundle.mainBundle().loadNibNamed("TopicViewControllerHeaderView", owner: nil, options: nil).first as! TopicViewControllerHeaderView
+    lazy var header: TopicViewControllerHeaderView = {
+        [weak self] in
+        let v = NSBundle.mainBundle().loadNibNamed("TopicViewControllerHeaderView", owner: nil, options: nil).first as! TopicViewControllerHeaderView
+        v.focusButton.addTarget(self, action: "focus", forControlEvents: .TouchUpInside)
+        return v
+    }()
     
     lazy var bodyView: UITableView = {
         [weak self] in
@@ -36,6 +42,8 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         v.dataSource = self
         v.separatorStyle = .None
         v.backgroundColor = UIColor.clearColor()
+        v.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
+        v.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
         return v
     }()
     
@@ -78,16 +86,48 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func refresh() {
-        topic.fetchOutstandingAnswers(
+        Topic.fetch(
+            ID: topic.id,
             success: {
-                [weak self] answers in
-                self?.answers = answers
+                [weak self] topic in
+                self?.topic = topic
+                self?.reloadData()
+                topic.fetchOutstandingAnswers(
+                    success: {
+                        [weak self] answers in
+                        self?.answers = answers
+                        self?.bodyView.header.endRefreshing()
+                        self?.reloadData()
+                        return
+                    },
+                    failure: {
+                        [weak self] error in
+                        self?.bodyView.header.endRefreshing()
+                        return
+                    })
+            },
+            failure: {
+                [weak self] error in
+                self?.bodyView.header.endRefreshing()
+                return
+            })
+    }
+    
+    func focus() {
+        let focused = topic.focused
+        topic.focused = nil
+        reloadData()
+        topic.focused = focused
+        topic.toggleFocus(
+            userID: User.currentUser!.id,
+            success: {
+                [weak self] in
                 self?.reloadData()
                 return
             },
             failure: {
                 [weak self] error in
-                self?.bodyView.header.endRefreshing()
+                self?.reloadData()
                 return
             })
     }

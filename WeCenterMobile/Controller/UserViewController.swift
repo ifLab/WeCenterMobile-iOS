@@ -76,11 +76,8 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
             failure: nil)
     }
     
-    var mainColor: UIColor!
-    
     func reloadData() {
-        mainColor = user.avatar?.msr_averageColorWithAccuracy(0.5)?.colorWithAlphaComponent(0.2) ?? UIColor.clearColor()
-        bodyView.backgroundColor = mainColor
+        bodyView.backgroundColor = user.avatar?.msr_averageColorWithAccuracy(0.5)?.colorWithAlphaComponent(0.2) ?? UIColor.clearColor()
         header.update(user: user)
         bodyView.reloadData()
     }

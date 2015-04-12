@@ -41,7 +41,6 @@ class Topic: NSManagedObject {
     }
     
     class func fetch(#ID: NSNumber, success: ((Topic) -> Void)?, failure: ((NSError) -> Void)?) {
-        let topic = DataManager.defaultManager!.autoGenerate("Topic", ID: ID) as! Topic
         NetworkManager.defaultManager!.GET("Topic Detail",
             parameters: [
                 "uid": User.currentUser!.id,
@@ -49,11 +48,12 @@ class Topic: NSManagedObject {
             ],
             success: {
                 data in
+                let topic = DataManager.defaultManager!.autoGenerate("Topic", ID: ID) as! Topic
                 topic.title = data["topic_title"] as? String
                 topic.introduction = data["topic_description"] as? String
                 topic.imageURI = data["topic_pic"] as? String
                 topic.focusCount = Int(msr_object: data["focus_count"]!!)
-                topic.focused = (data["has_focus"] as! NSNumber == 1)
+                topic.focused = Int(msr_object: data["has_focus"]) == 1
                 success?(topic)
             },
             failure: failure)
