@@ -43,18 +43,20 @@ class FeaturedQuestionAnswerCell: FeaturedObjectCell {
         questionButton.backgroundColor = UIColor.clearColor()
     }
     
-    override func update(#object: FeaturedObject) {
-        super.update(object: object)
+    override func update(#object: FeaturedObject, updateImage: Bool) {
+        super.update(object: object, updateImage: updateImage)
         if !objectChanged {
             return
         }
         let object = object as! FeaturedQuestionAnswer
         let question = object.question
         let answer = object.answers.first
-        questionUserAvatarView.wc_updateWithUser(question.user)
+        if updateImage {
+            questionUserAvatarView.wc_updateWithUser(question.user)
+            answerUserAvatarView.wc_updateWithUser(answer?.user)
+        }
         questionUserNameLabel.text = question.user?.name
         questionTitleLabel.text = question.title
-        answerUserAvatarView.wc_updateWithUser(answer?.user)
         answerUserNameLabel.text = answer?.user?.name ?? "匿名用户"
         answerBodyLabel.text = answer?.body ?? ""
         questionButton.msr_userInfo = question

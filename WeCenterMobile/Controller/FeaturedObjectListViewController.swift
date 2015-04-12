@@ -43,7 +43,7 @@ class FeaturedObjectListViewController: UITableViewController {
             header.textColor = UIColor.whiteColor()
             headerImageView = header.valueForKey("arrowImage") as! UIImageView
             headerImageView.tintColor = UIColor.whiteColor()
-            headerImageView.image = headerImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
+            headerImageView.msr_imageRenderingMode = .AlwaysTemplate
             headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
             headerActivityIndicatorView.activityIndicatorViewStyle = .White
             tableView.header.beginRefreshing()
@@ -68,7 +68,7 @@ class FeaturedObjectListViewController: UITableViewController {
         if let cell = cell as? FeaturedQuestionAnswerCell {
             cell.questionButton.addTarget(self, action: "pushQuestionViewController:", forControlEvents: .TouchUpInside)
         }
-        cell.update(object: object)
+        cell.update(object: object, updateImage: true)
         return cell
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -90,7 +90,7 @@ class FeaturedObjectListViewController: UITableViewController {
             }
         }
         let cell = _Static.cells[nibNames[index]]!
-        cell.update(object: object)
+        cell.update(object: object, updateImage: false)
         return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1
     }
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -131,16 +131,18 @@ class FeaturedObjectListViewController: UITableViewController {
         FeaturedObject.fetchFeaturedObjects(page: 1, count: count, type: type,
             success: {
                 [weak self] objects in
-                self?.page = 1
-                self?.objects = objects
-                self?.tableView.reloadData()
-                self?.tableView.header.endRefreshing()
-                if self?.tableView.footer == nil {
-                    let footer = self!.tableView.addLegendFooterWithRefreshingTarget(self, refreshingAction: "loadMore")
-                    footer.textColor = UIColor.whiteColor()
-                    footer.automaticallyRefresh = false
-                    self?.footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
-                    self?.footerActivityIndicatorView.activityIndicatorViewStyle = .White
+                if let self_ = self {
+                    self_.page = 1
+                    self_.objects = objects
+                    self_.tableView.reloadData()
+                    self_.tableView.header.endRefreshing()
+                    if self_.tableView.footer == nil {
+                        let footer = self_.tableView.addLegendFooterWithRefreshingTarget(self_, refreshingAction: "loadMore")
+                        footer.textColor = UIColor.whiteColor()
+                        footer.automaticallyRefresh = false
+                        self_.footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
+                        self_.footerActivityIndicatorView.activityIndicatorViewStyle = .White
+                    }
                 }
                 return
             },

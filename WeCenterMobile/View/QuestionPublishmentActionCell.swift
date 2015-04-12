@@ -21,10 +21,12 @@ class QuestionPublishmentActionCell: ActionCell {
         questionButton.backgroundColor = UIColor.clearColor()
     }
     
-    override func update(#action: Action) {
-        super.update(action: action)
+    override func update(#action: Action, updateImage: Bool) {
+        super.update(action: action, updateImage: updateImage)
         let action = action as! QuestionPublishmentAction
-        userAvatarView.wc_updateWithUser(action.user)
+        if updateImage {
+            userAvatarView.wc_updateWithUser(action.user)
+        }
         userNameLabel.text = action.user?.name ?? "匿名用户"
         questionTitleLabel.text = action.question.title!
         questionButton.msr_userInfo = action.question

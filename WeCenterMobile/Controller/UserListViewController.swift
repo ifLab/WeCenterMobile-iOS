@@ -47,7 +47,7 @@ class UserListViewController: UITableViewController {
         header.textColor = UIColor.whiteColor()
         headerImageView = header.valueForKey("arrowImage") as! UIImageView
         headerImageView.tintColor = UIColor.whiteColor()
-        headerImageView.image = headerImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
+        headerImageView.msr_imageRenderingMode = .AlwaysTemplate
         headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
         headerActivityIndicatorView.activityIndicatorViewStyle = .White
         msr_navigationBar!.barStyle = .Black
@@ -65,7 +65,7 @@ class UserListViewController: UITableViewController {
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! UserListViewControllerCell
-        cell.update(user: users[indexPath.row])
+        cell.update(user: users[indexPath.row], updateImage: true)
         return cell
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -76,7 +76,7 @@ class UserListViewController: UITableViewController {
         dispatch_once(&_Static.id) {
             _Static.cell = NSBundle.mainBundle().loadNibNamed("UserListViewControllerCell", owner: nil, options: nil).first as! UserListViewControllerCell
         }
-        _Static.cell.update(user: users[indexPath.row])
+        _Static.cell.update(user: users[indexPath.row], updateImage: false)
         return _Static.cell.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -88,16 +88,18 @@ class UserListViewController: UITableViewController {
         tableView.footer?.endRefreshing()
         let success: ([User]) -> Void = {
             [weak self] users in
-            self?.page = 1
-            self?.users = users
-            self?.tableView.header.endRefreshing()
-            self?.tableView.reloadData()
-            if self?.tableView.footer == nil {
-                let footer = self!.tableView.addLegendFooterWithRefreshingTarget(self, refreshingAction: "loadMore")
-                footer.textColor = UIColor.whiteColor()
-                footer.automaticallyRefresh = false
-                self?.footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
-                self?.footerActivityIndicatorView.activityIndicatorViewStyle = .White
+            if let self_ = self {
+                self_.page = 1
+                self_.users = users
+                self_.tableView.header.endRefreshing()
+                self_.tableView.reloadData()
+                if self_.tableView.footer == nil {
+                    let footer = self_.tableView.addLegendFooterWithRefreshingTarget(self_, refreshingAction: "loadMore")
+                    footer.textColor = UIColor.whiteColor()
+                    footer.automaticallyRefresh = false
+                    self_.footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
+                    self_.footerActivityIndicatorView.activityIndicatorViewStyle = .White
+                }
             }
         }
         let failure: (NSError) -> Void = {

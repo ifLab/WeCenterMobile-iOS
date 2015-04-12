@@ -29,7 +29,7 @@ class UserViewControllerHeaderView: UIView {
     }()
     
     lazy var userAvatarView: UIImageView = {
-        let v = UIImageView(image: UIImage(named: "DefaultAvatar"))
+        let v = UIImageView(image: defaultUserAvatar)
         v.layer.masksToBounds = true
         return v
     }()
@@ -62,11 +62,10 @@ class UserViewControllerHeaderView: UIView {
         likeCountImageView.msr_imageRenderingMode = .AlwaysTemplate
         markCountImageView.msr_imageRenderingMode = .AlwaysTemplate
         agreementCountImageView.msr_imageRenderingMode = .AlwaysTemplate
-        backgroundImageView.clipsToBounds = true
         msr_shouldTranslateAutoresizingMaskIntoConstraints = false
     }
     
-    func update(user: User) {
+    func update(#user: User) {
         userAvatarView.wc_updateWithUser(user)
         backgroundImageView.wc_updateWithUser(user)
         userNameLabel.text = user.name ?? "加载中……"

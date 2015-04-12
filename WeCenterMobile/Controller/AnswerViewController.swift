@@ -132,7 +132,7 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     
     
     func reloadData() {
-        topBar.update(answer: answer)
+        topBar.update(answer: answer, updateImage: true)
         let options = [
             DTDefaultFontName: UIFont.systemFontOfSize(0).fontName,
             DTDefaultFontSize: 16,

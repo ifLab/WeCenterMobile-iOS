@@ -15,7 +15,7 @@ class AnswerAdditionCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        answerAdditionImageView.image = answerAdditionImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
+        answerAdditionImageView.msr_imageRenderingMode = .AlwaysTemplate
         answerAdditionButton.msr_setBackgroundImageWithColor(answerAdditionButton.backgroundColor!)
         answerAdditionButton.backgroundColor = UIColor.clearColor()
     }

@@ -49,7 +49,7 @@ class HomeViewController: UITableViewController {
         header.textColor = UIColor.whiteColor()
         headerImageView = header.valueForKey("arrowImage") as! UIImageView
         headerImageView.tintColor = UIColor.whiteColor()
-        headerImageView.image = headerImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
+        headerImageView.msr_imageRenderingMode = .AlwaysTemplate
         headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
         headerActivityIndicatorView.activityIndicatorViewStyle = .White
     }
@@ -80,7 +80,7 @@ class HomeViewController: UITableViewController {
         if let cell_ = cell as? QuestionPublishmentActionCell {
             cell_.questionButton.addTarget(self, action: "pushQuestionViewController:", forControlEvents: .TouchUpInside)
         }
-        cell.update(action: action)
+        cell.update(action: action, updateImage: true)
         return cell
     }
     
@@ -100,7 +100,7 @@ class HomeViewController: UITableViewController {
             }
         }
         let cell = _Static.cells[nibNames[index]]!
-        cell.update(action: action)
+        cell.update(action: action, updateImage: false)
         return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1
     }
     

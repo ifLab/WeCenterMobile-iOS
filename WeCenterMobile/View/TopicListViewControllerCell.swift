@@ -21,8 +21,10 @@ class TopicListViewControllerCell: UITableViewCell {
         selectedBackgroundView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
     }
     
-    func update(#topic: Topic) {
-        topicImageView.wc_updateWithTopic(topic)
+    func update(#topic: Topic, updateImage: Bool) {
+        if updateImage {
+            topicImageView.wc_updateWithTopic(topic)
+        }
         let text = NSMutableAttributedString(
             string: topic.title!,
             attributes: [

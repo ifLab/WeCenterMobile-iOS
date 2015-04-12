@@ -28,13 +28,15 @@ class FeaturedArticleCell: FeaturedObjectCell {
         articleTagLabel.layer.shadowRadius = 1
     }
     
-    override func update(#object: FeaturedObject) {
-        super.update(object: object)
+    override func update(#object: FeaturedObject, updateImage: Bool) {
+        super.update(object: object, updateImage: updateImage)
         if !objectChanged {
             return
         }
         let object = object as! FeaturedArticle
-        userAvatarView.wc_updateWithUser(object.article.user)
+        if updateImage {
+            userAvatarView.wc_updateWithUser(object.article.user)
+        }
         userNameLabel.text = object.article.user?.name ?? "匿名用户"
         articleTitle.text = object.article.title
         setNeedsLayout()

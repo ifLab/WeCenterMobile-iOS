@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7527" systemVersion="14C1510" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Action" representedClassName="WeCenterMobile.Action" isAbstract="YES" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -140,6 +140,7 @@
     </entity>
     <fetchRequest name="Action" entity="Action"/>
     <fetchRequest name="Action_By_ID" entity="Action" predicateString="id == $ID"/>
+    <fetchRequest name="Answer" entity="Answer"/>
     <fetchRequest name="Answer_By_ID" entity="Answer" predicateString="id == $ID"/>
     <fetchRequest name="AnswerAction_By_ID" entity="AnswerAction" predicateString="id == $ID"/>
     <fetchRequest name="AnswerAgreementAction_By_ID" entity="AnswerAgreementAction" predicateString="id == $ID"/>

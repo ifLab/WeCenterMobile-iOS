@@ -31,7 +31,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     lazy var userCell: SidebarUserCell = {
         [weak self] in
         let cell = NSBundle.mainBundle().loadNibNamed("SidebarUserCell", owner: self?.tableView, options: nil).first as! SidebarUserCell
-        cell.update(user: User.currentUser)
+        cell.update(user: User.currentUser, updateImage: true)
         return cell
     }()
     lazy var cells: [SidebarCategoryCell] = {

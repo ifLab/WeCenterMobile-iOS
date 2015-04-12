@@ -20,8 +20,10 @@ class QuestionHeaderCell: UITableViewCell {
         userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
     }
     
-    func update(#user: User?) {
-        userAvatarView.wc_updateWithUser(user)
+    func update(#user: User?, updateImage: Bool) {
+        if updateImage {
+            userAvatarView.wc_updateWithUser(user)
+        }
         userNameLabel.text = user?.name ?? "匿名用户"
         userSignatureLabel.text = user?.signature ?? ""
         setNeedsLayout()

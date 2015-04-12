@@ -11,7 +11,7 @@ class ActionCell: UITableViewCell {
     var action: Action!
     var actionChanged: Bool = true
     
-    func update(#action: Action) {
+    func update(#action: Action, updateImage: Bool) {
         actionChanged = action !== self.action
         self.action = action
     }

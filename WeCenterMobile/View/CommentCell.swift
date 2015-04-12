@@ -22,10 +22,12 @@ class CommentCell: UITableViewCell {
         selectedBackgroundView.backgroundColor = UIColor.msr_materialBrown700()
     }
     
-    func update(#answerComment: AnswerComment) {
+    func update(#answerComment: AnswerComment, updateImage: Bool) {
         let comment = answerComment
         msr_userInfo = comment
-        userAvatarView.wc_updateWithUser(comment.user)
+        if updateImage {
+            userAvatarView.wc_updateWithUser(comment.user)
+        }
         userNameLabel.text = comment.user?.name
         bodyLabel.text = comment.body
         if comment.atUser?.name != nil {
@@ -35,10 +37,12 @@ class CommentCell: UITableViewCell {
         layoutIfNeeded()
     }
     
-    func update(#articleComment: ArticleComment) {
+    func update(#articleComment: ArticleComment, updateImage: Bool) {
         let comment = articleComment
         msr_userInfo = comment
-        userAvatarView.wc_updateWithUser(comment.user)
+        if updateImage {
+            userAvatarView.wc_updateWithUser(comment.user)
+        }
         userNameLabel.text = comment.user?.name
         bodyLabel.text = comment.body
         setNeedsLayout()

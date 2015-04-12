@@ -11,7 +11,7 @@ import UIKit
 class FeaturedObjectCell: UITableViewCell {
     var object: FeaturedObject?
     var objectChanged: Bool = true
-    func update(#object: FeaturedObject) {
+    func update(#object: FeaturedObject, updateImage: Bool) {
         objectChanged = self.object !== object
         self.object = object
     }

@@ -21,8 +21,10 @@ class UserListViewControllerCell: UITableViewCell {
         selectedBackgroundView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
     }
 
-    func update(#user: User) {
-        userAvatarView.wc_updateWithUser(user)
+    func update(#user: User, updateImage: Bool) {
+        if updateImage {
+            userAvatarView.wc_updateWithUser(user)
+        }
         let text = NSMutableAttributedString(
             string: user.name!,
             attributes: [

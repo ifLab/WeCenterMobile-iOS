@@ -54,18 +54,15 @@ class NetworkManager: NSObject {
                 failure?(error ?? NSError()) // Needs specification
                 return nil
             }
-            AFNetworkActivityIndicatorManager.sharedManager().incrementActivityCount()
             return manager.POST(URLString!,
                 parameters: POSTParameters,
                 constructingBodyWithBlock: block,
                 success: {
                     operation, data in
-                    AFNetworkActivityIndicatorManager.sharedManager().decrementActivityCount()
                     self.handleSuccess(operation: operation, data: data as! NSData, success: success, failure: failure)
                 },
                 failure: {
                     operation, error in
-                    AFNetworkActivityIndicatorManager.sharedManager().decrementActivityCount()
                     failure?(error)
                 })
     }

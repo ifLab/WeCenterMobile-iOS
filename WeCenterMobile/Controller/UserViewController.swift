@@ -81,14 +81,15 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     func reloadData() {
         mainColor = user.avatar?.msr_averageColorWithAccuracy(0.5)?.colorWithAlphaComponent(0.2) ?? UIColor.clearColor()
         bodyView.backgroundColor = mainColor
-        header.update(user)
+        header.update(user: user)
         bodyView.reloadData()
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         if scrollView === bodyView {
             let offset = bodyView.contentOffset.y + bodyView.contentInset.top
-            header.msr_heightConstraint!.constant = max(header.maxHeight - offset, header.minHeight)
+            header.msr_heightConstraint!.constant = floor(max(header.maxHeight - offset, header.minHeight)) // The appearences of blur effect view will not correct unless it's height is an integer.
+            bodyView.scrollIndicatorInsets.top = header.msr_heightConstraint!.constant
             header.layoutIfNeeded()
         }
     }

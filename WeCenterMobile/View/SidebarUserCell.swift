@@ -28,8 +28,10 @@ class SidebarUserCell: UITableViewCell {
         backgroundIndicator.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
     }
     
-    func update(#user: User?) {
-        userAvatarView.wc_updateWithUser(user)
+    func update(#user: User?, updateImage: Bool) {
+        if updateImage {
+            userAvatarView.wc_updateWithUser(user)
+        }
         userNameLabel.text = user?.name ?? "加载中……"
         setNeedsLayout()
         layoutIfNeeded()

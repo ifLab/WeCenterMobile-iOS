@@ -68,11 +68,19 @@ class TopicListViewController: UITableViewController {
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! TopicListViewControllerCell
-        cell.update(topic: topics[indexPath.row])
+        cell.update(topic: topics[indexPath.row], updateImage: true)
         return cell
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 80
+        struct _Static {
+            static var id: dispatch_once_t = 0
+            static var cell: TopicListViewControllerCell!
+        }
+        dispatch_once(&_Static.id) {
+            _Static.cell = NSBundle.mainBundle().loadNibNamed("TopicListViewControllerCell", owner: nil, options: nil).first as! TopicListViewControllerCell
+        }
+        _Static.cell.update(topic: topics[indexPath.row], updateImage: false)
+        return _Static.cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         msr_navigationController!.pushViewController(TopicViewController(topic: topics[indexPath.row]), animated: true)
@@ -88,16 +96,18 @@ class TopicListViewController: UITableViewController {
                 count: count,
                 success: {
                     [weak self] topics in
-                    self?.page = 1
-                    self?.topics = topics
-                    self?.tableView.reloadData()
-                    self?.tableView.header.endRefreshing()
-                    if self?.tableView.footer == nil {
-                        let footer = self!.tableView.addLegendFooterWithRefreshingTarget(self, refreshingAction: "loadMore")
-                        footer.textColor = UIColor.whiteColor()
-                        footer.automaticallyRefresh = false
-                        self?.footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
-                        self?.footerActivityIndicatorView.activityIndicatorViewStyle = .White
+                    if let self_ = self {
+                        self_.page = 1
+                        self_.topics = topics
+                        self_.tableView.reloadData()
+                        self_.tableView.header.endRefreshing()
+                        if self_.tableView.footer == nil {
+                            let footer = self_.tableView.addLegendFooterWithRefreshingTarget(self_, refreshingAction: "loadMore")
+                            footer.textColor = UIColor.whiteColor()
+                            footer.automaticallyRefresh = false
+                            self_.footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
+                            self_.footerActivityIndicatorView.activityIndicatorViewStyle = .White
+                        }
                     }
                     return
                 },

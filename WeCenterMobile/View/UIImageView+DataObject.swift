@@ -8,11 +8,14 @@
 
 import Foundation
 
+let defaultUserAvatar = UIImage(named: "DefaultAvatar")!
+let defaultTopicImage = UIImage(named: "User_Follow")!
+
 extension UIImageView {
     
     func wc_updateWithUser(user: User?) {
         msr_userInfo = user
-        image = UIImage(named: "DefaultAvatar")
+        image = defaultUserAvatar
         if user?.avatar != nil {
             image = user!.avatar!
         }
@@ -35,7 +38,7 @@ extension UIImageView {
     
     func wc_updateWithTopic(topic: Topic?) {
         msr_userInfo = topic
-        image = UIImage(named: "User_Follow")
+        image = defaultTopicImage
         if topic?.image != nil {
             image = topic!.image!
         }

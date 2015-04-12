@@ -21,8 +21,8 @@ class LoginView: UIView, UIScrollViewDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         UITextView()
-        userNameImageView.image = userNameImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
-        passwordImageView.image = passwordImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
+        userNameImageView.msr_imageRenderingMode = .AlwaysTemplate
+        passwordImageView.msr_imageRenderingMode = .AlwaysTemplate
         userNameField.attributedPlaceholder = NSAttributedString(string: userNameField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])
         passwordField.attributedPlaceholder = NSAttributedString(string: passwordField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])
         userNameField.tintColor = UIColor.lightTextColor()

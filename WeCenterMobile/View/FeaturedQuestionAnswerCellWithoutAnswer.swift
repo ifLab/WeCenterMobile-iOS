@@ -28,13 +28,15 @@ class FeaturedQuestionAnswerCellWithoutAnswer: FeaturedObjectCell {
         questionTagLabel.layer.shadowRadius = 1
     }
     
-    override func update(#object: FeaturedObject) {
-        super.update(object: object)
+    override func update(#object: FeaturedObject, updateImage: Bool) {
+        super.update(object: object, updateImage: updateImage)
         if !objectChanged {
             return
         }
         let object = object as! FeaturedQuestionAnswer
-        userAvatarView.wc_updateWithUser(object.question.user)
+        if updateImage {
+            userAvatarView.wc_updateWithUser(object.question.user)
+        }
         userNameLabel.text = object.question.user?.name ?? "匿名用户"
         questionTitleLabel.text = object.question.title
         setNeedsLayout()

@@ -75,7 +75,7 @@ class AnswerCommentListViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let comment = comments[indexPath.row]
         var cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! CommentCell
-        cell.update(answerComment: comment)
+        cell.update(answerComment: comment, updateImage: true)
         return cell
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -88,7 +88,7 @@ class AnswerCommentListViewController: UITableViewController {
             _Static.cell = NSBundle.mainBundle().loadNibNamed(self.cellNibName, owner: self, options: nil).first as! CommentCell
         }
         let cell = _Static.cell
-        cell.update(answerComment: comment)
+        cell.update(answerComment: comment, updateImage: false)
         return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1 // the height of separator
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

@@ -76,7 +76,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         header.textColor = UIColor.whiteColor()
         headerImageView = header.valueForKey("arrowImage") as! UIImageView
         headerImageView.tintColor = UIColor.whiteColor()
-        headerImageView.image = headerImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
+        headerImageView.msr_imageRenderingMode = .AlwaysTemplate
         headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
         headerActivityIndicatorView.activityIndicatorViewStyle = .White
         tableView.separatorStyle = .None
@@ -103,7 +103,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            questionHeaderCell.update(user: question.user)
+            questionHeaderCell.update(user: question.user, updateImage: true)
             return questionHeaderCell
         case 1:
             questionTitleCell.update(question: question)
@@ -122,7 +122,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         default:
             let answerCell = tableView.dequeueReusableCellWithIdentifier(answerCellIdentifier, forIndexPath: indexPath) as! AnswerCell
             answerCell.answerButton.addTarget(self, action: "pushAnswerViewController:", forControlEvents: .TouchUpInside)
-            answerCell.update(answer: answers[indexPath.row])
+            answerCell.update(answer: answers[indexPath.row], updateImage: true)
             return answerCell
         }
     }
@@ -140,7 +140,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         }
         switch indexPath.section {
         case 0:
-            questionHeaderCell.update(user: question.user)
+            questionHeaderCell.update(user: question.user, updateImage: false)
             return questionHeaderCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
         case 1:
             questionTitleCell.update(question: question)
@@ -157,7 +157,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         case 5:
             return answerAdditionCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
         default:
-            _Static.answerCell.update(answer: answers[indexPath.row])
+            _Static.answerCell.update(answer: answers[indexPath.row], updateImage: false)
             return _Static.answerCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
         }
     }

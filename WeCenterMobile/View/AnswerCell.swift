@@ -26,13 +26,15 @@ class AnswerCell: UITableViewCell {
         answerButton.backgroundColor = UIColor.clearColor()
     }
     
-    func update(#answer: Answer) {
+    func update(#answer: Answer, updateImage: Bool) {
         self.answer = answer
         userNameLabel.text = answer.user?.name ?? "匿名用户"
         answerBodyLabel.text = answer.body?.stringByReplacingOccurrencesOfString("\n", withString: "", options: NSStringCompareOptions.allZeros, range: nil)
         answerAgreementCountCell.text = "\(answer.agreementCount ?? 0)"
         answerButton.msr_userInfo = answer
-        userAvatarView.wc_updateWithUser(answer.user)
+        if updateImage {
+            userAvatarView.wc_updateWithUser(answer.user)
+        }
         setNeedsLayout()
         layoutIfNeeded()
     }

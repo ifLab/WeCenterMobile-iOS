@@ -19,8 +19,8 @@ class QuestionFooterCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        viewCountImageView.image = viewCountImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
-        focusCountImageView.image = focusCountImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
+        viewCountImageView.msr_imageRenderingMode = .AlwaysTemplate
+        focusCountImageView.msr_imageRenderingMode = .AlwaysTemplate
         focusButton.msr_setBackgroundImageWithColor(focusButton.backgroundColor!)
         focusButton.backgroundColor = UIColor.clearColor()
         focusButton.setTitle(nil, forState: .Normal)

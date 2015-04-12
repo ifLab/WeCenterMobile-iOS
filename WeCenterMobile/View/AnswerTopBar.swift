@@ -23,7 +23,7 @@ class AnswerTopBar: UIVisualEffectView {
         msr_addHeightConstraintWithValue(50)
         userAvatarView.layer.masksToBounds = true
         userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
-        evaluationImageView.image = evaluationImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
+        evaluationImageView.msr_imageRenderingMode = .AlwaysTemplate
         separatorWidthConstraint.constant = 0.5
     }
     
@@ -39,8 +39,10 @@ class AnswerTopBar: UIVisualEffectView {
         }
     }
     
-    func update(#answer: Answer) {
-        userAvatarView.wc_updateWithUser(answer.user)
+    func update(#answer: Answer, updateImage: Bool) {
+        if updateImage {
+            userAvatarView.wc_updateWithUser(answer.user)
+        }
         userNameLabel.text = answer.user?.name ?? "匿名用户"
         userSignatureLabel.text = answer.user?.signature ?? ""
         agreementCountLabel.text = "\(answer.agreementCount ?? 0)"
