@@ -69,8 +69,18 @@ class FeaturedObjectListViewController: UITableViewController {
             index += o.answers.count == 0 ? 1 : 0
         }
         let cell = tableView.dequeueReusableCellWithIdentifier(identifiers[index], forIndexPath: indexPath) as! FeaturedObjectCell
-        if let cell = cell as? FeaturedQuestionAnswerCell {
-            cell.questionButton.addTarget(self, action: "pushQuestionViewController:", forControlEvents: .TouchUpInside)
+        switch cell {
+        case let cell as FeaturedQuestionAnswerCellWithoutAnswer:
+            cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
+            break
+        case let cell as FeaturedQuestionAnswerCell:
+            cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
+            cell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
+            break
+        case let cell as FeaturedArticleCell:
+            break
+        default:
+            break
         }
         cell.update(object: object, updateImage: true)
         return cell
@@ -124,9 +134,14 @@ class FeaturedObjectListViewController: UITableViewController {
             break
         }
     }
-    func pushQuestionViewController(sender: UIButton) {
+    func didPressQuestionButton(sender: UIButton) {
         if let question = sender.msr_userInfo as? Question {
             msr_navigationController!.pushViewController(QuestionViewController(question: question), animated: true)
+        }
+    }
+    func didPressAnswerButton(sender: UIButton) {
+        if let answer = sender.msr_userInfo as? Answer {
+            msr_navigationController!.pushViewController(AnswerViewController(answer: answer), animated: true)
         }
     }
     func refresh() {

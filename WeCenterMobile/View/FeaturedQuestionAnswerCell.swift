@@ -49,6 +49,7 @@ class FeaturedQuestionAnswerCell: FeaturedObjectCell {
         answerUserNameLabel.text = answer?.user?.name ?? "匿名用户"
         answerBodyLabel.text = answer?.body ?? ""
         questionButton.msr_userInfo = question
+        answerButton.msr_userInfo = answer
         setNeedsLayout()
         layoutIfNeeded()
     }

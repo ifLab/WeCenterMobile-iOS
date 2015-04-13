@@ -35,6 +35,7 @@ class FeaturedArticleCell: FeaturedObjectCell {
         }
         userNameLabel.text = object.article.user?.name ?? "匿名用户"
         articleTitle.text = object.article.title
+        articleButton.msr_userInfo = object.article
         setNeedsLayout()
         layoutIfNeeded()
     }

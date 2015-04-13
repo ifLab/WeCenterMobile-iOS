@@ -35,6 +35,7 @@ class FeaturedQuestionAnswerCellWithoutAnswer: FeaturedObjectCell {
         }
         userNameLabel.text = object.question.user?.name ?? "匿名用户"
         questionTitleLabel.text = object.question.title
+        questionButton.msr_userInfo = object.question
         setNeedsLayout()
         layoutIfNeeded()
     }
