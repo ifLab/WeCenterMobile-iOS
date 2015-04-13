@@ -8,10 +8,7 @@
 
 #ifdef __OBJC__
 
-@import CoreGraphics;
 @import CoreText;
-@import Foundation;
-@import QuartzCore;
 @import UIKit;
 
 #import "DTFoundation.h"
