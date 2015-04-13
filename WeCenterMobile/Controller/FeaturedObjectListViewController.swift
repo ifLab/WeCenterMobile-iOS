@@ -27,6 +27,9 @@ class FeaturedObjectListViewController: UITableViewController {
     }
     override func loadView() {
         super.loadView()
+        tableView = ButtonTouchesCancelableTableView()
+        tableView.delegate = self
+        tableView.dataSource = self
         view.backgroundColor = UIColor.clearColor()
         tableView.separatorStyle = .None
         tableView.indicatorStyle = .White

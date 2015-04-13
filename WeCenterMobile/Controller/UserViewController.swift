@@ -21,7 +21,7 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     lazy var bodyView: UICollectionView = {
         [weak self] in
-        let v = UICollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
+        let v = ButtonTouchesCancelableCollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
         v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         v.alwaysBounceVertical = true
         v.indicatorStyle = .White

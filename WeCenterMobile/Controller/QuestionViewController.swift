@@ -71,6 +71,9 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
 
     override func loadView() {
         super.loadView()
+        tableView = ButtonTouchesCancelableTableView()
+        tableView.delegate = self
+        tableView.dataSource = self
         view.backgroundColor = UIColor.msr_materialBrown900()
         let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
         header.textColor = UIColor.whiteColor()

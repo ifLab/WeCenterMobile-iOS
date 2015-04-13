@@ -18,7 +18,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     let sidebar = MSRSidebar(width: 200, edge: .Left)
     lazy var tableView: UITableView = {
         [weak self] in
-        let v = UITableView(frame: CGRectZero, style: .Grouped)
+        let v = ButtonTouchesCancelableTableView(frame: CGRectZero, style: .Grouped)
         v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         v.backgroundColor = UIColor.clearColor()
         v.delegate = self

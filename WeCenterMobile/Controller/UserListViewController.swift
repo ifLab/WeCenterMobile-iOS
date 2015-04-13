@@ -34,6 +34,9 @@ class UserListViewController: UITableViewController {
     let cellReuseIdentifier = "UserListViewControllerCell"
     override func loadView() {
         super.loadView()
+        tableView = ButtonTouchesCancelableTableView()
+        tableView.delegate = self
+        tableView.dataSource = self
         let titles: [UserListType: String] = [
             .UserFollowing: "\(user.name!) 关注的用户",
             .UserFollower: "\(user.name!) 的追随者"]

@@ -38,6 +38,9 @@ class TopicListViewController: UITableViewController {
     let cellReuseIdentifier = "TopicListViewControllerCell"
     override func loadView() {
         super.loadView()
+        tableView = ButtonTouchesCancelableTableView()
+        tableView.delegate = self
+        tableView.dataSource = self
         title = listType == .User ? "\(user!.name!) 关注的话题" : "话题"
         view.backgroundColor = UIColor.msr_materialGray900()
         tableView.separatorStyle = .None

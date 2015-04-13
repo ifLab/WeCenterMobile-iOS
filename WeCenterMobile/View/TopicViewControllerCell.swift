@@ -15,11 +15,15 @@ class TopicViewControllerCell: UITableViewCell {
     @IBOutlet weak var answerUserNameLabel: UILabel!
     @IBOutlet weak var answerBodyLabel: UILabel!
     @IBOutlet weak var answerAgreementCountLabel: UILabel!
+    @IBOutlet weak var questionButton: UIButton!
+    @IBOutlet weak var answerButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         answerUserAvatarView.layer.masksToBounds = true
         answerUserAvatarView.layer.cornerRadius = answerUserAvatarView.bounds.width / 2
+        questionButton.setBackgroundImage(UIImage.msr_imageWithColor(UIColor.whiteColor()), forState: .Highlighted)
+        answerButton.setBackgroundImage(UIImage.msr_imageWithColor(UIColor.whiteColor()), forState: .Highlighted)
     }
     
     func update(#answer: Answer, updateImage: Bool) {
@@ -38,6 +42,8 @@ class TopicViewControllerCell: UITableViewCell {
         answerUserNameLabel.text = answer.user?.name ?? "匿名用户"
         answerBodyLabel.text = answer.body
         answerAgreementCountLabel.text = answer.agreementCount?.description ?? "0"
+        questionButton.msr_userInfo = answer.question
+        answerButton.msr_userInfo = answer
         setNeedsLayout()
         layoutIfNeeded()
     }

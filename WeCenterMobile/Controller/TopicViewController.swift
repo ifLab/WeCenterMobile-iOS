@@ -32,7 +32,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     lazy var bodyView: UITableView = {
         [weak self] in
-        let v = UITableView()
+        let v = ButtonTouchesCancelableTableView()
         v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         v.alwaysBounceVertical = true
         v.contentInset.top = self!.header.maxHeight
@@ -144,6 +144,8 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! TopicViewControllerCell
         cell.update(answer: answers[indexPath.row], updateImage: true)
+        cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
+        cell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
         return cell
     }
     
@@ -173,6 +175,18 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
             header.msr_heightConstraint!.constant = floor(min(max(header.maxHeight - offset, header.minHeight), header.maxHeight)) // The appearences of blur effect view will not correct unless it's height is an integer.
             bodyView.scrollIndicatorInsets.top = header.msr_heightConstraint!.constant
             header.layoutIfNeeded()
+        }
+    }
+    
+    func didPressQuestionButton(button: UIButton) {
+        if let question = button.msr_userInfo as? Question {
+            msr_navigationController!.pushViewController(QuestionViewController(question: question), animated: true)
+        }
+    }
+    
+    func didPressAnswerButton(button: UIButton) {
+        if let answer = button.msr_userInfo as? Answer {
+            msr_navigationController!.pushViewController(AnswerViewController(answer: answer), animated: true)
         }
     }
     

@@ -35,6 +35,9 @@ class HomeViewController: UITableViewController {
     private var footerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in footer
     override func loadView() {
         super.loadView()
+        tableView = ButtonTouchesCancelableTableView()
+        tableView.delegate = self
+        tableView.dataSource = self
         title = "首页" // Needs localization
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List"), style: .Plain, target: self, action: "showSidebar")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Compose"), style: .Plain, target: self, action: "showQuestionPublishmentViewController")

@@ -25,6 +25,9 @@ class AnswerCommentListViewController: UITableViewController {
     }
     override func loadView() {
         super.loadView()
+        tableView = ButtonTouchesCancelableTableView()
+        tableView.delegate = self
+        tableView.dataSource = self
         keyboardBar = MSRKeyboardBar()
         refreshControl = UIRefreshControl()
         refreshControl!.tintColor = UIColor.whiteColor()
