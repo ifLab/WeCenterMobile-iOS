@@ -14,7 +14,6 @@
 		950FE1271A1DA2A400167D09 /* Welcome.strings in Resources */ = {isa = PBXBuildFile; fileRef = 950FE11C1A1DA2A400167D09 /* Welcome.strings */; };
 		950FE5041A1DA2B500167D09 /* AnswerCommetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE12C1A1DA2B300167D09 /* AnswerCommetListViewController.swift */; };
 		950FE5051A1DA2B500167D09 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE12D1A1DA2B300167D09 /* ExploreViewController.swift */; };
-		950FE5061A1DA2B500167D09 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE12E1A1DA2B300167D09 /* TestViewController.swift */; };
 		950FE5071A1DA2B500167D09 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE12F1A1DA2B300167D09 /* MainViewController.swift */; };
 		950FE50B1A1DA2B500167D09 /* TopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1341A1DA2B300167D09 /* TopicListViewController.swift */; };
 		950FE50C1A1DA2B500167D09 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1351A1DA2B300167D09 /* TopicViewController.swift */; };
@@ -368,7 +367,6 @@
 		950FE1281A1DA2B300167D09 /* Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
 		950FE12C1A1DA2B300167D09 /* AnswerCommetListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnswerCommetListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		950FE12D1A1DA2B300167D09 /* ExploreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
-		950FE12E1A1DA2B300167D09 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		950FE12F1A1DA2B300167D09 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MainViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		950FE1341A1DA2B300167D09 /* TopicListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListViewController.swift; sourceTree = "<group>"; };
 		950FE1351A1DA2B300167D09 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
@@ -922,7 +920,6 @@
 				950FE12C1A1DA2B300167D09 /* AnswerCommetListViewController.swift */,
 				950FE12D1A1DA2B300167D09 /* ExploreViewController.swift */,
 				95F380BA1AB269690070A7FB /* FeaturedObjectListViewController.swift */,
-				950FE12E1A1DA2B300167D09 /* TestViewController.swift */,
 				95E535591A49DCFD00D7B76B /* HomeViewController.swift */,
 				950FE12F1A1DA2B300167D09 /* MainViewController.swift */,
 				95B1D9D91ABE0CF200BEC8BD /* MediaPickerController.swift */,
@@ -2128,7 +2125,6 @@
 				951D1E8D1ACD1E4E0072D555 /* DTDictationPlaceholderView.m in Sources */,
 				951D1F8E1ACD1E750072D555 /* NSDictionary+DTError.m in Sources */,
 				951D1F581ACD1E750072D555 /* DTASN1Parser.m in Sources */,
-				950FE5061A1DA2B500167D09 /* TestViewController.swift in Sources */,
 				95C2EA431AB0516800F2A326 /* UINavigationBar+MSRAccessor.swift in Sources */,
 				95E404001ABDEC3000C18A44 /* UzysAppearanceConfig.m in Sources */,
 				959CC9401A25BAED00F8B6CB /* User.swift in Sources */,
