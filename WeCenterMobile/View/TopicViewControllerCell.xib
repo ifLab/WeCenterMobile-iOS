@@ -14,26 +14,26 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGz-TQ-YNZ">
-                        <rect key="frame" x="4" y="2" width="312" height="116"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O52-uZ-ly7">
-                                <rect key="frame" x="0.0" y="0.0" width="312" height="38"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="38"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里是问题的标题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaF-iH-5IN">
-                                        <rect key="frame" x="10" y="10" width="292" height="18"/>
+                                        <rect key="frame" x="10" y="10" width="300" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fK2-dJ-qyZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="312" height="38"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="38"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="vaF-iH-5IN" firstAttribute="top" secondItem="O52-uZ-ly7" secondAttribute="top" constant="10" id="9bt-ya-E6U"/>
                                     <constraint firstAttribute="trailing" secondItem="fK2-dJ-qyZ" secondAttribute="trailing" id="CuR-gi-kgr"/>
@@ -46,7 +46,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JCU-ic-0QJ">
-                                <rect key="frame" x="0.0" y="38" width="312" height="78"/>
+                                <rect key="frame" x="0.0" y="38" width="320" height="81"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="E9d-q0-CQo">
                                         <rect key="frame" x="10" y="10" width="30" height="30"/>
@@ -56,7 +56,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1mX-yj-fcf">
-                                        <rect key="frame" x="50" y="10" width="252" height="14"/>
+                                        <rect key="frame" x="50" y="10" width="260" height="14"/>
                                         <attributedString key="attributedText">
                                             <fragment content="姓名">
                                                 <attributes>
@@ -76,9 +76,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里是回答，文字比较长，最多可能达到三行。" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhf-sc-oSg">
-                                        <rect key="frame" x="50" y="29" width="252" height="36"/>
+                                        <rect key="frame" x="50" y="29" width="260" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.5k" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADf-DP-EUC">
@@ -89,13 +89,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urw-Cm-at7">
-                                        <rect key="frame" x="0.0" y="0.0" width="312" height="78"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="81"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="ADf-DP-EUC" firstAttribute="trailing" secondItem="E9d-q0-CQo" secondAttribute="trailing" id="1KF-Wx-W7Q"/>
                                     <constraint firstItem="ADf-DP-EUC" firstAttribute="top" secondItem="E9d-q0-CQo" secondAttribute="bottom" constant="5" id="4Cr-PV-CrO"/>
@@ -131,10 +131,10 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="dGz-TQ-YNZ" secondAttribute="trailing" constant="4" id="0bS-s7-bSG"/>
-                    <constraint firstItem="dGz-TQ-YNZ" firstAttribute="leading" secondItem="5zj-ga-Apg" secondAttribute="leading" constant="4" id="1Gd-TS-fzp"/>
-                    <constraint firstItem="dGz-TQ-YNZ" firstAttribute="top" secondItem="5zj-ga-Apg" secondAttribute="top" constant="2" id="Ymt-uc-w3R"/>
-                    <constraint firstAttribute="bottom" secondItem="dGz-TQ-YNZ" secondAttribute="bottom" constant="2" id="hf9-tA-c1P"/>
+                    <constraint firstAttribute="trailing" secondItem="dGz-TQ-YNZ" secondAttribute="trailing" id="0bS-s7-bSG"/>
+                    <constraint firstItem="dGz-TQ-YNZ" firstAttribute="leading" secondItem="5zj-ga-Apg" secondAttribute="leading" id="1Gd-TS-fzp"/>
+                    <constraint firstItem="dGz-TQ-YNZ" firstAttribute="top" secondItem="5zj-ga-Apg" secondAttribute="top" id="Ymt-uc-w3R"/>
+                    <constraint firstAttribute="bottom" secondItem="dGz-TQ-YNZ" secondAttribute="bottom" constant="1" id="hf9-tA-c1P"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

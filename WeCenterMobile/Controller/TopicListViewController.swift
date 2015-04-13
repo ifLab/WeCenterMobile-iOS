@@ -42,7 +42,7 @@ class TopicListViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         title = listType == .User ? "\(user!.name!) 关注的话题" : "话题"
-        view.backgroundColor = UIColor.msr_materialGray900()
+        view.backgroundColor = UIColor.msr_materialBlueGray800()
         tableView.separatorStyle = .None
         tableView.indicatorStyle = .White
         tableView.registerNib(UINib(nibName: "TopicListViewControllerCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)

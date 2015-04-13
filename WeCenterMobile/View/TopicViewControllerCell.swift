@@ -22,8 +22,8 @@ class TopicViewControllerCell: UITableViewCell {
         super.awakeFromNib()
         answerUserAvatarView.layer.masksToBounds = true
         answerUserAvatarView.layer.cornerRadius = answerUserAvatarView.bounds.width / 2
-        questionButton.setBackgroundImage(UIImage.msr_imageWithColor(UIColor.whiteColor()), forState: .Highlighted)
-        answerButton.setBackgroundImage(UIImage.msr_imageWithColor(UIColor.whiteColor()), forState: .Highlighted)
+        questionButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
+        answerButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
     }
     
     func update(#answer: Answer, updateImage: Bool) {

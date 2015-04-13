@@ -41,7 +41,7 @@ class UserListViewController: UITableViewController {
             .UserFollowing: "\(user.name!) 关注的用户",
             .UserFollower: "\(user.name!) 的追随者"]
         self.title = titles[listType]!
-        view.backgroundColor = UIColor.msr_materialGray900()
+        view.backgroundColor = UIColor.msr_materialBlueGray800()
         tableView.separatorStyle = .None
         tableView.indicatorStyle = .White
         tableView.registerNib(UINib(nibName: "UserListViewControllerCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)

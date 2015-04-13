@@ -12,7 +12,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     lazy var contentViewController: MSRNavigationController = {
         [weak self] in
         let vc = MSRNavigationController(rootViewController: self!.viewControllerAtIndex(0))
-        vc.view.backgroundColor = UIColor.msr_materialBrown900()
+        vc.view.backgroundColor = UIColor.msr_materialBlueGray800()
         return vc
     }()
     let sidebar = MSRSidebar(width: 200, edge: .Left)

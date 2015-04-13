@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -14,11 +14,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K88-qH-BQh">
-                        <rect key="frame" x="4" y="2" width="312" height="79"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkN-MQ-QhU">
-                                <rect key="frame" x="0.0" y="0.0" width="312" height="79"/>
-                                <color key="backgroundColor" red="0.42745098039215684" green="0.29803921568627451" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -40,18 +40,18 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8O-pb-zIM">
                                 <rect key="frame" x="48" y="10" width="42" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="0.87" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="这里是问题标题，可能会很长，但最多显示两行。" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nch-Qz-l4t" customClass="MSRMultilineLabel" customModule="WeCenterMobile" customModuleProvider="target">
-                                <rect key="frame" x="48" y="32" width="254" height="34"/>
+                                <rect key="frame" x="48" y="32" width="262" height="36"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="E8O-pb-zIM" firstAttribute="top" secondItem="RSn-F3-x5H" secondAttribute="top" id="3Ef-0y-4El"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Nch-Qz-l4t" secondAttribute="bottom" constant="10" id="4Sh-cR-8Z2"/>
@@ -72,10 +72,10 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="K88-qH-BQh" firstAttribute="leading" secondItem="AiQ-JE-7Us" secondAttribute="leading" constant="4" id="gLJ-yN-D5p"/>
-                    <constraint firstAttribute="trailing" secondItem="K88-qH-BQh" secondAttribute="trailing" constant="4" id="kSK-p3-d5e"/>
-                    <constraint firstAttribute="bottom" secondItem="K88-qH-BQh" secondAttribute="bottom" constant="2" id="oXt-5B-B59"/>
-                    <constraint firstItem="K88-qH-BQh" firstAttribute="top" secondItem="AiQ-JE-7Us" secondAttribute="top" constant="2" id="qku-Sf-bSG"/>
+                    <constraint firstItem="K88-qH-BQh" firstAttribute="leading" secondItem="AiQ-JE-7Us" secondAttribute="leading" id="gLJ-yN-D5p"/>
+                    <constraint firstAttribute="trailing" secondItem="K88-qH-BQh" secondAttribute="trailing" id="kSK-p3-d5e"/>
+                    <constraint firstAttribute="bottom" secondItem="K88-qH-BQh" secondAttribute="bottom" constant="1" id="oXt-5B-B59"/>
+                    <constraint firstItem="K88-qH-BQh" firstAttribute="top" secondItem="AiQ-JE-7Us" secondAttribute="top" id="qku-Sf-bSG"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

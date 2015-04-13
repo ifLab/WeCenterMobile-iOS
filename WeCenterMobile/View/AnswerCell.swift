@@ -22,8 +22,7 @@ class AnswerCell: UITableViewCell {
         super.awakeFromNib()
         userAvatarView.layer.masksToBounds = true
         userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
-        answerButton.msr_setBackgroundImageWithColor(answerButton.backgroundColor!)
-        answerButton.backgroundColor = UIColor.clearColor()
+        answerButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
     }
     
     func update(#answer: Answer, updateImage: Bool) {

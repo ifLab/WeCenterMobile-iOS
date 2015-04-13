@@ -20,6 +20,7 @@ class FeaturedQuestionAnswerCell: FeaturedObjectCell {
     @IBOutlet weak var questionTagLabel: UILabel!
     @IBOutlet weak var answerTagLabel: UILabel!
     @IBOutlet weak var questionButton: UIButton!
+    @IBOutlet weak var answerButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,20 +28,8 @@ class FeaturedQuestionAnswerCell: FeaturedObjectCell {
         answerUserAvatarView.layer.cornerRadius = answerUserAvatarView.bounds.width / 2
         questionUserAvatarView.layer.masksToBounds = true
         questionUserAvatarView.layer.cornerRadius = questionUserAvatarView.bounds.width / 2
-        questionTagLabel.layer.masksToBounds = false
-        questionTagLabel.layer.shadowColor = UIColor.msr_materialBrown900().CGColor
-        questionTagLabel.layer.shadowPath = UIBezierPath(rect: questionTagLabel.bounds).CGPath
-        questionTagLabel.layer.shadowOpacity = 1
-        questionTagLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
-        questionTagLabel.layer.shadowRadius = 1
-        answerTagLabel.layer.masksToBounds = false
-        answerTagLabel.layer.shadowColor = UIColor.msr_materialBrown900().CGColor
-        answerTagLabel.layer.shadowPath = UIBezierPath(rect: answerTagLabel.bounds).CGPath
-        answerTagLabel.layer.shadowOpacity = 1
-        answerTagLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
-        answerTagLabel.layer.shadowRadius = 1
-        questionButton.msr_setBackgroundImageWithColor(questionButton.backgroundColor!)
-        questionButton.backgroundColor = UIColor.clearColor()
+        questionButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
+        answerButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
     }
     
     override func update(#object: FeaturedObject, updateImage: Bool) {

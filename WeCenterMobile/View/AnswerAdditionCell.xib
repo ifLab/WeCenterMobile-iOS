@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -13,26 +13,26 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKa-ZM-UVD">
-                        <rect key="frame" x="4" y="2" width="312" height="50"/>
+                        <rect key="frame" x="0.0" y="1" width="320" height="50"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sFJ-Re-HS5">
-                                <rect key="frame" x="0.0" y="0.0" width="312" height="50"/>
-                                <color key="backgroundColor" red="0.42745098039215684" green="0.29803921568627451" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B9q-Xm-jRD">
-                                <rect key="frame" x="109" y="0.0" width="94" height="50"/>
+                                <rect key="frame" x="113" y="0.0" width="94" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Conversation-Filled" translatesAutoresizingMaskIntoConstraints="NO" id="Tvw-NC-gwW">
                                         <rect key="frame" x="0.0" y="14" width="28" height="22"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="0.87" colorSpace="calibratedRGB"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加回答" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jX-NK-Gwc">
                                         <rect key="frame" x="38" y="17" width="56" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="1" alpha="0.87" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -45,7 +45,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="sFJ-Re-HS5" secondAttribute="bottom" id="0zB-Fn-PCN"/>
                             <constraint firstItem="sFJ-Re-HS5" firstAttribute="leading" secondItem="xKa-ZM-UVD" secondAttribute="leading" id="2Ld-MR-G5i"/>
@@ -60,10 +60,10 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="xKa-ZM-UVD" secondAttribute="trailing" constant="4" id="94f-we-WRZ"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xKa-ZM-UVD" secondAttribute="bottom" constant="2" id="RVF-gN-k5i"/>
-                    <constraint firstItem="xKa-ZM-UVD" firstAttribute="top" secondItem="sXb-aG-wZV" secondAttribute="top" constant="2" id="XXO-hG-Rzh"/>
-                    <constraint firstItem="xKa-ZM-UVD" firstAttribute="leading" secondItem="sXb-aG-wZV" secondAttribute="leading" constant="4" id="nb7-BW-30u"/>
+                    <constraint firstAttribute="trailing" secondItem="xKa-ZM-UVD" secondAttribute="trailing" id="94f-we-WRZ"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xKa-ZM-UVD" secondAttribute="bottom" constant="1" id="RVF-gN-k5i"/>
+                    <constraint firstItem="xKa-ZM-UVD" firstAttribute="top" secondItem="sXb-aG-wZV" secondAttribute="top" constant="1" id="XXO-hG-Rzh"/>
+                    <constraint firstItem="xKa-ZM-UVD" firstAttribute="leading" secondItem="sXb-aG-wZV" secondAttribute="leading" id="nb7-BW-30u"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

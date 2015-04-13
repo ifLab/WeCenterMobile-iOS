@@ -19,7 +19,7 @@ class CommentCell: UITableViewCell {
         userAvatarView.layer.masksToBounds = true
         userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
         selectedBackgroundView = UIView()
-        selectedBackgroundView.backgroundColor = UIColor.msr_materialBrown700()
+        selectedBackgroundView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
     }
     
     func update(#answerComment: AnswerComment, updateImage: Bool) {

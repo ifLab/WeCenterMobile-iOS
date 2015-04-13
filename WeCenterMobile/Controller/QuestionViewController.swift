@@ -74,7 +74,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         tableView = ButtonTouchesCancelableTableView()
         tableView.delegate = self
         tableView.dataSource = self
-        view.backgroundColor = UIColor.msr_materialBrown900()
+        view.backgroundColor = UIColor.msr_materialBlueGray800()
         let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
         header.textColor = UIColor.whiteColor()
         headerImageView = header.valueForKey("arrowImage") as! UIImageView

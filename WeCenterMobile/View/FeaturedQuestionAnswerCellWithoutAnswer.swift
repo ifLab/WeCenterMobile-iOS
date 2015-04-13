@@ -15,17 +15,13 @@ class FeaturedQuestionAnswerCellWithoutAnswer: FeaturedObjectCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var questionTitleLabel: UILabel!
     @IBOutlet weak var questionTagLabel: UIView!
+    @IBOutlet weak var questionButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         userAvatarView.layer.masksToBounds = true
         userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
-        questionTagLabel.layer.masksToBounds = false
-        questionTagLabel.layer.shadowColor = UIColor.msr_materialBrown900().CGColor
-        questionTagLabel.layer.shadowPath = UIBezierPath(rect: questionTagLabel.bounds).CGPath
-        questionTagLabel.layer.shadowOpacity = 1
-        questionTagLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
-        questionTagLabel.layer.shadowRadius = 1
+        questionButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
     }
     
     override func update(#object: FeaturedObject, updateImage: Bool) {

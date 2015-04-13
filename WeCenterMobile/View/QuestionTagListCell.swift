@@ -50,7 +50,7 @@ class QuestionTagListCell: UITableViewCell, ZFTokenFieldDataSource, ZFTokenField
         label.textAlignment = .Center
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 3
-        label.backgroundColor = UIColor.msr_materialBrown600()
+        label.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
         label.textColor = UIColor.lightTextColor()
         return label
     }

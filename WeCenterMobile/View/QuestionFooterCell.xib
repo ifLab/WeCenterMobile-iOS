@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -14,22 +14,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdn-QN-RGl">
-                        <rect key="frame" x="4" y="0.0" width="312" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mu9-8Y-Hin">
-                                <rect key="frame" x="212" y="0.0" width="100" height="50"/>
-                                <color key="backgroundColor" red="0.42745098040000001" green="0.29803921570000003" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="220" y="0.0" width="100" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="Iwx-Aa-eT4"/>
                                 </constraints>
                                 <state key="normal" title="关注">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" white="1" alpha="0.87" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="View_icon" translatesAutoresizingMaskIntoConstraints="NO" id="UB0-Zo-Ww5">
                                 <rect key="frame" x="10" y="10" width="30" height="30"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="g2w-kg-jiV"/>
                                     <constraint firstAttribute="width" secondItem="UB0-Zo-Ww5" secondAttribute="height" multiplier="1:1" id="mTs-WC-AlB"/>
@@ -49,17 +49,17 @@
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Contact_book_icon" translatesAutoresizingMaskIntoConstraints="NO" id="plz-v8-W51">
                                 <rect key="frame" x="100" y="13" width="25" height="25"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="W0U-YI-mJH"/>
                                     <constraint firstAttribute="width" secondItem="plz-v8-W51" secondAttribute="height" multiplier="1:1" id="jUL-xo-pl0"/>
                                 </constraints>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="yM8-fA-yJG">
-                                <rect key="frame" x="212" y="0.0" width="100" height="50"/>
+                                <rect key="frame" x="220" y="0.0" width="100" height="50"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" red="0.36470588240000001" green="0.25098039220000001" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Mu9-8Y-Hin" firstAttribute="trailing" secondItem="yM8-fA-yJG" secondAttribute="trailing" id="3Um-gz-YLD"/>
                             <constraint firstAttribute="trailing" secondItem="Mu9-8Y-Hin" secondAttribute="trailing" id="6Jd-7Q-dKh"/>
@@ -83,10 +83,10 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="zdn-QN-RGl" secondAttribute="trailing" constant="4" id="3Ki-vt-Tah"/>
+                    <constraint firstAttribute="trailing" secondItem="zdn-QN-RGl" secondAttribute="trailing" id="3Ki-vt-Tah"/>
                     <constraint firstItem="zdn-QN-RGl" firstAttribute="top" secondItem="JMt-Gq-koj" secondAttribute="top" id="AF5-Yt-Hjs"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zdn-QN-RGl" secondAttribute="bottom" constant="2" id="Bli-fF-wLc"/>
-                    <constraint firstItem="zdn-QN-RGl" firstAttribute="leading" secondItem="JMt-Gq-koj" secondAttribute="leading" constant="4" id="bxM-68-TGq"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zdn-QN-RGl" secondAttribute="bottom" id="Bli-fF-wLc"/>
+                    <constraint firstItem="zdn-QN-RGl" firstAttribute="leading" secondItem="JMt-Gq-koj" secondAttribute="leading" id="bxM-68-TGq"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

@@ -36,7 +36,7 @@ class AnswerCommentListViewController: UITableViewController {
         tableView.separatorStyle = .None
         tableView.contentInset.bottom = 50
         tableView.keyboardDismissMode = .OnDrag
-        tableView.backgroundColor = UIColor.msr_materialBrown900()
+        tableView.backgroundColor = UIColor.msr_materialBlueGray800()
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
         tableView.indicatorStyle = .White
         msr_navigationBar!.barStyle = .Black
@@ -48,13 +48,14 @@ class AnswerCommentListViewController: UITableViewController {
             keyboardBar.addSubview(v)
         }
         textField.keyboardAppearance = .Dark
-        textField.textColor = UIColor.whiteColor()
+        textField.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.87)
         textField.attributedPlaceholder = NSAttributedString(string: "在此处输入评论……", attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor()])
         textField.borderStyle = .None
         textField.clearButtonMode = .WhileEditing
         publishButton.setTitle("发布", forState: .Normal) // Needs localization
-        publishButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        publishButton.msr_setBackgroundImageWithColor(UIColor.msr_materialBrown500())
+        publishButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.87), forState: .Normal)
+        publishButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.2), forState: .Normal)
+        publishButton.msr_setBackgroundImageWithColor(UIColor.whiteColor().colorWithAlphaComponent(0.2), forState: .Highlighted)
         publishButton.addTarget(self, action: "publishComment", forControlEvents: .TouchUpInside)
         keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-5-[t]-5-[b(==75)]|", options: nil, metrics: nil, views: views))
         keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[t(>=50)]|", options: nil, metrics: nil, views: views))

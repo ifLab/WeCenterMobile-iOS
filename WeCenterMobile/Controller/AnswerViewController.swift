@@ -26,8 +26,9 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     lazy var answerBodyView: DTAttributedTextView = {
         [weak self] in
         let v = DTAttributedTextView()
-        v.backgroundColor = UIColor.clearColor()
         v.alwaysBounceVertical = true
+        v.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
+        v.attributedTextContentView.backgroundColor = UIColor.clearColor()
         v.attributedTextContentView.edgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         v.attributedTextContentView.delegate = self
         v.attributedTextContentView.shouldDrawImages = true
@@ -63,7 +64,7 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         answerBodyView.frame = view.bounds
         answerBodyView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
         answerBodyView.indicatorStyle = .White
-        view.backgroundColor = UIColor.msr_materialBrown900()
+        view.backgroundColor = UIColor.msr_materialBlueGray800()
         msr_navigationBar!.barStyle = .Black
         msr_navigationBar!.tintColor = UIColor.whiteColor()
     }
@@ -137,14 +138,14 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         let options = [
             DTDefaultFontName: UIFont.systemFontOfSize(0).fontName,
             DTDefaultFontSize: 16,
-            DTDefaultTextColor: UIColor.whiteColor(),
+            DTDefaultTextColor: UIColor.lightTextColor(),
             DTDefaultLineHeightMultiplier: 1.5,
-            DTDefaultLinkColor: UIColor.msr_materialPurple100(),
+            DTDefaultLinkColor: UIColor.msr_materialLightBlue800(),
             DTDefaultLinkDecoration: true]
         let dateFormatter = NSDateFormatter()
         dateFormatter.timeZone = NSTimeZone.localTimeZone()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        var html = answer.date == nil ? answer.body ?? "加载中……" : answer.body! + "<br><p align=\"right\"><font color=\"#a1887f\">\(dateFormatter.stringFromDate(answer.date!))</font></p>"
+        var html = answer.date == nil ? answer.body ?? "加载中……" : answer.body! + "<br><p align=\"right\">\(dateFormatter.stringFromDate(answer.date!))</p>"
         answerBodyView.attributedString = NSAttributedString(
             HTMLData: html.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true),
             options: options,
@@ -180,17 +181,17 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
         ac.addAction(UIAlertAction(title: "跳转到 Safari", style: .Default) {
             action in
             UIApplication.sharedApplication().openURL(URL)
-            })
+        })
         ac.addAction(UIAlertAction(title: "复制到剪贴板", style: .Default) {
             [weak self] action in
             UIPasteboard.generalPasteboard().string = URL.absoluteString
             let ac = UIAlertController(title: "已复制", message: nil, preferredStyle: .Alert)
-            self?.presentViewController(ac, animated: true, completion: {
+            self?.presentViewController(ac, animated: true) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC / 2)), dispatch_get_main_queue()) {
                     ac.dismissViewControllerAnimated(true, completion: nil)
                 }
-            })
-            })
+            }
+        })
         ac.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
         presentViewController(ac, animated: true, completion: nil)
     }

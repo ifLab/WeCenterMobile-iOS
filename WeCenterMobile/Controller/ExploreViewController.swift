@@ -17,10 +17,10 @@ class ExploreViewController: MSRSegmentedViewController, MSRSegmentedViewControl
     override func loadView() {
         super.loadView()
         segmentedControl.indicator = MSRSegmentedControlUnderlineIndicator()
-        segmentedControl.tintColor = UIColor.msr_materialBrown200()
-        segmentedControl.indicator.tintColor = UIColor.msr_materialBrown500()
+        segmentedControl.tintColor = UIColor.msr_materialBlueGray50()
+        segmentedControl.indicator.tintColor = UIColor.msr_materialBlueGray300()
         (segmentedControl.backgroundView as! UIToolbar).barStyle = .Black
-        view.backgroundColor = UIColor.msr_materialBrown900()
+        view.backgroundColor = UIColor.msr_materialBlueGray800()
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List"), style: .Plain, target: self, action: "showSidebar")
         navigationItem.leftBarButtonItem!.tintColor = UIColor.whiteColor()
         scrollView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)

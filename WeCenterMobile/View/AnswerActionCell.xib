@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AnswerActionCell" rowHeight="135" id="Qbv-1m-i1s" customClass="AnswerActionCell" customModule="WeCenterMobile" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AnswerActionCell" rowHeight="137" id="Qbv-1m-i1s" customClass="AnswerActionCell" customModule="WeCenterMobile" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="137"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qbv-1m-i1s" id="Nve-Cm-0Ih">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GcM-Rp-CrZ">
-                        <rect key="frame" x="4" y="2" width="312" height="130"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GvD-Rw-hyz">
-                                <rect key="frame" x="0.0" y="0.0" width="312" height="76"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hH0-zf-UYf">
-                                        <rect key="frame" x="0.0" y="0.0" width="312" height="76"/>
-                                        <color key="backgroundColor" red="0.42745098039215684" green="0.29803921568627451" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -43,19 +43,19 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58E-eF-nlg">
                                         <rect key="frame" x="48" y="10" width="42" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="1" alpha="0.87" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="这里是问题标题，可能会很长，但最多显示两行。" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4s-kS-ZKc" customClass="MSRMultilineLabel" customModule="WeCenterMobile" customModuleProvider="target">
-                                        <rect key="frame" x="48" y="32" width="254" height="34"/>
+                                        <rect key="frame" x="48" y="32" width="262" height="36"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdj-Qr-hPE">
                                         <rect key="frame" x="10" y="45" width="30" height="12"/>
-                                        <color key="backgroundColor" red="0.36470588235294116" green="0.25098039215686274" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="WOz-N0-xXl"/>
                                         </constraints>
@@ -64,7 +64,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="hH0-zf-UYf" firstAttribute="leading" secondItem="GvD-Rw-hyz" secondAttribute="leading" id="042-0i-dCd"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="S4s-kS-ZKc" secondAttribute="bottom" constant="10" id="AEh-4w-7vT"/>
@@ -87,24 +87,24 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2LB-QA-Pk8">
-                                <rect key="frame" x="0.0" y="76" width="312" height="54"/>
+                                <rect key="frame" x="0.0" y="79" width="320" height="56"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0dW-Ob-2OR">
-                                        <rect key="frame" x="0.0" y="0.0" width="312" height="54"/>
-                                        <color key="backgroundColor" red="0.36470588235294116" green="0.25098039215686274" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="这是回答的预览，也可能会很长，但最多会显示三行。" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fsr-EP-fEg" customClass="MSRMultilineLabel" customModule="WeCenterMobile" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="10" width="292" height="34"/>
+                                        <rect key="frame" x="10" y="10" width="300" height="36"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="0dW-Ob-2OR" firstAttribute="leading" secondItem="2LB-QA-Pk8" secondAttribute="leading" id="Dk0-Uj-idu"/>
                                     <constraint firstAttribute="bottom" secondItem="Fsr-EP-fEg" secondAttribute="bottom" constant="10" id="HGA-WM-U88"/>
@@ -131,10 +131,10 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="GcM-Rp-CrZ" secondAttribute="bottom" constant="2" id="22W-Gk-DDg"/>
-                    <constraint firstItem="GcM-Rp-CrZ" firstAttribute="leading" secondItem="Nve-Cm-0Ih" secondAttribute="leading" constant="4" id="Dr7-W3-ttg"/>
-                    <constraint firstAttribute="trailing" secondItem="GcM-Rp-CrZ" secondAttribute="trailing" constant="4" id="sbn-1b-k7P"/>
-                    <constraint firstItem="GcM-Rp-CrZ" firstAttribute="top" secondItem="Nve-Cm-0Ih" secondAttribute="top" constant="2" id="xfg-qM-V3b"/>
+                    <constraint firstAttribute="bottom" secondItem="GcM-Rp-CrZ" secondAttribute="bottom" constant="1" id="22W-Gk-DDg"/>
+                    <constraint firstItem="GcM-Rp-CrZ" firstAttribute="leading" secondItem="Nve-Cm-0Ih" secondAttribute="leading" id="Dr7-W3-ttg"/>
+                    <constraint firstAttribute="trailing" secondItem="GcM-Rp-CrZ" secondAttribute="trailing" id="sbn-1b-k7P"/>
+                    <constraint firstItem="GcM-Rp-CrZ" firstAttribute="top" secondItem="Nve-Cm-0Ih" secondAttribute="top" id="xfg-qM-V3b"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -147,7 +147,7 @@
                 <outlet property="userAvatarView" destination="cS3-2I-IdC" id="Ojp-vB-j8V"/>
                 <outlet property="userNameLabel" destination="58E-eF-nlg" id="iZv-xH-zgW"/>
             </connections>
-            <point key="canvasLocation" x="699" y="375.5"/>
+            <point key="canvasLocation" x="699" y="376.5"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -17,8 +17,7 @@ class ArticleAgreementActionCell: ActionCell {
         super.awakeFromNib()
         userAvatarView.layer.masksToBounds = true
         userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
-        articleButton.msr_setBackgroundImageWithColor(articleButton.backgroundColor!)
-        articleButton.backgroundColor = UIColor.clearColor()
+        articleButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
     }
     
     override func update(#action: Action, updateImage: Bool) {

@@ -15,17 +15,13 @@ class FeaturedArticleCell: FeaturedObjectCell {
     @IBOutlet weak var articleTitle: UILabel!
     @IBOutlet weak var innerView: UIView!
     @IBOutlet weak var articleTagLabel: UILabel!
+    @IBOutlet weak var articleButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
         userAvatarView.layer.masksToBounds = true
-        articleTagLabel.layer.masksToBounds = false
-        articleTagLabel.layer.shadowColor = UIColor.msr_materialBlueGray900().CGColor
-        articleTagLabel.layer.shadowPath = UIBezierPath(rect: articleTagLabel.bounds).CGPath
-        articleTagLabel.layer.shadowOpacity = 1
-        articleTagLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
-        articleTagLabel.layer.shadowRadius = 1
+        articleButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
     }
     
     override func update(#object: FeaturedObject, updateImage: Bool) {

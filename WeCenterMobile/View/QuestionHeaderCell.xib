@@ -14,7 +14,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NjE-ws-DoJ">
-                        <rect key="frame" x="4" y="4" width="312" height="50"/>
+                        <rect key="frame" x="0.0" y="4" width="320" height="50"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="dRY-Ng-QXy">
                                 <rect key="frame" x="10" y="10" width="30" height="30"/>
@@ -26,7 +26,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4eb-7d-elG">
                                 <rect key="frame" x="50" y="17" width="42" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="0.87" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="这里是提问者的个人签名。" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dug-HJ-XrQ">
@@ -36,7 +36,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.30588235294117649" green="0.20392156862745098" blue="0.1803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="dRY-Ng-QXy" firstAttribute="centerY" secondItem="4eb-7d-elG" secondAttribute="centerY" id="09F-zW-OKY"/>
                             <constraint firstItem="dRY-Ng-QXy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="NjE-ws-DoJ" secondAttribute="top" constant="5" id="7R5-vY-sFQ"/>
@@ -53,10 +53,10 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="NjE-ws-DoJ" firstAttribute="leading" secondItem="etS-i4-Kr9" secondAttribute="leading" constant="4" id="Cfg-de-Hsr"/>
+                    <constraint firstItem="NjE-ws-DoJ" firstAttribute="leading" secondItem="etS-i4-Kr9" secondAttribute="leading" id="Cfg-de-Hsr"/>
                     <constraint firstAttribute="bottom" secondItem="NjE-ws-DoJ" secondAttribute="bottom" id="E1q-1J-AzG"/>
-                    <constraint firstItem="NjE-ws-DoJ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="etS-i4-Kr9" secondAttribute="top" constant="4" id="irw-gs-w26"/>
-                    <constraint firstAttribute="trailing" secondItem="NjE-ws-DoJ" secondAttribute="trailing" constant="4" id="qbG-LV-9QN"/>
+                    <constraint firstItem="NjE-ws-DoJ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="etS-i4-Kr9" secondAttribute="top" id="irw-gs-w26"/>
+                    <constraint firstAttribute="trailing" secondItem="NjE-ws-DoJ" secondAttribute="trailing" id="qbG-LV-9QN"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

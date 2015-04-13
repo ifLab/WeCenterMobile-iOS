@@ -32,9 +32,9 @@ class QuestionBodyCell: DTAttributedTextCell, DTAttributedTextContentViewDelegat
             options: [
                 DTDefaultFontName: UIFont.systemFontOfSize(0).fontName,
                 DTDefaultFontSize: 16,
-                DTDefaultTextColor: UIColor.whiteColor(),
+                DTDefaultTextColor: UIColor.lightTextColor(),
                 DTDefaultLineHeightMultiplier: 1.5,
-                DTDefaultLinkColor: UIColor.msr_materialPurple100(),
+                DTDefaultLinkColor: UIColor.msr_materialLightBlue800(),
                 DTDefaultLinkDecoration: true
             ])
         let string = NSMutableAttributedString(attributedString: attributedString)
