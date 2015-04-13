@@ -249,15 +249,18 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
                                 error in
                                 self_.tableView.header.endRefreshing()
                                 return
-                        })
+                            })
+                    } else {
+                        self_.tableView.header.endRefreshing()
                     }
                 }
                 return
-            }, failure: {
+            },
+            failure: {
                 [weak self] error in
                 self?.tableView.header.endRefreshing()
                 return
-        })
+            })
     }
     
     func reloadQuestionFooterCell() {

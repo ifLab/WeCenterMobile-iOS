@@ -34,6 +34,8 @@ class AnswerAgreementActionCell: ActionCell {
         questionTitleLabel.text = action.answer.question!.title!
         agreementCountLabel.text = "\(action.answer.agreementCount!)"
         answerBodyLabel.text = action.answer.body!
+        questionButton.msr_userInfo = action.answer.question
+        answerButton.msr_userInfo = action.answer
         setNeedsLayout()
         layoutIfNeeded()
     }

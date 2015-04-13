@@ -28,6 +28,7 @@ class QuestionFocusingActionCell: ActionCell {
         }
         userNameLabel.text = action.user?.name ?? "匿名用户"
         questionTitleLabel.text = action.question.title
+        questionButton.msr_userInfo = action.question
         setNeedsLayout()
         layoutIfNeeded()
     }

@@ -81,10 +81,29 @@ class HomeViewController: UITableViewController {
         if cell == nil {
             cell = NSBundle.mainBundle().loadNibNamed(nibNames[index], owner: self, options: nil).first as! ActionCell
         }
-        if let cell_ = cell as? QuestionPublishmentActionCell {
-            cell_.questionButton.addTarget(self, action: "pushQuestionViewController:", forControlEvents: .TouchUpInside)
-        }
         cell.update(action: action, updateImage: true)
+        switch cell {
+        case let cell as AnswerActionCell:
+            cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
+            cell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
+            break
+        case let cell as QuestionPublishmentActionCell:
+            cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
+            break
+        case let cell as QuestionFocusingActionCell:
+            cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
+            break
+        case let cell as AnswerAgreementActionCell:
+            cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
+            cell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
+            break
+        case let cell as ArticlePublishmentActionCell:
+            break
+        case let cell as ArticleAgreementActionCell:
+            break
+        default:
+            break
+        }
         return cell
     }
     
@@ -126,11 +145,19 @@ class HomeViewController: UITableViewController {
             msr_navigationController!.pushViewController(UserViewController(user: user), animated: true)
         }
     }
-    func pushQuestionViewController(sender: UIButton) {
+    
+    func didPressQuestionButton(sender: UIButton) {
         if let question = sender.msr_userInfo as? Question {
             msr_navigationController!.pushViewController(QuestionViewController(question: question), animated: true)
         }
     }
+    
+    func didPressAnswerButton(sender: UIButton) {
+        if let answer = sender.msr_userInfo as? Answer {
+            msr_navigationController!.pushViewController(AnswerViewController(answer: answer), animated: true)
+        }
+    }
+    
     internal func refresh() {
         shouldReloadAfterLoadingMore = false
         tableView.footer?.endRefreshing()
