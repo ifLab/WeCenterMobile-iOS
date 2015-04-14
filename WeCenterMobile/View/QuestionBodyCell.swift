@@ -24,23 +24,23 @@ class QuestionBodyCell: DTAttributedTextCell, DTAttributedTextContentViewDelegat
         contentView.backgroundColor = UIColor.clearColor()
         attributedTextContextView.backgroundColor = UIColor.clearColor()
         attributedTextContextView.delegate = self
+        attributedTextContextView.shouldDrawImages = true
+        attributedTextContextView.shouldDrawLinks = true
         attributedTextContextView.edgeInsets = UIEdgeInsets(top: 10, left: 14, bottom: 10, right: 14)
     }
 
     func update(#question: Question?) {
-        setHTMLString(question?.body ?? "加载中……",
-            options: [
-                DTDefaultFontName: UIFont.systemFontOfSize(0).fontName,
-                DTDefaultFontSize: 16,
-                DTDefaultTextColor: UIColor.lightTextColor(),
-                DTDefaultLineHeightMultiplier: 1.5,
-                DTDefaultLinkColor: UIColor.msr_materialLightBlue800(),
-                DTDefaultLinkDecoration: true
-            ])
-        let string = NSMutableAttributedString(attributedString: attributedString)
-        var url: NSURL?
-        attributedTextContextView.shouldDrawImages = true
-        attributedTextContextView.shouldDrawLinks = true
+        if question?.body != nil {
+            setHTMLString(question?.body ?? "加载中……",
+                options: [
+                    DTDefaultFontName: UIFont.systemFontOfSize(0).fontName,
+                    DTDefaultFontSize: 16,
+                    DTDefaultTextColor: UIColor.lightTextColor(),
+                    DTDefaultLineHeightMultiplier: 1.5,
+                    DTDefaultLinkColor: UIColor.msr_materialLightBlue800(),
+                    DTDefaultLinkDecoration: true
+                ])
+        }
         setNeedsLayout()
         layoutIfNeeded()
     }

@@ -16,6 +16,7 @@ class AnswerTopBar: UIVisualEffectView {
     @IBOutlet weak var evaluationImageView: UIImageView!
     @IBOutlet weak var separatorWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var agreementCountLabel: UILabel!
+    @IBOutlet weak var userButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +26,7 @@ class AnswerTopBar: UIVisualEffectView {
         userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
         evaluationImageView.msr_imageRenderingMode = .AlwaysTemplate
         separatorWidthConstraint.constant = 0.5
+        userButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
     }
     
     override func willMoveToSuperview(newSuperview: UIView?) {
@@ -46,6 +48,7 @@ class AnswerTopBar: UIVisualEffectView {
         userNameLabel.text = answer.user?.name ?? "匿名用户"
         userSignatureLabel.text = answer.user?.signature ?? ""
         agreementCountLabel.text = "\(answer.agreementCount ?? 0)"
+        userButton.msr_userInfo = answer.user
         setNeedsLayout()
         layoutIfNeeded()
     }

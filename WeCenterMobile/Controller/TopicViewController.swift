@@ -12,7 +12,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var topic: Topic
     var answers = DataManager.defaultManager!.fetchAll("Answer", error: nil) as! [Answer]
-    // WARN: - Should be [Answer]()
+    // WARN: - Should be [Answer]() //
     
     init(topic: Topic) {
         self.topic = topic
@@ -27,6 +27,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         [weak self] in
         let v = NSBundle.mainBundle().loadNibNamed("TopicViewControllerHeaderView", owner: nil, options: nil).first as! TopicViewControllerHeaderView
         v.focusButton.addTarget(self, action: "focus", forControlEvents: .TouchUpInside)
+        v.backButton.addTarget(self, action: "didPressBackButton", forControlEvents: .TouchUpInside)
         return v
     }()
     
@@ -188,6 +189,10 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if let answer = button.msr_userInfo as? Answer {
             msr_navigationController!.pushViewController(AnswerViewController(answer: answer), animated: true)
         }
+    }
+    
+    func didPressBackButton() {
+        msr_navigationController!.popViewController(animated: true)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

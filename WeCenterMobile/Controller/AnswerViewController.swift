@@ -12,7 +12,9 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     
     lazy var topBar: AnswerTopBar = {
         [weak self] in
-        return NSBundle.mainBundle().loadNibNamed("AnswerTopBar", owner: self, options: nil).first as! AnswerTopBar
+        let v = NSBundle.mainBundle().loadNibNamed("AnswerTopBar", owner: self, options: nil).first as! AnswerTopBar
+        v.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
+        return v
     }()
     
     lazy var bottomBar: AnswerBottomBar = {
@@ -154,8 +156,16 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     }
     
     func share() {
-        
+        let c = UIActivityViewController(activityItems: [], applicationActivities: nil)
+        presentViewController(c, animated: true, completion: nil)
     }
+    
+//    func activityViewControllerPlaceholderItem(activityViewController: UIActivityViewController) -> AnyObject // called to determine data type. only the class of the return type is consulted. it should match what -itemForActivityType: returns later
+//    func activityViewController(activityViewController: UIActivityViewController, itemForActivityType activityType: String) -> AnyObject? // called to fetch data after an activity is selected. you can return nil.
+//    
+//    optional func activityViewController(activityViewController: UIActivityViewController, subjectForActivityType activityType: String?) -> String // if activity supports a Subject field. iOS 7.0
+//    optional func activityViewController(activityViewController: UIActivityViewController, dataTypeIdentifierForActivityType activityType: String?) -> String // UTI for item if it is an NSData. iOS 7.0. will be called with nil activity and then selected activity
+//    optional func activityViewController(activityViewController: UIActivityViewController, thumbnailImageForActivityType activityType: String!, suggestedSize size: CGSize) -> UIImage! // if activity supports preview image. iOS 7.0
     
     func pushCommentListViewController() {
         msr_navigationController!.pushViewController(AnswerCommentListViewController(answer: answer), animated: true)
@@ -174,6 +184,12 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     
     func didPressLinkButton(linkButton: DTLinkButton) {
         presentLinkAlertControllerWithURL(linkButton.URL)
+    }
+    
+    func didPressUserButton(button: UIButton) {
+        if let user = button.msr_userInfo as? User {
+            msr_navigationController!.pushViewController(UserViewController(user: user), animated: true)
+        }
     }
     
     func presentLinkAlertControllerWithURL(URL: NSURL) {

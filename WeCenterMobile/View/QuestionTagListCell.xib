@@ -19,13 +19,23 @@
                                 <rect key="frame" x="5" y="0.0" width="310" height="43"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iI4-np-voS">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="2pL-hP-JN4" secondAttribute="trailing" constant="5" id="0GC-yg-Gtf"/>
+                            <constraint firstAttribute="bottom" secondItem="iI4-np-voS" secondAttribute="bottom" id="BQI-hf-31a"/>
                             <constraint firstItem="2pL-hP-JN4" firstAttribute="leading" secondItem="5Zq-Vf-cqU" secondAttribute="leading" constant="5" id="D1W-AJ-0vD"/>
+                            <constraint firstItem="iI4-np-voS" firstAttribute="leading" secondItem="5Zq-Vf-cqU" secondAttribute="leading" id="F7l-rn-Dtn"/>
                             <constraint firstAttribute="bottom" secondItem="2pL-hP-JN4" secondAttribute="bottom" id="URy-fL-dSg"/>
                             <constraint firstItem="2pL-hP-JN4" firstAttribute="top" secondItem="5Zq-Vf-cqU" secondAttribute="top" id="iHM-Ma-Vpk"/>
+                            <constraint firstItem="iI4-np-voS" firstAttribute="top" secondItem="5Zq-Vf-cqU" secondAttribute="top" id="vSw-pt-SvO"/>
+                            <constraint firstAttribute="trailing" secondItem="iI4-np-voS" secondAttribute="trailing" id="z8C-79-sOT"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -39,6 +49,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="tagsButton" destination="iI4-np-voS" id="O8D-CA-hMz"/>
                 <outlet property="tagsField" destination="2pL-hP-JN4" id="P3K-7s-dHy"/>
             </connections>
             <point key="canvasLocation" x="529" y="421"/>

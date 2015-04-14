@@ -11,6 +11,7 @@ import UIKit
 class QuestionTagListCell: UITableViewCell, ZFTokenFieldDataSource, ZFTokenFieldDelegate {
     
     @IBOutlet weak var tagsField: ZFTokenField!
+    @IBOutlet weak var tagsButton: UIButton!
     var topics = [Topic]()
     
     override func awakeFromNib() {
@@ -18,6 +19,7 @@ class QuestionTagListCell: UITableViewCell, ZFTokenFieldDataSource, ZFTokenField
         tagsField.textField.enabled = false
         tagsField.delegate = self
         tagsField.dataSource = self
+        tagsButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
     }
     
     func update(#question: Question) {
@@ -25,6 +27,7 @@ class QuestionTagListCell: UITableViewCell, ZFTokenFieldDataSource, ZFTokenField
             $0.title! < $1.title
         }
         tagsField.reloadData()
+        tagsButton.msr_userInfo = topics
         setNeedsLayout()
         layoutIfNeeded()
     }

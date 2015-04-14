@@ -24,6 +24,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     lazy var questionHeaderCell: QuestionHeaderCell = {
         [weak self] in
         let c = NSBundle.mainBundle().loadNibNamed("QuestionHeaderCell", owner: self?.tableView, options: nil).first as! QuestionHeaderCell
+        c.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
         return c
     }()
     lazy var questionTitleCell: QuestionTitleCell = {
@@ -32,7 +33,9 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     }()
     lazy var questionTagListCell: QuestionTagListCell = {
         [weak self] in
-        return NSBundle.mainBundle().loadNibNamed("QuestionTagListCell", owner: self?.tableView, options: nil).first as! QuestionTagListCell
+        let c = NSBundle.mainBundle().loadNibNamed("QuestionTagListCell", owner: self?.tableView, options: nil).first as! QuestionTagListCell
+        c.tagsButton.addTarget(self, action: "didPressTagsButton:", forControlEvents: .TouchUpInside)
+        return c
     }()
     lazy var questionBodyCell: QuestionBodyCell = {
         [weak self] in
@@ -265,6 +268,18 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     
     func reloadQuestionFooterCell() {
         tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 4)], withRowAnimation: .None)
+    }
+    
+    func didPressTagsButton(button: UIButton) {
+        if let topics = button.msr_userInfo as? [Topic] {
+            msr_navigationController!.pushViewController(TopicListViewController(topics: topics), animated: true)
+        }
+    }
+    
+    func didPressUserButton(button: UIButton) {
+        if let user = button.msr_userInfo as? User {
+            msr_navigationController!.pushViewController(UserViewController(user: user), animated: true)
+        }
     }
     
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {

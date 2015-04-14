@@ -35,12 +35,21 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3im-91-Nq2">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="dRY-Ng-QXy" firstAttribute="centerY" secondItem="4eb-7d-elG" secondAttribute="centerY" id="09F-zW-OKY"/>
+                            <constraint firstAttribute="trailing" secondItem="3im-91-Nq2" secondAttribute="trailing" id="7ER-Jd-tGJ"/>
                             <constraint firstItem="dRY-Ng-QXy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="NjE-ws-DoJ" secondAttribute="top" constant="5" id="7R5-vY-sFQ"/>
+                            <constraint firstItem="3im-91-Nq2" firstAttribute="leading" secondItem="NjE-ws-DoJ" secondAttribute="leading" id="BuF-FV-CSS"/>
                             <constraint firstAttribute="height" constant="50" id="UTm-4i-3Q5"/>
+                            <constraint firstAttribute="bottom" secondItem="3im-91-Nq2" secondAttribute="bottom" id="Unz-RG-T8n"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Dug-HJ-XrQ" secondAttribute="trailing" constant="15" id="YIO-TE-Zqg"/>
                             <constraint firstItem="4eb-7d-elG" firstAttribute="leading" secondItem="dRY-Ng-QXy" secondAttribute="trailing" constant="10" id="bc4-WM-r5b"/>
                             <constraint firstItem="Dug-HJ-XrQ" firstAttribute="centerY" secondItem="4eb-7d-elG" secondAttribute="centerY" id="cGy-yi-JZM"/>
@@ -48,6 +57,7 @@
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dRY-Ng-QXy" secondAttribute="bottom" constant="5" id="irS-tO-xTx"/>
                             <constraint firstItem="Dug-HJ-XrQ" firstAttribute="leading" secondItem="4eb-7d-elG" secondAttribute="trailing" constant="10" id="oV9-Il-fxU"/>
                             <constraint firstAttribute="centerY" secondItem="dRY-Ng-QXy" secondAttribute="centerY" id="tkl-v8-pmv"/>
+                            <constraint firstItem="3im-91-Nq2" firstAttribute="top" secondItem="NjE-ws-DoJ" secondAttribute="top" id="xgH-jX-05B"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -62,6 +72,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="userAvatarView" destination="dRY-Ng-QXy" id="FsO-pZ-yv2"/>
+                <outlet property="userButton" destination="3im-91-Nq2" id="Ptg-vB-IuY"/>
                 <outlet property="userNameLabel" destination="4eb-7d-elG" id="CAk-bw-7UX"/>
                 <outlet property="userSignatureLabel" destination="Dug-HJ-XrQ" id="aB5-lj-OuF"/>
             </connections>

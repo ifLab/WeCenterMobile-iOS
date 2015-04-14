@@ -40,11 +40,11 @@ class Question: NSManagedObject {
             success: {
                 data in
                 let value = data["question_info"] as! NSDictionary
-                question.id = value["question_id"] as! NSNumber
+                question.id = Int(msr_object: value["question_id"])!
                 question.title = value["question_content"] as? String
                 question.body = value["question_detail"] as? String
-                question.focusCount = value["focus_count"] as? NSNumber
-                question.focusing = (value["has_focus"] as? NSNumber == 1)
+                question.focusCount = Int(msr_object: value["focus_count"])
+                question.focusing = (Int(msr_object: value["has_focus"]) == 1)
                 for (key, value) in data["answers"] as? [String: NSDictionary] ?? [:] {
                     let answerID = value["answer_id"] as! NSNumber
                     var answer: Answer! = filter(question.answers) { $0.id == answerID }.first

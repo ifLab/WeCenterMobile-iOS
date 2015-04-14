@@ -13,11 +13,13 @@ class QuestionHeaderCell: UITableViewCell {
     @IBOutlet weak var userAvatarView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userSignatureLabel: UILabel!
+    @IBOutlet weak var userButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         userAvatarView.layer.masksToBounds = true
         userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
+        userButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
     }
     
     func update(#user: User?, updateImage: Bool) {
@@ -26,6 +28,7 @@ class QuestionHeaderCell: UITableViewCell {
         }
         userNameLabel.text = user?.name ?? "匿名用户"
         userSignatureLabel.text = user?.signature ?? ""
+        userButton.msr_userInfo = user
         setNeedsLayout()
         layoutIfNeeded()
     }

@@ -62,7 +62,9 @@ class TopicListViewController: UITableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.header.beginRefreshing()
+        if listType == .User {
+            tableView.header.beginRefreshing()
+        }
     }
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

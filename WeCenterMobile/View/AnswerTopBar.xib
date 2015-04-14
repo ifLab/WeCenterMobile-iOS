@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -55,6 +55,12 @@
                             <constraint firstAttribute="width" constant="1" id="eBf-iw-mAs"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wsg-0a-AuQ">
+                        <rect key="frame" x="0.0" y="0.0" width="238" height="50"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="kA2-Zw-hzN" secondAttribute="bottom" constant="10" id="0Bw-np-QNz"/>
@@ -69,6 +75,7 @@
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xhL-r3-EAc" secondAttribute="bottom" constant="10" id="Lgf-6f-xUj"/>
                     <constraint firstItem="kA2-Zw-hzN" firstAttribute="leading" secondItem="Ciw-2L-7S2" secondAttribute="trailing" constant="10" id="OIk-xW-Dqz"/>
                     <constraint firstItem="xhL-r3-EAc" firstAttribute="leading" secondItem="j3U-X5-EaR" secondAttribute="trailing" constant="10" id="YCb-Cq-Ves"/>
+                    <constraint firstItem="Wsg-0a-AuQ" firstAttribute="leading" secondItem="j0f-ZT-s5d" secondAttribute="leading" id="Ypt-vd-1H7"/>
                     <constraint firstItem="kA2-Zw-hzN" firstAttribute="baseline" secondItem="5QZ-Ll-uxk" secondAttribute="baseline" id="Z6E-xL-oEW"/>
                     <constraint firstItem="xhL-r3-EAc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="j0f-ZT-s5d" secondAttribute="top" constant="10" id="cQl-WV-bB5"/>
                     <constraint firstAttribute="bottom" secondItem="Ciw-2L-7S2" secondAttribute="bottom" constant="10" id="cSa-gz-YRI"/>
@@ -78,10 +85,13 @@
                     <constraint firstItem="Ciw-2L-7S2" firstAttribute="centerY" secondItem="kA2-Zw-hzN" secondAttribute="centerY" id="dgm-Wj-Z1C"/>
                     <constraint firstItem="xhL-r3-EAc" firstAttribute="centerY" secondItem="j3U-X5-EaR" secondAttribute="centerY" id="eJx-Wo-ixc"/>
                     <constraint firstAttribute="trailing" secondItem="xhL-r3-EAc" secondAttribute="trailing" constant="20" id="euu-wY-b3a"/>
+                    <constraint firstItem="cUz-mp-zNR" firstAttribute="leading" secondItem="Wsg-0a-AuQ" secondAttribute="trailing" id="ghH-3a-Nx0"/>
                     <constraint firstItem="cUz-mp-zNR" firstAttribute="top" secondItem="j0f-ZT-s5d" secondAttribute="top" constant="5" id="jLt-s8-etG"/>
+                    <constraint firstAttribute="bottom" secondItem="Wsg-0a-AuQ" secondAttribute="bottom" id="ke1-kV-ltf"/>
                     <constraint firstItem="5QZ-Ll-uxk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="j0f-ZT-s5d" secondAttribute="top" constant="10" id="uow-cL-Syf"/>
                     <constraint firstItem="Ciw-2L-7S2" firstAttribute="top" secondItem="j0f-ZT-s5d" secondAttribute="top" constant="10" id="wQo-9l-tjG"/>
                     <constraint firstItem="cUz-mp-zNR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5QZ-Ll-uxk" secondAttribute="trailing" constant="10" id="zLg-TW-6lc"/>
+                    <constraint firstItem="Wsg-0a-AuQ" firstAttribute="top" secondItem="j0f-ZT-s5d" secondAttribute="top" id="zQU-hN-mSn"/>
                 </constraints>
             </view>
             <blurEffect style="dark"/>
@@ -90,6 +100,7 @@
                 <outlet property="evaluationImageView" destination="j3U-X5-EaR" id="Ks5-u9-Q8R"/>
                 <outlet property="separatorWidthConstraint" destination="eBf-iw-mAs" id="26F-AA-SYA"/>
                 <outlet property="userAvatarView" destination="Ciw-2L-7S2" id="Lpx-oS-2KD"/>
+                <outlet property="userButton" destination="Wsg-0a-AuQ" id="c17-oc-gCx"/>
                 <outlet property="userNameLabel" destination="kA2-Zw-hzN" id="zYf-g1-Tv0"/>
                 <outlet property="userSignatureLabel" destination="5QZ-Ll-uxk" id="iht-P9-qyf"/>
             </connections>
