@@ -6,8 +6,9 @@
 //  Copyright (c) 2015年 Beijing Information Science and Technology University. All rights reserved.
 //
 
-import UIKit
 import DTCoreText
+import ShareSDK
+import UIKit
 
 class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate {
     
@@ -157,16 +158,9 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     }
     
     func share() {
-        let c = UIActivityViewController(activityItems: [], applicationActivities: nil)
-        presentViewController(c, animated: true, completion: nil)
+        let c = ShareSDK.content("Share Content", defaultContent: " The default share content. No content displayed", image: nil, title: "ShareSDK", url: nil, description: "Test Message", mediaType: SSPublishContentMediaTypeText)
+        ShareSDK.showShareActionSheet(nil, shareList: nil, content: c, statusBarTips: false, authOptions: nil, shareOptions: nil, result: nil)
     }
-    
-//    func activityViewControllerPlaceholderItem(activityViewController: UIActivityViewController) -> AnyObject // called to determine data type. only the class of the return type is consulted. it should match what -itemForActivityType: returns later
-//    func activityViewController(activityViewController: UIActivityViewController, itemForActivityType activityType: String) -> AnyObject? // called to fetch data after an activity is selected. you can return nil.
-//    
-//    optional func activityViewController(activityViewController: UIActivityViewController, subjectForActivityType activityType: String?) -> String // if activity supports a Subject field. iOS 7.0
-//    optional func activityViewController(activityViewController: UIActivityViewController, dataTypeIdentifierForActivityType activityType: String?) -> String // UTI for item if it is an NSData. iOS 7.0. will be called with nil activity and then selected activity
-//    optional func activityViewController(activityViewController: UIActivityViewController, thumbnailImageForActivityType activityType: String!, suggestedSize size: CGSize) -> UIImage! // if activity supports preview image. iOS 7.0
     
     func pushCommentListViewController() {
         msr_navigationController!.pushViewController(AnswerCommentListViewController(answer: answer), animated: true)

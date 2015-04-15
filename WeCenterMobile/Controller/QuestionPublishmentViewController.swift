@@ -6,11 +6,11 @@
 //  Copyright (c) 2015年 Beijing Information Science and Technology University. All rights reserved.
 //
 
-import UIKit
-import AssetsLibrary
 import AFNetworking
+import AssetsLibrary
 import EAColourfulProgressView
 import SVProgressHUD
+import UIKit
 import UzysAssetsPickerController
 import ZFTokenField
 

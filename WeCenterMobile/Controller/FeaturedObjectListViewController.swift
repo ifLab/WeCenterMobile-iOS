@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 Beijing Information Science and Technology University. All rights reserved.
 //
 
+import MJRefresh
 import UIKit
 
 class FeaturedObjectListViewController: UITableViewController {

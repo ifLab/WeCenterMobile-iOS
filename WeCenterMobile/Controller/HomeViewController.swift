@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 Beijing Information Science and Technology University. All rights reserved.
 //
 
-import UIKit
 import MJRefresh
+import UIKit
 
 class HomeViewController: UITableViewController {
     

@@ -7,6 +7,5 @@
 //
 
 @import UIKit;
-@import DTFoundation;
 
 #import "DTCoreText/Core/Source/DTCoreText.h"

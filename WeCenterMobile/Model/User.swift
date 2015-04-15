@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 Beijing Information Science and Technology University. All rights reserved.
 //
 
-import UIKit
 import CoreData
+import UIKit
 
 let UserDefaultsCookiesKey = "WeCenterMobile_DefaultCookies"
 let UserDefaultsUserIDKey = "WeCenterMobile_DefaultUserID"

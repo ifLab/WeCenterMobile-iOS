@@ -6,6 +6,7 @@
 //  Copyright (c) 2014年 ifLab. All rights reserved.
 //
 
+import MJRefresh
 import UIKit
 
 @objc enum UserListType: Int {

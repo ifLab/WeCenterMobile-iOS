@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 ifLab. All rights reserved.
 //
 
-import Foundation
 import AFNetworking
+import Foundation
 
 class NetworkManager: NSObject {
     required init?(configuration: NSDictionary) {

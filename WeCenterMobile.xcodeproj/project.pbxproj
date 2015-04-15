@@ -232,7 +232,6 @@
 		9554D8F01ADE2E0500C94061 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9554D8961ADE2B4E00C94061 /* ShareSDK.framework */; };
 		9554D8F31ADE2E4700C94061 /* ShareSDKCoreService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9554D8751ADE2B4D00C94061 /* ShareSDKCoreService.framework */; };
 		9554D8F41ADE2E4B00C94061 /* AGCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9554D8711ADE2B4D00C94061 /* AGCommon.framework */; };
-		9554D8FD1ADE42C100C94061 /* module.modulemap in Sources */ = {isa = PBXBuildFile; fileRef = 9554D8FC1ADE42C100C94061 /* module.modulemap */; };
 		955770721AD68E960060A120 /* UIImageView+MSRSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955770711AD68E960060A120 /* UIImageView+MSRSetter.swift */; };
 		955770741AD74DA20060A120 /* UserViewControllerBodyViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955770731AD74DA20060A120 /* UserViewControllerBodyViewCell.swift */; };
 		955770761AD74DB00060A120 /* UserViewControllerBodyViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 955770751AD74DB00060A120 /* UserViewControllerBodyViewCell.xib */; };
@@ -2422,7 +2421,6 @@
 				951D1E9C1ACD1E4E0072D555 /* DTTextAttachment.m in Sources */,
 				955770721AD68E960060A120 /* UIImageView+MSRSetter.swift in Sources */,
 				951D1F791ACD1E750072D555 /* DTActivityTitleView.m in Sources */,
-				9554D8FD1ADE42C100C94061 /* module.modulemap in Sources */,
 				95C2EA3A1AB0516800F2A326 /* MSRSegmentedControlUnderlineIndicator.swift in Sources */,
 				95C2EA201AB0516800F2A326 /* NSManagedObjectContext+MSROperations.swift in Sources */,
 				95C2EA221AB0516800F2A326 /* UnsafePointer+MSRInitializer.swift in Sources */,

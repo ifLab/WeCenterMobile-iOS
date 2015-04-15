@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 ifLab. All rights reserved.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 enum ActionTypeID: Int {
     case QuestionPublishment = 101

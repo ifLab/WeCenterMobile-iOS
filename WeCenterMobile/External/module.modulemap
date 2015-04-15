@@ -32,6 +32,12 @@ module MJRefresh {
     use UIKit
 }
 
+module ShareSDK {
+    umbrella header "ShareSDK/ShareSDK/ShareSDK.framework/Headers/ShareSDK.h"
+    export *
+    module * { export * }
+}
+
 module SVProgressHUD {
     umbrella header "SVProgressHUD/SVProgressHUD/SVProgressHUD.h"
     header "SVProgressHUD/SVProgressHUD/SVIndefiniteAnimatedView.h"

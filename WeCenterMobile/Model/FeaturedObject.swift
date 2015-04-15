@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 Beijing Information Science and Technology University. All rights reserved.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 enum FeaturedObjectTypeID: String {
     case QuestionAnswer = "question"
