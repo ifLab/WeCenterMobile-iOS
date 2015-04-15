@@ -6,6 +6,8 @@
 //  Copyright (c) 2014年 Beijing Information Science and Technology University. All rights reserved.
 //
 
+import UIKit
+
 class ActionCell: UITableViewCell {
     
     var action: Action!

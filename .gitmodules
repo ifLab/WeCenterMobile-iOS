@@ -22,3 +22,6 @@
 [submodule "WeCenterMobile/External/DTCoreText"]
 	path = WeCenterMobile/External/DTCoreText
 	url = https://github.com/Cocoanetics/DTCoreText.git
+[submodule "WeCenterMobile/External/ShareSDK"]
+	path = WeCenterMobile/External/ShareSDK
+	url = https://github.com/ShareSDKPlatform/ShareSDK-for-iOS.git

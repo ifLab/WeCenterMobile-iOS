@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AFNetworking
 
 class NetworkManager: NSObject {
     required init?(configuration: NSDictionary) {

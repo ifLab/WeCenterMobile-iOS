@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ZFTokenField
 
 class QuestionTagListCell: UITableViewCell, ZFTokenFieldDataSource, ZFTokenFieldDelegate {
     

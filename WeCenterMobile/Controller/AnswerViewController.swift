@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DTCoreText
 
 class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate {
     

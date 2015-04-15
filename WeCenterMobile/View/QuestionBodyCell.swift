@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DTCoreText
 
 @objc protocol QuestionBodyCellLinkButtonDelegate {
     optional func didPressLinkButton(linkButton: DTLinkButton)

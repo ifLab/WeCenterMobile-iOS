@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Beijing Information Science and Technology University. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 let defaultUserAvatar = UIImage(named: "DefaultAvatar")!
 let defaultTopicImage = UIImage(named: "User_Follow")!

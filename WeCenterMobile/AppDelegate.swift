@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 import CoreData
+import AFNetworking
+import DTCoreText
+import DTFoundation
 
 let userStrings: (String) -> String = {
     return NSLocalizedString($0, tableName: "User", comment: "")

@@ -6,8 +6,9 @@
 //  Copyright (c) 2014年 ifLab. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreData
+import AFNetworking
 
 class Topic: NSManagedObject {
 
