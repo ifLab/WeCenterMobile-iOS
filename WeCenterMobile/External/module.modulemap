@@ -34,8 +34,6 @@ module MJRefresh {
 
 module ShareSDK {
     umbrella header "ShareSDK/ShareSDK/ShareSDK.framework/Headers/ShareSDK.h"
-    export *
-    module * { export * }
 }
 
 module SVProgressHUD {
@@ -56,6 +54,14 @@ module UzysAssetsPickerController {
     header "UzysAssetsPickerController/UzysAssetsPickerController/Library/UzysWrapperPickerController.h"
     requires objc, objc_arc
     use UIKit
+}
+
+module WeChatSDK {
+    header "WeChatSDK.h"
+    requires objc
+    use UIKit
+    use SystemConfiguration
+    // ...
 }
 
 module ZFTokenField {

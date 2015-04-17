@@ -232,6 +232,14 @@
 		9554D8F01ADE2E0500C94061 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9554D8961ADE2B4E00C94061 /* ShareSDK.framework */; };
 		9554D8F31ADE2E4700C94061 /* ShareSDKCoreService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9554D8751ADE2B4D00C94061 /* ShareSDKCoreService.framework */; };
 		9554D8F41ADE2E4B00C94061 /* AGCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9554D8711ADE2B4D00C94061 /* AGCommon.framework */; };
+		9554D8FF1ADF392700C94061 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9554D8FE1ADF392700C94061 /* MessageUI.framework */; };
+		9554D9001ADF3C4E00C94061 /* CopyConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9554D84E1ADE2B4C00C94061 /* CopyConnection.framework */; };
+		9554D9011ADF3C4E00C94061 /* MailConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9554D85D1ADE2B4D00C94061 /* MailConnection.framework */; };
+		9554D9021ADF3C4E00C94061 /* PrintConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9554D8611ADE2B4D00C94061 /* PrintConnection.framework */; };
+		9554D9031ADF3C4E00C94061 /* SMSConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9554D8661ADE2B4D00C94061 /* SMSConnection.framework */; };
+		9554D9041ADF3C9A00C94061 /* WeChatConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9554D86C1ADE2B4D00C94061 /* WeChatConnection.framework */; };
+		9554D9051ADF3CC100C94061 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9554D88F1ADE2B4D00C94061 /* libWeChatSDK.a */; };
+		9554D9081ADF847600C94061 /* ShareActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9554D9071ADF847600C94061 /* ShareActivities.swift */; };
 		955770721AD68E960060A120 /* UIImageView+MSRSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955770711AD68E960060A120 /* UIImageView+MSRSetter.swift */; };
 		955770741AD74DA20060A120 /* UserViewControllerBodyViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955770731AD74DA20060A120 /* UserViewControllerBodyViewCell.swift */; };
 		955770761AD74DB00060A120 /* UserViewControllerBodyViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 955770751AD74DB00060A120 /* UserViewControllerBodyViewCell.xib */; };
@@ -813,6 +821,9 @@
 		9554D8FA1ADE38A100C94061 /* DTCoreText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTCoreText.h; sourceTree = "<group>"; };
 		9554D8FB1ADE38AB00C94061 /* DTFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTFoundation.h; sourceTree = "<group>"; };
 		9554D8FC1ADE42C100C94061 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		9554D8FE1ADF392700C94061 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		9554D9061ADF3DE200C94061 /* WeChatSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatSDK.h; sourceTree = "<group>"; };
+		9554D9071ADF847600C94061 /* ShareActivities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareActivities.swift; sourceTree = "<group>"; };
 		955770711AD68E960060A120 /* UIImageView+MSRSetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+MSRSetter.swift"; sourceTree = "<group>"; };
 		955770731AD74DA20060A120 /* UserViewControllerBodyViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewControllerBodyViewCell.swift; sourceTree = "<group>"; };
 		955770751AD74DB00060A120 /* UserViewControllerBodyViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserViewControllerBodyViewCell.xib; sourceTree = "<group>"; };
@@ -977,6 +988,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9554D8FF1ADF392700C94061 /* MessageUI.framework in Frameworks */,
 				9554D8EF1ADE2DAA00C94061 /* Security.framework in Frameworks */,
 				9554D8ED1ADE2DA000C94061 /* libicucore.dylib in Frameworks */,
 				9554D8EB1ADE2D9200C94061 /* CoreTelephony.framework in Frameworks */,
@@ -992,6 +1004,12 @@
 				9554D8F41ADE2E4B00C94061 /* AGCommon.framework in Frameworks */,
 				9554D8F01ADE2E0500C94061 /* ShareSDK.framework in Frameworks */,
 				9554D8F31ADE2E4700C94061 /* ShareSDKCoreService.framework in Frameworks */,
+				9554D9001ADF3C4E00C94061 /* CopyConnection.framework in Frameworks */,
+				9554D9011ADF3C4E00C94061 /* MailConnection.framework in Frameworks */,
+				9554D9021ADF3C4E00C94061 /* PrintConnection.framework in Frameworks */,
+				9554D9031ADF3C4E00C94061 /* SMSConnection.framework in Frameworks */,
+				9554D9041ADF3C9A00C94061 /* WeChatConnection.framework in Frameworks */,
+				9554D9051ADF3CC100C94061 /* libWeChatSDK.a in Frameworks */,
 				950FE7E81A1DA53A00167D09 /* libxml2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1045,6 +1063,7 @@
 				9554D8F71ADE302500C94061 /* module.modulemap */,
 				9554D8FA1ADE38A100C94061 /* DTCoreText.h */,
 				9554D8FB1ADE38AB00C94061 /* DTFoundation.h */,
+				9554D9061ADF3DE200C94061 /* WeChatSDK.h */,
 				956E71DF1AAFC53B00A3FD7D /* AFNetworking */,
 				951D1EB11ACD1E750072D555 /* DTFoundation */,
 				951D1DF71ACD1E4E0072D555 /* DTCoreText */,
@@ -1079,6 +1098,7 @@
 				950FE4EA1A1DA2B500167D09 /* Question.swift */,
 				950FE4EB1A1DA2B500167D09 /* QuestionFocusingAction.swift */,
 				950FE4EC1A1DA2B500167D09 /* QuestionPublishmentAction.swift */,
+				9554D9071ADF847600C94061 /* ShareActivities.swift */,
 				950FE4ED1A1DA2B500167D09 /* Topic.swift */,
 				959CC93F1A25BAED00F8B6CB /* User.swift */,
 			);
@@ -1879,6 +1899,7 @@
 		9588F5DA1A1D9D1C001BC426 = {
 			isa = PBXGroup;
 			children = (
+				9554D8FE1ADF392700C94061 /* MessageUI.framework */,
 				9588F5E51A1D9D1C001BC426 /* WeCenterMobile */,
 				9588F5FE1A1D9D1C001BC426 /* WeCenterMobileTests */,
 				9588F5E41A1D9D1C001BC426 /* Products */,
@@ -2377,6 +2398,7 @@
 				950FE50C1A1DA2B500167D09 /* TopicViewController.swift in Sources */,
 				956E720F1AAFC53B00A3FD7D /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				950FE7241A1DA2B500167D09 /* DataManager.swift in Sources */,
+				9554D9081ADF847600C94061 /* ShareActivities.swift in Sources */,
 				951D1F701ACD1E750072D555 /* ioapi.c in Sources */,
 				951D1E821ACD1E4E0072D555 /* DTCoreTextFunctions.m in Sources */,
 				951D1F741ACD1E750072D555 /* DTActionSheet.m in Sources */,

@@ -10,7 +10,7 @@ import DTCoreText
 import ShareSDK
 import UIKit
 
-class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate {
+class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate, ISSShareViewDelegate, ISSViewDelegate {
     
     lazy var topBar: AnswerTopBar = {
         [weak self] in
@@ -158,8 +158,8 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     }
     
     func share() {
-        let c = ShareSDK.content("Share Content", defaultContent: " The default share content. No content displayed", image: nil, title: "ShareSDK", url: nil, description: "Test Message", mediaType: SSPublishContentMediaTypeText)
-        ShareSDK.showShareActionSheet(nil, shareList: nil, content: c, statusBarTips: false, authOptions: nil, shareOptions: nil, result: nil)
+        let vc = UIActivityViewController(activityItems: [WeChatShareItem(title: answer.question?.title, body: answer.body, image: answer.user?.avatar, url: answer.user?.avatarURL)], applicationActivities: [WeChatSessionActivity()])
+        showDetailViewController(vc, sender: self)
     }
     
     func pushCommentListViewController() {
@@ -171,7 +171,6 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
             didLongPressLinkButton(recoginizer.view as! DTLinkButton)
         }
     }
-    
     
     func didLongPressLinkButton(linkButton: DTLinkButton) {
         presentLinkAlertControllerWithURL(linkButton.URL)
