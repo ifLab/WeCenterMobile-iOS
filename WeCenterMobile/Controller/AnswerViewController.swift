@@ -7,10 +7,10 @@
 //
 
 import DTCoreText
-import ShareSDK
+import MSRWeChatSDK
 import UIKit
 
-class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate, ISSShareViewDelegate, ISSViewDelegate {
+class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate, MSRWeChatAPIDelegate {
     
     lazy var topBar: AnswerTopBar = {
         [weak self] in

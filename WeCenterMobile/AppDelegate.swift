@@ -10,9 +10,8 @@ import AFNetworking
 import CoreData
 import DTCoreText
 import DTFoundation
-import ShareSDK
+import MSRWeChatSDK
 import UIKit
-import WeChatSDK
 
 let userStrings: (String) -> String = {
     return NSLocalizedString($0, tableName: "User", comment: "")
@@ -29,7 +28,7 @@ let welcomeStrings: (String) -> String = {
 let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MSRWeChatAPIDelegate {
     
     var window: UIWindow?
     let welcomeViewController = WelcomeViewController()
@@ -42,12 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let url = directory.URLByAppendingPathComponent("WeCenterMobile.sqlite")
 //        NSFileManager.defaultManager().removeItemAtURL(url, error: nil)
         DTAttributedTextContentView.setLayerClass(DTTiledLayerWithoutFade.self)
-        ShareSDK.registerApp("6cbcbdd12d80")
-        ShareSDK.connectSMS()
-        ShareSDK.connectMail()
-        ShareSDK.connectAirPrint()
-        ShareSDK.connectCopy()
-        ShareSDK.connectWeChatWithAppId("wx4dc4b980c462893b", wechatCls: WXApi.self)
+        MSRWeChatAPI.registerAppWithID("wx4dc4b980c462893b")
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window!.rootViewController = welcomeViewController
         window!.makeKeyAndVisible()
@@ -59,11 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
-        return ShareSDK.handleOpenURL(url, wxDelegate: self)
+        return MSRWeChatAPI.handleOpenURL(url, withDelegate: self)
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        return ShareSDK.handleOpenURL(url, sourceApplication: sourceApplication, annotation: annotation, wxDelegate: self)
+        return MSRWeChatAPI.handleOpenURL(url, withDelegate: self)
     }
     
 }

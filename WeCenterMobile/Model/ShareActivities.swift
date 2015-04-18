@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 Beijing Information Science and Technology University. All rights reserved.
 //
 
+import MSRWeChatSDK
 import UIKit
-import WeChatSDK
 
 class WeChatShareItem: NSObject {
     init(title: String?, body: String?, image: UIImage?, url: String?) {
@@ -41,7 +41,7 @@ class WeChatSessionActivity: UIActivity {
     }
     
     override func canPerformWithActivityItems(activityItems: [AnyObject]) -> Bool {
-        if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
+        if MSRWeChatAPI.weChatIsInstalled() && MSRWeChatAPI.weChatSupportsOpenAPI() {
             for item in activityItems {
                 if item is WeChatShareItem {
                     return true
@@ -64,9 +64,8 @@ class WeChatSessionActivity: UIActivity {
     }
     
     override func performActivity() {
-        let reque
-        ShareSDK.shareContent(content, type: ShareTypeWeixiSession, authOptions: nil, shareOptions: nil, statusBarTips: false) {
-            [weak self] shareType, responseState, platformShareInfo, errorInfo, end in
+        MSRWeChatAPI.sendRequestToScene(.Session, webpageURL: NSURL(string: "http://www.baidu.com")!, title: item.title, description: item.body, thumbnailImage: item.image) {
+            [weak self] success in
             self?.activityDidFinish(true)
             return
         }
