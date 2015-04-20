@@ -11,6 +11,7 @@ import CoreData
 import DTCoreText
 import DTFoundation
 import MSRWeChatSDK
+import SinaWeiboSDK
 import UIKit
 
 let userStrings: (String) -> String = {
@@ -42,6 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MSRWeChatAPIDelegate {
 //        NSFileManager.defaultManager().removeItemAtURL(url, error: nil)
         DTAttributedTextContentView.setLayerClass(DTTiledLayerWithoutFade.self)
         MSRWeChatAPI.registerAppWithID("wx4dc4b980c462893b")
+        WeiboSDK.registerApp("3758958382")
+        WeiboSDK.enableDebugMode(true)
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window!.rootViewController = welcomeViewController
         window!.makeKeyAndVisible()

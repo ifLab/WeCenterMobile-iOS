@@ -30,6 +30,16 @@
 				<string>wx4dc4b980c462893b</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>SinaWeibo</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>3758958382</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>

@@ -32,6 +32,14 @@ module MJRefresh {
     use UIKit
 }
 
+module SinaWeiboSDK {
+    umbrella header "SinaWeiboSDK/libWeiboSDK/WeiboSDK.h"
+    header "SinaWeiboSDK/libWeiboSDK/WeiboUser.h"
+    requires objc, objc_arc
+    use UIKit
+    link "WeiboSDK"
+}
+
 module SVProgressHUD {
     umbrella header "SVProgressHUD/SVProgressHUD/SVProgressHUD.h"
     header "SVProgressHUD/SVProgressHUD/SVIndefiniteAnimatedView.h"

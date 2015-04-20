@@ -25,3 +25,6 @@
 [submodule "WeCenterMobile/External/MSRWeChatSDK"]
 	path = WeCenterMobile/External/MSRWeChatSDK
 	url = https://github.com/Msr-B/MSRWeChatSDK.git
+[submodule "WeCenterMobile/External/SinaWeiboSDK"]
+	path = WeCenterMobile/External/SinaWeiboSDK
+	url = https://github.com/sinaweibosdk/weibo_ios_sdk.git
