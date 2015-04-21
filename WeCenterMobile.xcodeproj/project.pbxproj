@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		95054E221ACBC2D900C1848B /* String+MSREncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95054E211ACBC2D900C1848B /* String+MSREncoding.swift */; };
+		950588CA1AE63B9E002D482A /* WeChatShareItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950588C91AE63B9E002D482A /* WeChatShareItem.swift */; };
+		950588CD1AE63BD6002D482A /* WeChatSessionActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950588CC1AE63BD6002D482A /* WeChatSessionActivity.swift */; };
+		950588CF1AE63C0B002D482A /* WeChatMomentsActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950588CE1AE63C0B002D482A /* WeChatMomentsActivity.swift */; };
+		950588D11AE63C34002D482A /* SinaWeiboShareItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950588D01AE63C34002D482A /* SinaWeiboShareItem.swift */; };
+		950588D31AE63C4E002D482A /* SinaWeiboActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950588D21AE63C4E002D482A /* SinaWeiboActivity.swift */; };
 		950FE1241A1DA2A400167D09 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 950FE1161A1DA2A400167D09 /* Configuration.plist */; };
 		950FE1251A1DA2A400167D09 /* Discovery.strings in Resources */ = {isa = PBXBuildFile; fileRef = 950FE1181A1DA2A400167D09 /* Discovery.strings */; };
 		950FE1261A1DA2A400167D09 /* User.strings in Resources */ = {isa = PBXBuildFile; fileRef = 950FE11A1A1DA2A400167D09 /* User.strings */; };
@@ -214,7 +219,6 @@
 		95428D831AC2FAD0009F70B8 /* QuestionBodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95428D821AC2FAD0009F70B8 /* QuestionBodyCell.swift */; };
 		954EBD871AD65BBA0060B8F3 /* UserViewControllerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954EBD861AD65BBA0060B8F3 /* UserViewControllerHeaderView.swift */; };
 		954EBD891AD65BE30060B8F3 /* UserViewControllerHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 954EBD881AD65BE30060B8F3 /* UserViewControllerHeaderView.xib */; };
-		9554D9081ADF847600C94061 /* ShareActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9554D9071ADF847600C94061 /* ShareActivities.swift */; };
 		955770721AD68E960060A120 /* UIImageView+MSRSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955770711AD68E960060A120 /* UIImageView+MSRSetter.swift */; };
 		955770741AD74DA20060A120 /* UserViewControllerBodyViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955770731AD74DA20060A120 /* UserViewControllerBodyViewCell.swift */; };
 		955770761AD74DB00060A120 /* UserViewControllerBodyViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 955770751AD74DB00060A120 /* UserViewControllerBodyViewCell.xib */; };
@@ -397,6 +401,11 @@
 
 /* Begin PBXFileReference section */
 		95054E211ACBC2D900C1848B /* String+MSREncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MSREncoding.swift"; sourceTree = "<group>"; };
+		950588C91AE63B9E002D482A /* WeChatShareItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatShareItem.swift; sourceTree = "<group>"; };
+		950588CC1AE63BD6002D482A /* WeChatSessionActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatSessionActivity.swift; sourceTree = "<group>"; };
+		950588CE1AE63C0B002D482A /* WeChatMomentsActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatMomentsActivity.swift; sourceTree = "<group>"; };
+		950588D01AE63C34002D482A /* SinaWeiboShareItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinaWeiboShareItem.swift; sourceTree = "<group>"; };
+		950588D21AE63C4E002D482A /* SinaWeiboActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinaWeiboActivity.swift; sourceTree = "<group>"; };
 		950FE1161A1DA2A400167D09 /* Configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Configuration.plist; sourceTree = "<group>"; };
 		950FE1191A1DA2A400167D09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Discovery.strings; sourceTree = "<group>"; };
 		950FE11B1A1DA2A400167D09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/User.strings; sourceTree = "<group>"; };
@@ -770,7 +779,6 @@
 		9554D8FB1ADE38AB00C94061 /* DTFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTFoundation.h; sourceTree = "<group>"; };
 		9554D8FC1ADE42C100C94061 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		9554D8FE1ADF392700C94061 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		9554D9071ADF847600C94061 /* ShareActivities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareActivities.swift; sourceTree = "<group>"; };
 		955770711AD68E960060A120 /* UIImageView+MSRSetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+MSRSetter.swift"; sourceTree = "<group>"; };
 		955770731AD74DA20060A120 /* UserViewControllerBodyViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewControllerBodyViewCell.swift; sourceTree = "<group>"; };
 		955770751AD74DB00060A120 /* UserViewControllerBodyViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserViewControllerBodyViewCell.xib; sourceTree = "<group>"; };
@@ -1060,9 +1068,13 @@
 				950FE4EA1A1DA2B500167D09 /* Question.swift */,
 				950FE4EB1A1DA2B500167D09 /* QuestionFocusingAction.swift */,
 				950FE4EC1A1DA2B500167D09 /* QuestionPublishmentAction.swift */,
-				9554D9071ADF847600C94061 /* ShareActivities.swift */,
+				950588D21AE63C4E002D482A /* SinaWeiboActivity.swift */,
+				950588D01AE63C34002D482A /* SinaWeiboShareItem.swift */,
 				950FE4ED1A1DA2B500167D09 /* Topic.swift */,
 				959CC93F1A25BAED00F8B6CB /* User.swift */,
+				950588CE1AE63C0B002D482A /* WeChatMomentsActivity.swift */,
+				950588CC1AE63BD6002D482A /* WeChatSessionActivity.swift */,
+				950588C91AE63B9E002D482A /* WeChatShareItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2124,6 +2136,7 @@
 				95C2EA451AB0516800F2A326 /* UIView+MSRKeyboardUtility.swift in Sources */,
 				951D1E871ACD1E4E0072D555 /* DTCoreTextLayoutFrameAccessibilityElementGenerator.m in Sources */,
 				95C893771AC7365D00B7B385 /* MSRSidebar.swift in Sources */,
+				950588CA1AE63B9E002D482A /* WeChatShareItem.swift in Sources */,
 				951D1F941ACD1E750072D555 /* NSString+DTUtilities.m in Sources */,
 				951D1E941ACD1E4E0072D555 /* DTIframeTextAttachment.m in Sources */,
 				951D2F8C1AB7F85500DCB678 /* UIScrollView+MJRefresh.m in Sources */,
@@ -2175,6 +2188,7 @@
 				953028951ADB5A3300F42B3B /* ButtonTouchesCancelableScrollView.swift in Sources */,
 				950FE5051A1DA2B500167D09 /* ExploreViewController.swift in Sources */,
 				951D1E751ACD1E4E0072D555 /* DTAccessibilityElement.m in Sources */,
+				950588CF1AE63C0B002D482A /* WeChatMomentsActivity.swift in Sources */,
 				951D1EA21ACD1E4E0072D555 /* NSAttributedString+DTCoreText.m in Sources */,
 				95C2EA421AB0516800F2A326 /* UIImage+MSRShape.swift in Sources */,
 				951D1EA81ACD1E4E0072D555 /* NSCoder+DTCompatibility.m in Sources */,
@@ -2277,7 +2291,6 @@
 				950FE50C1A1DA2B500167D09 /* TopicViewController.swift in Sources */,
 				956E720F1AAFC53B00A3FD7D /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				950FE7241A1DA2B500167D09 /* DataManager.swift in Sources */,
-				9554D9081ADF847600C94061 /* ShareActivities.swift in Sources */,
 				951D1F701ACD1E750072D555 /* ioapi.c in Sources */,
 				951D1E821ACD1E4E0072D555 /* DTCoreTextFunctions.m in Sources */,
 				951D1F741ACD1E750072D555 /* DTActionSheet.m in Sources */,
@@ -2286,6 +2299,7 @@
 				951D1EA91ACD1E4E0072D555 /* NSDictionary+DTCoreText.m in Sources */,
 				951D1F671ACD1E750072D555 /* NSScanner+DTScripting.m in Sources */,
 				951D1E771ACD1E4E0072D555 /* DTAnchorHTMLElement.m in Sources */,
+				950588D31AE63C4E002D482A /* SinaWeiboActivity.swift in Sources */,
 				951D1E8B1ACD1E4E0072D555 /* DTCSSStylesheet.m in Sources */,
 				951D1E8E1ACD1E4E0072D555 /* DTHorizontalRuleHTMLElement.m in Sources */,
 				951D1F721ACD1E750072D555 /* unzip.c in Sources */,
@@ -2317,6 +2331,7 @@
 				951D2F8A1AB7F85500DCB678 /* MJRefreshLegendHeader.m in Sources */,
 				950FE7211A1DA2B500167D09 /* ArticleAgreementAction.swift in Sources */,
 				95F380BB1AB269690070A7FB /* FeaturedObjectListViewController.swift in Sources */,
+				950588CD1AE63BD6002D482A /* WeChatSessionActivity.swift in Sources */,
 				95C2EA411AB0516800F2A326 /* UIImage+MSRResize.swift in Sources */,
 				95E404021ABDEC3000C18A44 /* UzysAssetsPickerController.m in Sources */,
 				951D1E9C1ACD1E4E0072D555 /* DTTextAttachment.m in Sources */,
@@ -2382,6 +2397,7 @@
 				950FE71F1A1DA2B500167D09 /* AnswerAgreementAction.swift in Sources */,
 				956E720C1AAFC53B00A3FD7D /* AFURLResponseSerialization.m in Sources */,
 				95C2EA2B1AB0516800F2A326 /* MSRAlertView.swift in Sources */,
+				950588D11AE63C34002D482A /* SinaWeiboShareItem.swift in Sources */,
 				95C2EA351AB0516800F2A326 /* MSRSegmentedControlBlockIndicator.swift in Sources */,
 				951D1FC11ACFF97C0072D555 /* AnswerBottomBar.swift in Sources */,
 				951D1E9E1ACD1E4E0072D555 /* DTTextBlock.m in Sources */,

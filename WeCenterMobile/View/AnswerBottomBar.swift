@@ -15,8 +15,13 @@ class AnswerBottomBar: UIVisualEffectView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        shareButton.adjustsImageWhenHighlighted = false
+        commentButton.adjustsImageWhenHighlighted = false
         shareButton.setImage(shareButton.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
         commentButton.setImage(commentButton.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+        
+        shareButton.msr_setBackgroundImageWithColor(UIColor.whiteColor().colorWithAlphaComponent(0.2), forState: .Highlighted)
+        commentButton.msr_setBackgroundImageWithColor(UIColor.whiteColor().colorWithAlphaComponent(0.2), forState: .Highlighted)
         msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         msr_addHeightConstraintWithValue(50)
     }
