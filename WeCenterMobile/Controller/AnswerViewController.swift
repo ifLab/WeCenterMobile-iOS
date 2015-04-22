@@ -158,14 +158,15 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     }
     
     func share() {
-        let image = answer.user?.avatar
+        let title = answer.question!.title!
+        let image = answer.user?.avatar ?? defaultUserAvatar
+        let body = answerBodyView.attributedString.string
+        let url = NetworkManager.defaultManager!.website
         let vc = UIActivityViewController(
             activityItems: [
-                answer.question!.title!,
-                answer.user!.avatar ?? defaultUserAvatar,
-                answer.body!,
-                WeChatShareItem(title: answer.question?.title, body: answer.body, image: image, url: answer.user?.avatarURL),
-                SinaWeiboShareItem(title: answer.question?.title, body: answer.body, image: image, url: answer.user?.avatarURL)
+                title, image, body, NSURL(string: url)!,
+                WeChatShareItem(title: title, body: body, image: image, url: url),
+                SinaWeiboShareItem(title: title, body: body, image: image, url: url)
             ],
             applicationActivities: [
                 WeChatSessionActivity(),
