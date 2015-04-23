@@ -98,5 +98,21 @@ class Answer: NSManagedObject {
             },
             failure: failure)
     }
+    
+    func post(#attachKey: String, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        NetworkManager.defaultManager!.POST("Post Answer",
+            parameters: [
+                "question_id": question!.id,
+                "answer_content": body!,
+                "attach_access_key": attachKey
+            ],
+            success: {
+                data in
+                println(data)
+                success?()
+                return
+            },
+            failure: failure)
+    }
 
 }

@@ -1,8 +1,8 @@
 //
-//  QuestionPublishmentViewController.swift
+//  AnswerPublishmentViewController.swift
 //  WeCenterMobile
 //
-//  Created by Darren Liu on 15/3/18.
+//  Created by Darren Liu on 15/4/23.
 //  Copyright (c) 2015年 Beijing Information Science and Technology University. All rights reserved.
 //
 
@@ -14,17 +14,17 @@ import UIKit
 import UzysAssetsPickerController
 import ZFTokenField
 
-class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTokenFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UzysAssetsPickerControllerDelegate {
+class AnswerPublishmentViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UzysAssetsPickerControllerDelegate {
+    
+    var question: Question!
     
     @IBOutlet weak var publishButton: UIButton!
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var tagsField: ZFTokenField!
     @IBOutlet weak var imageCollectionView: UICollectionView!
-    @IBOutlet weak var titleField: UITextView!
     @IBOutlet weak var bodyField: UITextView!
     
-    typealias SelfType = QuestionPublishmentViewController
+    typealias SelfType = AnswerPublishmentViewController
     
     static let identifiers = ["ImageCell", "ButtonCell"]
     static let imageViewTag = 23333
@@ -34,7 +34,6 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
     static let notAnAttachID = -1
     
     var converting = false
-    var tags = [String]()
     var images = [UIImage]()
     var attachIDs = [Int]()
     var operations = [AFHTTPRequestOperation]()
@@ -62,10 +61,6 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
         publishButton.backgroundColor = UIColor.clearColor()
         scrollView.alwaysBounceVertical = true
         scrollView.indicatorStyle = .White
-        tagsField.textField.textColor = UIColor.lightTextColor()
-        tagsField.textField.font = UIFont.systemFontOfSize(14)
-        tagsField.textField.attributedPlaceholder = NSAttributedString(string: "输入并以换行键添加，可添加多个", attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])
-        tagsField.textField.keyboardAppearance = .Dark
         for identifier in SelfType.identifiers {
             imageCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: identifier)
         }
@@ -75,57 +70,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tagsField.reloadData()
         imageCollectionView.reloadData()
-    }
-    
-    // MARK: - ZFTokenFieldDataSource
-    
-    func lineHeightForTokenInField(tokenField: ZFTokenField!) -> CGFloat {
-        return 24
-    }
-    
-    func numberOfTokenInField(tokenField: ZFTokenField!) -> UInt {
-        return UInt(tags.count)
-    }
-    
-    func tokenField(tokenField: ZFTokenField!, viewForTokenAtIndex index: UInt) -> UIView! {
-        let tag = tags[Int(index)]
-        let label = UILabel()
-        label.text = tag
-        label.font = UIFont.systemFontOfSize(14)
-        label.sizeToFit()
-        label.frame.size.height = lineHeightForTokenInField(tagsField)
-        label.frame.size.width += 20
-        label.textAlignment = .Center
-        label.layer.masksToBounds = true
-        label.layer.cornerRadius = 3
-        label.backgroundColor = UIColor.lightTextColor()
-        return label
-    }
-    
-    // MARK: - ZFTokenFieldDelegate
-    
-    func tokenMarginInTokenInField(tokenField: ZFTokenField!) -> CGFloat {
-        return 5
-    }
-    
-    func tokenField(tokenField: ZFTokenField!, didRemoveTokenAtIndex index: UInt) {
-        tags.removeAtIndex(Int(index))
-    }
-    
-    func tokenField(tokenField: ZFTokenField!, didReturnWithText text: String!) {
-        if text ?? "" == "" {
-            return
-        }
-        for tag in tags {
-            if tag == text {
-                tagsField.reloadData()
-                return
-            }
-        }
-        tags.append(text)
-        tagsField.reloadData()
     }
     
     // MARK: - UICollectionDataSource
@@ -260,7 +205,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                         let jpeg = jpegs[i]
                         let operation = NetworkManager.defaultManager!.request("Upload Attachment",
                             GETParameters: [
-                                "id": "question",
+                                "id": "answer",
                                 "attach_access_key": self_.attachKey],
                             POSTParameters: nil,
                             constructingBodyWithBlock: {
@@ -296,7 +241,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                                     self_.imageCollectionView.deleteItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
                                 }
                                 return
-                            })!
+                        })!
                         operation.setUploadProgressBlock() {
                             bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
                             if let index = find(self_.images, image) {
@@ -374,9 +319,6 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
         if converting {
             return
         }
-        if tagsField.textField.text ?? "" != nil {
-            tokenField(tagsField, didReturnWithText: tagsField.textField.text)
-        }
         let ac = UIAlertController(title: "再次确认", message: "您确定要发布吗？", preferredStyle: .ActionSheet)
         ac.addAction(UIAlertAction(title: "是的", style: .Default)
             /* handler: */ {
@@ -399,21 +341,17 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                             self_.allUploaded.unlock()
                             dispatch_async(dispatch_get_main_queue()) {
                                 let manager = DataManager.temporaryManager!
+                                let answer = manager.create("Answer") as! Answer
                                 let question = manager.create("Question") as! Question
-                                question.title = self_.titleField.text
-                                var topics = Set<Topic>()
-                                for tag in self_.tags {
-                                    let topic = manager.create("Topic") as! Topic
-                                    topic.title = tag
-                                    topics.insert(topic)
-                                }
-                                question.topics = topics
+                                question.id = self_.question.id
+                                answer.question = question
+                                answer.body = self_.bodyField.text ?? ""
                                 var body = self_.bodyField.text ?? ""
                                 for id in self_.attachIDs {
                                     body += "\n[attach]\(id)[/attach]"
                                 }
-                                question.body = body
-                                question.post(
+                                answer.body = body
+                                answer.post(
                                     attachKey: self_.attachKey,
                                     success: {
                                         question in
@@ -430,7 +368,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                                         let ac = UIAlertController(title: "发布失败", message: error.userInfo?[NSLocalizedDescriptionKey] as? String ?? "未知错误。", preferredStyle: .Alert)
                                         ac.addAction(UIAlertAction(title: "好", style: .Default, handler: nil))
                                         self_.presentViewController(ac, animated: true, completion: nil)
-                                    })
+                                })
                             }
                         }
                     }

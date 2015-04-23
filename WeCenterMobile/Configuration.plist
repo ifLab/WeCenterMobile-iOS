@@ -20,7 +20,7 @@
 		<string>?/api/question/answer_detail/</string>
 		<key>Explore List</key>
 		<string>?/api/explore/</string>
-		<key>Upload Attach</key>
+		<key>Upload Attachment</key>
 		<string>?/api/publish/attach_upload/</string>
 		<key>Question Detail</key>
 		<string>?/api/question/question/</string>
@@ -58,6 +58,8 @@
 		<string>?/question/ajax/save_answer_comment/</string>
 		<key>Post Question</key>
 		<string>?/api/publish/publish_question/</string>
+		<key>Post Answer</key>
+		<string>?/api/publish/save_answer/</string>
 	</dict>
 	<key>Success Code</key>
 	<integer>1</integer>

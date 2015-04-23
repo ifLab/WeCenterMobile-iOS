@@ -26,23 +26,23 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     
     lazy var questionHeaderCell: QuestionHeaderCell = {
         [weak self] in
-        let c = NSBundle.mainBundle().loadNibNamed("QuestionHeaderCell", owner: self?.tableView, options: nil).first as! QuestionHeaderCell
+        let c = NSBundle.mainBundle().loadNibNamed("QuestionHeaderCell", owner: nil, options: nil).first as! QuestionHeaderCell
         c.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
         return c
     }()
     lazy var questionTitleCell: QuestionTitleCell = {
         [weak self] in
-        return NSBundle.mainBundle().loadNibNamed("QuestionTitleCell", owner: self?.tableView, options: nil).first as! QuestionTitleCell
+        return NSBundle.mainBundle().loadNibNamed("QuestionTitleCell", owner: nil, options: nil).first as! QuestionTitleCell
     }()
     lazy var questionTagListCell: QuestionTagListCell = {
         [weak self] in
-        let c = NSBundle.mainBundle().loadNibNamed("QuestionTagListCell", owner: self?.tableView, options: nil).first as! QuestionTagListCell
+        let c = NSBundle.mainBundle().loadNibNamed("QuestionTagListCell", owner: nil, options: nil).first as! QuestionTagListCell
         c.tagsButton.addTarget(self, action: "didPressTagsButton:", forControlEvents: .TouchUpInside)
         return c
     }()
     lazy var questionBodyCell: QuestionBodyCell = {
         [weak self] in
-        let c = NSBundle.mainBundle().loadNibNamed("QuestionBodyCell", owner: self?.tableView, options: nil).first as! QuestionBodyCell
+        let c = NSBundle.mainBundle().loadNibNamed("QuestionBodyCell", owner: nil, options: nil).first as! QuestionBodyCell
         c.lazyImageViewDelegate = self
         c.linkButtonDelegate = self
         NSNotificationCenter.defaultCenter().addObserverForName(DTAttributedTextContentViewDidFinishLayoutNotification, object: c.attributedTextContextView, queue: NSOperationQueue.mainQueue()) {
@@ -54,13 +54,15 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     }()
     lazy var questionFooterCell: QuestionFooterCell = {
         [weak self] in
-        let c = NSBundle.mainBundle().loadNibNamed("QuestionFooterCell", owner: self?.tableView, options: nil).first as! QuestionFooterCell
+        let c = NSBundle.mainBundle().loadNibNamed("QuestionFooterCell", owner: nil, options: nil).first as! QuestionFooterCell
         c.focusButton.addTarget(self, action: "toggleFocus", forControlEvents: .TouchUpInside)
         return c
     }()
     lazy var answerAdditionCell: AnswerAdditionCell = {
         [weak self] in
-        return NSBundle.mainBundle().loadNibNamed("AnswerAdditionCell", owner: self?.tableView, options: nil).first as! AnswerAdditionCell
+        let c = NSBundle.mainBundle().loadNibNamed("AnswerAdditionCell", owner: nil, options: nil).first as! AnswerAdditionCell
+        c.answerAdditionButton.addTarget(self, action: "pushAnswerPublishmentViewController", forControlEvents: .TouchUpInside)
+        return c
     }()
     
     init(question: Question) {
@@ -218,6 +220,12 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         if let answer = answerButton.msr_userInfo as? Answer {
             msr_navigationController!.pushViewController(AnswerViewController(answer: answer), animated: true)
         }
+    }
+    
+    func pushAnswerPublishmentViewController() {
+        let apc = NSBundle.mainBundle().loadNibNamed("AnswerPublishmentViewController", owner: nil, options: nil).first as! AnswerPublishmentViewController
+        apc.question = question
+        showDetailViewController(apc, sender: self)
     }
     
     func toggleFocus() {
