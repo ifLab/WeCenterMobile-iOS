@@ -99,17 +99,22 @@ class Answer: NSManagedObject {
             failure: failure)
     }
     
-    func post(#attachKey: String, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func post(#attachKey: String, success: ((Answer) -> Void)?, failure: ((NSError) -> Void)?) {
+        let questionID = question!.id.integerValue
+        let body = self.body!
         NetworkManager.defaultManager!.POST("Post Answer",
             parameters: [
-                "question_id": question!.id,
-                "answer_content": body!,
+                "question_id": questionID,
+                "answer_content": body,
                 "attach_access_key": attachKey
             ],
             success: {
-                data in
-                println(data)
-                success?()
+                [weak self] data in
+                let answer = DataManager.defaultManager!.autoGenerate("Answer", ID: Int(msr_object: data["answer_id"])!) as! Answer
+                answer.question = (DataManager.defaultManager!.autoGenerate("Question", ID: questionID) as! Question)
+                answer.user = User.currentUser
+                answer.body = body
+                success?(answer)
                 return
             },
             failure: failure)

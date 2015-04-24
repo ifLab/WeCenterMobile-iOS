@@ -14,9 +14,14 @@ import UIKit
 import UzysAssetsPickerController
 import ZFTokenField
 
+@objc protocol AnswerPublishmentViewControllerDelegate {
+    optional func answerPublishmentViewController(answerPublishmentViewController: AnswerPublishmentViewController, didPublishAnswer answer: Answer)
+}
+
 class AnswerPublishmentViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UzysAssetsPickerControllerDelegate {
     
     var question: Question!
+    var delegate: AnswerPublishmentViewControllerDelegate?
     
     @IBOutlet weak var publishButton: UIButton!
     @IBOutlet weak var dismissButton: UIButton!
@@ -354,12 +359,13 @@ class AnswerPublishmentViewController: UIViewController, UICollectionViewDataSou
                                 answer.post(
                                     attachKey: self_.attachKey,
                                     success: {
-                                        question in
+                                        answer in
                                         SVProgressHUD.dismiss()
                                         SVProgressHUD.showSuccessWithStatus("已发布", maskType: .Gradient)
                                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC / 2)), dispatch_get_main_queue()) {
                                             SVProgressHUD.dismiss()
                                             self_.dismissViewControllerAnimated(true, completion: nil)
+                                            self_.delegate?.answerPublishmentViewController?(self_, didPublishAnswer: answer)
                                         }
                                     },
                                     failure: {

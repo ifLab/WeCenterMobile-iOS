@@ -11,7 +11,7 @@ import MJRefresh
 import SVProgressHUD
 import UIKit
 
-class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, QuestionBodyCellLinkButtonDelegate {
+class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, QuestionBodyCellLinkButtonDelegate, AnswerPublishmentViewControllerDelegate {
     
     var question: Question {
         didSet {
@@ -225,7 +225,17 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     func pushAnswerPublishmentViewController() {
         let apc = NSBundle.mainBundle().loadNibNamed("AnswerPublishmentViewController", owner: nil, options: nil).first as! AnswerPublishmentViewController
         apc.question = question
+        apc.delegate = self
         showDetailViewController(apc, sender: self)
+    }
+    
+    func answerPublishmentViewController(answerPublishmentViewController: AnswerPublishmentViewController, didPublishAnswer answer: Answer) {
+        answers.insert(answer, atIndex: 0)
+        tableView.beginUpdates()
+        let indexPath = NSIndexPath(forRow: 0, inSection: 6)
+        tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        tableView.endUpdates()
+        tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Middle, animated: true)
     }
     
     func toggleFocus() {

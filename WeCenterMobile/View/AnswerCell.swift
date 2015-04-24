@@ -28,7 +28,7 @@ class AnswerCell: UITableViewCell {
     func update(#answer: Answer, updateImage: Bool) {
         self.answer = answer
         userNameLabel.text = answer.user?.name ?? "匿名用户"
-        answerBodyLabel.text = answer.body?.stringByReplacingOccurrencesOfString("\n", withString: "", options: NSStringCompareOptions.allZeros, range: nil)
+        answerBodyLabel.text = answer.body?.wc_plainString
         answerAgreementCountCell.text = "\(answer.agreementCount ?? 0)"
         answerButton.msr_userInfo = answer
         if updateImage {

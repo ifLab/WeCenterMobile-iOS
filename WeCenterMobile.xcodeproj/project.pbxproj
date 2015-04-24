@@ -200,6 +200,7 @@
 		951D2F8F1AB7F8C000DCB678 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 951D2F8E1AB7F8C000DCB678 /* Images.xcassets */; };
 		951DA74F1AE9183000F0E3A7 /* AnswerPublishmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951DA74E1AE9183000F0E3A7 /* AnswerPublishmentViewController.swift */; };
 		951DA7511AE9188900F0E3A7 /* AnswerPublishmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 951DA7501AE9188900F0E3A7 /* AnswerPublishmentViewController.xib */; };
+		951DA7531AEA83B900F0E3A7 /* String+PlainString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951DA7521AEA83B900F0E3A7 /* String+PlainString.swift */; };
 		951FAC761ABFCEA30083E221 /* EAColourfulProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 951FAC751ABFCEA30083E221 /* EAColourfulProgressView.m */; };
 		9520AB151AC2C94600637C84 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9520AB141AC2C94600637C84 /* QuestionViewController.swift */; };
 		952E62051AD93D7700E65F87 /* TopicListViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952E62041AD93D7700E65F87 /* TopicListViewControllerCell.swift */; };
@@ -750,6 +751,7 @@
 		951D2F8E1AB7F8C000DCB678 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		951DA74E1AE9183000F0E3A7 /* AnswerPublishmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerPublishmentViewController.swift; sourceTree = "<group>"; };
 		951DA7501AE9188900F0E3A7 /* AnswerPublishmentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerPublishmentViewController.xib; sourceTree = "<group>"; };
+		951DA7521AEA83B900F0E3A7 /* String+PlainString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+PlainString.swift"; sourceTree = "<group>"; };
 		951FAC741ABFCEA30083E221 /* EAColourfulProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAColourfulProgressView.h; sourceTree = "<group>"; };
 		951FAC751ABFCEA30083E221 /* EAColourfulProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAColourfulProgressView.m; sourceTree = "<group>"; };
 		9520AB141AC2C94600637C84 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = QuestionViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -1076,6 +1078,7 @@
 				950FE4EC1A1DA2B500167D09 /* QuestionPublishmentAction.swift */,
 				950588D21AE63C4E002D482A /* SinaWeiboActivity.swift */,
 				950588D01AE63C34002D482A /* SinaWeiboShareItem.swift */,
+				951DA7521AEA83B900F0E3A7 /* String+PlainString.swift */,
 				950FE4ED1A1DA2B500167D09 /* Topic.swift */,
 				959CC93F1A25BAED00F8B6CB /* User.swift */,
 				950588CE1AE63C0B002D482A /* WeChatMomentsActivity.swift */,
@@ -2166,6 +2169,7 @@
 				951D1E9D1ACD1E4E0072D555 /* DTTextAttachmentHTMLElement.m in Sources */,
 				959CC9421A25BAEE00F8B6CB /* Answer.swift in Sources */,
 				951D1EA01ACD1E4E0072D555 /* DTVideoTextAttachment.m in Sources */,
+				951DA7531AEA83B900F0E3A7 /* String+PlainString.swift in Sources */,
 				951D1F851ACD1E750072D555 /* DTStripedLayer.m in Sources */,
 				951D2F891AB7F85500DCB678 /* MJRefreshLegendFooter.m in Sources */,
 				95F380C71AB33CC50070A7FB /* MSRMultilineLabel.swift in Sources */,

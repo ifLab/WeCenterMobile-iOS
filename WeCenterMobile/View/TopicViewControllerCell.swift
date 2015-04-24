@@ -40,7 +40,7 @@ class TopicViewControllerCell: UITableViewCell {
                 NSForegroundColorAttributeName: UIColor.lightTextColor()]))
         }
         answerUserNameLabel.text = answer.user?.name ?? "匿名用户"
-        answerBodyLabel.text = answer.body
+        answerBodyLabel.text = answer.body!.wc_plainString
         answerAgreementCountLabel.text = answer.agreementCount?.description ?? "0"
         questionButton.msr_userInfo = answer.question
         answerButton.msr_userInfo = answer
