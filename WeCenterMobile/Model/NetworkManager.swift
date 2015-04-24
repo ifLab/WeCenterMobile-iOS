@@ -59,8 +59,8 @@ class NetworkManager: NSObject {
                 parameters: POSTParameters,
                 constructingBodyWithBlock: block,
                 success: {
-                    operation, data in
-                    self.handleSuccess(operation: operation, data: data as! NSData, success: success, failure: failure)
+                    [weak self] operation, data in
+                    self?.handleSuccess(operation: operation, data: data as! NSData, success: success, failure: failure)
                 },
                 failure: {
                     operation, error in

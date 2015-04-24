@@ -63,7 +63,7 @@ class Answer: NSManagedObject {
                 "id": id
             ],
             success: {
-                data in
+                [weak self] data in
                 var commentsData = [NSDictionary]()
                 if data is [NSDictionary] {
                     commentsData = data as! [NSDictionary]
@@ -91,7 +91,7 @@ class Answer: NSManagedObject {
                         comment.atUser = (DataManager.defaultManager!.autoGenerate("User", ID: atID!) as! User)
                         comment.atUser!.name = (commentData["at_user"]?["user_name"] as! String)
                     }
-                    self.comments.insert(comment)
+                    self?.comments.insert(comment)
                     comments.append(comment)
                 }
                 success?(comments)

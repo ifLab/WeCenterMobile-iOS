@@ -98,18 +98,20 @@ class Question: NSManagedObject {
         } else if topics.count > 1 {
             topicsParameter = topics[1..<topics.endIndex].reduce(topics[0].title!, combine: { return $0 + "," + $1.title! })
         }
+        let title = self.title!
+        let body = self.body!
         NetworkManager.defaultManager!.POST("Post Question",
             parameters: [
-                "question_content": title!,
-                "question_detail": body!,
+                "question_content": title,
+                "question_detail": body,
                 "attach_access_key": attachKey,
                 "topics": topicsParameter
             ],
             success: {
-                data in
+                [weak self] data in
                 let question = DataManager.defaultManager!.autoGenerate("Question", ID: Int(msr_object: data["question_id"])!) as! Question
-                question.title = self.title
-                question.body = self.body
+                question.title = title
+                question.body = body
                 success?(question)
                 return
             },

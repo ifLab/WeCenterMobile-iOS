@@ -123,7 +123,7 @@ class User: NSManagedObject {
                 "per_page": count
             ],
             success: {
-                data in
+                [weak self] data in
                 if Int(msr_object: data["total_rows"]!!) > 0 {
                     var users = [User]()
                     for value in data["rows"] as! [NSDictionary] {
@@ -132,7 +132,7 @@ class User: NSManagedObject {
                         user.name = value["user_name"] as? String
                         user.avatarURI = value["avatar_file"] as? String
                         user.signature = value["signature"] as? String
-                        self.followings.insert(user)
+                        self?.followings.insert(user)
                         users.append(user)
                     }
                     success?(users)
@@ -151,7 +151,7 @@ class User: NSManagedObject {
                 "per_page": count
             ],
             success: {
-                data in
+                [weak self] data in
                 if Int(msr_object: data["total_rows"]!!) > 0 {
                     var users = [User]()
                     for value in data["rows"] as! [NSDictionary] {
@@ -160,7 +160,7 @@ class User: NSManagedObject {
                         user.name = value["user_name"] as? String
                         user.avatarURI = value["avatar_file"] as? String
                         user.signature = value["signature"] as? String
-                        self.followers.insert(user)
+                        self?.followers.insert(user)
                         users.append(user)
                     }
                     success?(users)
@@ -179,7 +179,7 @@ class User: NSManagedObject {
                 "per_page": count
             ],
             success: {
-                data in
+                [weak self] data in
                 if Int(msr_object: data["total_rows"]!!) > 0 {
                     var topics = [Topic]()
                     for value in data["rows"] as! [NSDictionary] {
@@ -188,7 +188,7 @@ class User: NSManagedObject {
                         topic.title = value["topic_title"] as? String
                         topic.introduction = value["topic_description"] as? String
                         topic.imageURI = value["topic_pic"] as? String
-                        self.topics.insert(topic)
+                        self?.topics.insert(topic)
                         topics.append(topic)
                     }
                     success?(topics)
@@ -206,7 +206,7 @@ class User: NSManagedObject {
                 "uid": id
             ],
             success: {
-                data in
+                [weak self] data in
                 var questions = [Question]()
                 if Int(msr_object: data["total_rows"]!!) > 0 {
                     var questionsData = [NSDictionary]()
@@ -221,7 +221,7 @@ class User: NSManagedObject {
                         question.user = self
                         question.title = questionData["title"] as? String
                         question.body = questionData["detail"] as? String
-                        self.questions.insert(question)
+                        self?.questions.insert(question)
                         questions.append(question)
                     }
                 }
@@ -296,13 +296,15 @@ class User: NSManagedObject {
                 "uid": id
             ],
             success: {
-                data in
+                [weak self] data in
                 let value = data[0] as! NSDictionary
-                self.name = value["user_name"] as? String
-                self.genderValue = value["sex"] is NSNull ? Gender.Secret.rawValue : Int(msr_object: value["sex"])
-                self.birthday = Int(msr_object: value["birthday"])
-                self.jobID = Int(msr_object: value["job_id"])
-                self.signature = value["signature"] as? String
+                if let self_ = self {
+                    self_.name = value["user_name"] as? String
+                    self_.genderValue = value["sex"] is NSNull ? Gender.Secret.rawValue : Int(msr_object: value["sex"])
+                    self_.birthday = Int(msr_object: value["birthday"])
+                    self_.jobID = Int(msr_object: value["job_id"])
+                    self_.signature = value["signature"] as? String
+                }
                 success?()
             },
             failure: failure)
@@ -314,8 +316,8 @@ class User: NSManagedObject {
                 "uid": id
             ],
             success: {
-                data in
-                self.followed = (data["type"] as! String == "add")
+                [weak self] data in
+                self?.followed = (data["type"] as! String == "add")
                 success?()
             },
             failure: failure)
@@ -338,7 +340,7 @@ class User: NSManagedObject {
                     return
                 },
                 failure: {
-                    request, response, error in
+                    [weak self] request, response, error in
                     failure?(error)
                     return
             })
@@ -354,7 +356,7 @@ class User: NSManagedObject {
                 "per_page": count
             ],
             success: {
-                data in
+                [weak self] data in
                 let rows = data["total_rows"] as! Int
                 if rows > 0 {
                     var actions = [Action]()

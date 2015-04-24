@@ -80,8 +80,8 @@ class Topic: NSManagedObject {
                 "type": "cancel"
             ],
             success: {
-                data in
-                self.focused = false
+                [weak self] data in
+                self?.focused = false
                 success?()
             },
             failure: failure)
@@ -95,8 +95,8 @@ class Topic: NSManagedObject {
                 "type": "focus"
             ],
             success: {
-                data in
-                self.focused = true
+                [weak self] data in
+                self?.focused = true
                 success?()
             },
             failure: failure)
@@ -108,14 +108,14 @@ class Topic: NSManagedObject {
                 "id": id
             ],
             success: {
-                data in
+                [weak self] data in
                 if Int(msr_object: data["total_rows"]!!) > 0 {
                     var answers = [Answer]()
                     for value in data["rows"] as! [NSDictionary] {
                         let questionValue = value["question_info"] as! NSDictionary
                         let questionID = questionValue["question_id"] as! NSNumber
                         let question = DataManager.defaultManager!.autoGenerate("Question", ID: questionID) as! Question
-                        self.questions.insert(question)
+                        self?.questions.insert(question)
                         question.title = questionValue["question_content"] as? String
                         let answerValue = value["answer_info"] as! NSDictionary
                         let answerID = answerValue["answer_id"] as! NSNumber

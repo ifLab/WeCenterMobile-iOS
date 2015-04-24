@@ -25,7 +25,7 @@ class AnswerComment: NSManagedObject {
             POSTParameters: ["message": body!],
             constructingBodyWithBlock: nil,
             success: {
-                data in
+                [weak self] data in
                 success?()
                 return
             },
