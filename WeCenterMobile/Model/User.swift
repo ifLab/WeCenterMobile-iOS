@@ -6,6 +6,7 @@
 //  Copyright (c) 2014年 Beijing Information Science and Technology University. All rights reserved.
 //
 
+import AFNetworking
 import CoreData
 import UIKit
 
@@ -324,11 +325,15 @@ class User: NSManagedObject {
     
     func fetchAvatar(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         if avatarURL != nil {
-            imageView.setImageWithURLRequest(NSURLRequest(URL: NSURL(string: avatarURL!)!),
+            let request = NSMutableURLRequest(URL: NSURL(string: avatarURL!)!)
+            request.addValue("image/*", forHTTPHeaderField:"Accept")
+            imageView.setImageWithURLRequest(request,
                 placeholderImage: nil,
                 success: {
-                    request, response, image in
-                    self.avatar = image
+                    [weak self] request, response, image in
+                    if self?.avatar == nil || response != nil {
+                        self?.avatar = image
+                    }
                     success?()
                     return
                 },

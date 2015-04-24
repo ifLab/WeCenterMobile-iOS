@@ -140,11 +140,15 @@ class Topic: NSManagedObject {
     
     func fetchImage(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         if imageURL != nil {
-            imageView.setImageWithURLRequest(NSURLRequest(URL: NSURL(string: imageURL!)!),
+            let request = NSMutableURLRequest(URL: NSURL(string: imageURL!)!)
+            request.addValue("image/*", forHTTPHeaderField:"Accept")
+            imageView.setImageWithURLRequest(request,
                 placeholderImage: nil,
                 success: {
                     [weak self] request, response, image in
-                    self?.image = image
+                    if self?.image == nil || response != nil {
+                        self?.image = image
+                    }
                     success?()
                     return
                 },
