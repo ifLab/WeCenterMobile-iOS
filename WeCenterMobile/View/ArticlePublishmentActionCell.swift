@@ -10,15 +10,13 @@ import UIKit
 
 class ArticlePublishmentActionCell: ActionCell {
     
-    @IBOutlet weak var userAvatarView: UIImageView!
+    @IBOutlet weak var userAvatarView: MSRRoundedImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var articleTitleLabel: UILabel!
     @IBOutlet weak var articleButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        userAvatarView.layer.masksToBounds = true
-        userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
         articleButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
     }
     

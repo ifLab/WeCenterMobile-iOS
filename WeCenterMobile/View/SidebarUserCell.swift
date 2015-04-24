@@ -10,13 +10,11 @@ import UIKit
 
 class SidebarUserCell: UITableViewCell {
     
-    @IBOutlet weak var userAvatarView: UIImageView!
+    @IBOutlet weak var userAvatarView: MSRRoundedImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        userAvatarView.layer.masksToBounds = true
-        userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
         selectedBackgroundView = UIView()
         selectedBackgroundView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
         let backgroundIndicator = UIView()

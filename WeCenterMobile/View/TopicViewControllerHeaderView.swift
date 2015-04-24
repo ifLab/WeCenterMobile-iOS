@@ -19,9 +19,8 @@ class TopicViewControllerHeaderView: UIView {
         return v
     }()
     
-    lazy var topicImageView: UIImageView = {
-        let v = UIImageView(image: defaultTopicImage)
-        v.layer.masksToBounds = true
+    lazy var topicImageView: MSRRoundedImageView = {
+        let v = MSRRoundedImageView(image: defaultTopicImage)
         return v
     }()
     
@@ -129,7 +128,6 @@ class TopicViewControllerHeaderView: UIView {
             topicTitleLabel.frame = topicTitleLabelEndFrame
             focusButton.frame = focusButtonEndFrame
         }
-        topicImageView.layer.cornerRadius = topicImageView.frame.width / 2
         topicDescriptionLabel.frame = CGRect(x: topicTitleLabel.frame.msr_left, y: topicTitleLabel.frame.msr_bottom + 5, width: bounds.width - topicTitleLabel.frame.msr_left - 10, height: topicImageView.frame.height - topicTitleLabel.frame.height - 5)
         topicDescriptionLabel.sizeToFit()
     }

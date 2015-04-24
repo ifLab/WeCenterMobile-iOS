@@ -201,6 +201,8 @@
 		951DA74F1AE9183000F0E3A7 /* AnswerPublishmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951DA74E1AE9183000F0E3A7 /* AnswerPublishmentViewController.swift */; };
 		951DA7511AE9188900F0E3A7 /* AnswerPublishmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 951DA7501AE9188900F0E3A7 /* AnswerPublishmentViewController.xib */; };
 		951DA7531AEA83B900F0E3A7 /* String+PlainString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951DA7521AEA83B900F0E3A7 /* String+PlainString.swift */; };
+		951DA7551AEAACD300F0E3A7 /* UIImage+MSRGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951DA7541AEAACD300F0E3A7 /* UIImage+MSRGetter.swift */; };
+		951DA7571AEAAE6300F0E3A7 /* MSRRoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951DA7561AEAAE6300F0E3A7 /* MSRRoundedImageView.swift */; };
 		951FAC761ABFCEA30083E221 /* EAColourfulProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 951FAC751ABFCEA30083E221 /* EAColourfulProgressView.m */; };
 		9520AB151AC2C94600637C84 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9520AB141AC2C94600637C84 /* QuestionViewController.swift */; };
 		952E62051AD93D7700E65F87 /* TopicListViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952E62041AD93D7700E65F87 /* TopicListViewControllerCell.swift */; };
@@ -752,6 +754,8 @@
 		951DA74E1AE9183000F0E3A7 /* AnswerPublishmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerPublishmentViewController.swift; sourceTree = "<group>"; };
 		951DA7501AE9188900F0E3A7 /* AnswerPublishmentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerPublishmentViewController.xib; sourceTree = "<group>"; };
 		951DA7521AEA83B900F0E3A7 /* String+PlainString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+PlainString.swift"; sourceTree = "<group>"; };
+		951DA7541AEAACD300F0E3A7 /* UIImage+MSRGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+MSRGetter.swift"; sourceTree = "<group>"; };
+		951DA7561AEAAE6300F0E3A7 /* MSRRoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRRoundedImageView.swift; sourceTree = "<group>"; };
 		951FAC741ABFCEA30083E221 /* EAColourfulProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAColourfulProgressView.h; sourceTree = "<group>"; };
 		951FAC751ABFCEA30083E221 /* EAColourfulProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAColourfulProgressView.m; sourceTree = "<group>"; };
 		9520AB141AC2C94600637C84 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = QuestionViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -1888,6 +1892,7 @@
 				95F380C61AB33CC50070A7FB /* MSRMultilineLabel.swift */,
 				95C2EA081AB0516800F2A326 /* MSRNavigationController.swift */,
 				95C2EA091AB0516800F2A326 /* MSRNavigationWrapperController.swift */,
+				951DA7561AEAAE6300F0E3A7 /* MSRRoundedImageView.swift */,
 				95C2EA0A1AB0516800F2A326 /* MSRSegment.swift */,
 				95C2EA0B1AB0516800F2A326 /* MSRSegmentedControl.swift */,
 				95C2EA0C1AB0516800F2A326 /* MSRSegmentedControlBlockIndicator.swift */,
@@ -1905,6 +1910,7 @@
 				95C2EA161AB0516800F2A326 /* UIColor+MSRRandomColor.swift */,
 				95C2EA171AB0516800F2A326 /* UIColor+MSRRGBA.swift */,
 				955770771AD757B30060A120 /* UIImage+MSRColor.swift */,
+				951DA7541AEAACD300F0E3A7 /* UIImage+MSRGetter.swift */,
 				95C2EA181AB0516800F2A326 /* UIImage+MSRResize.swift */,
 				95C2EA191AB0516800F2A326 /* UIImage+MSRShape.swift */,
 				955770711AD68E960060A120 /* UIImageView+MSRSetter.swift */,
@@ -2256,6 +2262,7 @@
 				95E060DA1AC2507300C6750C /* SVProgressHUD.m in Sources */,
 				9575B17D1A514B4500EFFFB7 /* QuestionPublishmentActionCell.swift in Sources */,
 				95FC9D331AB5C40F00247731 /* FeaturedQuestionAnswerCellWithoutAnswer.swift in Sources */,
+				951DA7571AEAAE6300F0E3A7 /* MSRRoundedImageView.swift in Sources */,
 				95C2EA4B1AB1102000F2A326 /* FeaturedQuestionAnswer.swift in Sources */,
 				951D1F611ACD1E750072D555 /* DTFoundationConstants.m in Sources */,
 				951D1F631ACD1E750072D555 /* DTLog.m in Sources */,
@@ -2311,6 +2318,7 @@
 				951D1EA91ACD1E4E0072D555 /* NSDictionary+DTCoreText.m in Sources */,
 				951D1F671ACD1E750072D555 /* NSScanner+DTScripting.m in Sources */,
 				951D1E771ACD1E4E0072D555 /* DTAnchorHTMLElement.m in Sources */,
+				951DA7551AEAACD300F0E3A7 /* UIImage+MSRGetter.swift in Sources */,
 				950588D31AE63C4E002D482A /* SinaWeiboActivity.swift in Sources */,
 				951D1E8B1ACD1E4E0072D555 /* DTCSSStylesheet.m in Sources */,
 				951D1E8E1ACD1E4E0072D555 /* DTHorizontalRuleHTMLElement.m in Sources */,

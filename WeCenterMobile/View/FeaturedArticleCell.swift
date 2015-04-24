@@ -10,7 +10,7 @@ import UIKit
 
 class FeaturedArticleCell: FeaturedObjectCell {
     
-    @IBOutlet weak var userAvatarView: UIImageView!
+    @IBOutlet weak var userAvatarView: MSRRoundedImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var articleTitle: UILabel!
     @IBOutlet weak var innerView: UIView!
@@ -19,8 +19,6 @@ class FeaturedArticleCell: FeaturedObjectCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
-        userAvatarView.layer.masksToBounds = true
         articleButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
     }
     

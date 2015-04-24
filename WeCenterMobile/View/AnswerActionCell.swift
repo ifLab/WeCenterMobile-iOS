@@ -10,7 +10,7 @@ import UIKit
 
 class AnswerActionCell: ActionCell {
     
-    @IBOutlet weak var userAvatarView: UIImageView!
+    @IBOutlet weak var userAvatarView: MSRRoundedImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var questionTitleLabel: UILabel!
     @IBOutlet weak var agreementCountLabel: UILabel!
@@ -20,8 +20,6 @@ class AnswerActionCell: ActionCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        userAvatarView.layer.masksToBounds = true
-        userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
         questionButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
         answerButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
     }

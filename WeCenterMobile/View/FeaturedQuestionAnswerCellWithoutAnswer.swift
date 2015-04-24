@@ -11,7 +11,7 @@ import UIKit
 class FeaturedQuestionAnswerCellWithoutAnswer: FeaturedObjectCell {
     
     @IBOutlet weak var innerView: UIView!
-    @IBOutlet weak var userAvatarView: UIImageView!
+    @IBOutlet weak var userAvatarView: MSRRoundedImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var questionTitleLabel: UILabel!
     @IBOutlet weak var questionTagLabel: UIView!
@@ -19,8 +19,6 @@ class FeaturedQuestionAnswerCellWithoutAnswer: FeaturedObjectCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        userAvatarView.layer.masksToBounds = true
-        userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
         questionButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
     }
     

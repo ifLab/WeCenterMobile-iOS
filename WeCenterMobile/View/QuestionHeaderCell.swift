@@ -10,15 +10,13 @@ import UIKit
 
 class QuestionHeaderCell: UITableViewCell {
     
-    @IBOutlet weak var userAvatarView: UIImageView!
+    @IBOutlet weak var userAvatarView: MSRRoundedImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userSignatureLabel: UILabel!
     @IBOutlet weak var userButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        userAvatarView.layer.masksToBounds = true
-        userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
         userButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
     }
     

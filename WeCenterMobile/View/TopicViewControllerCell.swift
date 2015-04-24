@@ -11,7 +11,7 @@ import UIKit
 class TopicViewControllerCell: UITableViewCell {
     
     @IBOutlet weak var questionTitleLabel: UILabel!
-    @IBOutlet weak var answerUserAvatarView: UIImageView!
+    @IBOutlet weak var answerUserAvatarView: MSRRoundedImageView!
     @IBOutlet weak var answerUserNameLabel: UILabel!
     @IBOutlet weak var answerBodyLabel: UILabel!
     @IBOutlet weak var answerAgreementCountLabel: UILabel!
@@ -20,8 +20,6 @@ class TopicViewControllerCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        answerUserAvatarView.layer.masksToBounds = true
-        answerUserAvatarView.layer.cornerRadius = answerUserAvatarView.bounds.width / 2
         questionButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
         answerButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
     }

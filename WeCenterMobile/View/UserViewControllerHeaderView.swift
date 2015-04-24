@@ -28,9 +28,8 @@ class UserViewControllerHeaderView: UIView {
         return v
     }()
     
-    lazy var userAvatarView: UIImageView = {
-        let v = UIImageView(image: defaultUserAvatar)
-        v.layer.masksToBounds = true
+    lazy var userAvatarView: MSRRoundedImageView = {
+        let v = MSRRoundedImageView(image: defaultUserAvatar)
         return v
     }()
     
@@ -108,7 +107,6 @@ class UserViewControllerHeaderView: UIView {
             userAvatarView.frame = userAvatarViewEndFrame
             userNameLabel.frame = userNameLabelEndFrame
         }
-        userAvatarView.layer.cornerRadius = userAvatarView.frame.width / 2
         userSignatureLabel.frame = CGRect(x: userNameLabel.frame.msr_left, y: userNameLabel.frame.msr_bottom + 5, width: bounds.width - userNameLabel.frame.msr_left - 10, height: userAvatarView.frame.height - userNameLabel.frame.height - 5)
         userSignatureLabel.sizeToFit()
     }

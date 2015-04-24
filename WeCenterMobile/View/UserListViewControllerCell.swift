@@ -10,13 +10,11 @@ import UIKit
 
 class UserListViewControllerCell: UITableViewCell {
     
-    @IBOutlet weak var userAvatarView: UIImageView!
+    @IBOutlet weak var userAvatarView: MSRRoundedImageView!
     @IBOutlet weak var userLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        userAvatarView.layer.cornerRadius = userAvatarView.bounds.width / 2
-        userAvatarView.layer.masksToBounds = true
         selectedBackgroundView = UIView()
         selectedBackgroundView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
     }

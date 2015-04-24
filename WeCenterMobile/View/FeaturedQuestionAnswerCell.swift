@@ -10,10 +10,10 @@ import UIKit
 
 class FeaturedQuestionAnswerCell: FeaturedObjectCell {
     
-    @IBOutlet weak var questionUserAvatarView: UIImageView!
+    @IBOutlet weak var questionUserAvatarView: MSRRoundedImageView!
     @IBOutlet weak var questionUserNameLabel: UILabel!
     @IBOutlet weak var questionTitleLabel: UILabel!
-    @IBOutlet weak var answerUserAvatarView: UIImageView!
+    @IBOutlet weak var answerUserAvatarView: MSRRoundedImageView!
     @IBOutlet weak var answerBodyLabel: UILabel!
     @IBOutlet weak var answerUserNameLabel: UILabel!
     @IBOutlet weak var innerView: UIView!
@@ -24,10 +24,6 @@ class FeaturedQuestionAnswerCell: FeaturedObjectCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        answerUserAvatarView.layer.masksToBounds = true
-        answerUserAvatarView.layer.cornerRadius = answerUserAvatarView.bounds.width / 2
-        questionUserAvatarView.layer.masksToBounds = true
-        questionUserAvatarView.layer.cornerRadius = questionUserAvatarView.bounds.width / 2
         questionButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
         answerButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
     }

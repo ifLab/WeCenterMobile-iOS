@@ -10,13 +10,11 @@ import UIKit
 
 class TopicListViewControllerCell: UITableViewCell {
     
-    @IBOutlet weak var topicImageView: UIImageView!
+    @IBOutlet weak var topicImageView: MSRRoundedImageView!
     @IBOutlet weak var topicTitleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        topicImageView.layer.cornerRadius = topicImageView.bounds.width / 2
-        topicImageView.layer.masksToBounds = true
         selectedBackgroundView = UIView()
         selectedBackgroundView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
     }
