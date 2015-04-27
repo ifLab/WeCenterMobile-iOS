@@ -72,10 +72,16 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
                 [weak self] user in
                 self?.user = user
                 self?.reloadData()
-                user.fetchAvatar(
-                    forced: true,
+                self?.user.fetchProfile(
                     success: {
                         self?.reloadData()
+                        self?.user.fetchAvatar(
+                            forced: true,
+                            success: {
+                                self?.reloadData()
+                            },
+                            failure: nil)
+                        return
                     },
                     failure: nil)
                 return
