@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import ObjectiveC
 
 class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UserEditViewControllerDelegate {
     
     lazy var header: UserViewControllerHeaderView = {
         let v =  NSBundle.mainBundle().loadNibNamed("UserViewControllerHeaderView", owner: nil, options: nil).first as! UserViewControllerHeaderView
-        v.msr_addHeightConstraintWithValue(v.maxHeight)
+        v.frame = CGRect(x: 0, y: 0, width: 0, height: v.maxHeight)
+        v.autoresizingMask = .FlexibleBottomMargin | .FlexibleWidth
         return v
     }()
     
@@ -22,13 +24,13 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     lazy var bodyView: UICollectionView = {
         [weak self] in
         let v = ButtonTouchesCancelableCollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
-        v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         v.alwaysBounceVertical = true
         v.indicatorStyle = .White
-        v.contentInset.top = self?.header.maxHeight ?? 0
+        v.contentInset.top = UIApplication.sharedApplication().statusBarFrame.height
         v.scrollIndicatorInsets.top = self?.header.minHeight ?? 0
         v.contentOffset.y = -v.contentInset.top
         v.backgroundColor = UIColor.clearColor()
+        v.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         v.delegate = self
         v.dataSource = self
         return v
@@ -48,17 +50,19 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     override func loadView() {
         super.loadView()
         view.addSubview(bodyView)
-        view.addSubview(header)
+        bodyView.addSubview(header)
         view.backgroundColor = UIColor.msr_materialGray900()
-        bodyView.msr_addAllEdgeAttachedConstraintsToSuperview()
+        bodyView.frame = view.bounds
+        header.frame.size.width = bodyView.bounds.width
         bodyView.registerNib(UINib(nibName: "UserViewControllerBodyViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: bodyViewCellReuseIdentifier)
         bodyView.registerNib(UINib(nibName: "UserViewControllerBottomButtonCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: bottomButtonCellReuseIdentifier)
-        header.msr_addHorizontalEdgeAttachedConstraintsToSuperview()
-        header.msr_addTopAttachedConstraintToSuperview()
         header.backButton.hidden = msr_navigationController!.viewControllers.count == 1
         header.backButton.addTarget(self, action: "didPressBackButton", forControlEvents: .TouchUpInside)
         bodyView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
         bodyView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
+        bodyView.msr_uiRefreshControl = UIRefreshControl()
+        bodyView.msr_uiRefreshControl!.tintColor = UIColor.whiteColor()
+        bodyView.msr_uiRefreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         msr_navigationBar!.hidden = true
         automaticallyAdjustsScrollViewInsets = false
     }
@@ -67,6 +71,11 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         super.viewDidLoad()
         reloadData()
         bodyView.contentSize = CGSize(width: 1, height: 1000)
+        bodyView.msr_uiRefreshControl?.beginRefreshing()
+        refresh()
+    }
+    
+    func refresh() {
         User.fetch(ID: user.id,
             success: {
                 [weak self] user in
@@ -79,14 +88,27 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
                             forced: true,
                             success: {
                                 self?.reloadData()
+                                self?.bodyView.msr_uiRefreshControl?.endRefreshing()
                             },
-                            failure: nil)
+                            failure: {
+                                [weak self] error in
+                                self?.bodyView.msr_uiRefreshControl?.endRefreshing()
+                                return
+                            })
                         return
                     },
-                    failure: nil)
+                    failure: {
+                        [weak self] error in
+                        self?.bodyView.msr_uiRefreshControl?.endRefreshing()
+                        return
+                    })
                 return
             },
-            failure: nil)
+            failure: {
+                [weak self] error in
+                self?.bodyView.msr_uiRefreshControl?.endRefreshing()
+                return
+            })
     }
     
     func reloadData() {
@@ -97,10 +119,10 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         if scrollView === bodyView {
-            let offset = bodyView.contentOffset.y + bodyView.contentInset.top
-            header.msr_heightConstraint!.constant = floor(max(header.maxHeight - offset, header.minHeight)) // The appearences of blur effect view will not correct unless it's height is an integer.
-            bodyView.scrollIndicatorInsets.top = header.msr_heightConstraint!.constant
-            header.layoutIfNeeded()
+            let offset = bodyView.contentOffset.y
+            header.frame.size.height = floor(max(header.maxHeight - offset - UIApplication.sharedApplication().statusBarFrame.height, header.minHeight)) // The appearences of blur effect view will not correct unless it's height is an integer.
+            header.frame.origin.y = offset
+            bodyView.scrollIndicatorInsets.top = header.bounds.height
         }
     }
     
@@ -153,7 +175,7 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         if section == 0 {
-            return UIEdgeInsets(top: 1, left: 0, bottom: 1, right: 0)
+            return UIEdgeInsets(top: header.maxHeight - UIApplication.sharedApplication().statusBarFrame.height + 1, left: 0, bottom: 1, right: 0)
         } else {
             return UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
         }

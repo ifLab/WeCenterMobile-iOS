@@ -69,7 +69,6 @@ class UserViewControllerHeaderView: UIView {
         likeCountImageView.msr_imageRenderingMode = .AlwaysTemplate
         markCountImageView.msr_imageRenderingMode = .AlwaysTemplate
         agreementCountImageView.msr_imageRenderingMode = .AlwaysTemplate
-        msr_shouldTranslateAutoresizingMaskIntoConstraints = false
     }
     
     func update(#user: User) {
@@ -114,7 +113,7 @@ class UserViewControllerHeaderView: UIView {
             userAvatarView.frame = MSRLinearInterpolation(userAvatarViewBeginFrame, userAvatarViewEndFrame, progress)
             userNameLabel.frame = MSRLinearInterpolation(userNameLabelBeginFrame, userNameLabelEndFrame, progress)
         } else {
-            let offset = (bounds.height - maxHeight) / 2
+            let offset = bounds.height - maxHeight
             backButtonEndFrame.origin.y += offset
             userAvatarViewEndFrame.origin.y += offset
             userNameLabelEndFrame.origin.y += offset

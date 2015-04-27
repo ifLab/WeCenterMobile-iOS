@@ -211,6 +211,7 @@
 		952E620B1AD9FCFF00E65F87 /* TopicViewControllerHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 952E620A1AD9FCFF00E65F87 /* TopicViewControllerHeaderView.xib */; };
 		953028951ADB5A3300F42B3B /* ButtonTouchesCancelableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953028941ADB5A3300F42B3B /* ButtonTouchesCancelableScrollView.swift */; };
 		9531D6971AEE565400E6549D /* TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6961AEE565400E6549D /* TintColor.swift */; };
+		9531D69A1AEEB93D00E6549D /* UIScrollView+MSRRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6991AEEB93D00E6549D /* UIScrollView+MSRRefreshControl.swift */; };
 		9532C8C81A51547B001A0E4A /* QuestionFocusingActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9532C8C71A51547B001A0E4A /* QuestionFocusingActionCell.swift */; };
 		9532C8CA1A51548B001A0E4A /* QuestionFocusingActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9532C8C91A51548B001A0E4A /* QuestionFocusingActionCell.xib */; };
 		9532C8CC1A515E28001A0E4A /* AnswerAgreementActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9532C8CB1A515E28001A0E4A /* AnswerAgreementActionCell.swift */; };
@@ -771,6 +772,7 @@
 		952E620A1AD9FCFF00E65F87 /* TopicViewControllerHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicViewControllerHeaderView.xib; sourceTree = "<group>"; };
 		953028941ADB5A3300F42B3B /* ButtonTouchesCancelableScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTouchesCancelableScrollView.swift; sourceTree = "<group>"; };
 		9531D6961AEE565400E6549D /* TintColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TintColor.swift; sourceTree = "<group>"; };
+		9531D6991AEEB93D00E6549D /* UIScrollView+MSRRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+MSRRefreshControl.swift"; sourceTree = "<group>"; };
 		9532C8C71A51547B001A0E4A /* QuestionFocusingActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionFocusingActionCell.swift; sourceTree = "<group>"; };
 		9532C8C91A51548B001A0E4A /* QuestionFocusingActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionFocusingActionCell.xib; sourceTree = "<group>"; };
 		9532C8CB1A515E28001A0E4A /* AnswerAgreementActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerAgreementActionCell.swift; sourceTree = "<group>"; };
@@ -1944,6 +1946,7 @@
 				95C2EA191AB0516800F2A326 /* UIImage+MSRShape.swift */,
 				955770711AD68E960060A120 /* UIImageView+MSRSetter.swift */,
 				95C2EA1A1AB0516800F2A326 /* UINavigationBar+MSRAccessor.swift */,
+				9531D6991AEEB93D00E6549D /* UIScrollView+MSRRefreshControl.swift */,
 				95C2EA1B1AB0516800F2A326 /* UIView+MSREasyAutoLayout.swift */,
 				95C2EA1C1AB0516800F2A326 /* UIView+MSRKeyboardUtility.swift */,
 			);
@@ -2234,6 +2237,7 @@
 				95C2EA261AB0516800F2A326 /* CGContext+MSRInitialzier.swift in Sources */,
 				950FE50B1A1DA2B500167D09 /* TopicListViewController.swift in Sources */,
 				951D1EA41ACD1E4E0072D555 /* NSAttributedString+HTML.m in Sources */,
+				9531D69A1AEEB93D00E6549D /* UIScrollView+MSRRefreshControl.swift in Sources */,
 				953028951ADB5A3300F42B3B /* ButtonTouchesCancelableScrollView.swift in Sources */,
 				950FE5051A1DA2B500167D09 /* ExploreViewController.swift in Sources */,
 				951D1E751ACD1E4E0072D555 /* DTAccessibilityElement.m in Sources */,
