@@ -73,7 +73,7 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
         signatureTextView.text = user.signature
         birthdayTextField.text = dateFormatter.stringFromDate(user.birthday ?? NSDate())
         genderSegmentedControl.selectedSegmentIndex = user.gender == nil || user.gender == .Secret ? 1 : user.gender == .Male ? 0 : 2
-        scrollView.backgroundColor = user.avatar?.msr_averageColorWithAccuracy(0.5)!.colorWithAlphaComponent(0.2)
+        scrollView.backgroundColor = TintColorFromColor(user.avatar?.msr_averageColorWithAccuracy(0.5)).colorWithAlphaComponent(0.3)
     }
     
     @IBAction func finish() {

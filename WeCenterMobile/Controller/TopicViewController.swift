@@ -85,7 +85,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func reloadData() {
         header.update(topic: topic)
         bodyView.reloadData()
-        bodyView.backgroundColor = topic.image?.msr_averageColorWithAccuracy(0.5)?.colorWithAlphaComponent(0.2) ?? UIColor.clearColor()
+        bodyView.backgroundColor = TintColorFromColor(topic.image?.msr_averageColorWithAccuracy(0.5)).colorWithAlphaComponent(0.5)
     }
     
     func refresh() {

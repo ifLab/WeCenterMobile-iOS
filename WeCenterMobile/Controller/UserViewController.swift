@@ -84,7 +84,7 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     }
     
     func reloadData() {
-        bodyView.backgroundColor = user.avatar?.msr_averageColorWithAccuracy(0.5)?.colorWithAlphaComponent(0.2) ?? UIColor.clearColor()
+        bodyView.backgroundColor = TintColorFromColor(user.avatar?.msr_averageColorWithAccuracy(0.5)).colorWithAlphaComponent(0.3)
         header.update(user: user)
         bodyView.reloadData()
     }
