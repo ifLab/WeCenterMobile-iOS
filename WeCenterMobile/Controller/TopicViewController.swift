@@ -6,7 +6,6 @@
 //  Copyright (c) 2014年 ifLab. All rights reserved.
 //
 
-import MJRefresh
 import UIKit
 
 class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -27,6 +26,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     lazy var header: TopicViewControllerHeaderView = {
         [weak self] in
         let v = NSBundle.mainBundle().loadNibNamed("TopicViewControllerHeaderView", owner: nil, options: nil).first as! TopicViewControllerHeaderView
+        v.autoresizingMask = .FlexibleBottomMargin | .FlexibleWidth
         v.focusButton.addTarget(self, action: "focus", forControlEvents: .TouchUpInside)
         v.backButton.addTarget(self, action: "didPressBackButton", forControlEvents: .TouchUpInside)
         return v
@@ -35,9 +35,10 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     lazy var bodyView: UITableView = {
         [weak self] in
         let v = ButtonTouchesCancelableTableView()
-        v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+        v.frame = self!.view.bounds
+        v.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         v.alwaysBounceVertical = true
-        v.contentInset.top = self!.header.maxHeight
+        v.contentInset.top = UIApplication.sharedApplication().statusBarFrame.height
         v.scrollIndicatorInsets.top = self!.header.minHeight
         v.contentOffset.y = -v.contentInset.top
         v.delegate = self
@@ -47,30 +48,20 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         v.indicatorStyle = .White
         v.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
         v.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
+        v.addSubview(self!.header)
+        self!.header.frame = CGRect(x: 0, y: -UIApplication.sharedApplication().statusBarFrame.height, width: v.bounds.width, height: self!.header.maxHeight)
         return v
     }()
-    
-    private var refreshControlImageView: UIImageView! // for keeping weak property in header
-    private var refreshControlActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in header
     
     let cellReuseIdentifier = "TopicViewControllerCell"
     
     override func loadView() {
         super.loadView()
         view.addSubview(bodyView)
-        view.addSubview(header)
         view.backgroundColor = UIColor.msr_materialGray900()
-        header.msr_addHorizontalEdgeAttachedConstraintsToSuperview()
-        header.msr_addTopAttachedConstraintToSuperview()
-        header.msr_addHeightConstraintWithValue(header.maxHeight)
-        let refreshControl = bodyView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
-        refreshControl.textColor = UIColor.whiteColor()
-        refreshControlImageView = refreshControl.valueForKey("arrowImage") as! UIImageView
-        refreshControlImageView.tintColor = UIColor.whiteColor()
-        refreshControlImageView.msr_imageRenderingMode = .AlwaysTemplate
-        refreshControlActivityIndicatorView = refreshControl.valueForKey("activityView") as! UIActivityIndicatorView
-        refreshControlActivityIndicatorView.activityIndicatorViewStyle = .White
-        bodyView.msr_addAllEdgeAttachedConstraintsToSuperview()
+        bodyView.msr_uiRefreshControl = UIRefreshControl()
+        bodyView.msr_uiRefreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+        bodyView.msr_uiRefreshControl!.tintColor = UIColor.whiteColor()
         bodyView.registerNib(UINib(nibName: "TopicViewControllerCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         automaticallyAdjustsScrollViewInsets = false
         msr_navigationBar!.hidden = true
@@ -79,13 +70,14 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadData()
-        bodyView.header.beginRefreshing()
+        bodyView.msr_uiRefreshControl!.beginRefreshing()
+        refresh()
     }
     
     func reloadData() {
         header.update(topic: topic)
         bodyView.reloadData()
-        bodyView.backgroundColor = TintColorFromColor(topic.image?.msr_averageColorWithAccuracy(0.5)).colorWithAlphaComponent(0.5)
+        bodyView.backgroundColor = TintColorFromColor(topic.image?.msr_averageColorWithAccuracy(0.5)).colorWithAlphaComponent(0.3)
     }
     
     func refresh() {
@@ -99,19 +91,19 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     success: {
                         [weak self] answers in
                         self?.answers = answers
-                        self?.bodyView.header.endRefreshing()
+                        self?.bodyView.msr_uiRefreshControl!.endRefreshing()
                         self?.reloadData()
                         return
                     },
                     failure: {
                         [weak self] error in
-                        self?.bodyView.header.endRefreshing()
+                        self?.bodyView.msr_uiRefreshControl!.endRefreshing()
                         return
                     })
             },
             failure: {
                 [weak self] error in
-                self?.bodyView.header.endRefreshing()
+                self?.bodyView.msr_uiRefreshControl!.endRefreshing()
                 return
             })
     }
@@ -137,6 +129,20 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return header.maxHeight - UIApplication.sharedApplication().statusBarFrame.height + 1
+        }
+        return 0
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let v = UIView()
+        v.userInteractionEnabled = false
+        v.hidden = true
+        return v
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -173,10 +179,10 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         if scrollView === bodyView {
-            let offset = bodyView.contentOffset.y + bodyView.contentInset.top
-            header.msr_heightConstraint!.constant = floor(min(max(header.maxHeight - offset, header.minHeight), header.maxHeight)) // The appearences of blur effect view will not correct unless it's height is an integer.
-            bodyView.scrollIndicatorInsets.top = header.msr_heightConstraint!.constant
-            header.layoutIfNeeded()
+            let offset = bodyView.contentOffset.y
+            header.frame.size.height = floor(max(header.maxHeight - offset - UIApplication.sharedApplication().statusBarFrame.height, header.minHeight)) // The appearences of blur effect view will not correct unless it's height is an integer.
+            header.frame.origin.y = offset
+            bodyView.scrollIndicatorInsets.top = header.bounds.height
         }
     }
     

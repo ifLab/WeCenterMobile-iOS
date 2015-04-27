@@ -70,7 +70,6 @@ class TopicViewControllerHeaderView: UIView {
         addSubview(topicTitleLabel)
         addSubview(topicDescriptionLabel)
         addSubview(focusButton)
-        msr_shouldTranslateAutoresizingMaskIntoConstraints = false
     }
     
     func update(#topic: Topic) {
