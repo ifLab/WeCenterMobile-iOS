@@ -326,10 +326,6 @@ class User: NSManagedObject {
     }
     
     func updateProfileForCurrentUser(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
-        let genderIDs: [Gender: Int] = [
-            .Male: 1,
-            .Female: 2,
-            .Secret: 3]
         let id = self.id
         let name = self.name
         let gender = self.gender!
@@ -337,7 +333,7 @@ class User: NSManagedObject {
         let birthday = self.birthday
         var parameters: NSMutableDictionary = ["uid": id]
         parameters["user_name"] = name
-        parameters["sex"] = genderIDs[gender]
+        parameters["sex"] = gender.rawValue
         parameters["signature"] = signature
         parameters["birthday"] = birthday?.timeIntervalSince1970
         NetworkManager.defaultManager!.POST("Update Profile",

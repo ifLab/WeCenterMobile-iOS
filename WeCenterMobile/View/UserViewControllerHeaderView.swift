@@ -48,6 +48,13 @@ class UserViewControllerHeaderView: UIView {
         return v
     }()
     
+    lazy var userGenderImageView: UIImageView = {
+        let v = UIImageView()
+        v.bounds.size = CGSize(width: 16, height: 16)
+        v.contentMode = .ScaleAspectFill
+        return v
+    }()
+    
     var maxHeight: CGFloat = 200
     var minHeight: CGFloat = 64
     
@@ -57,6 +64,7 @@ class UserViewControllerHeaderView: UIView {
         addSubview(userAvatarView)
         addSubview(userNameLabel)
         addSubview(userSignatureLabel)
+        addSubview(userGenderImageView)
         thankCountImageView.msr_imageRenderingMode = .AlwaysTemplate
         likeCountImageView.msr_imageRenderingMode = .AlwaysTemplate
         markCountImageView.msr_imageRenderingMode = .AlwaysTemplate
@@ -71,6 +79,12 @@ class UserViewControllerHeaderView: UIView {
         userNameLabel.sizeToFit()
         userSignatureLabel.text = user.signature ?? ""
         userSignatureLabel.sizeToFit()
+        if user.gender != nil && user.gender != .Secret {
+            userGenderImageView.image = UIImage(named: user.gender! == .Male ? "Male" : "Female")!.imageWithRenderingMode(.AlwaysTemplate)
+            userGenderImageView.tintColor = user.gender! == .Male ? UIColor.msr_materialBlue() : UIColor.msr_materialPink()
+        } else {
+            userGenderImageView.image = nil
+        }
         thankCountLabel.text = user.thankCount?.description ?? "..."
         likeCountLabel.text = user.answerFavoriteCount?.description ?? "..."
         markCountLabel.text = user.markCount?.description ?? "..."
@@ -94,6 +108,7 @@ class UserViewControllerHeaderView: UIView {
         bottomView.alpha = CGFloat(max(0, progress * 2 - 1))
         backgroundImageView.alpha = CGFloat(progress)
         userSignatureLabel.alpha = CGFloat(max(0, progress * 2 - 1))
+        userGenderImageView.alpha = CGFloat(max(0, progress * 2 - 1))
         if progress <= 1 {
             backButton.frame = MSRLinearInterpolation(backButtonBeginFrame, backButtonEndFrame, progress)
             userAvatarView.frame = MSRLinearInterpolation(userAvatarViewBeginFrame, userAvatarViewEndFrame, progress)
@@ -107,7 +122,9 @@ class UserViewControllerHeaderView: UIView {
             userAvatarView.frame = userAvatarViewEndFrame
             userNameLabel.frame = userNameLabelEndFrame
         }
-        userSignatureLabel.frame = CGRect(x: userNameLabel.frame.msr_left, y: userNameLabel.frame.msr_bottom + 5, width: bounds.width - userNameLabel.frame.msr_left - 10, height: userAvatarView.frame.height - userNameLabel.frame.height - 5)
+        userGenderImageView.center.y = userNameLabel.center.y
+        userGenderImageView.frame.origin.x = userNameLabel.frame.msr_right + 10
+        userSignatureLabel.frame = CGRect(x: userNameLabel.frame.msr_left, y: userNameLabel.frame.msr_bottom + 5, width: bounds.width - userNameLabelEndFrame.msr_left - 10, height: userAvatarView.frame.height - userNameLabel.frame.height - 5)
         userSignatureLabel.sizeToFit()
     }
     
