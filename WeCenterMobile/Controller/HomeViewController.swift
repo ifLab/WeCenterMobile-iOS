@@ -45,7 +45,12 @@ class HomeViewController: UITableViewController {
         for i in 0..<nibNames.count {
             tableView.registerNib(UINib(nibName: nibNames[i], bundle: NSBundle.mainBundle()), forCellReuseIdentifier: identifiers[i])
         }
-        view.backgroundColor = UIColor.msr_materialBlueGray800()
+// MSR_BEGIN
+        let iv = UIImageView(image: UIImage(named: "LoginViewBackground"))
+        iv.contentMode = .ScaleAspectFill
+        tableView.backgroundView = iv
+// MSR_END
+//        view.backgroundColor = UIColor.msr_materialBlueGray800()
         tableView.separatorStyle = .None
         tableView.indicatorStyle = .White
         msr_navigationBar!.barStyle = .Black

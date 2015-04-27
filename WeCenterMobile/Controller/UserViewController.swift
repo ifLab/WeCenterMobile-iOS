@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UserEditViewControllerDelegate {
     
     lazy var header: UserViewControllerHeaderView = {
         let v =  NSBundle.mainBundle().loadNibNamed("UserViewControllerHeaderView", owner: nil, options: nil).first as! UserViewControllerHeaderView
@@ -72,6 +72,12 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
                 [weak self] user in
                 self?.user = user
                 self?.reloadData()
+                user.fetchAvatar(
+                    forced: true,
+                    success: {
+                        self?.reloadData()
+                    },
+                    failure: nil)
                 return
             },
             failure: nil)
@@ -178,7 +184,9 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
             }
         } else {
             if user.isCurrentUser {
-                // ...
+                let uevc = NSBundle.mainBundle().loadNibNamed("UserEditViewController", owner: nil, options: nil).first as! UserEditViewController
+                uevc.delegate = self
+                showDetailViewController(uevc, sender: self)
             } else {
                 let followed = user.followed
                 user.followed = nil
@@ -208,6 +216,10 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     func didPressBackButton() {
         msr_navigationController!.popViewController(animated: true)
+    }
+    
+    func userEditViewControllerDidUpdateUserProfile(uevc: UserEditViewController) {
+        reloadData()
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

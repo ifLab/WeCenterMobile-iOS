@@ -60,6 +60,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1), animated: false, scrollPosition: .None)
+        NSNotificationCenter.defaultCenter().addObserverForName(CurrentUserPropertyDidChangeNotificationName, object: nil, queue: NSOperationQueue.mainQueue()) {
+            [weak self] notification in
+            let key = notification.userInfo![KeyUserInfoKey] as! String
+            if key == "avatarData" || key == "name" {
+                self?.userCell.update(user: User.currentUser, updateImage: key == "avatarData")
+            }
+            return
+        }
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3

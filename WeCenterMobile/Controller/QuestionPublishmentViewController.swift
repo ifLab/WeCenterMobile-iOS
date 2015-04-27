@@ -265,7 +265,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                             POSTParameters: nil,
                             constructingBodyWithBlock: {
                                 data in
-                                data?.appendPartWithFileData(jpeg, name: "qqfile", fileName: "image.png", mimeType: "image/png")
+                                data?.appendPartWithFileData(jpeg, name: "qqfile", fileName: "image.jpg", mimeType: "image/png")
                                 return
                             },
                             success: {

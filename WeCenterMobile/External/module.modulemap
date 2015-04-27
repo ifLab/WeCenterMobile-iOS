@@ -32,6 +32,13 @@ module MJRefresh {
     use UIKit
 }
 
+module RMDateSelectionViewController {
+    header "RMDateSelectionViewController/RMDateSelectionViewController/RMDateSelectionViewController.h"
+    requires objc, objc_arc
+    use UIKit
+    use QuartzCore
+}
+
 module SinaWeiboSDK {
     umbrella header "SinaWeiboSDK/libWeiboSDK/WeiboSDK.h"
     header "SinaWeiboSDK/libWeiboSDK/WeiboUser.h"

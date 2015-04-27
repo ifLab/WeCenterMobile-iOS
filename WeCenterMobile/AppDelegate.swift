@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MSRWeChatAPIDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         AFNetworkActivityIndicatorManager.sharedManager().enabled = true
+//        NSURLCache.setSharedURLCache(NSURLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil))
 //        NetworkManager.clearCookies()
 //        let directory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last as! NSURL
 //        let url = directory.URLByAppendingPathComponent("WeCenterMobile.sqlite")

@@ -21,6 +21,7 @@ extension UIImageView {
         }
         if user?.avatarURL != nil {
             user?.fetchAvatar(
+                forced: false,
                 success: {
                     [weak self] in
                     if let self_ = self {

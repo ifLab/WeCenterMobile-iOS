@@ -28,3 +28,6 @@
 [submodule "WeCenterMobile/External/SinaWeiboSDK"]
 	path = WeCenterMobile/External/SinaWeiboSDK
 	url = https://github.com/sinaweibosdk/weibo_ios_sdk.git
+[submodule "WeCenterMobile/External/RMDateSelectionViewController"]
+	path = WeCenterMobile/External/RMDateSelectionViewController
+	url = https://github.com/CooperRS/RMDateSelectionViewController.git

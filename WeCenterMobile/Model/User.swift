@@ -12,10 +12,17 @@ import UIKit
 
 let UserDefaultsCookiesKey = "WeCenterMobile_DefaultCookies"
 let UserDefaultsUserIDKey = "WeCenterMobile_DefaultUserID"
+let CurrentUserDidChangeNotificationName = "CurrentUserDidChangeNotificationName"
+let CurrentUserPropertyDidChangeNotificationName = "CurrentUserPropertyDidChangeNotificationName"
+let KeyUserInfoKey = "KeyPathUserInfoKey"
 
 class User: NSManagedObject {
     
-    static var currentUser: User? = nil
+    static var currentUser: User? = nil {
+        didSet {
+            NSNotificationCenter.defaultCenter().postNotificationName(CurrentUserDidChangeNotificationName, object: nil)
+        }
+    }
 
     var isCurrentUser: Bool {
         return id == User.currentUser?.id
@@ -26,7 +33,7 @@ class User: NSManagedObject {
     @NSManaged var answerFavoriteCount: NSNumber?
     @NSManaged var avatarData: NSData?
     @NSManaged var avatarURI: String?
-    @NSManaged var birthday: NSNumber?
+    @NSManaged var birthday: NSDate?
     @NSManaged var followerCount: NSNumber?
     @NSManaged var followingCount: NSNumber?
     @NSManaged var genderValue: NSNumber?
@@ -82,7 +89,12 @@ class User: NSManagedObject {
     var followed: Bool? = nil
     
     var avatarURL: String? {
-        return (avatarURI == nil) ? nil : NetworkManager.defaultManager!.website + NetworkManager.defaultManager!.paths["User Avatar"]! + avatarURI!
+        get {
+            return (avatarURI == nil) ? nil : NetworkManager.defaultManager!.website + NetworkManager.defaultManager!.paths["User Avatar"]! + avatarURI!
+        }
+        set {
+            avatarURI = newValue?.stringByReplacingOccurrencesOfString(NetworkManager.defaultManager!.website + NetworkManager.defaultManager!.paths["User Avatar"]!, withString: "")
+        }
     }
     
     class func get(#ID: NSNumber, error: NSErrorPointer) -> User? {
@@ -301,13 +313,84 @@ class User: NSManagedObject {
                 if let self_ = self {
                     self_.name = value["user_name"] as? String
                     self_.genderValue = value["sex"] is NSNull ? Gender.Secret.rawValue : Int(msr_object: value["sex"])
-                    self_.birthday = Int(msr_object: value["birthday"])
+                    let timeInterval = NSTimeInterval(msr_object: value["birthday"])
+                    if timeInterval != nil {
+                        self_.birthday = NSDate(timeIntervalSince1970: timeInterval!)
+                    }
                     self_.jobID = Int(msr_object: value["job_id"])
                     self_.signature = value["signature"] as? String
                 }
                 success?()
             },
             failure: failure)
+    }
+    
+    func updateProfileForCurrentUser(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        let genderIDs: [Gender: Int] = [
+            .Male: 1,
+            .Female: 2,
+            .Secret: 3]
+        let id = self.id
+        let name = self.name
+        let gender = self.gender!
+        let signature = self.signature
+        let birthday = self.birthday
+        var parameters: NSMutableDictionary = ["uid": id]
+        parameters["user_name"] = name
+        parameters["sex"] = genderIDs[gender]
+        parameters["signature"] = signature
+        parameters["birthday"] = birthday?.timeIntervalSince1970
+        NetworkManager.defaultManager!.POST("Update Profile",
+            parameters: parameters,
+            success: {
+                [weak self] data in
+                if data as! String == "success" {
+                    User.currentUser!.id = id
+                    User.currentUser!.name = name
+                    User.currentUser!.gender = gender
+                    User.currentUser!.signature = signature
+                    User.currentUser!.birthday = birthday
+                    success?()
+                } else {
+                    failure?(NSError()) // Needs specification
+                }
+            },
+            failure: failure)
+    }
+    
+    private static var avatarUploadingOperation: AFHTTPRequestOperation?
+    
+    class func uploadAvatar(avatar: UIImage, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+            let jpeg = UIImageJPEGRepresentation(avatar, 1)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.avatarUploadingOperation = NetworkManager.defaultManager!.request("Upload User Avatar",
+                    GETParameters: nil,
+                    POSTParameters: nil,
+                    constructingBodyWithBlock: {
+                        data in
+                        data?.appendPartWithFileData(jpeg, name: "user_avatar", fileName: "avatar.jpg", mimeType: "image/png")
+                        return
+                    },
+                    success: {
+                        data in
+                        self.avatarUploadingOperation = nil
+                        self.currentUser?.avatar = avatar
+                        self.currentUser?.avatarURL = (data["preview"] as! String)
+                        success?()
+                        return
+                    },
+                    failure: {
+                        error in
+                        self.avatarUploadingOperation = nil
+                        failure?(error)
+                    })
+            }
+        }
+    }
+    
+    class func cancleAvatarUploadingOperation() {
+        avatarUploadingOperation?.cancel()
     }
     
     func toggleFollow(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
@@ -325,10 +408,13 @@ class User: NSManagedObject {
     
     private let imageView = UIImageView()
     
-    func fetchAvatar(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchAvatar(#forced: Bool, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         if avatarURL != nil {
             let request = NSMutableURLRequest(URL: NSURL(string: avatarURL!)!)
             request.addValue("image/*", forHTTPHeaderField:"Accept")
+            if forced {
+                (UIImageView.sharedImageCache() as! NSCache).removeObjectForKey(request.URL!.absoluteString!)
+            }
             imageView.setImageWithURLRequest(request,
                 placeholderImage: nil,
                 success: {
@@ -487,5 +573,12 @@ class User: NSManagedObject {
             },
             failure: failure)
     }
-
+    
+    override func didChangeValueForKey(key: String) {
+        super.didChangeValueForKey(key)
+        if isCurrentUser {
+            NSNotificationCenter.defaultCenter().postNotificationName(CurrentUserPropertyDidChangeNotificationName, object: nil, userInfo: [KeyUserInfoKey: key])
+        }
+    }
+    
 }

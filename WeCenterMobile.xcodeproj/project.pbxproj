@@ -241,6 +241,10 @@
 		956140171AE2E92E0077FBA0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7CF1A1DA4EC00167D09 /* libz.dylib */; };
 		9561401B1AE2EA870077FBA0 /* MSRWeChatSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 956140111AE2E6080077FBA0 /* MSRWeChatSDK.framework */; };
 		9561401C1AE2EA870077FBA0 /* MSRWeChatSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 956140111AE2E6080077FBA0 /* MSRWeChatSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9568F39F1AEC748A00B201A8 /* UserEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9568F39E1AEC748A00B201A8 /* UserEditViewController.swift */; };
+		9568F3A21AEC74AB00B201A8 /* UserEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9568F3A11AEC74AB00B201A8 /* UserEditViewController.xib */; };
+		9568F3A41AECBE7300B201A8 /* MSRSegmentedControlCircleIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9568F3A31AECBE7300B201A8 /* MSRSegmentedControlCircleIndicator.swift */; };
+		9568F3E21AECD63700B201A8 /* RMDateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9568F3E11AECD63700B201A8 /* RMDateSelectionViewController.m */; };
 		956E70EF1AAFC4E100A3FD7D /* WeCenterMobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 956E70ED1AAFC4E100A3FD7D /* WeCenterMobile.xcdatamodeld */; };
 		956E72051AAFC53B00A3FD7D /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 956E71E11AAFC53B00A3FD7D /* AFHTTPRequestOperation.m */; };
 		956E72061AAFC53B00A3FD7D /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 956E71E31AAFC53B00A3FD7D /* AFHTTPRequestOperationManager.m */; };
@@ -815,6 +819,11 @@
 		95613FFF1AE2E6080077FBA0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		956140001AE2E6080077FBA0 /* MSRWeChatSDKTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRWeChatSDKTests.swift; sourceTree = "<group>"; };
 		956140011AE2E6080077FBA0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9568F39E1AEC748A00B201A8 /* UserEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEditViewController.swift; sourceTree = "<group>"; };
+		9568F3A11AEC74AB00B201A8 /* UserEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserEditViewController.xib; sourceTree = "<group>"; };
+		9568F3A31AECBE7300B201A8 /* MSRSegmentedControlCircleIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRSegmentedControlCircleIndicator.swift; sourceTree = "<group>"; };
+		9568F3E01AECD63700B201A8 /* RMDateSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDateSelectionViewController.h; sourceTree = "<group>"; };
+		9568F3E11AECD63700B201A8 /* RMDateSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDateSelectionViewController.m; sourceTree = "<group>"; };
 		956E70EE1AAFC4E100A3FD7D /* WeCenterMobile.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeCenterMobile.xcdatamodel; sourceTree = "<group>"; };
 		956E71E01AAFC53B00A3FD7D /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		956E71E11AAFC53B00A3FD7D /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -1034,6 +1043,8 @@
 				950FE1361A1DA2B300167D09 /* UserListViewController.swift */,
 				950FE1371A1DA2B300167D09 /* UserAskedQuestionListViewController.swift */,
 				950FE1391A1DA2B300167D09 /* UserViewController.swift */,
+				9568F39E1AEC748A00B201A8 /* UserEditViewController.swift */,
+				9568F3A11AEC74AB00B201A8 /* UserEditViewController.xib */,
 				950FE13A1A1DA2B300167D09 /* WelcomeViewController.swift */,
 			);
 			path = Controller;
@@ -1052,6 +1063,7 @@
 				951D2F691AB7F85500DCB678 /* MJRefresh */,
 				95C2E9F01AB0516800F2A326 /* Msr */,
 				95613FEA1AE2E6080077FBA0 /* MSRWeChatSDK */,
+				9568F3DF1AECD63700B201A8 /* RMDateSelectionViewController */,
 				9580ED981AE4DEE000EBF5FE /* SinaWeiboSDK */,
 				95E060D11AC2507300C6750C /* SVProgressHUD */,
 				95E403E31ABDEC3000C18A44 /* UzysAssetsPickerController */,
@@ -1704,6 +1716,16 @@
 			path = MSRWeChatSDKTests;
 			sourceTree = "<group>";
 		};
+		9568F3DF1AECD63700B201A8 /* RMDateSelectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9568F3E01AECD63700B201A8 /* RMDateSelectionViewController.h */,
+				9568F3E11AECD63700B201A8 /* RMDateSelectionViewController.m */,
+			);
+			name = RMDateSelectionViewController;
+			path = RMDateSelectionViewController/RMDateSelectionViewController;
+			sourceTree = "<group>";
+		};
 		956E71DF1AAFC53B00A3FD7D /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1896,6 +1918,7 @@
 				95C2EA0A1AB0516800F2A326 /* MSRSegment.swift */,
 				95C2EA0B1AB0516800F2A326 /* MSRSegmentedControl.swift */,
 				95C2EA0C1AB0516800F2A326 /* MSRSegmentedControlBlockIndicator.swift */,
+				9568F3A31AECBE7300B201A8 /* MSRSegmentedControlCircleIndicator.swift */,
 				95C2EA0D1AB0516800F2A326 /* MSRSegmentedControlIndicator.swift */,
 				95C2EA0E1AB0516800F2A326 /* MSRSegmentedControlLinearIndicator.swift */,
 				95C2EA0F1AB0516800F2A326 /* MSRSegmentedControlOverlineIndicator.swift */,
@@ -2114,6 +2137,7 @@
 				953BF5BC1A51A70D00B804B8 /* ArticlePublishmentActionCell.xib in Resources */,
 				95C47D4F1ACA51F200A56879 /* SidebarCategoryCell.xib in Resources */,
 				95E404031ABDEC3000C18A44 /* UzysAssetsPickerController.xib in Resources */,
+				9568F3A21AEC74AB00B201A8 /* UserEditViewController.xib in Resources */,
 				950FE1261A1DA2A400167D09 /* User.strings in Resources */,
 				95E060D91AC2507300C6750C /* SVProgressHUD.bundle in Resources */,
 				95F380C51AB2C70B0070A7FB /* FeaturedArticleCell.xib in Resources */,
@@ -2191,6 +2215,7 @@
 				951D1EAA1ACD1E4E0072D555 /* NSMutableAttributedString+HTML.m in Sources */,
 				951D1E911ACD1E4E0072D555 /* DTHTMLParserNode.m in Sources */,
 				951D1F911ACD1E750072D555 /* NSString+DTFormatNumbers.m in Sources */,
+				9568F39F1AEC748A00B201A8 /* UserEditViewController.swift in Sources */,
 				951D1EA71ACD1E4E0072D555 /* NSCharacterSet+HTML.m in Sources */,
 				951D1E861ACD1E4E0072D555 /* DTCoreTextLayoutFrame.m in Sources */,
 				95F380C31AB2C4490070A7FB /* FeaturedArticleCell.swift in Sources */,
@@ -2212,6 +2237,7 @@
 				951D1EA81ACD1E4E0072D555 /* NSCoder+DTCompatibility.m in Sources */,
 				951D1EAE1ACD1E4E0072D555 /* NSString+HTML.m in Sources */,
 				950FE71C1A1DA2B500167D09 /* Action.swift in Sources */,
+				9568F3E21AECD63700B201A8 /* RMDateSelectionViewController.m in Sources */,
 				950FE7361A1DA2B500167D09 /* LoginView.swift in Sources */,
 				95C2EA371AB0516800F2A326 /* MSRSegmentedControlLinearIndicator.swift in Sources */,
 				951D1F601ACD1E750072D555 /* DTFolderMonitor.m in Sources */,
@@ -2375,6 +2401,7 @@
 				956E72151AAFC53B00A3FD7D /* UIWebView+AFNetworking.m in Sources */,
 				95C2EA331AB0516800F2A326 /* MSRSegment.swift in Sources */,
 				951D1EB01ACD1E4E0072D555 /* UIFont+DTCoreText.m in Sources */,
+				9568F3A41AECBE7300B201A8 /* MSRSegmentedControlCircleIndicator.swift in Sources */,
 				951D1F681ACD1E750072D555 /* DTSQLiteDatabase.m in Sources */,
 				951D1EAB1ACD1E4E0072D555 /* NSMutableString+HTML.m in Sources */,
 				951D1FBA1ACE95330072D555 /* AnswerTopBar.swift in Sources */,
