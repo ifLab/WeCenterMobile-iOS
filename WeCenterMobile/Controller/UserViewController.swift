@@ -55,8 +55,12 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         header.frame.size.width = bodyView.bounds.width
         bodyView.registerNib(UINib(nibName: "UserViewControllerBodyViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: bodyViewCellReuseIdentifier)
         bodyView.registerNib(UINib(nibName: "UserViewControllerBottomButtonCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: bottomButtonCellReuseIdentifier)
-        header.backButton.hidden = msr_navigationController!.viewControllers.count == 1
-        header.backButton.addTarget(self, action: "didPressBackButton", forControlEvents: .TouchUpInside)
+        if msr_navigationController!.viewControllers.count == 1 {
+            header.backButton.setImage(UIImage(named: "List")!.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+            header.backButton.addTarget(self, action: "didPressMenuButton", forControlEvents: .TouchUpInside)
+        } else {
+            header.backButton.addTarget(self, action: "didPressBackButton", forControlEvents: .TouchUpInside)
+        }
         bodyView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
         bodyView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
         bodyView.msr_uiRefreshControl = UIRefreshControl()
@@ -195,6 +199,7 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
                 msr_navigationController!.pushViewController(QuestionListViewController(user: user), animated: true)
                 break
             case 1:
+                msr_navigationController!.pushViewController(AnswerListViewController(user: user), animated: true)
                 break
             case 2:
                 break
@@ -240,6 +245,10 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
             return user.followed != nil || user.isCurrentUser
         }
         return true
+    }
+    
+    func didPressMenuButton() {
+        appDelegate.mainViewController.sidebar.expand()
     }
     
     func didPressBackButton() {

@@ -54,6 +54,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }()
     
     let cellReuseIdentifier = "TopicViewControllerCell"
+    let cellNibName = "AnswerCellWithQuestionTitle"
     
     override func loadView() {
         super.loadView()
@@ -62,7 +63,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         bodyView.msr_uiRefreshControl = UIRefreshControl()
         bodyView.msr_uiRefreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         bodyView.msr_uiRefreshControl!.tintColor = UIColor.whiteColor()
-        bodyView.registerNib(UINib(nibName: "TopicViewControllerCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
+        bodyView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         automaticallyAdjustsScrollViewInsets = false
         msr_navigationBar!.hidden = true
     }
@@ -150,7 +151,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! TopicViewControllerCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! AnswerCellWithQuestionTitle
         cell.update(answer: answers[indexPath.row], updateImage: true)
         cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
         cell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
@@ -160,10 +161,11 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         struct _Static {
             static var id: dispatch_once_t = 0
-            static var cell: TopicViewControllerCell!
+            static var cell: AnswerCellWithQuestionTitle!
         }
         dispatch_once(&_Static.id) {
-            _Static.cell = NSBundle.mainBundle().loadNibNamed("TopicViewControllerCell", owner: nil, options: nil).first as! TopicViewControllerCell
+            [weak self] in
+            _Static.cell = NSBundle.mainBundle().loadNibNamed(self!.cellNibName, owner: nil, options: nil).first as! AnswerCellWithQuestionTitle
         }
         _Static.cell.update(answer: answers[indexPath.row], updateImage: false)
         return _Static.cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height

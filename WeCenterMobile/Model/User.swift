@@ -215,18 +215,20 @@ class User: NSManagedObject {
     func fetchQuestions(#page: Int, count: Int, success: (([Question]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("User Question List",
             parameters: [
-                "uid": id
+                "uid": id,
+                "page": page,
+                "per_page": count
             ],
             success: {
                 [weak self] data in
-                var questions = [Question]()
-                if Int(msr_object: data["total_rows"]!!) > 0 {
-                    var questionsData = [NSDictionary]()
+                if Int(msr_object: data["total_rows"]) > 0 {
+                    let questionsData: [NSDictionary]
                     if data["rows"] is NSDictionary {
                         questionsData = [data["rows"] as! NSDictionary]
                     } else {
                         questionsData = data["rows"] as! [NSDictionary]
                     }
+                    var questions = [Question]()
                     for questionData in questionsData {
                         let questionID = Int(msr_object: questionData["id"])!
                         let question = DataManager.defaultManager!.autoGenerate("Question", ID: questionID) as! Question
@@ -237,8 +239,48 @@ class User: NSManagedObject {
                         self?.questions.insert(question)
                         questions.append(question)
                     }
+                    success?(questions)
+                } else {
+                    failure?(NSError()) // Needs specification
                 }
-                success?(questions)
+            },
+            failure: failure)
+    }
+    
+    func fetchAnswers(#page: Int, count: Int, success: (([Answer]) -> Void)?, failure: ((NSError) -> Void)?) {
+        NetworkManager.defaultManager!.GET("User Answer List",
+            parameters: [
+                "uid": id,
+                "page": page,
+                "per_page": count
+            ],
+            success: {
+                [weak self] data in
+                if Int(msr_object: data["total_rows"]) > 0 {
+                    let answersData: [NSDictionary]
+                    if data["rows"] is NSDictionary {
+                        answersData = [data["rows"] as! NSDictionary]
+                    } else {
+                        answersData = data["rows"] as! [NSDictionary]
+                    }
+                    var answers = [Answer]()
+                    for answerData in answersData {
+                        let answerID = Int(msr_object: answerData["answer_id"])!
+                        let questionID = Int(msr_object: answerData["question_id"])!
+                        let answer = DataManager.defaultManager!.autoGenerate("Answer", ID: answerID) as! Answer
+                        answer.question = (DataManager.defaultManager!.autoGenerate("Question", ID: questionID) as! Question)
+                        answer.user = self
+                        answer.user?.avatarURI = answerData["avatar_file"] as? String
+                        answer.body = (answerData["answer_content"] as! String)
+                        answer.agreementCount = Int(msr_object: answerData["agree_count"])
+                        answer.question!.title = (answerData["question_title"] as! String)
+                        self?.answers.insert(answer)
+                        answers.append(answer)
+                    }
+                    success?(answers)
+                } else {
+                    failure?(NSError()) // Needs specification
+                }
             },
             failure: failure)
     }

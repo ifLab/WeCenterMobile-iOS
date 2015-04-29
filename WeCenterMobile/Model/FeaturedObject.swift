@@ -28,7 +28,7 @@ class FeaturedObject: NSManagedObject {
     class func fetchFeaturedObjects(#page: Int, count: Int, type: FeaturedObjectListType, success: (([FeaturedObject]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("Explore List",
             parameters: [
-                "page": page - 1,
+                "page": page,
                 "per_page": count,
                 // "day": 30,
                 "is_recommend": type == .Recommended ? 1 : 0,

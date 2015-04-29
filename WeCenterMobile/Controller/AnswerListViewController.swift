@@ -1,24 +1,22 @@
 //
-//  QuestionListViewController.swift
+//  AnswerListViewController.swift
 //  WeCenterMobile
 //
-//  Created by Darren Liu on 14/11/17.
-//  Copyright (c) 2014年 ifLab. All rights reserved.
+//  Created by Darren Liu on 15/4/29.
+//  Copyright (c) 2015年 Beijing Information Science and Technology University. All rights reserved.
 //
 
-import MJRefresh
 import UIKit
 
-
-@objc enum QuestionListType: Int {
+@objc enum AnswerListType: Int {
     case User = 1
 }
 
-class QuestionListViewController: UITableViewController {
-
+class AnswerListViewController: UITableViewController {
+    
     let user: User
-    let listType: QuestionListType
-    var questions = [Question]()
+    let listType: AnswerListType
+    var answers = [Answer]()
     var page = 1
     let count = 20
     
@@ -27,13 +25,13 @@ class QuestionListViewController: UITableViewController {
         listType = .User
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init!(coder aDecoder: NSCoder!) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let cellReuseIdentifier = "QuestionListViewControllerCell"
-    let cellNibName = "QuestionListViewControllerCell"
+    let cellReuseIdentifier = "AnswerCellWithQuestionTitle"
+    let cellNibName = "AnswerCellWithQuestionTitle"
     
     private var headerImageView: UIImageView! // for keeping weak property in header
     private var headerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in header
@@ -44,7 +42,7 @@ class QuestionListViewController: UITableViewController {
         tableView = ButtonTouchesCancelableTableView()
         tableView.delegate = self
         tableView.dataSource = self
-        title = "\(user.name!) 的提问"
+        title = "\(user.name!) 的回答"
         view.backgroundColor = UIColor.msr_materialBlueGray800()
         tableView.indicatorStyle = .White
         tableView.separatorStyle = .None
@@ -72,26 +70,27 @@ class QuestionListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return questions.count
+        return answers.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! QuestionListViewControllerCell
-        cell.update(question: questions[indexPath.row])
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! AnswerCellWithQuestionTitle
+        cell.update(answer: answers[indexPath.row], updateImage: true)
         cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
+        cell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
         return cell
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         struct _Static {
             static var id: dispatch_once_t = 0
-            static var cell: QuestionListViewControllerCell!
+            static var cell: AnswerCellWithQuestionTitle!
         }
         dispatch_once(&_Static.id) {
             [weak self] in
-            _Static.cell = NSBundle.mainBundle().loadNibNamed(self!.cellNibName, owner: nil, options: nil).first as! QuestionListViewControllerCell
+            _Static.cell = NSBundle.mainBundle().loadNibNamed(self!.cellNibName, owner: nil, options: nil).first as! AnswerCellWithQuestionTitle
         }
-        _Static.cell.update(question: questions[indexPath.row])
+        _Static.cell.update(answer: answers[indexPath.row], updateImage: false)
         return _Static.cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1
     }
     
@@ -105,16 +104,22 @@ class QuestionListViewController: UITableViewController {
         }
     }
     
+    func didPressAnswerButton(button: UIButton) {
+        if let answer = button.msr_userInfo as? Answer {
+            msr_navigationController!.pushViewController(AnswerViewController(answer: answer), animated: true)
+        }
+    }
+    
     var shouldReloadAfterLoadingMore = true
     
     internal func refresh() {
         shouldReloadAfterLoadingMore = false
         tableView.footer?.endRefreshing()
-        let success: ([Question]) -> Void = {
-            [weak self] questions in
+        let success: ([Answer]) -> Void = {
+            [weak self] answers in
             if let self_ = self {
                 self_.page = 1
-                self_.questions = questions
+                self_.answers = answers
                 self_.tableView.header.endRefreshing()
                 self_.tableView.reloadData()
                 if self_.tableView.footer == nil {
@@ -133,7 +138,7 @@ class QuestionListViewController: UITableViewController {
         }
         switch listType {
         case .User:
-            user.fetchQuestions(page: 1, count: count, success: success, failure: failure)
+            user.fetchAnswers(page: 1, count: count, success: success, failure: failure)
             break
         default:
             break
@@ -146,11 +151,11 @@ class QuestionListViewController: UITableViewController {
             return
         }
         shouldReloadAfterLoadingMore = true
-        let success: ([Question]) -> Void = {
-            [weak self] questions in
+        let success: ([Answer]) -> Void = {
+            [weak self] answers in
             if self?.shouldReloadAfterLoadingMore ?? false {
                 self?.page = self!.page + 1
-                self?.questions.extend(questions)
+                self?.answers.extend(answers)
                 self?.tableView.reloadData()
             }
             self?.tableView.footer.endRefreshing()
@@ -162,7 +167,7 @@ class QuestionListViewController: UITableViewController {
         }
         switch listType {
         case .User:
-            user.fetchQuestions(page: page + 1, count: count, success: success, failure: failure)
+            user.fetchAnswers(page: page + 1, count: count, success: success, failure: failure)
             break
         default:
             break

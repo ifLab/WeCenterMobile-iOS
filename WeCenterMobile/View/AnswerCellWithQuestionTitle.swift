@@ -1,5 +1,5 @@
 //
-//  TopicViewControllerCell.swift
+//  AnswerCellWithQuestionTitle.swift
 //  WeCenterMobile
 //
 //  Created by Darren Liu on 15/4/12.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TopicViewControllerCell: UITableViewCell {
+class AnswerCellWithQuestionTitle: UITableViewCell {
     
     @IBOutlet weak var questionTitleLabel: UILabel!
     @IBOutlet weak var answerUserAvatarView: MSRRoundedImageView!

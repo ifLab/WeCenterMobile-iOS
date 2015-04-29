@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="121" id="0Om-Pp-U4e" customClass="TopicViewControllerCell" customModule="WeCenterMobile" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="121" id="0Om-Pp-U4e" customClass="AnswerCellWithQuestionTitle" customModule="WeCenterMobile" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="121"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0Om-Pp-U4e" id="5zj-ga-Apg">
@@ -33,7 +33,7 @@
                                         </state>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="vaF-iH-5IN" firstAttribute="top" secondItem="O52-uZ-ly7" secondAttribute="top" constant="10" id="9bt-ya-E6U"/>
                                     <constraint firstAttribute="trailing" secondItem="fK2-dJ-qyZ" secondAttribute="trailing" id="CuR-gi-kgr"/>
@@ -78,7 +78,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里是回答，文字比较长，最多可能达到三行。" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhf-sc-oSg">
                                         <rect key="frame" x="50" y="29" width="260" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.5k" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADf-DP-EUC">
@@ -95,7 +95,7 @@
                                         </state>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="ADf-DP-EUC" firstAttribute="trailing" secondItem="E9d-q0-CQo" secondAttribute="trailing" id="1KF-Wx-W7Q"/>
                                     <constraint firstItem="ADf-DP-EUC" firstAttribute="top" secondItem="E9d-q0-CQo" secondAttribute="bottom" constant="5" id="4Cr-PV-CrO"/>
