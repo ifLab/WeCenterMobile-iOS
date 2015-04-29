@@ -1,53 +1,56 @@
 //
-//  UserListViewController.swift
+//  QuestionListViewController.swift
 //  WeCenterMobile
 //
-//  Created by Darren Liu on 14/8/16.
+//  Created by Darren Liu on 14/11/17.
 //  Copyright (c) 2014年 ifLab. All rights reserved.
 //
 
 import MJRefresh
 import UIKit
 
-@objc enum UserListType: Int {
-    case UserFollowing = 1
-    case UserFollower = 2
-    case QuestionFollwer = 3
+
+@objc enum QuestionListType: Int {
+    case User = 1
 }
 
-class UserListViewController: UITableViewController {
-    let listType: UserListType
-    var user: User
-    var users: [User] = []
-    var page = 1
+class QuestionListViewController: UITableViewController {
+
+    let user: User
+    let listType: QuestionListType
+    var questions = [Question]()
+    var page = 0
     let count = 20
-    init(user: User, listType: UserListType) {
-        self.listType = listType
+    
+    init(user: User) {
         self.user = user
+        listType = .User
         super.init(nibName: nil, bundle: nil)
     }
-    required init(coder aDecoder: NSCoder) {
+
+    required init!(coder aDecoder: NSCoder!) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    let cellReuseIdentifier = "QuestionListViewControllerCell"
+    let cellNibName = "QuestionListViewControllerCell"
+    
     private var headerImageView: UIImageView! // for keeping weak property in header
     private var headerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in header
     private var footerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in footer
-    let cellReuseIdentifier = "UserListViewControllerCell"
+    
     override func loadView() {
         super.loadView()
         tableView = ButtonTouchesCancelableTableView()
         tableView.delegate = self
         tableView.dataSource = self
-        let titles: [UserListType: String] = [
-            .UserFollowing: "\(user.name!) 关注的用户",
-            .UserFollower: "\(user.name!) 的追随者"]
-        self.title = titles[listType]!
+        title = "\(user.name!) 的提问"
         view.backgroundColor = UIColor.msr_materialBlueGray800()
-        tableView.separatorStyle = .None
         tableView.indicatorStyle = .White
-        tableView.registerNib(UINib(nibName: "UserListViewControllerCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
-        tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
-        tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
+        tableView.separatorStyle = .None
+        msr_navigationBar!.barStyle = .Black
+        msr_navigationBar!.tintColor = UIColor.whiteColor()
+        tableView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
         header.textColor = UIColor.whiteColor()
         headerImageView = header.valueForKey("arrowImage") as! UIImageView
@@ -55,47 +58,64 @@ class UserListViewController: UITableViewController {
         headerImageView.msr_imageRenderingMode = .AlwaysTemplate
         headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
         headerActivityIndicatorView.activityIndicatorViewStyle = .White
-        msr_navigationBar!.barStyle = .Black
-        msr_navigationBar!.tintColor = UIColor.whiteColor()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.header.beginRefreshing()
     }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return questions.count
     }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! UserListViewControllerCell
-        cell.update(user: users[indexPath.row], updateImage: true)
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! QuestionListViewControllerCell
+        cell.update(question: questions[indexPath.row])
+        cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
         return cell
     }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         struct _Static {
             static var id: dispatch_once_t = 0
-            static var cell: UserListViewControllerCell!
+            static var cell: QuestionListViewControllerCell!
         }
         dispatch_once(&_Static.id) {
-            _Static.cell = NSBundle.mainBundle().loadNibNamed("UserListViewControllerCell", owner: nil, options: nil).first as! UserListViewControllerCell
+            [weak self] in
+            _Static.cell = NSBundle.mainBundle().loadNibNamed(self!.cellNibName, owner: nil, options: nil).first as! QuestionListViewControllerCell
         }
-        _Static.cell.update(user: users[indexPath.row], updateImage: false)
-        return _Static.cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+        _Static.cell.update(question: questions[indexPath.row])
+        return _Static.cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1
     }
+    
+    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
+    
+    func didPressQuestionButton(button: UIButton) {
+        if let question = button.msr_userInfo as? Question {
+            msr_navigationController!.pushViewController(QuestionViewController(question: question), animated: true)
+        }
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        msr_navigationController!.pushViewController(UserViewController(user: users[indexPath.row]), animated: true)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    func refresh() {
+    
+    var shouldReloadAfterLoadingMore = true
+    
+    internal func refresh() {
         shouldReloadAfterLoadingMore = false
         tableView.footer?.endRefreshing()
-        let success: ([User]) -> Void = {
-            [weak self] users in
+        let success: ([Question]) -> Void = {
+            [weak self] questions in
             if let self_ = self {
                 self_.page = 1
-                self_.users = users
+                self_.questions = questions
                 self_.tableView.header.endRefreshing()
                 self_.tableView.reloadData()
                 if self_.tableView.footer == nil {
@@ -113,28 +133,25 @@ class UserListViewController: UITableViewController {
             return
         }
         switch listType {
-        case .UserFollower:
-            user.fetchFollowers(page: 1, count: count, success: success, failure: failure)
-            break
-        case .UserFollowing:
-            user.fetchFollowings(page: 1, count: count, success: success, failure: failure)
+        case .User:
+            user.fetchQuestions(page: 1, count: count, success: success, failure: failure)
             break
         default:
             break
         }
     }
-    var shouldReloadAfterLoadingMore = true
-    func loadMore() {
+    
+    internal func loadMore() {
         if tableView.header.isRefreshing() {
             tableView.footer.endRefreshing()
             return
         }
         shouldReloadAfterLoadingMore = true
-        let success: ([User]) -> Void = {
-            [weak self] users in
+        let success: ([Question]) -> Void = {
+            [weak self] questions in
             if self?.shouldReloadAfterLoadingMore ?? false {
                 self?.page = self!.page + 1
-                self?.users.extend(users)
+                self?.questions.extend(questions)
                 self?.tableView.reloadData()
             }
             self?.tableView.footer.endRefreshing()
@@ -145,17 +162,16 @@ class UserListViewController: UITableViewController {
             return
         }
         switch listType {
-        case .UserFollower:
-            user.fetchFollowers(page: page + 1, count: count, success: success, failure: failure)
-            break
-        case .UserFollowing:
-            user.fetchFollowings(page: page + 1, count: count, success: success, failure: failure)
+        case .User:
+            user.fetchQuestions(page: page + 1, count: count, success: success, failure: failure)
             break
         default:
             break
         }
     }
+    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
+    
 }

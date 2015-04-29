@@ -127,7 +127,7 @@ class TopicViewControllerHeaderView: UIView {
             topicTitleLabel.frame = topicTitleLabelEndFrame
             focusButton.frame = focusButtonEndFrame
         }
-        topicDescriptionLabel.frame = CGRect(x: topicTitleLabel.frame.msr_left, y: topicTitleLabel.frame.msr_bottom + 5, width: bounds.width - topicTitleLabel.frame.msr_left - 10, height: topicImageView.frame.height - topicTitleLabel.frame.height - 5)
+        topicDescriptionLabel.frame = CGRect(x: topicTitleLabel.frame.msr_left, y: topicTitleLabel.frame.msr_bottom + 5, width: bounds.width - topicTitleLabelEndFrame.msr_left - 10, height: topicImageView.frame.height - topicTitleLabel.frame.height - 5)
         topicDescriptionLabel.sizeToFit()
     }
     

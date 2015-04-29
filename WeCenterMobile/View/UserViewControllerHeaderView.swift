@@ -123,8 +123,11 @@ class UserViewControllerHeaderView: UIView {
         }
         userGenderImageView.center.y = userNameLabel.center.y
         userGenderImageView.frame.origin.x = userNameLabel.frame.msr_right + 10
-        userSignatureLabel.frame = CGRect(x: userNameLabel.frame.msr_left, y: userNameLabel.frame.msr_bottom + 5, width: bounds.width - userNameLabelEndFrame.msr_left - 10, height: userAvatarView.frame.height - userNameLabel.frame.height - 5)
-        userSignatureLabel.sizeToFit()
+        userSignatureLabel.frame = CGRect(x: userNameLabel.frame.msr_left, y: userNameLabel.frame.msr_bottom + 5, width: bounds.width - userNameLabelEndFrame.msr_left - 10, height: userAvatarViewEndFrame.height - userNameLabelEndFrame.height - 5)
+        let fittedSize = userSignatureLabel.sizeThatFits(userSignatureLabel.frame.size)
+        if fittedSize.height < userSignatureLabel.frame.height {
+            userSignatureLabel.frame.size.height = fittedSize.height
+        }
     }
     
 }

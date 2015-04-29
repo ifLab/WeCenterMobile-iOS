@@ -23,7 +23,7 @@
 		950FE50B1A1DA2B500167D09 /* TopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1341A1DA2B300167D09 /* TopicListViewController.swift */; };
 		950FE50C1A1DA2B500167D09 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1351A1DA2B300167D09 /* TopicViewController.swift */; };
 		950FE50D1A1DA2B500167D09 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1361A1DA2B300167D09 /* UserListViewController.swift */; };
-		950FE50E1A1DA2B500167D09 /* UserAskedQuestionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1371A1DA2B300167D09 /* UserAskedQuestionListViewController.swift */; };
+		950FE50E1A1DA2B500167D09 /* QuestionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1371A1DA2B300167D09 /* QuestionListViewController.swift */; };
 		950FE5101A1DA2B500167D09 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1391A1DA2B300167D09 /* UserViewController.swift */; };
 		950FE5111A1DA2B500167D09 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE13A1A1DA2B300167D09 /* WelcomeViewController.swift */; };
 		950FE71C1A1DA2B500167D09 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE4D71A1DA2B500167D09 /* Action.swift */; };
@@ -212,6 +212,8 @@
 		953028951ADB5A3300F42B3B /* ButtonTouchesCancelableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953028941ADB5A3300F42B3B /* ButtonTouchesCancelableScrollView.swift */; };
 		9531D6971AEE565400E6549D /* TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6961AEE565400E6549D /* TintColor.swift */; };
 		9531D69A1AEEB93D00E6549D /* UIScrollView+MSRRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6991AEEB93D00E6549D /* UIScrollView+MSRRefreshControl.swift */; };
+		9531D69C1AEFB86F00E6549D /* QuestionListViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D69B1AEFB86F00E6549D /* QuestionListViewControllerCell.swift */; };
+		9531D69E1AEFB89400E6549D /* QuestionListViewControllerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D69D1AEFB89400E6549D /* QuestionListViewControllerCell.xib */; };
 		9532C8C81A51547B001A0E4A /* QuestionFocusingActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9532C8C71A51547B001A0E4A /* QuestionFocusingActionCell.swift */; };
 		9532C8CA1A51548B001A0E4A /* QuestionFocusingActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9532C8C91A51548B001A0E4A /* QuestionFocusingActionCell.xib */; };
 		9532C8CC1A515E28001A0E4A /* AnswerAgreementActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9532C8CB1A515E28001A0E4A /* AnswerAgreementActionCell.swift */; };
@@ -434,7 +436,7 @@
 		950FE1341A1DA2B300167D09 /* TopicListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListViewController.swift; sourceTree = "<group>"; };
 		950FE1351A1DA2B300167D09 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		950FE1361A1DA2B300167D09 /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
-		950FE1371A1DA2B300167D09 /* UserAskedQuestionListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAskedQuestionListViewController.swift; sourceTree = "<group>"; };
+		950FE1371A1DA2B300167D09 /* QuestionListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionListViewController.swift; sourceTree = "<group>"; };
 		950FE1391A1DA2B300167D09 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		950FE13A1A1DA2B300167D09 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = WelcomeViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		950FE4D71A1DA2B500167D09 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Action.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -773,6 +775,8 @@
 		953028941ADB5A3300F42B3B /* ButtonTouchesCancelableScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTouchesCancelableScrollView.swift; sourceTree = "<group>"; };
 		9531D6961AEE565400E6549D /* TintColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TintColor.swift; sourceTree = "<group>"; };
 		9531D6991AEEB93D00E6549D /* UIScrollView+MSRRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+MSRRefreshControl.swift"; sourceTree = "<group>"; };
+		9531D69B1AEFB86F00E6549D /* QuestionListViewControllerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionListViewControllerCell.swift; sourceTree = "<group>"; };
+		9531D69D1AEFB89400E6549D /* QuestionListViewControllerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionListViewControllerCell.xib; sourceTree = "<group>"; };
 		9532C8C71A51547B001A0E4A /* QuestionFocusingActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionFocusingActionCell.swift; sourceTree = "<group>"; };
 		9532C8C91A51548B001A0E4A /* QuestionFocusingActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionFocusingActionCell.xib; sourceTree = "<group>"; };
 		9532C8CB1A515E28001A0E4A /* AnswerAgreementActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerAgreementActionCell.swift; sourceTree = "<group>"; };
@@ -1047,7 +1051,7 @@
 				950FE1341A1DA2B300167D09 /* TopicListViewController.swift */,
 				950FE1351A1DA2B300167D09 /* TopicViewController.swift */,
 				950FE1361A1DA2B300167D09 /* UserListViewController.swift */,
-				950FE1371A1DA2B300167D09 /* UserAskedQuestionListViewController.swift */,
+				950FE1371A1DA2B300167D09 /* QuestionListViewController.swift */,
 				950FE1391A1DA2B300167D09 /* UserViewController.swift */,
 				9568F39E1AEC748A00B201A8 /* UserEditViewController.swift */,
 				9568F3A11AEC74AB00B201A8 /* UserEditViewController.xib */,
@@ -1154,6 +1158,8 @@
 				951D1FA71ACD27480072D555 /* QuestionFooterCell.xib */,
 				951D1FA31ACD26C40072D555 /* QuestionHeaderCell.swift */,
 				951D1FA91ACD276E0072D555 /* QuestionHeaderCell.xib */,
+				9531D69B1AEFB86F00E6549D /* QuestionListViewControllerCell.swift */,
+				9531D69D1AEFB89400E6549D /* QuestionListViewControllerCell.xib */,
 				951D1FB11ACE550B0072D555 /* QuestionTagListCell.swift */,
 				951D1FB31ACE551A0072D555 /* QuestionTagListCell.xib */,
 				951D1FAD1ACD66FE0072D555 /* QuestionTitleCell.swift */,
@@ -2158,6 +2164,7 @@
 				952E620B1AD9FCFF00E65F87 /* TopicViewControllerHeaderView.xib in Resources */,
 				95A247D21A7FD346006A6C84 /* CommentCell.xib in Resources */,
 				9561400A1AE2E6080077FBA0 /* read_me.txt in Resources */,
+				9531D69E1AEFB89400E6549D /* QuestionListViewControllerCell.xib in Resources */,
 				9580EDA51AE4DEE000EBF5FE /* WeiboSDK.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2193,7 +2200,7 @@
 				951DA74F1AE9183000F0E3A7 /* AnswerPublishmentViewController.swift in Sources */,
 				951D1E811ACD1E4E0072D555 /* DTCoreTextFontDescriptor.m in Sources */,
 				951D1F651ACD1E750072D555 /* DTScriptExpression.m in Sources */,
-				950FE50E1A1DA2B500167D09 /* UserAskedQuestionListViewController.swift in Sources */,
+				950FE50E1A1DA2B500167D09 /* QuestionListViewController.swift in Sources */,
 				951D1FA61ACD26E20072D555 /* QuestionFooterCell.swift in Sources */,
 				951D1F5C1ACD1E750072D555 /* DTBase64Coding.m in Sources */,
 				951D1E9B1ACD1E4E0072D555 /* DTStylesheetHTMLElement.m in Sources */,
@@ -2422,6 +2429,7 @@
 				951D1F731ACD1E750072D555 /* zip.c in Sources */,
 				956E72091AAFC53B00A3FD7D /* AFSecurityPolicy.m in Sources */,
 				951D1F591ACD1E750072D555 /* DTASN1Serialization.m in Sources */,
+				9531D69C1AEFB86F00E6549D /* QuestionListViewControllerCell.swift in Sources */,
 				951D1F711ACD1E750072D555 /* mztools.c in Sources */,
 				9588F5E91A1D9D1C001BC426 /* AppDelegate.swift in Sources */,
 				951D1F931ACD1E750072D555 /* NSString+DTURLEncoding.m in Sources */,

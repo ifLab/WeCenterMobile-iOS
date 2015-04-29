@@ -231,8 +231,9 @@ class User: NSManagedObject {
                         let questionID = Int(msr_object: questionData["id"])!
                         let question = DataManager.defaultManager!.autoGenerate("Question", ID: questionID) as! Question
                         question.user = self
-                        question.title = questionData["title"] as? String
-                        question.body = questionData["detail"] as? String
+                        question.title = (questionData["title"] as! String)
+                        question.body = (questionData["detail"] as! String)
+                        question.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: questionData["add_time"])!)
                         self?.questions.insert(question)
                         questions.append(question)
                     }

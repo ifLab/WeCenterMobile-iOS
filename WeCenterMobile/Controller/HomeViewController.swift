@@ -15,7 +15,7 @@ class HomeViewController: UITableViewController {
     var page = 1
     var shouldReloadAfterLoadingMore = true
     
-    var user: User!
+    let user: User
     var actions = [Action]()
     
     let actionTypes = [AnswerAction.self, QuestionPublishmentAction.self, QuestionFocusingAction.self, AnswerAgreementAction.self, ArticlePublishmentAction.self, ArticleAgreementAction.self]
@@ -23,8 +23,8 @@ class HomeViewController: UITableViewController {
     let nibNames = ["AnswerActionCell", "QuestionPublishmentActionCell", "QuestionFocusingActionCell", "AnswerAgreementActionCell", "ArticlePublishmentActionCell", "ArticleAgreementActionCell"]
     
     init(user: User) {
-        super.init(nibName: nil, bundle: nil)
         self.user = user
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init(coder aDecoder: NSCoder) {

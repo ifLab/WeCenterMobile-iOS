@@ -192,6 +192,7 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         if indexPath.section == 0 {
             switch indexPath.item {
             case 0:
+                msr_navigationController!.pushViewController(QuestionListViewController(user: user), animated: true)
                 break
             case 1:
                 break
