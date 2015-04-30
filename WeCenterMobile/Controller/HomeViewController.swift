@@ -53,6 +53,8 @@ class HomeViewController: UITableViewController {
 //        view.backgroundColor = UIColor.msr_materialBlueGray800()
         tableView.separatorStyle = .None
         tableView.indicatorStyle = .White
+        tableView.estimatedRowHeight = 80
+        tableView.rowHeight = UITableViewAutomaticDimension
         msr_navigationBar!.barStyle = .Black
         msr_navigationBar!.tintColor = UIColor.whiteColor()
         let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
@@ -111,30 +113,6 @@ class HomeViewController: UITableViewController {
             break
         }
         return cell
-    }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let action = actions[indexPath.row]
-        let index = actionTypes.indexOfObject(action.classForCoder)
-        if index >= nibNames.count {
-            return 40
-        }
-        struct _Static {
-            static var cells = [String: ActionCell]()
-            static var id: dispatch_once_t = 0
-        }
-        dispatch_once(&_Static.id) {
-            for nibName in self.nibNames {
-                _Static.cells[nibName] = (NSBundle.mainBundle().loadNibNamed(nibName, owner: self, options: nil).first as! ActionCell)
-            }
-        }
-        let cell = _Static.cells[nibNames[index]]!
-        cell.update(action: action, updateImage: false)
-        return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1
-    }
-    
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 80
     }
     
     func showSidebar() {

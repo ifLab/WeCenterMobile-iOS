@@ -46,6 +46,8 @@ class TopicListViewController: UITableViewController {
         view.backgroundColor = UIColor.msr_materialBlueGray800()
         tableView.separatorStyle = .None
         tableView.indicatorStyle = .White
+        tableView.estimatedRowHeight = 80
+        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.registerNib(UINib(nibName: "TopicListViewControllerCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
@@ -77,17 +79,6 @@ class TopicListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! TopicListViewControllerCell
         cell.update(topic: topics[indexPath.row], updateImage: true)
         return cell
-    }
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        struct _Static {
-            static var id: dispatch_once_t = 0
-            static var cell: TopicListViewControllerCell!
-        }
-        dispatch_once(&_Static.id) {
-            _Static.cell = NSBundle.mainBundle().loadNibNamed("TopicListViewControllerCell", owner: nil, options: nil).first as! TopicListViewControllerCell
-        }
-        _Static.cell.update(topic: topics[indexPath.row], updateImage: false)
-        return _Static.cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         msr_navigationController!.pushViewController(TopicViewController(topic: topics[indexPath.row]), animated: true)

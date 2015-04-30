@@ -46,6 +46,8 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         v.separatorStyle = .None
         v.backgroundColor = UIColor.clearColor()
         v.indicatorStyle = .White
+        v.estimatedRowHeight = 120
+        v.rowHeight = UITableViewAutomaticDimension
         v.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
         v.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
         v.addSubview(self!.header)
@@ -156,23 +158,6 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
         cell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
         return cell
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        struct _Static {
-            static var id: dispatch_once_t = 0
-            static var cell: AnswerCellWithQuestionTitle!
-        }
-        dispatch_once(&_Static.id) {
-            [weak self] in
-            _Static.cell = NSBundle.mainBundle().loadNibNamed(self!.cellNibName, owner: nil, options: nil).first as! AnswerCellWithQuestionTitle
-        }
-        _Static.cell.update(answer: answers[indexPath.row], updateImage: false)
-        return _Static.cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
-    }
-    
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 120
     }
     
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {

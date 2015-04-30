@@ -37,6 +37,8 @@ class AnswerCommentListViewController: UITableViewController {
         tableView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         tableView.separatorStyle = .None
         tableView.contentInset.bottom = 50
+        tableView.estimatedRowHeight = 50
+        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.keyboardDismissMode = .OnDrag
         tableView.backgroundColor = UIColor.msr_materialBlueGray800()
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
@@ -84,19 +86,6 @@ class AnswerCommentListViewController: UITableViewController {
         var cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! CommentCell
         cell.update(answerComment: comment, updateImage: true)
         return cell
-    }
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let comment = comments[indexPath.row]
-        struct _Static {
-            static var cell: CommentCell!
-            static var id: dispatch_once_t = 0
-        }
-        dispatch_once(&_Static.id) {
-            _Static.cell = NSBundle.mainBundle().loadNibNamed(self.cellNibName, owner: self, options: nil).first as! CommentCell
-        }
-        let cell = _Static.cell
-        cell.update(answerComment: comment, updateImage: false)
-        return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1 // the height of separator
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! CommentCell

@@ -34,6 +34,8 @@ class FeaturedObjectListViewController: UITableViewController {
         view.backgroundColor = UIColor.clearColor()
         tableView.separatorStyle = .None
         tableView.indicatorStyle = .White
+        tableView.estimatedRowHeight = 80
+        tableView.rowHeight = UITableViewAutomaticDimension
         for i in 0..<nibNames.count {
             tableView.registerNib(UINib(nibName: nibNames[i], bundle: NSBundle.mainBundle()), forCellReuseIdentifier: identifiers[i])
         }
@@ -85,39 +87,6 @@ class FeaturedObjectListViewController: UITableViewController {
         }
         cell.update(object: object, updateImage: true)
         return cell
-    }
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let object = objects[indexPath.row]
-        var index = objectTypes.indexOfObject(object.classForCoder)
-        if index >= objectTypes.count {
-            return 40
-        }
-        if let o = object as? FeaturedQuestionAnswer {
-            index += o.answers.count == 0 ? 1 : 0
-        }
-        struct _Static {
-            static var cells = [String: FeaturedObjectCell]()
-            static var id: dispatch_once_t = 0
-        }
-        dispatch_once(&_Static.id) {
-            for nibName in self.nibNames {
-                _Static.cells[nibName] = (NSBundle.mainBundle().loadNibNamed(nibName, owner: self.tableView, options: nil).first as! FeaturedObjectCell)
-            }
-        }
-        let cell = _Static.cells[nibNames[index]]!
-        cell.update(object: object, updateImage: false)
-        return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1
-    }
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let object = objects[indexPath.row]
-        var index = objectTypes.indexOfObject(object.classForCoder)
-        if index >= objectTypes.count {
-            return 40
-        }
-        if let o = object as? FeaturedQuestionAnswer {
-            index += o.answers.count == 0 ? 1 : 0
-        }
-        return ["FeaturedQuestionAnswerCell": 140, "FeaturedQuestionAnswerCellWithoutAnswer": 70, "FeaturedArticleCell": 70][nibNames[index]]!
     }
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false

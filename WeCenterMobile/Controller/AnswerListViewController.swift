@@ -46,6 +46,8 @@ class AnswerListViewController: UITableViewController {
         view.backgroundColor = UIColor.msr_materialBlueGray800()
         tableView.indicatorStyle = .White
         tableView.separatorStyle = .None
+        tableView.estimatedRowHeight = 80
+        tableView.rowHeight = UITableViewAutomaticDimension
         msr_navigationBar!.barStyle = .Black
         msr_navigationBar!.tintColor = UIColor.whiteColor()
         tableView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
@@ -79,19 +81,6 @@ class AnswerListViewController: UITableViewController {
         cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
         cell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
         return cell
-    }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        struct _Static {
-            static var id: dispatch_once_t = 0
-            static var cell: AnswerCellWithQuestionTitle!
-        }
-        dispatch_once(&_Static.id) {
-            [weak self] in
-            _Static.cell = NSBundle.mainBundle().loadNibNamed(self!.cellNibName, owner: nil, options: nil).first as! AnswerCellWithQuestionTitle
-        }
-        _Static.cell.update(answer: answers[indexPath.row], updateImage: false)
-        return _Static.cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1
     }
     
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
