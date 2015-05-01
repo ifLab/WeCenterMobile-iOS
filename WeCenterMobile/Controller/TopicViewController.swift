@@ -23,9 +23,9 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         fatalError("init(coder:) has not been implemented")
     }
     
-    lazy var header: TopicViewControllerHeaderView = {
+    lazy var header: TopicHeaderView = {
         [weak self] in
-        let v = NSBundle.mainBundle().loadNibNamed("TopicViewControllerHeaderView", owner: nil, options: nil).first as! TopicViewControllerHeaderView
+        let v = NSBundle.mainBundle().loadNibNamed("TopicHeaderView", owner: nil, options: nil).first as! TopicHeaderView
         v.autoresizingMask = .FlexibleBottomMargin | .FlexibleWidth
         v.focusButton.addTarget(self, action: "focus", forControlEvents: .TouchUpInside)
         v.backButton.addTarget(self, action: "didPressBackButton", forControlEvents: .TouchUpInside)

@@ -1,5 +1,5 @@
 //
-//  QuestionListViewControllerCell.swift
+//  QuestionCell.swift
 //  WeCenterMobile
 //
 //  Created by Darren Liu on 15/4/28.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuestionListViewControllerCell: UITableViewCell {
+class QuestionCell: UITableViewCell {
     
     @IBOutlet weak var questionTitleLabel: UILabel!
     @IBOutlet weak var questionBodyLabel: UILabel!

@@ -1,5 +1,5 @@
 //
-//  TopicListViewControllerCell.swift
+//  TopicCell.swift
 //  WeCenterMobile
 //
 //  Created by Darren Liu on 15/4/11.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TopicListViewControllerCell: UITableViewCell {
+class TopicCell: UITableViewCell {
     
     @IBOutlet weak var topicImageView: MSRRoundedImageView!
     @IBOutlet weak var topicTitleLabel: UILabel!

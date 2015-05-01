@@ -36,7 +36,8 @@ class TopicListViewController: UITableViewController {
     private var headerImageView: UIImageView! // for keeping weak property in header
     private var headerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in header
     private var footerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in footer
-    let cellReuseIdentifier = "TopicListViewControllerCell"
+    let cellNibName = "TopicCell"
+    let cellReuseIdentifier = "TopicCell"
     override func loadView() {
         super.loadView()
         tableView = ButtonTouchesCancelableTableView()
@@ -48,7 +49,7 @@ class TopicListViewController: UITableViewController {
         tableView.indicatorStyle = .White
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.registerNib(UINib(nibName: "TopicListViewControllerCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
+        tableView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
         if listType != .Static {
@@ -76,7 +77,7 @@ class TopicListViewController: UITableViewController {
         return topics.count
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! TopicListViewControllerCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! TopicCell
         cell.update(topic: topics[indexPath.row], updateImage: true)
         return cell
     }

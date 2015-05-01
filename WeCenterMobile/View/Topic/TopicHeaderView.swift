@@ -1,5 +1,5 @@
 //
-//  TopicViewControllerHeaderView.swift
+//  TopicHeaderView.swift
 //  WeCenterMobile
 //
 //  Created by Darren Liu on 15/4/12.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TopicViewControllerHeaderView: UIView {
+class TopicHeaderView: UIView {
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     

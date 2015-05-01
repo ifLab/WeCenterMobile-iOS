@@ -32,8 +32,8 @@ class QuestionListViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let cellReuseIdentifier = "QuestionListViewControllerCell"
-    let cellNibName = "QuestionListViewControllerCell"
+    let cellReuseIdentifier = "QuestionCell"
+    let cellNibName = "QuestionCell"
     
     private var headerImageView: UIImageView! // for keeping weak property in header
     private var headerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in header
@@ -78,7 +78,7 @@ class QuestionListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! QuestionListViewControllerCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! QuestionCell
         cell.update(question: questions[indexPath.row], updateImage: true)
         cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
         return cell
