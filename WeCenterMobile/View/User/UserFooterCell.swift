@@ -1,5 +1,5 @@
 //
-//  UserViewControllerBottomButtonCell.swift
+//  UserFooterCell.swift
 //  WeCenterMobile
 //
 //  Created by Darren Liu on 15/4/10.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserViewControllerBottomButtonCell: UICollectionViewCell {
+class UserFooterCell: UICollectionViewCell {
     
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!

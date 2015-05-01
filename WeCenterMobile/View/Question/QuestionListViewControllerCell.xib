@@ -79,11 +79,11 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="extraInformationLabel" destination="ICK-Sb-LAe" id="870-Ua-Rpt"/>
                 <outlet property="questionBodyLabel" destination="FJb-pc-iga" id="IbR-ac-oPb"/>
                 <outlet property="questionButton" destination="byf-VI-sWG" id="sMB-cr-I6r"/>
-                <outlet property="questionDateLabel" destination="ICK-Sb-LAe" id="6LN-MT-E39"/>
                 <outlet property="questionTitleLabel" destination="GcE-LN-VLq" id="aKV-Ja-r4T"/>
-                <outlet property="userAvatarImageView" destination="0mj-nK-grv" id="CN3-qj-AYF"/>
+                <outlet property="userAvatarView" destination="0mj-nK-grv" id="NQ1-yb-gBp"/>
             </connections>
             <point key="canvasLocation" x="409" y="431"/>
         </tableViewCell>

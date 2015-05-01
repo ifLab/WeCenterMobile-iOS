@@ -10,15 +10,17 @@ import UIKit
 
 class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UserEditViewControllerDelegate {
     
-    lazy var header: UserViewControllerHeaderView = {
-        let v =  NSBundle.mainBundle().loadNibNamed("UserViewControllerHeaderView", owner: nil, options: nil).first as! UserViewControllerHeaderView
+    lazy var header: UserHeaderView = {
+        let v =  NSBundle.mainBundle().loadNibNamed("UserHeaderView", owner: nil, options: nil).first as! UserHeaderView
         v.frame = CGRect(x: 0, y: 0, width: 0, height: v.maxHeight)
         v.autoresizingMask = .FlexibleBottomMargin | .FlexibleWidth
         return v
     }()
     
-    let bodyViewCellReuseIdentifier = "UserViewControllerBodyViewCell"
-    let bottomButtonCellReuseIdentifier = "UserViewControllerBottomButtonCell"
+    let bodyCellNibName = "UserBodyCell"
+    let bodyCellReuseIdentifier = "UserBodyCell"
+    let footerCellNibName = "UserFooterCell"
+    let footerCellReuseIdentifier = "UserFooterCell"
     
     lazy var bodyView: UICollectionView = {
         [weak self] in
@@ -53,8 +55,8 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         view.backgroundColor = UIColor.msr_materialGray900()
         bodyView.frame = view.bounds
         header.frame.size.width = bodyView.bounds.width
-        bodyView.registerNib(UINib(nibName: "UserViewControllerBodyViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: bodyViewCellReuseIdentifier)
-        bodyView.registerNib(UINib(nibName: "UserViewControllerBottomButtonCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: bottomButtonCellReuseIdentifier)
+        bodyView.registerNib(UINib(nibName: bodyCellNibName, bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: bodyCellReuseIdentifier)
+        bodyView.registerNib(UINib(nibName: footerCellNibName, bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: footerCellReuseIdentifier)
         if msr_navigationController!.viewControllers.count == 1 {
             header.backButton.setImage(UIImage(named: "List")!.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
             header.backButton.addTarget(self, action: "didPressMenuButton", forControlEvents: .TouchUpInside)
@@ -139,7 +141,7 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
-            let cell = bodyView.dequeueReusableCellWithReuseIdentifier(bodyViewCellReuseIdentifier, forIndexPath: indexPath) as! UserViewControllerBodyViewCell
+            let cell = bodyView.dequeueReusableCellWithReuseIdentifier(bodyCellReuseIdentifier, forIndexPath: indexPath) as! UserBodyCell
             let titles = ["提问", "回答", "文章", "话题", "关注中", "追随者"]
             let counts = map([user.questionCount, user.answerCount, NSNumber?(0), user.topicFocusCount, user.followingCount, user.followerCount]) {
                 return $0?.description ?? "..."
@@ -148,7 +150,7 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
             cell.countLabel.text = counts[indexPath.item]
             return cell
         } else {
-            let cell = bodyView.dequeueReusableCellWithReuseIdentifier(bottomButtonCellReuseIdentifier, forIndexPath: indexPath) as! UserViewControllerBottomButtonCell
+            let cell = bodyView.dequeueReusableCellWithReuseIdentifier(footerCellReuseIdentifier, forIndexPath: indexPath) as! UserFooterCell
             if user.isCurrentUser {
                 cell.textLabel.text = "修改信息"
                 cell.textLabel.textColor = UIColor.whiteColor()
@@ -202,6 +204,7 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
                 msr_navigationController!.pushViewController(AnswerListViewController(user: user), animated: true)
                 break
             case 2:
+                msr_navigationController!.pushViewController(ArticleListViewController(user: user), animated: true)
                 break
             case 3:
                 msr_navigationController!.pushViewController(TopicListViewController(user: user), animated: true)

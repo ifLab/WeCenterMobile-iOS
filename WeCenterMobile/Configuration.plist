@@ -60,6 +60,8 @@
 		<string>api/my_question.php</string>
 		<key>User Answer List</key>
 		<string>api/my_answer.php</string>
+		<key>User Article List</key>
+		<string>api/my_article.php</string>
 		<key>Post Answer Comment</key>
 		<string>?/question/ajax/save_answer_comment/</string>
 		<key>Post Question</key>

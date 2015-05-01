@@ -1,5 +1,5 @@
 //
-//  UserListViewControllerCell.swift
+//  UserCell.swift
 //  WeCenterMobile
 //
 //  Created by Darren Liu on 15/4/10.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserListViewControllerCell: UITableViewCell {
+class UserCell: UITableViewCell {
     
     @IBOutlet weak var userAvatarView: MSRRoundedImageView!
     @IBOutlet weak var userLabel: UILabel!

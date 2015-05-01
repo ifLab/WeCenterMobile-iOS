@@ -1,5 +1,5 @@
 //
-//  UserViewControllerHeaderView.swift
+//  UserHeaderView.swift
 //  WeCenterMobile
 //
 //  Created by Darren Liu on 15/4/9.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserViewControllerHeaderView: UIView {
+class UserHeaderView: UIView {
     
     @IBOutlet weak var thankCountImageView: UIImageView!
     @IBOutlet weak var likeCountImageView: UIImageView!

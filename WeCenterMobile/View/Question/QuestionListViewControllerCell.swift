@@ -12,9 +12,9 @@ class QuestionListViewControllerCell: UITableViewCell {
     
     @IBOutlet weak var questionTitleLabel: UILabel!
     @IBOutlet weak var questionBodyLabel: UILabel!
-    @IBOutlet weak var questionDateLabel: UILabel!
+    @IBOutlet weak var extraInformationLabel: UILabel!
     @IBOutlet weak var questionButton: UIButton!
-    @IBOutlet weak var userAvatarImageView: MSRRoundedImageView!
+    @IBOutlet weak var userAvatarView: MSRRoundedImageView!
     
     lazy var dateFormatter: NSDateFormatter = {
         let f = NSDateFormatter()
@@ -35,15 +35,15 @@ class QuestionListViewControllerCell: UITableViewCell {
             string: question.user!.name!,
             attributes: [
                 NSForegroundColorAttributeName: UIColor.lightTextColor(),
-                NSFontAttributeName: questionDateLabel.font])
+                NSFontAttributeName: extraInformationLabel.font])
         attributedString.appendAttributedString(NSAttributedString(
             string: " \(dateFormatter.stringFromDate(question.date!))",
             attributes: [
                 NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.4),
-                NSFontAttributeName: questionDateLabel.font]))
-        questionDateLabel.attributedText = attributedString
+                NSFontAttributeName: extraInformationLabel.font]))
+        extraInformationLabel.attributedText = attributedString
         if updateImage {
-            userAvatarImageView.wc_updateWithUser(question.user)
+            userAvatarView.wc_updateWithUser(question.user)
         }
         questionButton.msr_userInfo = question
         setNeedsLayout()

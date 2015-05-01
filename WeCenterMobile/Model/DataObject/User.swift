@@ -221,7 +221,7 @@ class User: NSManagedObject {
             ],
             success: {
                 [weak self] data in
-                if Int(msr_object: data["total_rows"]) > 0 {
+                if !MSRIsNilOrNull(data["rows"]) {
                     let questionsData: [NSDictionary]
                     if data["rows"] is NSDictionary {
                         questionsData = [data["rows"] as! NSDictionary]
@@ -256,7 +256,7 @@ class User: NSManagedObject {
             ],
             success: {
                 [weak self] data in
-                if Int(msr_object: data["total_rows"]) > 0 {
+                if !MSRIsNilOrNull(data["rows"]) {
                     let answersData: [NSDictionary]
                     if data["rows"] is NSDictionary {
                         answersData = [data["rows"] as! NSDictionary]
@@ -278,6 +278,41 @@ class User: NSManagedObject {
                         answers.append(answer)
                     }
                     success?(answers)
+                } else {
+                    failure?(NSError()) // Needs specification
+                }
+            },
+            failure: failure)
+    }
+    
+    func fetchArticles(#page: Int, count: Int, success: (([Article]) -> Void)?, failure: ((NSError) -> Void)?) {
+        NetworkManager.defaultManager!.GET("User Article List",
+            parameters: [
+                "uid": id,
+                "page": page,
+                "per_page": count
+            ],
+            success: {
+                [weak self] data in
+                if !MSRIsNilOrNull(data["rows"]) {
+                    let articlesData: [NSDictionary]
+                    if data["rows"] is NSDictionary {
+                        articlesData = [data["rows"] as! NSDictionary]
+                    } else {
+                        articlesData = data["rows"] as! [NSDictionary]
+                    }
+                    var articles = [Article]()
+                    for articleData in articlesData {
+                        let articleID = Int(msr_object: articleData["id"])!
+                        let article: Article = DataManager.defaultManager!.autoGenerate("Article", ID: articleID) as! Article
+                        article.user = self
+                        article.body = (articleData["title"] as! String)
+                        article.agreementCount = Int(msr_object: articleData["message"])
+                        article.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: articleData["add_time"])!)
+                        self?.articles.insert(article)
+                        articles.append(article)
+                    }
+                    success?(articles)
                 } else {
                     failure?(NSError()) // Needs specification
                 }
