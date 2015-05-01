@@ -306,8 +306,8 @@ class User: NSManagedObject {
                         let articleID = Int(msr_object: articleData["id"])!
                         let article: Article = DataManager.defaultManager!.autoGenerate("Article", ID: articleID) as! Article
                         article.user = self
-                        article.body = (articleData["title"] as! String)
-                        article.agreementCount = Int(msr_object: articleData["message"])
+                        article.title = (articleData["title"] as! String)
+                        article.body = (articleData["message"] as! String)
                         article.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: articleData["add_time"])!)
                         self?.articles.insert(article)
                         articles.append(article)
