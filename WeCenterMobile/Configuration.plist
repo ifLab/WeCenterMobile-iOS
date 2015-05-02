@@ -48,9 +48,9 @@
 		<string>api/my_fans_user.php</string>
 		<key>Answer Comment List</key>
 		<string>api/answer_comment.php</string>
-		<key>Artical Comment List</key>
+		<key>Article Comment List</key>
 		<string>?/api/article/comment/</string>
-		<key>Artical Detail</key>
+		<key>Article Detail</key>
 		<string>?/api/article/article/</string>
 		<key>Update Profile</key>
 		<string>api/profile_setting.php</string>

@@ -16,7 +16,7 @@ class ArticleListViewController: UITableViewController {
     
     let user: User
     let listType: ArticleListType
-    var Articles = [Article]()
+    var articles = [Article]()
     var page = 1
     let count = 20
     
@@ -72,12 +72,12 @@ class ArticleListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Articles.count
+        return articles.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! ArticleCell
-        cell.update(article: Articles[indexPath.row], updateImage: true)
+        cell.update(article: articles[indexPath.row], updateImage: true)
         cell.articleButton.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
         return cell
     }
@@ -87,8 +87,8 @@ class ArticleListViewController: UITableViewController {
     }
     
     func didPressArticleButton(button: UIButton) {
-        if let Article = button.msr_userInfo as? Article {
-//            msr_navigationController!.pushViewController(ArticleViewController(Article: Article), animated: true)
+        if let article = button.msr_userInfo as? Article {
+            msr_navigationController!.pushViewController(ArticleViewController(article: article), animated: true)
         }
     }
     
@@ -98,10 +98,10 @@ class ArticleListViewController: UITableViewController {
         shouldReloadAfterLoadingMore = false
         tableView.footer?.endRefreshing()
         let success: ([Article]) -> Void = {
-            [weak self] Articles in
+            [weak self] articles in
             if let self_ = self {
                 self_.page = 1
-                self_.Articles = Articles
+                self_.articles = articles
                 self_.tableView.header.endRefreshing()
                 self_.tableView.reloadData()
                 if self_.tableView.footer == nil {
@@ -137,7 +137,7 @@ class ArticleListViewController: UITableViewController {
             [weak self] Articles in
             if self?.shouldReloadAfterLoadingMore ?? false {
                 self?.page = self!.page + 1
-                self?.Articles.extend(Articles)
+                self?.articles.extend(Articles)
                 self?.tableView.reloadData()
             }
             self?.tableView.footer.endRefreshing()
