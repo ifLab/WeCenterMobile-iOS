@@ -64,6 +64,8 @@
 		<string>api/my_article.php</string>
 		<key>Post Answer Comment</key>
 		<string>?/question/ajax/save_answer_comment/</string>
+		<key>Post Article Comment</key>
+		<string>api/publish/save_comment/</string>
 		<key>Post Question</key>
 		<string>?/api/publish/publish_question/</string>
 		<key>Post Answer</key>

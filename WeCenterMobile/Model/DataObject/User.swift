@@ -221,7 +221,7 @@ class User: NSManagedObject {
             ],
             success: {
                 [weak self] data in
-                if !MSRIsNilOrNull(data["rows"]) {
+                if !MSRIsNilOrNull(data["rows"]) && Int(msr_object: data["total_rows"]) > 0 {
                     let questionsData: [NSDictionary]
                     if data["rows"] is NSDictionary {
                         questionsData = [data["rows"] as! NSDictionary]
@@ -256,7 +256,7 @@ class User: NSManagedObject {
             ],
             success: {
                 [weak self] data in
-                if !MSRIsNilOrNull(data["rows"]) {
+                if !MSRIsNilOrNull(data["rows"]) && Int(msr_object: data["total_rows"]) > 0 {
                     let answersData: [NSDictionary]
                     if data["rows"] is NSDictionary {
                         answersData = [data["rows"] as! NSDictionary]
@@ -294,7 +294,7 @@ class User: NSManagedObject {
             ],
             success: {
                 [weak self] data in
-                if !MSRIsNilOrNull(data["rows"]) {
+                if !MSRIsNilOrNull(data["rows"]) && Int(msr_object: data["total_rows"]) > 0 {
                     let articlesData: [NSDictionary]
                     if data["rows"] is NSDictionary {
                         articlesData = [data["rows"] as! NSDictionary]
@@ -542,7 +542,7 @@ class User: NSManagedObject {
                             action.answer.question = (DataManager.defaultManager!.autoGenerate("Question", ID: Int(msr_object: answerInfo["question_id"])!) as! Question)
                             action.answer.body = (answerInfo["answer_content"] as! String)
                             action.answer.agreementCount = (answerInfo["agree_count"] as! NSNumber)
-                            action.answer.evaluation = Answer.Evaluation(rawValue: Int(msr_object: answerInfo["agree_status"])!)!
+                            action.answer.evaluation = Evaluation(rawValue: Int(msr_object: answerInfo["agree_status"])!)!
                             let questionInfo = object["question_info"] as! NSDictionary
                             action.answer.question = (DataManager.defaultManager!.autoGenerate("Question", ID: Int(msr_object: questionInfo["question_id"])!) as! Question)
                             action.answer.question!.title = (questionInfo["question_content"] as! String)
@@ -612,7 +612,7 @@ class User: NSManagedObject {
                             action.answer = DataManager.defaultManager!.autoGenerate("Answer", ID: Int(msr_object: answerInfo["answer_id"])!) as! Answer
                             action.answer.body = (answerInfo["answer_content"] as! String)
                             action.answer.agreementCount = (answerInfo["agree_count"] as! NSNumber)
-                            action.answer.evaluation = Answer.Evaluation(rawValue: Int(msr_object: answerInfo["agree_status"])!)!
+                            action.answer.evaluation = Evaluation(rawValue: Int(msr_object: answerInfo["agree_status"])!)!
                             let questionInfo = object["question_info"] as! NSDictionary
                             action.answer.question = (DataManager.defaultManager!.autoGenerate("Question", ID: Int(msr_object: questionInfo["question_id"])!) as! Question)
                             action.answer.question!.title = (questionInfo["question_content"] as! String)

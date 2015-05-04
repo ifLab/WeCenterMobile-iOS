@@ -176,7 +176,7 @@ class AnswerViewController: UIViewController, DTAttributedTextContentViewDelegat
     }
     
     func pushCommentListViewController() {
-        msr_navigationController!.pushViewController(AnswerCommentListViewController(answer: answer), animated: true)
+        msr_navigationController!.pushViewController(CommentListViewController(answer: answer), animated: true)
     }
     
     func handleLongPressGesture(recoginizer: UILongPressGestureRecognizer) {

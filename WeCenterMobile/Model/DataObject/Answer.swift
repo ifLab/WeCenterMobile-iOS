@@ -23,11 +23,6 @@ class Answer: NSManagedObject {
     @NSManaged var question: Question?
     @NSManaged var user: User?
     
-    enum Evaluation: Int {
-        case None = 0
-        case Up = 1
-        case Down = -1
-    }
     var evaluation: Evaluation? = nil
     
     class func get(#ID: NSNumber, error: NSErrorPointer) -> Answer? {

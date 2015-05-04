@@ -23,12 +23,7 @@ class Article: NSManagedObject {
     @NSManaged var topics: Set<Topic>
     @NSManaged var user: User?
     @NSManaged var comments: Set<ArticleComment>
-    
-    enum Evaluation: Int {
-        case None = 0
-        case Up = 1
-        case Down = -1
-    }
+
     var evaluation: Evaluation? = nil
     
     class func fetch(#ID: NSNumber, success: ((Article) -> Void)?, failure: ((NSError) -> Void)?) {
@@ -64,5 +59,42 @@ class Article: NSManagedObject {
             },
             failure: failure)
     }
-
+    
+    func fetchComments(#success: (([ArticleComment]) -> Void)?, failure: ((NSError) -> Void)?) {
+        NetworkManager.defaultManager!.GET("Article Comment List",
+            parameters: [
+                "id": id
+            ],
+            success: {
+                [weak self] data in
+                if !MSRIsNilOrNull(data["rows"]) && Int(msr_object: data["total_rows"]) > 0 {
+                    let commentsData = data["rows"] as! [NSDictionary]
+                    var comments = [ArticleComment]()
+                    self?.comments = Set()
+                    for info in commentsData {
+                        let comment: ArticleComment = DataManager.defaultManager!.autoGenerate("ArticleComment", ID: Int(msr_object: info["id"])!) as! ArticleComment
+                        comment.body = (info["message"] as! String)
+                        comment.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: info["add_time"])!)
+                        comment.agreementCount = Int(msr_object: info["votes"])
+                        comment.evaluation = Evaluation(rawValue: Int(msr_object: info["vote_value"])!)
+                        if let userInfo = info["user_info"] as? NSDictionary {
+                            comment.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: userInfo["uid"])!) as! User)
+                            comment.user!.name = (userInfo["user_name"] as! String)
+                            comment.user!.avatarURI = userInfo["avatar_file"] as? String
+                        }
+                        if let atUserInfo = info["at_user_info"] as? NSDictionary {
+                            comment.atUser = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: atUserInfo["uid"])!) as! User)
+                            comment.atUser!.name = (atUserInfo["user_name"] as! String)
+                            comment.atUser!.avatarURI = atUserInfo["avatar_file"] as? String
+                        }
+                        comments.append(comment)
+                        self?.comments.insert(comment)
+                    }
+                    success?(comments)
+                } else {
+                    failure?(NSError()) // Needs specification
+                }
+            },
+            failure: failure)
+    }
 }

@@ -66,15 +66,19 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
         bodyView.msr_uiRefreshControl = UIRefreshControl()
         bodyView.msr_uiRefreshControl!.tintColor = UIColor.whiteColor()
         bodyView.msr_uiRefreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+        bodyView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
+        bodyView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
         view.backgroundColor = UIColor.msr_materialBlueGray800()
         header.frame = CGRect(x: 0, y: -bodyView.contentInset.top, width: bodyView.bounds.width, height: header.maxHeight)
         footer.frame = CGRect(x: 0, y: view.bounds.height - 50, width: view.bounds.width, height: 50)
+        footer.commentButton.addTarget(self, action: "didPressCommentButton", forControlEvents: .TouchUpInside)
         msr_navigationBar!.hidden = true
         automaticallyAdjustsScrollViewInsets = false
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        reloadData()
         bodyView.msr_uiRefreshControl!.beginRefreshing()
         refresh()
     }
@@ -174,6 +178,10 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
                 }
             }
         }
+    }
+    
+    func didPressCommentButton() {
+        msr_navigationController!.pushViewController(CommentListViewController(article: article), animated: true)
     }
     
     func animate(animations: (() -> Void)) {

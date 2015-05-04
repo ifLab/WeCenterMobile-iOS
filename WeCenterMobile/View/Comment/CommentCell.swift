@@ -20,8 +20,7 @@ class CommentCell: UITableViewCell {
         selectedBackgroundView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
     }
     
-    func update(#answerComment: AnswerComment, updateImage: Bool) {
-        let comment = answerComment
+    func update(#comment: Comment, updateImage: Bool) {
         msr_userInfo = comment
         if updateImage {
             userAvatarView.wc_updateWithUser(comment.user)
@@ -31,18 +30,6 @@ class CommentCell: UITableViewCell {
         if comment.atUser?.name != nil {
             bodyLabel.text = "@" + comment.atUser!.name! + ": " + (bodyLabel.text ?? "")
         }
-        setNeedsLayout()
-        layoutIfNeeded()
-    }
-    
-    func update(#articleComment: ArticleComment, updateImage: Bool) {
-        let comment = articleComment
-        msr_userInfo = comment
-        if updateImage {
-            userAvatarView.wc_updateWithUser(comment.user)
-        }
-        userNameLabel.text = comment.user?.name
-        bodyLabel.text = comment.body
         setNeedsLayout()
         layoutIfNeeded()
     }

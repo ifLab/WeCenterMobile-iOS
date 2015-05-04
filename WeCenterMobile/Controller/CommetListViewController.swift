@@ -1,5 +1,5 @@
 //
-//  AnswerCommetListViewController.swift
+//  CommetListViewController.swift
 //  WeCenterMobile
 //
 //  Created by Darren Liu on 14/10/4.
@@ -10,16 +10,25 @@ import MJRefresh
 import SVProgressHUD
 import UIKit
 
-class AnswerCommentListViewController: UITableViewController {
-    private var answer: Answer
-    var comments = [AnswerComment]()
+enum AnswerOrArticle {
+    case Answer_(Answer)
+    case Article_(Article)
+}
+
+class CommentListViewController: UITableViewController {
+    private var answerOrArticle: AnswerOrArticle
+    var comments = [Comment]()
     let cellReuseIdentifier = "CommentCell"
     let cellNibName = "CommentCell"
     var keyboardBar: MSRKeyboardBar!
     let textField = UITextField()
     let publishButton = UIButton()
     init(answer: Answer) {
-        self.answer = answer
+        self.answerOrArticle = .Answer_(answer)
+        super.init(nibName: nil, bundle: nil)
+    }
+    init(article: Article) {
+        self.answerOrArticle = .Article_(article)
         super.init(nibName: nil, bundle: nil)
     }
     required init(coder aDecoder: NSCoder) {
@@ -84,7 +93,7 @@ class AnswerCommentListViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let comment = comments[indexPath.row]
         var cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! CommentCell
-        cell.update(answerComment: comment, updateImage: true)
+        cell.update(comment: comment, updateImage: true)
         return cell
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -116,46 +125,68 @@ class AnswerCommentListViewController: UITableViewController {
         if !(refreshControl?.refreshing ?? true) {
             textField.resignFirstResponder()
             let manager = DataManager.temporaryManager!
-            let comment = manager.create("AnswerComment") as! AnswerComment
-            comment.answer = (manager.create("Answer") as! Answer)
-            comment.answer!.id = answer.id
-            comment.body = textField.text
-            SVProgressHUD.showWithMaskType(.Gradient)
-            comment.post(
-                success: {
-                    [weak self] in
+            let success: () -> Void = {
+                [weak self] in
+                SVProgressHUD.dismiss()
+                SVProgressHUD.showSuccessWithStatus("已发布", maskType: .Gradient)
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC / 2)), dispatch_get_main_queue()) {
                     SVProgressHUD.dismiss()
-                    SVProgressHUD.showSuccessWithStatus("已发布", maskType: .Gradient)
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC / 2)), dispatch_get_main_queue()) {
-                        SVProgressHUD.dismiss()
-                    }
-                    self?.textField.text = ""
-                    self?.refreshControl?.beginRefreshing()
-                    self?.refresh()
-                }, failure: {
-                    [weak self] error in
-                    SVProgressHUD.dismiss()
-                    let ac = UIAlertController(title: (error.userInfo?[NSLocalizedDescriptionKey] as? String) ?? "",
-                        message: nil,
-                        preferredStyle: .Alert)
-                    ac.addAction(UIAlertAction(title: "好", style: .Default, handler: nil))
-                    self?.presentViewController(ac, animated: true, completion: nil)
-                })
+                }
+                self?.textField.text = ""
+                self?.refreshControl?.beginRefreshing()
+                self?.refresh()
+            }
+            let failare: (NSError) -> Void = {
+                [weak self] error in
+                SVProgressHUD.dismiss()
+                let ac = UIAlertController(title: (error.userInfo?[NSLocalizedDescriptionKey] as? String) ?? "",
+                    message: nil,
+                    preferredStyle: .Alert)
+                ac.addAction(UIAlertAction(title: "好", style: .Default, handler: nil))
+                self?.presentViewController(ac, animated: true, completion: nil)
+            }
+            switch answerOrArticle {
+            case .Answer_(let answer):
+                let comment = manager.create("AnswerComment") as! AnswerComment
+                comment.answer = (manager.create("Answer") as! Answer)
+                comment.answer!.id = answer.id
+                comment.body = textField.text
+                SVProgressHUD.showWithMaskType(.Gradient)
+                comment.post(success: success, failure: failare)
+                break
+            case .Article_(let article):
+                break
+            default:
+                break
+            }
         }
     }
     func refresh() {
-        answer.fetchComments(
-            success: {
-                [weak self] comments in
-                self?.comments = comments
-                self?.tableView.reloadData()
-                self?.refreshControl!.endRefreshing()
-            },
-            failure: {
-                [weak self] error in
-                self?.tableView.reloadData()
-                self?.refreshControl!.endRefreshing()
-            })
+        let success: ([Comment]) -> Void = {
+            [weak self] comments in
+            self?.comments = comments
+            self?.tableView.reloadData()
+            self?.refreshControl!.endRefreshing()
+        }
+        let failure: (NSError) -> Void = {
+            [weak self] error in
+            self?.tableView.reloadData()
+            self?.refreshControl!.endRefreshing()
+        }
+        switch answerOrArticle {
+        case .Answer_(let answer):
+            answer.fetchComments(
+                success: { success($0) },
+                failure: failure)
+            break
+        case .Article_(let article):
+            article.fetchComments(
+                success: { success($0) },
+                failure: failure)
+            break
+        default:
+            break
+        }
     }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
