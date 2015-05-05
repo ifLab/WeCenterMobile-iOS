@@ -29,13 +29,13 @@ class CommentCell: UITableViewCell {
         var attributedString = NSMutableAttributedString()
         if comment.atUser?.name != nil {
             attributedString.appendAttributedString(NSAttributedString(
-                string: "@\(comment.atUser!.name!)",
+                string: "@\(comment.atUser!.name!) ",
                 attributes: [
                     NSForegroundColorAttributeName: UIColor.lightTextColor(),
                     NSFontAttributeName: bodyLabel.font]))
         }
         attributedString.appendAttributedString(NSAttributedString(
-            string: " " + (comment.body ?? ""),
+            string: (comment.body ?? ""),
             attributes: [
                 NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.87),
                 NSFontAttributeName: bodyLabel.font]))
