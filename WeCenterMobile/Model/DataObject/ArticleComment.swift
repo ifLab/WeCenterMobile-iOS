@@ -16,15 +16,16 @@ class ArticleComment: Comment {
     
     var evaluation: Evaluation?
     
-    func post(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
-        var POSTParameters: [NSObject: AnyObject] = ["message": body!]
+    override func post(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        super.post(success: success, failure: failure)
+        var parameters: [NSObject: AnyObject] = [
+            "article_id": article!.id,
+            "message": body!]
         if atUser != nil {
-            POSTParameters = ["at_uid": atUser!.id]
+            parameters["at_uid"] = atUser!.id
         }
-        NetworkManager.defaultManager!.request("Post Article Comment",
-            GETParameters: ["article_id": article!.id],
-            POSTParameters: POSTParameters,
-            constructingBodyWithBlock: nil,
+        NetworkManager.defaultManager!.POST("Post Article Comment",
+            parameters: parameters,
             success: {
                 [weak self] data in
                 success?()

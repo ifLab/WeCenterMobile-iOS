@@ -26,10 +26,20 @@ class CommentCell: UITableViewCell {
             userAvatarView.wc_updateWithUser(comment.user)
         }
         userNameLabel.text = comment.user?.name
-        bodyLabel.text = comment.body
+        var attributedString = NSMutableAttributedString()
         if comment.atUser?.name != nil {
-            bodyLabel.text = "@" + comment.atUser!.name! + ": " + (bodyLabel.text ?? "")
+            attributedString.appendAttributedString(NSAttributedString(
+                string: "@\(comment.atUser!.name!)",
+                attributes: [
+                    NSForegroundColorAttributeName: UIColor.lightTextColor(),
+                    NSFontAttributeName: bodyLabel.font]))
         }
+        attributedString.appendAttributedString(NSAttributedString(
+            string: " " + (comment.body ?? ""),
+            attributes: [
+                NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.87),
+                NSFontAttributeName: bodyLabel.font]))
+        bodyLabel.attributedText = attributedString
         setNeedsLayout()
         layoutIfNeeded()
     }

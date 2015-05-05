@@ -272,6 +272,7 @@
 		9531D7A01AF3E8E400E6549D /* WeChatSessionActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D7861AF3E8E400E6549D /* WeChatSessionActivity.swift */; };
 		9531D7A11AF3E8E400E6549D /* WeChatShareItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D7871AF3E8E400E6549D /* WeChatShareItem.swift */; };
 		95387BFF1ABEA456004DF8EB /* String+MSREncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95387BFE1ABEA456004DF8EB /* String+MSREncryption.swift */; };
+		9550A2971AF8B6D0005F81F7 /* KeyboardBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9550A2961AF8B6D0005F81F7 /* KeyboardBar.swift */; };
 		955770721AD68E960060A120 /* UIImageView+MSRSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955770711AD68E960060A120 /* UIImageView+MSRSetter.swift */; };
 		955770781AD757B30060A120 /* UIImage+MSRColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955770771AD757B30060A120 /* UIImage+MSRColor.swift */; };
 		955E2A061AF75C2100A04791 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955E2A051AF75C2100A04791 /* Comment.swift */; };
@@ -346,7 +347,6 @@
 		95C2EA391AB0516800F2A326 /* MSRSegmentedControlRainbowBlockIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2EA101AB0516800F2A326 /* MSRSegmentedControlRainbowBlockIndicator.swift */; };
 		95C2EA3A1AB0516800F2A326 /* MSRSegmentedControlUnderlineIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2EA111AB0516800F2A326 /* MSRSegmentedControlUnderlineIndicator.swift */; };
 		95C2EA3B1AB0516800F2A326 /* MSRSegmentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2EA121AB0516800F2A326 /* MSRSegmentedViewController.swift */; };
-		95C2EA3D1AB0516800F2A326 /* NSObject+MSRUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2EA141AB0516800F2A326 /* NSObject+MSRUserInfo.swift */; };
 		95C2EA3E1AB0516800F2A326 /* UIColor+MSRMaterialColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2EA151AB0516800F2A326 /* UIColor+MSRMaterialColor.swift */; };
 		95C2EA3F1AB0516800F2A326 /* UIColor+MSRRandomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2EA161AB0516800F2A326 /* UIColor+MSRRandomColor.swift */; };
 		95C2EA401AB0516800F2A326 /* UIColor+MSRRGBA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2EA171AB0516800F2A326 /* UIColor+MSRRGBA.swift */; };
@@ -363,6 +363,10 @@
 		95DB722E1AF5490A0072C77E /* ArticleFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95DB722D1AF5490A0072C77E /* ArticleFooterView.xib */; };
 		95DB72301AF556A00072C77E /* UIScrollView+MSRPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB722F1AF556A00072C77E /* UIScrollView+MSRPosition.swift */; };
 		95DC57101AF785040075C3CB /* Evalation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC570F1AF785040075C3CB /* Evalation.swift */; };
+		95DC57131AF89F790075C3CB /* UITextField+MSRGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC57121AF89F790075C3CB /* UITextField+MSRGetter.swift */; };
+		95DC57151AF8A38D0075C3CB /* UserAtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC57141AF8A38D0075C3CB /* UserAtView.swift */; };
+		95DC57191AF8AAFA0075C3CB /* NSObject+MSRClone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC57181AF8AAFA0075C3CB /* NSObject+MSRClone.swift */; };
+		95DC571B1AF8AD4D0075C3CB /* NSObject+MSRUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC571A1AF8AD4D0075C3CB /* NSObject+MSRUserInfo.swift */; };
 		95E060D81AC2507300C6750C /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E060D31AC2507300C6750C /* SVIndefiniteAnimatedView.m */; };
 		95E060D91AC2507300C6750C /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 95E060D51AC2507300C6750C /* SVProgressHUD.bundle */; };
 		95E060DA1AC2507300C6750C /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E060D71AC2507300C6750C /* SVProgressHUD.m */; };
@@ -847,6 +851,7 @@
 		9531D7861AF3E8E400E6549D /* WeChatSessionActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatSessionActivity.swift; sourceTree = "<group>"; };
 		9531D7871AF3E8E400E6549D /* WeChatShareItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatShareItem.swift; sourceTree = "<group>"; };
 		95387BFE1ABEA456004DF8EB /* String+MSREncryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MSREncryption.swift"; sourceTree = "<group>"; };
+		9550A2961AF8B6D0005F81F7 /* KeyboardBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardBar.swift; sourceTree = "<group>"; };
 		9554D8E51ADE2C5F00C94061 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		9554D8E71ADE2C8C00C94061 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		9554D8E91ADE2D8800C94061 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -975,7 +980,6 @@
 		95C2EA101AB0516800F2A326 /* MSRSegmentedControlRainbowBlockIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRSegmentedControlRainbowBlockIndicator.swift; sourceTree = "<group>"; };
 		95C2EA111AB0516800F2A326 /* MSRSegmentedControlUnderlineIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRSegmentedControlUnderlineIndicator.swift; sourceTree = "<group>"; };
 		95C2EA121AB0516800F2A326 /* MSRSegmentedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRSegmentedViewController.swift; sourceTree = "<group>"; };
-		95C2EA141AB0516800F2A326 /* NSObject+MSRUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+MSRUserInfo.swift"; sourceTree = "<group>"; };
 		95C2EA151AB0516800F2A326 /* UIColor+MSRMaterialColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+MSRMaterialColor.swift"; sourceTree = "<group>"; };
 		95C2EA161AB0516800F2A326 /* UIColor+MSRRandomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+MSRRandomColor.swift"; sourceTree = "<group>"; };
 		95C2EA171AB0516800F2A326 /* UIColor+MSRRGBA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+MSRRGBA.swift"; sourceTree = "<group>"; };
@@ -992,6 +996,10 @@
 		95DB722D1AF5490A0072C77E /* ArticleFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleFooterView.xib; sourceTree = "<group>"; };
 		95DB722F1AF556A00072C77E /* UIScrollView+MSRPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+MSRPosition.swift"; sourceTree = "<group>"; };
 		95DC570F1AF785040075C3CB /* Evalation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Evalation.swift; sourceTree = "<group>"; };
+		95DC57121AF89F790075C3CB /* UITextField+MSRGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+MSRGetter.swift"; sourceTree = "<group>"; };
+		95DC57141AF8A38D0075C3CB /* UserAtView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAtView.swift; sourceTree = "<group>"; };
+		95DC57181AF8AAFA0075C3CB /* NSObject+MSRClone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+MSRClone.swift"; sourceTree = "<group>"; };
+		95DC571A1AF8AD4D0075C3CB /* NSObject+MSRUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+MSRUserInfo.swift"; sourceTree = "<group>"; };
 		95E060D21AC2507300C6750C /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
 		95E060D31AC2507300C6750C /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
 		95E060D41AC2507300C6750C /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
@@ -1739,6 +1747,7 @@
 		9531D70E1AF3E4AC00E6549D /* User */ = {
 			isa = PBXGroup;
 			children = (
+				95DC57141AF8A38D0075C3CB /* UserAtView.swift */,
 				9531D70F1AF3E4AC00E6549D /* UserBodyCell.swift */,
 				9531D7101AF3E4AC00E6549D /* UserBodyCell.xib */,
 				9531D7111AF3E4AC00E6549D /* UserCell.swift */,
@@ -1766,6 +1775,7 @@
 				9531D7641AF3E85900E6549D /* ButtonTouchesCancelableScrollView.swift */,
 				9531D7651AF3E85900E6549D /* ImageUploadingProgressBar.xib */,
 				9531D7661AF3E85900E6549D /* UIImageView+DataObject.swift */,
+				9550A2961AF8B6D0005F81F7 /* KeyboardBar.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -2057,6 +2067,8 @@
 				9531D6AF1AF3DF2E00E6549D /* MSRNull.swift */,
 				95C2E9F41AB0516800F2A326 /* MSRWeak.swift */,
 				95C2E9F51AB0516800F2A326 /* NSManagedObjectContext+MSROperations.swift */,
+				95DC57181AF8AAFA0075C3CB /* NSObject+MSRClone.swift */,
+				95DC571A1AF8AD4D0075C3CB /* NSObject+MSRUserInfo.swift */,
 				95C2E9F61AB0516800F2A326 /* Numeric+MSRInitializer.swift */,
 				95C2E9F71AB0516800F2A326 /* UnsafePointer+MSRInitializer.swift */,
 				95054E211ACBC2D900C1848B /* String+MSREncoding.swift */,
@@ -2095,7 +2107,6 @@
 				95C2EA121AB0516800F2A326 /* MSRSegmentedViewController.swift */,
 				9583E3341AB6812400067F37 /* MSRLayoutGuide.swift */,
 				95C893761AC7365D00B7B385 /* MSRSidebar.swift */,
-				95C2EA141AB0516800F2A326 /* NSObject+MSRUserInfo.swift */,
 				95C47D4A1AC9C2BE00A56879 /* UIButton+MSRSetter.swift */,
 				959FCB611AEE4EB300299AA6 /* UIColor+MSRGetter.swift */,
 				95C2EA151AB0516800F2A326 /* UIColor+MSRMaterialColor.swift */,
@@ -2109,6 +2120,7 @@
 				95C2EA1A1AB0516800F2A326 /* UINavigationBar+MSRAccessor.swift */,
 				95DB722F1AF556A00072C77E /* UIScrollView+MSRPosition.swift */,
 				9531D6991AEEB93D00E6549D /* UIScrollView+MSRRefreshControl.swift */,
+				95DC57121AF89F790075C3CB /* UITextField+MSRGetter.swift */,
 				95C2EA1B1AB0516800F2A326 /* UIView+MSREasyAutoLayout.swift */,
 				95C2EA1C1AB0516800F2A326 /* UIView+MSRKeyboardUtility.swift */,
 			);
@@ -2350,6 +2362,7 @@
 				95C2EA451AB0516800F2A326 /* UIView+MSRKeyboardUtility.swift in Sources */,
 				9531D7691AF3E85900E6549D /* UIImageView+DataObject.swift in Sources */,
 				951D1E871ACD1E4E0072D555 /* DTCoreTextLayoutFrameAccessibilityElementGenerator.m in Sources */,
+				95DC57131AF89F790075C3CB /* UITextField+MSRGetter.swift in Sources */,
 				9531D75B1AF3E4AC00E6549D /* LoginView.swift in Sources */,
 				95C893771AC7365D00B7B385 /* MSRSidebar.swift in Sources */,
 				951D1F941ACD1E750072D555 /* NSString+DTUtilities.m in Sources */,
@@ -2412,6 +2425,7 @@
 				9531D7971AF3E8E400E6549D /* Topic.swift in Sources */,
 				9531D6A21AF0A27100E6549D /* AnswerListViewController.swift in Sources */,
 				9531D79B1AF3E8E400E6549D /* String+PlainString.swift in Sources */,
+				95DC57191AF8AAFA0075C3CB /* NSObject+MSRClone.swift in Sources */,
 				9531D7471AF3E4AC00E6549D /* QuestionTagListCell.swift in Sources */,
 				9568F3E21AECD63700B201A8 /* RMDateSelectionViewController.m in Sources */,
 				95C2EA371AB0516800F2A326 /* MSRSegmentedControlLinearIndicator.swift in Sources */,
@@ -2458,7 +2472,7 @@
 				9531D7221AF3E4AC00E6549D /* AnswerTopBar.swift in Sources */,
 				951D1EA51ACD1E4E0072D555 /* NSAttributedString+SmallCaps.m in Sources */,
 				9531D7261AF3E4AC00E6549D /* CommentCell.swift in Sources */,
-				95C2EA3D1AB0516800F2A326 /* NSObject+MSRUserInfo.swift in Sources */,
+				95DC571B1AF8AD4D0075C3CB /* NSObject+MSRUserInfo.swift in Sources */,
 				951D1F841ACD1E750072D555 /* DTTiledLayerWithoutFade.m in Sources */,
 				956E720E1AAFC53B00A3FD7D /* AFNetworkActivityIndicatorManager.m in Sources */,
 				95C2EA1E1AB0516800F2A326 /* Array+MSRAccessor.swift in Sources */,
@@ -2627,6 +2641,7 @@
 				951D2F8D1AB7F85500DCB678 /* UIView+MJExtension.m in Sources */,
 				9531D71C1AF3E4AC00E6549D /* AnswerBottomBar.swift in Sources */,
 				951D1F8F1ACD1E750072D555 /* NSFileWrapper+DTCopying.m in Sources */,
+				9550A2971AF8B6D0005F81F7 /* KeyboardBar.swift in Sources */,
 				9531D7201AF3E4AC00E6549D /* AnswerCellWithQuestionTitle.swift in Sources */,
 				9531D79A1AF3E8E400E6549D /* NetworkManager.swift in Sources */,
 				956E720C1AAFC53B00A3FD7D /* AFURLResponseSerialization.m in Sources */,
@@ -2648,6 +2663,7 @@
 				9531D79D1AF3E8E400E6549D /* SinaWeiboActivity.swift in Sources */,
 				951D1F5E1ACD1E750072D555 /* DTCoreGraphicsUtils.m in Sources */,
 				95C2EA211AB0516800F2A326 /* Numeric+MSRInitializer.swift in Sources */,
+				95DC57151AF8A38D0075C3CB /* UserAtView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,9 +20,7 @@ class CommentListViewController: UITableViewController {
     var comments = [Comment]()
     let cellReuseIdentifier = "CommentCell"
     let cellNibName = "CommentCell"
-    var keyboardBar: MSRKeyboardBar!
-    let textField = UITextField()
-    let publishButton = UIButton()
+    let keyboardBar = KeyboardBar()
     init(answer: Answer) {
         self.answerOrArticle = .Answer_(answer)
         super.init(nibName: nil, bundle: nil)
@@ -36,13 +34,13 @@ class CommentListViewController: UITableViewController {
     }
     override func loadView() {
         super.loadView()
-        tableView = ButtonTouchesCancelableTableView()
-        tableView.delegate = self
-        tableView.dataSource = self
-        keyboardBar = MSRKeyboardBar()
+        title = "评论"
         refreshControl = UIRefreshControl()
         refreshControl!.tintColor = UIColor.whiteColor()
         refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+        tableView = ButtonTouchesCancelableTableView()
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         tableView.separatorStyle = .None
         tableView.contentInset.bottom = 50
@@ -54,26 +52,8 @@ class CommentListViewController: UITableViewController {
         tableView.indicatorStyle = .White
         msr_navigationBar!.barStyle = .Black
         msr_navigationBar!.tintColor = UIColor.whiteColor()
-        title = "评论"
-        let views = ["t": textField, "b": publishButton]
-        for (k, v) in views {
-            v.setTranslatesAutoresizingMaskIntoConstraints(false)
-            keyboardBar.addSubview(v)
-        }
-        textField.keyboardAppearance = .Dark
-        textField.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.87)
-        textField.attributedPlaceholder = NSAttributedString(string: "在此处输入评论……", attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor()])
-        textField.borderStyle = .None
-        textField.clearButtonMode = .WhileEditing
-        publishButton.setTitle("发布", forState: .Normal) // Needs localization
-        publishButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.87), forState: .Normal)
-        publishButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.2), forState: .Normal)
-        publishButton.msr_setBackgroundImageWithColor(UIColor.whiteColor().colorWithAlphaComponent(0.2), forState: .Highlighted)
-        publishButton.addTarget(self, action: "publishComment", forControlEvents: .TouchUpInside)
-        keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-5-[t]-5-[b(==75)]|", options: nil, metrics: nil, views: views))
-        keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[t(>=50)]|", options: nil, metrics: nil, views: views))
-        keyboardBar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[b(>=50)]|", options: nil, metrics: nil, views: views))
-        keyboardBar.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+        keyboardBar.userAtView.removeButton.addTarget(self, action: "removeAtUser", forControlEvents: .TouchUpInside)
+        keyboardBar.publishButton.addTarget(self, action: "publishComment", forControlEvents: .TouchUpInside)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,20 +77,27 @@ class CommentListViewController: UITableViewController {
         return cell
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! CommentCell
+        let comment = comments[indexPath.row]
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         alertController.addAction(UIAlertAction(
             title: "回复",
             style: .Default) {
                 [weak self] action in
-                self?.textField.text = "@" + cell.userNameLabel.text! + ":" + self!.textField.text!
+                if comment.user != nil {
+                    let user = DataManager.temporaryManager!.create("User") as! User
+                    user.id = comment.user!.id
+                    user.name = comment.user!.name
+                    self?.keyboardBar.userAtView.userNameLabel.text = user.name
+                    self?.keyboardBar.userAtView.msr_userInfo = user
+                    self?.keyboardBar.userAtView.hidden = false
+                }
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
             })
         alertController.addAction(UIAlertAction(
             title: "复制",
             style: .Default) {
                 action in
-                UIPasteboard.generalPasteboard().string = cell.bodyLabel.text
+                UIPasteboard.generalPasteboard().string = comment.body
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
             })
         alertController.addAction(UIAlertAction(
@@ -123,42 +110,50 @@ class CommentListViewController: UITableViewController {
     }
     internal func publishComment() {
         if !(refreshControl?.refreshing ?? true) {
-            textField.resignFirstResponder()
+            keyboardBar.textField.resignFirstResponder()
             let manager = DataManager.temporaryManager!
-            let success: () -> Void = {
-                [weak self] in
-                SVProgressHUD.dismiss()
-                SVProgressHUD.showSuccessWithStatus("已发布", maskType: .Gradient)
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC / 2)), dispatch_get_main_queue()) {
-                    SVProgressHUD.dismiss()
-                }
-                self?.textField.text = ""
-                self?.refreshControl?.beginRefreshing()
-                self?.refresh()
-            }
-            let failare: (NSError) -> Void = {
-                [weak self] error in
-                SVProgressHUD.dismiss()
-                let ac = UIAlertController(title: (error.userInfo?[NSLocalizedDescriptionKey] as? String) ?? "",
-                    message: nil,
-                    preferredStyle: .Alert)
-                ac.addAction(UIAlertAction(title: "好", style: .Default, handler: nil))
-                self?.presentViewController(ac, animated: true, completion: nil)
-            }
+            let comment: Comment!
             switch answerOrArticle {
             case .Answer_(let answer):
-                let comment = manager.create("AnswerComment") as! AnswerComment
-                comment.answer = (manager.create("Answer") as! Answer)
-                comment.answer!.id = answer.id
-                comment.body = textField.text
-                SVProgressHUD.showWithMaskType(.Gradient)
-                comment.post(success: success, failure: failare)
+                let comment_ = manager.create("AnswerComment") as! AnswerComment
+                comment_.answer = (manager.create("Answer") as! Answer)
+                comment_.answer!.id = answer.id
+                comment = comment_
                 break
             case .Article_(let article):
+                let comment_ = manager.create("ArticleComment") as! ArticleComment
+                comment_.article = (manager.create("Article") as! Article)
+                comment_.article!.id = article.id
+                comment = comment_
                 break
             default:
                 break
             }
+            comment.body = keyboardBar.textField.text
+            comment.atUser = keyboardBar.userAtView.msr_userInfo as? User
+            SVProgressHUD.showWithMaskType(.Gradient)
+            comment.post(
+                success: {
+                    [weak self] in
+                    SVProgressHUD.dismiss()
+                    SVProgressHUD.showSuccessWithStatus("已发布", maskType: .Gradient)
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC / 2)), dispatch_get_main_queue()) {
+                        SVProgressHUD.dismiss()
+                    }
+                    self?.keyboardBar.textField.text = ""
+                    self?.removeAtUser()
+                    self?.refreshControl?.beginRefreshing()
+                    self?.refresh()
+                },
+                failure: {
+                    [weak self] error in
+                    SVProgressHUD.dismiss()
+                    let ac = UIAlertController(title: (error.userInfo?[NSLocalizedDescriptionKey] as? String) ?? "",
+                        message: nil,
+                        preferredStyle: .Alert)
+                    ac.addAction(UIAlertAction(title: "好", style: .Default, handler: nil))
+                    self?.presentViewController(ac, animated: true, completion: nil)
+                })
         }
     }
     func refresh() {
@@ -187,6 +182,11 @@ class CommentListViewController: UITableViewController {
         default:
             break
         }
+    }
+    func removeAtUser() {
+        keyboardBar.userAtView.msr_userInfo = nil
+        keyboardBar.userAtView.hidden = true
+        keyboardBar.userAtView.userNameLabel.text = ""
     }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent

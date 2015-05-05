@@ -17,5 +17,7 @@ class Comment: NSManagedObject {
     @NSManaged var id: NSNumber
     @NSManaged var atUser: User?
     @NSManaged var user: User?
+    
+    func post(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {}
 
 }
