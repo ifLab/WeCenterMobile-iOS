@@ -9,6 +9,30 @@
 import DTCoreText
 import UIKit
 
+protocol ArticleViewControllerPresentable {
+    var date: NSDate? { get }
+    var body: String? { get }
+    var user: User? { get }
+    var title: String? { get }
+    var agreementCount: NSNumber? { get }
+    func fetchDataObjectForArticleViewController(#success: ((ArticleViewControllerPresentable) -> Void)?, failure: ((NSError) -> Void)?)
+}
+
+extension Answer: ArticleViewControllerPresentable {
+    var title: String? {
+        return question?.title
+    }
+    func fetchDataObjectForArticleViewController(#success: ((ArticleViewControllerPresentable) -> Void)?, failure: ((NSError) -> Void)?) {
+        Answer.fetch(ID: id, success: { success?($0) }, failure: failure)
+    }
+}
+
+extension Article: ArticleViewControllerPresentable {
+    func fetchDataObjectForArticleViewController(#success: ((ArticleViewControllerPresentable) -> Void)?, failure: ((NSError) -> Void)?) {
+        Article.fetch(ID: id, success: { success?($0) }, failure: failure)
+    }
+}
+
 class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHeaderViewDelegate, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate {
     
     lazy var header: ArticleHeaderView = {
@@ -45,10 +69,10 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
         return v
     }()
     
-    var article: Article
+    var dataObject: ArticleViewControllerPresentable
     
-    init(article: Article) {
-        self.article = article
+    init(dataObject: ArticleViewControllerPresentable) {
+        self.dataObject = dataObject
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -94,16 +118,13 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
     }
     
     func refresh() {
-        Article.fetch(
-            ID: article.id,
+        dataObject.fetchDataObjectForArticleViewController(
             success: {
-                [weak self] article in
-                self?.article = article
+                [weak self] dataObject in
+                self?.dataObject = dataObject
                 self?.reloadData()
                 self?.bodyView.msr_uiRefreshControl!.endRefreshing()
-                return
-            },
-            failure: {
+            }, failure: {
                 [weak self] error in
                 self?.bodyView.msr_uiRefreshControl!.endRefreshing()
                 return
@@ -111,8 +132,6 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
     }
     
     func reloadData() {
-        header.update(article: article)
-        footer.update(article: article)
         let options = [
             DTDefaultFontName: UIFont.systemFontOfSize(0).fontName,
             DTDefaultFontSize: 16,
@@ -120,10 +139,12 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
             DTDefaultLineHeightMultiplier: 1.5,
             DTDefaultLinkColor: UIColor.msr_materialLightBlue800(),
             DTDefaultLinkDecoration: true]
+        header.update(dataObject: dataObject)
+        footer.update(dataObject: dataObject)
         let dateFormatter = NSDateFormatter()
         dateFormatter.timeZone = NSTimeZone.localTimeZone()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        var html = article.date == nil ? article.body ?? "加载中……" : article.body! + "<br><p align=\"right\">\(dateFormatter.stringFromDate(article.date!))</p>"
+        var html = dataObject.date == nil ? dataObject.body ?? "加载中……" : dataObject.body! + "<br><p align=\"right\">\(dateFormatter.stringFromDate(dataObject.date!))</p>"
         bodyView.attributedString = NSAttributedString(
             HTMLData: html.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true),
             options: options,
@@ -232,7 +253,9 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
     }
     
     func didPressCommentButton() {
-        msr_navigationController!.pushViewController(CommentListViewController(article: article), animated: true)
+        if let dataObject = dataObject as? CommentListViewControllerPresentable {
+            msr_navigationController!.pushViewController(CommentListViewController(dataObject: dataObject), animated: true)
+        }
     }
     
     func didLongPressLinkButton(linkButton: DTLinkButton) {
@@ -254,9 +277,9 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
     }
     
     func didPressShareButton() {
-        let title = article.title!
-        let image = article.user?.avatar ?? defaultUserAvatar
-        let body = article.body!.wc_plainString
+        let title = dataObject.title!
+        let image = dataObject.user?.avatar ?? defaultUserAvatar
+        let body = dataObject.body!
         let url = NetworkManager.defaultManager!.website
         let vc = UIActivityViewController(
             activityItems: [
@@ -276,7 +299,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
         ac.addAction(UIAlertAction(title: "跳转到 Safari", style: .Default) {
             action in
             UIApplication.sharedApplication().openURL(URL)
-            })
+        })
         ac.addAction(UIAlertAction(title: "复制到剪贴板", style: .Default) {
             [weak self] action in
             UIPasteboard.generalPasteboard().string = URL.absoluteString
@@ -286,7 +309,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
                     ac.dismissViewControllerAnimated(true, completion: nil)
                 }
             }
-            })
+        })
         ac.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
         presentViewController(ac, animated: true, completion: nil)
     }

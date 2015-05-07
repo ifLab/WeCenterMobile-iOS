@@ -154,7 +154,6 @@
 		951D1F9D1ACD1E750072D555 /* DTObjectBlockExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D1F541ACD1E750072D555 /* DTObjectBlockExecutor.m */; };
 		951D1F9E1ACD1E750072D555 /* NSObject+DTRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D1F561ACD1E750072D555 /* NSObject+DTRuntime.m */; };
 		951D1FA11ACD1F7F0072D555 /* default.css.c in Sources */ = {isa = PBXBuildFile; fileRef = 951D1FA01ACD1F7F0072D555 /* default.css.c */; };
-		951D1FB81ACE80EB0072D555 /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951D1FB71ACE80EB0072D555 /* AnswerViewController.swift */; };
 		951D2F821AB7F85500DCB678 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 951D2F6A1AB7F85500DCB678 /* MJRefresh.bundle */; };
 		951D2F831AB7F85500DCB678 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D2F6D1AB7F85500DCB678 /* MJRefreshComponent.m */; };
 		951D2F841AB7F85500DCB678 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D2F6F1AB7F85500DCB678 /* MJRefreshConst.m */; };
@@ -180,14 +179,10 @@
 		9531D6B01AF3DF2E00E6549D /* MSRNull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6AF1AF3DF2E00E6549D /* MSRNull.swift */; };
 		9531D71A1AF3E4AC00E6549D /* AnswerAdditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6CD1AF3E4AC00E6549D /* AnswerAdditionCell.swift */; };
 		9531D71B1AF3E4AC00E6549D /* AnswerAdditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D6CE1AF3E4AC00E6549D /* AnswerAdditionCell.xib */; };
-		9531D71C1AF3E4AC00E6549D /* AnswerBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6CF1AF3E4AC00E6549D /* AnswerBottomBar.swift */; };
-		9531D71D1AF3E4AC00E6549D /* AnswerBottomBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D6D01AF3E4AC00E6549D /* AnswerBottomBar.xib */; };
 		9531D71E1AF3E4AC00E6549D /* AnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6D11AF3E4AC00E6549D /* AnswerCell.swift */; };
 		9531D71F1AF3E4AC00E6549D /* AnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D6D21AF3E4AC00E6549D /* AnswerCell.xib */; };
 		9531D7201AF3E4AC00E6549D /* AnswerCellWithQuestionTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6D31AF3E4AC00E6549D /* AnswerCellWithQuestionTitle.swift */; };
 		9531D7211AF3E4AC00E6549D /* AnswerCellWithQuestionTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D6D41AF3E4AC00E6549D /* AnswerCellWithQuestionTitle.xib */; };
-		9531D7221AF3E4AC00E6549D /* AnswerTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6D51AF3E4AC00E6549D /* AnswerTopBar.swift */; };
-		9531D7231AF3E4AC00E6549D /* AnswerTopBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D6D61AF3E4AC00E6549D /* AnswerTopBar.xib */; };
 		9531D7241AF3E4AC00E6549D /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6D81AF3E4AC00E6549D /* ArticleCell.swift */; };
 		9531D7251AF3E4AC00E6549D /* ArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D6D91AF3E4AC00E6549D /* ArticleCell.xib */; };
 		9531D7261AF3E4AC00E6549D /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6DB1AF3E4AC00E6549D /* CommentCell.swift */; };
@@ -720,7 +715,6 @@
 		951D1F561ACD1E750072D555 /* NSObject+DTRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DTRuntime.m"; sourceTree = "<group>"; };
 		951D1F9F1ACD1E840072D555 /* DTFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DTFoundation.h; path = WeCenterMobile/External/DTCoreText/Externals/DTFoundation/Core/DTFoundation.h; sourceTree = SOURCE_ROOT; };
 		951D1FA01ACD1F7F0072D555 /* default.css.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = default.css.c; path = WeCenterMobile/External/Generated/default.css.c; sourceTree = SOURCE_ROOT; };
-		951D1FB71ACE80EB0072D555 /* AnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
 		951D2F6A1AB7F85500DCB678 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		951D2F6B1AB7F85500DCB678 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		951D2F6C1AB7F85500DCB678 /* MJRefreshComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshComponent.h; sourceTree = "<group>"; };
@@ -759,14 +753,10 @@
 		9531D6AF1AF3DF2E00E6549D /* MSRNull.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRNull.swift; sourceTree = "<group>"; };
 		9531D6CD1AF3E4AC00E6549D /* AnswerAdditionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerAdditionCell.swift; sourceTree = "<group>"; };
 		9531D6CE1AF3E4AC00E6549D /* AnswerAdditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerAdditionCell.xib; sourceTree = "<group>"; };
-		9531D6CF1AF3E4AC00E6549D /* AnswerBottomBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerBottomBar.swift; sourceTree = "<group>"; };
-		9531D6D01AF3E4AC00E6549D /* AnswerBottomBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerBottomBar.xib; sourceTree = "<group>"; };
 		9531D6D11AF3E4AC00E6549D /* AnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerCell.swift; sourceTree = "<group>"; };
 		9531D6D21AF3E4AC00E6549D /* AnswerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerCell.xib; sourceTree = "<group>"; };
 		9531D6D31AF3E4AC00E6549D /* AnswerCellWithQuestionTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerCellWithQuestionTitle.swift; sourceTree = "<group>"; };
 		9531D6D41AF3E4AC00E6549D /* AnswerCellWithQuestionTitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerCellWithQuestionTitle.xib; sourceTree = "<group>"; };
-		9531D6D51AF3E4AC00E6549D /* AnswerTopBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerTopBar.swift; sourceTree = "<group>"; };
-		9531D6D61AF3E4AC00E6549D /* AnswerTopBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerTopBar.xib; sourceTree = "<group>"; };
 		9531D6D81AF3E4AC00E6549D /* ArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		9531D6D91AF3E4AC00E6549D /* ArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleCell.xib; sourceTree = "<group>"; };
 		9531D6DB1AF3E4AC00E6549D /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
@@ -1069,7 +1059,6 @@
 			isa = PBXGroup;
 			children = (
 				9531D6A11AF0A27100E6549D /* AnswerListViewController.swift */,
-				951D1FB71ACE80EB0072D555 /* AnswerViewController.swift */,
 				951DA74E1AE9183000F0E3A7 /* AnswerPublishmentViewController.swift */,
 				951DA7501AE9188900F0E3A7 /* AnswerPublishmentViewController.xib */,
 				9531D6A71AF3D68F00E6549D /* ArticleListViewController.swift */,
@@ -1636,14 +1625,10 @@
 			children = (
 				9531D6CD1AF3E4AC00E6549D /* AnswerAdditionCell.swift */,
 				9531D6CE1AF3E4AC00E6549D /* AnswerAdditionCell.xib */,
-				9531D6CF1AF3E4AC00E6549D /* AnswerBottomBar.swift */,
-				9531D6D01AF3E4AC00E6549D /* AnswerBottomBar.xib */,
 				9531D6D11AF3E4AC00E6549D /* AnswerCell.swift */,
 				9531D6D21AF3E4AC00E6549D /* AnswerCell.xib */,
 				9531D6D31AF3E4AC00E6549D /* AnswerCellWithQuestionTitle.swift */,
 				9531D6D41AF3E4AC00E6549D /* AnswerCellWithQuestionTitle.xib */,
-				9531D6D51AF3E4AC00E6549D /* AnswerTopBar.swift */,
-				9531D6D61AF3E4AC00E6549D /* AnswerTopBar.xib */,
 			);
 			path = Answer;
 			sourceTree = "<group>";
@@ -2302,7 +2287,6 @@
 				9531D7211AF3E4AC00E6549D /* AnswerCellWithQuestionTitle.xib in Resources */,
 				9531D7541AF3E4AC00E6549D /* UserBodyCell.xib in Resources */,
 				950FE1271A1DA2A400167D09 /* Welcome.strings in Resources */,
-				9531D71D1AF3E4AC00E6549D /* AnswerBottomBar.xib in Resources */,
 				9531D7391AF3E4AC00E6549D /* QuestionFocusingActionCell.xib in Resources */,
 				951D2F821AB7F85500DCB678 /* MJRefresh.bundle in Resources */,
 				951D1E741ACD1E4E0072D555 /* default.css in Resources */,
@@ -2323,7 +2307,6 @@
 				9568F3A21AEC74AB00B201A8 /* UserEditViewController.xib in Resources */,
 				950FE1261A1DA2A400167D09 /* User.strings in Resources */,
 				95E060D91AC2507300C6750C /* SVProgressHUD.bundle in Resources */,
-				9531D7231AF3E4AC00E6549D /* AnswerTopBar.xib in Resources */,
 				956140041AE2E6080077FBA0 /* Info.plist in Resources */,
 				956140031AE2E6080077FBA0 /* LICENSE in Resources */,
 				9531D7351AF3E4AC00E6549D /* ArticleAgreementActionCell.xib in Resources */,
@@ -2469,7 +2452,6 @@
 				951D1FA11ACD1F7F0072D555 /* default.css.c in Sources */,
 				951D1F7B1ACD1E750072D555 /* DTCustomColoredAccessory.m in Sources */,
 				9531D73F1AF3E4AC00E6549D /* QuestionBodyCell.swift in Sources */,
-				9531D7221AF3E4AC00E6549D /* AnswerTopBar.swift in Sources */,
 				951D1EA51ACD1E4E0072D555 /* NSAttributedString+SmallCaps.m in Sources */,
 				9531D7261AF3E4AC00E6549D /* CommentCell.swift in Sources */,
 				95DC571B1AF8AD4D0075C3CB /* NSObject+MSRUserInfo.swift in Sources */,
@@ -2520,7 +2502,6 @@
 				9531D7881AF3E8E400E6549D /* Action.swift in Sources */,
 				9531D7591AF3E4AC00E6549D /* UserHeaderView.swift in Sources */,
 				951D2F861AB7F85500DCB678 /* MJRefreshGifFooter.m in Sources */,
-				951D1FB81ACE80EB0072D555 /* AnswerViewController.swift in Sources */,
 				951D2F8B1AB7F85500DCB678 /* UIScrollView+MJExtension.m in Sources */,
 				95387BFF1ABEA456004DF8EB /* String+MSREncryption.swift in Sources */,
 				95C2EA2F1AB0516800F2A326 /* MSRKeyboardBar.swift in Sources */,
@@ -2639,7 +2620,6 @@
 				95C2EA2E1AB0516800F2A326 /* MSRFrameEdge.swift in Sources */,
 				951D1F5B1ACD1E750072D555 /* NSURL+DTAWS.m in Sources */,
 				951D2F8D1AB7F85500DCB678 /* UIView+MJExtension.m in Sources */,
-				9531D71C1AF3E4AC00E6549D /* AnswerBottomBar.swift in Sources */,
 				951D1F8F1ACD1E750072D555 /* NSFileWrapper+DTCopying.m in Sources */,
 				9550A2971AF8B6D0005F81F7 /* KeyboardBar.swift in Sources */,
 				9531D7201AF3E4AC00E6549D /* AnswerCellWithQuestionTitle.swift in Sources */,

@@ -27,8 +27,8 @@ class ArticleFooterView: UIVisualEffectView {
         }
     }
     
-    func update(#article: Article) {
-        agreeButton.setTitle(article.agreementCount?.description ?? "", forState: .Normal)
+    func update(#dataObject: ArticleViewControllerPresentable) {
+        agreeButton.setTitle(dataObject.agreementCount?.description ?? "", forState: .Normal)
     }
     
 }

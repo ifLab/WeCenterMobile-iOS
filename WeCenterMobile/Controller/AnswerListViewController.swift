@@ -95,7 +95,7 @@ class AnswerListViewController: UITableViewController {
     
     func didPressAnswerButton(button: UIButton) {
         if let answer = button.msr_userInfo as? Answer {
-            msr_navigationController!.pushViewController(AnswerViewController(answer: answer), animated: true)
+            msr_navigationController!.pushViewController(ArticleViewController(dataObject: answer), animated: true)
         }
     }
     

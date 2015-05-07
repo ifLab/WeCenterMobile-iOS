@@ -10,23 +10,48 @@ import MJRefresh
 import SVProgressHUD
 import UIKit
 
-enum AnswerOrArticle {
-    case Answer_(Answer)
-    case Article_(Article)
+protocol CommentListViewControllerPresentable {
+    var commentsForCommentListViewController: Set<Comment> { get }
+    func fetchCommentsForCommentListViewController(#success: (([Comment]) -> Void)?, failure: ((NSError) -> Void)?)
+    func temporaryComment() -> Comment
+}
+
+extension Answer: CommentListViewControllerPresentable {
+    var commentsForCommentListViewController: Set<Comment> { return comments }
+    func fetchCommentsForCommentListViewController(#success: (([Comment]) -> Void)?, failure: ((NSError) -> Void)?) {
+        fetchComments(success: { success?($0) }, failure: failure)
+    }
+    func temporaryComment() -> Comment {
+        let manager = DataManager.temporaryManager!
+        let c = manager.create("AnswerComment") as! AnswerComment
+        c.answer = (manager.create("Answer") as! Answer)
+        c.answer!.id = id
+        return c
+    }
+}
+
+extension Article: CommentListViewControllerPresentable {
+    var commentsForCommentListViewController: Set<Comment> { return comments }
+    func fetchCommentsForCommentListViewController(#success: (([Comment]) -> Void)?, failure: ((NSError) -> Void)?) {
+        fetchComments(success: { success?($0) }, failure: failure)
+    }
+    func temporaryComment() -> Comment {
+        let manager = DataManager.temporaryManager!
+        let c = manager.create("ArticleComment") as! ArticleComment
+        c.article = (manager.create("Article") as! Article)
+        c.article!.id = id
+        return c
+    }
 }
 
 class CommentListViewController: UITableViewController {
-    private var answerOrArticle: AnswerOrArticle
+    var dataObject: CommentListViewControllerPresentable
     var comments = [Comment]()
     let cellReuseIdentifier = "CommentCell"
     let cellNibName = "CommentCell"
     let keyboardBar = KeyboardBar()
-    init(answer: Answer) {
-        self.answerOrArticle = .Answer_(answer)
-        super.init(nibName: nil, bundle: nil)
-    }
-    init(article: Article) {
-        self.answerOrArticle = .Article_(article)
+    init(dataObject: CommentListViewControllerPresentable) {
+        self.dataObject = dataObject
         super.init(nibName: nil, bundle: nil)
     }
     required init(coder aDecoder: NSCoder) {
@@ -111,24 +136,7 @@ class CommentListViewController: UITableViewController {
     internal func publishComment() {
         if !(refreshControl?.refreshing ?? true) {
             keyboardBar.textField.resignFirstResponder()
-            let manager = DataManager.temporaryManager!
-            let comment: Comment!
-            switch answerOrArticle {
-            case .Answer_(let answer):
-                let comment_ = manager.create("AnswerComment") as! AnswerComment
-                comment_.answer = (manager.create("Answer") as! Answer)
-                comment_.answer!.id = answer.id
-                comment = comment_
-                break
-            case .Article_(let article):
-                let comment_ = manager.create("ArticleComment") as! ArticleComment
-                comment_.article = (manager.create("Article") as! Article)
-                comment_.article!.id = article.id
-                comment = comment_
-                break
-            default:
-                break
-            }
+            let comment = dataObject.temporaryComment()
             comment.body = keyboardBar.textField.text
             comment.atUser = keyboardBar.userAtView.msr_userInfo as? User
             SVProgressHUD.showWithMaskType(.Gradient)
@@ -157,31 +165,17 @@ class CommentListViewController: UITableViewController {
         }
     }
     func refresh() {
-        let success: ([Comment]) -> Void = {
+        dataObject.fetchCommentsForCommentListViewController(
+            success: {
             [weak self] comments in
             self?.comments = comments
             self?.tableView.reloadData()
             self?.refreshControl!.endRefreshing()
-        }
-        let failure: (NSError) -> Void = {
+        }, failure: {
             [weak self] error in
             self?.tableView.reloadData()
             self?.refreshControl!.endRefreshing()
-        }
-        switch answerOrArticle {
-        case .Answer_(let answer):
-            answer.fetchComments(
-                success: { success($0) },
-                failure: failure)
-            break
-        case .Article_(let article):
-            article.fetchComments(
-                success: { success($0) },
-                failure: failure)
-            break
-        default:
-            break
-        }
+        })
     }
     func removeAtUser() {
         keyboardBar.userAtView.msr_userInfo = nil

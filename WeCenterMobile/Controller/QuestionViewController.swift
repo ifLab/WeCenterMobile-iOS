@@ -61,7 +61,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     lazy var answerAdditionCell: AnswerAdditionCell = {
         [weak self] in
         let c = NSBundle.mainBundle().loadNibNamed("AnswerAdditionCell", owner: nil, options: nil).first as! AnswerAdditionCell
-        c.answerAdditionButton.addTarget(self, action: "pushAnswerPublishmentViewController", forControlEvents: .TouchUpInside)
+        c.answerAdditionButton.addTarget(self, action: "didPressAdditionButton", forControlEvents: .TouchUpInside)
         return c
     }()
     
@@ -133,7 +133,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
             return answerAdditionCell
         default:
             let answerCell = tableView.dequeueReusableCellWithIdentifier(answerCellIdentifier, forIndexPath: indexPath) as! AnswerCell
-            answerCell.answerButton.addTarget(self, action: "pushAnswerViewController:", forControlEvents: .TouchUpInside)
+            answerCell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
             answerCell.update(answer: answers[indexPath.row], updateImage: true)
             return answerCell
         }
@@ -216,13 +216,13 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         presentViewController(ac, animated: true, completion: nil)
     }
     
-    func pushAnswerViewController(answerButton: UIButton) {
-        if let answer = answerButton.msr_userInfo as? Answer {
-            msr_navigationController!.pushViewController(AnswerViewController(answer: answer), animated: true)
+    func didPressAnswerButton(button: UIButton) {
+        if let answer = button.msr_userInfo as? Answer {
+            msr_navigationController!.pushViewController(ArticleViewController(dataObject: answer), animated: true)
         }
     }
     
-    func pushAnswerPublishmentViewController() {
+    func didPressAdditionButton() {
         let apc = NSBundle.mainBundle().loadNibNamed("AnswerPublishmentViewController", owner: nil, options: nil).first as! AnswerPublishmentViewController
         apc.question = question
         apc.delegate = self

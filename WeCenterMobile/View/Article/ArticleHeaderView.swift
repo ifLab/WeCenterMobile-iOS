@@ -118,16 +118,16 @@ class ArticleHeaderView: UIView {
         }
     }
     
-    func update(#article: Article) {
-        userAvatarViewA.wc_updateWithUser(article.user)
-        userAvatarViewB.wc_updateWithUser(article.user)
-        titleLabelA.text = article.title
-        titleLabelB.text = article.title
+    func update(#dataObject: ArticleViewControllerPresentable) {
+        userAvatarViewA.wc_updateWithUser(dataObject.user)
+        userAvatarViewB.wc_updateWithUser(dataObject.user)
+        titleLabelA.text = dataObject.title
+        titleLabelB.text = dataObject.title
         titleLabelA.sizeToFit()
-        userNameLabel.text = article.user?.name ?? "匿名用户"
-        userSignatureLabel.text = article.user?.signature
-        userButtonA.msr_userInfo = article.user
-        userButtonB.msr_userInfo = article.user
+        userNameLabel.text = dataObject.user?.name ?? "匿名用户"
+        userSignatureLabel.text = dataObject.user?.signature
+        userButtonA.msr_userInfo = dataObject.user
+        userButtonB.msr_userInfo = dataObject.user
         invalidateMaxHeight()
         setNeedsLayout()
         layoutIfNeeded()
