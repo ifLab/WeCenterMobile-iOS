@@ -1068,13 +1068,13 @@
 		950FE1291A1DA2B300167D09 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				950FE12C1A1DA2B300167D09 /* CommetListViewController.swift */,
 				9531D6A11AF0A27100E6549D /* AnswerListViewController.swift */,
 				951D1FB71ACE80EB0072D555 /* AnswerViewController.swift */,
 				951DA74E1AE9183000F0E3A7 /* AnswerPublishmentViewController.swift */,
 				951DA7501AE9188900F0E3A7 /* AnswerPublishmentViewController.xib */,
 				9531D6A71AF3D68F00E6549D /* ArticleListViewController.swift */,
 				95D153A31AF4BB3000C1617D /* ArticleViewController.swift */,
+				950FE12C1A1DA2B300167D09 /* CommetListViewController.swift */,
 				950FE12D1A1DA2B300167D09 /* ExploreViewController.swift */,
 				95F380BA1AB269690070A7FB /* FeaturedObjectListViewController.swift */,
 				95E535591A49DCFD00D7B76B /* HomeViewController.swift */,

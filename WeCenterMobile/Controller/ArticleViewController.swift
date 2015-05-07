@@ -9,7 +9,7 @@
 import DTCoreText
 import UIKit
 
-class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHeaderViewDelegate, DTAttributedTextContentViewDelegate {
+class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHeaderViewDelegate, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate {
     
     lazy var header: ArticleHeaderView = {
         [weak self] in
@@ -28,9 +28,10 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
     
     lazy var bodyView: DTAttributedTextView = {
         [weak self] in
-        let v = DTAttributedTextView()
+        let v = ButtonTouchesCancelableAttributedTextView()
         v.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         v.alwaysBounceVertical = true
+        v.delaysContentTouches = false
         v.contentInset.top = self!.header.minHeight
         v.attributedTextContentView.edgeInsets = UIEdgeInsets(top: self!.header.maxHeight - self!.header.minHeight + 10, left: 10, bottom: self!.footer.bounds.height + 10, right: 10)
         v.contentOffset.y = -v.attributedTextContentView.edgeInsets.top - 10
@@ -60,7 +61,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
         view.addSubview(bodyView)
         view.addSubview(footer)
         bodyView.addSubview(header)
-        bodyView.sendSubviewToBack(bodyView.attributedTextContentView)
+        bodyView.bringSubviewToFront(header)
         bodyView.frame = view.bounds
         bodyView.delegate = self
         bodyView.msr_uiRefreshControl = UIRefreshControl()
@@ -68,9 +69,13 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
         bodyView.msr_uiRefreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         bodyView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
         bodyView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
-        view.backgroundColor = UIColor.msr_materialBlueGray800()
+        view.backgroundColor = UIColor.msr_materialBlueGray900()
         header.frame = CGRect(x: 0, y: -bodyView.contentInset.top, width: bodyView.bounds.width, height: header.maxHeight)
+        header.userButtonA.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
+        header.userButtonB.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
+        header.backButton.addTarget(self, action: "didPressBackButton", forControlEvents: .TouchUpInside)
         footer.frame = CGRect(x: 0, y: view.bounds.height - 50, width: view.bounds.width, height: 50)
+        footer.shareButton.addTarget(self, action: "didPressShareButton", forControlEvents: .TouchUpInside)
         footer.commentButton.addTarget(self, action: "didPressCommentButton", forControlEvents: .TouchUpInside)
         msr_navigationBar!.hidden = true
         automaticallyAdjustsScrollViewInsets = false
@@ -78,6 +83,11 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserverForName(DTAttributedTextContentViewDidFinishLayoutNotification, object: bodyView.attributedTextContentView, queue: NSOperationQueue.mainQueue()) {
+            [weak self] notification in
+            self?.bodyView.contentSize.height = max(self!.bodyView.attributedTextContentView.bounds.height, self!.bodyView.bounds.height + self!.header.maxHeight - self!.header.normalHeight - self!.header.minHeight)
+            return
+        }
         reloadData()
         bodyView.msr_uiRefreshControl!.beginRefreshing()
         refresh()
@@ -139,18 +149,6 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
                     header.frame.size.height = header.normalHeight
                     bodyView.scrollIndicatorInsets.top = header.bounds.height
                 }
-                if bodyView.panGestureRecognizer.state == .Changed {
-                    animate() {
-                        [weak self] in
-                        if velocity < -threshold {
-                            self?.header.frame.size.height = self!.header.minHeight
-                        }
-                        if velocity > threshold {
-                            self?.header.frame.size.height = self!.header.normalHeight
-                        }
-                        return
-                    }
-                }
             }
             animate() {
                 [weak self] in
@@ -161,6 +159,15 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
                     self?.footer.transform = CGAffineTransformIdentity
                 }
                 return
+            }
+        }
+    }
+    
+    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if scrollView === bodyView {
+            let offset = targetContentOffset.memory.y + header.minHeight
+            if offset > 0 && offset <= header.maxHeight - header.normalHeight {
+                targetContentOffset.memory = CGPoint(x: 0, y: header.maxHeight - header.minHeight - header.normalHeight)
             }
         }
     }
@@ -180,8 +187,108 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
         }
     }
     
+    func attributedTextContentView(attributedTextContentView: DTAttributedTextContentView!, viewForAttachment attachment: DTTextAttachment!, frame: CGRect) -> UIView! {
+        if attachment is DTImageTextAttachment {
+            let imageView = DTLazyImageView(frame: frame)
+            imageView.delegate = self
+            imageView.url = attachment.contentURL
+            return imageView
+        }
+        return nil
+    }
+    
+    func attributedTextContentView(attributedTextContentView: DTAttributedTextContentView!, viewForLink url: NSURL!, identifier: String!, frame: CGRect) -> UIView! {
+        let button = DTLinkButton()
+        button.URL = url
+        button.GUID = identifier
+        button.frame = frame
+        button.showsTouchWhenHighlighted = true
+        button.minimumHitSize = CGSize(width: 44, height: 44)
+        button.addTarget(self, action: "didPressLinkButton:", forControlEvents: .TouchUpInside)
+        button.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "handleLongPressGesture:"))
+        return button
+    }
+    
+    func lazyImageView(lazyImageView: DTLazyImageView!, didChangeImageSize size: CGSize) {
+        let predicate = NSPredicate(format: "contentURL == %@", lazyImageView.url)
+        let attachments = bodyView.attributedTextContentView.layoutFrame.textAttachmentsWithPredicate(predicate) as? [DTImageTextAttachment] ?? []
+        for attachment in attachments {
+            attachment.originalSize = size
+            let v = bodyView.attributedTextContentView
+            let maxWidth = v.bounds.width - v.edgeInsets.left - v.edgeInsets.right
+            if size.width > maxWidth {
+                let scale = maxWidth / size.width
+                attachment.displaySize = CGSize(width: size.width * scale, height: size.height * scale)
+            }
+        }
+        bodyView.attributedTextContentView.layouter = nil
+        bodyView.attributedTextContentView.relayoutText()
+    }
+    
+    func handleLongPressGesture(recoginizer: UILongPressGestureRecognizer) {
+        if recoginizer.state == .Began {
+            didLongPressLinkButton(recoginizer.view as! DTLinkButton)
+        }
+    }
+    
     func didPressCommentButton() {
         msr_navigationController!.pushViewController(CommentListViewController(article: article), animated: true)
+    }
+    
+    func didLongPressLinkButton(linkButton: DTLinkButton) {
+        presentLinkAlertControllerWithURL(linkButton.URL)
+    }
+    
+    func didPressLinkButton(linkButton: DTLinkButton) {
+        presentLinkAlertControllerWithURL(linkButton.URL)
+    }
+    
+    func didPressUserButton(button: UIButton) {
+        if let user = button.msr_userInfo as? User {
+            msr_navigationController!.pushViewController(UserViewController(user: user), animated: true)
+        }
+    }
+    
+    func didPressBackButton() {
+        msr_navigationController!.popViewController(animated: true)
+    }
+    
+    func didPressShareButton() {
+        let title = article.title!
+        let image = article.user?.avatar ?? defaultUserAvatar
+        let body = article.body!.wc_plainString
+        let url = NetworkManager.defaultManager!.website
+        let vc = UIActivityViewController(
+            activityItems: [
+                title, image, body, NSURL(string: url)!,
+                WeChatShareItem(title: title, body: body, image: image, url: url),
+                SinaWeiboShareItem(title: title, body: body, image: image, url: url)
+            ],
+            applicationActivities: [
+                WeChatSessionActivity(),
+                WeChatMomentsActivity(),
+                SinaWeiboActivity()])
+        showDetailViewController(vc, sender: self)
+    }
+    
+    func presentLinkAlertControllerWithURL(URL: NSURL) {
+        let ac = UIAlertController(title: "链接", message: URL.absoluteString, preferredStyle: .ActionSheet)
+        ac.addAction(UIAlertAction(title: "跳转到 Safari", style: .Default) {
+            action in
+            UIApplication.sharedApplication().openURL(URL)
+            })
+        ac.addAction(UIAlertAction(title: "复制到剪贴板", style: .Default) {
+            [weak self] action in
+            UIPasteboard.generalPasteboard().string = URL.absoluteString
+            let ac = UIAlertController(title: "已复制", message: nil, preferredStyle: .Alert)
+            self?.presentViewController(ac, animated: true) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC / 2)), dispatch_get_main_queue()) {
+                    ac.dismissViewControllerAnimated(true, completion: nil)
+                }
+            }
+            })
+        ac.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        presentViewController(ac, animated: true, completion: nil)
     }
     
     func animate(animations: (() -> Void)) {
