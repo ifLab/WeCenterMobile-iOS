@@ -11,8 +11,7 @@ import Foundation
 
 class FeaturedQuestionAnswer: FeaturedObject {
 
-    @NSManaged var id: NSNumber
-    @NSManaged var question: Question
+    @NSManaged var question: Question?
     @NSManaged var answers: Set<Answer>
     @NSManaged var answerUsers: Set<User>
 

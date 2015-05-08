@@ -44,10 +44,9 @@ class DataManager: NSObject {
         return DataObject(entity: entity, insertIntoManagedObjectContext: managedObjectContext)
     }
     func fetch(entityName: String, ID: NSNumber, error: NSErrorPointer) -> DataObject? {
-        let request = managedObjectModel.fetchRequestFromTemplateWithName(entityName + "_By_ID",
-            substitutionVariables: [
-                "ID": ID
-            ])!
+        let request = NSFetchRequest(entityName: entityName)
+        request.predicate = NSPredicate(format: "id = %@", ID)
+        request.fetchLimit = 1
         let results = managedObjectContext?.executeFetchRequest(request, error: error)
         if results != nil && results!.count != 0 {
             return results![0] as? DataObject
@@ -58,8 +57,8 @@ class DataManager: NSObject {
             return nil
         }
     }
-    func fetchAll(entityName: String, error: NSErrorPointer) -> [NSManagedObject] {
-        let request = managedObjectModel.fetchRequestTemplateForName(entityName)!
+    func fetchAll(entityName: String, error: NSErrorPointer) -> [DataObject] {
+        let request = NSFetchRequest(entityName: entityName)
         let results = managedObjectContext?.executeFetchRequest(request, error: error)
         if results != nil {
             return results as! [DataObject]
@@ -78,7 +77,7 @@ class DataManager: NSObject {
         }
         return object!
     }
-    func removeAllObjectsWithEntityName(entityName: String) {
+    func deleteAllObjectsWithEntityName(entityName: String) {
         managedObjectContext?.msr_deleteAllObjectsWithEntityName(entityName)
     }
     func saveChanges(error: NSErrorPointer) {

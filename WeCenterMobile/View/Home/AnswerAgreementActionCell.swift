@@ -31,10 +31,10 @@ class AnswerAgreementActionCell: ActionCell {
             userAvatarView.wc_updateWithUser(action.user)
         }
         userNameLabel.text = action.user?.name ?? "匿名用户"
-        questionTitleLabel.text = action.answer.question!.title!
-        agreementCountLabel.text = "\(action.answer.agreementCount!)"
-        answerBodyLabel.text = action.answer.body!.wc_plainString
-        questionButton.msr_userInfo = action.answer.question
+        questionTitleLabel.text = action.answer!.question!.title!
+        agreementCountLabel.text = "\(action.answer!.agreementCount!)"
+        answerBodyLabel.text = action.answer!.body!.wc_plainString
+        questionButton.msr_userInfo = action.answer!.question
         answerButton.msr_userInfo = action.answer
         setNeedsLayout()
         layoutIfNeeded()

@@ -15,7 +15,6 @@ class Answer: DataObject {
     @NSManaged var body: String?
     @NSManaged var commentCount: NSNumber?
     @NSManaged var date: NSDate?
-    @NSManaged var id: NSNumber
     @NSManaged var answerActions: Set<AnswerAction>
     @NSManaged var answerAgreementActions: Set<AnswerAgreementAction>
     @NSManaged var comments: Set<AnswerComment>

@@ -29,10 +29,10 @@ class FeaturedArticleCell: FeaturedObjectCell {
         }
         let object = object as! FeaturedArticle
         if updateImage {
-            userAvatarView.wc_updateWithUser(object.article.user)
+            userAvatarView.wc_updateWithUser(object.article!.user)
         }
-        userNameLabel.text = object.article.user?.name ?? "匿名用户"
-        articleTitle.text = object.article.title
+        userNameLabel.text = object.article!.user?.name ?? "匿名用户"
+        articleTitle.text = object.article!.title
         articleButton.msr_userInfo = object.article
         setNeedsLayout()
         layoutIfNeeded()

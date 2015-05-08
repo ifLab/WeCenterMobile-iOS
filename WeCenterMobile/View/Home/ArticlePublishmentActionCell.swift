@@ -27,7 +27,7 @@ class ArticlePublishmentActionCell: ActionCell {
             userAvatarView.wc_updateWithUser(action.user)
         }
         userNameLabel.text = action.user?.name ?? "匿名用户"
-        articleTitleLabel.text = action.article.title
+        articleTitleLabel.text = action.article!.title
         setNeedsLayout()
         layoutIfNeeded()
     }

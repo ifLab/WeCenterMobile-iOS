@@ -23,7 +23,7 @@ enum FeaturedObjectListType: String {
 
 class FeaturedObject: DataObject {
 
-    @NSManaged var date: NSDate
+    @NSManaged var date: NSDate?
     
     class func fetchFeaturedObjects(#page: Int, count: Int, type: FeaturedObjectListType, success: (([FeaturedObject]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("Explore List",

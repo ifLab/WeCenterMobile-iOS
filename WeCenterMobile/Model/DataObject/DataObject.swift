@@ -9,13 +9,9 @@
 import CoreData
 import Foundation
 
-protocol DataObjectProtocol {
-    static func cachedObjectWithID(ID: NSNumber) -> Self
-    static func temporaryObject() -> Self
-    static var entityName: String { get }
-}
-
-class DataObject: NSManagedObject, DataObjectProtocol {
+class DataObject: NSManagedObject {
+    
+    @NSManaged var id: NSNumber!
     
     private class func cast<T>(object: NSManagedObject, type: T.Type) -> T {
         return object as! T
@@ -23,6 +19,14 @@ class DataObject: NSManagedObject, DataObjectProtocol {
     
     class func cachedObjectWithID(ID: NSNumber) -> Self {
         return cast(DataManager.defaultManager!.autoGenerate(entityName, ID: ID), type: self)
+    }
+    
+    class func allCachedObjects() -> [DataObject] /* [Self] in not supported. */ {
+        return DataManager.defaultManager!.fetchAll(entityName, error: nil)
+    }
+    
+    class func deleteAllCachedObjects() {
+        DataManager.defaultManager!.deleteAllObjectsWithEntityName(entityName)
     }
     
     class func temporaryObject() -> Self {

@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Action" representedClassName="WeCenterMobile.Action" isAbstract="YES" syncable="YES">
+    <entity name="Action" representedClassName="WeCenterMobile.Action" isAbstract="YES" parentEntity="DataObject" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="actions" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="Answer" representedClassName="WeCenterMobile.Answer" syncable="YES">
+    <entity name="Answer" representedClassName="WeCenterMobile.Answer" parentEntity="DataObject" syncable="YES">
         <attribute name="agreementCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="commentCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="answerActions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AnswerAction" inverseName="answer" inverseEntity="AnswerAction" syncable="YES"/>
         <relationship name="answerAgreementActions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AnswerAgreementAction" inverseName="answer" inverseEntity="AnswerAgreementAction" syncable="YES"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AnswerComment" inverseName="answer" inverseEntity="AnswerComment" syncable="YES"/>
@@ -29,11 +27,10 @@
         <relationship name="atUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="answerCommentsMentioned" inverseEntity="User" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="answerComments" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="Article" representedClassName="WeCenterMobile.Article" syncable="YES">
+    <entity name="Article" representedClassName="WeCenterMobile.Article" parentEntity="DataObject" syncable="YES">
         <attribute name="agreementCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="viewCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="articleAgreementActions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ArticleAgreementAction" inverseName="article" inverseEntity="ArticleAgreementAction" syncable="YES"/>
@@ -55,30 +52,29 @@
     <entity name="ArticlePublishmentAction" representedClassName="WeCenterMobile.ArticlePublishmentAction" parentEntity="Action" syncable="YES">
         <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="articlePublishmentActions" inverseEntity="Article" syncable="YES"/>
     </entity>
-    <entity name="Comment" representedClassName="WeCenterMobile.Comment" isAbstract="YES" syncable="YES">
+    <entity name="Comment" representedClassName="WeCenterMobile.Comment" isAbstract="YES" parentEntity="DataObject" syncable="YES">
         <attribute name="atID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="DataObject" representedClassName="WeCenterMobile.DataObject" isAbstract="YES" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="FeaturedArticle" representedClassName="WeCenterMobile.FeaturedArticle" parentEntity="FeaturedObject" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="featuredObject" inverseEntity="Article" syncable="YES"/>
     </entity>
-    <entity name="FeaturedObject" representedClassName="WeCenterMobile.FeaturedObject" isAbstract="YES" syncable="YES">
+    <entity name="FeaturedObject" representedClassName="WeCenterMobile.FeaturedObject" isAbstract="YES" parentEntity="DataObject" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
     <entity name="FeaturedQuestionAnswer" representedClassName="WeCenterMobile.FeaturedQuestionAnswer" parentEntity="FeaturedObject" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Answer" inverseName="featuredObject" inverseEntity="Answer" syncable="YES"/>
         <relationship name="answerUsers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="featuredQuestionAnswers" inverseEntity="User" syncable="YES"/>
         <relationship name="question" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Question" inverseName="featuredObject" inverseEntity="Question" syncable="YES"/>
     </entity>
-    <entity name="Question" representedClassName="WeCenterMobile.Question" syncable="YES">
+    <entity name="Question" representedClassName="WeCenterMobile.Question" parentEntity="DataObject" syncable="YES">
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="focusCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="viewCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -95,9 +91,8 @@
     <entity name="QuestionPublishmentAction" representedClassName="WeCenterMobile.QuestionPublishmentAction" parentEntity="Action" syncable="YES">
         <relationship name="question" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Question" inverseName="questionPublishmentActions" inverseEntity="Question" syncable="YES"/>
     </entity>
-    <entity name="Topic" representedClassName="WeCenterMobile.Topic" syncable="YES">
+    <entity name="Topic" representedClassName="WeCenterMobile.Topic" parentEntity="DataObject" syncable="YES">
         <attribute name="focusCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="imageURI" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="introduction" optional="YES" attributeType="String" syncable="YES"/>
@@ -106,7 +101,7 @@
         <relationship name="questions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Question" inverseName="topics" inverseEntity="Question" syncable="YES"/>
         <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="topics" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="User" representedClassName="WeCenterMobile.User" syncable="YES">
+    <entity name="User" representedClassName="WeCenterMobile.User" parentEntity="DataObject" syncable="YES">
         <attribute name="agreementCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="answerCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="answerFavoriteCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -116,7 +111,6 @@
         <attribute name="followerCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="followingCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="genderValue" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="jobID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="markCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -137,42 +131,25 @@
         <relationship name="questions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Question" inverseName="user" inverseEntity="Question" syncable="YES"/>
         <relationship name="topics" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Topic" inverseName="users" inverseEntity="Topic" syncable="YES"/>
     </entity>
-    <fetchRequest name="Action" entity="Action"/>
-    <fetchRequest name="Action_By_ID" entity="Action" predicateString="id == $ID"/>
-    <fetchRequest name="Answer" entity="Answer"/>
-    <fetchRequest name="Answer_By_ID" entity="Answer" predicateString="id == $ID"/>
-    <fetchRequest name="AnswerAction_By_ID" entity="AnswerAction" predicateString="id == $ID"/>
-    <fetchRequest name="AnswerAgreementAction_By_ID" entity="AnswerAgreementAction" predicateString="id == $ID"/>
-    <fetchRequest name="AnswerComment_By_ID" entity="AnswerComment" predicateString="id == $ID"/>
-    <fetchRequest name="Article_By_ID" entity="Article" predicateString="id == $ID"/>
-    <fetchRequest name="ArticleAgreementAction_By_ID" entity="ArticleAgreementAction" predicateString="id == $ID"/>
-    <fetchRequest name="ArticleComment_By_ID" entity="ArticleComment" predicateString="id == $ID"/>
-    <fetchRequest name="ArticlePublishmentAction_By_ID" entity="ArticlePublishmentAction" predicateString="id == $ID"/>
-    <fetchRequest name="FeaturedArticle_By_ID" entity="FeaturedArticle" predicateString="id == $ID"/>
-    <fetchRequest name="FeaturedQuestionAnswer_By_ID" entity="FeaturedQuestionAnswer" predicateString="id == $ID"/>
-    <fetchRequest name="Question_By_ID" entity="Question" predicateString="id == $ID"/>
-    <fetchRequest name="QuestionFocusingAction_By_ID" entity="QuestionFocusingAction" predicateString="id == $ID"/>
-    <fetchRequest name="QuestionPublishmentAction_By_ID" entity="QuestionPublishmentAction" predicateString="id == $ID"/>
-    <fetchRequest name="Topic_By_ID" entity="Topic" predicateString="id == $ID"/>
-    <fetchRequest name="User_By_ID" entity="User" predicateString="id == $ID"/>
     <elements>
-        <element name="Action" positionX="315" positionY="108" width="128" height="90"/>
-        <element name="Answer" positionX="451" positionY="378" width="128" height="210"/>
+        <element name="Action" positionX="315" positionY="108" width="128" height="73"/>
+        <element name="Answer" positionX="451" positionY="378" width="128" height="193"/>
         <element name="AnswerAction" positionX="315" positionY="225" width="128" height="60"/>
         <element name="AnswerAgreementAction" positionX="315" positionY="288" width="128" height="60"/>
-        <element name="AnswerComment" positionX="583" positionY="752" width="128" height="88"/>
-        <element name="Article" positionX="584" positionY="378" width="128" height="225"/>
+        <element name="AnswerComment" positionX="583" positionY="743" width="128" height="88"/>
+        <element name="Article" positionX="584" positionY="378" width="128" height="208"/>
         <element name="ArticleAgreementAction" positionX="449" positionY="288" width="128" height="60"/>
-        <element name="ArticleComment" positionX="718" positionY="752" width="128" height="103"/>
+        <element name="ArticleComment" positionX="718" positionY="743" width="128" height="103"/>
         <element name="ArticlePublishmentAction" positionX="449" positionY="225" width="128" height="60"/>
-        <element name="Comment" positionX="648" positionY="635" width="128" height="103"/>
-        <element name="FeaturedArticle" positionX="584" positionY="225" width="128" height="73"/>
-        <element name="FeaturedObject" positionX="651" positionY="108" width="128" height="60"/>
-        <element name="FeaturedQuestionAnswer" positionX="719" positionY="225" width="128" height="105"/>
-        <element name="Question" positionX="315" positionY="378" width="128" height="240"/>
+        <element name="Comment" positionX="648" positionY="635" width="128" height="88"/>
+        <element name="FeaturedArticle" positionX="584" positionY="225" width="128" height="58"/>
+        <element name="FeaturedObject" positionX="651" positionY="108" width="128" height="58"/>
+        <element name="FeaturedQuestionAnswer" positionX="719" positionY="225" width="128" height="88"/>
+        <element name="Question" positionX="315" positionY="378" width="128" height="223"/>
         <element name="QuestionFocusingAction" positionX="180" positionY="288" width="128" height="60"/>
         <element name="QuestionPublishmentAction" positionX="180" positionY="225" width="128" height="60"/>
-        <element name="Topic" positionX="720" positionY="378" width="128" height="178"/>
-        <element name="User" positionX="180" positionY="377" width="128" height="478"/>
+        <element name="Topic" positionX="720" positionY="378" width="128" height="163"/>
+        <element name="User" positionX="180" positionY="377" width="128" height="463"/>
+        <element name="DataObject" positionX="448" positionY="-9" width="128" height="58"/>
     </elements>
 </model>

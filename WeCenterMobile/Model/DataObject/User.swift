@@ -37,7 +37,6 @@ class User: DataObject {
     @NSManaged var followerCount: NSNumber?
     @NSManaged var followingCount: NSNumber?
     @NSManaged var genderValue: NSNumber?
-    @NSManaged var id: NSNumber
     @NSManaged var jobID: NSNumber?
     @NSManaged var markCount: NSNumber?
     @NSManaged var name: String?
@@ -539,13 +538,13 @@ class User: DataObject {
                             }
                             let answerInfo = object["answer_info"] as! NSDictionary
                             action.answer = Answer.cachedObjectWithID(Int(msr_object: answerInfo["answer_id"])!)
-                            action.answer.question = Question.cachedObjectWithID(Int(msr_object: answerInfo["question_id"])!)
-                            action.answer.body = (answerInfo["answer_content"] as! String)
-                            action.answer.agreementCount = (answerInfo["agree_count"] as! NSNumber)
-                            action.answer.evaluation = Evaluation(rawValue: Int(msr_object: answerInfo["agree_status"])!)!
+                            action.answer!.question = Question.cachedObjectWithID(Int(msr_object: answerInfo["question_id"])!)
+                            action.answer!.body = (answerInfo["answer_content"] as! String)
+                            action.answer!.agreementCount = (answerInfo["agree_count"] as! NSNumber)
+                            action.answer!.evaluation = Evaluation(rawValue: Int(msr_object: answerInfo["agree_status"])!)!
                             let questionInfo = object["question_info"] as! NSDictionary
-                            action.answer.question = Question.cachedObjectWithID(Int(msr_object: questionInfo["question_id"])!)
-                            action.answer.question!.title = (questionInfo["question_content"] as! String)
+                            action.answer!.question = Question.cachedObjectWithID(Int(msr_object: questionInfo["question_id"])!)
+                            action.answer!.question!.title = (questionInfo["question_content"] as! String)
                             break
                         case .QuestionFocusing:
                             let action = QuestionFocusingAction.cachedObjectWithID(Int(msr_object: object["history_id"])!)
@@ -561,7 +560,7 @@ class User: DataObject {
                             }
                             let questionInfo = object["question_info"] as! NSDictionary
                             action.question = Question.cachedObjectWithID(Int(msr_object: questionInfo["question_id"])!)
-                            action.question.title = (questionInfo["question_content"] as! String)
+                            action.question!.title = (questionInfo["question_content"] as! String)
                             break
                         case .QuestionPublishment:
                             let action = QuestionPublishmentAction.cachedObjectWithID(Int(msr_object: object["history_id"])!)
@@ -577,8 +576,8 @@ class User: DataObject {
                             }
                             let questionInfo = object["question_info"] as! NSDictionary
                             action.question = Question.cachedObjectWithID(Int(msr_object: questionInfo["question_id"])!)
-                            action.question.title = (questionInfo["question_content"] as! String)
-                            action.question.user = action.user
+                            action.question!.title = (questionInfo["question_content"] as! String)
+                            action.question!.user = action.user
                             break
                         case .ArticleAgreement:
                             let action = ArticleAgreementAction.cachedObjectWithID(Int(msr_object: object["history_id"])!)
@@ -594,7 +593,7 @@ class User: DataObject {
                             }
                             let articleInfo = object["article_info"] as! NSDictionary
                             action.article = Article.cachedObjectWithID(Int(msr_object: articleInfo["id"])!)
-                            action.article.title = (articleInfo["title"] as! String)
+                            action.article!.title = (articleInfo["title"] as! String)
                             break
                         case .Answer:
                             let action = AnswerAction.cachedObjectWithID(Int(msr_object: object["history_id"])!)
@@ -610,13 +609,13 @@ class User: DataObject {
                             }
                             let answerInfo = object["answer_info"] as! NSDictionary
                             action.answer = Answer.cachedObjectWithID(Int(msr_object: answerInfo["answer_id"])!)
-                            action.answer.body = (answerInfo["answer_content"] as! String)
-                            action.answer.agreementCount = (answerInfo["agree_count"] as! NSNumber)
-                            action.answer.evaluation = Evaluation(rawValue: Int(msr_object: answerInfo["agree_status"])!)!
+                            action.answer!.body = (answerInfo["answer_content"] as! String)
+                            action.answer!.agreementCount = (answerInfo["agree_count"] as! NSNumber)
+                            action.answer!.evaluation = Evaluation(rawValue: Int(msr_object: answerInfo["agree_status"])!)!
                             let questionInfo = object["question_info"] as! NSDictionary
-                            action.answer.question = Question.cachedObjectWithID(Int(msr_object: questionInfo["question_id"])!)
-                            action.answer.question!.title = (questionInfo["question_content"] as! String)
-                            action.answer.user = action.user
+                            action.answer!.question = Question.cachedObjectWithID(Int(msr_object: questionInfo["question_id"])!)
+                            action.answer!.question!.title = (questionInfo["question_content"] as! String)
+                            action.answer!.user = action.user
                             break
                         case .ArticlePublishment:
                             let action = ArticlePublishmentAction.cachedObjectWithID(Int(msr_object: object["history_id"])!)
@@ -632,8 +631,8 @@ class User: DataObject {
                             }
                             let articleInfo = object["article_info"] as! NSDictionary
                             action.article = Article.cachedObjectWithID(Int(msr_object: articleInfo["id"])!)
-                            action.article.title = (articleInfo["title"] as! String)
-                            action.article.user = action.user
+                            action.article!.title = (articleInfo["title"] as! String)
+                            action.article!.user = action.user
                             break
                         default:
                             break

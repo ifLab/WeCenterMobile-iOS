@@ -29,10 +29,10 @@ class FeaturedQuestionAnswerCellWithoutAnswer: FeaturedObjectCell {
         }
         let object = object as! FeaturedQuestionAnswer
         if updateImage {
-            userAvatarView.wc_updateWithUser(object.question.user)
+            userAvatarView.wc_updateWithUser(object.question!.user)
         }
-        userNameLabel.text = object.question.user?.name ?? "匿名用户"
-        questionTitleLabel.text = object.question.title
+        userNameLabel.text = object.question!.user?.name ?? "匿名用户"
+        questionTitleLabel.text = object.question!.title
         questionButton.msr_userInfo = object.question
         setNeedsLayout()
         layoutIfNeeded()

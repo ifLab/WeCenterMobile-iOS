@@ -13,7 +13,6 @@ import UIKit
 class Topic: DataObject {
 
     @NSManaged var focusCount: NSNumber?
-    @NSManaged var id: NSNumber
     @NSManaged var imageURI: String?
     @NSManaged var introduction: String?
     @NSManaged var title: String?

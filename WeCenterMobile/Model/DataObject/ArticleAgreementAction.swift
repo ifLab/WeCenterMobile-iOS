@@ -11,6 +11,6 @@ import Foundation
 
 class ArticleAgreementAction: Action {
 
-    @NSManaged var article: Article
+    @NSManaged var article: Article?
 
 }

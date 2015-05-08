@@ -27,7 +27,7 @@ class QuestionPublishmentActionCell: ActionCell {
             userAvatarView.wc_updateWithUser(action.user)
         }
         userNameLabel.text = action.user?.name ?? "匿名用户"
-        questionTitleLabel.text = action.question.title!
+        questionTitleLabel.text = action.question!.title!
         questionButton.msr_userInfo = action.question
         setNeedsLayout()
         layoutIfNeeded()

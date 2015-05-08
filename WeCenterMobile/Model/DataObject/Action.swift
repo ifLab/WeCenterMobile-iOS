@@ -20,8 +20,7 @@ enum ActionTypeID: Int {
 
 class Action: DataObject {
 
-    @NSManaged var date: NSDate
-    @NSManaged var id: NSNumber
+    @NSManaged var date: NSDate?
     @NSManaged var user: User?
     
 }

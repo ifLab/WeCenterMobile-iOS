@@ -11,6 +11,6 @@ import Foundation
 
 class QuestionFocusingAction: Action {
 
-    @NSManaged var question: Question
+    @NSManaged var question: Question?
 
 }

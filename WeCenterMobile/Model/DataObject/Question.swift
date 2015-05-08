@@ -15,7 +15,6 @@ class Question: DataObject {
     @NSManaged var date: NSDate?
     @NSManaged var viewCount: NSNumber?
     @NSManaged var focusCount: NSNumber?
-    @NSManaged var id: NSNumber
     @NSManaged var title: String?
     @NSManaged var updatedDate: NSDate?
     @NSManaged var answers: Set<Answer>

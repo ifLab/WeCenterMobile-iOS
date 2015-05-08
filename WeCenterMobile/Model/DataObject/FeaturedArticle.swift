@@ -11,7 +11,6 @@ import Foundation
 
 class FeaturedArticle: FeaturedObject {
 
-    @NSManaged var id: NSNumber
-    @NSManaged var article: Article
+    @NSManaged var article: Article?
 
 }

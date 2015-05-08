@@ -96,7 +96,7 @@ class FeaturedObjectListViewController: UITableViewController {
         let object = objects[indexPath.row]
         switch object {
         case let o as FeaturedQuestionAnswer:
-            msr_navigationController?.pushViewController(QuestionViewController(question: o.question), animated: true)
+            msr_navigationController?.pushViewController(QuestionViewController(question: o.question!), animated: true)
             break
         case let o as FeaturedArticle:
             break

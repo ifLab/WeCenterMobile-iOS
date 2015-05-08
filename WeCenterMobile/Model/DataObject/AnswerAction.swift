@@ -11,6 +11,6 @@ import Foundation
 
 class AnswerAction: Action {
 
-    @NSManaged var answer: Answer
+    @NSManaged var answer: Answer?
 
 }
