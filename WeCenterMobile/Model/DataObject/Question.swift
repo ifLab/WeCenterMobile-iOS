@@ -6,11 +6,13 @@
 //  Copyright (c) 2014年 ifLab. All rights reserved.
 //
 
+import AFNetworking
 import CoreData
 import Foundation
 
 class Question: DataObject {
-
+    
+    @NSManaged var attachmentKey: String?
     @NSManaged var body: String?
     @NSManaged var date: NSDate?
     @NSManaged var viewCount: NSNumber?
@@ -89,13 +91,32 @@ class Question: DataObject {
             failure: failure)
     }
     
-    func post(#attachKey: String, success: ((Question) -> Void)?, failure: ((NSError) -> Void)?) {
+    func uploadImageWithJPEGData(jpegData: NSData, success: ((Int) -> Void)?, failure: ((NSError) -> Void)?) -> AFHTTPRequestOperation {
+        return NetworkManager.defaultManager!.request("Upload Attachment",
+            GETParameters: [
+                "id": "question",
+                "attach_access_key": attachmentKey!],
+            POSTParameters: nil,
+            constructingBodyWithBlock: {
+                data in
+                data?.appendPartWithFileData(jpegData, name: "qqfile", fileName: "image.jpg", mimeType: "image/jpeg")
+                return
+            },
+            success: {
+                data in
+                success?(Int(msr_object: data["attach_id"])!)
+                return
+            },
+            failure: failure)!
+    }
+    
+    func post(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         let topics = [Topic](self.topics)
         var topicsParameter = ""
         if topics.count == 1 {
             topicsParameter = topics[0].title!
         } else if topics.count > 1 {
-            topicsParameter = topics[1..<topics.endIndex].reduce(topics[0].title!, combine: { return $0 + "," + $1.title! })
+            topicsParameter = join(",", map(topics, { $0.title! }))
         }
         let title = self.title!
         let body = self.body!
@@ -103,15 +124,12 @@ class Question: DataObject {
             parameters: [
                 "question_content": title,
                 "question_detail": body,
-                "attach_access_key": attachKey,
+                "attach_access_key": attachmentKey!,
                 "topics": topicsParameter
             ],
             success: {
                 [weak self] data in
-                let question = Question.cachedObjectWithID(Int(msr_object: data["question_id"])!)
-                question.title = title
-                question.body = body
-                success?(question)
+                success?()
                 return
             },
             failure: failure)

@@ -6,12 +6,14 @@
 //  Copyright (c) 2014年 Beijing Information Science and Technology University. All rights reserved.
 //
 
+import AFNetworking
 import CoreData
 import Foundation
 
 class Article: DataObject {
 
     @NSManaged var agreementCount: NSNumber?
+    @NSManaged var attachmentKey: String?
     @NSManaged var body: String?
     @NSManaged var date: NSDate?
     @NSManaged var title: String?
@@ -96,4 +98,49 @@ class Article: DataObject {
             },
             failure: failure)
     }
+    
+    func uploadImageWithJPEGData(jpegData: NSData, success: ((Int) -> Void)?, failure: ((NSError) -> Void)?) -> AFHTTPRequestOperation {
+        return NetworkManager.defaultManager!.request("Upload Attachment",
+            GETParameters: [
+                "id": "article",
+                "attach_access_key": attachmentKey!],
+            POSTParameters: nil,
+            constructingBodyWithBlock: {
+                data in
+                data?.appendPartWithFileData(jpegData, name: "qqfile", fileName: "image.jpg", mimeType: "image/jpeg")
+                return
+            },
+            success: {
+                data in
+                success?(Int(msr_object: data["attach_id"])!)
+                return
+            },
+            failure: failure)!
+    }
+    
+    func post(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        let topics = [Topic](self.topics)
+        var topicsParameter = ""
+        if topics.count == 1 {
+            topicsParameter = topics[0].title!
+        } else if topics.count > 1 {
+            topicsParameter = join(",", map(topics, { $0.title! }))
+        }
+        let title = self.title!
+        let body = self.body!
+        NetworkManager.defaultManager!.POST("Post Article",
+            parameters: [
+                "article_content": title,
+                "article_detail": body,
+                "attach_access_key": attachmentKey!,
+                "topics": topicsParameter
+            ],
+            success: {
+                [weak self] data in
+                success?()
+                return
+            },
+            failure: failure)
+    }
+    
 }

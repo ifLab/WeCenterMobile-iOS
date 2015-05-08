@@ -10,8 +10,10 @@ import DTCoreText
 import UIKit
 
 protocol ArticleViewControllerPresentable {
-    var date: NSDate? { get }
-    var body: String? { get }
+    // Seriously, I don't like this language.
+    // See The Swift Programming Language book - Optional Protocol Requirements
+    /* @TODO: optional */ var date: NSDate? { get }
+    /* @TODO: optional */ var body: String? { get }
     var user: User? { get }
     var title: String? { get }
     var agreementCount: NSNumber? { get }
@@ -19,9 +21,6 @@ protocol ArticleViewControllerPresentable {
 }
 
 extension Answer: ArticleViewControllerPresentable {
-    var title: String? {
-        return question?.title
-    }
     func fetchDataObjectForArticleViewController(#success: ((ArticleViewControllerPresentable) -> Void)?, failure: ((NSError) -> Void)?) {
         Answer.fetch(ID: id, success: { success?($0) }, failure: failure)
     }

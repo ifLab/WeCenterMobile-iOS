@@ -41,7 +41,7 @@ class HomeViewController: UITableViewController {
         tableView.dataSource = self
         title = "首页" // Needs localization
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List"), style: .Plain, target: self, action: "showSidebar")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Compose"), style: .Plain, target: self, action: "showQuestionPublishmentViewController")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Compose"), style: .Plain, target: self, action: "didPressPublishButton")
         for i in 0..<nibNames.count {
             tableView.registerNib(UINib(nibName: nibNames[i], bundle: NSBundle.mainBundle()), forCellReuseIdentifier: identifiers[i])
         }
@@ -119,12 +119,28 @@ class HomeViewController: UITableViewController {
         appDelegate.mainViewController.sidebar.expand()
     }
     
-    func showQuestionPublishmentViewController() {
-        let vc = NSBundle.mainBundle().loadNibNamed("QuestionPublishmentViewController", owner: self, options: nil).first as! QuestionPublishmentViewController
-        presentViewController(vc, animated: true, completion: nil)
+    func didPressPublishButton() {
+        let ac = UIAlertController(title: "发布什么？", message: "选择发布的内容种类。", preferredStyle: .ActionSheet)
+        let presentPublishmentViewController: (String, PublishmentViewControllerPresentable) -> Void = {
+            [weak self] title, object in
+            let vc = NSBundle.mainBundle().loadNibNamed("PublishmentViewControllerA", owner: self, options: nil).first as! PublishmentViewController
+            vc.dataObject = object
+            vc.headerLabel.text = title
+            self?.presentViewController(vc, animated: true, completion: nil)
+        }
+        ac.addAction(UIAlertAction(title: "问题", style: .Default) {
+            action in
+            presentPublishmentViewController("发布问题", Question.temporaryObject())
+        })
+        ac.addAction(UIAlertAction(title: "文章", style: .Default) {
+            action in
+            presentPublishmentViewController("发布文章", Article.temporaryObject())
+        })
+        ac.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        presentViewController(ac, animated: true, completion: nil)
     }
     
-    func pushUserViewController(sender: UIButton) {
+    func didPressUserButton(sender: UIButton) {
         if let user = sender.msr_userInfo as? User {
             msr_navigationController!.pushViewController(UserViewController(user: user), animated: true)
         }

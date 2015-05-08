@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <viewController id="SHu-sP-3cU" customClass="AnswerPublishmentViewController" customModule="WeCenterMobile" customModuleProvider="target">
+        <viewController id="SHu-sP-3cU" customClass="PublishmentViewController" customModule="WeCenterMobile" customModuleProvider="target">
             <layoutGuides>
                 <viewControllerLayoutGuide type="top" id="QSc-rN-Bka"/>
                 <viewControllerLayoutGuide type="bottom" id="WWm-mp-Kf9"/>
@@ -137,6 +137,7 @@
             <connections>
                 <outlet property="bodyField" destination="O25-pd-g8z" id="L6g-Op-k6c"/>
                 <outlet property="dismissButton" destination="2uH-tY-A5y" id="Sr7-Gi-tLk"/>
+                <outlet property="headerLabel" destination="8B8-fg-rLA" id="aB6-wy-FMO"/>
                 <outlet property="imageCollectionView" destination="b5r-x2-mAX" id="bW5-qQ-p59"/>
                 <outlet property="publishButton" destination="SYG-hs-Cea" id="na6-g6-th0"/>
                 <outlet property="scrollView" destination="R6r-q8-IV7" id="6KN-WS-UBY"/>

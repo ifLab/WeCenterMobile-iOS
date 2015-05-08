@@ -6,12 +6,14 @@
 //  Copyright (c) 2014年 Beijing Information Science and Technology University. All rights reserved.
 //
 
+import AFNetworking
 import CoreData
 import Foundation
 
 class Answer: DataObject {
 
     @NSManaged var agreementCount: NSNumber?
+    @NSManaged var attachmentKey: String?
     @NSManaged var body: String?
     @NSManaged var commentCount: NSNumber?
     @NSManaged var date: NSDate?
@@ -21,6 +23,15 @@ class Answer: DataObject {
     @NSManaged var featuredObject: FeaturedQuestionAnswer?
     @NSManaged var question: Question?
     @NSManaged var user: User?
+    
+    var title: String? {
+        set {
+            question?.title = newValue
+        }
+        get {
+            return question?.title
+        }
+    }
     
     var evaluation: Evaluation? = nil
     
@@ -89,22 +100,37 @@ class Answer: DataObject {
             failure: failure)
     }
     
-    func post(#attachKey: String, success: ((Answer) -> Void)?, failure: ((NSError) -> Void)?) {
+    func uploadImageWithJPEGData(jpegData: NSData, success: ((Int) -> Void)?, failure: ((NSError) -> Void)?) -> AFHTTPRequestOperation {
+        return NetworkManager.defaultManager!.request("Upload Attachment",
+            GETParameters: [
+                "id": "answer",
+                "attach_access_key": attachmentKey!],
+            POSTParameters: nil,
+            constructingBodyWithBlock: {
+                data in
+                data?.appendPartWithFileData(jpegData, name: "qqfile", fileName: "image.jpg", mimeType: "image/jpeg")
+                return
+            },
+            success: {
+                data in
+                success?(Int(msr_object: data["attach_id"])!)
+                return
+            },
+            failure: failure)!
+    }
+    
+    func post(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         let questionID = question!.id.integerValue
         let body = self.body!
         NetworkManager.defaultManager!.POST("Post Answer",
             parameters: [
                 "question_id": questionID,
                 "answer_content": body,
-                "attach_access_key": attachKey
+                "attach_access_key": attachmentKey!
             ],
             success: {
                 [weak self] data in
-                let answer = Answer.cachedObjectWithID(Int(msr_object: data["answer_id"])!)
-                answer.question = Question.cachedObjectWithID(questionID)
-                answer.user = User.currentUser
-                answer.body = body
-                success?(answer)
+                success?()
                 return
             },
             failure: failure)

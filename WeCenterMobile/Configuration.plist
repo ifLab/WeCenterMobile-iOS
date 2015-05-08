@@ -70,6 +70,8 @@
 		<string>?/api/publish/publish_question/</string>
 		<key>Post Answer</key>
 		<string>?/api/publish/save_answer/</string>
+		<key>Post Article</key>
+		<string>?/api/publish/publish_article/</string>
 	</dict>
 	<key>Success Code</key>
 	<integer>1</integer>

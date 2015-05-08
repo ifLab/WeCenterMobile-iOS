@@ -167,8 +167,6 @@
 		951D2F8C1AB7F85500DCB678 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D2F7F1AB7F85500DCB678 /* UIScrollView+MJRefresh.m */; };
 		951D2F8D1AB7F85500DCB678 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D2F811AB7F85500DCB678 /* UIView+MJExtension.m */; };
 		951D2F8F1AB7F8C000DCB678 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 951D2F8E1AB7F8C000DCB678 /* Images.xcassets */; };
-		951DA74F1AE9183000F0E3A7 /* AnswerPublishmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951DA74E1AE9183000F0E3A7 /* AnswerPublishmentViewController.swift */; };
-		951DA7511AE9188900F0E3A7 /* AnswerPublishmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 951DA7501AE9188900F0E3A7 /* AnswerPublishmentViewController.xib */; };
 		951DA7551AEAACD300F0E3A7 /* UIImage+MSRGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951DA7541AEAACD300F0E3A7 /* UIImage+MSRGetter.swift */; };
 		951DA7571AEAAE6300F0E3A7 /* MSRRoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951DA7561AEAAE6300F0E3A7 /* MSRRoundedImageView.swift */; };
 		951FAC761ABFCEA30083E221 /* EAColourfulProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 951FAC751ABFCEA30083E221 /* EAColourfulProgressView.m */; };
@@ -268,6 +266,7 @@
 		9531D7A11AF3E8E400E6549D /* WeChatShareItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D7871AF3E8E400E6549D /* WeChatShareItem.swift */; };
 		95387BFF1ABEA456004DF8EB /* String+MSREncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95387BFE1ABEA456004DF8EB /* String+MSREncryption.swift */; };
 		954A76A91AFC399D002A72A9 /* DataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A76A81AFC399D002A72A9 /* DataObject.swift */; };
+		954A76AB1AFD0323002A72A9 /* PublishmentViewControllerB.xib in Resources */ = {isa = PBXBuildFile; fileRef = 954A76AA1AFD0323002A72A9 /* PublishmentViewControllerB.xib */; };
 		9550A2971AF8B6D0005F81F7 /* KeyboardBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9550A2961AF8B6D0005F81F7 /* KeyboardBar.swift */; };
 		955770721AD68E960060A120 /* UIImageView+MSRSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955770711AD68E960060A120 /* UIImageView+MSRSetter.swift */; };
 		955770781AD757B30060A120 /* UIImage+MSRColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955770771AD757B30060A120 /* UIImage+MSRColor.swift */; };
@@ -310,12 +309,12 @@
 		9588F6021A1D9D1C001BC426 /* WeCenterMobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9588F6011A1D9D1C001BC426 /* WeCenterMobileTests.swift */; };
 		95891E5B1AD82E7E007D5DF7 /* MSRLinearInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95891E5A1AD82E7E007D5DF7 /* MSRLinearInterpolation.swift */; };
 		95891E5D1AD83ADA007D5DF7 /* MSRCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95891E5C1AD83ADA007D5DF7 /* MSRCollectionView.swift */; };
-		958CB5BB1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CB5BA1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift */; };
+		958CB5BB1AB98DC3002ECCF4 /* PublishmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CB5BA1AB98DC3002ECCF4 /* PublishmentViewController.swift */; };
 		958FF4D71AC270820073022F /* String+MSROperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958FF4D61AC270820073022F /* String+MSROperations.swift */; };
 		959FCB621AEE4EB300299AA6 /* UIColor+MSRGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959FCB611AEE4EB300299AA6 /* UIColor+MSRGetter.swift */; };
 		95B1D9DA1ABE0CF200BEC8BD /* MediaPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B1D9D91ABE0CF200BEC8BD /* MediaPickerController.swift */; };
 		95B6E6B91A232E2400F31BE3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9588F5F41A1D9D1C001BC426 /* LaunchScreen.xib */; };
-		95B9BDC31ABAA67900692889 /* QuestionPublishmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95B9BDC21ABAA67900692889 /* QuestionPublishmentViewController.xib */; };
+		95B9BDC31ABAA67900692889 /* PublishmentViewControllerA.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95B9BDC21ABAA67900692889 /* PublishmentViewControllerA.xib */; };
 		95B9BE681ABAEF1A00692889 /* ZFTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B9BE671ABAEF1A00692889 /* ZFTokenField.m */; };
 		95C2EA1E1AB0516800F2A326 /* Array+MSRAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2E9F31AB0516800F2A326 /* Array+MSRAccessor.swift */; };
 		95C2EA1F1AB0516800F2A326 /* MSRWeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2E9F41AB0516800F2A326 /* MSRWeak.swift */; };
@@ -741,8 +740,6 @@
 		951D2F801AB7F85500DCB678 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		951D2F811AB7F85500DCB678 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		951D2F8E1AB7F8C000DCB678 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		951DA74E1AE9183000F0E3A7 /* AnswerPublishmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerPublishmentViewController.swift; sourceTree = "<group>"; };
-		951DA7501AE9188900F0E3A7 /* AnswerPublishmentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerPublishmentViewController.xib; sourceTree = "<group>"; };
 		951DA7541AEAACD300F0E3A7 /* UIImage+MSRGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+MSRGetter.swift"; sourceTree = "<group>"; };
 		951DA7561AEAAE6300F0E3A7 /* MSRRoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRRoundedImageView.swift; sourceTree = "<group>"; };
 		951FAC741ABFCEA30083E221 /* EAColourfulProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAColourfulProgressView.h; sourceTree = "<group>"; };
@@ -843,6 +840,7 @@
 		9531D7871AF3E8E400E6549D /* WeChatShareItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatShareItem.swift; sourceTree = "<group>"; };
 		95387BFE1ABEA456004DF8EB /* String+MSREncryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MSREncryption.swift"; sourceTree = "<group>"; };
 		954A76A81AFC399D002A72A9 /* DataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataObject.swift; sourceTree = "<group>"; };
+		954A76AA1AFD0323002A72A9 /* PublishmentViewControllerB.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishmentViewControllerB.xib; sourceTree = "<group>"; };
 		9550A2961AF8B6D0005F81F7 /* KeyboardBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardBar.swift; sourceTree = "<group>"; };
 		9554D8E51ADE2C5F00C94061 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		9554D8E71ADE2C8C00C94061 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
@@ -939,11 +937,11 @@
 		9588F6011A1D9D1C001BC426 /* WeCenterMobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeCenterMobileTests.swift; sourceTree = "<group>"; };
 		95891E5A1AD82E7E007D5DF7 /* MSRLinearInterpolation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRLinearInterpolation.swift; sourceTree = "<group>"; };
 		95891E5C1AD83ADA007D5DF7 /* MSRCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRCollectionView.swift; sourceTree = "<group>"; };
-		958CB5BA1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = QuestionPublishmentViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		958CB5BA1AB98DC3002ECCF4 /* PublishmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PublishmentViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		958FF4D61AC270820073022F /* String+MSROperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MSROperations.swift"; sourceTree = "<group>"; };
 		959FCB611AEE4EB300299AA6 /* UIColor+MSRGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+MSRGetter.swift"; sourceTree = "<group>"; };
 		95B1D9D91ABE0CF200BEC8BD /* MediaPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPickerController.swift; sourceTree = "<group>"; };
-		95B9BDC21ABAA67900692889 /* QuestionPublishmentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionPublishmentViewController.xib; sourceTree = "<group>"; };
+		95B9BDC21ABAA67900692889 /* PublishmentViewControllerA.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishmentViewControllerA.xib; sourceTree = "<group>"; };
 		95B9BE661ABAEF1A00692889 /* ZFTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFTokenField.h; sourceTree = "<group>"; };
 		95B9BE671ABAEF1A00692889 /* ZFTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFTokenField.m; sourceTree = "<group>"; };
 		95C2E9F31AB0516800F2A326 /* Array+MSRAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+MSRAccessor.swift"; sourceTree = "<group>"; };
@@ -1061,8 +1059,7 @@
 			isa = PBXGroup;
 			children = (
 				9531D6A11AF0A27100E6549D /* AnswerListViewController.swift */,
-				951DA74E1AE9183000F0E3A7 /* AnswerPublishmentViewController.swift */,
-				951DA7501AE9188900F0E3A7 /* AnswerPublishmentViewController.xib */,
+				954A76AA1AFD0323002A72A9 /* PublishmentViewControllerB.xib */,
 				9531D6A71AF3D68F00E6549D /* ArticleListViewController.swift */,
 				95D153A31AF4BB3000C1617D /* ArticleViewController.swift */,
 				950FE12C1A1DA2B300167D09 /* CommetListViewController.swift */,
@@ -1071,9 +1068,9 @@
 				95E535591A49DCFD00D7B76B /* HomeViewController.swift */,
 				950FE12F1A1DA2B300167D09 /* MainViewController.swift */,
 				95B1D9D91ABE0CF200BEC8BD /* MediaPickerController.swift */,
+				958CB5BA1AB98DC3002ECCF4 /* PublishmentViewController.swift */,
 				950FE1371A1DA2B300167D09 /* QuestionListViewController.swift */,
-				958CB5BA1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift */,
-				95B9BDC21ABAA67900692889 /* QuestionPublishmentViewController.xib */,
+				95B9BDC21ABAA67900692889 /* PublishmentViewControllerA.xib */,
 				9520AB141AC2C94600637C84 /* QuestionViewController.swift */,
 				950FE1341A1DA2B300167D09 /* TopicListViewController.swift */,
 				950FE1351A1DA2B300167D09 /* TopicViewController.swift */,
@@ -2296,10 +2293,10 @@
 				9531D7581AF3E4AC00E6549D /* UserFooterCell.xib in Resources */,
 				951D2F8F1AB7F8C000DCB678 /* Images.xcassets in Resources */,
 				9531D72E1AF3E4AC00E6549D /* FeaturedQuestionAnswerCellWithoutAnswer.xib in Resources */,
-				951DA7511AE9188900F0E3A7 /* AnswerPublishmentViewController.xib in Resources */,
 				9531D7371AF3E4AC00E6549D /* ArticlePublishmentActionCell.xib in Resources */,
 				9531D71B1AF3E4AC00E6549D /* AnswerAdditionCell.xib in Resources */,
-				95B9BDC31ABAA67900692889 /* QuestionPublishmentViewController.xib in Resources */,
+				954A76AB1AFD0323002A72A9 /* PublishmentViewControllerB.xib in Resources */,
+				95B9BDC31ABAA67900692889 /* PublishmentViewControllerA.xib in Resources */,
 				9531D7481AF3E4AC00E6549D /* QuestionTagListCell.xib in Resources */,
 				9561400B1AE2E6080077FBA0 /* Info.plist in Resources */,
 				9531D7681AF3E85900E6549D /* ImageUploadingProgressBar.xib in Resources */,
@@ -2355,7 +2352,6 @@
 				95DC57101AF785040075C3CB /* Evalation.swift in Sources */,
 				951D1E941ACD1E4E0072D555 /* DTIframeTextAttachment.m in Sources */,
 				951D2F8C1AB7F85500DCB678 /* UIScrollView+MJRefresh.m in Sources */,
-				951DA74F1AE9183000F0E3A7 /* AnswerPublishmentViewController.swift in Sources */,
 				951D1E811ACD1E4E0072D555 /* DTCoreTextFontDescriptor.m in Sources */,
 				951D1F651ACD1E750072D555 /* DTScriptExpression.m in Sources */,
 				950FE50E1A1DA2B500167D09 /* QuestionListViewController.swift in Sources */,
@@ -2550,7 +2546,7 @@
 				9531D7A11AF3E8E400E6549D /* WeChatShareItem.swift in Sources */,
 				951D1F691ACD1E750072D555 /* DTSQLiteFunctions.m in Sources */,
 				951D1F661ACD1E750072D555 /* DTScriptVariable.m in Sources */,
-				958CB5BB1AB98DC3002ECCF4 /* QuestionPublishmentViewController.swift in Sources */,
+				958CB5BB1AB98DC3002ECCF4 /* PublishmentViewController.swift in Sources */,
 				951D1E7E1ACD1E4E0072D555 /* DTColorFunctions.m in Sources */,
 				951D2F8A1AB7F85500DCB678 /* MJRefreshLegendHeader.m in Sources */,
 				95F380BB1AB269690070A7FB /* FeaturedObjectListViewController.swift in Sources */,

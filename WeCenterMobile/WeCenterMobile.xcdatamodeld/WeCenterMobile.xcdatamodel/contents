@@ -6,6 +6,7 @@
     </entity>
     <entity name="Answer" representedClassName="WeCenterMobile.Answer" parentEntity="DataObject" syncable="YES">
         <attribute name="agreementCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="attachmentKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="commentCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
@@ -29,6 +30,7 @@
     </entity>
     <entity name="Article" representedClassName="WeCenterMobile.Article" parentEntity="DataObject" syncable="YES">
         <attribute name="agreementCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="attachmentKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -72,6 +74,7 @@
         <relationship name="question" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Question" inverseName="featuredObject" inverseEntity="Question" syncable="YES"/>
     </entity>
     <entity name="Question" representedClassName="WeCenterMobile.Question" parentEntity="DataObject" syncable="YES">
+        <attribute name="attachmentKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="focusCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -133,11 +136,11 @@
     </entity>
     <elements>
         <element name="Action" positionX="315" positionY="108" width="128" height="73"/>
-        <element name="Answer" positionX="451" positionY="378" width="128" height="193"/>
+        <element name="Answer" positionX="451" positionY="378" width="128" height="208"/>
         <element name="AnswerAction" positionX="315" positionY="225" width="128" height="60"/>
         <element name="AnswerAgreementAction" positionX="315" positionY="288" width="128" height="60"/>
         <element name="AnswerComment" positionX="583" positionY="743" width="128" height="88"/>
-        <element name="Article" positionX="584" positionY="378" width="128" height="208"/>
+        <element name="Article" positionX="584" positionY="378" width="128" height="223"/>
         <element name="ArticleAgreementAction" positionX="449" positionY="288" width="128" height="60"/>
         <element name="ArticleComment" positionX="718" positionY="743" width="128" height="103"/>
         <element name="ArticlePublishmentAction" positionX="449" positionY="225" width="128" height="60"/>
@@ -145,7 +148,7 @@
         <element name="FeaturedArticle" positionX="584" positionY="225" width="128" height="58"/>
         <element name="FeaturedObject" positionX="651" positionY="108" width="128" height="58"/>
         <element name="FeaturedQuestionAnswer" positionX="719" positionY="225" width="128" height="88"/>
-        <element name="Question" positionX="315" positionY="378" width="128" height="223"/>
+        <element name="Question" positionX="315" positionY="378" width="128" height="238"/>
         <element name="QuestionFocusingAction" positionX="180" positionY="288" width="128" height="60"/>
         <element name="QuestionPublishmentAction" positionX="180" positionY="225" width="128" height="60"/>
         <element name="Topic" positionX="720" positionY="378" width="128" height="163"/>

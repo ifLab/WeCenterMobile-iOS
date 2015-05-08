@@ -1,5 +1,5 @@
 //
-//  QuestionPublishmentViewController.swift
+//  PublishmentViewController.swift
 //  WeCenterMobile
 //
 //  Created by Darren Liu on 15/3/18.
@@ -14,17 +14,48 @@ import UIKit
 import UzysAssetsPickerController
 import ZFTokenField
 
-class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTokenFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UzysAssetsPickerControllerDelegate {
+@objc protocol PublishmentViewControllerPresentable {
+    var topics: Set<Topic> { get set }
+    var title: String? { get set }
+    var body: String? { get set }
+    var attachmentKey: String? { get set }
+    func post(#success: (() -> Void)?, failure: ((NSError) -> Void)?)
+    func uploadImageWithJPEGData(jpegData: NSData, success: ((Int) -> Void)?, failure: ((NSError) -> Void)?) -> AFHTTPRequestOperation
+}
+
+extension Question: PublishmentViewControllerPresentable {}
+extension Answer: PublishmentViewControllerPresentable {
+    var topics: Set<Topic> {
+        set {
+            question?.topics = newValue
+        }
+        get {
+            return question?.topics ?? Set()
+        }
+    }
+}
+extension Article: PublishmentViewControllerPresentable {}
+
+class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTokenFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UzysAssetsPickerControllerDelegate {
     
+    @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var publishButton: UIButton!
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var tagsField: ZFTokenField!
+    @IBOutlet weak var tagsField: ZFTokenField?
     @IBOutlet weak var imageCollectionView: UICollectionView!
-    @IBOutlet weak var titleField: UITextView!
+    @IBOutlet weak var titleField: UITextView?
     @IBOutlet weak var bodyField: UITextView!
     
-    typealias SelfType = QuestionPublishmentViewController
+    typealias SelfType = PublishmentViewController
+    
+    var dataObject: PublishmentViewControllerPresentable! {
+        didSet {
+            if dataObject.attachmentKey == nil {
+                dataObject.attachmentKey = "\(NSDate(timeIntervalSinceNow: 0).timeIntervalSince1970)".msr_MD5EncryptedString
+            }
+        }
+    }
     
     static let identifiers = ["ImageCell", "ButtonCell"]
     static let imageViewTag = 23333
@@ -50,8 +81,6 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
     let maxProgress = 100
     var imageAdditonButton = UIButton()
     
-    var attachKey = "\(NSDate(timeIntervalSinceNow: 0).timeIntervalSince1970)".msr_MD5EncryptedString
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         dismissButton.addTarget(self, action: "dismiss", forControlEvents: .TouchUpInside)
@@ -62,10 +91,10 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
         publishButton.backgroundColor = UIColor.clearColor()
         scrollView.alwaysBounceVertical = true
         scrollView.indicatorStyle = .White
-        tagsField.textField.textColor = UIColor.lightTextColor()
-        tagsField.textField.font = UIFont.systemFontOfSize(14)
-        tagsField.textField.attributedPlaceholder = NSAttributedString(string: "输入并以换行键添加，可添加多个", attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])
-        tagsField.textField.keyboardAppearance = .Dark
+        tagsField?.textField.textColor = UIColor.lightTextColor()
+        tagsField?.textField.font = UIFont.systemFontOfSize(14)
+        tagsField?.textField.attributedPlaceholder = NSAttributedString(string: "输入并以换行键添加，可添加多个", attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])
+        tagsField?.textField.keyboardAppearance = .Dark
         for identifier in SelfType.identifiers {
             imageCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: identifier)
         }
@@ -75,7 +104,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tagsField.reloadData()
+        tagsField?.reloadData()
         imageCollectionView.reloadData()
     }
     
@@ -120,12 +149,12 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
         }
         for tag in tags {
             if tag == text {
-                tagsField.reloadData()
+                tokenField?.reloadData()
                 return
             }
         }
         tags.append(text)
-        tagsField.reloadData()
+        tokenField?.reloadData()
     }
     
     // MARK: - UICollectionDataSource
@@ -249,6 +278,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                     return UIImageJPEGRepresentation($0, 0.5)
                 }
                 dispatch_async(dispatch_get_main_queue()) {
+                    [weak self] in
                     self_.images.extend(images)
                     self_.uploadingProgresses.extend(uploadingProgress)
                     self_.allUploaded.lock()
@@ -258,20 +288,11 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                     for i in 0..<images.count {
                         let image = images[i]
                         let jpeg = jpegs[i]
-                        let operation = NetworkManager.defaultManager!.request("Upload Attachment",
-                            GETParameters: [
-                                "id": "question",
-                                "attach_access_key": self_.attachKey],
-                            POSTParameters: nil,
-                            constructingBodyWithBlock: {
-                                data in
-                                data?.appendPartWithFileData(jpeg, name: "qqfile", fileName: "image.jpg", mimeType: "image/png")
-                                return
-                            },
+                        let operation = self_.dataObject.uploadImageWithJPEGData(jpeg,
                             success: {
-                                data in
+                                attachID in
                                 if let index = find(self_.images, image) {
-                                    self_.attachIDs[index] = Int(msr_object: data["attach_id"])!
+                                    self_.attachIDs[index] = attachID
                                     self_.allUploaded.lock()
                                     self_.uploaded[index] = true
                                     self_.allUploaded.unlock()
@@ -296,7 +317,7 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                                     self_.imageCollectionView.deleteItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
                                 }
                                 return
-                            })!
+                            })
                         operation.setUploadProgressBlock() {
                             bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
                             if let index = find(self_.images, image) {
@@ -374,8 +395,8 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
         if converting {
             return
         }
-        if tagsField.textField.text ?? "" != nil {
-            tokenField(tagsField, didReturnWithText: tagsField.textField.text)
+        if tagsField?.textField.text ?? "" != "" {
+            tokenField(tagsField, didReturnWithText: tagsField!.textField.text)
         }
         let ac = UIAlertController(title: "再次确认", message: "您确定要发布吗？", preferredStyle: .ActionSheet)
         ac.addAction(UIAlertAction(title: "是的", style: .Default)
@@ -398,23 +419,24 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                         } else {
                             self_.allUploaded.unlock()
                             dispatch_async(dispatch_get_main_queue()) {
-                                let manager = DataManager.temporaryManager!
-                                let question = Question.temporaryObject()
-                                question.title = self_.titleField.text
-                                var topics = Set<Topic>()
-                                for tag in self_.tags {
-                                    let topic = Topic.temporaryObject()
-                                    topic.title = tag
-                                    topics.insert(topic)
+                                if let text = self_.titleField?.text {
+                                    self_.dataObject.title = text
                                 }
-                                question.topics = topics
+                                if self_.tagsField != nil {
+                                    var topics = Set<Topic>()
+                                    for tag in self_.tags {
+                                        let topic = Topic.temporaryObject()
+                                        topic.title = tag
+                                        topics.insert(topic)
+                                    }
+                                    self_.dataObject.topics = topics
+                                }
                                 var body = self_.bodyField.text ?? ""
                                 for id in self_.attachIDs {
                                     body += "\n[attach]\(id)[/attach]"
                                 }
-                                question.body = body
-                                question.post(
-                                    attachKey: self_.attachKey,
+                                self_.dataObject.body = body
+                                self_.dataObject.post(
                                     success: {
                                         question in
                                         SVProgressHUD.dismiss()
