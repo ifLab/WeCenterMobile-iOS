@@ -22,9 +22,8 @@ extension Answer: CommentListViewControllerPresentable {
         fetchComments(success: { success?($0) }, failure: failure)
     }
     func temporaryComment() -> Comment {
-        let manager = DataManager.temporaryManager!
-        let c = manager.create("AnswerComment") as! AnswerComment
-        c.answer = (manager.create("Answer") as! Answer)
+        let c = AnswerComment.temporaryObject() // manager.create("AnswerComment") as! AnswerComment
+        c.answer = Answer.temporaryObject()
         c.answer!.id = id
         return c
     }
@@ -36,9 +35,8 @@ extension Article: CommentListViewControllerPresentable {
         fetchComments(success: { success?($0) }, failure: failure)
     }
     func temporaryComment() -> Comment {
-        let manager = DataManager.temporaryManager!
-        let c = manager.create("ArticleComment") as! ArticleComment
-        c.article = (manager.create("Article") as! Article)
+        let c = ArticleComment.temporaryObject()
+        c.article = Article.temporaryObject()
         c.article!.id = id
         return c
     }

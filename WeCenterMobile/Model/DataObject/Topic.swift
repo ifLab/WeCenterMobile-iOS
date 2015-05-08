@@ -10,7 +10,7 @@ import AFNetworking
 import CoreData
 import UIKit
 
-class Topic: NSManagedObject {
+class Topic: DataObject {
 
     @NSManaged var focusCount: NSNumber?
     @NSManaged var id: NSNumber
@@ -49,7 +49,7 @@ class Topic: NSManagedObject {
             ],
             success: {
                 data in
-                let topic = DataManager.defaultManager!.autoGenerate("Topic", ID: ID) as! Topic
+                let topic = Topic.cachedObjectWithID(ID)
                 topic.title = data["topic_title"] as? String
                 topic.introduction = data["topic_description"] as? String
                 topic.imageURI = data["topic_pic"] as? String
@@ -114,17 +114,17 @@ class Topic: NSManagedObject {
                     for value in data["rows"] as! [NSDictionary] {
                         let questionValue = value["question_info"] as! NSDictionary
                         let questionID = questionValue["question_id"] as! NSNumber
-                        let question = DataManager.defaultManager!.autoGenerate("Question", ID: questionID) as! Question
+                        let question = Question.cachedObjectWithID(questionID)
                         self?.questions.insert(question)
                         question.title = questionValue["question_content"] as? String
                         let answerValue = value["answer_info"] as! NSDictionary
                         let answerID = answerValue["answer_id"] as! NSNumber
-                        let answer = DataManager.defaultManager!.autoGenerate("Answer", ID: answerID) as! Answer
+                        let answer = Answer.cachedObjectWithID(answerID)
                         question.answers.insert(answer)
                         answer.body = answerValue["answer_content"] as? String
                         answer.agreementCount = answerValue["agree_count"] as? NSNumber
                         let userID = answerValue["uid"] as! NSNumber
-                        answer.user = (DataManager.defaultManager!.autoGenerate("User", ID: userID) as! User)
+                        answer.user = User.cachedObjectWithID(userID)
                         answer.user!.avatarURI = answerValue["avatar_file"] as? String
                         answers.append(answer)
                     }

@@ -399,11 +399,11 @@ class QuestionPublishmentViewController: UIViewController, ZFTokenFieldDataSourc
                             self_.allUploaded.unlock()
                             dispatch_async(dispatch_get_main_queue()) {
                                 let manager = DataManager.temporaryManager!
-                                let question = manager.create("Question") as! Question
+                                let question = Question.temporaryObject()
                                 question.title = self_.titleField.text
                                 var topics = Set<Topic>()
                                 for tag in self_.tags {
-                                    let topic = manager.create("Topic") as! Topic
+                                    let topic = Topic.temporaryObject()
                                     topic.title = tag
                                     topics.insert(topic)
                                 }

@@ -9,7 +9,7 @@
 import CoreData
 import Foundation
 
-class Comment: NSManagedObject {
+class Comment: DataObject {
     
     @NSManaged var atID: NSNumber?
     @NSManaged var body: String?

@@ -346,8 +346,8 @@ class AnswerPublishmentViewController: UIViewController, UICollectionViewDataSou
                             self_.allUploaded.unlock()
                             dispatch_async(dispatch_get_main_queue()) {
                                 let manager = DataManager.temporaryManager!
-                                let answer = manager.create("Answer") as! Answer
-                                let question = manager.create("Question") as! Question
+                                let answer = Answer.temporaryObject()
+                                let question = Question.temporaryObject()
                                 question.id = self_.question.id
                                 answer.question = question
                                 answer.body = self_.bodyField.text ?? ""

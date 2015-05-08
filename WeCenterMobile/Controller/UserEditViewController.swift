@@ -83,7 +83,7 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
             showDetailViewController(ac, sender: self)
             return
         }
-        let user = DataManager.temporaryManager!.create("User") as! User
+        let user = User.temporaryObject()
         user.id = self.user.id
         user.name = userNameTextField.text
         let genders: [User.Gender] = [.Male, .Secret, .Female]

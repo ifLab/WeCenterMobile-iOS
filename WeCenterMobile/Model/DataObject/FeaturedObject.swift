@@ -21,7 +21,7 @@ enum FeaturedObjectListType: String {
     case Recommended = "reommended"
 }
 
-class FeaturedObject: NSManagedObject {
+class FeaturedObject: DataObject {
 
     @NSManaged var date: NSDate
     
@@ -35,7 +35,7 @@ class FeaturedObject: NSManagedObject {
                 "sort_type": type.rawValue],
             success: {
                 data in
-                let dataManager = DataManager.temporaryManager! // Will move to DataManager.defaultManager in future.
+                let dataManager = DataManager.temporaryManager! // @TODO: Will move to DataManager.defaultManager in future.
                 var featuredObjects = [FeaturedObject]()
                 if Int(msr_object: data["total_rows"]!!) <= 0 {
                     failure?(NSError()) // Needs specification
@@ -92,7 +92,7 @@ class FeaturedObject: NSManagedObject {
                                  *  }
                                  */
                                 if !((answerInfo["answer_content"] ?? NSNull()) is NSNull) {
-                                    let answer = dataManager.create("Answer") as! Answer // Cause no answer ID.
+                                    let answer = Answer.temporaryObject() // Cause no answer ID.
                                     if let userInfo = answerInfo["user_info"] as? NSDictionary {
                                         answer.user = (dataManager.autoGenerate("User", ID: Int(msr_object: userInfo["uid"])!) as! User)
                                         answer.user!.name = (userInfo["user_name"] as! String)

@@ -9,7 +9,7 @@
 import CoreData
 import Foundation
 
-class Answer: NSManagedObject {
+class Answer: DataObject {
 
     @NSManaged var agreementCount: NSNumber?
     @NSManaged var body: String?
@@ -25,12 +25,8 @@ class Answer: NSManagedObject {
     
     var evaluation: Evaluation? = nil
     
-    class func get(#ID: NSNumber, error: NSErrorPointer) -> Answer? {
-        return DataManager.defaultManager!.fetch("Answer", ID: ID, error: error) as? Answer
-    }
-    
     class func fetch(#ID: NSNumber, success: ((Answer) -> Void)?, failure: ((NSError) -> Void)?) {
-        let answer = DataManager.defaultManager!.autoGenerate("Answer", ID: ID) as! Answer
+        let answer = Answer.cachedObjectWithID(ID)
         NetworkManager.defaultManager!.GET("Answer Detail",
             parameters: [
                 "id": ID
@@ -43,7 +39,7 @@ class Answer: NSManagedObject {
                 answer.agreementCount = data["agree_count"] as? NSNumber
                 answer.commentCount = data["comment_count"] as? NSNumber
                 answer.evaluation = Evaluation(rawValue: Int(msr_object: data["vote_value"]!!) ?? 0)
-                answer.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: (data as! NSDictionary)["uid"])!) as! User)
+                answer.user = User.cachedObjectWithID(Int(msr_object: (data as! NSDictionary)["uid"])!)
                 answer.user!.name = data["user_name"] as? String
                 answer.user!.avatarURI = data["avatar_file"] as? String
                 answer.user!.signature = data["signature"] as? String
@@ -66,10 +62,10 @@ class Answer: NSManagedObject {
                 var comments = [AnswerComment]()
                 for commentData in commentsData {
                     let commentID = Int(msr_object: commentData["id"])!
-                    let comment = DataManager.defaultManager!.autoGenerate("AnswerComment", ID: commentID) as! AnswerComment
+                    let comment = AnswerComment.cachedObjectWithID(commentID)
                     if commentData["uid"] != nil {
                         let userID = Int(msr_object: commentData["uid"])!
-                        comment.user = (DataManager.defaultManager!.autoGenerate("User", ID: userID) as! User)
+                        comment.user = User.cachedObjectWithID(userID)
                         comment.user!.name = commentData["user_name"] as? String
                     }
                     comment.body = commentData["content"] as? String
@@ -83,7 +79,7 @@ class Answer: NSManagedObject {
                         atID = Int(msr_object: atIDString)
                     }
                     if atID != nil {
-                        comment.atUser = (DataManager.defaultManager!.autoGenerate("User", ID: atID!) as! User)
+                        comment.atUser = User.cachedObjectWithID(atID!)
                         comment.atUser!.name = (commentData["at_user"]?["user_name"] as! String)
                     }
                     self?.comments.insert(comment)
@@ -105,8 +101,8 @@ class Answer: NSManagedObject {
             ],
             success: {
                 [weak self] data in
-                let answer = DataManager.defaultManager!.autoGenerate("Answer", ID: Int(msr_object: data["answer_id"])!) as! Answer
-                answer.question = (DataManager.defaultManager!.autoGenerate("Question", ID: questionID) as! Question)
+                let answer = Answer.cachedObjectWithID(Int(msr_object: data["answer_id"])!)
+                answer.question = Question.cachedObjectWithID(questionID)
                 answer.user = User.currentUser
                 answer.body = body
                 success?(answer)

@@ -9,7 +9,7 @@
 import CoreData
 import Foundation
 
-class Article: NSManagedObject {
+class Article: DataObject {
 
     @NSManaged var agreementCount: NSNumber?
     @NSManaged var body: String?
@@ -33,11 +33,11 @@ class Article: NSManagedObject {
             ],
             success: {
                 data in
-                let article = DataManager.defaultManager!.autoGenerate("Article", ID: ID) as! Article
+                let article = Article.cachedObjectWithID(ID)
                 let info = data["article_info"] as! NSDictionary
                 article.id = Int(msr_object: info["id"])!
                 if let userID = Int(msr_object: info["uid"]) {
-                    article.user = (DataManager.defaultManager!.autoGenerate("User", ID: userID) as! User)
+                    article.user = User.cachedObjectWithID(userID)
                     article.user!.name = (info["user_name"] as! String)
                     article.user!.signature = info["signature"] as? String
                     article.user!.avatarURI = info["avatar_file"] as? String
@@ -50,7 +50,7 @@ class Article: NSManagedObject {
                 if let topicsInfo = data["article_topics"] as? [NSDictionary] {
                     for topicInfo in topicsInfo {
                         let topicID = Int(msr_object: topicInfo["topic_id"])!
-                        let topic = DataManager.defaultManager!.autoGenerate("Topic", ID: topicID) as! Topic
+                        let topic = Topic.cachedObjectWithID(topicID)
                         topic.title = (topicInfo["topic_title"] as! String)
                         article.topics.insert(topic)
                     }
@@ -72,18 +72,18 @@ class Article: NSManagedObject {
                     var comments = [ArticleComment]()
                     self?.comments = Set()
                     for info in commentsData {
-                        let comment: ArticleComment = DataManager.defaultManager!.autoGenerate("ArticleComment", ID: Int(msr_object: info["id"])!) as! ArticleComment
+                        let comment = ArticleComment.cachedObjectWithID(Int(msr_object: info["id"])!)
                         comment.body = (info["message"] as! String)
                         comment.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: info["add_time"])!)
                         comment.agreementCount = Int(msr_object: info["votes"])
                         comment.evaluation = Evaluation(rawValue: Int(msr_object: info["vote_value"])!)
                         if let userInfo = info["user_info"] as? NSDictionary {
-                            comment.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: userInfo["uid"])!) as! User)
+                            comment.user = User.cachedObjectWithID(Int(msr_object: userInfo["uid"])!)
                             comment.user!.name = (userInfo["user_name"] as! String)
                             comment.user!.avatarURI = userInfo["avatar_file"] as? String
                         }
                         if let atUserInfo = info["at_user_info"] as? NSDictionary {
-                            comment.atUser = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: atUserInfo["uid"])!) as! User)
+                            comment.atUser = User.cachedObjectWithID(Int(msr_object: atUserInfo["uid"])!)
                             comment.atUser!.name = (atUserInfo["user_name"] as! String)
                             comment.atUser!.avatarURI = atUserInfo["avatar_file"] as? String
                         }

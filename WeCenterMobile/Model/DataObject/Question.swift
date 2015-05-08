@@ -9,7 +9,7 @@
 import CoreData
 import Foundation
 
-class Question: NSManagedObject {
+class Question: DataObject {
 
     @NSManaged var body: String?
     @NSManaged var date: NSDate?
@@ -32,7 +32,7 @@ class Question: NSManagedObject {
     }
     
     class func fetch(#ID: NSNumber, success: ((Question) -> Void)?, failure: ((NSError) -> Void)?) {
-        let question = DataManager.defaultManager!.autoGenerate("Question", ID: ID) as! Question
+        let question = Question.cachedObjectWithID(ID)
         NetworkManager.defaultManager!.GET("Question Detail",
             parameters: [
                 "id": ID
@@ -49,21 +49,21 @@ class Question: NSManagedObject {
                     let answerID = value["answer_id"] as! NSNumber
                     var answer: Answer! = filter(question.answers) { $0.id == answerID }.first
                     if answer == nil {
-                        answer = DataManager.defaultManager!.autoGenerate("Answer", ID: answerID) as! Answer
+                        answer = Answer.cachedObjectWithID(answerID)
                         question.answers.insert(answer)
                     }
                     answer.question = question
                     answer.body = value["answer_content"] as? String
                     answer.agreementCount = value["agree_count"] as? NSNumber
                     if answer.user == nil {
-                        answer.user = (DataManager.defaultManager!.autoGenerate("User", ID: Int(msr_object: value["uid"])!) as! User)
+                        answer.user = User.cachedObjectWithID(Int(msr_object: value["uid"])!)
                     }
                     answer.user!.name = value["user_name"] as? String
                     answer.user!.avatarURI = value["avatar_file"] as? String
                 }
                 for value in data["question_topics"] as! [NSDictionary] {
                     let topicID = value["topic_id"] as! NSNumber
-                    let topic = DataManager.defaultManager!.autoGenerate("Topic", ID: topicID) as! Topic
+                    let topic = Topic.cachedObjectWithID(topicID)
                     topic.title = value["topic_title"] as? String
                     question.topics.insert(topic)
                 }
@@ -109,7 +109,7 @@ class Question: NSManagedObject {
             ],
             success: {
                 [weak self] data in
-                let question = DataManager.defaultManager!.autoGenerate("Question", ID: Int(msr_object: data["question_id"])!) as! Question
+                let question = Question.cachedObjectWithID(Int(msr_object: data["question_id"])!)
                 question.title = title
                 question.body = body
                 success?(question)

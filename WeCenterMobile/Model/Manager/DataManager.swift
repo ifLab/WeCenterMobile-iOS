@@ -39,18 +39,18 @@ class DataManager: NSObject {
     }
     static var defaultManager = DataManager(name: "WeCenterMobile") // for creating cached objects
     static var temporaryManager = DataManager(name: nil) // for creating temporary objects
-    func create(entityName: String) -> NSManagedObject {
+    func create(entityName: String) -> DataObject {
         let entity = managedObjectModel.entitiesByName[entityName] as! NSEntityDescription
-        return NSManagedObject(entity: entity, insertIntoManagedObjectContext: managedObjectContext)
+        return DataObject(entity: entity, insertIntoManagedObjectContext: managedObjectContext)
     }
-    func fetch(entityName: String, ID: NSNumber, error: NSErrorPointer) -> NSManagedObject? {
+    func fetch(entityName: String, ID: NSNumber, error: NSErrorPointer) -> DataObject? {
         let request = managedObjectModel.fetchRequestFromTemplateWithName(entityName + "_By_ID",
             substitutionVariables: [
                 "ID": ID
             ])!
         let results = managedObjectContext?.executeFetchRequest(request, error: error)
         if results != nil && results!.count != 0 {
-            return results![0] as? NSManagedObject
+            return results![0] as? DataObject
         } else {
             if error != nil && error.memory == nil {
                 error.memory = NSError() // Needs specification
@@ -62,7 +62,7 @@ class DataManager: NSObject {
         let request = managedObjectModel.fetchRequestTemplateForName(entityName)!
         let results = managedObjectContext?.executeFetchRequest(request, error: error)
         if results != nil {
-            return results as! [NSManagedObject]
+            return results as! [DataObject]
         } else {
             if error != nil && error.memory == nil {
                 error.memory = NSError() // Needs specification
@@ -70,7 +70,7 @@ class DataManager: NSObject {
             return []
         }
     }
-    func autoGenerate(entityName: String, ID: NSNumber) -> NSManagedObject {
+    func autoGenerate(entityName: String, ID: NSNumber) -> DataObject {
         var object = fetch(entityName, ID: ID, error: nil)
         if object == nil {
             object = create(entityName)

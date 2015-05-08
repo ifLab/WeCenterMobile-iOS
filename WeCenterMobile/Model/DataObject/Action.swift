@@ -18,14 +18,10 @@ enum ActionTypeID: Int {
     case ArticleAgreement = 502
 }
 
-class Action: NSManagedObject {
+class Action: DataObject {
 
     @NSManaged var date: NSDate
     @NSManaged var id: NSNumber
     @NSManaged var user: User?
-    
-    class func get(#ID: NSNumber, error: NSErrorPointer) -> Action? {
-        return DataManager.defaultManager!.fetch("Action", ID: ID, error: error) as? Action
-    }
     
 }
