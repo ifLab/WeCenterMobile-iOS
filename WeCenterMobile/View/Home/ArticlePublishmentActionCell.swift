@@ -28,6 +28,7 @@ class ArticlePublishmentActionCell: ActionCell {
         }
         userNameLabel.text = action.user?.name ?? "匿名用户"
         articleTitleLabel.text = action.article!.title
+        articleButton.msr_userInfo = action.article
         setNeedsLayout()
         layoutIfNeeded()
     }

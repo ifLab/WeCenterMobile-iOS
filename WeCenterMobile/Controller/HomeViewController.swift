@@ -106,8 +106,10 @@ class HomeViewController: UITableViewController {
             cell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
             break
         case let cell as ArticlePublishmentActionCell:
+            cell.articleButton.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
             break
         case let cell as ArticleAgreementActionCell:
+            cell.articleButton.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
             break
         default:
             break
@@ -155,6 +157,12 @@ class HomeViewController: UITableViewController {
     func didPressAnswerButton(sender: UIButton) {
         if let answer = sender.msr_userInfo as? Answer {
             msr_navigationController!.pushViewController(ArticleViewController(dataObject: answer), animated: true)
+        }
+    }
+    
+    func didPressArticleButton(sender: UIButton) {
+        if let article = sender.msr_userInfo as? Article {
+            msr_navigationController!.pushViewController(ArticleViewController(dataObject: article), animated: true)
         }
     }
     

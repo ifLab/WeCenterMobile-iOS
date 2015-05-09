@@ -19,14 +19,14 @@ class ArticleHeaderView: UIView {
     lazy var backButton: UIButton = {
         let v = UIButton()
         v.setImage(UIImage(named: "Arrow-Left")!.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
-        v.tintColor = UIColor.whiteColor()
+        v.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.87)
         return v
     }()
     
     lazy var titleLabelA: UILabel = {
         let v = UILabel()
         v.textAlignment = .Center
-        v.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.87)
+        v.textColor = UIColor.blackColor().colorWithAlphaComponent(0.87)
         v.font = UIFont.systemFontOfSize(17)
         return v
     }()
@@ -34,7 +34,7 @@ class ArticleHeaderView: UIView {
     lazy var titleLabelB: UILabel = {
         let v = UILabel()
         v.numberOfLines = 0
-        v.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.87)
+        v.textColor = UIColor.blackColor().colorWithAlphaComponent(0.87)
         v.font = UIFont.systemFontOfSize(17)
         return v
     }()
@@ -56,27 +56,33 @@ class ArticleHeaderView: UIView {
     
     lazy var userButtonB: UIButton = {
         let v = UIButton()
-        v.msr_setBackgroundImageWithColor(UIColor.whiteColor().colorWithAlphaComponent(0.2), forState: .Highlighted)
+        v.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.2), forState: .Highlighted)
         return v
     }()
     
     lazy var userNameLabel: UILabel = {
         let v = UILabel()
-        v.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.87)
+        v.textColor = UIColor.blackColor().colorWithAlphaComponent(0.87)
         v.font = UIFont.systemFontOfSize(15)
         return v
     }()
     
     lazy var userSignatureLabel: UILabel = {
         let v = UILabel()
-        v.textColor = UIColor.lightTextColor()
+        v.textColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
         v.font = UIFont.systemFontOfSize(12)
         return v
     }()
     
-    lazy var separator: UIView = {
+    lazy var separatorA: UIView = {
         let v = UIView()
-        v.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+        v.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
+        return v
+    }()
+    
+    lazy var separatorB: UIView = {
+        let v = UIView()
+        v.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
         return v
     }()
     
@@ -112,8 +118,8 @@ class ArticleHeaderView: UIView {
     
     func wc_initialize() {
         clipsToBounds = true
-        backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
-        for v in [backButton, titleLabelA, titleLabelB, userAvatarViewA, userAvatarViewB, userNameLabel, userSignatureLabel, userButtonA, userButtonB, separator] {
+        backgroundView = UIToolbar()
+        for v in [backButton, titleLabelA, titleLabelB, userAvatarViewA, userAvatarViewB, userNameLabel, userSignatureLabel, userButtonA, userButtonB, separatorA, separatorB] {
             addSubview(v)
         }
     }
@@ -145,10 +151,10 @@ class ArticleHeaderView: UIView {
         var titleLabelBFrame = CGRect(x: backButtonEndFrame.maxX + 10, y: backButtonEndFrame.minY, width: bounds.width - 60, height: backButtonEndFrame.height)
         var userNameLabelFrame = CGRect(x: userAvatarViewBFrame.maxX + 10, y: userAvatarViewBFrame.minY, width: bounds.width - 64, height: userAvatarViewBFrame.height / 2)
         var userSignatureLabelFrame = CGRect(x: userNameLabelFrame.minX, y: userNameLabelFrame.maxY, width: userNameLabelFrame.width, height: userAvatarViewBFrame.height / 2)
-        var separatorFrame = CGRect(x: 0, y: backButtonEndFrame.maxY, width: bounds.width, height: 0.5)
+        let separatorAFrame = CGRect(x: 0, y: bounds.height - 0.5, width: bounds.width, height: 0.5)
+        var separatorBFrame = CGRect(x: 0, y: backButtonEndFrame.maxY, width: bounds.width, height: 0.5)
         if bounds.height <= normalHeight {
             backButton.frame = backButtonBeginFrame
-            backButton.alpha = 1
             userAvatarViewA.alpha = 1
             userAvatarViewB.alpha = 0
             titleLabelA.alpha = 1
@@ -157,13 +163,12 @@ class ArticleHeaderView: UIView {
             userButtonB.alpha = 0
             userNameLabel.alpha = 0
             userSignatureLabel.alpha = 0
-            separator.alpha = 0
+            separatorB.alpha = 0
         } else if bounds.height <= maxHeight {
             let progress = (bounds.height - normalHeight) / (maxHeight - normalHeight)
             backButton.frame = MSRLinearInterpolation(backButtonBeginFrame, backButtonEndFrame, Double(progress))
             let alphaA = CGFloat(max(0, progress * -2 + 1))
             let alphaB = CGFloat(max(0, progress * 2 - 1))
-            backButton.alpha = 1
             userAvatarViewA.alpha = alphaA
             userAvatarViewB.alpha = alphaB
             titleLabelA.alpha = alphaA
@@ -172,7 +177,7 @@ class ArticleHeaderView: UIView {
             userButtonB.alpha = alphaB
             userNameLabel.alpha = alphaB
             userSignatureLabel.alpha = alphaB
-            separator.alpha = alphaB
+            separatorB.alpha = alphaB
         } else {
             let offset = bounds.height - maxHeight
             backButtonEndFrame.origin.y += offset
@@ -182,16 +187,15 @@ class ArticleHeaderView: UIView {
             titleLabelBFrame.origin.y += offset
             userNameLabelFrame.origin.y += offset
             userSignatureLabelFrame.origin.y += offset
-            separatorFrame.origin.y += offset
+            separatorBFrame.origin.y += offset
             backButton.frame = backButtonEndFrame
-            backButton.alpha = 1
             userAvatarViewA.alpha = 0
             userAvatarViewB.alpha = 1
             titleLabelA.alpha = 0
             titleLabelB.alpha = 1
             userNameLabel.alpha = 1
             userSignatureLabel.alpha = 1
-            separator.alpha = 1
+            separatorB.alpha = 1
         }
         titleLabelA.frame = titleLabelAFrame
         titleLabelB.frame = titleLabelBFrame
@@ -201,7 +205,8 @@ class ArticleHeaderView: UIView {
         userButtonB.frame = userButtonBFrame
         userNameLabel.frame = userNameLabelFrame
         userSignatureLabel.frame = userSignatureLabelFrame
-        separator.frame = separatorFrame
+        separatorA.frame = separatorAFrame
+        separatorB.frame = separatorBFrame
     }
     
     func invalidateMaxHeight() {

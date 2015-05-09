@@ -58,7 +58,6 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
         v.contentInset.top = self!.header.minHeight
         v.attributedTextContentView.edgeInsets = UIEdgeInsets(top: self!.header.maxHeight - self!.header.minHeight + 10, left: 10, bottom: self!.footer.bounds.height + 10, right: 10)
         v.contentOffset.y = -v.attributedTextContentView.edgeInsets.top - 10
-        v.indicatorStyle = .White
         v.scrollIndicatorInsets.bottom = self!.footer.bounds.height
         v.backgroundColor = UIColor.clearColor()
         v.attributedTextContentView.delegate = self
@@ -88,18 +87,20 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
         bodyView.frame = view.bounds
         bodyView.delegate = self
         bodyView.msr_uiRefreshControl = UIRefreshControl()
-        bodyView.msr_uiRefreshControl!.tintColor = UIColor.whiteColor()
+        bodyView.msr_uiRefreshControl!.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.87)
         bodyView.msr_uiRefreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         bodyView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
         bodyView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
-        view.backgroundColor = UIColor.msr_materialBlueGray900()
+        view.backgroundColor = UIColor.msr_materialGray100()
         header.frame = CGRect(x: 0, y: -bodyView.contentInset.top, width: bodyView.bounds.width, height: header.maxHeight)
         header.userButtonA.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
         header.userButtonB.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
         header.backButton.addTarget(self, action: "didPressBackButton", forControlEvents: .TouchUpInside)
-        footer.frame = CGRect(x: 0, y: view.bounds.height - 50, width: view.bounds.width, height: 50)
-        footer.shareButton.addTarget(self, action: "didPressShareButton", forControlEvents: .TouchUpInside)
-        footer.commentButton.addTarget(self, action: "didPressCommentButton", forControlEvents: .TouchUpInside)
+        footer.frame = CGRect(x: 0, y: view.bounds.height - 44, width: view.bounds.width, height: 44)
+        footer.shareItem.target = self
+        footer.shareItem.action = "didPressShareButton"
+        footer.commentItem.target = self
+        footer.commentItem.action = "didPressCommentButton"
         msr_navigationBar!.hidden = true
         automaticallyAdjustsScrollViewInsets = false
     }
@@ -134,7 +135,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
         let options = [
             DTDefaultFontName: UIFont.systemFontOfSize(0).fontName,
             DTDefaultFontSize: 16,
-            DTDefaultTextColor: UIColor.lightTextColor(),
+            DTDefaultTextColor: UIColor.blackColor().colorWithAlphaComponent(0.6),
             DTDefaultLineHeightMultiplier: 1.5,
             DTDefaultLinkColor: UIColor.msr_materialLightBlue800(),
             DTDefaultLinkDecoration: true]
@@ -324,7 +325,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return .Default
     }
 
     

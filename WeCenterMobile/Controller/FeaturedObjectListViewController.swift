@@ -81,6 +81,7 @@ class FeaturedObjectListViewController: UITableViewController {
             cell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
             break
         case let cell as FeaturedArticleCell:
+            cell.articleButton.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
             break
         default:
             break
@@ -91,19 +92,6 @@ class FeaturedObjectListViewController: UITableViewController {
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
     }
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let object = objects[indexPath.row]
-        switch object {
-        case let o as FeaturedQuestionAnswer:
-            msr_navigationController?.pushViewController(QuestionViewController(question: o.question!), animated: true)
-            break
-        case let o as FeaturedArticle:
-            break
-        default:
-            break
-        }
-    }
     func didPressQuestionButton(sender: UIButton) {
         if let question = sender.msr_userInfo as? Question {
             msr_navigationController!.pushViewController(QuestionViewController(question: question), animated: true)
@@ -112,6 +100,11 @@ class FeaturedObjectListViewController: UITableViewController {
     func didPressAnswerButton(sender: UIButton) {
         if let answer = sender.msr_userInfo as? Answer {
             msr_navigationController!.pushViewController(ArticleViewController(dataObject: answer), animated: true)
+        }
+    }
+    func didPressArticleButton(sender: UIButton) {
+        if let article = sender.msr_userInfo as? Article {
+            msr_navigationController!.pushViewController(ArticleViewController(dataObject: article), animated: true)
         }
     }
     func refresh() {
