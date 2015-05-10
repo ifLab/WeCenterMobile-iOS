@@ -9,26 +9,40 @@
 import DTCoreText
 import UIKit
 
-protocol ArticleViewControllerPresentable {
+@objc protocol ArticleViewControllerPresentable {
     // Seriously, I don't like this language.
     // See The Swift Programming Language book - Optional Protocol Requirements
     /* @TODO: optional */ var date: NSDate? { get }
     /* @TODO: optional */ var body: String? { get }
     var user: User? { get }
     var title: String? { get }
-    var agreementCount: NSNumber? { get }
+    var agreementCount: NSNumber? { get set }
+    var evaluationRawValue: NSNumber? { get }
     func fetchDataObjectForArticleViewController(#success: ((ArticleViewControllerPresentable) -> Void)?, failure: ((NSError) -> Void)?)
+    func evaluate(#rawValue: Int, success: (() -> Void)?, failure: ((NSError) -> Void)?)
 }
 
 extension Answer: ArticleViewControllerPresentable {
     func fetchDataObjectForArticleViewController(#success: ((ArticleViewControllerPresentable) -> Void)?, failure: ((NSError) -> Void)?) {
         Answer.fetch(ID: id, success: { success?($0) }, failure: failure)
     }
+    func evaluate(#rawValue: Int, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        return
+    }
+    var evaluationRawValue: NSNumber? {
+        return evaluation?.rawValue
+    }
 }
 
 extension Article: ArticleViewControllerPresentable {
     func fetchDataObjectForArticleViewController(#success: ((ArticleViewControllerPresentable) -> Void)?, failure: ((NSError) -> Void)?) {
         Article.fetch(ID: id, success: { success?($0) }, failure: failure)
+    }
+    func evaluate(#rawValue: Int, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        evaluate(value: Evaluation(rawValue: rawValue)!, success: success, failure: failure)
+    }
+    var evaluationRawValue: NSNumber? {
+        return evaluation?.rawValue
     }
 }
 
@@ -99,6 +113,10 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
         footer.frame = CGRect(x: 0, y: view.bounds.height - 44, width: view.bounds.width, height: 44)
         footer.shareItem.target = self
         footer.shareItem.action = "didPressShareButton"
+        footer.agreeItem.target = self
+        footer.agreeItem.action = "didPressAgreeButton"
+        footer.disagreeItem.target = self
+        footer.disagreeItem.action = "didPressDisagreeButton"
         footer.commentItem.target = self
         footer.commentItem.action = "didPressCommentButton"
         msr_navigationBar!.hidden = true
@@ -292,6 +310,40 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
                 WeChatMomentsActivity(),
                 SinaWeiboActivity()])
         showDetailViewController(vc, sender: self)
+    }
+    
+    func didPressAgreeButton() {
+        if let rawValue = dataObject.evaluationRawValue?.integerValue {
+            let e = Evaluation(rawValue: rawValue)!
+            evaluate(value: e == .Up ? .None : .Up)
+        }
+    }
+    
+    func didPressDisagreeButton() {
+        if let rawValue = dataObject.evaluationRawValue?.integerValue {
+            let e = Evaluation(rawValue: rawValue)!
+            evaluate(value: e == .Down ? .None : .Down)
+        }
+    }
+    
+    func evaluate(#value: Evaluation) {
+        let count = dataObject.agreementCount?.integerValue
+        dataObject.agreementCount = nil
+        footer.update(dataObject: dataObject)
+        dataObject.agreementCount = count
+        dataObject.evaluate(
+            rawValue: value.rawValue,
+            success: {
+                [weak self] in
+                self?.footer.update(dataObject: self!.dataObject)
+                return
+            },
+            failure: {
+                [weak self] error in
+                self?.dataObject.agreementCount = count
+                self?.footer.update(dataObject: self!.dataObject)
+                return
+            })
     }
     
     func presentLinkAlertControllerWithURL(URL: NSURL) {

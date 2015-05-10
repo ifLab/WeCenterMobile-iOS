@@ -13,7 +13,7 @@
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="JLT-ZM-FJL">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
-                <barButtonItem image="Action-Line" id="nB4-c7-NRN">
+                <barButtonItem image="Action-Line" width="30" id="nB4-c7-NRN">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="MwP-u1-0CS">
@@ -35,7 +35,7 @@
                 <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="ZJ3-s0-WSN">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
-                <barButtonItem enabled="NO" title="-" id="hh2-eV-ctb">
+                <barButtonItem enabled="NO" title="12345" width="20" id="hh2-eV-ctb">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
                 <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="JL4-Ns-9Ms">
@@ -57,7 +57,7 @@
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="8S4-Je-W0q">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
-                <barButtonItem image="Conversation-Line" id="Do0-gx-Quo">
+                <barButtonItem image="Conversation-Line" width="30" id="Do0-gx-Quo">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="Ml6-0J-6gl">

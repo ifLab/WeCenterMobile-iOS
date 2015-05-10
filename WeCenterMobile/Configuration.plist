@@ -72,6 +72,10 @@
 		<string>?/api/publish/save_answer/</string>
 		<key>Post Article</key>
 		<string>?/api/publish/publish_article/</string>
+		<key>Evaluate Answer</key>
+		<string>?/question/ajax/answer_vote/</string>
+		<key>Evaluate Article</key>
+		<string>?/article/ajax/article_vote/</string>
 	</dict>
 	<key>Success Code</key>
 	<integer>1</integer>

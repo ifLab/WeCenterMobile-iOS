@@ -118,6 +118,27 @@ class Article: DataObject {
             failure: failure)!
     }
     
+    func evaluate(#value: Evaluation, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        let originalValue = evaluation ?? .None
+        NetworkManager.defaultManager!.POST("Evaluate Article",
+            parameters: [
+                "type": "article",
+                "item_id": id,
+                "rating": value.rawValue],
+            success: {
+                [weak self] data in
+                if let self_ = self {
+                    self_.evaluation = value
+                    if let count = self_.agreementCount?.integerValue {
+                        self_.agreementCount = count + value.rawValue - originalValue.rawValue
+                    }
+                }
+                success?()
+                return
+            },
+            failure: failure)
+    }
+    
     func post(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         let topics = [Topic](self.topics)
         var topicsParameter = ""
