@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuestionFocusingActionCell: ActionCell {
+class QuestionFocusingActionCell: UITableViewCell {
     
     @IBOutlet weak var userAvatarView: MSRRoundedImageView!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -28,8 +28,7 @@ class QuestionFocusingActionCell: ActionCell {
         separatorWidthConstraint.constant = 0.5
     }
     
-    override func update(#action: Action, updateImage: Bool) {
-        super.update(action: action, updateImage: updateImage)
+    func update(#action: Action, updateImage: Bool) {
         let action = action as! QuestionFocusingAction
         if updateImage {
             userAvatarView.wc_updateWithUser(action.user)

@@ -192,7 +192,6 @@
 		9531D72C1AF3E4AC00E6549D /* FeaturedQuestionAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D6E21AF3E4AC00E6549D /* FeaturedQuestionAnswerCell.xib */; };
 		9531D72D1AF3E4AC00E6549D /* FeaturedQuestionAnswerCellWithoutAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6E31AF3E4AC00E6549D /* FeaturedQuestionAnswerCellWithoutAnswer.swift */; };
 		9531D72E1AF3E4AC00E6549D /* FeaturedQuestionAnswerCellWithoutAnswer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D6E41AF3E4AC00E6549D /* FeaturedQuestionAnswerCellWithoutAnswer.xib */; };
-		9531D72F1AF3E4AC00E6549D /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6E61AF3E4AC00E6549D /* ActionCell.swift */; };
 		9531D7301AF3E4AC00E6549D /* AnswerActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6E71AF3E4AC00E6549D /* AnswerActionCell.swift */; };
 		9531D7311AF3E4AC00E6549D /* AnswerActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D6E81AF3E4AC00E6549D /* AnswerActionCell.xib */; };
 		9531D7321AF3E4AC00E6549D /* AnswerAgreementActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6E91AF3E4AC00E6549D /* AnswerAgreementActionCell.swift */; };
@@ -768,7 +767,6 @@
 		9531D6E21AF3E4AC00E6549D /* FeaturedQuestionAnswerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeaturedQuestionAnswerCell.xib; sourceTree = "<group>"; };
 		9531D6E31AF3E4AC00E6549D /* FeaturedQuestionAnswerCellWithoutAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedQuestionAnswerCellWithoutAnswer.swift; sourceTree = "<group>"; };
 		9531D6E41AF3E4AC00E6549D /* FeaturedQuestionAnswerCellWithoutAnswer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeaturedQuestionAnswerCellWithoutAnswer.xib; sourceTree = "<group>"; };
-		9531D6E61AF3E4AC00E6549D /* ActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		9531D6E71AF3E4AC00E6549D /* AnswerActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerActionCell.swift; sourceTree = "<group>"; };
 		9531D6E81AF3E4AC00E6549D /* AnswerActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerActionCell.xib; sourceTree = "<group>"; };
 		9531D6E91AF3E4AC00E6549D /* AnswerAgreementActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerAgreementActionCell.swift; sourceTree = "<group>"; };
@@ -1674,7 +1672,6 @@
 		9531D6E51AF3E4AC00E6549D /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				9531D6E61AF3E4AC00E6549D /* ActionCell.swift */,
 				9531D6E71AF3E4AC00E6549D /* AnswerActionCell.swift */,
 				9531D6E81AF3E4AC00E6549D /* AnswerActionCell.xib */,
 				9531D6E91AF3E4AC00E6549D /* AnswerAgreementActionCell.swift */,
@@ -2606,7 +2603,6 @@
 				950FE5071A1DA2B500167D09 /* MainViewController.swift in Sources */,
 				9531D6A81AF3D68F00E6549D /* ArticleListViewController.swift in Sources */,
 				951D1F761ACD1E750072D555 /* UIView+DTActionHandlers.m in Sources */,
-				9531D72F1AF3E4AC00E6549D /* ActionCell.swift in Sources */,
 				9531D7451AF3E4AC00E6549D /* QuestionCell.swift in Sources */,
 				956E720A1AAFC53B00A3FD7D /* AFURLConnectionOperation.m in Sources */,
 				951D1E7B1ACD1E4E0072D555 /* DTAttributedTextView.m in Sources */,

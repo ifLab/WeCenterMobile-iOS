@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnswerAgreementActionCell: ActionCell {
+class AnswerAgreementActionCell: UITableViewCell {
     
     @IBOutlet weak var userAvatarView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -36,8 +36,7 @@ class AnswerAgreementActionCell: ActionCell {
         separatorBHeightConstraint.constant = 0.5
     }
     
-    override func update(#action: Action, updateImage: Bool) {
-        super.update(action: action, updateImage: updateImage)
+    func update(#action: Action, updateImage: Bool) {
         let action = action as! AnswerAgreementAction
         if updateImage {
             userAvatarView.wc_updateWithUser(action.user)

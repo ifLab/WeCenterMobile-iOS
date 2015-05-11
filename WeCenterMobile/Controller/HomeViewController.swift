@@ -9,6 +9,26 @@
 import MJRefresh
 import UIKit
 
+@objc protocol ActionCellProtocol {
+    optional var userButton: UIButton! { get }
+    optional var questionButton: UIButton! { get }
+    optional var answerButton: UIButton! { get }
+    optional var articleButton: UIButton! { get }
+    func update(#action: Action, updateImage: Bool)
+}
+
+@objc protocol TableViewCellProtocol {}
+extension UITableViewCell: TableViewCellProtocol {}
+
+typealias ActionCell = protocol<ActionCellProtocol, TableViewCellProtocol>
+
+extension AnswerActionCell: ActionCellProtocol {}
+extension QuestionPublishmentActionCell: ActionCellProtocol {}
+extension QuestionFocusingActionCell: ActionCellProtocol {}
+extension AnswerAgreementActionCell: ActionCellProtocol {}
+extension ArticlePublishmentActionCell: ActionCellProtocol {}
+extension ArticleAgreementActionCell: ActionCellProtocol {}
+
 class HomeViewController: UITableViewController {
     
     let count = 20
@@ -81,41 +101,13 @@ class HomeViewController: UITableViewController {
         if index >= identifiers.count {
             return UITableViewCell() // Needs specification
         }
-        var cell: ActionCell! = tableView.dequeueReusableCellWithIdentifier(identifiers[index]) as? ActionCell
-        if cell == nil {
-            cell = NSBundle.mainBundle().loadNibNamed(nibNames[index], owner: self, options: nil).first as! ActionCell
-        }
+        var cell = tableView.dequeueReusableCellWithIdentifier(identifiers[index], forIndexPath: indexPath) as! ActionCell
         cell.update(action: action, updateImage: true)
-        switch cell {
-        case let cell as AnswerActionCell:
-            cell.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
-            cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
-            cell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
-            break
-        case let cell as QuestionPublishmentActionCell:
-            cell.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
-            cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
-            break
-        case let cell as QuestionFocusingActionCell:
-            cell.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
-            cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
-            break
-        case let cell as AnswerAgreementActionCell:
-            cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
-            cell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
-            break
-        case let cell as ArticlePublishmentActionCell:
-            cell.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
-            cell.articleButton.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
-            break
-        case let cell as ArticleAgreementActionCell:
-            cell.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
-            cell.articleButton.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
-            break
-        default:
-            break
-        }
-        return cell
+        cell.userButton?.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
+        cell.questionButton?.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
+        cell.answerButton?.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
+        cell.articleButton?.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
+        return cell as! UITableViewCell
     }
     
     func showSidebar() {
