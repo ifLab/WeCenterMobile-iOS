@@ -16,7 +16,6 @@ class ArticlePublishmentActionCell: UITableViewCell {
     @IBOutlet weak var userButton: UIButton!
     @IBOutlet weak var articleButton: UIButton!
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var separatorWidthConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,7 +23,6 @@ class ArticlePublishmentActionCell: UITableViewCell {
         containerView.layer.borderColor = UIColor.msr_materialGray300().CGColor
         containerView.layer.borderWidth = 0.5
         articleButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        separatorWidthConstraint.constant = 0.5
     }
     
     func update(#action: Action, updateImage: Bool) {

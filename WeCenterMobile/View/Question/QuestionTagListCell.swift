@@ -17,10 +17,11 @@ class QuestionTagListCell: UITableViewCell, ZFTokenFieldDataSource, ZFTokenField
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        tagsField.textField.enabled = false
+        msr_scrollView?.delaysContentTouches = false
+        tagsField.editable = false
         tagsField.delegate = self
         tagsField.dataSource = self
-        tagsButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
+        tagsButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
     }
     
     func update(#question: Question) {
@@ -54,8 +55,8 @@ class QuestionTagListCell: UITableViewCell, ZFTokenFieldDataSource, ZFTokenField
         label.textAlignment = .Center
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 3
-        label.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
-        label.textColor = UIColor.lightTextColor()
+        label.backgroundColor = UIColor.msr_materialGray200()
+        label.textColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
         return label
     }
     

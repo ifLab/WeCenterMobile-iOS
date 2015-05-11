@@ -149,7 +149,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
             DTDefaultFontSize: 16,
             DTDefaultTextColor: UIColor.blackColor().colorWithAlphaComponent(0.6),
             DTDefaultLineHeightMultiplier: 1.5,
-            DTDefaultLinkColor: UIColor.msr_materialLightBlue800(),
+            DTDefaultLinkColor: UIColor.msr_materialLightBlue(),
             DTDefaultLinkDecoration: true]
         header.update(dataObject: dataObject)
         footer.update(dataObject: dataObject)

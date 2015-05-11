@@ -15,8 +15,9 @@ class AnswerAdditionCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        msr_scrollView?.delaysContentTouches = false
         answerAdditionImageView.msr_imageRenderingMode = .AlwaysTemplate
-        answerAdditionButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
+        answerAdditionButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
     }
 
 }

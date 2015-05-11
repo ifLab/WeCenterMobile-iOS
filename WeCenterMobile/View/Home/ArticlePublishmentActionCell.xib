@@ -94,7 +94,7 @@
                                 <rect key="frame" x="50" y="0.0" width="1" height="78"/>
                                 <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="1" id="AhC-Xg-Z1n"/>
+                                    <constraint firstAttribute="width" constant="0.5" id="Oer-SH-U18"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -126,7 +126,6 @@
                 <outlet property="articleButton" destination="7w1-VM-P4q" id="Wrq-wP-qhK"/>
                 <outlet property="articleTitleLabel" destination="era-4O-gdB" id="Ujq-n0-hoY"/>
                 <outlet property="containerView" destination="pFU-o1-Qns" id="xgO-Eh-Ytf"/>
-                <outlet property="separatorWidthConstraint" destination="AhC-Xg-Z1n" id="Wyd-7Q-pMP"/>
                 <outlet property="userAvatarView" destination="0UI-2e-Mmj" id="roX-D2-O7H"/>
                 <outlet property="userButton" destination="wxl-tp-Nlb" id="2Bl-cZ-MDe"/>
                 <outlet property="userNameLabel" destination="AHW-jC-aim" id="ueA-p8-Z02"/>

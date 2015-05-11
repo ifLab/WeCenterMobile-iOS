@@ -14,10 +14,12 @@ class QuestionHeaderCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userSignatureLabel: UILabel!
     @IBOutlet weak var userButton: UIButton!
+    @IBOutlet weak var containerView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        userButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
+        msr_scrollView?.delaysContentTouches = false
+        userButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
     }
     
     func update(#user: User?, updateImage: Bool) {

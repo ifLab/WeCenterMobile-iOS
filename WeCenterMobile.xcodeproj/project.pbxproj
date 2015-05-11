@@ -1061,7 +1061,6 @@
 			isa = PBXGroup;
 			children = (
 				9531D6A11AF0A27100E6549D /* AnswerListViewController.swift */,
-				954A76AA1AFD0323002A72A9 /* PublishmentViewControllerB.xib */,
 				9531D6A71AF3D68F00E6549D /* ArticleListViewController.swift */,
 				95D153A31AF4BB3000C1617D /* ArticleViewController.swift */,
 				950FE12C1A1DA2B300167D09 /* CommetListViewController.swift */,
@@ -1071,8 +1070,9 @@
 				950FE12F1A1DA2B300167D09 /* MainViewController.swift */,
 				95B1D9D91ABE0CF200BEC8BD /* MediaPickerController.swift */,
 				958CB5BA1AB98DC3002ECCF4 /* PublishmentViewController.swift */,
-				950FE1371A1DA2B300167D09 /* QuestionListViewController.swift */,
 				95B9BDC21ABAA67900692889 /* PublishmentViewControllerA.xib */,
+				954A76AA1AFD0323002A72A9 /* PublishmentViewControllerB.xib */,
+				950FE1371A1DA2B300167D09 /* QuestionListViewController.swift */,
 				9520AB141AC2C94600637C84 /* QuestionViewController.swift */,
 				950FE1341A1DA2B300167D09 /* TopicListViewController.swift */,
 				950FE1351A1DA2B300167D09 /* TopicViewController.swift */,

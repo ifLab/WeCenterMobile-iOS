@@ -19,8 +19,6 @@ class AnswerAgreementActionCell: UITableViewCell {
     @IBOutlet weak var questionButton: UIButton!
     @IBOutlet weak var answerButton: UIButton!
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var separatorAWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var separatorBHeightConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,8 +30,6 @@ class AnswerAgreementActionCell: UITableViewCell {
         userButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
         questionButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
         answerButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        separatorAWidthConstraint.constant = 0.5
-        separatorBHeightConstraint.constant = 0.5
     }
     
     func update(#action: Action, updateImage: Bool) {

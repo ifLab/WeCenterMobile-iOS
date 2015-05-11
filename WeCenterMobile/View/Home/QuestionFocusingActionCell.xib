@@ -94,7 +94,7 @@
                                 <rect key="frame" x="50" y="0.0" width="1" height="78"/>
                                 <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="1" id="eDF-Ow-bLb"/>
+                                    <constraint firstAttribute="width" constant="0.5" id="ZRN-P8-8AJ"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -126,7 +126,6 @@
                 <outlet property="containerView" destination="amV-L6-ssq" id="B6l-ad-AJn"/>
                 <outlet property="questionButton" destination="u8y-JZ-SR2" id="Md1-xW-ZEx"/>
                 <outlet property="questionTitleLabel" destination="A61-U2-RJW" id="Wq4-tI-4pQ"/>
-                <outlet property="separatorWidthConstraint" destination="eDF-Ow-bLb" id="1ak-9K-tqd"/>
                 <outlet property="userAvatarView" destination="kUw-l1-1bp" id="kwf-Xi-vor"/>
                 <outlet property="userButton" destination="5CP-KV-4tM" id="0eq-BV-jG1"/>
                 <outlet property="userNameLabel" destination="TlZ-Vz-2Cn" id="gkx-LM-P3X"/>

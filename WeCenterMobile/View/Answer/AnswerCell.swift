@@ -15,19 +15,28 @@ class AnswerCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var answerBodyLabel: MSRMultilineLabel!
     @IBOutlet weak var userAvatarView: MSRRoundedImageView!
-    @IBOutlet weak var answerAgreementCountCell: UILabel!
+    @IBOutlet weak var agreementCountLabel: UILabel!
+    @IBOutlet weak var userButton: UIButton!
     @IBOutlet weak var answerButton: UIButton!
+    @IBOutlet weak var containerView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        answerButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
+        msr_scrollView?.delaysContentTouches = false
+        containerView.layer.borderColor = UIColor.msr_materialGray300().CGColor
+        containerView.layer.borderWidth = 0.5
+        agreementCountLabel.layer.borderColor = UIColor.msr_materialGray300().CGColor
+        agreementCountLabel.layer.borderWidth = 0.5
+        userButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        answerButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
     }
     
     func update(#answer: Answer, updateImage: Bool) {
         self.answer = answer
         userNameLabel.text = answer.user?.name ?? "匿名用户"
         answerBodyLabel.text = answer.body?.wc_plainString
-        answerAgreementCountCell.text = "\(answer.agreementCount ?? 0)"
+        agreementCountLabel.text = "\(answer.agreementCount ?? 0)"
+        userButton.msr_userInfo = answer.user
         answerButton.msr_userInfo = answer
         if updateImage {
             userAvatarView.wc_updateWithUser(answer.user)

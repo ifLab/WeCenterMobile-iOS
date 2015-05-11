@@ -11,6 +11,12 @@ import UIKit
 class QuestionTitleCell: UITableViewCell {
     
     @IBOutlet weak var questionTitleLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        msr_scrollView?.delaysContentTouches = false
+    }
     
     func update(#question: Question) {
         questionTitleLabel.text = question.title ?? "加载中"

@@ -21,13 +21,14 @@ class QuestionBodyCell: DTAttributedTextCell, DTAttributedTextContentViewDelegat
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        msr_scrollView?.delaysContentTouches = false
         backgroundColor = UIColor.clearColor()
         contentView.backgroundColor = UIColor.clearColor()
         attributedTextContextView.backgroundColor = UIColor.clearColor()
         attributedTextContextView.delegate = self
         attributedTextContextView.shouldDrawImages = true
         attributedTextContextView.shouldDrawLinks = true
-        attributedTextContextView.edgeInsets = UIEdgeInsets(top: 10, left: 14, bottom: 10, right: 14)
+        attributedTextContextView.edgeInsets = UIEdgeInsets(top: 10, left: 18, bottom: 10, right: 18)
     }
 
     func update(#question: Question?) {
@@ -36,9 +37,9 @@ class QuestionBodyCell: DTAttributedTextCell, DTAttributedTextContentViewDelegat
                 options: [
                     DTDefaultFontName: UIFont.systemFontOfSize(0).fontName,
                     DTDefaultFontSize: 16,
-                    DTDefaultTextColor: UIColor.lightTextColor(),
+                    DTDefaultTextColor: UIColor.blackColor().colorWithAlphaComponent(0.6),
                     DTDefaultLineHeightMultiplier: 1.5,
-                    DTDefaultLinkColor: UIColor.msr_materialLightBlue800(),
+                    DTDefaultLinkColor: UIColor.msr_materialLightBlue(),
                     DTDefaultLinkDecoration: true
                 ])
         }

@@ -19,9 +19,10 @@ class QuestionFooterCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        msr_scrollView?.delaysContentTouches = false
         viewCountImageView.msr_imageRenderingMode = .AlwaysTemplate
         focusCountImageView.msr_imageRenderingMode = .AlwaysTemplate
-        focusButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
+        focusButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
         focusButton.setTitle(nil, forState: .Normal)
     }
     
@@ -29,7 +30,7 @@ class QuestionFooterCell: UITableViewCell {
         viewCountLabel.text = "\(question.viewCount ?? 0)"
         focusCountLabel.text = "\(question.focusCount ?? 0)"
         if let focusing = question.focusing {
-            focusButton.msr_setBackgroundImageWithColor(focusing ? UIColor.clearColor() : UIColor.blackColor().colorWithAlphaComponent(0.2))
+            focusButton.msr_setBackgroundImageWithColor(focusing ? UIColor.msr_materialGray50() : UIColor.msr_materialGray200())
             focusButton.setTitle(focusing ? "已关注" : "关注", forState: .Normal)
             focusActivityIndicatorView.stopAnimating()
         } else {

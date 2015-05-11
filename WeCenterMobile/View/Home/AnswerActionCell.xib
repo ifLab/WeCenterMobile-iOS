@@ -145,14 +145,14 @@
                                 <rect key="frame" x="50" y="0.0" width="1" height="135"/>
                                 <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="1" id="i4s-UT-wZa"/>
+                                    <constraint firstAttribute="width" constant="0.5" id="eAS-c4-lqY"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oaf-yy-pRk">
                                 <rect key="frame" x="51" y="78" width="253" height="1"/>
                                 <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="Zmh-z5-8sV"/>
+                                    <constraint firstAttribute="height" constant="0.5" id="vUs-gJ-Tif"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -199,8 +199,6 @@
                 <outlet property="containerView" destination="UdY-t1-1Ec" id="aXb-Hv-T06"/>
                 <outlet property="questionButton" destination="7AJ-01-sjf" id="EdE-ID-BhV"/>
                 <outlet property="questionTitleLabel" destination="Wat-Q2-oDy" id="QTc-ku-gux"/>
-                <outlet property="separatorAWidthConstraint" destination="i4s-UT-wZa" id="KFy-tK-YDl"/>
-                <outlet property="separatorBHeightConstraint" destination="Zmh-z5-8sV" id="JLz-SS-zgF"/>
                 <outlet property="userAvatarView" destination="HII-ZL-6Sk" id="qmA-Za-D9d"/>
                 <outlet property="userButton" destination="EZx-uU-J7i" id="68i-l9-pdR"/>
                 <outlet property="userNameLabel" destination="hlv-Bw-7EV" id="5nf-eM-RfD"/>

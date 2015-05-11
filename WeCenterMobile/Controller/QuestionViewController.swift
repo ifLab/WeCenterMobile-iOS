@@ -82,21 +82,22 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         tableView = ButtonTouchesCancelableTableView()
         tableView.delegate = self
         tableView.dataSource = self
-        view.backgroundColor = UIColor.msr_materialBlueGray800()
+        view.backgroundColor = UIColor.msr_materialGray200()
         let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
-        header.textColor = UIColor.whiteColor()
+        header.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         headerImageView = header.valueForKey("arrowImage") as! UIImageView
-        headerImageView.tintColor = UIColor.whiteColor()
+        headerImageView.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
         headerImageView.msr_imageRenderingMode = .AlwaysTemplate
         headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
-        headerActivityIndicatorView.activityIndicatorViewStyle = .White
+        headerActivityIndicatorView.activityIndicatorViewStyle = .Gray
+        tableView.delaysContentTouches = false
+        tableView.msr_wrapperView?.delaysContentTouches = false
         tableView.separatorStyle = .None
         tableView.indicatorStyle = .White
         tableView.registerNib(UINib(nibName: answerCellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: answerCellIdentifier)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
         title = "问题详情" // Needs localization
-        msr_navigationBar!.barStyle = .Black
-        msr_navigationBar!.tintColor = UIColor.whiteColor()
+        msr_navigationBar!.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
     }
     
     override func viewDidLoad() {
@@ -133,6 +134,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
             return answerAdditionCell
         default:
             let answerCell = tableView.dequeueReusableCellWithIdentifier(answerCellIdentifier, forIndexPath: indexPath) as! AnswerCell
+            answerCell.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
             answerCell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
             answerCell.update(answer: answers[indexPath.row], updateImage: true)
             return answerCell
@@ -162,7 +164,9 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
             return questionTagListCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
         case 3:
             questionBodyCell.update(question: question)
-            return questionBodyCell.requiredRowHeightInTableView(tableView)
+            let height = questionBodyCell.requiredRowHeightInTableView(tableView)
+            let insets = questionBodyCell.attributedTextContextView.edgeInsets
+            return height > insets.top + insets.bottom ? height : 0
         case 4:
             questionFooterCell.update(question: question)
             return questionFooterCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
@@ -214,6 +218,12 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         })
         ac.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
         presentViewController(ac, animated: true, completion: nil)
+    }
+    
+    func didPressUserButton(button: UIButton) {
+        if let user = button.msr_userInfo as? User {
+            msr_navigationController!.pushViewController(UserViewController(user: user), animated: true)
+        }
     }
     
     func didPressAnswerButton(button: UIButton) {
@@ -291,18 +301,12 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         }
     }
     
-    func didPressUserButton(button: UIButton) {
-        if let user = button.msr_userInfo as? User {
-            msr_navigationController!.pushViewController(UserViewController(user: user), animated: true)
-        }
-    }
-    
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return .Default
     }
     
 }
