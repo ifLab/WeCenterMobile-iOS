@@ -305,6 +305,8 @@
 		9580EDA41AE4DEE000EBF5FE /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9580ED991AE4DEE000EBF5FE /* libWeiboSDK.a */; };
 		9580EDA51AE4DEE000EBF5FE /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9580EDA11AE4DEE000EBF5FE /* WeiboSDK.bundle */; };
 		9583E3351AB6812400067F37 /* MSRLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583E3341AB6812400067F37 /* MSRLayoutGuide.swift */; };
+		9585FA2B1B0076BC0079D57D /* UITableView+MSRGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9585FA2A1B0076BC0079D57D /* UITableView+MSRGetter.swift */; };
+		9585FA2D1B0078C60079D57D /* UITableViewCell+MSRGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9585FA2C1B0078C60079D57D /* UITableViewCell+MSRGetter.swift */; };
 		9588F5E91A1D9D1C001BC426 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9588F5E81A1D9D1C001BC426 /* AppDelegate.swift */; };
 		9588F6021A1D9D1C001BC426 /* WeCenterMobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9588F6011A1D9D1C001BC426 /* WeCenterMobileTests.swift */; };
 		95891E5B1AD82E7E007D5DF7 /* MSRLinearInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95891E5A1AD82E7E007D5DF7 /* MSRLinearInterpolation.swift */; };
@@ -928,6 +930,8 @@
 		9580EDA21AE4DEE000EBF5FE /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
 		9580EDA31AE4DEE000EBF5FE /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboUser.h; sourceTree = "<group>"; };
 		9583E3341AB6812400067F37 /* MSRLayoutGuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRLayoutGuide.swift; sourceTree = "<group>"; };
+		9585FA2A1B0076BC0079D57D /* UITableView+MSRGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+MSRGetter.swift"; sourceTree = "<group>"; };
+		9585FA2C1B0078C60079D57D /* UITableViewCell+MSRGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+MSRGetter.swift"; sourceTree = "<group>"; };
 		9588F5E31A1D9D1C001BC426 /* WeCenterMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeCenterMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9588F5E71A1D9D1C001BC426 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9588F5E81A1D9D1C001BC426 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -2105,6 +2109,8 @@
 				95C2EA1A1AB0516800F2A326 /* UINavigationBar+MSRAccessor.swift */,
 				95DB722F1AF556A00072C77E /* UIScrollView+MSRPosition.swift */,
 				9531D6991AEEB93D00E6549D /* UIScrollView+MSRRefreshControl.swift */,
+				9585FA2A1B0076BC0079D57D /* UITableView+MSRGetter.swift */,
+				9585FA2C1B0078C60079D57D /* UITableViewCell+MSRGetter.swift */,
 				95DC57121AF89F790075C3CB /* UITextField+MSRGetter.swift */,
 				95C2EA1B1AB0516800F2A326 /* UIView+MSREasyAutoLayout.swift */,
 				95C2EA1C1AB0516800F2A326 /* UIView+MSRKeyboardUtility.swift */,
@@ -2351,6 +2357,7 @@
 				951D1F941ACD1E750072D555 /* NSString+DTUtilities.m in Sources */,
 				95DC57101AF785040075C3CB /* Evalation.swift in Sources */,
 				951D1E941ACD1E4E0072D555 /* DTIframeTextAttachment.m in Sources */,
+				9585FA2D1B0078C60079D57D /* UITableViewCell+MSRGetter.swift in Sources */,
 				951D2F8C1AB7F85500DCB678 /* UIScrollView+MJRefresh.m in Sources */,
 				951D1E811ACD1E4E0072D555 /* DTCoreTextFontDescriptor.m in Sources */,
 				951D1F651ACD1E750072D555 /* DTScriptExpression.m in Sources */,
@@ -2630,6 +2637,7 @@
 				951D1E9E1ACD1E4E0072D555 /* DTTextBlock.m in Sources */,
 				95B9BE681ABAEF1A00692889 /* ZFTokenField.m in Sources */,
 				9531D7981AF3E8E400E6549D /* User.swift in Sources */,
+				9585FA2B1B0076BC0079D57D /* UITableView+MSRGetter.swift in Sources */,
 				9531D72B1AF3E4AC00E6549D /* FeaturedQuestionAnswerCell.swift in Sources */,
 				951D1E791ACD1E4E0072D555 /* DTAttributedTextCell.m in Sources */,
 				9531D79F1AF3E8E400E6549D /* WeChatMomentsActivity.swift in Sources */,

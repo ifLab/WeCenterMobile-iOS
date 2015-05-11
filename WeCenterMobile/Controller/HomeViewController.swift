@@ -45,25 +45,21 @@ class HomeViewController: UITableViewController {
         for i in 0..<nibNames.count {
             tableView.registerNib(UINib(nibName: nibNames[i], bundle: NSBundle.mainBundle()), forCellReuseIdentifier: identifiers[i])
         }
-// MSR_BEGIN
-        let iv = UIImageView(image: UIImage(named: "LoginViewBackground"))
-        iv.contentMode = .ScaleAspectFill
-        tableView.backgroundView = iv
-// MSR_END
-//        view.backgroundColor = UIColor.msr_materialBlueGray800()
+        view.backgroundColor = UIColor.msr_materialGray200()
         tableView.separatorStyle = .None
         tableView.indicatorStyle = .White
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
-        msr_navigationBar!.barStyle = .Black
-        msr_navigationBar!.tintColor = UIColor.whiteColor()
+        tableView.delaysContentTouches = false
+        tableView.msr_wrapperView?.delaysContentTouches = false
+        msr_navigationBar!.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
-        header.textColor = UIColor.whiteColor()
+        header.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         headerImageView = header.valueForKey("arrowImage") as! UIImageView
-        headerImageView.tintColor = UIColor.whiteColor()
+        headerImageView.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
         headerImageView.msr_imageRenderingMode = .AlwaysTemplate
         headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
-        headerActivityIndicatorView.activityIndicatorViewStyle = .White
+        headerActivityIndicatorView.activityIndicatorViewStyle = .Gray
     }
     
     override func viewDidLoad() {
@@ -92,13 +88,16 @@ class HomeViewController: UITableViewController {
         cell.update(action: action, updateImage: true)
         switch cell {
         case let cell as AnswerActionCell:
+            cell.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
             cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
             cell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
             break
         case let cell as QuestionPublishmentActionCell:
+            cell.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
             cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
             break
         case let cell as QuestionFocusingActionCell:
+            cell.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
             cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
             break
         case let cell as AnswerAgreementActionCell:
@@ -106,9 +105,11 @@ class HomeViewController: UITableViewController {
             cell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
             break
         case let cell as ArticlePublishmentActionCell:
+            cell.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
             cell.articleButton.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
             break
         case let cell as ArticleAgreementActionCell:
+            cell.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
             cell.articleButton.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
             break
         default:
@@ -181,10 +182,10 @@ class HomeViewController: UITableViewController {
                     self_.tableView.header.endRefreshing()
                     if self_.tableView.footer == nil {
                         let footer = self_.tableView.addLegendFooterWithRefreshingTarget(self, refreshingAction: "loadMore")
-                        footer.textColor = UIColor.whiteColor()
+                        footer.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
                         footer.automaticallyRefresh = false
                         self_.footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
-                        self_.footerActivityIndicatorView.activityIndicatorViewStyle = .White
+                        self_.footerActivityIndicatorView.activityIndicatorViewStyle = .Gray
                     }
                 }
             },
@@ -222,6 +223,6 @@ class HomeViewController: UITableViewController {
             })
     }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return .Default
     }
 }

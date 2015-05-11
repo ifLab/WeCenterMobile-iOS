@@ -16,14 +16,14 @@ class SidebarCategoryCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectedBackgroundView = UIView()
-        selectedBackgroundView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+        selectedBackgroundView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
         let backgroundIndicator = UIView()
         selectedBackgroundView.addSubview(backgroundIndicator)
         backgroundIndicator.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         backgroundIndicator.msr_addVerticalEdgeAttachedConstraintsToSuperview()
         backgroundIndicator.msr_addLeftAttachedConstraintToSuperview()
         backgroundIndicator.msr_addWidthConstraintWithValue(5)
-        backgroundIndicator.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+        backgroundIndicator.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
     }
     
     func update(#image: UIImage, title: String) {

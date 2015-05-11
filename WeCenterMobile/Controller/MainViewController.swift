@@ -12,10 +12,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     lazy var contentViewController: MSRNavigationController = {
         [weak self] in
         let vc = MSRNavigationController(rootViewController: self!.viewControllerAtIndex(0))
-        vc.view.backgroundColor = UIColor.msr_materialBlueGray800()
+        vc.view.backgroundColor = UIColor.whiteColor()
         return vc
     }()
-    let sidebar = MSRSidebar(width: 200, edge: .Left)
+    lazy var sidebar: MSRSidebar = {
+        let v = MSRSidebar(width: 200, edge: .Left)
+        v.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .ExtraLight))
+        v.overlay = UIView()
+        v.overlay!.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+        return v
+    }()
     lazy var tableView: UITableView = {
         [weak self] in
         let v = ButtonTouchesCancelableTableView(frame: CGRectZero, style: .Grouped)
