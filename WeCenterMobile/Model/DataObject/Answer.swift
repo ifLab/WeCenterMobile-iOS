@@ -119,6 +119,44 @@ class Answer: DataObject {
             failure: failure)!
     }
     
+    /// @TODO: Tell back-end to provide 'agreementCount' & 'evaluation' in return value.
+    /// @TODO: Better Evaluation.None parameter support.
+    func evaluate(#value: Evaluation, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+        let originalValue = evaluation
+        if originalValue == nil {
+            var userInfo = [
+                NSLocalizedDescriptionKey: "Couldn't evaluate answer now.",
+                NSLocalizedFailureReasonErrorKey: "Current user evaluation data equals to nil. (answer.evaluation == nil)"
+            ]
+            let error = NSError(
+                domain: NetworkManager.defaultManager!.website,
+                code: NetworkManager.defaultManager!.internalErrorCode.integerValue,
+                userInfo: userInfo)
+            failure?(error)
+        }
+        if value == originalValue {
+            success?()
+            return
+        }
+        NetworkManager.defaultManager!.POST("Evaluate Answer",
+            parameters: [
+                "answer_id": id,
+                "value": value == .None ? originalValue!.rawValue : value.rawValue],
+            success: {
+                [weak self] data in
+                if let self_ = self {
+                    self_.evaluation = value
+                    if let count = self_.agreementCount?.integerValue {
+                        /// @TODO: This property should be provided by back-end.
+                        self_.agreementCount = originalValue == .Up ? count - 1 : value == .Up ? count + 1 : count
+                    }
+                    success?()
+                }
+                return
+            },
+            failure: failure)
+    }
+    
     func post(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         let questionID = question!.id.integerValue
         let body = self.body!

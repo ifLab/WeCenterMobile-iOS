@@ -132,8 +132,8 @@ class Article: DataObject {
                     if let count = self_.agreementCount?.integerValue {
                         self_.agreementCount = count + value.rawValue - originalValue.rawValue
                     }
+                    success?()
                 }
-                success?()
                 return
             },
             failure: failure)

@@ -19,15 +19,12 @@ import UIKit
     var agreementCount: NSNumber? { get set }
     var evaluationRawValue: NSNumber? { get }
     func fetchDataObjectForArticleViewController(#success: ((ArticleViewControllerPresentable) -> Void)?, failure: ((NSError) -> Void)?)
-    func evaluate(#rawValue: Int, success: (() -> Void)?, failure: ((NSError) -> Void)?)
+    func evaluate(#value: Evaluation, success: (() -> Void)?, failure: ((NSError) -> Void)?)
 }
 
 extension Answer: ArticleViewControllerPresentable {
     func fetchDataObjectForArticleViewController(#success: ((ArticleViewControllerPresentable) -> Void)?, failure: ((NSError) -> Void)?) {
         Answer.fetch(ID: id, success: { success?($0) }, failure: failure)
-    }
-    func evaluate(#rawValue: Int, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
-        return
     }
     var evaluationRawValue: NSNumber? {
         return evaluation?.rawValue
@@ -37,9 +34,6 @@ extension Answer: ArticleViewControllerPresentable {
 extension Article: ArticleViewControllerPresentable {
     func fetchDataObjectForArticleViewController(#success: ((ArticleViewControllerPresentable) -> Void)?, failure: ((NSError) -> Void)?) {
         Article.fetch(ID: id, success: { success?($0) }, failure: failure)
-    }
-    func evaluate(#rawValue: Int, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
-        evaluate(value: Evaluation(rawValue: rawValue)!, success: success, failure: failure)
     }
     var evaluationRawValue: NSNumber? {
         return evaluation?.rawValue
@@ -332,7 +326,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
         footer.update(dataObject: dataObject)
         dataObject.agreementCount = count
         dataObject.evaluate(
-            rawValue: value.rawValue,
+            value: value,
             success: {
                 [weak self] in
                 self?.footer.update(dataObject: self!.dataObject)
@@ -340,8 +334,11 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
             },
             failure: {
                 [weak self] error in
-                self?.dataObject.agreementCount = count
                 self?.footer.update(dataObject: self!.dataObject)
+                let message = error.userInfo?[NSLocalizedDescriptionKey] as? String ?? "未知错误"
+                let ac = UIAlertController(title: "错误", message: message, preferredStyle: .Alert)
+                ac.addAction(UIAlertAction(title: "好", style: .Default, handler: nil))
+                self?.showDetailViewController(ac, sender: self)
                 return
             })
     }
