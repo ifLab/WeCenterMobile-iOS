@@ -28,10 +28,10 @@ class FeaturedObjectListViewController: UITableViewController {
     }
     override func loadView() {
         super.loadView()
-        tableView = ButtonTouchesCancelableTableView()
-        tableView.delegate = self
-        tableView.dataSource = self
         view.backgroundColor = UIColor.clearColor()
+        tableView.delaysContentTouches = false
+        tableView.msr_wrapperView?.delaysContentTouches = false
+        tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         tableView.separatorStyle = .None
         tableView.indicatorStyle = .White
         tableView.estimatedRowHeight = 80

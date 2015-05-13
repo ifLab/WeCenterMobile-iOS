@@ -24,7 +24,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }()
     lazy var tableView: UITableView = {
         [weak self] in
-        let v = ButtonTouchesCancelableTableView(frame: CGRectZero, style: .Grouped)
+        let v = UITableView(frame: CGRectZero, style: .Grouped)
         v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         v.backgroundColor = UIColor.clearColor()
         v.delegate = self

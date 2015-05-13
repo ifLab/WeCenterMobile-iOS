@@ -17,18 +17,16 @@ class ExploreViewController: MSRSegmentedViewController, MSRSegmentedViewControl
     override func loadView() {
         super.loadView()
         segmentedControl.indicator = MSRSegmentedControlUnderlineIndicator()
-        segmentedControl.tintColor = UIColor.msr_materialBlueGray50()
-        segmentedControl.indicator.tintColor = UIColor.msr_materialBlueGray300()
-        (segmentedControl.backgroundView as! UIToolbar).barStyle = .Black
-        view.backgroundColor = UIColor.msr_materialBlueGray800()
+        segmentedControl.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.87)
+        segmentedControl.indicator.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
+        (segmentedControl.backgroundView as! UIToolbar).barStyle = .Default
+        view.backgroundColor = UIColor.msr_materialGray200()
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List"), style: .Plain, target: self, action: "showSidebar")
-        navigationItem.leftBarButtonItem!.tintColor = UIColor.whiteColor()
+        msr_navigationBar!.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+        msr_navigationBar!.barStyle = .Default
+        scrollView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
+        scrollView.delaysContentTouches = false
         scrollView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationController!.navigationBar.barStyle = .Black
         delegate = self
     }
     
@@ -59,7 +57,7 @@ class ExploreViewController: MSRSegmentedViewController, MSRSegmentedViewControl
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return .Default
     }
     
     func showSidebar() {

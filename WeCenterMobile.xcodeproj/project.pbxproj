@@ -234,7 +234,6 @@
 		9531D75A1AF3E4AC00E6549D /* UserHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D7161AF3E4AC00E6549D /* UserHeaderView.xib */; };
 		9531D75B1AF3E4AC00E6549D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D7181AF3E4AC00E6549D /* LoginView.swift */; };
 		9531D75C1AF3E4AC00E6549D /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D7191AF3E4AC00E6549D /* LoginView.xib */; };
-		9531D7671AF3E85900E6549D /* ButtonTouchesCancelableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D7641AF3E85900E6549D /* ButtonTouchesCancelableScrollView.swift */; };
 		9531D7681AF3E85900E6549D /* ImageUploadingProgressBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D7651AF3E85900E6549D /* ImageUploadingProgressBar.xib */; };
 		9531D7691AF3E85900E6549D /* UIImageView+DataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D7661AF3E85900E6549D /* UIImageView+DataObject.swift */; };
 		9531D7881AF3E8E400E6549D /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D76B1AF3E8E400E6549D /* Action.swift */; };
@@ -263,6 +262,9 @@
 		9531D79F1AF3E8E400E6549D /* WeChatMomentsActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D7851AF3E8E400E6549D /* WeChatMomentsActivity.swift */; };
 		9531D7A01AF3E8E400E6549D /* WeChatSessionActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D7861AF3E8E400E6549D /* WeChatSessionActivity.swift */; };
 		9531D7A11AF3E8E400E6549D /* WeChatShareItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D7871AF3E8E400E6549D /* WeChatShareItem.swift */; };
+		95331E261B039FE100DFBB5F /* UIScrollView+MSRTouchCancelling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95331E251B039FE100DFBB5F /* UIScrollView+MSRTouchCancelling.swift */; };
+		95331E291B03C5C900DFBB5F /* MSRValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95331E281B03C5C900DFBB5F /* MSRValue.swift */; };
+		95331E2B1B03D45C00DFBB5F /* NSObject+MSRClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95331E2A1B03D45C00DFBB5F /* NSObject+MSRClass.swift */; };
 		95387BFF1ABEA456004DF8EB /* String+MSREncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95387BFE1ABEA456004DF8EB /* String+MSREncryption.swift */; };
 		954A76A91AFC399D002A72A9 /* DataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A76A81AFC399D002A72A9 /* DataObject.swift */; };
 		954A76AB1AFD0323002A72A9 /* PublishmentViewControllerB.xib in Resources */ = {isa = PBXBuildFile; fileRef = 954A76AA1AFD0323002A72A9 /* PublishmentViewControllerB.xib */; };
@@ -809,7 +811,6 @@
 		9531D7161AF3E4AC00E6549D /* UserHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHeaderView.xib; sourceTree = "<group>"; };
 		9531D7181AF3E4AC00E6549D /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		9531D7191AF3E4AC00E6549D /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
-		9531D7641AF3E85900E6549D /* ButtonTouchesCancelableScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTouchesCancelableScrollView.swift; sourceTree = "<group>"; };
 		9531D7651AF3E85900E6549D /* ImageUploadingProgressBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageUploadingProgressBar.xib; sourceTree = "<group>"; };
 		9531D7661AF3E85900E6549D /* UIImageView+DataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+DataObject.swift"; sourceTree = "<group>"; };
 		9531D76B1AF3E8E400E6549D /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
@@ -838,6 +839,9 @@
 		9531D7851AF3E8E400E6549D /* WeChatMomentsActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatMomentsActivity.swift; sourceTree = "<group>"; };
 		9531D7861AF3E8E400E6549D /* WeChatSessionActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatSessionActivity.swift; sourceTree = "<group>"; };
 		9531D7871AF3E8E400E6549D /* WeChatShareItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatShareItem.swift; sourceTree = "<group>"; };
+		95331E251B039FE100DFBB5F /* UIScrollView+MSRTouchCancelling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+MSRTouchCancelling.swift"; sourceTree = "<group>"; };
+		95331E281B03C5C900DFBB5F /* MSRValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRValue.swift; sourceTree = "<group>"; };
+		95331E2A1B03D45C00DFBB5F /* NSObject+MSRClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+MSRClass.swift"; sourceTree = "<group>"; };
 		95387BFE1ABEA456004DF8EB /* String+MSREncryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MSREncryption.swift"; sourceTree = "<group>"; };
 		954A76A81AFC399D002A72A9 /* DataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataObject.swift; sourceTree = "<group>"; };
 		954A76AA1AFD0323002A72A9 /* PublishmentViewControllerB.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishmentViewControllerB.xib; sourceTree = "<group>"; };
@@ -1757,7 +1761,6 @@
 		9531D7631AF3E85900E6549D /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				9531D7641AF3E85900E6549D /* ButtonTouchesCancelableScrollView.swift */,
 				9531D7651AF3E85900E6549D /* ImageUploadingProgressBar.xib */,
 				9531D7661AF3E85900E6549D /* UIImageView+DataObject.swift */,
 				9550A2961AF8B6D0005F81F7 /* KeyboardBar.swift */,
@@ -2051,8 +2054,10 @@
 				95C2E9F31AB0516800F2A326 /* Array+MSRAccessor.swift */,
 				95891E5A1AD82E7E007D5DF7 /* MSRLinearInterpolation.swift */,
 				9531D6AF1AF3DF2E00E6549D /* MSRNull.swift */,
+				95331E281B03C5C900DFBB5F /* MSRValue.swift */,
 				95C2E9F41AB0516800F2A326 /* MSRWeak.swift */,
 				95C2E9F51AB0516800F2A326 /* NSManagedObjectContext+MSROperations.swift */,
+				95331E2A1B03D45C00DFBB5F /* NSObject+MSRClass.swift */,
 				95DC57181AF8AAFA0075C3CB /* NSObject+MSRClone.swift */,
 				95DC571A1AF8AD4D0075C3CB /* NSObject+MSRUserInfo.swift */,
 				95C2E9F61AB0516800F2A326 /* Numeric+MSRInitializer.swift */,
@@ -2106,6 +2111,7 @@
 				95C2EA1A1AB0516800F2A326 /* UINavigationBar+MSRAccessor.swift */,
 				95DB722F1AF556A00072C77E /* UIScrollView+MSRPosition.swift */,
 				9531D6991AEEB93D00E6549D /* UIScrollView+MSRRefreshControl.swift */,
+				95331E251B039FE100DFBB5F /* UIScrollView+MSRTouchCancelling.swift */,
 				9585FA2A1B0076BC0079D57D /* UITableView+MSRGetter.swift */,
 				9585FA2C1B0078C60079D57D /* UITableViewCell+MSRGetter.swift */,
 				95DC57121AF89F790075C3CB /* UITextField+MSRGetter.swift */,
@@ -2448,7 +2454,6 @@
 				951D2F881AB7F85500DCB678 /* MJRefreshHeader.m in Sources */,
 				951D1E7F1ACD1E4E0072D555 /* DTCoreTextConstants.m in Sources */,
 				951D1E951ACD1E4E0072D555 /* DTImage+HTML.m in Sources */,
-				9531D7671AF3E85900E6549D /* ButtonTouchesCancelableScrollView.swift in Sources */,
 				951D1F921ACD1E750072D555 /* NSString+DTPaths.m in Sources */,
 				951D1F7C1ACD1E750072D555 /* DTPieProgressIndicator.m in Sources */,
 				956E72121AAFC53B00A3FD7D /* UIImageView+AFNetworking.m in Sources */,
@@ -2492,6 +2497,7 @@
 				958FF4D71AC270820073022F /* String+MSROperations.swift in Sources */,
 				9531D7571AF3E4AC00E6549D /* UserFooterCell.swift in Sources */,
 				956E72071AAFC53B00A3FD7D /* AFHTTPSessionManager.m in Sources */,
+				95331E261B039FE100DFBB5F /* UIScrollView+MSRTouchCancelling.swift in Sources */,
 				951D1F901ACD1E750072D555 /* NSMutableArray+DTMoving.m in Sources */,
 				9531D7901AF3E8E400E6549D /* ArticlePublishmentAction.swift in Sources */,
 				951D1EA61ACD1E4E0072D555 /* NSAttributedStringRunDelegates.m in Sources */,
@@ -2524,6 +2530,7 @@
 				951D1F671ACD1E750072D555 /* NSScanner+DTScripting.m in Sources */,
 				951D1E771ACD1E4E0072D555 /* DTAnchorHTMLElement.m in Sources */,
 				951DA7551AEAACD300F0E3A7 /* UIImage+MSRGetter.swift in Sources */,
+				95331E2B1B03D45C00DFBB5F /* NSObject+MSRClass.swift in Sources */,
 				951D1E8B1ACD1E4E0072D555 /* DTCSSStylesheet.m in Sources */,
 				951D1E8E1ACD1E4E0072D555 /* DTHorizontalRuleHTMLElement.m in Sources */,
 				9531D7361AF3E4AC00E6549D /* ArticlePublishmentActionCell.swift in Sources */,
@@ -2598,6 +2605,7 @@
 				9588F5E91A1D9D1C001BC426 /* AppDelegate.swift in Sources */,
 				951D1F931ACD1E750072D555 /* NSString+DTURLEncoding.m in Sources */,
 				951D1F781ACD1E750072D555 /* UIView+DTDebug.m in Sources */,
+				95331E291B03C5C900DFBB5F /* MSRValue.swift in Sources */,
 				951D2F831AB7F85500DCB678 /* MJRefreshComponent.m in Sources */,
 				9520AB151AC2C94600637C84 /* QuestionViewController.swift in Sources */,
 				950FE5071A1DA2B500167D09 /* MainViewController.swift in Sources */,

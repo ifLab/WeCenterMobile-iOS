@@ -79,9 +79,6 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
 
     override func loadView() {
         super.loadView()
-        tableView = ButtonTouchesCancelableTableView()
-        tableView.delegate = self
-        tableView.dataSource = self
         view.backgroundColor = UIColor.msr_materialGray200()
         let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
         header.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
@@ -92,6 +89,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         headerActivityIndicatorView.activityIndicatorViewStyle = .Gray
         tableView.delaysContentTouches = false
         tableView.msr_wrapperView?.delaysContentTouches = false
+        tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         tableView.separatorStyle = .None
         tableView.registerNib(UINib(nibName: answerCellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: answerCellIdentifier)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)

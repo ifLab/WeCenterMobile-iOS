@@ -60,11 +60,9 @@ class CommentListViewController: UITableViewController {
         title = "评论"
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
-        tableView = ButtonTouchesCancelableTableView()
         tableView.delaysContentTouches = false
         tableView.msr_wrapperView?.delaysContentTouches = false
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         tableView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         tableView.separatorStyle = .None
         tableView.contentInset.bottom = 50

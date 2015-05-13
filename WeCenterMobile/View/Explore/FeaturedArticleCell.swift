@@ -15,11 +15,20 @@ class FeaturedArticleCell: FeaturedObjectCell {
     @IBOutlet weak var articleTitle: UILabel!
     @IBOutlet weak var innerView: UIView!
     @IBOutlet weak var articleTagLabel: UILabel!
+    @IBOutlet weak var userButton: UIButton!
     @IBOutlet weak var articleButton: UIButton!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var badgeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        articleButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
+        msr_scrollView?.delaysContentTouches = false
+        containerView.layer.borderColor = UIColor.msr_materialGray300().CGColor
+        containerView.layer.borderWidth = 0.5
+        badgeLabel.layer.borderColor = UIColor.msr_materialGray300().CGColor
+        badgeLabel.layer.borderWidth = 0.5
+        userButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        articleButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
     }
     
     override func update(#object: FeaturedObject, updateImage: Bool) {

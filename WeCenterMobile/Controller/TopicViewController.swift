@@ -34,15 +34,13 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     lazy var bodyView: UITableView = {
         [weak self] in
-        let v = ButtonTouchesCancelableTableView()
+        let v = UITableView()
         v.frame = self!.view.bounds
         v.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         v.alwaysBounceVertical = true
         v.contentInset.top = UIApplication.sharedApplication().statusBarFrame.height
         v.scrollIndicatorInsets.top = self!.header.minHeight
         v.contentOffset.y = -v.contentInset.top
-        v.delegate = self
-        v.dataSource = self
         v.separatorStyle = .None
         v.backgroundColor = UIColor.clearColor()
         v.indicatorStyle = .White
@@ -50,6 +48,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         v.rowHeight = UITableViewAutomaticDimension
         v.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
         v.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
+        v.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         v.addSubview(self!.header)
         self!.header.frame = CGRect(x: 0, y: -UIApplication.sharedApplication().statusBarFrame.height, width: v.bounds.width, height: self!.header.maxHeight)
         return v

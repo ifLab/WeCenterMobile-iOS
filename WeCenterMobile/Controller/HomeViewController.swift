@@ -56,9 +56,6 @@ class HomeViewController: UITableViewController {
     private var footerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in footer
     override func loadView() {
         super.loadView()
-        tableView = ButtonTouchesCancelableTableView()
-        tableView.delegate = self
-        tableView.dataSource = self
         title = "首页" // Needs localization
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List"), style: .Plain, target: self, action: "showSidebar")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Compose"), style: .Plain, target: self, action: "didPressPublishButton")
@@ -70,6 +67,7 @@ class HomeViewController: UITableViewController {
         tableView.indicatorStyle = .White
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         tableView.delaysContentTouches = false
         tableView.msr_wrapperView?.delaysContentTouches = false
         msr_navigationBar!.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.4)

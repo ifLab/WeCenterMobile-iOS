@@ -24,8 +24,9 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     lazy var bodyView: UICollectionView = {
         [weak self] in
-        let v = ButtonTouchesCancelableCollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
+        let v = UICollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
         v.alwaysBounceVertical = true
+        v.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         v.indicatorStyle = .White
         v.contentInset.top = UIApplication.sharedApplication().statusBarFrame.height
         v.scrollIndicatorInsets.top = self?.header.minHeight ?? 0

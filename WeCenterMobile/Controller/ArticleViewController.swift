@@ -59,10 +59,11 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
     
     lazy var bodyView: DTAttributedTextView = {
         [weak self] in
-        let v = ButtonTouchesCancelableAttributedTextView()
+        let v = DTAttributedTextView()
         v.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         v.alwaysBounceVertical = true
         v.delaysContentTouches = false
+        v.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         v.contentInset.top = self!.header.minHeight
         v.attributedTextContentView.edgeInsets = UIEdgeInsets(top: self!.header.maxHeight - self!.header.minHeight + 10, left: 10, bottom: self!.footer.bounds.height + 10, right: 10)
         v.contentOffset.y = -v.attributedTextContentView.edgeInsets.top - 10

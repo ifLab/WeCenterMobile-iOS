@@ -39,20 +39,18 @@ class ArticleListViewController: UITableViewController {
     
     override func loadView() {
         super.loadView()
-        tableView = ButtonTouchesCancelableTableView()
-        tableView.delegate = self
-        tableView.dataSource = self
         title = "\(user.name!) 的文章"
         view.backgroundColor = UIColor.msr_materialBlueGray800()
+        msr_navigationBar!.barStyle = .Black
+        msr_navigationBar!.tintColor = UIColor.whiteColor()
         tableView.indicatorStyle = .White
         tableView.separatorStyle = .None
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
-        msr_navigationBar!.barStyle = .Black
-        msr_navigationBar!.tintColor = UIColor.whiteColor()
         tableView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
+        tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
         header.textColor = UIColor.whiteColor()
         headerImageView = header.valueForKey("arrowImage") as! UIImageView

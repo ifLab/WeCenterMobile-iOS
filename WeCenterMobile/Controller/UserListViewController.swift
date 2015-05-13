@@ -36,9 +36,6 @@ class UserListViewController: UITableViewController {
     let cellReuseIdentifier = "UserCell"
     override func loadView() {
         super.loadView()
-        tableView = ButtonTouchesCancelableTableView()
-        tableView.delegate = self
-        tableView.dataSource = self
         let titles: [UserListType: String] = [
             .UserFollowing: "\(user.name!) 关注的用户",
             .UserFollower: "\(user.name!) 的追随者"]
@@ -51,6 +48,7 @@ class UserListViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
+        tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
         header.textColor = UIColor.whiteColor()
         headerImageView = header.valueForKey("arrowImage") as! UIImageView

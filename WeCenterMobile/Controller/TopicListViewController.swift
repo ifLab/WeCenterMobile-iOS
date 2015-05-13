@@ -40,9 +40,6 @@ class TopicListViewController: UITableViewController {
     let cellReuseIdentifier = "TopicCell"
     override func loadView() {
         super.loadView()
-        tableView = ButtonTouchesCancelableTableView()
-        tableView.delegate = self
-        tableView.dataSource = self
         title = listType == .User ? "\(user!.name!) 关注的话题" : "话题"
         view.backgroundColor = UIColor.msr_materialBlueGray800()
         tableView.separatorStyle = .None
@@ -52,6 +49,7 @@ class TopicListViewController: UITableViewController {
         tableView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
+        tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         if listType != .Static {
             let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
             header.textColor = UIColor.whiteColor()

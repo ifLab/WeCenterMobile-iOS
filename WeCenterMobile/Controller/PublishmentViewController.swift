@@ -102,6 +102,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
         publishButton.layer.borderWidth = 0.5
         scrollView.alwaysBounceVertical = true
         scrollView.indicatorStyle = .White
+        scrollView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         tagsField?.textField.textColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
         tagsField?.textField.font = UIFont.systemFontOfSize(14)
         tagsField?.textField.attributedPlaceholder = NSAttributedString(string: "输入并以换行键添加，可添加多个", attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])
