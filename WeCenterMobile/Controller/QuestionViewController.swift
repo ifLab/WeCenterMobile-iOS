@@ -237,7 +237,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         answer.question = Question.temporaryObject()
         answer.question!.id = question.id
         apc.dataObject = answer
-        apc.headerLabel.text = "发表回答"
+        apc.headerLabel.text = "发布回答"
         showDetailViewController(apc, sender: self)
     }
     

@@ -83,15 +83,26 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        scrollView.delaysContentTouches = false
+        titleField?.layer.borderColor = UIColor.msr_materialGray300().CGColor
+        titleField?.layer.borderWidth = 0.5
+        tagsField?.layer.borderColor = UIColor.msr_materialGray300().CGColor
+        tagsField?.layer.borderWidth = 0.5
+        bodyField.layer.borderColor = UIColor.msr_materialGray300().CGColor
+        bodyField.layer.borderWidth = 0.5
         dismissButton.addTarget(self, action: "dismiss", forControlEvents: .TouchUpInside)
         publishButton.addTarget(self, action: "publish", forControlEvents: .TouchUpInside)
-        dismissButton.msr_setBackgroundImageWithColor(dismissButton.backgroundColor!)
-        publishButton.msr_setBackgroundImageWithColor(publishButton.backgroundColor!)
-        dismissButton.backgroundColor = UIColor.clearColor()
-        publishButton.backgroundColor = UIColor.clearColor()
+        publishButton.adjustsImageWhenHighlighted = false
+        dismissButton.adjustsImageWhenHighlighted = false
+        publishButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        dismissButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        dismissButton.layer.borderColor = UIColor.msr_materialGray300().CGColor
+        dismissButton.layer.borderWidth = 0.5
+        publishButton.layer.borderColor = UIColor.msr_materialGray300().CGColor
+        publishButton.layer.borderWidth = 0.5
         scrollView.alwaysBounceVertical = true
         scrollView.indicatorStyle = .White
-        tagsField?.textField.textColor = UIColor.lightTextColor()
+        tagsField?.textField.textColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
         tagsField?.textField.font = UIFont.systemFontOfSize(14)
         tagsField?.textField.attributedPlaceholder = NSAttributedString(string: "输入并以换行键添加，可添加多个", attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])
         tagsField?.textField.keyboardAppearance = .Dark
@@ -122,6 +133,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
         let tag = tags[Int(index)]
         let label = UILabel()
         label.text = tag
+        label.textColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
         label.font = UIFont.systemFontOfSize(14)
         label.sizeToFit()
         label.frame.size.height = lineHeightForTokenInField(tagsField)
@@ -129,7 +141,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
         label.textAlignment = .Center
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 3
-        label.backgroundColor = UIColor.lightTextColor()
+        label.backgroundColor = UIColor.msr_materialGray300()
         return label
     }
     
@@ -213,12 +225,16 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
             var button: UIButton! = cell.contentView.viewWithTag(SelfType.buttonTag) as? UIButton
             if button == nil {
                 button = UIButton()
+                button.layer.borderColor = UIColor.msr_materialGray300().CGColor
+                button.layer.borderWidth = 0.5
                 button.tag = SelfType.buttonTag
                 cell.contentView.addSubview(button)
                 button.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
                 button.msr_addAllEdgeAttachedConstraintsToSuperview()
                 button.setImage(UIImage(named: "MSRAddButton")!.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
-                button.imageView!.tintColor = UIColor.msr_materialBlueGray800()
+                button.imageView!.tintColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+                button.adjustsImageWhenHighlighted = false
+                button.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.2), forState: .Highlighted)
                 button.addTarget(self, action: "showPickerController", forControlEvents: .TouchUpInside)
             }
         }
@@ -372,7 +388,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return .Default
     }
     
     func dismiss() {
