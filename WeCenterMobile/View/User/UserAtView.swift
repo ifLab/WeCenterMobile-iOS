@@ -52,7 +52,7 @@ import UIKit
     
     lazy var removeButton: UIButton = {
         let v = UIButton()
-        v.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        v.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.2), forState: .Highlighted)
         v.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         return v
     }()
@@ -68,10 +68,11 @@ import UIKit
     }
     
     func wc_initialize() {
-        addSubview(atLabel)
-        addSubview(userNameLabel)
-        addSubview(removeImageView)
-        addSubview(removeButton)
+        layer.borderWidth = 0.5
+        layer.borderColor = UIColor.msr_materialGray300().CGColor
+        for v in [atLabel, userNameLabel, removeImageView, removeButton] {
+            addSubview(v)
+        }
         let vs = ["l": userNameLabel, "x": removeImageView, "at": atLabel]
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[at(25)]-5-[l]-5-[x]-5-|", options: nil, metrics: nil, views: vs))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(>=5)-[l]-(>=5)-|", options: nil, metrics: nil, views: vs))

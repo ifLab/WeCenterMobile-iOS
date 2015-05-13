@@ -13,11 +13,18 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var userAvatarView: MSRRoundedImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
+    @IBOutlet weak var userButton: UIButton!
+    @IBOutlet weak var commentButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        msr_scrollView?.delaysContentTouches = false
+        layer.borderWidth = 0.5
+        layer.borderColor = UIColor.msr_materialGray300().CGColor
         selectedBackgroundView = UIView()
         selectedBackgroundView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+        userButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        commentButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
     }
     
     func update(#comment: Comment, updateImage: Bool) {
@@ -31,15 +38,17 @@ class CommentCell: UITableViewCell {
             attributedString.appendAttributedString(NSAttributedString(
                 string: "@\(comment.atUser!.name!) ",
                 attributes: [
-                    NSForegroundColorAttributeName: UIColor.lightTextColor(),
+                    NSForegroundColorAttributeName: UIColor.blackColor().colorWithAlphaComponent(0.6),
                     NSFontAttributeName: bodyLabel.font]))
         }
         attributedString.appendAttributedString(NSAttributedString(
             string: (comment.body ?? ""),
             attributes: [
-                NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.87),
+                NSForegroundColorAttributeName: UIColor.blackColor().colorWithAlphaComponent(0.87),
                 NSFontAttributeName: bodyLabel.font]))
         bodyLabel.attributedText = attributedString
+        userButton.msr_userInfo = comment.user
+        commentButton.msr_userInfo = comment
         setNeedsLayout()
         layoutIfNeeded()
     }

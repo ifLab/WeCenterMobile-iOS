@@ -542,9 +542,14 @@ class User: DataObject {
                             action.answer!.body = (answerInfo["answer_content"] as! String)
                             action.answer!.agreementCount = (answerInfo["agree_count"] as! NSNumber)
                             action.answer!.evaluation = Evaluation(rawValue: Int(msr_object: answerInfo["agree_status"])!)!
-                            let questionInfo = object["question_info"] as! NSDictionary
-                            action.answer!.question = Question.cachedObjectWithID(Int(msr_object: questionInfo["question_id"])!)
-                            action.answer!.question!.title = (questionInfo["question_content"] as! String)
+                            /// @TODO: [Bug][Back-End] object["question_info"] is NSNull
+                            if let questionInfo = object["question_info"] as? NSDictionary {
+                                action.answer!.question = Question.cachedObjectWithID(Int(msr_object: questionInfo["question_id"])!)
+                                action.answer!.question!.title = (questionInfo["question_content"] as! String)
+                            } else {
+                                action.answer!.question = Question.cachedObjectWithID(Int(msr_object: answerInfo["question_id"])!)
+                                action.answer!.question!.title = "[问题已被删除]"
+                            }
                             break
                         case .QuestionFocusing:
                             let action = QuestionFocusingAction.cachedObjectWithID(Int(msr_object: object["history_id"])!)
