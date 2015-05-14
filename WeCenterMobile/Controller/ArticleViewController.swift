@@ -157,7 +157,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
         let dateFormatter = NSDateFormatter()
         dateFormatter.timeZone = NSTimeZone.localTimeZone()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        var html = dataObject.date == nil ? dataObject.body ?? "加载中……" : dataObject.body! + "<br><p align=\"right\">\(dateFormatter.stringFromDate(dataObject.date!))</p>"
+        var html = dataObject.date == nil || dataObject.body == nil ? dataObject.body ?? "加载中……" : dataObject.body! + "<br><p align=\"right\">\(dateFormatter.stringFromDate(dataObject.date!))</p>"
         bodyView.attributedString = NSAttributedString(
             HTMLData: html.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true),
             options: options,

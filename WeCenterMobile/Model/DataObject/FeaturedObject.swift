@@ -84,12 +84,13 @@ class FeaturedObject: DataObject {
                             var featuredAnswers = Set<Answer>()
                             // Currently, there is just 1 answer.
                             if let answerInfo = object["answer"] as? NSDictionary {
-                                /*  In order to avoid dirty data like this.
-                                 *  "answer": {
-                                 *      "user_info": null,
-                                 *      "answer_content": null,
-                                 *      "anonymous": null
-                                 *  }
+                                /**
+                                 * @TODO: [Bug][Back-End] Dirty data:
+                                 * "answer": {
+                                 *     "user_info": null,
+                                 *     "answer_content": null,
+                                 *     "anonymous": null
+                                 * }
                                  */
                                 if !((answerInfo["answer_content"] ?? NSNull()) is NSNull) {
                                     let answer = Answer.temporaryObject() // Cause no answer ID.

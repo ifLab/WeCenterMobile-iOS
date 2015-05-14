@@ -9,6 +9,21 @@
 import MJRefresh
 import UIKit
 
+@objc protocol FeaturedObjectCellProtocol {
+    optional var questionUserButton: UIButton! { get }
+    optional var questionButton: UIButton! { get }
+    optional var answerUserButton: UIButton? { get }
+    optional var answerButton: UIButton? { get }
+    optional var articleButton: UIButton! { get }
+    optional var articleUserButton: UIButton! { get }
+    func update(#object: FeaturedObject, updateImage: Bool)
+}
+
+typealias FeaturedObjectCell = protocol<FeaturedObjectCellProtocol, TableViewCellProtocol>
+
+extension FeaturedArticleCell: FeaturedObjectCell {}
+extension FeaturedQuestionAnswerCell: FeaturedObjectCell {}
+
 class FeaturedObjectListViewController: UITableViewController {
     var type: FeaturedObjectListType
     var firstSelected = true
@@ -17,8 +32,8 @@ class FeaturedObjectListViewController: UITableViewController {
     var shouldReloadAfterLoadingMore = true
     let count = 10
     let objectTypes = [FeaturedQuestionAnswer.self, FeaturedQuestionAnswer.self, FeaturedArticle.self]
-    let identifiers = ["FeaturedQuestionAnswerCell", "FeaturedQuestionAnswerCellWithoutAnswer", "FeaturedArticleCell"]
-    let nibNames = ["FeaturedQuestionAnswerCell", "FeaturedQuestionAnswerCellWithoutAnswer", "FeaturedArticleCell"]
+    let identifiers = ["FeaturedQuestionAnswerCellA", "FeaturedQuestionAnswerCellB", "FeaturedArticleCell"]
+    let nibNames = ["FeaturedQuestionAnswerCellA", "FeaturedQuestionAnswerCellB", "FeaturedArticleCell"]
     init(type: FeaturedObjectListType) {
         self.type = type
         super.init(nibName: nil, bundle: nil)
@@ -36,6 +51,13 @@ class FeaturedObjectListViewController: UITableViewController {
         tableView.indicatorStyle = .White
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
+        let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
+        header.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+        headerImageView = header.valueForKey("arrowImage") as! UIImageView
+        headerImageView.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
+        headerImageView.msr_imageRenderingMode = .AlwaysTemplate
+        headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
+        headerActivityIndicatorView.activityIndicatorViewStyle = .Gray
         for i in 0..<nibNames.count {
             tableView.registerNib(UINib(nibName: nibNames[i], bundle: NSBundle.mainBundle()), forCellReuseIdentifier: identifiers[i])
         }
@@ -46,13 +68,6 @@ class FeaturedObjectListViewController: UITableViewController {
     func segmentedViewControllerDidSelectSelf(segmentedViewController: MSRSegmentedViewController) {
         if firstSelected {
             firstSelected = false
-            let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
-            header.textColor = UIColor.whiteColor()
-            headerImageView = header.valueForKey("arrowImage") as! UIImageView
-            headerImageView.tintColor = UIColor.whiteColor()
-            headerImageView.msr_imageRenderingMode = .AlwaysTemplate
-            headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
-            headerActivityIndicatorView.activityIndicatorViewStyle = .White
             tableView.header.beginRefreshing()
         }
     }
@@ -72,25 +87,22 @@ class FeaturedObjectListViewController: UITableViewController {
             index += o.answers.count == 0 ? 1 : 0
         }
         let cell = tableView.dequeueReusableCellWithIdentifier(identifiers[index], forIndexPath: indexPath) as! FeaturedObjectCell
-        switch cell {
-        case let cell as FeaturedQuestionAnswerCellWithoutAnswer:
-            cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
-            break
-        case let cell as FeaturedQuestionAnswerCell:
-            cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
-            cell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
-            break
-        case let cell as FeaturedArticleCell:
-            cell.articleButton.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
-            break
-        default:
-            break
-        }
+        cell.answerButton??.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
+        cell.answerUserButton??.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
+        cell.articleButton?.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
+        cell.articleUserButton?.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
+        cell.questionButton?.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
+        cell.questionUserButton?.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
         cell.update(object: object, updateImage: true)
-        return cell
+        return cell as! UITableViewCell
     }
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
+    }
+    func didPressUserButton(sender: UIButton) {
+        if let user = sender.msr_userInfo as? User {
+            msr_navigationController!.pushViewController(UserViewController(user: user), animated: true)
+        }
     }
     func didPressQuestionButton(sender: UIButton) {
         if let question = sender.msr_userInfo as? Question {
@@ -119,11 +131,11 @@ class FeaturedObjectListViewController: UITableViewController {
                     self_.tableView.reloadData()
                     self_.tableView.header.endRefreshing()
                     if self_.tableView.footer == nil {
-                        let footer = self_.tableView.addLegendFooterWithRefreshingTarget(self_, refreshingAction: "loadMore")
-                        footer.textColor = UIColor.whiteColor()
+                        let footer = self_.tableView.addLegendFooterWithRefreshingTarget(self, refreshingAction: "loadMore")
+                        footer.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
                         footer.automaticallyRefresh = false
                         self_.footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
-                        self_.footerActivityIndicatorView.activityIndicatorViewStyle = .White
+                        self_.footerActivityIndicatorView.activityIndicatorViewStyle = .Gray
                     }
                 }
                 return

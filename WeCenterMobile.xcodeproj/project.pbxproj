@@ -187,11 +187,9 @@
 		9531D7271AF3E4AC00E6549D /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D6DC1AF3E4AC00E6549D /* CommentCell.xib */; };
 		9531D7281AF3E4AC00E6549D /* FeaturedArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6DE1AF3E4AC00E6549D /* FeaturedArticleCell.swift */; };
 		9531D7291AF3E4AC00E6549D /* FeaturedArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D6DF1AF3E4AC00E6549D /* FeaturedArticleCell.xib */; };
-		9531D72A1AF3E4AC00E6549D /* FeaturedObjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6E01AF3E4AC00E6549D /* FeaturedObjectCell.swift */; };
 		9531D72B1AF3E4AC00E6549D /* FeaturedQuestionAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6E11AF3E4AC00E6549D /* FeaturedQuestionAnswerCell.swift */; };
-		9531D72C1AF3E4AC00E6549D /* FeaturedQuestionAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D6E21AF3E4AC00E6549D /* FeaturedQuestionAnswerCell.xib */; };
-		9531D72D1AF3E4AC00E6549D /* FeaturedQuestionAnswerCellWithoutAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6E31AF3E4AC00E6549D /* FeaturedQuestionAnswerCellWithoutAnswer.swift */; };
-		9531D72E1AF3E4AC00E6549D /* FeaturedQuestionAnswerCellWithoutAnswer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D6E41AF3E4AC00E6549D /* FeaturedQuestionAnswerCellWithoutAnswer.xib */; };
+		9531D72C1AF3E4AC00E6549D /* FeaturedQuestionAnswerCellA.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D6E21AF3E4AC00E6549D /* FeaturedQuestionAnswerCellA.xib */; };
+		9531D72E1AF3E4AC00E6549D /* FeaturedQuestionAnswerCellB.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D6E41AF3E4AC00E6549D /* FeaturedQuestionAnswerCellB.xib */; };
 		9531D7301AF3E4AC00E6549D /* AnswerActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6E71AF3E4AC00E6549D /* AnswerActionCell.swift */; };
 		9531D7311AF3E4AC00E6549D /* AnswerActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D6E81AF3E4AC00E6549D /* AnswerActionCell.xib */; };
 		9531D7321AF3E4AC00E6549D /* AnswerAgreementActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6E91AF3E4AC00E6549D /* AnswerAgreementActionCell.swift */; };
@@ -764,11 +762,9 @@
 		9531D6DC1AF3E4AC00E6549D /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		9531D6DE1AF3E4AC00E6549D /* FeaturedArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedArticleCell.swift; sourceTree = "<group>"; };
 		9531D6DF1AF3E4AC00E6549D /* FeaturedArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeaturedArticleCell.xib; sourceTree = "<group>"; };
-		9531D6E01AF3E4AC00E6549D /* FeaturedObjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedObjectCell.swift; sourceTree = "<group>"; };
 		9531D6E11AF3E4AC00E6549D /* FeaturedQuestionAnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedQuestionAnswerCell.swift; sourceTree = "<group>"; };
-		9531D6E21AF3E4AC00E6549D /* FeaturedQuestionAnswerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeaturedQuestionAnswerCell.xib; sourceTree = "<group>"; };
-		9531D6E31AF3E4AC00E6549D /* FeaturedQuestionAnswerCellWithoutAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedQuestionAnswerCellWithoutAnswer.swift; sourceTree = "<group>"; };
-		9531D6E41AF3E4AC00E6549D /* FeaturedQuestionAnswerCellWithoutAnswer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeaturedQuestionAnswerCellWithoutAnswer.xib; sourceTree = "<group>"; };
+		9531D6E21AF3E4AC00E6549D /* FeaturedQuestionAnswerCellA.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeaturedQuestionAnswerCellA.xib; sourceTree = "<group>"; };
+		9531D6E41AF3E4AC00E6549D /* FeaturedQuestionAnswerCellB.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeaturedQuestionAnswerCellB.xib; sourceTree = "<group>"; };
 		9531D6E71AF3E4AC00E6549D /* AnswerActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerActionCell.swift; sourceTree = "<group>"; };
 		9531D6E81AF3E4AC00E6549D /* AnswerActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerActionCell.xib; sourceTree = "<group>"; };
 		9531D6E91AF3E4AC00E6549D /* AnswerAgreementActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerAgreementActionCell.swift; sourceTree = "<group>"; };
@@ -1664,11 +1660,9 @@
 			children = (
 				9531D6DE1AF3E4AC00E6549D /* FeaturedArticleCell.swift */,
 				9531D6DF1AF3E4AC00E6549D /* FeaturedArticleCell.xib */,
-				9531D6E01AF3E4AC00E6549D /* FeaturedObjectCell.swift */,
 				9531D6E11AF3E4AC00E6549D /* FeaturedQuestionAnswerCell.swift */,
-				9531D6E21AF3E4AC00E6549D /* FeaturedQuestionAnswerCell.xib */,
-				9531D6E31AF3E4AC00E6549D /* FeaturedQuestionAnswerCellWithoutAnswer.swift */,
-				9531D6E41AF3E4AC00E6549D /* FeaturedQuestionAnswerCellWithoutAnswer.xib */,
+				9531D6E21AF3E4AC00E6549D /* FeaturedQuestionAnswerCellA.xib */,
+				9531D6E41AF3E4AC00E6549D /* FeaturedQuestionAnswerCellB.xib */,
 			);
 			path = Explore;
 			sourceTree = "<group>";
@@ -2284,7 +2278,7 @@
 				956140021AE2E6080077FBA0 /* .gitignore in Resources */,
 				9531D74C1AF3E4AC00E6549D /* SidebarCategoryCell.xib in Resources */,
 				9531D74E1AF3E4AC00E6549D /* SidebarUserCell.xib in Resources */,
-				9531D72C1AF3E4AC00E6549D /* FeaturedQuestionAnswerCell.xib in Resources */,
+				9531D72C1AF3E4AC00E6549D /* FeaturedQuestionAnswerCellA.xib in Resources */,
 				950FE1251A1DA2A400167D09 /* Discovery.strings in Resources */,
 				9531D7251AF3E4AC00E6549D /* ArticleCell.xib in Resources */,
 				9531D7421AF3E4AC00E6549D /* QuestionFooterCell.xib in Resources */,
@@ -2301,7 +2295,7 @@
 				951D1E741ACD1E4E0072D555 /* default.css in Resources */,
 				9531D7581AF3E4AC00E6549D /* UserFooterCell.xib in Resources */,
 				951D2F8F1AB7F8C000DCB678 /* Images.xcassets in Resources */,
-				9531D72E1AF3E4AC00E6549D /* FeaturedQuestionAnswerCellWithoutAnswer.xib in Resources */,
+				9531D72E1AF3E4AC00E6549D /* FeaturedQuestionAnswerCellB.xib in Resources */,
 				9531D7371AF3E4AC00E6549D /* ArticlePublishmentActionCell.xib in Resources */,
 				9531D71B1AF3E4AC00E6549D /* AnswerAdditionCell.xib in Resources */,
 				954A76AB1AFD0323002A72A9 /* PublishmentViewControllerB.xib in Resources */,
@@ -2433,7 +2427,6 @@
 				95E060D81AC2507300C6750C /* SVIndefiniteAnimatedView.m in Sources */,
 				959FCB621AEE4EB300299AA6 /* UIColor+MSRGetter.swift in Sources */,
 				9531D73A1AF3E4AC00E6549D /* QuestionPublishmentActionCell.swift in Sources */,
-				9531D72A1AF3E4AC00E6549D /* FeaturedObjectCell.swift in Sources */,
 				951D1E8F1ACD1E4E0072D555 /* DTHTMLAttributedStringBuilder.m in Sources */,
 				956E72051AAFC53B00A3FD7D /* AFHTTPRequestOperation.m in Sources */,
 				9531D78D1AF3E8E400E6549D /* Article.swift in Sources */,
@@ -2567,7 +2560,6 @@
 				955770721AD68E960060A120 /* UIImageView+MSRSetter.swift in Sources */,
 				951D1F791ACD1E750072D555 /* DTActivityTitleView.m in Sources */,
 				95C2EA3A1AB0516800F2A326 /* MSRSegmentedControlUnderlineIndicator.swift in Sources */,
-				9531D72D1AF3E4AC00E6549D /* FeaturedQuestionAnswerCellWithoutAnswer.swift in Sources */,
 				9531D74D1AF3E4AC00E6549D /* SidebarUserCell.swift in Sources */,
 				95C2EA201AB0516800F2A326 /* NSManagedObjectContext+MSROperations.swift in Sources */,
 				95C2EA221AB0516800F2A326 /* UnsafePointer+MSRInitializer.swift in Sources */,

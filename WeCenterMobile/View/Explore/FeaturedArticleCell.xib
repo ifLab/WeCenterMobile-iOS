@@ -13,20 +13,20 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RTf-ST-zJi">
-                        <rect key="frame" x="10" y="10" width="300" height="80"/>
+                        <rect key="frame" x="8" y="8" width="304" height="82"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GPm-qd-hOK">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="80"/>
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="82"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="l65-9S-X3U" customClass="MSRRoundedImageView" customModule="WeCenterMobile" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="25" width="30" height="30"/>
+                                        <rect key="frame" x="10" y="26" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="drU-Xq-nqK"/>
                                             <constraint firstAttribute="width" constant="30" id="tO8-R0-EI4"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="you-0V-NqI">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="82"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -44,14 +44,14 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="njx-6Z-ydi">
-                                <rect key="frame" x="50" y="0.0" width="1" height="80"/>
+                                <rect key="frame" x="50" y="0.0" width="1" height="82"/>
                                 <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="0.5" id="7Yd-9U-5GO"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fW-dV-jD4">
-                                <rect key="frame" x="51" y="0.0" width="249" height="80"/>
+                                <rect key="frame" x="51" y="0.0" width="253" height="82"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZ8-5m-EGy">
                                         <rect key="frame" x="10" y="10" width="42" height="17"/>
@@ -60,19 +60,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里是文章标题，可能会很长，但最多显示两行。" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCQ-1T-F3s">
-                                        <rect key="frame" x="10" y="32" width="229" height="36"/>
+                                        <rect key="frame" x="10" y="32" width="233" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="veI-Z7-TB7">
-                                        <rect key="frame" x="0.0" y="0.0" width="249" height="80"/>
-                                        <state key="normal">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="文章" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVe-AQ-tq4">
-                                        <rect key="frame" x="199" y="10" width="50" height="17"/>
+                                        <rect key="frame" x="203" y="10" width="50" height="17"/>
                                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="G3n-i9-lNR"/>
@@ -83,6 +77,12 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="veI-Z7-TB7">
+                                        <rect key="frame" x="0.0" y="0.0" width="253" height="82"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -117,10 +117,10 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="RTf-ST-zJi" firstAttribute="leading" secondItem="Fyn-zM-qiz" secondAttribute="leading" constant="10" id="YLE-Yi-f2h"/>
+                    <constraint firstItem="RTf-ST-zJi" firstAttribute="leading" secondItem="Fyn-zM-qiz" secondAttribute="leading" constant="8" id="YLE-Yi-f2h"/>
                     <constraint firstAttribute="bottom" secondItem="RTf-ST-zJi" secondAttribute="bottom" id="cpf-fq-dlM"/>
-                    <constraint firstAttribute="trailing" secondItem="RTf-ST-zJi" secondAttribute="trailing" constant="10" id="hw0-VO-xcm"/>
-                    <constraint firstItem="RTf-ST-zJi" firstAttribute="top" secondItem="Fyn-zM-qiz" secondAttribute="top" constant="10" id="pbc-99-FBD"/>
+                    <constraint firstAttribute="trailing" secondItem="RTf-ST-zJi" secondAttribute="trailing" constant="8" id="hw0-VO-xcm"/>
+                    <constraint firstItem="RTf-ST-zJi" firstAttribute="top" secondItem="Fyn-zM-qiz" secondAttribute="top" constant="8" id="pbc-99-FBD"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -128,11 +128,10 @@
                 <outlet property="articleButton" destination="veI-Z7-TB7" id="BFg-Qs-DTq"/>
                 <outlet property="articleTagLabel" destination="rVe-AQ-tq4" id="rGY-vW-qIV"/>
                 <outlet property="articleTitle" destination="kCQ-1T-F3s" id="3AK-Gp-jHk"/>
+                <outlet property="articleUserButton" destination="you-0V-NqI" id="B5j-cT-uyJ"/>
                 <outlet property="badgeLabel" destination="rVe-AQ-tq4" id="TJ2-oE-M2v"/>
                 <outlet property="containerView" destination="RTf-ST-zJi" id="Kzk-nj-jyg"/>
-                <outlet property="innerView" destination="RTf-ST-zJi" id="XCs-YO-Wmc"/>
                 <outlet property="userAvatarView" destination="l65-9S-X3U" id="zaO-71-Rqz"/>
-                <outlet property="userButton" destination="you-0V-NqI" id="hqT-Dk-byU"/>
                 <outlet property="userNameLabel" destination="uZ8-5m-EGy" id="KK4-x2-lL3"/>
             </connections>
             <point key="canvasLocation" x="373" y="387.5"/>
