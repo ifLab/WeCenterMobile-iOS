@@ -27,6 +27,7 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         let v = UICollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
         v.alwaysBounceVertical = true
         v.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
+        v.delaysContentTouches = false
         v.indicatorStyle = .White
         v.contentInset.top = UIApplication.sharedApplication().statusBarFrame.height
         v.scrollIndicatorInsets.top = self?.header.minHeight ?? 0

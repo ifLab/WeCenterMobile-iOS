@@ -24,6 +24,11 @@ module EAColourfulProgressView {
     use UIKit
 }
 
+module GBDeviceInfo {
+    header "GBDeviceInfo.h"
+    use UIKit
+}
+
 module MJRefresh {
     umbrella header "MJRefresh/MJRefreshExample/MJRefreshExample/MJRefresh/MJRefresh.h"
     header "MJRefresh/MJRefreshExample/MJRefreshExample/MJRefresh/UIView+MJExtension.h"

@@ -313,6 +313,8 @@
 		958CB5BB1AB98DC3002ECCF4 /* PublishmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CB5BA1AB98DC3002ECCF4 /* PublishmentViewController.swift */; };
 		958FF4D71AC270820073022F /* String+MSROperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958FF4D61AC270820073022F /* String+MSROperations.swift */; };
 		959FCB621AEE4EB300299AA6 /* UIColor+MSRGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959FCB611AEE4EB300299AA6 /* UIColor+MSRGetter.swift */; };
+		95A3AAFB1B047F3F00ADF705 /* GBDeviceInfo_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A3AAF01B047F3E00ADF705 /* GBDeviceInfo_Common.m */; };
+		95A3AAFC1B047F3F00ADF705 /* GBDeviceInfo_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A3AAF21B047F3E00ADF705 /* GBDeviceInfo_iOS.m */; };
 		95B1D9DA1ABE0CF200BEC8BD /* MediaPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B1D9D91ABE0CF200BEC8BD /* MediaPickerController.swift */; };
 		95B6E6B91A232E2400F31BE3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9588F5F41A1D9D1C001BC426 /* LaunchScreen.xib */; };
 		95B9BDC31ABAA67900692889 /* PublishmentViewControllerA.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95B9BDC21ABAA67900692889 /* PublishmentViewControllerA.xib */; };
@@ -942,6 +944,16 @@
 		958CB5BA1AB98DC3002ECCF4 /* PublishmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PublishmentViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		958FF4D61AC270820073022F /* String+MSROperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MSROperations.swift"; sourceTree = "<group>"; };
 		959FCB611AEE4EB300299AA6 /* UIColor+MSRGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+MSRGetter.swift"; sourceTree = "<group>"; };
+		95A3AAEE1B047F3E00ADF705 /* GBDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBDeviceInfo.h; sourceTree = "<group>"; };
+		95A3AAEF1B047F3E00ADF705 /* GBDeviceInfo_Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBDeviceInfo_Common.h; sourceTree = "<group>"; };
+		95A3AAF01B047F3E00ADF705 /* GBDeviceInfo_Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBDeviceInfo_Common.m; sourceTree = "<group>"; };
+		95A3AAF11B047F3E00ADF705 /* GBDeviceInfo_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBDeviceInfo_iOS.h; sourceTree = "<group>"; };
+		95A3AAF21B047F3E00ADF705 /* GBDeviceInfo_iOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBDeviceInfo_iOS.m; sourceTree = "<group>"; };
+		95A3AAF51B047F3F00ADF705 /* GBDeviceInfo_Subclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBDeviceInfo_Subclass.h; sourceTree = "<group>"; };
+		95A3AAF61B047F3F00ADF705 /* GBDeviceInfoInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBDeviceInfoInterface.h; sourceTree = "<group>"; };
+		95A3AAF71B047F3F00ADF705 /* GBDeviceInfoTypes_Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBDeviceInfoTypes_Common.h; sourceTree = "<group>"; };
+		95A3AAF81B047F3F00ADF705 /* GBDeviceInfoTypes_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBDeviceInfoTypes_iOS.h; sourceTree = "<group>"; };
+		95A3AAFE1B04801100ADF705 /* GBDeviceInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBDeviceInfo.h; sourceTree = "<group>"; };
 		95B1D9D91ABE0CF200BEC8BD /* MediaPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPickerController.swift; sourceTree = "<group>"; };
 		95B9BDC21ABAA67900692889 /* PublishmentViewControllerA.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishmentViewControllerA.xib; sourceTree = "<group>"; };
 		95B9BE661ABAEF1A00692889 /* ZFTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFTokenField.h; sourceTree = "<group>"; };
@@ -1091,10 +1103,12 @@
 				9554D8F71ADE302500C94061 /* module.modulemap */,
 				9554D8FA1ADE38A100C94061 /* DTCoreText.h */,
 				9554D8FB1ADE38AB00C94061 /* DTFoundation.h */,
+				95A3AAFE1B04801100ADF705 /* GBDeviceInfo.h */,
 				956E71DF1AAFC53B00A3FD7D /* AFNetworking */,
 				951D1EB11ACD1E750072D555 /* DTFoundation */,
 				951D1DF71ACD1E4E0072D555 /* DTCoreText */,
 				951FAC731ABFCEA30083E221 /* EAColourfulProgressView */,
+				95A3AAEB1B047F3E00ADF705 /* GBDeviceInfo */,
 				951D2F691AB7F85500DCB678 /* MJRefresh */,
 				95C2E9F01AB0516800F2A326 /* Msr */,
 				95613FEA1AE2E6080077FBA0 /* MSRWeChatSDK */,
@@ -2022,6 +2036,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		95A3AAEB1B047F3E00ADF705 /* GBDeviceInfo */ = {
+			isa = PBXGroup;
+			children = (
+				95A3AAEE1B047F3E00ADF705 /* GBDeviceInfo.h */,
+				95A3AAEF1B047F3E00ADF705 /* GBDeviceInfo_Common.h */,
+				95A3AAF01B047F3E00ADF705 /* GBDeviceInfo_Common.m */,
+				95A3AAF11B047F3E00ADF705 /* GBDeviceInfo_iOS.h */,
+				95A3AAF21B047F3E00ADF705 /* GBDeviceInfo_iOS.m */,
+				95A3AAF51B047F3F00ADF705 /* GBDeviceInfo_Subclass.h */,
+				95A3AAF61B047F3F00ADF705 /* GBDeviceInfoInterface.h */,
+				95A3AAF71B047F3F00ADF705 /* GBDeviceInfoTypes_Common.h */,
+				95A3AAF81B047F3F00ADF705 /* GBDeviceInfoTypes_iOS.h */,
+			);
+			name = GBDeviceInfo;
+			path = GBDeviceInfo/GBDeviceInfo;
+			sourceTree = "<group>";
+		};
 		95B9BE651ABAEF1A00692889 /* ZFTokenField */ = {
 			isa = PBXGroup;
 			children = (
@@ -2472,6 +2503,7 @@
 				951D1EAC1ACD1E4E0072D555 /* NSScanner+HTML.m in Sources */,
 				95054E221ACBC2D900C1848B /* String+MSREncoding.swift in Sources */,
 				95D153A71AF4CEF800C1617D /* ArticleHeaderView.swift in Sources */,
+				95A3AAFB1B047F3F00ADF705 /* GBDeviceInfo_Common.m in Sources */,
 				951D1F5F1ACD1E750072D555 /* DTExtendedFileAttributes.m in Sources */,
 				9531D79E1AF3E8E400E6549D /* SinaWeiboShareItem.swift in Sources */,
 				95E404061ABDEC3000C18A44 /* UzysGroupViewCell.m in Sources */,
@@ -2515,6 +2547,7 @@
 				950FE50C1A1DA2B500167D09 /* TopicViewController.swift in Sources */,
 				956E720F1AAFC53B00A3FD7D /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				95D153A41AF4BB3000C1617D /* ArticleViewController.swift in Sources */,
+				95A3AAFC1B047F3F00ADF705 /* GBDeviceInfo_iOS.m in Sources */,
 				951D1F701ACD1E750072D555 /* ioapi.c in Sources */,
 				951D1E821ACD1E4E0072D555 /* DTCoreTextFunctions.m in Sources */,
 				951D1F741ACD1E750072D555 /* DTActionSheet.m in Sources */,

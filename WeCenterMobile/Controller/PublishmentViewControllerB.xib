@@ -12,7 +12,7 @@
                 <viewControllerLayoutGuide type="top" id="QSc-rN-Bka"/>
                 <viewControllerLayoutGuide type="bottom" id="WWm-mp-Kf9"/>
             </layoutGuides>
-            <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" keyboardDismissMode="interactive" id="R6r-q8-IV7" customClass="ButtonTouchesCancelableScrollView" customModule="WeCenterMobile" customModuleProvider="target">
+            <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" keyboardDismissMode="interactive" id="R6r-q8-IV7">
                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>

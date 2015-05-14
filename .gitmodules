@@ -31,3 +31,6 @@
 [submodule "WeCenterMobile/External/RMDateSelectionViewController"]
 	path = WeCenterMobile/External/RMDateSelectionViewController
 	url = https://github.com/CooperRS/RMDateSelectionViewController.git
+[submodule "WeCenterMobile/External/GBDeviceInfo"]
+	path = WeCenterMobile/External/GBDeviceInfo
+	url = https://github.com/lmirosevic/GBDeviceInfo.git

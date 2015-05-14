@@ -22,18 +22,44 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="测试" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzo-RJ-AxR">
-                        <rect key="frame" x="105" y="14" width="34" height="21"/>
+                        <rect key="frame" x="116" y="14" width="34" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ctj-m4-tcK">
+                        <rect key="frame" x="0.0" y="0.0" width="40" height="49"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="g3w-aS-kF2"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N5c-tR-ycM">
+                        <rect key="frame" x="65" y="0.0" width="51" height="49"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qEd-ia-63L">
+                        <rect key="frame" x="150" y="0.0" width="50" height="49"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="bSh-0f-Cvq" firstAttribute="leading" secondItem="hGa-fi-04N" secondAttribute="leading" constant="40" id="0Ta-yg-imx"/>
+                    <constraint firstItem="N5c-tR-ycM" firstAttribute="leading" secondItem="bSh-0f-Cvq" secondAttribute="trailing" id="4MB-tR-RuJ"/>
                     <constraint firstItem="bzo-RJ-AxR" firstAttribute="centerY" secondItem="bSh-0f-Cvq" secondAttribute="centerY" id="5pj-lc-V6J"/>
+                    <constraint firstItem="ctj-m4-tcK" firstAttribute="leading" secondItem="hGa-fi-04N" secondAttribute="leading" id="98R-tv-ezf"/>
                     <constraint firstAttribute="centerY" secondItem="bSh-0f-Cvq" secondAttribute="centerY" id="DCo-ye-AIc"/>
-                    <constraint firstItem="bzo-RJ-AxR" firstAttribute="leading" secondItem="bSh-0f-Cvq" secondAttribute="trailing" constant="40" id="KmE-80-XYc"/>
+                    <constraint firstAttribute="trailing" secondItem="qEd-ia-63L" secondAttribute="trailing" id="EuR-Bw-SAF"/>
+                    <constraint firstItem="N5c-tR-ycM" firstAttribute="top" secondItem="hGa-fi-04N" secondAttribute="top" id="FRG-M9-PkD"/>
+                    <constraint firstItem="bzo-RJ-AxR" firstAttribute="leading" secondItem="N5c-tR-ycM" secondAttribute="trailing" id="Iig-M5-BcK"/>
+                    <constraint firstItem="qEd-ia-63L" firstAttribute="width" secondItem="N5c-tR-ycM" secondAttribute="width" id="LbD-fq-F5I"/>
+                    <constraint firstAttribute="bottom" secondItem="N5c-tR-ycM" secondAttribute="bottom" id="SKA-dA-upo"/>
+                    <constraint firstItem="ctj-m4-tcK" firstAttribute="top" secondItem="hGa-fi-04N" secondAttribute="top" id="V0V-uL-egc"/>
+                    <constraint firstAttribute="bottom" secondItem="qEd-ia-63L" secondAttribute="bottom" id="W2s-co-fND"/>
+                    <constraint firstItem="bSh-0f-Cvq" firstAttribute="leading" secondItem="ctj-m4-tcK" secondAttribute="trailing" id="eBj-Ra-zbG"/>
+                    <constraint firstItem="qEd-ia-63L" firstAttribute="leading" secondItem="bzo-RJ-AxR" secondAttribute="trailing" id="kDc-fV-1vh"/>
+                    <constraint firstAttribute="bottom" secondItem="ctj-m4-tcK" secondAttribute="bottom" id="oDD-9J-S76"/>
+                    <constraint firstItem="qEd-ia-63L" firstAttribute="top" secondItem="hGa-fi-04N" secondAttribute="top" id="yf1-p1-w2U"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -41,7 +67,7 @@
                 <outlet property="categoryImageView" destination="bSh-0f-Cvq" id="BIq-2P-EWD"/>
                 <outlet property="categoryTitleLabel" destination="bzo-RJ-AxR" id="Dqq-wu-Vmo"/>
             </connections>
-            <point key="canvasLocation" x="43" y="325.5"/>
+            <point key="canvasLocation" x="43" y="325"/>
         </tableViewCell>
     </objects>
     <resources>

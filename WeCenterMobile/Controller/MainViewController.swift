@@ -6,9 +6,10 @@
 //  Copyright (c) 2014年 ifLab. All rights reserved.
 //
 
+import GBDeviceInfo
 import UIKit
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MSRSidebarDelegate {
     lazy var contentViewController: MSRNavigationController = {
         [weak self] in
         let vc = MSRNavigationController(rootViewController: self!.viewControllerAtIndex(0))
@@ -16,10 +17,20 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return vc
     }()
     lazy var sidebar: MSRSidebar = {
-        let v = MSRSidebar(width: 200, edge: .Left)
+        [weak self] in
+        let display = GBDeviceInfo.deviceInfo().display
+        let widths: [GBDeviceDisplay: CGFloat] = [
+            .DisplayUnknown: 200,
+            .DisplayiPad: 200,
+            .DisplayiPhone35Inch: 200,
+            .DisplayiPhone4Inch: 200,
+            .DisplayiPhone47Inch: 240,
+            .DisplayiPhone55Inch: 240]
+        let v = MSRSidebar(width: widths[display]!, edge: .Left)
         v.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .ExtraLight))
         v.overlay = UIView()
         v.overlay!.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+        v.delegate = self
         return v
     }()
     lazy var tableView: UITableView = {
@@ -127,8 +138,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         return viewController
     }
+    func msr_sidebarDidCollapse(sidebar: MSRSidebar) {
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    func msr_sidebarDidExpand(sidebar: MSRSidebar) {
+        setNeedsStatusBarAppearanceUpdate()
+    }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return contentViewController.preferredStatusBarStyle()
+        return sidebar.collapsed ? contentViewController.preferredStatusBarStyle() : .Default
     }
     override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
         return .Slide
