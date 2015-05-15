@@ -43,7 +43,6 @@ class ArticleListViewController: UITableViewController {
         view.backgroundColor = UIColor.msr_materialBlueGray800()
         msr_navigationBar!.barStyle = .Black
         msr_navigationBar!.tintColor = UIColor.whiteColor()
-        tableView.indicatorStyle = .White
         tableView.separatorStyle = .None
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension

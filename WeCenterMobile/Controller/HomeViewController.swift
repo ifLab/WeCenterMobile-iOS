@@ -64,7 +64,6 @@ class HomeViewController: UITableViewController {
         }
         view.backgroundColor = UIColor.msr_materialGray200()
         tableView.separatorStyle = .None
-        tableView.indicatorStyle = .White
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)

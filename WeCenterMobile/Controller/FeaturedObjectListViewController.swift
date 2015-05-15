@@ -48,7 +48,6 @@ class FeaturedObjectListViewController: UITableViewController {
         tableView.msr_wrapperView?.delaysContentTouches = false
         tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         tableView.separatorStyle = .None
-        tableView.indicatorStyle = .White
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
         let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")

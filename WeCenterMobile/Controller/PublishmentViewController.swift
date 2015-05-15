@@ -101,7 +101,6 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
         publishButton.layer.borderColor = UIColor.msr_materialGray300().CGColor
         publishButton.layer.borderWidth = 0.5
         scrollView.alwaysBounceVertical = true
-        scrollView.indicatorStyle = .White
         scrollView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         tagsField?.textField.textColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
         tagsField?.textField.font = UIFont.systemFontOfSize(14)

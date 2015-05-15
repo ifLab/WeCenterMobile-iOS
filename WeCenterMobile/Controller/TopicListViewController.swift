@@ -43,7 +43,6 @@ class TopicListViewController: UITableViewController {
         title = listType == .User ? "\(user!.name!) 关注的话题" : "话题"
         view.backgroundColor = UIColor.msr_materialBlueGray800()
         tableView.separatorStyle = .None
-        tableView.indicatorStyle = .White
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
