@@ -12,9 +12,12 @@ class QuestionCell: UITableViewCell {
     
     @IBOutlet weak var questionTitleLabel: UILabel!
     @IBOutlet weak var questionBodyLabel: UILabel!
-    @IBOutlet weak var extraInformationLabel: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var userButton: UIButton!
     @IBOutlet weak var questionButton: UIButton!
     @IBOutlet weak var userAvatarView: MSRRoundedImageView!
+    @IBOutlet weak var containerView: UIView!
     
     lazy var dateFormatter: NSDateFormatter = {
         let f = NSDateFormatter()
@@ -25,26 +28,22 @@ class QuestionCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        questionButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
+        msr_scrollView?.delaysContentTouches = false
+        containerView.layer.borderColor = UIColor.msr_materialGray300().CGColor
+        containerView.layer.borderWidth = 0.5
+        userButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        questionButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
     }
     
     func update(#question: Question, updateImage: Bool) {
         questionTitleLabel.text = question.title
         questionBodyLabel.text = question.body!.wc_plainString
-        let attributedString = NSMutableAttributedString(
-            string: question.user!.name!,
-            attributes: [
-                NSForegroundColorAttributeName: UIColor.lightTextColor(),
-                NSFontAttributeName: extraInformationLabel.font])
-        attributedString.appendAttributedString(NSAttributedString(
-            string: " \(dateFormatter.stringFromDate(question.date!))",
-            attributes: [
-                NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.4),
-                NSFontAttributeName: extraInformationLabel.font]))
-        extraInformationLabel.attributedText = attributedString
+        userNameLabel.text = question.user?.name ?? "匿名用户"
+        dateLabel.text = dateFormatter.stringFromDate(question.date!)
         if updateImage {
             userAvatarView.wc_updateWithUser(question.user)
         }
+        userButton.msr_userInfo = question.user
         questionButton.msr_userInfo = question
         setNeedsLayout()
         layoutIfNeeded()

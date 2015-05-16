@@ -42,9 +42,8 @@ class QuestionListViewController: UITableViewController {
     override func loadView() {
         super.loadView()
         title = "\(user.name!) 的提问"
-        view.backgroundColor = UIColor.msr_materialBlueGray800()
-        msr_navigationBar!.barStyle = .Black
-        msr_navigationBar!.tintColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.msr_materialGray200()
+        msr_navigationBar!.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         tableView.separatorStyle = .None
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -52,13 +51,15 @@ class QuestionListViewController: UITableViewController {
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
         tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
+        tableView.delaysContentTouches = false
+        tableView.msr_wrapperView?.delaysContentTouches = false
         let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
-        header.textColor = UIColor.whiteColor()
+        header.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         headerImageView = header.valueForKey("arrowImage") as! UIImageView
-        headerImageView.tintColor = UIColor.whiteColor()
+        headerImageView.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
         headerImageView.msr_imageRenderingMode = .AlwaysTemplate
         headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
-        headerActivityIndicatorView.activityIndicatorViewStyle = .White
+        headerActivityIndicatorView.activityIndicatorViewStyle = .Gray
     }
     
     override func viewDidLoad() {
@@ -77,6 +78,7 @@ class QuestionListViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! QuestionCell
         cell.update(question: questions[indexPath.row], updateImage: true)
+        cell.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
         cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
         return cell
     }
@@ -85,8 +87,14 @@ class QuestionListViewController: UITableViewController {
         return false
     }
     
-    func didPressQuestionButton(button: UIButton) {
-        if let question = button.msr_userInfo as? Question {
+    func didPressUserButton(sender: UIButton) {
+        if let user = sender.msr_userInfo as? User {
+            msr_navigationController!.pushViewController(UserViewController(user: user), animated: true)
+        }
+    }
+    
+    func didPressQuestionButton(sender: UIButton) {
+        if let question = sender.msr_userInfo as? Question {
             msr_navigationController!.pushViewController(QuestionViewController(question: question), animated: true)
         }
     }
@@ -104,11 +112,11 @@ class QuestionListViewController: UITableViewController {
                 self_.tableView.header.endRefreshing()
                 self_.tableView.reloadData()
                 if self_.tableView.footer == nil {
-                    let footer = self_.tableView.addLegendFooterWithRefreshingTarget(self_, refreshingAction: "loadMore")
-                    footer.textColor = UIColor.whiteColor()
+                    let footer = self_.tableView.addLegendFooterWithRefreshingTarget(self, refreshingAction: "loadMore")
+                    footer.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
                     footer.automaticallyRefresh = false
                     self_.footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
-                    self_.footerActivityIndicatorView.activityIndicatorViewStyle = .White
+                    self_.footerActivityIndicatorView.activityIndicatorViewStyle = .Gray
                 }
             }
         }
@@ -156,7 +164,7 @@ class QuestionListViewController: UITableViewController {
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return .Default
     }
     
 }
