@@ -41,7 +41,7 @@ class TopicListViewController: UITableViewController {
     override func loadView() {
         super.loadView()
         title = listType == .User ? "\(user!.name!) 关注的话题" : "话题"
-        view.backgroundColor = UIColor.msr_materialBlueGray800()
+        view.backgroundColor = UIColor.msr_materialGray200()
         tableView.separatorStyle = .None
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -49,17 +49,18 @@ class TopicListViewController: UITableViewController {
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
         tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
+        tableView.delaysContentTouches = false
+        tableView.msr_wrapperView?.delaysContentTouches = false
         if listType != .Static {
             let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
-            header.textColor = UIColor.whiteColor()
+            header.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
             headerImageView = header.valueForKey("arrowImage") as! UIImageView
-            headerImageView.tintColor = UIColor.whiteColor()
-            headerImageView.image = headerImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
+            headerImageView.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
+            headerImageView.msr_imageRenderingMode = .AlwaysTemplate
             headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
-            headerActivityIndicatorView.activityIndicatorViewStyle = .White
+            headerActivityIndicatorView.activityIndicatorViewStyle = .Gray
         }
-        msr_navigationBar!.barStyle = .Black
-        msr_navigationBar!.tintColor = UIColor.whiteColor()
+        msr_navigationBar!.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,10 +77,17 @@ class TopicListViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! TopicCell
         cell.update(topic: topics[indexPath.row], updateImage: true)
+        cell.topicButtonA.addTarget(self, action: "didPressTopicButton:", forControlEvents: .TouchUpInside)
+        cell.topicButtonB.addTarget(self, action: "didPressTopicButton:", forControlEvents: .TouchUpInside)
         return cell
     }
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        msr_navigationController!.pushViewController(TopicViewController(topic: topics[indexPath.row]), animated: true)
+    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
+    func didPressTopicButton(sender: UIButton) {
+        if let topic = sender.msr_userInfo as? Topic {
+            msr_navigationController!.pushViewController(TopicViewController(topic: topic), animated: true)
+        }
     }
     var shouldReloadAfterLoadingMore = true
     func refresh() {
@@ -98,11 +106,11 @@ class TopicListViewController: UITableViewController {
                         self_.tableView.reloadData()
                         self_.tableView.header.endRefreshing()
                         if self_.tableView.footer == nil {
-                            let footer = self_.tableView.addLegendFooterWithRefreshingTarget(self_, refreshingAction: "loadMore")
-                            footer.textColor = UIColor.whiteColor()
+                            let footer = self_.tableView.addLegendFooterWithRefreshingTarget(self, refreshingAction: "loadMore")
+                            footer.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
                             footer.automaticallyRefresh = false
                             self_.footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
-                            self_.footerActivityIndicatorView.activityIndicatorViewStyle = .White
+                            self_.footerActivityIndicatorView.activityIndicatorViewStyle = .Gray
                         }
                     }
                     return
@@ -149,6 +157,6 @@ class TopicListViewController: UITableViewController {
         }
     }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return .Default
     }
 }

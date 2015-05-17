@@ -78,6 +78,7 @@ class AnswerListViewController: UITableViewController {
         cell.update(answer: answers[indexPath.row], updateImage: true)
         cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
         cell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
+        cell.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
         return cell
     }
     
@@ -94,6 +95,12 @@ class AnswerListViewController: UITableViewController {
     func didPressAnswerButton(sender: UIButton) {
         if let answer = sender.msr_userInfo as? Answer {
             msr_navigationController!.pushViewController(ArticleViewController(dataObject: answer), animated: true)
+        }
+    }
+    
+    func didPressUserButton(sender: UIButton) {
+        if let user = sender.msr_userInfo as? User {
+            msr_navigationController!.pushViewController(UserViewController(user: user), animated: true)
         }
     }
     

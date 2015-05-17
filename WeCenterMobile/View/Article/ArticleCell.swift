@@ -12,9 +12,12 @@ class ArticleCell: UITableViewCell {
     
     @IBOutlet weak var articleTitleLabel: UILabel!
     @IBOutlet weak var articleBodyLabel: UILabel!
-    @IBOutlet weak var extraInformationLabel: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var userButton: UIButton!
     @IBOutlet weak var articleButton: UIButton!
     @IBOutlet weak var userAvatarView: MSRRoundedImageView!
+    @IBOutlet weak var containerView: UIView!
     
     lazy var dateFormatter: NSDateFormatter = {
         let f = NSDateFormatter()
@@ -25,26 +28,22 @@ class ArticleCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        articleButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
+        msr_scrollView?.delaysContentTouches = false
+        containerView.layer.borderColor = UIColor.msr_materialGray300().CGColor
+        containerView.layer.borderWidth = 0.5
+        userButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        articleButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
     }
     
     func update(#article: Article, updateImage: Bool) {
         articleTitleLabel.text = article.title
         articleBodyLabel.text = article.body!.wc_plainString
-        let attributedString = NSMutableAttributedString(
-            string: article.user!.name!,
-            attributes: [
-                NSForegroundColorAttributeName: UIColor.lightTextColor(),
-                NSFontAttributeName: extraInformationLabel.font])
-        attributedString.appendAttributedString(NSAttributedString(
-            string: " \(dateFormatter.stringFromDate(article.date!))",
-            attributes: [
-                NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.4),
-                NSFontAttributeName: extraInformationLabel.font]))
-        extraInformationLabel.attributedText = attributedString
+        userNameLabel.text = article.user?.name ?? "匿名用户"
+        dateLabel.text = dateFormatter.stringFromDate(article.date!)
         if updateImage {
             userAvatarView.wc_updateWithUser(article.user)
         }
+        userButton.msr_userInfo = article.user
         articleButton.msr_userInfo = article
         setNeedsLayout()
         layoutIfNeeded()

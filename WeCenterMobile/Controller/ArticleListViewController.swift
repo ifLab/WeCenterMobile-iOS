@@ -40,9 +40,8 @@ class ArticleListViewController: UITableViewController {
     override func loadView() {
         super.loadView()
         title = "\(user.name!) 的文章"
-        view.backgroundColor = UIColor.msr_materialBlueGray800()
-        msr_navigationBar!.barStyle = .Black
-        msr_navigationBar!.tintColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.msr_materialGray200()
+        msr_navigationBar!.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         tableView.separatorStyle = .None
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -50,13 +49,15 @@ class ArticleListViewController: UITableViewController {
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
         tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
+        tableView.delaysContentTouches = false
+        tableView.msr_wrapperView?.delaysContentTouches = false
         let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
-        header.textColor = UIColor.whiteColor()
+        header.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         headerImageView = header.valueForKey("arrowImage") as! UIImageView
-        headerImageView.tintColor = UIColor.whiteColor()
+        headerImageView.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
         headerImageView.msr_imageRenderingMode = .AlwaysTemplate
         headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
-        headerActivityIndicatorView.activityIndicatorViewStyle = .White
+        headerActivityIndicatorView.activityIndicatorViewStyle = .Gray
     }
     
     override func viewDidLoad() {
@@ -76,6 +77,7 @@ class ArticleListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! ArticleCell
         cell.update(article: articles[indexPath.row], updateImage: true)
         cell.articleButton.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
+        cell.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
         return cell
     }
     
@@ -86,6 +88,12 @@ class ArticleListViewController: UITableViewController {
     func didPressArticleButton(sender: UIButton) {
         if let article = sender.msr_userInfo as? Article {
             msr_navigationController!.pushViewController(ArticleViewController(dataObject: article), animated: true)
+        }
+    }
+    
+    func didPressUserButton(sender: UIButton) {
+        if let user = sender.msr_userInfo as? User {
+            msr_navigationController!.pushViewController(UserViewController(user: user), animated: true)
         }
     }
     
@@ -102,11 +110,11 @@ class ArticleListViewController: UITableViewController {
                 self_.tableView.header.endRefreshing()
                 self_.tableView.reloadData()
                 if self_.tableView.footer == nil {
-                    let footer = self_.tableView.addLegendFooterWithRefreshingTarget(self_, refreshingAction: "loadMore")
-                    footer.textColor = UIColor.whiteColor()
+                    let footer = self_.tableView.addLegendFooterWithRefreshingTarget(self, refreshingAction: "loadMore")
+                    footer.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
                     footer.automaticallyRefresh = false
                     self_.footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
-                    self_.footerActivityIndicatorView.activityIndicatorViewStyle = .White
+                    self_.footerActivityIndicatorView.activityIndicatorViewStyle = .Gray
                 }
             }
         }
@@ -154,7 +162,7 @@ class ArticleListViewController: UITableViewController {
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return .Default
     }
     
 }

@@ -12,30 +12,28 @@ class TopicCell: UITableViewCell {
     
     @IBOutlet weak var topicImageView: MSRRoundedImageView!
     @IBOutlet weak var topicTitleLabel: UILabel!
+    @IBOutlet weak var topicDescriptionLabel: UILabel!
+    @IBOutlet weak var topicButtonA: UIButton!
+    @IBOutlet weak var topicButtonB: UIButton!
+    @IBOutlet weak var containerView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        selectedBackgroundView = UIView()
-        selectedBackgroundView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+        msr_scrollView?.delaysContentTouches = false
+        containerView.layer.borderColor = UIColor.msr_materialGray300().CGColor
+        containerView.layer.borderWidth = 0.5
+        topicButtonB.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
     }
     
     func update(#topic: Topic, updateImage: Bool) {
         if updateImage {
             topicImageView.wc_updateWithTopic(topic)
         }
-        let text = NSMutableAttributedString(
-            string: topic.title!,
-            attributes: [
-                NSFontAttributeName: UIFont.systemFontOfSize(16),
-                NSForegroundColorAttributeName: UIColor.whiteColor()])
-        if topic.introduction ?? "" != "" {
-            text.appendAttributedString(NSAttributedString(
-                string: "，" + topic.introduction!,
-                attributes: [
-                    NSFontAttributeName: UIFont.systemFontOfSize(16),
-                    NSForegroundColorAttributeName: UIColor.lightTextColor()]))
-        }
-        topicTitleLabel.attributedText = text
+        topicTitleLabel.text = topic.title
+        /// @TODO: [Back-End][Bug] \n!!!
+        topicDescriptionLabel.text = topic.introduction?.stringByTrimmingCharactersInSet(NSCharacterSet.newlineCharacterSet())
+        topicButtonA.msr_userInfo = topic
+        topicButtonB.msr_userInfo = topic
         setNeedsLayout()
         layoutIfNeeded()
     }
