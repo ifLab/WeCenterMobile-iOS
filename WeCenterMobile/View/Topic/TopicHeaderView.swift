@@ -8,14 +8,24 @@
 
 import UIKit
 
-class TopicHeaderView: UIView {
+class TopicHeaderView: UIView, UIToolbarDelegate {
     
-    @IBOutlet weak var backgroundImageView: UIImageView!
+    var backgroundView: UIView? {
+        didSet {
+            oldValue?.removeFromSuperview()
+            if backgroundView != nil {
+                addSubview(backgroundView!)
+                sendSubviewToBack(backgroundView!)
+                backgroundView!.frame = bounds
+                backgroundView!.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+            }
+        }
+    }
     
     lazy var backButton: UIButton = {
         let v = UIButton()
         v.setImage(UIImage(named: "Arrow-Left")!.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
-        v.tintColor = UIColor.whiteColor()
+        v.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         return v
     }()
     
@@ -26,7 +36,7 @@ class TopicHeaderView: UIView {
     
     lazy var topicTitleLabel: UILabel = {
         let v = UILabel()
-        v.textColor = UIColor.whiteColor()
+        v.textColor = UIColor.blackColor().colorWithAlphaComponent(0.87)
         v.font = UIFont.systemFontOfSize(17)
         return v
     }()
@@ -34,7 +44,7 @@ class TopicHeaderView: UIView {
     lazy var topicDescriptionLabel: UILabel = {
         let v = UILabel()
         v.numberOfLines = 0
-        v.textColor = UIColor.lightTextColor()
+        v.textColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
         v.font = UIFont.systemFontOfSize(15)
         return v
     }()
@@ -63,30 +73,41 @@ class TopicHeaderView: UIView {
     var maxHeight: CGFloat = 150
     var minHeight: CGFloat = 64
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        wc_initialize()
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        wc_initialize()
+    }
+    
+    func wc_initialize() {
         addSubview(backButton)
         addSubview(topicImageView)
         addSubview(topicTitleLabel)
         addSubview(topicDescriptionLabel)
         addSubview(focusButton)
+        let bar = UIToolbar()
+        bar.delegate = self
+        backgroundView = bar
     }
     
     func update(#topic: Topic) {
         topicImageView.wc_updateWithTopic(topic)
-        backgroundImageView.wc_updateWithTopic(topic)
         topicTitleLabel.text = topic.title ?? "加载中……"
         topicTitleLabel.sizeToFit()
         topicDescriptionLabel.text = topic.introduction ?? ""
         topicDescriptionLabel.sizeToFit()
         if let focused = topic.focused {
             focusButtonActivityIndicatorView.stopAnimating()
-            focusButtonActivityIndicatorView.color = focused ? UIColor.msr_materialGray900() : UIColor.lightTextColor()
+            focusButtonActivityIndicatorView.color = focused ? UIColor.whiteColor().colorWithAlphaComponent(0.4) : UIColor.blackColor().colorWithAlphaComponent(0.4)
             focusButton.setTitle(focused ? "已关注" : "关注", forState: .Normal)
-            focusButton.setBackgroundImage(UIImage.msr_imageWithColor(focused ? UIColor.lightTextColor() : UIColor.clearColor()), forState: .Normal)
-            focusButton.setTitleColor(focused ? UIColor.msr_materialGray900() : UIColor.lightTextColor(), forState: .Normal)
+            focusButton.setBackgroundImage(UIImage.msr_imageWithColor(focused ? UIColor.blackColor().colorWithAlphaComponent(0.4)   : UIColor.clearColor()), forState: .Normal)
+            focusButton.setTitleColor(focused ? UIColor.whiteColor().colorWithAlphaComponent(0.6) : UIColor.blackColor().colorWithAlphaComponent(0.4), forState: .Normal)
             focusButton.layer.borderWidth = focused ? 0 : 1
-            focusButton.layer.borderColor = UIColor.lightTextColor().CGColor
+            focusButton.layer.borderColor = UIColor.blackColor().colorWithAlphaComponent(0.4).CGColor
         } else {
             focusButtonActivityIndicatorView.startAnimating()
             focusButton.setTitle("", forState: .Normal)
@@ -109,7 +130,6 @@ class TopicHeaderView: UIView {
         let focusButtonBeginFrame = CGRect(origin: CGPoint(x: bounds.width - 10 - focusButton.bounds.width, y: backButtonBeginFrame.msr_center.y - focusButton.bounds.height / 2), size: focusButton.bounds.size)
         var focusButtonEndFrame = CGRect(origin: CGPoint(x: bounds.width - 10 - focusButton.bounds.width, y: topicTitleLabelEndFrame.msr_center.y - focusButton.bounds.height / 2), size: focusButton.bounds.size)
         let progress = Double((max(bounds.height, minHeight) - minHeight) / (maxHeight - minHeight))
-        backgroundImageView.alpha = CGFloat(max(0, progress * 2 - 1))
         topicDescriptionLabel.alpha = CGFloat(max(0, progress * 2 - 1))
         if progress <= 1 {
             backButton.frame = MSRLinearInterpolation(backButtonBeginFrame, backButtonEndFrame, progress)
@@ -127,8 +147,15 @@ class TopicHeaderView: UIView {
             topicTitleLabel.frame = topicTitleLabelEndFrame
             focusButton.frame = focusButtonEndFrame
         }
-        topicDescriptionLabel.frame = CGRect(x: topicTitleLabel.frame.msr_left, y: topicTitleLabel.frame.msr_bottom + 5, width: bounds.width - topicTitleLabelEndFrame.msr_left - 10, height: topicImageView.frame.height - topicTitleLabel.frame.height - 5)
-        topicDescriptionLabel.sizeToFit()
+        topicDescriptionLabel.frame = CGRect(x: topicTitleLabel.frame.msr_left, y: topicTitleLabel.frame.msr_bottom + 5, width: bounds.width - topicTitleLabelEndFrame.msr_left - 10, height: topicImageViewEndFrame.height - topicTitleLabelEndFrame.height - 5)
+        let fittedSize = topicDescriptionLabel.sizeThatFits(topicDescriptionLabel.frame.size)
+        if fittedSize.height < topicDescriptionLabel.frame.height {
+            topicDescriptionLabel.frame.size.height = fittedSize.height
+        }
+    }
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return .TopAttached
     }
     
 }

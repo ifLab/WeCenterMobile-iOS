@@ -221,7 +221,6 @@
 		9531D74F1AF3E4AC00E6549D /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D70A1AF3E4AC00E6549D /* TopicCell.swift */; };
 		9531D7501AF3E4AC00E6549D /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D70B1AF3E4AC00E6549D /* TopicCell.xib */; };
 		9531D7511AF3E4AC00E6549D /* TopicHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D70C1AF3E4AC00E6549D /* TopicHeaderView.swift */; };
-		9531D7521AF3E4AC00E6549D /* TopicHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D70D1AF3E4AC00E6549D /* TopicHeaderView.xib */; };
 		9531D7531AF3E4AC00E6549D /* UserBodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D70F1AF3E4AC00E6549D /* UserBodyCell.swift */; };
 		9531D7541AF3E4AC00E6549D /* UserBodyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D7101AF3E4AC00E6549D /* UserBodyCell.xib */; };
 		9531D7551AF3E4AC00E6549D /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D7111AF3E4AC00E6549D /* UserCell.swift */; };
@@ -443,7 +442,7 @@
 		950FE12D1A1DA2B300167D09 /* ExploreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		950FE12F1A1DA2B300167D09 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MainViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		950FE1341A1DA2B300167D09 /* TopicListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListViewController.swift; sourceTree = "<group>"; };
-		950FE1351A1DA2B300167D09 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
+		950FE1351A1DA2B300167D09 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TopicViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		950FE1361A1DA2B300167D09 /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		950FE1371A1DA2B300167D09 /* QuestionListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionListViewController.swift; sourceTree = "<group>"; };
 		950FE1391A1DA2B300167D09 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -749,8 +748,8 @@
 		951FAC751ABFCEA30083E221 /* EAColourfulProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAColourfulProgressView.m; sourceTree = "<group>"; };
 		9520AB141AC2C94600637C84 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = QuestionViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9531D6991AEEB93D00E6549D /* UIScrollView+MSRRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+MSRRefreshControl.swift"; sourceTree = "<group>"; };
-		9531D6A11AF0A27100E6549D /* AnswerListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerListViewController.swift; sourceTree = "<group>"; };
-		9531D6A71AF3D68F00E6549D /* ArticleListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleListViewController.swift; sourceTree = "<group>"; };
+		9531D6A11AF0A27100E6549D /* AnswerListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnswerListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		9531D6A71AF3D68F00E6549D /* ArticleListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ArticleListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9531D6AF1AF3DF2E00E6549D /* MSRNull.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRNull.swift; sourceTree = "<group>"; };
 		9531D6CD1AF3E4AC00E6549D /* AnswerAdditionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerAdditionCell.swift; sourceTree = "<group>"; };
 		9531D6CE1AF3E4AC00E6549D /* AnswerAdditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerAdditionCell.xib; sourceTree = "<group>"; };
@@ -798,7 +797,6 @@
 		9531D70A1AF3E4AC00E6549D /* TopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
 		9531D70B1AF3E4AC00E6549D /* TopicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicCell.xib; sourceTree = "<group>"; };
 		9531D70C1AF3E4AC00E6549D /* TopicHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicHeaderView.swift; sourceTree = "<group>"; };
-		9531D70D1AF3E4AC00E6549D /* TopicHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicHeaderView.xib; sourceTree = "<group>"; };
 		9531D70F1AF3E4AC00E6549D /* UserBodyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserBodyCell.swift; sourceTree = "<group>"; };
 		9531D7101AF3E4AC00E6549D /* UserBodyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserBodyCell.xib; sourceTree = "<group>"; };
 		9531D7111AF3E4AC00E6549D /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
@@ -994,7 +992,7 @@
 		95C2EA1C1AB0516800F2A326 /* UIView+MSRKeyboardUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+MSRKeyboardUtility.swift"; sourceTree = "<group>"; };
 		95C47D4A1AC9C2BE00A56879 /* UIButton+MSRSetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+MSRSetter.swift"; sourceTree = "<group>"; };
 		95C893761AC7365D00B7B385 /* MSRSidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRSidebar.swift; sourceTree = "<group>"; };
-		95D153A31AF4BB3000C1617D /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
+		95D153A31AF4BB3000C1617D /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ArticleViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		95D153A61AF4CEF800C1617D /* ArticleHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHeaderView.swift; sourceTree = "<group>"; };
 		95DB722A1AF548EC0072C77E /* ArticleFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleFooterView.swift; sourceTree = "<group>"; };
 		95DB722D1AF5490A0072C77E /* ArticleFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleFooterView.xib; sourceTree = "<group>"; };
@@ -1736,7 +1734,6 @@
 				9531D70A1AF3E4AC00E6549D /* TopicCell.swift */,
 				9531D70B1AF3E4AC00E6549D /* TopicCell.xib */,
 				9531D70C1AF3E4AC00E6549D /* TopicHeaderView.swift */,
-				9531D70D1AF3E4AC00E6549D /* TopicHeaderView.xib */,
 			);
 			path = Topic;
 			sourceTree = "<group>";
@@ -2335,7 +2332,6 @@
 				9561400B1AE2E6080077FBA0 /* Info.plist in Resources */,
 				9531D7681AF3E85900E6549D /* ImageUploadingProgressBar.xib in Resources */,
 				95E404031ABDEC3000C18A44 /* UzysAssetsPickerController.xib in Resources */,
-				9531D7521AF3E4AC00E6549D /* TopicHeaderView.xib in Resources */,
 				9531D7331AF3E4AC00E6549D /* AnswerAgreementActionCell.xib in Resources */,
 				9531D7441AF3E4AC00E6549D /* QuestionHeaderCell.xib in Resources */,
 				9568F3A21AEC74AB00B201A8 /* UserEditViewController.xib in Resources */,

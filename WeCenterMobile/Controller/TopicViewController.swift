@@ -11,7 +11,7 @@ import UIKit
 class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var topic: Topic
-    var answers = DataManager.defaultManager!.fetchAll("Answer", error: nil) as! [Answer]
+    var answers = [Answer]() // DataManager.defaultManager!.fetchAll("Answer", error: nil) as! [Answer]
     // WARN: - Should be [Answer]() //
     
     init(topic: Topic) {
@@ -25,7 +25,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     lazy var header: TopicHeaderView = {
         [weak self] in
-        let v = NSBundle.mainBundle().loadNibNamed("TopicHeaderView", owner: nil, options: nil).first as! TopicHeaderView
+        let v = TopicHeaderView()
         v.autoresizingMask = .FlexibleBottomMargin | .FlexibleWidth
         v.focusButton.addTarget(self, action: "focus", forControlEvents: .TouchUpInside)
         v.backButton.addTarget(self, action: "didPressBackButton", forControlEvents: .TouchUpInside)
@@ -43,12 +43,13 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         v.contentOffset.y = -v.contentInset.top
         v.separatorStyle = .None
         v.backgroundColor = UIColor.clearColor()
-        v.indicatorStyle = .White
         v.estimatedRowHeight = 120
         v.rowHeight = UITableViewAutomaticDimension
         v.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
         v.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
         v.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
+        v.dataSource = self
+        v.delegate = self
         v.addSubview(self!.header)
         self!.header.frame = CGRect(x: 0, y: -UIApplication.sharedApplication().statusBarFrame.height, width: v.bounds.width, height: self!.header.maxHeight)
         return v
@@ -60,10 +61,9 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func loadView() {
         super.loadView()
         view.addSubview(bodyView)
-        view.backgroundColor = UIColor.msr_materialGray900()
+        view.backgroundColor = UIColor.msr_materialGray200()
         bodyView.msr_uiRefreshControl = UIRefreshControl()
         bodyView.msr_uiRefreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
-        bodyView.msr_uiRefreshControl!.tintColor = UIColor.whiteColor()
         bodyView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         automaticallyAdjustsScrollViewInsets = false
         msr_navigationBar!.hidden = true
@@ -79,7 +79,6 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func reloadData() {
         header.update(topic: topic)
         bodyView.reloadData()
-        bodyView.backgroundColor = TintColorFromColor(topic.image?.msr_averageColorWithAccuracy(0.5)).colorWithAlphaComponent(0.3)
     }
     
     func refresh() {
@@ -156,6 +155,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.update(answer: answers[indexPath.row], updateImage: true)
         cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
         cell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
+        cell.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
         return cell
     }
     
@@ -172,15 +172,21 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    func didPressQuestionButton(button: UIButton) {
-        if let question = button.msr_userInfo as? Question {
+    func didPressQuestionButton(sender: UIButton) {
+        if let question = sender.msr_userInfo as? Question {
             msr_navigationController!.pushViewController(QuestionViewController(question: question), animated: true)
         }
     }
     
-    func didPressAnswerButton(button: UIButton) {
-        if let answer = button.msr_userInfo as? Answer {
+    func didPressAnswerButton(sender: UIButton) {
+        if let answer = sender.msr_userInfo as? Answer {
             msr_navigationController!.pushViewController(ArticleViewController(dataObject: answer), animated: true)
+        }
+    }
+    
+    func didPressUserButton(sender: UIButton) {
+        if let user = sender.msr_userInfo as? User {
+            msr_navigationController!.pushViewController(UserViewController(user: user), animated: true)
         }
     }
     
@@ -189,7 +195,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return .Default
     }
     
 }

@@ -279,8 +279,8 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
         presentLinkAlertControllerWithURL(linkButton.URL)
     }
     
-    func didPressUserButton(button: UIButton) {
-        if let user = button.msr_userInfo as? User {
+    func didPressUserButton(sender: UIButton) {
+        if let user = sender.msr_userInfo as? User {
             msr_navigationController!.pushViewController(UserViewController(user: user), animated: true)
         }
     }

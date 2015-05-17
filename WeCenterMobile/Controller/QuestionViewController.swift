@@ -217,14 +217,14 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         presentViewController(ac, animated: true, completion: nil)
     }
     
-    func didPressUserButton(button: UIButton) {
-        if let user = button.msr_userInfo as? User {
+    func didPressUserButton(sender: UIButton) {
+        if let user = sender.msr_userInfo as? User {
             msr_navigationController!.pushViewController(UserViewController(user: user), animated: true)
         }
     }
     
-    func didPressAnswerButton(button: UIButton) {
-        if let answer = button.msr_userInfo as? Answer {
+    func didPressAnswerButton(sender: UIButton) {
+        if let answer = sender.msr_userInfo as? Answer {
             msr_navigationController!.pushViewController(ArticleViewController(dataObject: answer), animated: true)
         }
     }
@@ -292,8 +292,8 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 4)], withRowAnimation: .None)
     }
     
-    func didPressTagsButton(button: UIButton) {
-        if let topics = button.msr_userInfo as? [Topic] {
+    func didPressTagsButton(sender: UIButton) {
+        if let topics = sender.msr_userInfo as? [Topic] {
             msr_navigationController!.pushViewController(TopicListViewController(topics: topics), animated: true)
         }
     }

@@ -83,8 +83,8 @@ class ArticleListViewController: UITableViewController {
         return false
     }
     
-    func didPressArticleButton(button: UIButton) {
-        if let article = button.msr_userInfo as? Article {
+    func didPressArticleButton(sender: UIButton) {
+        if let article = sender.msr_userInfo as? Article {
             msr_navigationController!.pushViewController(ArticleViewController(dataObject: article), animated: true)
         }
     }
