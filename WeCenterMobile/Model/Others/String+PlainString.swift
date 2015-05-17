@@ -11,6 +11,7 @@ import Foundation
 extension String {
     var wc_plainString: String {
         let attributedString = NSAttributedString(HTMLData: self.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true), options: nil, documentAttributes: nil)
-        return attributedString?.string.msr_stringByRemovingCharactersInSet(NSCharacterSet.newlineCharacterSet()) ?? ""
+        return attributedString?.string.msr_stringByRemovingCharactersInSet(NSCharacterSet.newlineCharacterSet()).stringByReplacingOccurrencesOfString("\\[attach\\][1-9][0-9]*\\[/attach\\]", withString: "[图片]", options: .RegularExpressionSearch, range: nil) ?? ""
     }
 }
+ 
