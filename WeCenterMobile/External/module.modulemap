@@ -38,6 +38,7 @@ module MJRefresh {
 }
 
 module RMDateSelectionViewController {
+    header "RMActionController/RMActionController/RMActionController.h"
     header "RMDateSelectionViewController/RMDateSelectionViewController/RMDateSelectionViewController.h"
     requires objc, objc_arc
     use UIKit

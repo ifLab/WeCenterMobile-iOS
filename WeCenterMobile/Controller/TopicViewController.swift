@@ -11,8 +11,7 @@ import UIKit
 class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var topic: Topic
-    var answers = [Answer]() // DataManager.defaultManager!.fetchAll("Answer", error: nil) as! [Answer]
-    // WARN: - Should be [Answer]() //
+    var answers = [Answer]()
     
     init(topic: Topic) {
         self.topic = topic

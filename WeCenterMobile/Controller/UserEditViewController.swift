@@ -118,21 +118,22 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         if textField === birthdayTextField {
-            RMDateSelectionViewController.setLocalizedTitleForCancelButton("取消")
-            RMDateSelectionViewController.setLocalizedTitleForSelectButton("选择")
-            let dsvc = RMDateSelectionViewController.dateSelectionController()
-            dsvc.disableBouncingWhenShowing = true
+            let dsvc = RMDateSelectionViewController(
+                style: .White,
+                title: "生日",
+                message: "请选择日期。",
+                selectAction: RMAction(title: "选择", style: .Done) {
+                    [weak self] controller in
+                    let controller = controller as! RMDateSelectionViewController
+                    self?.birthdayTextField.text = self!.dateFormatter.stringFromDate(controller.datePicker.date)
+                    return
+                },
+                andCancelAction: RMAction(title: "取消", style: .Cancel) { _ in })
+            dsvc.disableBouncingEffects = true
             dsvc.disableMotionEffects = false
             dsvc.disableBlurEffects = false
-            dsvc.hideNowButton = true
-            dsvc.tintColor = UIColor.whiteColor()
             dsvc.datePicker.datePickerMode = .Date
             dsvc.datePicker.date = dateFormatter.dateFromString(birthdayTextField.text)!
-            dsvc.selectButtonAction = {
-                [weak self] controller, date in
-                self?.birthdayTextField.text = self!.dateFormatter.stringFromDate(date)
-                return
-            }
             showDetailViewController(dsvc, sender: self)
             return false
         }

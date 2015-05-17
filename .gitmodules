@@ -34,3 +34,6 @@
 [submodule "WeCenterMobile/External/GBDeviceInfo"]
 	path = WeCenterMobile/External/GBDeviceInfo
 	url = https://github.com/lmirosevic/GBDeviceInfo.git
+[submodule "WeCenterMobile/External/RMActionController"]
+	path = WeCenterMobile/External/RMActionController
+	url = https://github.com/CooperRS/RMActionController.git
