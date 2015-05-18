@@ -6,6 +6,7 @@
 //  Copyright (c) 2014年 ifLab. All rights reserved.
 //
 
+import AFViewShaker
 import UIKit
 
 class WelcomeViewController: UIViewController {
@@ -50,9 +51,10 @@ class WelcomeViewController: UIViewController {
             },
             failure: {
                 [weak self] error in
-                let ac: UIAlertController = UIAlertController(title: "登录失败", message: error.userInfo?[NSLocalizedDescriptionKey] as? String, preferredStyle: .Alert)
-                ac.addAction(UIAlertAction(title: "好", style: .Default, handler: nil))
-                self?.presentViewController(ac, animated: true, completion: nil)
+                if let v = self?.loginView {
+                    let s = AFViewShaker(viewsArray: [v.userNameImageViewContainerView, v.userNameField, v.passwordImageViewContainerView, v.passwordField, v.userNameFieldUnderline, v.passwordFieldUnderline])
+                    s.shake()
+                }
             })
     }
     

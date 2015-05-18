@@ -31,6 +31,7 @@ class User: DataObject {
     @NSManaged var agreementCount: NSNumber?
     @NSManaged var answerCount: NSNumber?
     @NSManaged var answerFavoriteCount: NSNumber?
+    @NSManaged var articleCount: NSNumber?
     @NSManaged var avatarData: NSData?
     @NSManaged var avatarURI: String?
     @NSManaged var birthday: NSDate?
@@ -116,6 +117,7 @@ class User: DataObject {
                 user.followingCount = Int(msr_object: data["friend_count"])
                 user.questionCount = Int(msr_object: data["question_count"])
                 user.answerCount = Int(msr_object: data["answer_count"])
+                user.articleCount = Int(msr_object: data["article_count"])
                 user.topicFocusCount = Int(msr_object: data["topic_focus_count"])
                 user.agreementCount = Int(msr_object: data["agree_count"])
                 user.thankCount = Int(msr_object: data["thanks_count"])

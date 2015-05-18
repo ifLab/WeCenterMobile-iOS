@@ -14,13 +14,16 @@ class LoginView: UIView, UIScrollViewDelegate {
     @IBOutlet var passwordField: UITextField!
     @IBOutlet weak var userNameImageView: UIImageView!
     @IBOutlet weak var passwordImageView: UIImageView!
+    @IBOutlet weak var userNameImageViewContainerView: UIVisualEffectView!
+    @IBOutlet weak var passwordImageViewContainerView: UIVisualEffectView!
     @IBOutlet weak var userNameFieldUnderlineHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var passwordFieldUnderlineHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var userNameFieldUnderline: UIVisualEffectView!
+    @IBOutlet weak var passwordFieldUnderline: UIVisualEffectView!
     @IBOutlet weak var loginButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        UITextView()
         userNameImageView.msr_imageRenderingMode = .AlwaysTemplate
         passwordImageView.msr_imageRenderingMode = .AlwaysTemplate
         userNameField.attributedPlaceholder = NSAttributedString(string: userNameField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])

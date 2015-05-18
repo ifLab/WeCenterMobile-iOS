@@ -287,6 +287,7 @@
 		9583E3351AB6812400067F37 /* MSRLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583E3341AB6812400067F37 /* MSRLayoutGuide.swift */; };
 		9585FA2B1B0076BC0079D57D /* UITableView+MSRGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9585FA2A1B0076BC0079D57D /* UITableView+MSRGetter.swift */; };
 		9585FA2D1B0078C60079D57D /* UITableViewCell+MSRGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9585FA2C1B0078C60079D57D /* UITableViewCell+MSRGetter.swift */; };
+		958603401B0A28CE009601D2 /* AFViewShaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9586033F1B0A28CE009601D2 /* AFViewShaker.m */; };
 		9588F5E91A1D9D1C001BC426 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9588F5E81A1D9D1C001BC426 /* AppDelegate.swift */; };
 		9588F6021A1D9D1C001BC426 /* WeCenterMobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9588F6011A1D9D1C001BC426 /* WeCenterMobileTests.swift */; };
 		95891E5B1AD82E7E007D5DF7 /* MSRLinearInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95891E5A1AD82E7E007D5DF7 /* MSRLinearInterpolation.swift */; };
@@ -893,6 +894,8 @@
 		9583E3341AB6812400067F37 /* MSRLayoutGuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRLayoutGuide.swift; sourceTree = "<group>"; };
 		9585FA2A1B0076BC0079D57D /* UITableView+MSRGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+MSRGetter.swift"; sourceTree = "<group>"; };
 		9585FA2C1B0078C60079D57D /* UITableViewCell+MSRGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+MSRGetter.swift"; sourceTree = "<group>"; };
+		9586033E1B0A28CE009601D2 /* AFViewShaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFViewShaker.h; sourceTree = "<group>"; };
+		9586033F1B0A28CE009601D2 /* AFViewShaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFViewShaker.m; sourceTree = "<group>"; };
 		9588F5E31A1D9D1C001BC426 /* WeCenterMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeCenterMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9588F5E71A1D9D1C001BC426 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9588F5E81A1D9D1C001BC426 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1106,6 +1109,7 @@
 				9554D8FB1ADE38AB00C94061 /* DTFoundation.h */,
 				95A3AAFE1B04801100ADF705 /* GBDeviceInfo.h */,
 				95ED5EDD1B084D0500CDB225 /* AFNetworking */,
+				9586033D1B0A28CE009601D2 /* AFViewShaker */,
 				951D1EB11ACD1E750072D555 /* DTFoundation */,
 				951D1DF71ACD1E4E0072D555 /* DTCoreText */,
 				951FAC731ABFCEA30083E221 /* EAColourfulProgressView */,
@@ -1911,6 +1915,16 @@
 			path = SinaWeiboSDK/libWeiboSDK;
 			sourceTree = "<group>";
 		};
+		9586033D1B0A28CE009601D2 /* AFViewShaker */ = {
+			isa = PBXGroup;
+			children = (
+				9586033E1B0A28CE009601D2 /* AFViewShaker.h */,
+				9586033F1B0A28CE009601D2 /* AFViewShaker.m */,
+			);
+			name = AFViewShaker;
+			path = AFViewShaker/AFViewShaker;
+			sourceTree = "<group>";
+		};
 		9588F5DA1A1D9D1C001BC426 = {
 			isa = PBXGroup;
 			children = (
@@ -2649,6 +2663,7 @@
 				95C2EA341AB0516800F2A326 /* MSRSegmentedControl.swift in Sources */,
 				95ED5F0E1B084D0E00CDB225 /* UIAlertView+AFNetworking.m in Sources */,
 				951D1E831ACD1E4E0072D555 /* DTCoreTextGlyphRun.m in Sources */,
+				958603401B0A28CE009601D2 /* AFViewShaker.m in Sources */,
 				9531D78C1AF3E8E400E6549D /* AnswerComment.swift in Sources */,
 				951D1F6D1ACD1E750072D555 /* DTZipArchiveGZip.m in Sources */,
 				951D1F8B1ACD1E750072D555 /* UIWebView+DTFoundation.m in Sources */,

@@ -145,8 +145,8 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         if indexPath.section == 0 {
             let cell = bodyView.dequeueReusableCellWithReuseIdentifier(bodyCellReuseIdentifier, forIndexPath: indexPath) as! UserBodyCell
             let titles = ["提问", "回答", "文章", "话题", "关注中", "追随者"]
-            let counts = map([user.questionCount, user.answerCount, NSNumber?(0), user.topicFocusCount, user.followingCount, user.followerCount]) {
-                return $0?.description ?? "..."
+            let counts = map([user.questionCount, user.answerCount, user.articleCount, user.topicFocusCount, user.followingCount, user.followerCount]) {
+                return $0?.description ?? "0"
             }
             cell.titleLabel.text = titles[indexPath.item]
             cell.countLabel.text = counts[indexPath.item]

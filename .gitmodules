@@ -37,3 +37,6 @@
 [submodule "WeCenterMobile/External/RMActionController"]
 	path = WeCenterMobile/External/RMActionController
 	url = https://github.com/CooperRS/RMActionController.git
+[submodule "WeCenterMobile/External/AFViewShaker"]
+	path = WeCenterMobile/External/AFViewShaker
+	url = https://github.com/ArtFeel/AFViewShaker.git

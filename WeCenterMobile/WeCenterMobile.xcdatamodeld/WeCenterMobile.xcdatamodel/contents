@@ -108,6 +108,7 @@
         <attribute name="agreementCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="answerCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="answerFavoriteCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="articleCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="avatarData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="avatarURI" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="birthday" optional="YES" attributeType="Date" syncable="YES"/>
@@ -145,6 +146,7 @@
         <element name="ArticleComment" positionX="718" positionY="743" width="128" height="103"/>
         <element name="ArticlePublishmentAction" positionX="449" positionY="225" width="128" height="60"/>
         <element name="Comment" positionX="648" positionY="635" width="128" height="88"/>
+        <element name="DataObject" positionX="448" positionY="-9" width="128" height="58"/>
         <element name="FeaturedArticle" positionX="584" positionY="225" width="128" height="58"/>
         <element name="FeaturedObject" positionX="651" positionY="108" width="128" height="58"/>
         <element name="FeaturedQuestionAnswer" positionX="719" positionY="225" width="128" height="88"/>
@@ -152,7 +154,6 @@
         <element name="QuestionFocusingAction" positionX="180" positionY="288" width="128" height="60"/>
         <element name="QuestionPublishmentAction" positionX="180" positionY="225" width="128" height="60"/>
         <element name="Topic" positionX="720" positionY="378" width="128" height="163"/>
-        <element name="User" positionX="180" positionY="377" width="128" height="463"/>
-        <element name="DataObject" positionX="448" positionY="-9" width="128" height="58"/>
+        <element name="User" positionX="180" positionY="377" width="128" height="478"/>
     </elements>
 </model>
