@@ -42,16 +42,32 @@ class WelcomeViewController: UIViewController {
     }
     
     func login() {
+        loginView.loginButton.hidden = true
+        loginView.loginButtonLabel.hidden = true
+        loginView.loginActivityIndicatorView.startAnimating()
         User.loginWithName(loginView.userNameField.text,
             password: loginView.passwordField.text,
             success: {
                 [weak self] user in
                 User.currentUser = user
-                self?.presentMainViewController()
+                if let self_ = self {
+                    UIView.animateWithDuration(0.5) {
+                        self_.loginView.loginButton.hidden = false
+                        self_.loginView.loginButtonLabel.hidden = false
+                        self_.loginView.loginActivityIndicatorView.stopAnimating()
+                    }
+                    self_.presentMainViewController()
+                }
             },
             failure: {
                 [weak self] error in
-                if let v = self?.loginView {
+                if let self_ = self {
+                    UIView.animateWithDuration(0.5) {
+                        self_.loginView.loginButton.hidden = false
+                        self_.loginView.loginButtonLabel.hidden = false
+                        self_.loginView.loginActivityIndicatorView.stopAnimating()
+                    }
+                    let v = self_.loginView
                     let s = AFViewShaker(viewsArray: [v.userNameImageViewContainerView, v.userNameField, v.passwordImageViewContainerView, v.passwordField, v.userNameFieldUnderline, v.passwordFieldUnderline])
                     s.shake()
                 }
