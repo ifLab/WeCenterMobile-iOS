@@ -534,7 +534,7 @@ class User: DataObject {
                             if userInfo != nil {
                                 action.user = User.cachedObjectWithID(Int(msr_object: userInfo!["uid"])!)
                                 action.user!.name = (userInfo!["user_name"] as! String)
-                                action.user!.avatarURI = (userInfo!["user_name"] as! String)
+                                action.user!.avatarURI = (userInfo!["avatar_file"] as! String)
                             } else {
                                 action.user = nil
                             }
