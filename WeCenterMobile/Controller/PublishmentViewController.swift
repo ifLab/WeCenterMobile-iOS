@@ -104,7 +104,6 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
         scrollView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         tagsField?.textField.textColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
         tagsField?.textField.font = UIFont.systemFontOfSize(14)
-        tagsField?.textField.attributedPlaceholder = NSAttributedString(string: "输入并以换行键添加，可添加多个", attributes: [NSForegroundColorAttributeName: UIColor.blackColor().colorWithAlphaComponent(0.3)])
         tagsField?.textField.keyboardAppearance = .Dark
         for identifier in SelfType.identifiers {
             imageCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: identifier)
@@ -121,22 +120,22 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
     
     // MARK: - ZFTokenFieldDataSource
     
-    func lineHeightForTokenInField(tokenField: ZFTokenField!) -> CGFloat {
+    func lineHeightForTokenField(tokenField: ZFTokenField!) -> CGFloat {
         return 24
     }
     
-    func numberOfTokenInField(tokenField: ZFTokenField!) -> UInt {
-        return UInt(tags.count)
+    func numberOfTokensInTokenField(tokenField: ZFTokenField!) -> Int {
+        return tags.count
     }
     
-    func tokenField(tokenField: ZFTokenField!, viewForTokenAtIndex index: UInt) -> UIView! {
-        let tag = tags[Int(index)]
+    func tokenField(tokenField: ZFTokenField!, viewForTokenAtIndex index: Int) -> UIView! {
+        let tag = tags[index]
         let label = UILabel()
         label.text = tag
         label.textColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
         label.font = UIFont.systemFontOfSize(14)
         label.sizeToFit()
-        label.frame.size.height = lineHeightForTokenInField(tagsField)
+        label.frame.size.height = lineHeightForTokenField(tagsField)
         label.frame.size.width += 20
         label.textAlignment = .Center
         label.layer.masksToBounds = true
@@ -147,26 +146,33 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
     
     // MARK: - ZFTokenFieldDelegate
     
-    func tokenMarginInTokenInField(tokenField: ZFTokenField!) -> CGFloat {
+    func tokenMarginForTokenField(tokenField: ZFTokenField!) -> CGFloat {
         return 5
     }
     
-    func tokenField(tokenField: ZFTokenField!, didRemoveTokenAtIndex index: UInt) {
-        tags.removeAtIndex(Int(index))
+    func tokenField(tokenField: ZFTokenField!, didRemoveTokenAtIndex index: Int) {
+        tags.removeAtIndex(index)
     }
     
     func tokenField(tokenField: ZFTokenField!, didReturnWithText text: String!) {
-        if text ?? "" == "" {
-            return
-        }
-        for tag in tags {
-            if tag == text {
-                tokenField?.reloadData()
-                return
-            }
-        }
         tags.append(text)
         tokenField?.reloadData()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField.text ?? "" == "" {
+            return false
+        }
+        for tag in tags {
+            if tag == textField.text {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func tokenFieldDidReloadData(tokenField: ZFTokenField!) {
+        tagsField?.textField.attributedPlaceholder = NSAttributedString(string: tags.count > 0 ? "..." : "输入并以换行键添加，可添加多个", attributes: [NSForegroundColorAttributeName: UIColor.blackColor().colorWithAlphaComponent(0.3)])
     }
     
     // MARK: - UICollectionDataSource

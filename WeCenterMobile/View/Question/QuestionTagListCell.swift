@@ -36,21 +36,25 @@ class QuestionTagListCell: UITableViewCell, ZFTokenFieldDataSource, ZFTokenField
     
     // MARK: - ZFTokenFieldDataSource
     
-    func lineHeightForTokenInField(tokenField: ZFTokenField!) -> CGFloat {
+    func lineHeightForTokenField(tokenField: ZFTokenField!) -> CGFloat {
         return 24
     }
     
-    func numberOfTokenInField(tokenField: ZFTokenField!) -> UInt {
-        return UInt(topics.count)
+    func tokenMarginForTokenField(tokenField: ZFTokenField!) -> CGFloat {
+        return 5
     }
     
-    func tokenField(tokenField: ZFTokenField!, viewForTokenAtIndex index: UInt) -> UIView! {
-        let tag = topics[Int(index)].title!
+    func numberOfTokensInTokenField(tokenField: ZFTokenField!) -> Int {
+        return topics.count
+    }
+    
+    func tokenField(tokenField: ZFTokenField!, viewForTokenAtIndex index: Int) -> UIView! {
+        let tag = topics[index].title!
         let label = UILabel()
         label.text = tag
         label.font = UIFont.systemFontOfSize(12)
         label.sizeToFit()
-        label.frame.size.height = lineHeightForTokenInField(tagsField)
+        label.frame.size.height = lineHeightForTokenField(tagsField)
         label.frame.size.width += 20
         label.textAlignment = .Center
         label.layer.masksToBounds = true
@@ -58,12 +62,6 @@ class QuestionTagListCell: UITableViewCell, ZFTokenFieldDataSource, ZFTokenField
         label.backgroundColor = UIColor.msr_materialGray200()
         label.textColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
         return label
-    }
-    
-    // MARK: - ZFTokenFieldDelegate
-    
-    func tokenMarginInTokenInField(tokenField: ZFTokenField!) -> CGFloat {
-        return 5
     }
     
 }
