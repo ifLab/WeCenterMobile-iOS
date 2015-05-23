@@ -32,7 +32,7 @@ let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
 class AppDelegate: UIResponder, UIApplicationDelegate, MSRWeChatAPIDelegate {
     
     var window: UIWindow?
-    let welcomeViewController = WelcomeViewController()
+    let welcomeViewController = NSBundle.mainBundle().loadNibNamed("LoginViewController", owner: nil, options: nil).first as! LoginViewController
     var mainViewController: MainViewController!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {

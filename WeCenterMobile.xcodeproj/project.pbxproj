@@ -20,7 +20,6 @@
 		950FE50D1A1DA2B500167D09 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1361A1DA2B300167D09 /* UserListViewController.swift */; };
 		950FE50E1A1DA2B500167D09 /* QuestionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1371A1DA2B300167D09 /* QuestionListViewController.swift */; };
 		950FE5101A1DA2B500167D09 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE1391A1DA2B300167D09 /* UserViewController.swift */; };
-		950FE5111A1DA2B500167D09 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FE13A1A1DA2B300167D09 /* WelcomeViewController.swift */; };
 		950FE7E21A1DA53A00167D09 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7DF1A1DA52000167D09 /* CoreText.framework */; };
 		950FE7E31A1DA53A00167D09 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7DD1A1DA51900167D09 /* UIKit.framework */; };
 		950FE7E41A1DA53A00167D09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7DB1A1DA51400167D09 /* Foundation.framework */; };
@@ -229,8 +228,6 @@
 		9531D7581AF3E4AC00E6549D /* UserFooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D7141AF3E4AC00E6549D /* UserFooterCell.xib */; };
 		9531D7591AF3E4AC00E6549D /* UserHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D7151AF3E4AC00E6549D /* UserHeaderView.swift */; };
 		9531D75A1AF3E4AC00E6549D /* UserHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D7161AF3E4AC00E6549D /* UserHeaderView.xib */; };
-		9531D75B1AF3E4AC00E6549D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D7181AF3E4AC00E6549D /* LoginView.swift */; };
-		9531D75C1AF3E4AC00E6549D /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D7191AF3E4AC00E6549D /* LoginView.xib */; };
 		9531D7681AF3E85900E6549D /* ImageUploadingProgressBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D7651AF3E85900E6549D /* ImageUploadingProgressBar.xib */; };
 		9531D7691AF3E85900E6549D /* UIImageView+DataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D7661AF3E85900E6549D /* UIImageView+DataObject.swift */; };
 		9531D7881AF3E8E400E6549D /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D76B1AF3E8E400E6549D /* Action.swift */; };
@@ -347,6 +344,8 @@
 		95DC57151AF8A38D0075C3CB /* UserAtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC57141AF8A38D0075C3CB /* UserAtView.swift */; };
 		95DC57191AF8AAFA0075C3CB /* NSObject+MSRClone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC57181AF8AAFA0075C3CB /* NSObject+MSRClone.swift */; };
 		95DC571B1AF8AD4D0075C3CB /* NSObject+MSRUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC571A1AF8AD4D0075C3CB /* NSObject+MSRUserInfo.swift */; };
+		95DFA7051B1224BC00DF1C0E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DFA7031B1224BC00DF1C0E /* LoginViewController.swift */; };
+		95DFA7061B1224BC00DF1C0E /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95DFA7041B1224BC00DF1C0E /* LoginViewController.xib */; };
 		95E5355A1A49DCFD00D7B76B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535591A49DCFD00D7B76B /* HomeViewController.swift */; };
 		95ED5EF11B084D0500CDB225 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5EDF1B084D0500CDB225 /* AFHTTPRequestOperation.m */; };
 		95ED5EF21B084D0500CDB225 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5EE11B084D0500CDB225 /* AFHTTPRequestOperationManager.m */; };
@@ -448,7 +447,6 @@
 		950FE1361A1DA2B300167D09 /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		950FE1371A1DA2B300167D09 /* QuestionListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionListViewController.swift; sourceTree = "<group>"; };
 		950FE1391A1DA2B300167D09 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		950FE13A1A1DA2B300167D09 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = WelcomeViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		950FE4EF1A1DA2B500167D09 /* WeCenterMobile.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeCenterMobile.pch; sourceTree = "<group>"; };
 		950FE7CF1A1DA4EC00167D09 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		950FE7D11A1DA4F300167D09 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -807,8 +805,6 @@
 		9531D7141AF3E4AC00E6549D /* UserFooterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserFooterCell.xib; sourceTree = "<group>"; };
 		9531D7151AF3E4AC00E6549D /* UserHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHeaderView.swift; sourceTree = "<group>"; };
 		9531D7161AF3E4AC00E6549D /* UserHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHeaderView.xib; sourceTree = "<group>"; };
-		9531D7181AF3E4AC00E6549D /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		9531D7191AF3E4AC00E6549D /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		9531D7651AF3E85900E6549D /* ImageUploadingProgressBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageUploadingProgressBar.xib; sourceTree = "<group>"; };
 		9531D7661AF3E85900E6549D /* UIImageView+DataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+DataObject.swift"; sourceTree = "<group>"; };
 		9531D76B1AF3E8E400E6549D /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
@@ -968,6 +964,8 @@
 		95DC57141AF8A38D0075C3CB /* UserAtView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAtView.swift; sourceTree = "<group>"; };
 		95DC57181AF8AAFA0075C3CB /* NSObject+MSRClone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+MSRClone.swift"; sourceTree = "<group>"; };
 		95DC571A1AF8AD4D0075C3CB /* NSObject+MSRUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+MSRUserInfo.swift"; sourceTree = "<group>"; };
+		95DFA7031B1224BC00DF1C0E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		95DFA7041B1224BC00DF1C0E /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		95E535591A49DCFD00D7B76B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HomeViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		95ED5EDE1B084D0500CDB225 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		95ED5EDF1B084D0500CDB225 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -1083,6 +1081,8 @@
 				950FE12D1A1DA2B300167D09 /* ExploreViewController.swift */,
 				95F380BA1AB269690070A7FB /* FeaturedObjectListViewController.swift */,
 				95E535591A49DCFD00D7B76B /* HomeViewController.swift */,
+				95DFA7031B1224BC00DF1C0E /* LoginViewController.swift */,
+				95DFA7041B1224BC00DF1C0E /* LoginViewController.xib */,
 				950FE12F1A1DA2B300167D09 /* MainViewController.swift */,
 				95B1D9D91ABE0CF200BEC8BD /* MediaPickerController.swift */,
 				958CB5BA1AB98DC3002ECCF4 /* PublishmentViewController.swift */,
@@ -1096,7 +1096,6 @@
 				950FE1391A1DA2B300167D09 /* UserViewController.swift */,
 				9568F39E1AEC748A00B201A8 /* UserEditViewController.swift */,
 				9568F3A11AEC74AB00B201A8 /* UserEditViewController.xib */,
-				950FE13A1A1DA2B300167D09 /* WelcomeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1151,7 +1150,6 @@
 				9531D7041AF3E4AC00E6549D /* Sidebar */,
 				9531D7091AF3E4AC00E6549D /* Topic */,
 				9531D70E1AF3E4AC00E6549D /* User */,
-				9531D7171AF3E4AC00E6549D /* Welcome */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1762,15 +1760,6 @@
 			path = User;
 			sourceTree = "<group>";
 		};
-		9531D7171AF3E4AC00E6549D /* Welcome */ = {
-			isa = PBXGroup;
-			children = (
-				9531D7181AF3E4AC00E6549D /* LoginView.swift */,
-				9531D7191AF3E4AC00E6549D /* LoginView.xib */,
-			);
-			path = Welcome;
-			sourceTree = "<group>";
-		};
 		9531D7631AF3E85900E6549D /* Others */ = {
 			isa = PBXGroup;
 			children = (
@@ -2329,7 +2318,6 @@
 			files = (
 				9531D7461AF3E4AC00E6549D /* QuestionCell.xib in Resources */,
 				9531D71F1AF3E4AC00E6549D /* AnswerCell.xib in Resources */,
-				9531D75C1AF3E4AC00E6549D /* LoginView.xib in Resources */,
 				950FE1241A1DA2A400167D09 /* Configuration.plist in Resources */,
 				956140021AE2E6080077FBA0 /* .gitignore in Resources */,
 				9531D74C1AF3E4AC00E6549D /* SidebarCategoryCell.xib in Resources */,
@@ -2368,6 +2356,7 @@
 				956140031AE2E6080077FBA0 /* LICENSE in Resources */,
 				9531D7351AF3E4AC00E6549D /* ArticleAgreementActionCell.xib in Resources */,
 				9531D7401AF3E4AC00E6549D /* QuestionBodyCell.xib in Resources */,
+				95DFA7061B1224BC00DF1C0E /* LoginViewController.xib in Resources */,
 				9531D7291AF3E4AC00E6549D /* FeaturedArticleCell.xib in Resources */,
 				9531D7271AF3E4AC00E6549D /* CommentCell.xib in Resources */,
 				9531D75A1AF3E4AC00E6549D /* UserHeaderView.xib in Resources */,
@@ -2406,7 +2395,6 @@
 				9531D7691AF3E85900E6549D /* UIImageView+DataObject.swift in Sources */,
 				951D1E871ACD1E4E0072D555 /* DTCoreTextLayoutFrameAccessibilityElementGenerator.m in Sources */,
 				95DC57131AF89F790075C3CB /* UITextField+MSRGetter.swift in Sources */,
-				9531D75B1AF3E4AC00E6549D /* LoginView.swift in Sources */,
 				95C893771AC7365D00B7B385 /* MSRSidebar.swift in Sources */,
 				951D1F941ACD1E750072D555 /* NSString+DTUtilities.m in Sources */,
 				95DC57101AF785040075C3CB /* Evalation.swift in Sources */,
@@ -2532,7 +2520,6 @@
 				95ED5F1B1B084D3900CDB225 /* SVIndefiniteAnimatedView.m in Sources */,
 				9531D7941AF3E8E400E6549D /* Question.swift in Sources */,
 				951D1F6E1ACD1E750072D555 /* DTZipArchiveNode.m in Sources */,
-				950FE5111A1DA2B500167D09 /* WelcomeViewController.swift in Sources */,
 				9531D78E1AF3E8E400E6549D /* ArticleAgreementAction.swift in Sources */,
 				9531D7321AF3E4AC00E6549D /* AnswerAgreementActionCell.swift in Sources */,
 				95ED5F301B084D5100CDB225 /* UIImage+UzysExtension.m in Sources */,
@@ -2576,6 +2563,7 @@
 				951D1EA91ACD1E4E0072D555 /* NSDictionary+DTCoreText.m in Sources */,
 				951D1F671ACD1E750072D555 /* NSScanner+DTScripting.m in Sources */,
 				951D1E771ACD1E4E0072D555 /* DTAnchorHTMLElement.m in Sources */,
+				95DFA7051B1224BC00DF1C0E /* LoginViewController.swift in Sources */,
 				95ED5F1D1B084D3900CDB225 /* SVProgressHUD.m in Sources */,
 				951DA7551AEAACD300F0E3A7 /* UIImage+MSRGetter.swift in Sources */,
 				95ED5F401B084F7500CDB225 /* RMActionController.m in Sources */,
