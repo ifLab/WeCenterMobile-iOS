@@ -97,10 +97,6 @@ class User: DataObject {
         }
     }
     
-    class func get(#ID: NSNumber, error: NSErrorPointer) -> User? {
-        return DataManager.defaultManager!.fetch("User", ID: ID, error: error) as? User
-    }
-    
     class func fetch(#ID: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("User Extra Information",
             parameters: [
@@ -341,18 +337,21 @@ class User: DataObject {
             for cookie in cookies {
                 storage.setCookie(cookie)
             }
-            if let user = get(ID: userID!, error: &error) {
+            if let user = DataManager.defaultManager?.fetch("User", ID: userID!, error: &error) as? User {
                 success?(user)
             } else {
-                var userInfo = [
+                var userInfo: NSMutableDictionary = [
                     NSLocalizedDescriptionKey: "Cookies and user ID were found, but no such user in cache.",
                     NSLocalizedFailureReasonErrorKey: "Caches have been cleared before.",
                     NSLocalizedRecoverySuggestionErrorKey: "By accessing \"User Basic Information\" with cookies in header, you can get the basic infomation of current user. Cookies have been set into header."
                 ]
+                if error != nil {
+                    userInfo[NSUnderlyingErrorKey] = error
+                }
                 failure?(NSError(
                     domain: NetworkManager.defaultManager!.website,
                     code: NetworkManager.defaultManager!.internalErrorCode.integerValue,
-                    userInfo: userInfo))
+                    userInfo: userInfo as [NSObject: AnyObject]))
             }
         }
     }

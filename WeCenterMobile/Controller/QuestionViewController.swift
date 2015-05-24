@@ -43,12 +43,10 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     lazy var questionBodyCell: QuestionBodyCell = {
         [weak self] in
         let c = NSBundle.mainBundle().loadNibNamed("QuestionBodyCell", owner: nil, options: nil).first as! QuestionBodyCell
-        c.lazyImageViewDelegate = self
-        c.linkButtonDelegate = self
-        NSNotificationCenter.defaultCenter().addObserverForName(DTAttributedTextContentViewDidFinishLayoutNotification, object: c.attributedTextContextView, queue: NSOperationQueue.mainQueue()) {
-            [weak self] notification in
-            self?.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .None)
-            return
+        if let self_ = self {
+            c.lazyImageViewDelegate = self_
+            c.linkButtonDelegate = self_
+            NSNotificationCenter.defaultCenter().addObserver(self_, selector: "attributedTextContentViewDidFinishLayout:", name: DTAttributedTextContentViewDidFinishLayoutNotification, object: nil)
         }
         return c
     }()
@@ -298,12 +296,20 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         }
     }
     
+    func attributedTextContentViewDidFinishLayout(notification: NSNotification) {
+        tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .None)
+    }
+    
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .Default
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
 }

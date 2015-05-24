@@ -36,10 +36,6 @@ class Topic: DataObject {
         }
     }
     
-    class func get(#ID: NSNumber, error: NSErrorPointer) -> Topic? {
-        return DataManager.defaultManager!.fetch("Topic", ID: ID, error: error) as? Topic
-    }
-    
     class func fetch(#ID: NSNumber, success: ((Topic) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("Topic Detail",
             parameters: [

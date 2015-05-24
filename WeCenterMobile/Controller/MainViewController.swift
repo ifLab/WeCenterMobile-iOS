@@ -77,14 +77,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1), animated: false, scrollPosition: .None)
-        NSNotificationCenter.defaultCenter().addObserverForName(CurrentUserPropertyDidChangeNotificationName, object: nil, queue: NSOperationQueue.mainQueue()) {
-            [weak self] notification in
-            let key = notification.userInfo![KeyUserInfoKey] as! String
-            if key == "avatarData" || key == "name" {
-                self?.userCell.update(user: User.currentUser, updateImage: key == "avatarData")
-            }
-            return
-        }
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentUserPropertyDidChange:", name: CurrentUserPropertyDidChangeNotificationName, object: nil)
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
@@ -144,10 +137,19 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func msr_sidebarDidExpand(sidebar: MSRSidebar) {
         setNeedsStatusBarAppearanceUpdate()
     }
+    func currentUserPropertyDidChange(notification: NSNotification) {
+        let key = notification.userInfo![KeyUserInfoKey] as! String
+        if key == "avatarData" || key == "name" {
+            userCell.update(user: User.currentUser, updateImage: key == "avatarData")
+        }
+    }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return sidebar.collapsed ? contentViewController.preferredStatusBarStyle() : .Default
     }
     override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
         return .Slide
+    }
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }

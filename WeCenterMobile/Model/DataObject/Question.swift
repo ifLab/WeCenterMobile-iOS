@@ -28,10 +28,6 @@ class Question: DataObject {
     
     var focusing: Bool? = nil
     
-    class func get(#ID: NSNumber, error: NSErrorPointer) -> Question? {
-        return DataManager.defaultManager!.fetch("Question", ID: ID, error: error) as? Question
-    }
-    
     class func fetch(#ID: NSNumber, success: ((Question) -> Void)?, failure: ((NSError) -> Void)?) {
         let question = Question.cachedObjectWithID(ID)
         NetworkManager.defaultManager!.GET("Question Detail",

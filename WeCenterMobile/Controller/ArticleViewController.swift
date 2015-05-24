@@ -120,11 +120,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserverForName(DTAttributedTextContentViewDidFinishLayoutNotification, object: bodyView.attributedTextContentView, queue: NSOperationQueue.mainQueue()) {
-            [weak self] notification in
-            self?.bodyView.contentSize.height = max(self!.bodyView.attributedTextContentView.bounds.height, self!.bodyView.bounds.height + self!.header.maxHeight - self!.header.normalHeight - self!.header.minHeight)
-            return
-        }
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "attributedTextContentViewDidFinishLayout:", name: DTAttributedTextContentViewDidFinishLayoutNotification, object: nil)
         reloadData()
         bodyView.msr_uiRefreshControl!.beginRefreshing()
         refresh()
@@ -364,6 +360,10 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
         presentViewController(ac, animated: true, completion: nil)
     }
     
+    func attributedTextContentViewDidFinishLayout(notification: NSNotification) {
+        bodyView.contentSize.height = max(bodyView.attributedTextContentView.bounds.height, bodyView.bounds.height + header.maxHeight - header.normalHeight - header.minHeight)
+    }
+    
     func animate(animations: (() -> Void)) {
         UIView.animateWithDuration(0.5,
             delay: 0,
@@ -377,6 +377,9 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .Default
     }
-
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
 }

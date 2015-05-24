@@ -104,7 +104,6 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
         scrollView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         tagsField?.textField.textColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
         tagsField?.textField.font = UIFont.systemFontOfSize(14)
-        tagsField?.textField.keyboardAppearance = .Dark
         for identifier in SelfType.identifiers {
             imageCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: identifier)
         }

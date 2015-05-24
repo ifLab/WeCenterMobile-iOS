@@ -25,7 +25,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="black" bouncesZoom="NO" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="xNo-9M-oLj">
+                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNo-9M-oLj">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                     <subviews>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b96-0o-LfR" userLabel="Width Constraint View">
@@ -265,6 +265,7 @@
                 <outlet property="passwordImageView" destination="pN7-74-iLI" id="56J-Cs-CIF"/>
                 <outlet property="passwordImageViewContainerView" destination="LgQ-wj-5QD" id="QzA-bk-l1h"/>
                 <outlet property="scrollView" destination="xNo-9M-oLj" id="VFE-7r-GDL"/>
+                <outlet property="titleTextFieldContainerView" destination="bAZ-cG-20t" id="oUg-VL-abV"/>
                 <outlet property="userNameField" destination="udd-FZ-fBL" id="Z8R-IX-BYQ"/>
                 <outlet property="userNameFieldUnderline" destination="IVK-wE-vao" id="tba-Q1-PwQ"/>
                 <outlet property="userNameImageView" destination="BdF-S1-7uz" id="vXw-YM-wjn"/>

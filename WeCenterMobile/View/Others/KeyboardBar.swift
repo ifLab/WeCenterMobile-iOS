@@ -13,7 +13,6 @@ import UIKit
     lazy var textField: UITextField = {
         let v = UITextField()
         v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
-        v.keyboardAppearance = .Dark
         v.textColor = UIColor.blackColor().colorWithAlphaComponent(0.87)
         v.attributedPlaceholder = NSAttributedString(string: "在此处输入评论……", attributes: [NSForegroundColorAttributeName: UIColor.blackColor().colorWithAlphaComponent(0.6)])
         v.borderStyle = .None
