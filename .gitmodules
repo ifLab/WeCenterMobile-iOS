@@ -4,9 +4,6 @@
 [submodule "WeCenterMobile/External/MJRefresh"]
 	path = WeCenterMobile/External/MJRefresh
 	url = https://github.com/CoderMJLee/MJRefresh.git
-[submodule "WeCenterMobile/External/ZFTokenField"]
-	path = WeCenterMobile/External/ZFTokenField
-	url = https://github.com/Msr-B/ZFTokenField
 [submodule "WeCenterMobile/External/UzysAssetsPickerController"]
 	path = WeCenterMobile/External/UzysAssetsPickerController
 	url = https://github.com/uzysjung/UzysAssetsPickerController.git
@@ -40,3 +37,6 @@
 [submodule "WeCenterMobile/External/AFViewShaker"]
 	path = WeCenterMobile/External/AFViewShaker
 	url = https://github.com/ArtFeel/AFViewShaker.git
+[submodule "WeCenterMobile/External/ZFTokenField"]
+	path = WeCenterMobile/External/ZFTokenField
+	url = https://github.com/Msr-B/ZFTokenField
