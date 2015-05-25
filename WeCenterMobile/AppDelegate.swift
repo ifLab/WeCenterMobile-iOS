@@ -31,25 +31,26 @@ let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MSRWeChatAPIDelegate {
     
-    var window: UIWindow?
-    let welcomeViewController = NSBundle.mainBundle().loadNibNamed("LoginViewController", owner: nil, options: nil).first as! LoginViewController
+    lazy var window: UIWindow? = {
+        let v = UIWindow(frame: UIScreen.mainScreen().bounds)
+        return v
+    }()
+    lazy var loginViewController: LoginViewController = {
+        let vc = NSBundle.mainBundle().loadNibNamed("LoginViewController", owner: nil, options: nil).first as! LoginViewController
+        return vc
+    }()
     var mainViewController: MainViewController!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+//        clearCaches()
         AFNetworkActivityIndicatorManager.sharedManager().enabled = true
         UIScrollView.msr_installPanGestureTranslationAdjustmentExtension()
         UIScrollView.msr_installTouchesCancellingExtension()
-//        NSURLCache.setSharedURLCache(NSURLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil))
-//        NetworkManager.clearCookies()
-//        let directory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last as! NSURL
-//        let url = directory.URLByAppendingPathComponent("WeCenterMobile.sqlite")
-//        NSFileManager.defaultManager().removeItemAtURL(url, error: nil)
         DTAttributedTextContentView.setLayerClass(DTTiledLayerWithoutFade.self)
         MSRWeChatAPI.registerAppWithID("wx4dc4b980c462893b")
         WeiboSDK.registerApp("3758958382")
         WeiboSDK.enableDebugMode(true)
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window!.rootViewController = welcomeViewController
+        window!.rootViewController = loginViewController
         window!.makeKeyAndVisible()
         return true
     }
@@ -64,6 +65,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MSRWeChatAPIDelegate {
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         return MSRWeChatAPI.handleOpenURL(url, withDelegate: self)
+    }
+    
+    func clearCaches() {
+        NSURLCache.setSharedURLCache(NSURLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil))
+        NetworkManager.clearCookies()
+        let directory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last as! NSURL
+        let url = directory.URLByAppendingPathComponent("WeCenterMobile.sqlite")
+        NSFileManager.defaultManager().removeItemAtURL(url, error: nil)
     }
     
 }
