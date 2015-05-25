@@ -172,13 +172,13 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAZ-cG-20t" userLabel="Title Text Field Vibrancy View">
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAZ-cG-20t" userLabel="Title Label Vibrancy View">
                                             <rect key="frame" x="152" y="72" width="296" height="88"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="a0G-ld-bxI" userLabel="Contrainer">
                                                 <rect key="frame" x="0.0" y="0.0" width="296" height="88"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WeCenter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sb-rR-uL6" userLabel="Title Text Field">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WeCenter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sb-rR-uL6" userLabel="Title Label">
                                                         <rect key="frame" x="0.0" y="0.0" width="296" height="88"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="64"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -265,7 +265,8 @@
                 <outlet property="passwordImageView" destination="pN7-74-iLI" id="56J-Cs-CIF"/>
                 <outlet property="passwordImageViewContainerView" destination="LgQ-wj-5QD" id="QzA-bk-l1h"/>
                 <outlet property="scrollView" destination="xNo-9M-oLj" id="VFE-7r-GDL"/>
-                <outlet property="titleTextFieldContainerView" destination="bAZ-cG-20t" id="oUg-VL-abV"/>
+                <outlet property="titleLabel" destination="7sb-rR-uL6" id="YXu-QP-EBD"/>
+                <outlet property="titleLabelContainerView" destination="bAZ-cG-20t" id="lDG-Jh-hlQ"/>
                 <outlet property="userNameField" destination="udd-FZ-fBL" id="Z8R-IX-BYQ"/>
                 <outlet property="userNameFieldUnderline" destination="IVK-wE-vao" id="tba-Q1-PwQ"/>
                 <outlet property="userNameImageView" destination="BdF-S1-7uz" id="vXw-YM-wjn"/>

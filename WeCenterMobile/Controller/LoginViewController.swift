@@ -23,7 +23,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var loginButtonLabel: UILabel!
     @IBOutlet weak var loginActivityIndicatorView: UIActivityIndicatorView!
-    @IBOutlet weak var titleTextFieldContainerView: UIVisualEffectView!
+    @IBOutlet weak var titleLabelContainerView: UIVisualEffectView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,12 +40,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginButton.layer.cornerRadius = 5
         loginButton.layer.masksToBounds = true
         loginButton.addTarget(self, action: "login", forControlEvents: .TouchUpInside)
-        scrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "didPressBlankArea"))
-        scrollView.addGestureRecognizer(UISwipeGestureRecognizer(target: self, action: "didPressBlankArea"))
+        scrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "didTouchBlankArea:"))
+        let recognizer = UIPanGestureRecognizer(target: self, action: "didTouchBlankArea:")
+        scrollView.addGestureRecognizer(recognizer)
         userNameField.delegate = self
         passwordField.delegate = self
     }
-    
     var firstAppear: Bool = true
     
     override func viewWillAppear(animated: Bool) {
@@ -137,8 +138,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     let sv = self_.scrollView
                     if info.frameEnd.minY == UIScreen.mainScreen().bounds.height {
                         sv.contentInset.bottom = 0
+                        self_.titleLabel.alpha = 1
                     } else {
-                        sv.contentInset.bottom = self_.titleTextFieldContainerView.frame.maxY + 20
+                        sv.contentInset.bottom = self_.titleLabelContainerView.frame.maxY + 20
+                        self_.titleLabel.alpha = 0
                     }
                     sv.contentOffset.y = sv.contentSize.height - sv.bounds.height + sv.contentInset.bottom
                 }
@@ -146,8 +149,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             completion: nil)
     }
     
-    func didPressBlankArea() {
-        view.msr_resignFirstResponderOfAllSubviews()
+    func didTouchBlankArea(recognizer: UIGestureRecognizer) {
+        if recognizer.state == .Began {
+            view.msr_resignFirstResponderOfAllSubviews()
+        }
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
