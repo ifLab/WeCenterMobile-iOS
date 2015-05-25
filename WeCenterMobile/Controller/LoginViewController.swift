@@ -40,9 +40,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginButton.layer.cornerRadius = 5
         loginButton.layer.masksToBounds = true
         loginButton.addTarget(self, action: "login", forControlEvents: .TouchUpInside)
-        scrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "didTouchBlankArea:"))
-        let recognizer = UIPanGestureRecognizer(target: self, action: "didTouchBlankArea:")
-        scrollView.addGestureRecognizer(recognizer)
+        let tap = UITapGestureRecognizer(target: self, action: "didTouchBlankArea")
+        let pan = UIPanGestureRecognizer(target: self, action: "didTouchBlankArea")
+        scrollView.addGestureRecognizer(tap)
+        scrollView.addGestureRecognizer(pan)
+        pan.requireGestureRecognizerToFail(tap)
         userNameField.delegate = self
         passwordField.delegate = self
     }
@@ -129,30 +131,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func keyboardWillChangeFrame(notification: NSNotification) {
         let info = MSRAnimationInfo(keyboardNotification: notification)
-        UIView.animateWithDuration(info.animationDuration,
-            delay: 0,
-            options: UIViewAnimationOptions(rawValue: UInt(info.animationCurve.rawValue)) | .BeginFromCurrentState,
-            animations: {
-                [weak self] in
-                if let self_ = self {
-                    let sv = self_.scrollView
-                    if info.frameEnd.minY == UIScreen.mainScreen().bounds.height {
-                        sv.contentInset.bottom = 0
-                        self_.titleLabel.alpha = 1
-                    } else {
-                        sv.contentInset.bottom = self_.titleLabelContainerView.frame.maxY + 20
-                        self_.titleLabel.alpha = 0
-                    }
-                    sv.contentOffset.y = sv.contentSize.height - sv.bounds.height + sv.contentInset.bottom
+        info.animate() {
+            [weak self] in
+            if let self_ = self {
+                let sv = self_.scrollView
+                if info.frameEnd.minY == UIScreen.mainScreen().bounds.height {
+                    sv.contentInset.bottom = 0
+                    self_.titleLabel.alpha = 1
+                } else {
+                    sv.contentInset.bottom = self_.titleLabelContainerView.frame.maxY + 20
+                    self_.titleLabel.alpha = 0
                 }
-            },
-            completion: nil)
+                sv.contentOffset.y = sv.contentSize.height - sv.bounds.height + sv.contentInset.bottom
+            }
+        }
     }
     
-    func didTouchBlankArea(recognizer: UIGestureRecognizer) {
-        if recognizer.state == .Began {
-            view.msr_resignFirstResponderOfAllSubviews()
-        }
+    func didTouchBlankArea() {
+        view.msr_resignFirstResponderOfAllSubviews()
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

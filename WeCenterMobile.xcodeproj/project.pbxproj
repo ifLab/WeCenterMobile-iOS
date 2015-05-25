@@ -2876,6 +2876,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"${SDK_DIR}\"/usr/include/libxml2";
 			};
 			name = Debug;
@@ -2910,6 +2911,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"${SDK_DIR}\"/usr/include/libxml2";
 			};
 			name = Release;

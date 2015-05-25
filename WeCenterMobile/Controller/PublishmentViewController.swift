@@ -46,6 +46,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var titleField: UITextView?
     @IBOutlet weak var bodyField: UITextView!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     typealias SelfType = PublishmentViewController
     
@@ -83,7 +84,6 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        scrollView.delaysContentTouches = false
         titleField?.layer.borderColor = UIColor.msr_materialGray300().CGColor
         titleField?.layer.borderWidth = 0.5
         tagsField?.layer.borderColor = UIColor.msr_materialGray300().CGColor
@@ -100,19 +100,21 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
         dismissButton.layer.borderWidth = 0.5
         publishButton.layer.borderColor = UIColor.msr_materialGray300().CGColor
         publishButton.layer.borderWidth = 0.5
-        scrollView.alwaysBounceVertical = true
+        scrollView.alwaysBounceVertical = false
+        scrollView.delaysContentTouches = false
+        scrollView.scrollIndicatorInsets.top = 20
         scrollView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         tagsField?.textField.textColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
         tagsField?.textField.font = UIFont.systemFontOfSize(14)
         for identifier in SelfType.identifiers {
             imageCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: identifier)
         }
-        imageCollectionView.backgroundColor = UIColor.clearColor()
         imageAdditonButton.setImage(UIImage(named: "AddButton"), forState: .Normal)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillChangeFrame:", name: UIKeyboardWillChangeFrameNotification, object: nil)
         tagsField?.reloadData()
         imageCollectionView.reloadData()
     }
@@ -159,13 +161,16 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if textField.text ?? "" == "" {
-            return false
-        }
-        for tag in tags {
-            if tag == textField.text {
+        if textField === tagsField?.textField {
+            if textField.text ?? "" == "" {
                 return false
             }
+            for tag in tags {
+                if tag == textField.text {
+                    return false
+                }
+            }
+            return true
         }
         return true
     }
@@ -481,6 +486,26 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
             })
         ac.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
         presentViewController(ac, animated: true, completion: nil)
+    }
+    
+    // MARK: - Keyboard Notification Observer
+    
+    func keyboardWillChangeFrame(notification: NSNotification) {
+        let info = MSRAnimationInfo(keyboardNotification: notification)
+        info.animate() {
+            [weak self] in
+            if let self_ = self {
+                let bottom = UIScreen.mainScreen().bounds.height - info.frameEnd.minY
+                self_.bottomConstraint.constant = bottom + 20
+                self_.scrollView.scrollIndicatorInsets.bottom = bottom
+                self_.scrollView.layoutIfNeeded()
+            }
+            return
+        }
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
 }
