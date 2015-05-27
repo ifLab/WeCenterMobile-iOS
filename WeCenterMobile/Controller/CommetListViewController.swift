@@ -42,12 +42,14 @@ extension Article: CommentListViewControllerPresentable {
     }
 }
 
-class CommentListViewController: UITableViewController {
+class CommentListViewController: UITableViewController, UITextFieldDelegate {
     var dataObject: CommentListViewControllerPresentable
     var comments = [Comment]()
     let cellReuseIdentifier = "CommentCell"
     let cellNibName = "CommentCell"
-    let keyboardBar = KeyboardBar()
+    var keyboardBar: KeyboardBar {
+        return tableView.inputAccessoryView as! KeyboardBar
+    }
     init(dataObject: CommentListViewControllerPresentable) {
         self.dataObject = dataObject
         super.init(nibName: nil, bundle: nil)
@@ -58,6 +60,9 @@ class CommentListViewController: UITableViewController {
     override func loadView() {
         super.loadView()
         title = "评论"
+        tableView = TableViewWithKeyboardBar()
+        tableView.delegate = self
+        tableView.dataSource = self
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         tableView.delaysContentTouches = false
@@ -65,15 +70,16 @@ class CommentListViewController: UITableViewController {
         tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         tableView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         tableView.separatorStyle = .None
-        tableView.contentInset.bottom = 50
+        tableView.contentInset.bottom = 8
         tableView.estimatedRowHeight = 50
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.keyboardDismissMode = .OnDrag
+        tableView.keyboardDismissMode = .Interactive
         tableView.backgroundColor = UIColor.msr_materialGray200()
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
         msr_navigationBar!.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         keyboardBar.userAtView.removeButton.addTarget(self, action: "removeAtUser", forControlEvents: .TouchUpInside)
         keyboardBar.publishButton.addTarget(self, action: "publishComment", forControlEvents: .TouchUpInside)
+        keyboardBar.textField.delegate = self
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +88,11 @@ class CommentListViewController: UITableViewController {
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        msr_navigationWrapperController!.view.addSubview(keyboardBar)
+        tableView.becomeFirstResponder()
+    }
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        tableView.resignFirstResponder()
     }
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -102,11 +112,14 @@ class CommentListViewController: UITableViewController {
         return false
     }
     func didPressUserButton(sender: UIButton) {
+        keyboardBar.textField.resignFirstResponder()
         if let user = sender.msr_userInfo as? User {
+            tableView.resignFirstResponder()
             msr_navigationController!.pushViewController(UserViewController(user: user), animated: true)
         }
     }
     func didPressCommentButton(sender: UIButton) {
+        keyboardBar.textField.resignFirstResponder()
         if let comment = sender.msr_userInfo as? Comment {
             let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
             alertController.addAction(UIAlertAction(

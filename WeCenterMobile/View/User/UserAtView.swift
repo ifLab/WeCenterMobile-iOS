@@ -69,7 +69,7 @@ import UIKit
     
     func wc_initialize() {
         layer.borderWidth = 0.5
-        layer.borderColor = UIColor.msr_materialGray300().CGColor
+        layer.borderColor = UIColor.lightGrayColor().CGColor
         for v in [atLabel, userNameLabel, removeImageView, removeButton] {
             addSubview(v)
         }

@@ -102,6 +102,14 @@
                             <constraint firstItem="04C-aI-9TX" firstAttribute="top" secondItem="TAh-OH-inq" secondAttribute="top" id="vkn-j8-mjV"/>
                             <constraint firstAttribute="bottom" secondItem="04C-aI-9TX" secondAttribute="bottom" id="wwW-OF-O8n"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="msr_borderColor">
+                                <color key="value" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
