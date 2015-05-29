@@ -17,13 +17,7 @@ class SidebarCategoryCell: UITableViewCell {
         super.awakeFromNib()
         selectedBackgroundView = UIView()
         selectedBackgroundView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.1)
-        let backgroundIndicator = UIView()
-        selectedBackgroundView.addSubview(backgroundIndicator)
-        backgroundIndicator.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
-        backgroundIndicator.msr_addVerticalEdgeAttachedConstraintsToSuperview()
-        backgroundIndicator.msr_addLeftAttachedConstraintToSuperview()
-        backgroundIndicator.msr_addWidthConstraintWithValue(5)
-        backgroundIndicator.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
+        msr_scrollView?.delaysContentTouches = false
     }
     
     func update(#image: UIImage, title: String) {

@@ -215,8 +215,6 @@
 		9531D74A1AF3E4AC00E6549D /* QuestionTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D7031AF3E4AC00E6549D /* QuestionTitleCell.xib */; };
 		9531D74B1AF3E4AC00E6549D /* SidebarCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D7051AF3E4AC00E6549D /* SidebarCategoryCell.swift */; };
 		9531D74C1AF3E4AC00E6549D /* SidebarCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D7061AF3E4AC00E6549D /* SidebarCategoryCell.xib */; };
-		9531D74D1AF3E4AC00E6549D /* SidebarUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D7071AF3E4AC00E6549D /* SidebarUserCell.swift */; };
-		9531D74E1AF3E4AC00E6549D /* SidebarUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D7081AF3E4AC00E6549D /* SidebarUserCell.xib */; };
 		9531D74F1AF3E4AC00E6549D /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D70A1AF3E4AC00E6549D /* TopicCell.swift */; };
 		9531D7501AF3E4AC00E6549D /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9531D70B1AF3E4AC00E6549D /* TopicCell.xib */; };
 		9531D7511AF3E4AC00E6549D /* TopicHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D70C1AF3E4AC00E6549D /* TopicHeaderView.swift */; };
@@ -287,6 +285,8 @@
 		9585FA2D1B0078C60079D57D /* UITableViewCell+MSRGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9585FA2C1B0078C60079D57D /* UITableViewCell+MSRGetter.swift */; };
 		958600821B17308C0054DAA8 /* UIView+MSRAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958600811B17308C0054DAA8 /* UIView+MSRAccessor.swift */; };
 		958600851B1736FB0054DAA8 /* MSRKeyboardBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958600841B1736FB0054DAA8 /* MSRKeyboardBar.swift */; };
+		958600871B187CB50054DAA8 /* SidebarUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958600861B187CB50054DAA8 /* SidebarUserView.swift */; };
+		958600891B187CC50054DAA8 /* SidebarUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 958600881B187CC50054DAA8 /* SidebarUserView.xib */; };
 		958603401B0A28CE009601D2 /* AFViewShaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9586033F1B0A28CE009601D2 /* AFViewShaker.m */; };
 		9588F5E91A1D9D1C001BC426 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9588F5E81A1D9D1C001BC426 /* AppDelegate.swift */; };
 		9588F6021A1D9D1C001BC426 /* WeCenterMobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9588F6011A1D9D1C001BC426 /* WeCenterMobileTests.swift */; };
@@ -794,8 +794,6 @@
 		9531D7031AF3E4AC00E6549D /* QuestionTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionTitleCell.xib; sourceTree = "<group>"; };
 		9531D7051AF3E4AC00E6549D /* SidebarCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarCategoryCell.swift; sourceTree = "<group>"; };
 		9531D7061AF3E4AC00E6549D /* SidebarCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarCategoryCell.xib; sourceTree = "<group>"; };
-		9531D7071AF3E4AC00E6549D /* SidebarUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarUserCell.swift; sourceTree = "<group>"; };
-		9531D7081AF3E4AC00E6549D /* SidebarUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarUserCell.xib; sourceTree = "<group>"; };
 		9531D70A1AF3E4AC00E6549D /* TopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
 		9531D70B1AF3E4AC00E6549D /* TopicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicCell.xib; sourceTree = "<group>"; };
 		9531D70C1AF3E4AC00E6549D /* TopicHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicHeaderView.swift; sourceTree = "<group>"; };
@@ -895,6 +893,8 @@
 		9585FA2C1B0078C60079D57D /* UITableViewCell+MSRGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+MSRGetter.swift"; sourceTree = "<group>"; };
 		958600811B17308C0054DAA8 /* UIView+MSRAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+MSRAccessor.swift"; sourceTree = "<group>"; };
 		958600841B1736FB0054DAA8 /* MSRKeyboardBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRKeyboardBar.swift; sourceTree = "<group>"; };
+		958600861B187CB50054DAA8 /* SidebarUserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarUserView.swift; sourceTree = "<group>"; };
+		958600881B187CC50054DAA8 /* SidebarUserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarUserView.xib; sourceTree = "<group>"; };
 		9586033E1B0A28CE009601D2 /* AFViewShaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFViewShaker.h; sourceTree = "<group>"; };
 		9586033F1B0A28CE009601D2 /* AFViewShaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFViewShaker.m; sourceTree = "<group>"; };
 		9588F5E31A1D9D1C001BC426 /* WeCenterMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeCenterMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1732,8 +1732,8 @@
 			children = (
 				9531D7051AF3E4AC00E6549D /* SidebarCategoryCell.swift */,
 				9531D7061AF3E4AC00E6549D /* SidebarCategoryCell.xib */,
-				9531D7071AF3E4AC00E6549D /* SidebarUserCell.swift */,
-				9531D7081AF3E4AC00E6549D /* SidebarUserCell.xib */,
+				958600861B187CB50054DAA8 /* SidebarUserView.swift */,
+				958600881B187CC50054DAA8 /* SidebarUserView.xib */,
 			);
 			path = Sidebar;
 			sourceTree = "<group>";
@@ -2327,7 +2327,6 @@
 				950FE1241A1DA2A400167D09 /* Configuration.plist in Resources */,
 				956140021AE2E6080077FBA0 /* .gitignore in Resources */,
 				9531D74C1AF3E4AC00E6549D /* SidebarCategoryCell.xib in Resources */,
-				9531D74E1AF3E4AC00E6549D /* SidebarUserCell.xib in Resources */,
 				9531D72C1AF3E4AC00E6549D /* FeaturedQuestionAnswerCellA.xib in Resources */,
 				950FE1251A1DA2A400167D09 /* Discovery.strings in Resources */,
 				9531D7251AF3E4AC00E6549D /* ArticleCell.xib in Resources */,
@@ -2338,6 +2337,7 @@
 				95DB722E1AF5490A0072C77E /* ArticleFooterView.xib in Resources */,
 				9531D7561AF3E4AC00E6549D /* UserCell.xib in Resources */,
 				9531D7211AF3E4AC00E6549D /* AnswerCellWithQuestionTitle.xib in Resources */,
+				958600891B187CC50054DAA8 /* SidebarUserView.xib in Resources */,
 				9531D7541AF3E4AC00E6549D /* UserBodyCell.xib in Resources */,
 				950FE1271A1DA2A400167D09 /* Welcome.strings in Resources */,
 				9531D7391AF3E4AC00E6549D /* QuestionFocusingActionCell.xib in Resources */,
@@ -2610,7 +2610,6 @@
 				955770721AD68E960060A120 /* UIImageView+MSRSetter.swift in Sources */,
 				951D1F791ACD1E750072D555 /* DTActivityTitleView.m in Sources */,
 				95C2EA3A1AB0516800F2A326 /* MSRSegmentedControlUnderlineIndicator.swift in Sources */,
-				9531D74D1AF3E4AC00E6549D /* SidebarUserCell.swift in Sources */,
 				95ED5F331B084D5100CDB225 /* UzysAssetsPickerController.m in Sources */,
 				95C2EA201AB0516800F2A326 /* NSManagedObjectContext+MSROperations.swift in Sources */,
 				95C2EA221AB0516800F2A326 /* UnsafePointer+MSRInitializer.swift in Sources */,
@@ -2679,6 +2678,7 @@
 				951D1F8F1ACD1E750072D555 /* NSFileWrapper+DTCopying.m in Sources */,
 				9550A2971AF8B6D0005F81F7 /* KeyboardBar.swift in Sources */,
 				9531D7201AF3E4AC00E6549D /* AnswerCellWithQuestionTitle.swift in Sources */,
+				958600871B187CB50054DAA8 /* SidebarUserView.swift in Sources */,
 				9531D79A1AF3E8E400E6549D /* NetworkManager.swift in Sources */,
 				95ED5F311B084D5100CDB225 /* UzysAppearanceConfig.m in Sources */,
 				95C2EA2B1AB0516800F2A326 /* MSRAlertView.swift in Sources */,
@@ -2811,6 +2811,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_INCLUDE_PATHS = "${PROJECT_DIR}/WeCenterMobile/External ${PROJECT_DIR}/WeCenterMobile/External/Msr";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = WeCenterMobile/External/RMActionController/RMActionController/;
 			};
@@ -2848,6 +2849,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_INCLUDE_PATHS = "${PROJECT_DIR}/WeCenterMobile/External ${PROJECT_DIR}/WeCenterMobile/External/Msr";
+				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = WeCenterMobile/External/RMActionController/RMActionController/;
 				VALIDATE_PRODUCT = YES;

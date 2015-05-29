@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="Cdq-93-MFZ" customClass="SidebarUserView" customModule="WeCenterMobile" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="240" height="160"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SidebarBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Odc-cp-IpF">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="160"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T7i-l7-BIK">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="160"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="Profile-Filled" translatesAutoresizingMaskIntoConstraints="NO" id="1cY-ZW-2ye" customClass="MSRRoundedImageView" customModule="WeCenterMobile" customModuleProvider="target">
+                    <rect key="frame" x="15" y="57" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="1cY-ZW-2ye" secondAttribute="height" multiplier="1:1" id="hQn-H0-9UQ"/>
+                        <constraint firstAttribute="width" constant="50" id="yCC-tB-SCF"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="纯白色蝴蝶" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BAr-Vk-weg">
+                    <rect key="frame" x="15" y="113" width="210" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creating a world of pure white." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wkI-RR-0u8" customClass="MSRMultilineLabel" customModule="WeCenterMobile" customModuleProvider="target">
+                    <rect key="frame" x="15" y="133" width="210" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2d-q0-HmF">
+                    <rect key="frame" x="197" y="30" width="28" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Y2d-q0-HmF" secondAttribute="height" multiplier="1:1" id="FvW-Qr-Csl"/>
+                        <constraint firstAttribute="width" constant="28" id="WKG-Ce-L6z"/>
+                    </constraints>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" image="Search-Line">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="wkI-RR-0u8" firstAttribute="top" secondItem="BAr-Vk-weg" secondAttribute="bottom" constant="3" id="2Hv-BX-zwE"/>
+                <constraint firstItem="T7i-l7-BIK" firstAttribute="top" secondItem="Cdq-93-MFZ" secondAttribute="top" id="5g2-TT-94f"/>
+                <constraint firstItem="BAr-Vk-weg" firstAttribute="leading" secondItem="Cdq-93-MFZ" secondAttribute="leading" constant="15" id="8Yt-YZ-rDT"/>
+                <constraint firstAttribute="bottom" secondItem="wkI-RR-0u8" secondAttribute="bottom" constant="10" id="CaN-Sn-1KK"/>
+                <constraint firstAttribute="trailing" secondItem="Y2d-q0-HmF" secondAttribute="trailing" constant="15" id="FjN-SS-Rhq"/>
+                <constraint firstItem="Y2d-q0-HmF" firstAttribute="top" secondItem="Cdq-93-MFZ" secondAttribute="top" constant="30" id="Fjj-Zl-6UA"/>
+                <constraint firstItem="Odc-cp-IpF" firstAttribute="top" secondItem="Cdq-93-MFZ" secondAttribute="top" id="I4r-DR-sTQ"/>
+                <constraint firstItem="1cY-ZW-2ye" firstAttribute="leading" secondItem="Cdq-93-MFZ" secondAttribute="leading" constant="15" id="S9Q-Ji-cz0"/>
+                <constraint firstAttribute="bottom" secondItem="Odc-cp-IpF" secondAttribute="bottom" id="VWw-Sh-D7q"/>
+                <constraint firstAttribute="trailing" secondItem="Odc-cp-IpF" secondAttribute="trailing" id="Ynm-vw-yca"/>
+                <constraint firstItem="wkI-RR-0u8" firstAttribute="leading" secondItem="Cdq-93-MFZ" secondAttribute="leading" constant="15" id="amF-Ww-OBD"/>
+                <constraint firstItem="BAr-Vk-weg" firstAttribute="top" secondItem="1cY-ZW-2ye" secondAttribute="bottom" constant="6" id="bCj-cP-eim"/>
+                <constraint firstAttribute="trailing" secondItem="T7i-l7-BIK" secondAttribute="trailing" id="eeK-Oa-m6T"/>
+                <constraint firstItem="Odc-cp-IpF" firstAttribute="leading" secondItem="Cdq-93-MFZ" secondAttribute="leading" id="fkG-pG-g8S"/>
+                <constraint firstItem="1cY-ZW-2ye" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Cdq-93-MFZ" secondAttribute="top" constant="30" id="iAb-SK-DHF"/>
+                <constraint firstAttribute="bottom" secondItem="T7i-l7-BIK" secondAttribute="bottom" id="kl2-ni-Tlz"/>
+                <constraint firstAttribute="trailing" secondItem="wkI-RR-0u8" secondAttribute="trailing" constant="15" id="nMe-ZI-ssO"/>
+                <constraint firstAttribute="trailing" secondItem="BAr-Vk-weg" secondAttribute="trailing" constant="15" id="r0c-iE-iY1"/>
+                <constraint firstItem="T7i-l7-BIK" firstAttribute="leading" secondItem="Cdq-93-MFZ" secondAttribute="leading" id="uWa-KK-eWT"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="searchButton" destination="Y2d-q0-HmF" id="mAc-Sn-rXM"/>
+                <outlet property="userAvatarView" destination="1cY-ZW-2ye" id="kHy-RV-z1h"/>
+                <outlet property="userNameLabel" destination="BAr-Vk-weg" id="ed4-fM-boY"/>
+                <outlet property="userSignatureLabel" destination="wkI-RR-0u8" id="usP-Aa-4mr"/>
+            </connections>
+            <point key="canvasLocation" x="523" y="384.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Profile-Filled" width="29" height="29"/>
+        <image name="Search-Line" width="29" height="28"/>
+        <image name="SidebarBackground" width="1920" height="1200"/>
+    </resources>
+</document>
