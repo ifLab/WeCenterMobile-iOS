@@ -9,6 +9,28 @@
 import GBDeviceInfo
 import UIKit
 
+class _SidebarBackgroundView: UIView {
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        msr_initialize()
+    }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        msr_initialize()
+    }
+    func msr_initialize() {
+        backgroundColor = UIColor.msr_materialGray200()
+        msr_shadowColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+        msr_shadowOffset = CGPointZero
+        msr_shadowRadius = 5
+        msr_shadowOpacity = 0
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        msr_shadowPath = UIBezierPath(rect: bounds)
+    }
+}
+
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MSRSidebarDelegate {
     lazy var contentViewController: MSRNavigationController = {
         [weak self] in
@@ -20,21 +42,22 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         [weak self] in
         let display = GBDeviceInfo.deviceInfo().display
         let widths: [GBDeviceDisplay: CGFloat] = [
-            .DisplayUnknown: 200,
-            .DisplayiPad: 200,
+            .DisplayUnknown: 300,
+            .DisplayiPad: 300,
             .DisplayiPhone35Inch: 220,
             .DisplayiPhone4Inch: 220,
             .DisplayiPhone47Inch: 260,
             .DisplayiPhone55Inch: 300]
         let v = MSRSidebar(width: widths[display]!, edge: .Left)
-        v.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .ExtraLight))
-        v.backgroundView!.msr_shadowColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
-        v.backgroundView!.msr_shadowOffset = CGPointZero
-        v.backgroundView!.msr_shadowRadius = 5
-        v.backgroundView!.msr_shadowOpacity = 0
+        v.backgroundView = _SidebarBackgroundView()
+        v.enableBouncing = false
         v.overlay = UIView()
         v.overlay!.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
         v.delegate = self
+        if let self_ = self {
+            v.contentView.addSubview(self_.tableView)
+            self_.tableView.msr_addAllEdgeAttachedConstraintsToSuperview()
+        }
         return v
     }()
     lazy var tableView: UITableView = {
@@ -42,9 +65,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let v = UITableView(frame: CGRectZero, style: .Plain)
         v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         v.backgroundColor = UIColor.clearColor()
+        v.separatorColor = UIColor.clearColor()
         v.delegate = self
         v.dataSource = self
-        v.separatorColor = UIColor.clearColor()
         v.separatorStyle = .None
         v.showsVerticalScrollIndicator = true
         v.delaysContentTouches = false
@@ -67,10 +90,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             ("User", "个人中心"),
             ("Home", "首页"),
             ("Explore", "发现"),
+            ("Drafts", "草稿"),
+            ("Search", "搜索"),
+            ("ReadingList", "阅读列表"),
+            ("History", "历史记录"),
             ("Settings", "设置"),
             ("About", "关于")]) {
                 let cell = NSBundle.mainBundle().loadNibNamed("SidebarCategoryCell", owner: self?.tableView, options: nil).first as! SidebarCategoryCell
-                cell.update(image: UIImage(named: "Sidebar" + $0.0)!, title: $0.1)
+                cell.update(image: UIImage(named: "Sidebar" + $0.0)!.imageWithRenderingMode(.AlwaysTemplate), title: $0.1)
                 return cell
             }
     }()
@@ -83,14 +110,20 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         addChildViewController(contentViewController)
         view.addSubview(contentViewController.view)
         view.insertSubview(sidebar, aboveSubview: contentViewController.view)
-        sidebar.contentView.addSubview(tableView)
-        tableView.msr_addAllEdgeAttachedConstraintsToSuperview()
         automaticallyAdjustsScrollViewInsets = false
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.selectRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), animated: false, scrollPosition: .None)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentUserPropertyDidChange:", name: CurrentUserPropertyDidChangeNotificationName, object: nil)
+    }
+    var firstAppear: Bool = true
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if firstAppear {
+            firstAppear = false
+            tableView.contentOffset.y = -tableView.contentInset.top
+        }
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -134,6 +167,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let offset = scrollView.contentOffset.y
         let inset = scrollView.contentInset.top
         userView.frame = CGRect(x: 0, y: min(-inset, offset), width: scrollView.bounds.width, height: userView.minHeight + max(0, -(offset + inset)))
+        scrollView.scrollIndicatorInsets.top = max(0, -offset)
     }
     func msr_sidebarDidCollapse(sidebar: MSRSidebar) {
         setNeedsStatusBarAppearanceUpdate()
@@ -142,8 +176,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         setNeedsStatusBarAppearanceUpdate()
     }
     func msr_sidebar(sidebar: MSRSidebar, didShowAtPercentage percentage: CGFloat) {
-        let limitedPercentage = max(0, min(1, percentage))
-        sidebar.backgroundView!.msr_shadowOpacity = limitedPercentage
+        sidebar.backgroundView!.msr_shadowOpacity = percentage > 0 ? 1 : 0
     }
     func currentUserPropertyDidChange(notification: NSNotification) {
         let key = notification.userInfo![KeyUserInfoKey] as! String

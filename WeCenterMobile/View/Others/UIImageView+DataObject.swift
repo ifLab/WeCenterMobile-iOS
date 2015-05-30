@@ -8,7 +8,7 @@
 
 import UIKit
 
-let defaultUserAvatar = UIImage(named: "Profile-Filled")!.imageWithRenderingMode(.AlwaysTemplate)
+let defaultUserAvatar = UIImage(named: "DefaultAvatar")!
 let defaultTopicImage = UIImage(named: "User_Follow")!
 
 extension UIImageView {
