@@ -153,8 +153,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             case 2:
                 contentViewController.setViewControllers([ExploreViewController()], animated: true)
                 break
-            case 3:
-                break
+            case 7:
+                let svc = UIStoryboard(name: "SettingsViewController", bundle: NSBundle.mainBundle()).instantiateInitialViewController() as! SettingsViewController
+                contentViewController.setViewControllers([svc], animated: true)
             default:
                 break
             }

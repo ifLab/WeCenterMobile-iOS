@@ -25,6 +25,8 @@
 		950FE7E41A1DA53A00167D09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7DB1A1DA51400167D09 /* Foundation.framework */; };
 		950FE7E71A1DA53A00167D09 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7D51A1DA4FF00167D09 /* QuartzCore.framework */; };
 		950FE7E81A1DA53A00167D09 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7D31A1DA4F900167D09 /* libxml2.dylib */; };
+		9515766C1B1A055400E5BE8E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9515766B1B1A055400E5BE8E /* SettingsViewController.swift */; };
+		9515766E1B1B4A5300E5BE8E /* SettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9515766D1B1B4A5300E5BE8E /* SettingsViewController.storyboard */; };
 		951D1E741ACD1E4E0072D555 /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 951D1DF81ACD1E4E0072D555 /* default.css */; };
 		951D1E751ACD1E4E0072D555 /* DTAccessibilityElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D1DFA1ACD1E4E0072D555 /* DTAccessibilityElement.m */; };
 		951D1E761ACD1E4E0072D555 /* DTAccessibilityViewProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 951D1DFC1ACD1E4E0072D555 /* DTAccessibilityViewProxy.m */; };
@@ -459,6 +461,8 @@
 		950FE7DB1A1DA51400167D09 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		950FE7DD1A1DA51900167D09 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		950FE7DF1A1DA52000167D09 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		9515766B1B1A055400E5BE8E /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		9515766D1B1B4A5300E5BE8E /* SettingsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingsViewController.storyboard; sourceTree = "<group>"; };
 		951D1DF81ACD1E4E0072D555 /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
 		951D1DF91ACD1E4E0072D555 /* DTAccessibilityElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTAccessibilityElement.h; sourceTree = "<group>"; };
 		951D1DFA1ACD1E4E0072D555 /* DTAccessibilityElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTAccessibilityElement.m; sourceTree = "<group>"; };
@@ -1094,6 +1098,8 @@
 				954A76AA1AFD0323002A72A9 /* PublishmentViewControllerB.xib */,
 				950FE1371A1DA2B300167D09 /* QuestionListViewController.swift */,
 				9520AB141AC2C94600637C84 /* QuestionViewController.swift */,
+				9515766B1B1A055400E5BE8E /* SettingsViewController.swift */,
+				9515766D1B1B4A5300E5BE8E /* SettingsViewController.storyboard */,
 				950FE1341A1DA2B300167D09 /* TopicListViewController.swift */,
 				950FE1351A1DA2B300167D09 /* TopicViewController.swift */,
 				950FE1361A1DA2B300167D09 /* UserListViewController.swift */,
@@ -2357,6 +2363,7 @@
 				9531D7331AF3E4AC00E6549D /* AnswerAgreementActionCell.xib in Resources */,
 				9531D7441AF3E4AC00E6549D /* QuestionHeaderCell.xib in Resources */,
 				9568F3A21AEC74AB00B201A8 /* UserEditViewController.xib in Resources */,
+				9515766E1B1B4A5300E5BE8E /* SettingsViewController.storyboard in Resources */,
 				950FE1261A1DA2A400167D09 /* User.strings in Resources */,
 				956140041AE2E6080077FBA0 /* Info.plist in Resources */,
 				956140031AE2E6080077FBA0 /* LICENSE in Resources */,
@@ -2622,6 +2629,7 @@
 				951D1F8A1ACD1E750072D555 /* UIView+DTFoundation.m in Sources */,
 				9531D7A01AF3E8E400E6549D /* WeChatSessionActivity.swift in Sources */,
 				95C47D4B1AC9C2BE00A56879 /* UIButton+MSRSetter.swift in Sources */,
+				9515766C1B1A055400E5BE8E /* SettingsViewController.swift in Sources */,
 				9531D74F1AF3E4AC00E6549D /* TopicCell.swift in Sources */,
 				951D1E8A1ACD1E4E0072D555 /* DTCSSListStyle.m in Sources */,
 				9531D7961AF3E8E400E6549D /* QuestionPublishmentAction.swift in Sources */,
