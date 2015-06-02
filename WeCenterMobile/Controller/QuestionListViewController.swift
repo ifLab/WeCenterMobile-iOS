@@ -43,7 +43,6 @@ class QuestionListViewController: UITableViewController {
         super.loadView()
         title = "\(user.name!) 的提问"
         view.backgroundColor = UIColor.msr_materialGray200()
-        msr_navigationBar!.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         tableView.separatorStyle = .None
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension

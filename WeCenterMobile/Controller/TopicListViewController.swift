@@ -60,7 +60,6 @@ class TopicListViewController: UITableViewController {
             headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
             headerActivityIndicatorView.activityIndicatorViewStyle = .Gray
         }
-        msr_navigationBar!.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
     }
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -124,7 +124,7 @@
                                                                 <constraint firstAttribute="width" constant="150" id="dQc-Ip-HOY"/>
                                                             </constraints>
                                                             <color key="minimumTrackTintColor" red="0.5568627451" green="0.14117647059999999" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <color key="maximumTrackTintColor" red="0.5568627451" green="0.14117647059999999" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="maximumTrackTintColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </slider>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="字体大小" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nvs-jG-pP5">
                                                             <rect key="frame" x="15" y="15" width="68" height="21"/>
@@ -140,6 +140,14 @@
                                                         <constraint firstAttribute="centerY" secondItem="ani-7N-M4U" secondAttribute="centerY" id="dKv-rf-X0n"/>
                                                         <constraint firstItem="Nvs-jG-pP5" firstAttribute="leading" secondItem="ld3-T4-JID" secondAttribute="leading" constant="15" id="eAR-cu-dCr"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                                            <real key="value" value="0.5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="msr_borderColor">
+                                                            <color key="value" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -257,16 +265,16 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uZe-F2-qhE">
                                                     <rect key="frame" x="8" y="8" width="304" height="52"/>
                                                     <subviews>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gSN-pI-lzM">
+                                                            <rect key="frame" x="240" y="11" width="51" height="31"/>
+                                                            <color key="onTintColor" red="0.5568627451" green="0.14117647059999999" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </switch>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QQ" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brn-rl-b5J">
                                                             <rect key="frame" x="15" y="15" width="26" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gSN-pI-lzM">
-                                                            <rect key="frame" x="240" y="11" width="51" height="31"/>
-                                                            <color key="onTintColor" red="0.5568627451" green="0.14117647059999999" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </switch>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -456,13 +464,29 @@
                         <outlet property="cacheSizeCalculationActivityIndicatorView" destination="dIe-L1-frr" id="4Wt-N4-PID"/>
                         <outlet property="cacheSizeLabel" destination="mmZ-6E-Kll" id="61l-ll-Sab"/>
                         <outlet property="clearCacheButton" destination="EE4-Ls-QEY" id="2Xt-gu-y1k"/>
+                        <outlet property="clearCacheLabel" destination="MzB-ja-FxG" id="l7M-Yd-C8X"/>
+                        <outlet property="clearCacheView" destination="t45-4b-2qY" id="3UI-8m-GsF"/>
+                        <outlet property="fontSizeLabel" destination="Nvs-jG-pP5" id="6qR-ZD-6bZ"/>
                         <outlet property="fontSizeSlider" destination="ani-7N-M4U" id="29F-rC-9YV"/>
+                        <outlet property="fontSizeView" destination="ld3-T4-JID" id="1BT-Tu-ayD"/>
                         <outlet property="logoutButton" destination="H4C-ly-vi7" id="a6k-or-jft"/>
+                        <outlet property="nightModeLabel" destination="vyH-4i-o6P" id="Ir7-sU-sZg"/>
                         <outlet property="nightModeSwitch" destination="log-26-jvH" id="xWy-AN-TgA"/>
+                        <outlet property="nightModeView" destination="KG0-gE-diJ" id="VVm-Nu-Eu6"/>
+                        <outlet property="noImagesModeLabel" destination="b1g-dT-T02" id="wyb-Ru-LdM"/>
                         <outlet property="noImagesModeSwitch" destination="k2X-q7-pBk" id="4IP-FU-ggd"/>
+                        <outlet property="noImagesModeView" destination="7Rp-rm-Kuy" id="5qa-vR-JdH"/>
+                        <outlet property="qqAccountConnectionLabel" destination="brn-rl-b5J" id="7NS-F6-ULM"/>
                         <outlet property="qqAccountConnectionSwitch" destination="gSN-pI-lzM" id="oM9-s0-F8Y"/>
+                        <outlet property="qqAccountConnectionView" destination="uZe-F2-qhE" id="b2w-rG-5uV"/>
                         <outlet property="tintColorDisplayView" destination="ZTo-K9-chA" id="4jD-VR-SOm"/>
+                        <outlet property="tintColorLabel" destination="5FX-BL-qqc" id="HAg-hN-gGW"/>
+                        <outlet property="tintColorView" destination="zol-af-s5z" id="bDb-GF-Ix9"/>
+                        <outlet property="updateServerConfigurationsLabel" destination="6dO-6e-G4p" id="XKF-OS-YwI"/>
+                        <outlet property="updateServerConfigurationsView" destination="wMv-4F-EAK" id="YcM-HH-mae"/>
+                        <outlet property="weiboAccountConnectionLabel" destination="y0j-5e-7b9" id="uKa-Bn-TjZ"/>
                         <outlet property="weiboAccountConnectionSwitch" destination="GwQ-Lm-xQf" id="cRH-fd-IY5"/>
+                        <outlet property="weiboAccountConnectionView" destination="IZX-Cu-dRo" id="4AO-n8-mCi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dqE-8d-468" userLabel="First Responder" sceneMemberID="firstResponder"/>

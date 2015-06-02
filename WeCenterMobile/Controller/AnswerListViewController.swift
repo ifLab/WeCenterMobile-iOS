@@ -41,7 +41,6 @@ class AnswerListViewController: UITableViewController {
         super.loadView()
         title = "\(user.name!) 的回答"
         view.backgroundColor = UIColor.msr_materialGray200()
-        msr_navigationBar!.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         tableView.separatorStyle = .None
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension

@@ -92,7 +92,6 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         tableView.registerNib(UINib(nibName: answerCellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: answerCellIdentifier)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
         title = "问题详情" // Needs localization
-        msr_navigationBar!.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
     }
     
     override func viewDidLoad() {

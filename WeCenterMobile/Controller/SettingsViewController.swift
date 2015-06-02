@@ -21,6 +21,24 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var cacheSizeCalculationActivityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var clearCacheButton: UIButton!
     
+    @IBOutlet weak var noImagesModeView: UIView!
+    @IBOutlet weak var nightModeView: UIView!
+    @IBOutlet weak var fontSizeView: UIView!
+    @IBOutlet weak var tintColorView: UIView!
+    @IBOutlet weak var weiboAccountConnectionView: UIView!
+    @IBOutlet weak var qqAccountConnectionView: UIView!
+    @IBOutlet weak var updateServerConfigurationsView: UIView!
+    @IBOutlet weak var clearCacheView: UIView!
+    
+    @IBOutlet weak var noImagesModeLabel: UILabel!
+    @IBOutlet weak var nightModeLabel: UILabel!
+    @IBOutlet weak var fontSizeLabel: UILabel!
+    @IBOutlet weak var tintColorLabel: UILabel!
+    @IBOutlet weak var weiboAccountConnectionLabel: UILabel!
+    @IBOutlet weak var qqAccountConnectionLabel: UILabel!
+    @IBOutlet weak var updateServerConfigurationsLabel: UILabel!
+    @IBOutlet weak var clearCacheLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List"), style: .Plain, target: self, action: "showSidebar")
@@ -33,12 +51,13 @@ class SettingsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTheme", name: CurrentThemeDidChangeNotificationName, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentThemeDidChange", name: CurrentThemeDidChangeNotificationName, object: nil)
+        reloadData()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        msr_navigationBar!.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        updateTheme()
     }
     
     func showSidebar() {
@@ -57,26 +76,76 @@ class SettingsViewController: UITableViewController {
         if sender === nightModeSwitch {
             let path = NSBundle.mainBundle().pathForResource("Themes", ofType: "plist")!
             let configurations = NSDictionary(contentsOfFile: path)!
-            let configuration = configurations[nightModeSwitch.on ? "Night" : "Day"] as! NSDictionary
-            let theme = Theme(configuration: configuration)!
+            let source = SettingsManager.defaultManager.currentTheme.name
+            let target = source == "Night" ? "Day" : "Night"
+            let configuration = configurations[target] as! NSDictionary
+            let theme = Theme(name: target, configuration: configuration)
             SettingsManager.defaultManager.currentTheme = theme
         }
     }
     
+    func currentThemeDidChange() {
+        updateTheme()
+    }
+    
+    func reloadData() {
+        let manager = SettingsManager.defaultManager
+        nightModeSwitch.on = manager.currentTheme.name == "Night"
+    }
+    
     func updateTheme() {
         let theme = SettingsManager.defaultManager.currentTheme
-        UIView.animateWithDuration(0.5,
-            delay: 0,
-            usingSpringWithDamping: 1,
-            initialSpringVelocity: 0.7,
-            options: .BeginFromCurrentState,
-            animations: {
-                [weak self] in
-                if let self_ = self {
-                    self_.tableView.backgroundColor = theme.backgroundColorA
-                }
-            },
-            completion: nil)
+        msr_navigationBar!.barStyle = theme.navigationBarStyle /// @TODO: Wrong behaviour will occur if put it into the animation block. This might be produced by the reinstallation of navigation bar background view.
+        UINavigationBar.appearance().tintColor = theme.navigationItemColor
+        msr_navigationBar!.tintColor = theme.navigationItemColor
+        setNeedsStatusBarAppearanceUpdate()
+        tableView.backgroundColor = theme.backgroundColorA
+        let views = [
+            noImagesModeView,
+            nightModeView,
+            fontSizeView,
+            tintColorView,
+            weiboAccountConnectionView,
+            qqAccountConnectionView,
+            updateServerConfigurationsView,
+            clearCacheView]
+        for view in views {
+            view.backgroundColor = theme.backgroundColorB
+            view.msr_borderColor = theme.borderColor
+        }
+        let labels = [
+            noImagesModeLabel,
+            nightModeLabel,
+            fontSizeLabel,
+            tintColorLabel,
+            weiboAccountConnectionLabel,
+            qqAccountConnectionLabel,
+            updateServerConfigurationsLabel,
+            clearCacheLabel]
+        for label in labels {
+            label.textColor = theme.titleTextColor
+        }
+        let switchs = [
+            noImagesModeSwitch,
+            nightModeSwitch,
+            weiboAccountConnectionSwitch,
+            qqAccountConnectionSwitch]
+        for s in switchs {
+            s.onTintColor = theme.controlColorA
+            s.tintColor = theme.controlColorB
+        }
+        let sliders = [
+            fontSizeSlider]
+        for slider in sliders {
+            slider.minimumTrackTintColor = theme.controlColorA
+            slider.maximumTrackTintColor = theme.controlColorB
+            slider.tintColor = theme.controlColorB
+        }
+        cacheSizeLabel.textColor = theme.subtitleTextColor
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return SettingsManager.defaultManager.currentTheme.statusBarStyle
     }
     
     deinit {

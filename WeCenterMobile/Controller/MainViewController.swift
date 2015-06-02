@@ -116,6 +116,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         tableView.selectRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), animated: false, scrollPosition: .None)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentUserPropertyDidChange:", name: CurrentUserPropertyDidChangeNotificationName, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentThemeDidChange", name: CurrentThemeDidChangeNotificationName, object: nil)
     }
     var firstAppear: Bool = true
     override func viewDidAppear(animated: Bool) {
@@ -132,7 +133,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cells.count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return cells[indexPath.row]
+        let cell = cells[indexPath.row]
+        cell.updateTheme()
+        return cell
     }
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         if tableView.indexPathForSelectedRow() == indexPath {
@@ -181,9 +184,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     func currentUserPropertyDidChange(notification: NSNotification) {
         let key = notification.userInfo![KeyUserInfoKey] as! String
-        if key == "avatarData" || key == "name" {
+        if key == "avatarData" || key == "name" || key == "signature" {
             userView.update(user: User.currentUser, updateImage: key == "avatarData")
         }
+    }
+    func currentThemeDidChange() {
+        let theme = SettingsManager.defaultManager.currentTheme
+        tableView.backgroundColor = theme.backgroundColorA
+        let indexPath = tableView.indexPathForSelectedRow()
+        tableView.reloadData()
+        tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
     }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return sidebar.collapsed ? contentViewController.preferredStatusBarStyle() : .LightContent

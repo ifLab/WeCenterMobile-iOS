@@ -11,11 +11,14 @@ import UIKit
 class Theme {
     
     init() {}
-    init?(configuration: NSDictionary) {
+    init(name: String, configuration: NSDictionary) {
+        self.name = name
         let titleFontSizeOffset: CGFloat
         if let offset = configuration["Font Size Offset"] as? NSNumber {
             titleFontSizeOffset = CGFloat(offset.doubleValue)
-        } else { return nil }
+        } else {
+            titleFontSizeOffset = 0
+        }
         let standardFontSize = UIFont.systemFontSize() + titleFontSizeOffset
         if let titleFontName = configuration["Title Font Name"] as? String {
             if let titleFont = UIFont(name: titleFontName, size: standardFontSize) {
@@ -53,31 +56,60 @@ class Theme {
         } else {
             self.titleFont = UIFont.systemFontOfSize(standardFontSize - 4)
         }
-        if let backgroundColorARGBA = configuration["Background Color A"] as? NSNumber {
-            self.backgroundColorA = %-backgroundColorARGBA.unsignedIntValue
-        } else { return nil }
-        if let backgroundColorBRGBA = configuration["Background Color B"] as? NSNumber {
-            self.backgroundColorB = %-backgroundColorBRGBA.unsignedIntValue
-        } else { return nil }
-        if let controlColorRGBA = configuration["Control Color"] as? NSNumber {
-            self.controlColor = %-controlColorRGBA.unsignedIntValue
-        } else { return nil }
-        if let highlightColorRGBA = configuration["Highlight Color"] as? NSNumber {
-            self.highlightColor = %-highlightColorRGBA.unsignedIntValue
-        } else { return nil }
-        if let titleTextColorRGBA = configuration["Title Text Color"] as? NSNumber {
-            self.titleTextColor = %-titleTextColorRGBA.unsignedIntValue
-        } else { return nil }
-        if let subtitleTextColorRGBA = configuration["Subtitle Text Color"] as? NSNumber {
-            self.subtitleTextColor = %-subtitleTextColorRGBA.unsignedIntValue
-        } else { return nil }
-        if let bodyTextColorRGBA = configuration["Body Text Color"] as? NSNumber {
-            self.bodyTextColor = %-bodyTextColorRGBA.unsignedIntValue
-        } else { return nil }
-        if let footnoteTextColorRGBA = configuration["Footnote Text Color"] as? NSNumber {
-            self.footnoteTextColor = %-footnoteTextColorRGBA.unsignedIntValue
-        } else { return nil }
+        if let backgroundColorARGBA = (configuration["Background Color A"] as? NSNumber)?.unsignedIntValue {
+            self.backgroundColorA = %-backgroundColorARGBA
+        }
+        if let backgroundColorBRGBA = (configuration["Background Color B"] as? NSNumber)?.unsignedIntValue {
+            self.backgroundColorB = %-backgroundColorBRGBA
+        }
+        if let borderColorRGBA = (configuration["Border Color"] as? NSNumber)?.unsignedIntValue {
+            self.borderColor = %-borderColorRGBA
+        }
+        if let controlColorARGBA = (configuration["Control Color A"] as? NSNumber)?.unsignedIntValue {
+            self.controlColorA = %-controlColorARGBA
+        }
+        if let controlColorBRGBA = (configuration["Control Color B"] as? NSNumber)?.unsignedIntValue {
+            self.controlColorB = %-controlColorBRGBA
+        }
+        if let highlightColorRGBA = (configuration["Highlight Color"] as? NSNumber)?.unsignedIntValue {
+            self.highlightColor = %-highlightColorRGBA
+        }
+        if let highlightColorForSidebarRGBA = (configuration["Highlight Color For Sidebar"] as? NSNumber)?.unsignedIntValue {
+            self.highlightColorForSidebar = %-highlightColorForSidebarRGBA
+        }
+        if let titleTextColorRGBA = (configuration["Title Text Color"] as? NSNumber)?.unsignedIntValue {
+            self.titleTextColor = %-titleTextColorRGBA
+        }
+        if let subtitleTextColorRGBA = (configuration["Subtitle Text Color"] as? NSNumber)?.unsignedIntValue {
+            self.subtitleTextColor = %-subtitleTextColorRGBA
+        }
+        if let bodyTextColorRGBA = (configuration["Body Text Color"] as? NSNumber)?.unsignedIntValue {
+            self.bodyTextColor = %-bodyTextColorRGBA
+        }
+        if let footnoteTextColorRGBA = (configuration["Footnote Text Color"] as? NSNumber)?.unsignedIntValue {
+            self.footnoteTextColor = %-footnoteTextColorRGBA
+        }
+        if let statusBarStyleRawValue = (configuration["Status Bar Style"] as? NSNumber)?.integerValue {
+            if let statusBarStyle = UIStatusBarStyle(rawValue: statusBarStyleRawValue) {
+                self.statusBarStyle = statusBarStyle
+            }
+        }
+        if let navigationBarStyleRawValue = (configuration["Navigation Bar Style"] as? NSNumber)?.integerValue {
+            if let navigationBarStyle = UIBarStyle(rawValue: navigationBarStyleRawValue) {
+                self.navigationBarStyle = navigationBarStyle
+            }
+        }
+        if let toolBarStyleRawValue = (configuration["Tool Bar Style"] as? NSNumber)?.integerValue {
+            if let toolBarStyle = UIBarStyle(rawValue: toolBarStyleRawValue) {
+                self.toolBarStyle = toolBarStyle
+            }
+        }
+        if let navigationItemColorRawValue = (configuration["Navigation Item Color"] as? NSNumber)?.unsignedIntValue {
+            self.navigationItemColor = %-navigationItemColorRawValue
+        }
     }
+    
+    var name: String = "Default"
     
     var titleFont: UIFont = .preferredFontForTextStyle(UIFontTextStyleHeadline)
     var subtitleFont: UIFont = .preferredFontForTextStyle(UIFontTextStyleSubheadline)
@@ -92,7 +124,15 @@ class Theme {
     var backgroundColorA: UIColor = .msr_materialGray200()
     var backgroundColorB: UIColor = .msr_materialGray100()
     
-    var controlColor: UIColor = .msr_materialPurple500()
+    var borderColor: UIColor = .msr_materialGray300()
+    var controlColorA: UIColor = .msr_materialPurple500()
+    var controlColorB: UIColor = .whiteColor()
+    var navigationItemColor: UIColor = %-0x00000042
     var highlightColor: UIColor = %-0x0000007f
+    var highlightColorForSidebar: UIColor = %-0x0000000f
+    
+    var statusBarStyle: UIStatusBarStyle = .Default
+    var navigationBarStyle: UIBarStyle = .Default
+    var toolBarStyle: UIBarStyle = .Default
     
 }

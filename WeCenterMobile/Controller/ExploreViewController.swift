@@ -22,7 +22,6 @@ class ExploreViewController: MSRSegmentedViewController, MSRSegmentedViewControl
         (segmentedControl.backgroundView as! UIToolbar).barStyle = .Default
         view.backgroundColor = UIColor.msr_materialGray200()
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List"), style: .Plain, target: self, action: "showSidebar")
-        msr_navigationBar!.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         msr_navigationBar!.barStyle = .Default
         scrollView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         scrollView.delaysContentTouches = false

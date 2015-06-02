@@ -76,7 +76,6 @@ class CommentListViewController: UITableViewController, UITextFieldDelegate {
         tableView.keyboardDismissMode = .Interactive
         tableView.backgroundColor = UIColor.msr_materialGray200()
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
-        msr_navigationBar!.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         keyboardBar.userAtView.removeButton.addTarget(self, action: "removeAtUser", forControlEvents: .TouchUpInside)
         keyboardBar.publishButton.addTarget(self, action: "publishComment", forControlEvents: .TouchUpInside)
         keyboardBar.textField.delegate = self

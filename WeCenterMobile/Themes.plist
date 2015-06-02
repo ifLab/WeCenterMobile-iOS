@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Current</key>
+	<string>Day</string>
 	<key>Day</key>
 	<dict>
 		<key>Title Font Name</key>
@@ -12,6 +14,8 @@
 		<string></string>
 		<key>Footnote Font Name</key>
 		<string></string>
+		<key>Font Size Offset</key>
+		<integer>0</integer>
 		<key>Title Text Color</key>
 		<integer>223</integer>
 		<key>Subtitle Text Color</key>
@@ -24,11 +28,23 @@
 		<real>4008636159</real>
 		<key>Background Color B</key>
 		<real>4126537215</real>
-		<key>Control Color</key>
+		<key>Border Color</key>
+		<integer>3772834047</integer>
+		<key>Control Color A</key>
 		<real>2619846911</real>
+		<key>Control Color B</key>
+		<real>3772834047</real>
 		<key>Highlight Color</key>
 		<integer>127</integer>
-		<key>Font Size Offset</key>
+		<key>Highlight Color For Sidebar</key>
+		<integer>31</integer>
+		<key>Navigation Item Color</key>
+		<integer>66</integer>
+		<key>Navigation Bar Style</key>
+		<integer>0</integer>
+		<key>Status Bar Style</key>
+		<integer>0</integer>
+		<key>Tool Bar Style</key>
 		<integer>0</integer>
 	</dict>
 	<key>Night</key>
@@ -41,6 +57,8 @@
 		<string></string>
 		<key>Footnote Font Name</key>
 		<string></string>
+		<key>Font Size Offset</key>
+		<integer>0</integer>
 		<key>Title Text Color</key>
 		<real>4294967263</real>
 		<key>Subtitle Text Color</key>
@@ -52,13 +70,25 @@
 		<key>Background Color A</key>
 		<real>555819519</real>
 		<key>Background Color B</key>
-		<integer>1111638783</integer>
-		<key>Control Color</key>
+		<real>825307647</real>
+		<key>Border Color</key>
+		<real>1111638783</real>
+		<key>Control Color A</key>
 		<real>2619846911</real>
+		<key>Control Color B</key>
+		<real>1633772031</real>
 		<key>Highlight Color</key>
 		<real>4294967167</real>
-		<key>Font Size Offset</key>
-		<integer>0</integer>
+		<key>Highlight Color For Sidebar</key>
+		<integer>4294967071</integer>
+		<key>Navigation Item Color</key>
+		<real>4294967106</real>
+		<key>Navigation Bar Style</key>
+		<integer>1</integer>
+		<key>Status Bar Style</key>
+		<integer>1</integer>
+		<key>Tool Bar Style</key>
+		<integer>1</integer>
 	</dict>
 </dict>
 </plist>

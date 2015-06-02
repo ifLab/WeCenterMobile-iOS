@@ -69,7 +69,6 @@ class HomeViewController: UITableViewController {
         tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         tableView.delaysContentTouches = false
         tableView.msr_wrapperView?.delaysContentTouches = false
-        msr_navigationBar!.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
         header.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         headerImageView = header.valueForKey("arrowImage") as! UIImageView
