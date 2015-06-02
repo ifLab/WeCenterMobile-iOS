@@ -12,9 +12,9 @@ import UIKit
 
 let UserDefaultsCookiesKey = "WeCenterMobile_DefaultCookies"
 let UserDefaultsUserIDKey = "WeCenterMobile_DefaultUserID"
-let CurrentUserDidChangeNotificationName = "CurrentUserDidChangeNotificationName"
-let CurrentUserPropertyDidChangeNotificationName = "CurrentUserPropertyDidChangeNotificationName"
-let KeyUserInfoKey = "KeyPathUserInfoKey"
+let CurrentUserDidChangeNotificationName = "CurrentUserDidChangeNotification"
+let CurrentUserPropertyDidChangeNotificationName = "CurrentUserPropertyDidChangeNotification"
+let KeyUserInfoKey = "KeyPathUserInfo"
 
 class User: DataObject {
     

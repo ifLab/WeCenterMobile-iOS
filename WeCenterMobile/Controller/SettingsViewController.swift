@@ -31,6 +31,11 @@ class SettingsViewController: UITableViewController {
         clearCacheButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTheme", name: CurrentThemeDidChangeNotificationName, object: nil)
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         msr_navigationBar!.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
@@ -46,6 +51,36 @@ class SettingsViewController: UITableViewController {
     
     func logout() {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func toggleNightTheme(sender: UISwitch) {
+        if sender === nightModeSwitch {
+            let path = NSBundle.mainBundle().pathForResource("Themes", ofType: "plist")!
+            let configurations = NSDictionary(contentsOfFile: path)!
+            let configuration = configurations[nightModeSwitch.on ? "Night" : "Day"] as! NSDictionary
+            let theme = Theme(configuration: configuration)!
+            SettingsManager.defaultManager.currentTheme = theme
+        }
+    }
+    
+    func updateTheme() {
+        let theme = SettingsManager.defaultManager.currentTheme
+        UIView.animateWithDuration(0.5,
+            delay: 0,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 0.7,
+            options: .BeginFromCurrentState,
+            animations: {
+                [weak self] in
+                if let self_ = self {
+                    self_.tableView.backgroundColor = theme.backgroundColorA
+                }
+            },
+            completion: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Day</key>
+	<dict>
+		<key>Title Font Name</key>
+		<string></string>
+		<key>Subtitle Font Name</key>
+		<string></string>
+		<key>Body Font Name</key>
+		<string></string>
+		<key>Footnote Font Name</key>
+		<string></string>
+		<key>Title Text Color</key>
+		<integer>223</integer>
+		<key>Subtitle Text Color</key>
+		<integer>138</integer>
+		<key>Body Text Color</key>
+		<integer>138</integer>
+		<key>Footnote Text Color</key>
+		<integer>66</integer>
+		<key>Background Color A</key>
+		<real>4008636159</real>
+		<key>Background Color B</key>
+		<real>4126537215</real>
+		<key>Control Color</key>
+		<real>2619846911</real>
+		<key>Highlight Color</key>
+		<integer>127</integer>
+		<key>Font Size Offset</key>
+		<integer>0</integer>
+	</dict>
+	<key>Night</key>
+	<dict>
+		<key>Title Font Name</key>
+		<string></string>
+		<key>Subtitle Font Name</key>
+		<string></string>
+		<key>Body Font Name</key>
+		<string></string>
+		<key>Footnote Font Name</key>
+		<string></string>
+		<key>Title Text Color</key>
+		<real>4294967263</real>
+		<key>Subtitle Text Color</key>
+		<integer>4294967178</integer>
+		<key>Body Text Color</key>
+		<integer>4294967178</integer>
+		<key>Footnote Text Color</key>
+		<integer>4294967106</integer>
+		<key>Background Color A</key>
+		<real>555819519</real>
+		<key>Background Color B</key>
+		<integer>1111638783</integer>
+		<key>Control Color</key>
+		<real>2619846911</real>
+		<key>Highlight Color</key>
+		<real>4294967167</real>
+		<key>Font Size Offset</key>
+		<integer>0</integer>
+	</dict>
+</dict>
+</plist>
