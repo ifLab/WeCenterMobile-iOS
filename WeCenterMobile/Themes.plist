@@ -39,7 +39,7 @@
 		<key>Highlight Color For Sidebar</key>
 		<integer>31</integer>
 		<key>Navigation Item Color</key>
-		<integer>66</integer>
+		<integer>127</integer>
 		<key>Navigation Bar Style</key>
 		<integer>0</integer>
 		<key>Status Bar Style</key>
@@ -72,7 +72,7 @@
 		<key>Background Color B</key>
 		<real>825307647</real>
 		<key>Border Color</key>
-		<real>1111638783</real>
+		<real>555819519</real>
 		<key>Control Color A</key>
 		<real>2619846911</real>
 		<key>Control Color B</key>
@@ -82,7 +82,7 @@
 		<key>Highlight Color For Sidebar</key>
 		<integer>4294967071</integer>
 		<key>Navigation Item Color</key>
-		<real>4294967106</real>
+		<integer>4294967167</integer>
 		<key>Navigation Bar Style</key>
 		<integer>1</integer>
 		<key>Status Bar Style</key>

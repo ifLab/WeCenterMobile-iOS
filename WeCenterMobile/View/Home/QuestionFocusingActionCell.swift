@@ -12,18 +12,31 @@ class QuestionFocusingActionCell: UITableViewCell {
     
     @IBOutlet weak var userAvatarView: MSRRoundedImageView!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var questionTitleLabel: UILabel!
     @IBOutlet weak var userButton: UIButton!
     @IBOutlet weak var questionButton: UIButton!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var userContainerView: UIView!
+    @IBOutlet weak var questionContainerView: UIView!
+    @IBOutlet weak var separator: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         msr_scrollView?.delaysContentTouches = false
-        containerView.layer.borderColor = UIColor.msr_materialGray300().CGColor
-        containerView.layer.borderWidth = 0.5
-        userButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        questionButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        let theme = SettingsManager.defaultManager.currentTheme
+        for v in [userContainerView, questionContainerView] {
+            v.backgroundColor = theme.backgroundColorB
+        }
+        containerView.msr_borderColor = theme.borderColor
+        separator.backgroundColor = theme.borderColor
+        for v in [userButton, questionButton] {
+            v.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
+        }
+        for v in [userNameLabel, questionTitleLabel] {
+            v.textColor = theme.titleTextColor
+        }
+        typeLabel.textColor = theme.subtitleTextColor
     }
     
     func update(#action: Action, updateImage: Bool) {

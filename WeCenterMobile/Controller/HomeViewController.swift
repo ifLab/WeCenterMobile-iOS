@@ -62,7 +62,8 @@ class HomeViewController: UITableViewController {
         for i in 0..<nibNames.count {
             tableView.registerNib(UINib(nibName: nibNames[i], bundle: NSBundle.mainBundle()), forCellReuseIdentifier: identifiers[i])
         }
-        view.backgroundColor = UIColor.msr_materialGray200()
+        let theme = SettingsManager.defaultManager.currentTheme
+        view.backgroundColor = theme.backgroundColorA
         tableView.separatorStyle = .None
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -70,9 +71,9 @@ class HomeViewController: UITableViewController {
         tableView.delaysContentTouches = false
         tableView.msr_wrapperView?.delaysContentTouches = false
         let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
-        header.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+        header.textColor = theme.footnoteTextColor
         headerImageView = header.valueForKey("arrowImage") as! UIImageView
-        headerImageView.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
+        headerImageView.tintColor = theme.footnoteTextColor
         headerImageView.msr_imageRenderingMode = .AlwaysTemplate
         headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
         headerActivityIndicatorView.activityIndicatorViewStyle = .Gray
@@ -169,8 +170,9 @@ class HomeViewController: UITableViewController {
                     self_.tableView.reloadData()
                     self_.tableView.header.endRefreshing()
                     if self_.tableView.footer == nil {
+                        let theme = SettingsManager.defaultManager.currentTheme
                         let footer = self_.tableView.addLegendFooterWithRefreshingTarget(self, refreshingAction: "loadMore")
-                        footer.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+                        footer.textColor = theme.footnoteTextColor
                         footer.automaticallyRefresh = false
                         self_.footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
                         self_.footerActivityIndicatorView.activityIndicatorViewStyle = .Gray
@@ -211,6 +213,6 @@ class HomeViewController: UITableViewController {
             })
     }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .Default
+        return SettingsManager.defaultManager.currentTheme.statusBarStyle
     }
 }

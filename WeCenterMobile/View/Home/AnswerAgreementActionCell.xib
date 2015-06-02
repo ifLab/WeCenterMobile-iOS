@@ -28,6 +28,11 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="JwD-fY-wT9" customClass="MSRRoundedImageView" customModule="WeCenterMobile" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -176,6 +181,11 @@
                             <constraint firstItem="TvL-fh-esJ" firstAttribute="top" secondItem="lsC-uy-D4P" secondAttribute="top" id="wdV-Yl-CsG"/>
                             <constraint firstItem="Tdi-yQ-MnH" firstAttribute="leading" secondItem="TvL-fh-esJ" secondAttribute="trailing" id="xqE-Oi-hQz"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="GSj-4s-DjE"/>
@@ -196,11 +206,17 @@
                 <outlet property="agreementCountLabel" destination="PWe-mc-iPW" id="raM-8l-82E"/>
                 <outlet property="answerBodyLabel" destination="HzZ-U8-YlI" id="lyj-nd-6ra"/>
                 <outlet property="answerButton" destination="4qU-I7-Ek9" id="KN8-bt-jMh"/>
+                <outlet property="answerContainerView" destination="9Nb-tH-KA8" id="6FG-rZ-mIH"/>
                 <outlet property="containerView" destination="lsC-uy-D4P" id="DGF-4R-wmB"/>
                 <outlet property="questionButton" destination="E4n-vN-nI6" id="Mz0-Jl-x14"/>
+                <outlet property="questionContainerView" destination="AGK-SF-DZp" id="hU7-Mo-sYb"/>
                 <outlet property="questionTitleLabel" destination="dAj-KA-7nu" id="tyK-v0-e7A"/>
+                <outlet property="separatorA" destination="Tdi-yQ-MnH" id="lk9-kL-bG7"/>
+                <outlet property="separatorB" destination="k7v-mN-31X" id="Ndd-xo-OA9"/>
+                <outlet property="typeLabel" destination="HKY-l3-RvM" id="m9q-aw-6kd"/>
                 <outlet property="userAvatarView" destination="JwD-fY-wT9" id="pcu-fZ-Zfb"/>
                 <outlet property="userButton" destination="KXn-lM-ChO" id="9IY-J2-uPL"/>
+                <outlet property="userContainerView" destination="TvL-fh-esJ" id="S0Z-9V-X7h"/>
                 <outlet property="userNameLabel" destination="gqT-tl-loF" id="s8a-Ac-7v1"/>
             </connections>
             <point key="canvasLocation" x="649" y="569"/>

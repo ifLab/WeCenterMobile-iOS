@@ -12,18 +12,31 @@ class ArticleAgreementActionCell: UITableViewCell {
     
     @IBOutlet weak var userAvatarView: MSRRoundedImageView!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var articleTitleLabel: UILabel!
     @IBOutlet weak var userButton: UIButton!
     @IBOutlet weak var articleButton: UIButton!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var userContainerView: UIView!
+    @IBOutlet weak var articleContainerView: UIView!
+    @IBOutlet weak var separator: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         msr_scrollView?.delaysContentTouches = false
-        containerView.layer.borderColor = UIColor.msr_materialGray300().CGColor
-        containerView.layer.borderWidth = 0.5
-        articleButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        userButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        let theme = SettingsManager.defaultManager.currentTheme
+        for v in [userContainerView, articleContainerView] {
+            v.backgroundColor = theme.backgroundColorB
+        }
+        containerView.msr_borderColor = theme.borderColor
+        separator.backgroundColor = theme.borderColor
+        for v in [userButton, articleButton] {
+            v.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
+        }
+        for v in [userNameLabel, articleTitleLabel] {
+            v.textColor = theme.titleTextColor
+        }
+        typeLabel.textColor = theme.subtitleTextColor
     }
     
     func update(#action: Action, updateImage: Bool) {

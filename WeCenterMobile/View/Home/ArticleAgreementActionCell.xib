@@ -111,6 +111,11 @@
                             <constraint firstItem="koV-kg-6Jx" firstAttribute="leading" secondItem="znl-HB-i1w" secondAttribute="leading" id="sfN-gd-ANd"/>
                             <constraint firstAttribute="bottom" secondItem="koV-kg-6Jx" secondAttribute="bottom" id="ycE-hD-2RT"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -124,10 +129,14 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="articleButton" destination="yVo-4a-ncs" id="n8f-dt-6Bw"/>
+                <outlet property="articleContainerView" destination="gMs-Kh-NgK" id="VOC-gh-exz"/>
                 <outlet property="articleTitleLabel" destination="RKz-Uo-rBs" id="Jgc-Q6-3hf"/>
                 <outlet property="containerView" destination="znl-HB-i1w" id="CGg-Bc-Nsx"/>
+                <outlet property="separator" destination="l2L-QD-ZWl" id="O7Y-tb-4NP"/>
+                <outlet property="typeLabel" destination="r60-9C-wDs" id="BHW-JH-WDj"/>
                 <outlet property="userAvatarView" destination="p00-xV-p8l" id="dKn-9z-uxV"/>
                 <outlet property="userButton" destination="0G7-cL-AgY" id="WeZ-zf-u5C"/>
+                <outlet property="userContainerView" destination="koV-kg-6Jx" id="GY2-VF-oeX"/>
                 <outlet property="userNameLabel" destination="6kw-hM-qvl" id="qkN-vM-28d"/>
             </connections>
             <point key="canvasLocation" x="712" y="510.5"/>

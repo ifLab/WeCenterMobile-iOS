@@ -12,6 +12,7 @@ class AnswerAgreementActionCell: UITableViewCell {
     
     @IBOutlet weak var userAvatarView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var questionTitleLabel: UILabel!
     @IBOutlet weak var agreementCountLabel: UILabel!
     @IBOutlet weak var answerBodyLabel: UILabel!
@@ -19,17 +20,37 @@ class AnswerAgreementActionCell: UITableViewCell {
     @IBOutlet weak var questionButton: UIButton!
     @IBOutlet weak var answerButton: UIButton!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var userContainerView: UIView!
+    @IBOutlet weak var questionContainerView: UIView!
+    @IBOutlet weak var answerContainerView: UIView!
+    @IBOutlet weak var separatorA: UIView!
+    @IBOutlet weak var separatorB: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         msr_scrollView?.delaysContentTouches = false
-        containerView.layer.borderColor = UIColor.msr_materialGray300().CGColor
-        containerView.layer.borderWidth = 0.5
-        agreementCountLabel.layer.borderColor = UIColor.msr_materialGray300().CGColor
-        agreementCountLabel.layer.borderWidth = 0.5
-        userButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        questionButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        answerButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        let theme = SettingsManager.defaultManager.currentTheme
+        for v in [containerView, agreementCountLabel] {
+            v.msr_borderColor = theme.borderColor
+        }
+        for v in [userButton, questionButton, answerButton] {
+            v.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
+        }
+        for v in [userContainerView, questionContainerView] {
+            v.backgroundColor = theme.backgroundColorB
+        }
+        for v in [agreementCountLabel, answerContainerView] {
+            v.backgroundColor = theme.backgroundColorA
+        }
+        for v in [separatorA, separatorB] {
+            v.backgroundColor = theme.borderColor
+        }
+        for v in [userNameLabel, questionTitleLabel] {
+            v.textColor = theme.titleTextColor
+        }
+        for v in [agreementCountLabel, typeLabel, answerBodyLabel] {
+            v.textColor = theme.subtitleTextColor
+        }
     }
     
     func update(#action: Action, updateImage: Bool) {
