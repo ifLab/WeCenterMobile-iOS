@@ -26,7 +26,9 @@ let welcomeStrings: (String) -> String = {
     return NSLocalizedString($0, tableName: "Welcome", comment: "")
 }
 
-let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+var appDelegate: AppDelegate {
+    return UIApplication.sharedApplication().delegate as! AppDelegate
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MSRWeChatAPIDelegate {
@@ -50,12 +52,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MSRWeChatAPIDelegate {
         MSRWeChatAPI.registerAppWithID("wx4dc4b980c462893b")
         WeiboSDK.registerApp("3758958382")
         WeiboSDK.enableDebugMode(true)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTheme", name: CurrentThemeDidChangeNotificationName, object: nil)
+        updateTheme()
         window!.rootViewController = loginViewController
         window!.makeKeyAndVisible()
         return true
     }
     
     func applicationWillTerminate(application: UIApplication) {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
         DataManager.defaultManager!.saveChanges(nil)
     }
     
@@ -73,6 +78,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MSRWeChatAPIDelegate {
         let directory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last as! NSURL
         let url = directory.URLByAppendingPathComponent("WeCenterMobile.sqlite")
         NSFileManager.defaultManager().removeItemAtURL(url, error: nil)
+    }
+    
+    func updateTheme() {
+        let theme = SettingsManager.defaultManager.currentTheme
+        UINavigationBar.appearance().barStyle = theme.navigationBarStyle
+        UINavigationBar.appearance().tintColor = theme.navigationItemColor
     }
     
 }

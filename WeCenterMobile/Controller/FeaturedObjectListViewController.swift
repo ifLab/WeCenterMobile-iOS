@@ -50,20 +50,11 @@ class FeaturedObjectListViewController: UITableViewController {
         tableView.separatorStyle = .None
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
-        let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
-        header.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
-        headerImageView = header.valueForKey("arrowImage") as! UIImageView
-        headerImageView.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
-        headerImageView.msr_imageRenderingMode = .AlwaysTemplate
-        headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
-        headerActivityIndicatorView.activityIndicatorViewStyle = .Gray
+        tableView.wc_addLegendHeaderWithRefreshingTarget(self, action: "refresh")
         for i in 0..<nibNames.count {
             tableView.registerNib(UINib(nibName: nibNames[i], bundle: NSBundle.mainBundle()), forCellReuseIdentifier: identifiers[i])
         }
     }
-    private var headerImageView: UIImageView! // for keeping weak property in header
-    private var headerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in header
-    private var footerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in footer
     func segmentedViewControllerDidSelectSelf(segmentedViewController: MSRSegmentedViewController) {
         if firstSelected {
             firstSelected = false
@@ -130,11 +121,7 @@ class FeaturedObjectListViewController: UITableViewController {
                     self_.tableView.reloadData()
                     self_.tableView.header.endRefreshing()
                     if self_.tableView.footer == nil {
-                        let footer = self_.tableView.addLegendFooterWithRefreshingTarget(self, refreshingAction: "loadMore")
-                        footer.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
-                        footer.automaticallyRefresh = false
-                        self_.footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
-                        self_.footerActivityIndicatorView.activityIndicatorViewStyle = .Gray
+                        self_.tableView.wc_addLegendFooterWithRefreshingTarget(self_, action: "loadMore")
                     }
                 }
                 return

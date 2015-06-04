@@ -71,26 +71,17 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private var headerImageView: UIImageView! // for keeping weak property in header
-    private var headerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in header
 
     override func loadView() {
         super.loadView()
         view.backgroundColor = UIColor.msr_materialGray200()
-        let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
-        header.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
-        headerImageView = header.valueForKey("arrowImage") as! UIImageView
-        headerImageView.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
-        headerImageView.msr_imageRenderingMode = .AlwaysTemplate
-        headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
-        headerActivityIndicatorView.activityIndicatorViewStyle = .Gray
         tableView.delaysContentTouches = false
         tableView.msr_wrapperView?.delaysContentTouches = false
         tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         tableView.separatorStyle = .None
         tableView.registerNib(UINib(nibName: answerCellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: answerCellIdentifier)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
+        tableView.wc_addLegendHeaderWithRefreshingTarget(self, action: "refresh")
         title = "问题详情" // Needs localization
     }
     

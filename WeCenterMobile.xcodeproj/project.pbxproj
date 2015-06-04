@@ -170,6 +170,7 @@
 		951D2F8F1AB7F8C000DCB678 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 951D2F8E1AB7F8C000DCB678 /* Images.xcassets */; };
 		951DA7551AEAACD300F0E3A7 /* UIImage+MSRGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951DA7541AEAACD300F0E3A7 /* UIImage+MSRGetter.swift */; };
 		951DA7571AEAAE6300F0E3A7 /* MSRRoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951DA7561AEAAE6300F0E3A7 /* MSRRoundedImageView.swift */; };
+		951E12F01B202D7C00F076FE /* UITableView+Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951E12EF1B202D7C00F076FE /* UITableView+Refresh.swift */; };
 		951FAC761ABFCEA30083E221 /* EAColourfulProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 951FAC751ABFCEA30083E221 /* EAColourfulProgressView.m */; };
 		9520AB151AC2C94600637C84 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9520AB141AC2C94600637C84 /* QuestionViewController.swift */; };
 		9531D69A1AEEB93D00E6549D /* UIScrollView+MSRRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D6991AEEB93D00E6549D /* UIScrollView+MSRRefreshControl.swift */; };
@@ -753,6 +754,7 @@
 		951D2F8E1AB7F8C000DCB678 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		951DA7541AEAACD300F0E3A7 /* UIImage+MSRGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+MSRGetter.swift"; sourceTree = "<group>"; };
 		951DA7561AEAAE6300F0E3A7 /* MSRRoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRRoundedImageView.swift; sourceTree = "<group>"; };
+		951E12EF1B202D7C00F076FE /* UITableView+Refresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Refresh.swift"; sourceTree = "<group>"; };
 		951FAC741ABFCEA30083E221 /* EAColourfulProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAColourfulProgressView.h; sourceTree = "<group>"; };
 		951FAC751ABFCEA30083E221 /* EAColourfulProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAColourfulProgressView.m; sourceTree = "<group>"; };
 		9520AB141AC2C94600637C84 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = QuestionViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -1783,6 +1785,7 @@
 				9531D7661AF3E85900E6549D /* UIImageView+DataObject.swift */,
 				9550A2961AF8B6D0005F81F7 /* KeyboardBar.swift */,
 				956EF0771B16F9FE00C9DA2A /* TableViewWithKeyboardBar.swift */,
+				951E12EF1B202D7C00F076FE /* UITableView+Refresh.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -2635,6 +2638,7 @@
 				951D1E8D1ACD1E4E0072D555 /* DTDictationPlaceholderView.m in Sources */,
 				951D1F8E1ACD1E750072D555 /* NSDictionary+DTError.m in Sources */,
 				951D1F581ACD1E750072D555 /* DTASN1Parser.m in Sources */,
+				951E12F01B202D7C00F076FE /* UITableView+Refresh.swift in Sources */,
 				95C2EA431AB0516800F2A326 /* UINavigationBar+MSRAccessor.swift in Sources */,
 				95ED5F351B084D5100CDB225 /* UzysAssetsViewCell.m in Sources */,
 				958600821B17308C0054DAA8 /* UIView+MSRAccessor.swift in Sources */,

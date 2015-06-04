@@ -95,9 +95,7 @@ class SettingsViewController: UITableViewController {
     
     func updateTheme() {
         let theme = SettingsManager.defaultManager.currentTheme
-        UINavigationBar.appearance().barStyle = theme.navigationBarStyle
         msr_navigationBar!.barStyle = theme.navigationBarStyle /// @TODO: Wrong behaviour will occur if put it into the animation block. This might be produced by the reinstallation of navigation bar background view.
-        UINavigationBar.appearance().tintColor = theme.navigationItemColor
         msr_navigationBar!.tintColor = theme.navigationItemColor
         setNeedsStatusBarAppearanceUpdate()
         tableView.backgroundColor = theme.backgroundColorA

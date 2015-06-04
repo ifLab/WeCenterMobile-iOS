@@ -33,10 +33,6 @@ class AnswerListViewController: UITableViewController {
     let cellReuseIdentifier = "AnswerCellWithQuestionTitle"
     let cellNibName = "AnswerCellWithQuestionTitle"
     
-    private var headerImageView: UIImageView! // for keeping weak property in header
-    private var headerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in header
-    private var footerActivityIndicatorView: UIActivityIndicatorView! // for keeping weak property in footer
-    
     override func loadView() {
         super.loadView()
         title = "\(user.name!) 的回答"
@@ -50,13 +46,7 @@ class AnswerListViewController: UITableViewController {
         tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         tableView.delaysContentTouches = false
         tableView.msr_wrapperView?.delaysContentTouches = false
-        let header = tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refresh")
-        header.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
-        headerImageView = header.valueForKey("arrowImage") as! UIImageView
-        headerImageView.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
-        headerImageView.msr_imageRenderingMode = .AlwaysTemplate
-        headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
-        headerActivityIndicatorView.activityIndicatorViewStyle = .Gray
+        tableView.wc_addLegendHeaderWithRefreshingTarget(self, action: "refresh")
     }
     
     override func viewDidLoad() {
@@ -116,11 +106,7 @@ class AnswerListViewController: UITableViewController {
                 self_.tableView.header.endRefreshing()
                 self_.tableView.reloadData()
                 if self_.tableView.footer == nil {
-                    let footer = self_.tableView.addLegendFooterWithRefreshingTarget(self, refreshingAction: "loadMore")
-                    footer.textColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
-                    footer.automaticallyRefresh = false
-                    self_.footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
-                    self_.footerActivityIndicatorView.activityIndicatorViewStyle = .Gray
+                    self_.tableView.wc_addLegendFooterWithRefreshingTarget(self_, action: "refresh")
                 }
             }
         }
