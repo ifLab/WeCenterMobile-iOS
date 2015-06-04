@@ -110,7 +110,7 @@ class SettingsViewController: UITableViewController {
             clearCacheView]
         for view in views {
             view.backgroundColor = theme.backgroundColorB
-            view.msr_borderColor = theme.borderColor
+            view.msr_borderColor = theme.borderColorA
         }
         let labels = [
             noImagesModeLabel,

@@ -13,9 +13,7 @@
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="JLT-ZM-FJL">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
-                <barButtonItem image="Action-Line" width="30" id="nB4-c7-NRN">
-                    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                </barButtonItem>
+                <barButtonItem image="Action-Line" width="30" id="nB4-c7-NRN"/>
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="MwP-u1-0CS">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
@@ -29,21 +27,15 @@
                 <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="H7M-In-04w">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
-                <barButtonItem image="Like-Normal" id="ULR-pv-Qfn">
-                    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                </barButtonItem>
+                <barButtonItem image="Like-Normal" id="ULR-pv-Qfn"/>
                 <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="ZJ3-s0-WSN">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
-                <barButtonItem enabled="NO" title="12345" width="20" id="hh2-eV-ctb">
-                    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
-                </barButtonItem>
+                <barButtonItem enabled="NO" title="12345" width="20" id="hh2-eV-ctb"/>
                 <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="JL4-Ns-9Ms">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
-                <barButtonItem image="Dislike-Normal" id="pep-yf-I5h">
-                    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                </barButtonItem>
+                <barButtonItem image="Dislike-Normal" id="pep-yf-I5h"/>
                 <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="VeR-BE-GQx">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
@@ -57,9 +49,7 @@
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="8S4-Je-W0q">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
-                <barButtonItem image="Conversation-Line" width="30" id="Do0-gx-Quo">
-                    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                </barButtonItem>
+                <barButtonItem image="Conversation-Line" width="30" id="Do0-gx-Quo"/>
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="Ml6-0J-6gl">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
@@ -69,6 +59,8 @@
                 <outlet property="agreementCountItem" destination="hh2-eV-ctb" id="IiT-oJ-3IR"/>
                 <outlet property="commentItem" destination="Do0-gx-Quo" id="qh2-sN-T3L"/>
                 <outlet property="disagreeItem" destination="pep-yf-I5h" id="Tsj-Vm-k4Y"/>
+                <outlet property="separatorAItem" destination="8yS-Px-ETx" id="o33-xW-xea"/>
+                <outlet property="separatorBItem" destination="EU2-ly-6NO" id="2HO-8f-c8f"/>
                 <outlet property="shareItem" destination="nB4-c7-NRN" id="Aoo-Y1-I7g"/>
             </connections>
             <point key="canvasLocation" x="575" y="429"/>

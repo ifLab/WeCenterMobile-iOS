@@ -31,7 +31,7 @@ class AnswerAgreementActionCell: UITableViewCell {
         msr_scrollView?.delaysContentTouches = false
         let theme = SettingsManager.defaultManager.currentTheme
         for v in [containerView, agreementCountLabel] {
-            v.msr_borderColor = theme.borderColor
+            v.msr_borderColor = theme.borderColorA
         }
         for v in [userButton, questionButton, answerButton] {
             v.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
@@ -43,7 +43,7 @@ class AnswerAgreementActionCell: UITableViewCell {
             v.backgroundColor = theme.backgroundColorA
         }
         for v in [separatorA, separatorB] {
-            v.backgroundColor = theme.borderColor
+            v.backgroundColor = theme.borderColorA
         }
         for v in [userNameLabel, questionTitleLabel] {
             v.textColor = theme.titleTextColor

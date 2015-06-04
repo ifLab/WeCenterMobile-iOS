@@ -11,10 +11,10 @@
             <rect key="frame" x="0.0" y="0.0" width="240" height="160"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SidebarBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Odc-cp-IpF">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SidebarBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Odc-cp-IpF" userLabel="Background Image View">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="160"/>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T7i-l7-BIK">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T7i-l7-BIK" userLabel="Background Overlay">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="160"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.70000000000000007" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
@@ -54,23 +54,23 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="T7i-l7-BIK" firstAttribute="top" secondItem="Cdq-93-MFZ" secondAttribute="top" id="5g2-TT-94f"/>
+                <constraint firstItem="T7i-l7-BIK" firstAttribute="top" secondItem="Cdq-93-MFZ" secondAttribute="top" id="0Ck-kQ-cdy"/>
+                <constraint firstAttribute="bottom" secondItem="T7i-l7-BIK" secondAttribute="bottom" id="3Yc-dY-A1W"/>
+                <constraint firstAttribute="bottom" secondItem="Odc-cp-IpF" secondAttribute="bottom" id="5q4-5K-Ywb"/>
                 <constraint firstItem="BAr-Vk-weg" firstAttribute="leading" secondItem="Cdq-93-MFZ" secondAttribute="leading" constant="15" id="8Yt-YZ-rDT"/>
                 <constraint firstAttribute="bottom" secondItem="BAr-Vk-weg" secondAttribute="bottom" constant="45" id="BTU-NC-0JO"/>
-                <constraint firstItem="Odc-cp-IpF" firstAttribute="top" secondItem="Cdq-93-MFZ" secondAttribute="top" id="I4r-DR-sTQ"/>
+                <constraint firstItem="Odc-cp-IpF" firstAttribute="top" secondItem="Cdq-93-MFZ" secondAttribute="top" id="BjN-hZ-4b4"/>
+                <constraint firstItem="T7i-l7-BIK" firstAttribute="leading" secondItem="Cdq-93-MFZ" secondAttribute="leading" id="HXL-9z-8fr"/>
+                <constraint firstAttribute="trailing" secondItem="Odc-cp-IpF" secondAttribute="trailing" id="PfB-NH-jl4"/>
                 <constraint firstItem="wkI-RR-0u8" firstAttribute="top" secondItem="BAr-Vk-weg" secondAttribute="bottom" constant="3" id="VKR-ea-mjv"/>
-                <constraint firstAttribute="bottom" secondItem="Odc-cp-IpF" secondAttribute="bottom" id="VWw-Sh-D7q"/>
-                <constraint firstAttribute="trailing" secondItem="Odc-cp-IpF" secondAttribute="trailing" id="Ynm-vw-yca"/>
+                <constraint firstAttribute="trailing" secondItem="T7i-l7-BIK" secondAttribute="trailing" id="Y1M-wE-WcY"/>
                 <constraint firstItem="wkI-RR-0u8" firstAttribute="leading" secondItem="Cdq-93-MFZ" secondAttribute="leading" constant="15" id="amF-Ww-OBD"/>
                 <constraint firstItem="BAr-Vk-weg" firstAttribute="top" secondItem="1cY-ZW-2ye" secondAttribute="bottom" constant="8" id="bCj-cP-eim"/>
-                <constraint firstAttribute="trailing" secondItem="T7i-l7-BIK" secondAttribute="trailing" id="eeK-Oa-m6T"/>
-                <constraint firstItem="Odc-cp-IpF" firstAttribute="leading" secondItem="Cdq-93-MFZ" secondAttribute="leading" id="fkG-pG-g8S"/>
+                <constraint firstItem="Odc-cp-IpF" firstAttribute="leading" secondItem="Cdq-93-MFZ" secondAttribute="leading" id="gkH-vL-4Nm"/>
                 <constraint firstItem="1cY-ZW-2ye" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Cdq-93-MFZ" secondAttribute="top" constant="20" id="iAb-SK-DHF"/>
-                <constraint firstAttribute="bottom" secondItem="T7i-l7-BIK" secondAttribute="bottom" id="kl2-ni-Tlz"/>
                 <constraint firstAttribute="trailing" secondItem="wkI-RR-0u8" secondAttribute="trailing" constant="15" id="nMe-ZI-ssO"/>
                 <constraint firstAttribute="centerX" secondItem="1cY-ZW-2ye" secondAttribute="centerX" id="pPh-jh-Wuw"/>
                 <constraint firstAttribute="trailing" secondItem="BAr-Vk-weg" secondAttribute="trailing" constant="15" id="r0c-iE-iY1"/>
-                <constraint firstItem="T7i-l7-BIK" firstAttribute="leading" secondItem="Cdq-93-MFZ" secondAttribute="leading" id="uWa-KK-eWT"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

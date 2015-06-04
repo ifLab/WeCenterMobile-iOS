@@ -28,8 +28,10 @@
 		<real>4008636159</real>
 		<key>Background Color B</key>
 		<real>4126537215</real>
-		<key>Border Color</key>
+		<key>Border Color A</key>
 		<integer>3772834047</integer>
+		<key>Border Color B</key>
+		<integer>2661195519</integer>
 		<key>Control Color A</key>
 		<real>2619846911</real>
 		<key>Control Color B</key>
@@ -44,6 +46,8 @@
 		<integer>0</integer>
 		<key>Status Bar Style</key>
 		<integer>0</integer>
+		<key>Tool Bar Item Color</key>
+		<integer>127</integer>
 		<key>Tool Bar Style</key>
 		<integer>0</integer>
 	</dict>
@@ -62,17 +66,19 @@
 		<key>Title Text Color</key>
 		<real>4294967263</real>
 		<key>Subtitle Text Color</key>
-		<integer>4294967178</integer>
+		<real>4294967178</real>
 		<key>Body Text Color</key>
 		<integer>4294967178</integer>
 		<key>Footnote Text Color</key>
-		<integer>4294967106</integer>
+		<real>4294967106</real>
 		<key>Background Color A</key>
 		<real>555819519</real>
 		<key>Background Color B</key>
 		<real>825307647</real>
-		<key>Border Color</key>
+		<key>Border Color A</key>
 		<real>555819519</real>
+		<key>Border Color B</key>
+		<real>1111638783</real>
 		<key>Control Color A</key>
 		<real>2619846911</real>
 		<key>Control Color B</key>
@@ -82,11 +88,13 @@
 		<key>Highlight Color For Sidebar</key>
 		<integer>4294967071</integer>
 		<key>Navigation Item Color</key>
-		<integer>4294967167</integer>
+		<real>4294967167</real>
 		<key>Navigation Bar Style</key>
 		<integer>1</integer>
 		<key>Status Bar Style</key>
 		<integer>1</integer>
+		<key>Tool Bar Item Color</key>
+		<real>4294967167</real>
 		<key>Tool Bar Style</key>
 		<integer>1</integer>
 	</dict>

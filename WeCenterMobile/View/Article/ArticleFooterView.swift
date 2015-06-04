@@ -20,21 +20,33 @@ class ArticleFooterView: UIToolbar {
     @IBOutlet weak var agreementCountItem: UIBarButtonItem!
     @IBOutlet weak var disagreeItem: UIBarButtonItem!
     @IBOutlet weak var commentItem: UIBarButtonItem!
+    @IBOutlet weak var separatorAItem: UIBarButtonItem!
+    @IBOutlet weak var separatorBItem: UIBarButtonItem!
     
     lazy var activityIndicatorView: UIActivityIndicatorView = {
-        let aiv = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
-        aiv.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
-        aiv.hidesWhenStopped = true
-        aiv.stopAnimating()
-        return aiv
+        let v = UIActivityIndicatorView(activityIndicatorStyle: .White)
+        let theme = SettingsManager.defaultManager.currentTheme
+        v.color = theme.toolbarItemColor
+        v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+        v.hidesWhenStopped = true
+        v.stopAnimating()
+        return v
     }()
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        let theme = SettingsManager.defaultManager.currentTheme
+        barStyle = theme.toolbarStyle
+        tintColor = theme.toolbarItemColor
+        agreementCountItem.setTitleTextAttributes([
+                NSForegroundColorAttributeName: theme.toolbarItemColor,
+                NSFontAttributeName: UIFont.systemFontOfSize(14)],
+            forState: .Normal)
+        for v in [separatorAItem, separatorBItem] {
+            v.customView!.backgroundColor = theme.borderColorA
+        }
         let s = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         s.alignment = .Center
-        agreementCountItem.setTitleTextAttributes([
-            NSFontAttributeName: UIFont.systemFontOfSize(14)], forState: .Normal)
         addSubview(activityIndicatorView)
         activityIndicatorView.msr_addCenterConstraintsToSuperview()
     }

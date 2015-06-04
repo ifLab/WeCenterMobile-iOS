@@ -26,14 +26,16 @@ class ArticleHeaderView: UIView, UIToolbarDelegate {
     lazy var backButton: UIButton = {
         let v = UIButton()
         v.setImage(UIImage(named: "Arrow-Left")!.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
-        v.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.87)
+        let theme = SettingsManager.defaultManager.currentTheme
+        v.tintColor = theme.navigationItemColor
         return v
     }()
     
     lazy var titleLabelA: UILabel = {
         let v = UILabel()
         v.textAlignment = .Center
-        v.textColor = UIColor.blackColor().colorWithAlphaComponent(0.87)
+        let theme = SettingsManager.defaultManager.currentTheme
+        v.textColor = theme.titleTextColor
         v.font = UIFont.systemFontOfSize(17)
         return v
     }()
@@ -41,7 +43,8 @@ class ArticleHeaderView: UIView, UIToolbarDelegate {
     lazy var titleLabelB: UILabel = {
         let v = UILabel()
         v.numberOfLines = 0
-        v.textColor = UIColor.blackColor().colorWithAlphaComponent(0.87)
+        let theme = SettingsManager.defaultManager.currentTheme
+        v.textColor = theme.titleTextColor
         v.font = UIFont.systemFontOfSize(17)
         return v
     }()
@@ -63,27 +66,31 @@ class ArticleHeaderView: UIView, UIToolbarDelegate {
     
     lazy var userButtonB: UIButton = {
         let v = UIButton()
-        v.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.2), forState: .Highlighted)
+        let theme = SettingsManager.defaultManager.currentTheme
+        v.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
         return v
     }()
     
     lazy var userNameLabel: UILabel = {
         let v = UILabel()
-        v.textColor = UIColor.blackColor().colorWithAlphaComponent(0.87)
+        let theme = SettingsManager.defaultManager.currentTheme
+        v.textColor = theme.titleTextColor
         v.font = UIFont.systemFontOfSize(15)
         return v
     }()
     
     lazy var userSignatureLabel: UILabel = {
         let v = UILabel()
-        v.textColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
+        let theme = SettingsManager.defaultManager.currentTheme
+        v.textColor = theme.titleTextColor
         v.font = UIFont.systemFontOfSize(12)
         return v
     }()
     
     lazy var separator: UIView = {
         let v = UIView()
-        v.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
+        let theme = SettingsManager.defaultManager.currentTheme
+        v.backgroundColor = theme.borderColorB
         return v
     }()
     
@@ -120,8 +127,10 @@ class ArticleHeaderView: UIView, UIToolbarDelegate {
     func wc_initialize() {
         addSubview(containerView)
         containerView.frame = containerView.bounds
+        let theme = SettingsManager.defaultManager.currentTheme
         let bar = UIToolbar()
         bar.delegate = self
+        bar.barStyle = theme.navigationBarStyle
         backgroundView = bar
         for v in [backButton, titleLabelA, titleLabelB, userAvatarViewA, userAvatarViewB, userNameLabel, userSignatureLabel, userButtonA, userButtonB, separator] {
             containerView.addSubview(v)

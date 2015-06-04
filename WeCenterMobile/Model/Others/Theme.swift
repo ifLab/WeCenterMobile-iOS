@@ -62,8 +62,11 @@ class Theme {
         if let backgroundColorBRGBA = (configuration["Background Color B"] as? NSNumber)?.unsignedIntValue {
             self.backgroundColorB = %-backgroundColorBRGBA
         }
-        if let borderColorRGBA = (configuration["Border Color"] as? NSNumber)?.unsignedIntValue {
-            self.borderColor = %-borderColorRGBA
+        if let borderColorARGBA = (configuration["Border Color A"] as? NSNumber)?.unsignedIntValue {
+            self.borderColorA = %-borderColorARGBA
+        }
+        if let borderColorBRGBA = (configuration["Border Color B"] as? NSNumber)?.unsignedIntValue {
+            self.borderColorB = %-borderColorBRGBA
         }
         if let controlColorARGBA = (configuration["Control Color A"] as? NSNumber)?.unsignedIntValue {
             self.controlColorA = %-controlColorARGBA
@@ -99,13 +102,16 @@ class Theme {
                 self.navigationBarStyle = navigationBarStyle
             }
         }
-        if let toolBarStyleRawValue = (configuration["Tool Bar Style"] as? NSNumber)?.integerValue {
-            if let toolBarStyle = UIBarStyle(rawValue: toolBarStyleRawValue) {
-                self.toolBarStyle = toolBarStyle
+        if let toolbarStyleRawValue = (configuration["Tool Bar Style"] as? NSNumber)?.integerValue {
+            if let toolbarStyle = UIBarStyle(rawValue: toolbarStyleRawValue) {
+                self.toolbarStyle = toolbarStyle
             }
         }
         if let navigationItemColorRawValue = (configuration["Navigation Item Color"] as? NSNumber)?.unsignedIntValue {
             self.navigationItemColor = %-navigationItemColorRawValue
+        }
+        if let toolbarItemColorRawValue = (configuration["Tool Bar Item Color"] as? NSNumber)?.unsignedIntValue {
+            self.toolbarItemColor = %-toolbarItemColorRawValue
         }
     }
     
@@ -124,15 +130,18 @@ class Theme {
     var backgroundColorA: UIColor = .msr_materialGray200()
     var backgroundColorB: UIColor = .msr_materialGray100()
     
-    var borderColor: UIColor = .msr_materialGray300()
+    var borderColorA: UIColor = .msr_materialGray300()
+    var borderColorB: UIColor = .msr_materialGray800()
     var controlColorA: UIColor = .msr_materialPurple500()
     var controlColorB: UIColor = .whiteColor()
     var navigationItemColor: UIColor = %-0x00000042
+    var toolbarItemColor: UIColor = %-0x00000042
+    
     var highlightColor: UIColor = %-0x0000007f
     var highlightColorForSidebar: UIColor = %-0x0000000f
     
     var statusBarStyle: UIStatusBarStyle = .Default
     var navigationBarStyle: UIBarStyle = .Default
-    var toolBarStyle: UIBarStyle = .Default
+    var toolbarStyle: UIBarStyle = .Default
     
 }

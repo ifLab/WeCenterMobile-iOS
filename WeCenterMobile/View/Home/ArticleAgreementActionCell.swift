@@ -28,8 +28,8 @@ class ArticleAgreementActionCell: UITableViewCell {
         for v in [userContainerView, articleContainerView] {
             v.backgroundColor = theme.backgroundColorB
         }
-        containerView.msr_borderColor = theme.borderColor
-        separator.backgroundColor = theme.borderColor
+        containerView.msr_borderColor = theme.borderColorA
+        separator.backgroundColor = theme.borderColorA
         for v in [userButton, articleButton] {
             v.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
         }

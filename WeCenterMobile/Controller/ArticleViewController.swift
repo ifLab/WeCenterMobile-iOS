@@ -89,6 +89,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
     
     override func loadView() {
         super.loadView()
+        let theme = SettingsManager.defaultManager.currentTheme
         view.addSubview(bodyView)
         view.addSubview(footer)
         bodyView.addSubview(header)
@@ -96,11 +97,11 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
         bodyView.frame = view.bounds
         bodyView.delegate = self
         bodyView.msr_uiRefreshControl = UIRefreshControl()
-        bodyView.msr_uiRefreshControl!.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.87)
+        bodyView.msr_uiRefreshControl!.tintColor = theme.footnoteTextColor
         bodyView.msr_uiRefreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         bodyView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
         bodyView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
-        view.backgroundColor = UIColor.msr_materialGray100()
+        view.backgroundColor = theme.backgroundColorA
         header.frame = CGRect(x: 0, y: -bodyView.contentInset.top, width: bodyView.bounds.width, height: header.maxHeight)
         header.userButtonA.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
         header.userButtonB.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
@@ -141,10 +142,11 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
     }
     
     func reloadData() {
+        let theme = SettingsManager.defaultManager.currentTheme
         let options = [
             DTDefaultFontName: UIFont.systemFontOfSize(0).fontName,
             DTDefaultFontSize: 16,
-            DTDefaultTextColor: UIColor.blackColor().colorWithAlphaComponent(0.6),
+            DTDefaultTextColor: theme.bodyTextColor,
             DTDefaultLineHeightMultiplier: 1.5,
             DTDefaultLinkColor: UIColor.msr_materialLightBlue(),
             DTDefaultLinkDecoration: true]
@@ -375,7 +377,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .Default
+        return SettingsManager.defaultManager.currentTheme.statusBarStyle
     }
     
     deinit {
