@@ -62,6 +62,8 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="borderA" destination="ag5-0z-Vhu" id="guv-0h-MoU"/>
+                <outlet property="borderB" destination="sKl-29-chI" id="2g3-qc-Hah"/>
                 <outlet property="containerView" destination="TBd-Dc-Zl5" id="tU5-3V-NF4"/>
                 <outlet property="questionTitleLabel" destination="YUl-Sr-tMt" id="XbO-Rp-Exf"/>
             </connections>

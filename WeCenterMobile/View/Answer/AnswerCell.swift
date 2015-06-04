@@ -18,17 +18,30 @@ class AnswerCell: UITableViewCell {
     @IBOutlet weak var agreementCountLabel: UILabel!
     @IBOutlet weak var userButton: UIButton!
     @IBOutlet weak var answerButton: UIButton!
+    @IBOutlet weak var separator: UIView!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var userContainerView: UIView!
+    @IBOutlet weak var answerContainerView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         msr_scrollView?.delaysContentTouches = false
-        containerView.layer.borderColor = UIColor.msr_materialGray300().CGColor
-        containerView.layer.borderWidth = 0.5
-        agreementCountLabel.layer.borderColor = UIColor.msr_materialGray300().CGColor
-        agreementCountLabel.layer.borderWidth = 0.5
-        userButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        answerButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        let theme = SettingsManager.defaultManager.currentTheme
+        for v in [containerView, agreementCountLabel] {
+            v.msr_borderColor = theme.borderColorA
+        }
+        for v in [userButton, answerButton] {
+            v.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
+        }
+        for v in [agreementCountLabel, answerBodyLabel] {
+            v.textColor = theme.subtitleTextColor
+        }
+        for v in [userContainerView, answerContainerView] {
+            v.backgroundColor = theme.backgroundColorB
+        }
+        agreementCountLabel.backgroundColor = theme.backgroundColorA
+        separator.backgroundColor = theme.borderColorA
+        userNameLabel.textColor = theme.titleTextColor
     }
     
     func update(#answer: Answer, updateImage: Bool) {

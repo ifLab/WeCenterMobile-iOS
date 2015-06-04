@@ -111,6 +111,10 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="borderA" destination="dhJ-vD-v38" id="8fS-Vb-mUH"/>
+                <outlet property="borderB" destination="9Jm-BC-TJY" id="cJD-gv-g4i"/>
+                <outlet property="borderC" destination="6EU-af-faL" id="rS5-fA-8cC"/>
+                <outlet property="borderD" destination="HQX-EQ-x2b" id="YQW-er-Yor"/>
                 <outlet property="containerView" destination="NjE-ws-DoJ" id="lVU-Zm-SMJ"/>
                 <outlet property="userAvatarView" destination="dRY-Ng-QXy" id="FsO-pZ-yv2"/>
                 <outlet property="userButton" destination="3im-91-Nq2" id="Ptg-vB-IuY"/>

@@ -19,7 +19,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mzo-rz-fC4">
                                 <rect key="frame" x="51" y="0.0" width="253" height="78"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="这里是问题标题，可能会很长，但最多显示两行。" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hlm-sg-OC5" customClass="MSRMultilineLabel" customModule="WeCenterMobile" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="这里是回答，可能会很长，但最多显示两行。" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hlm-sg-OC5" customClass="MSRMultilineLabel" customModule="WeCenterMobile" customModuleProvider="target">
                                         <rect key="frame" x="10" y="32" width="233" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
@@ -72,6 +72,11 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="8ft-pU-p6Y" customClass="MSRRoundedImageView" customModule="WeCenterMobile" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -126,6 +131,11 @@
                             <constraint firstAttribute="bottom" secondItem="qVx-KR-DEl" secondAttribute="bottom" id="prU-wh-3ka"/>
                             <constraint firstAttribute="bottom" secondItem="Mzo-rz-fC4" secondAttribute="bottom" id="vEj-fV-HnV"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -141,9 +151,12 @@
                 <outlet property="agreementCountLabel" destination="0Rn-0P-RSL" id="rVq-st-qjH"/>
                 <outlet property="answerBodyLabel" destination="Hlm-sg-OC5" id="fUS-LU-zH5"/>
                 <outlet property="answerButton" destination="pzN-1W-tlZ" id="dIC-qA-z3v"/>
-                <outlet property="containerView" destination="Fg9-6l-5r4" id="34y-kx-q92"/>
+                <outlet property="answerContainerView" destination="Mzo-rz-fC4" id="02P-aD-kgv"/>
+                <outlet property="containerView" destination="Fg9-6l-5r4" id="qZm-fL-8Pm"/>
+                <outlet property="separator" destination="qVx-KR-DEl" id="KRA-NJ-0a7"/>
                 <outlet property="userAvatarView" destination="8ft-pU-p6Y" id="89Q-Wa-fpf"/>
                 <outlet property="userButton" destination="7Qe-uz-gwd" id="MDg-kq-wx3"/>
+                <outlet property="userContainerView" destination="3wx-U9-Wrr" id="zxi-Lg-tn6"/>
                 <outlet property="userNameLabel" destination="hNR-kj-kx4" id="txx-sY-VHA"/>
             </connections>
             <point key="canvasLocation" x="699" y="351.5"/>

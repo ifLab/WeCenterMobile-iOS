@@ -10,27 +10,44 @@ import UIKit
 
 class QuestionFooterCell: UITableViewCell {
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var viewCountImageView: UIImageView!
     @IBOutlet weak var focusCountImageView: UIImageView!
     @IBOutlet weak var viewCountLabel: UILabel!
     @IBOutlet weak var focusCountLabel: UILabel!
     @IBOutlet weak var focusButton: UIButton!
     @IBOutlet weak var focusActivityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var borderA: UIView!
+    @IBOutlet weak var borderB: UIView!
+    @IBOutlet weak var borderC: UIView!
+    @IBOutlet weak var borderD: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         msr_scrollView?.delaysContentTouches = false
+        let theme = SettingsManager.defaultManager.currentTheme
         viewCountImageView.msr_imageRenderingMode = .AlwaysTemplate
+        viewCountImageView.tintColor = theme.subtitleTextColor
         focusCountImageView.msr_imageRenderingMode = .AlwaysTemplate
-        focusButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        focusCountImageView.tintColor = theme.subtitleTextColor
+        focusButton.msr_setBackgroundImageWithColor(theme.backgroundColorA, forState: .Highlighted)
         focusButton.setTitle(nil, forState: .Normal)
+        focusButton.setTitleColor(theme.titleTextColor, forState: .Normal)
+        containerView.backgroundColor = theme.backgroundColorB
+        for v in [borderA, borderB, borderC, borderD] {
+            v.backgroundColor = theme.borderColorA
+        }
+        viewCountLabel.textColor = theme.subtitleTextColor
+        focusCountLabel.textColor = theme.subtitleTextColor
+        focusActivityIndicatorView.color = theme.footnoteTextColor
     }
     
     func update(#question: Question) {
+        let theme = SettingsManager.defaultManager.currentTheme
         viewCountLabel.text = "\(question.viewCount ?? 0)"
         focusCountLabel.text = "\(question.focusCount ?? 0)"
         if let focusing = question.focusing {
-            focusButton.msr_setBackgroundImageWithColor(focusing ? UIColor.msr_materialGray50() : UIColor.msr_materialGray200())
+            focusButton.msr_setBackgroundImageWithColor(focusing ? theme.backgroundColorB : theme.backgroundColorA)
             focusButton.setTitle(focusing ? "已关注" : "关注", forState: .Normal)
             focusActivityIndicatorView.stopAnimating()
         } else {

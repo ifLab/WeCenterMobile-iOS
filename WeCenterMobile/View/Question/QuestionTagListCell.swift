@@ -11,8 +11,14 @@ import ZFTokenField
 
 class QuestionTagListCell: UITableViewCell, ZFTokenFieldDataSource, ZFTokenFieldDelegate {
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var tagsField: ZFTokenField!
     @IBOutlet weak var tagsButton: UIButton!
+    @IBOutlet weak var borderA: UIView!
+    @IBOutlet weak var borderB: UIView!
+    @IBOutlet weak var borderC: UIView!
+    @IBOutlet weak var borderD: UIView!
+    
     var topics = [Topic]()
     
     override func awakeFromNib() {
@@ -21,7 +27,12 @@ class QuestionTagListCell: UITableViewCell, ZFTokenFieldDataSource, ZFTokenField
         tagsField.editable = false
         tagsField.delegate = self
         tagsField.dataSource = self
-        tagsButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        let theme = SettingsManager.defaultManager.currentTheme
+        tagsButton.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
+        containerView.backgroundColor = theme.backgroundColorB
+        for v in [borderA, borderB, borderC, borderD] {
+            v.backgroundColor = theme.borderColorA
+        }
     }
     
     func update(#question: Question) {
@@ -59,8 +70,9 @@ class QuestionTagListCell: UITableViewCell, ZFTokenFieldDataSource, ZFTokenField
         label.textAlignment = .Center
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 3
-        label.backgroundColor = UIColor.msr_materialGray200()
-        label.textColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
+        let theme = SettingsManager.defaultManager.currentTheme
+        label.backgroundColor = theme.backgroundColorA
+        label.textColor = theme.subtitleTextColor
         return label
     }
     

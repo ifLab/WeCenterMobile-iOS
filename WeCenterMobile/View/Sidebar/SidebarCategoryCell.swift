@@ -16,7 +16,6 @@ class SidebarCategoryCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectedBackgroundView = UIView()
-        selectedBackgroundView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.1)
         msr_scrollView?.delaysContentTouches = false
     }
     

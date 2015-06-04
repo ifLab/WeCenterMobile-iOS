@@ -15,11 +15,22 @@ class QuestionHeaderCell: UITableViewCell {
     @IBOutlet weak var userSignatureLabel: UILabel!
     @IBOutlet weak var userButton: UIButton!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var borderA: UIView!
+    @IBOutlet weak var borderB: UIView!
+    @IBOutlet weak var borderC: UIView!
+    @IBOutlet weak var borderD: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         msr_scrollView?.delaysContentTouches = false
-        userButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        let theme = SettingsManager.defaultManager.currentTheme
+        userButton.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
+        for v in [borderA, borderB, borderC, borderD] {
+            v.backgroundColor = theme.borderColorA
+        }
+        containerView.backgroundColor = theme.backgroundColorB
+        userNameLabel.textColor = theme.titleTextColor
+        userSignatureLabel.textColor = theme.subtitleTextColor
     }
     
     func update(#user: User?, updateImage: Bool) {

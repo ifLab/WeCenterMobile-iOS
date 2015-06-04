@@ -89,6 +89,11 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="borderA" destination="Q1v-wZ-qRi" id="L2y-qa-oMh"/>
+                <outlet property="borderB" destination="jTi-R2-dBc" id="fgP-Qa-Lca"/>
+                <outlet property="borderC" destination="ZWK-6v-xuW" id="5cX-Ux-3lA"/>
+                <outlet property="borderD" destination="LlO-by-cEo" id="0ZV-Lb-2bb"/>
+                <outlet property="containerView" destination="5Zq-Vf-cqU" id="dcy-W2-eOg"/>
                 <outlet property="tagsButton" destination="iI4-np-voS" id="O8D-CA-hMz"/>
                 <outlet property="tagsField" destination="2pL-hP-JN4" id="P3K-7s-dHy"/>
             </connections>

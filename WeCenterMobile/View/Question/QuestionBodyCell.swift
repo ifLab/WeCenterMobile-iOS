@@ -16,6 +16,11 @@ import DTCoreText
 
 class QuestionBodyCell: DTAttributedTextCell, DTAttributedTextContentViewDelegate {
     
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var borderA: UIView!
+    @IBOutlet weak var borderB: UIView!
+    @IBOutlet weak var borderC: UIView!
+    
     weak var lazyImageViewDelegate: DTLazyImageViewDelegate?
     weak var linkButtonDelegate: QuestionBodyCellLinkButtonDelegate?
     
@@ -29,15 +34,21 @@ class QuestionBodyCell: DTAttributedTextCell, DTAttributedTextContentViewDelegat
         attributedTextContextView.shouldDrawImages = true
         attributedTextContextView.shouldDrawLinks = true
         attributedTextContextView.edgeInsets = UIEdgeInsets(top: 10, left: 18, bottom: 10, right: 18)
+        let theme = SettingsManager.defaultManager.currentTheme
+        containerView.backgroundColor = theme.backgroundColorA
+        for v in [borderA, borderB, borderC] {
+            v.backgroundColor = theme.borderColorA
+        }
     }
 
     func update(#question: Question?) {
         if question?.body != nil {
+            let theme = SettingsManager.defaultManager.currentTheme
             setHTMLString(question?.body ?? "加载中……",
                 options: [
                     DTDefaultFontName: UIFont.systemFontOfSize(0).fontName,
                     DTDefaultFontSize: 16,
-                    DTDefaultTextColor: UIColor.blackColor().colorWithAlphaComponent(0.6),
+                    DTDefaultTextColor: theme.bodyTextColor,
                     DTDefaultLineHeightMultiplier: 1.5,
                     DTDefaultLinkColor: UIColor.msr_materialLightBlue(),
                     DTDefaultLinkDecoration: true

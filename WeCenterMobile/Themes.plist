@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Current</key>
-	<string>Day</string>
+	<string>Night</string>
 	<key>Day</key>
 	<dict>
 		<key>Title Font Name</key>

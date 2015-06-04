@@ -110,6 +110,12 @@
             <connections>
                 <outlet property="answerAdditionButton" destination="sFJ-Re-HS5" id="nsM-2S-24B"/>
                 <outlet property="answerAdditionImageView" destination="Tvw-NC-gwW" id="xeE-Mo-Yv8"/>
+                <outlet property="answerAdditionLabel" destination="5jX-NK-Gwc" id="x96-fG-BAL"/>
+                <outlet property="borderA" destination="pXW-65-PCR" id="SIh-2h-NMX"/>
+                <outlet property="borderB" destination="yfB-qI-ogH" id="Anq-bF-Mxp"/>
+                <outlet property="borderC" destination="Qj2-iO-2Vt" id="qc4-qD-38M"/>
+                <outlet property="borderD" destination="BdA-LQ-FFj" id="keg-j7-SA5"/>
+                <outlet property="containerView" destination="xKa-ZM-UVD" id="6QO-jo-7gI"/>
             </connections>
             <point key="canvasLocation" x="493" y="312"/>
         </tableViewCell>

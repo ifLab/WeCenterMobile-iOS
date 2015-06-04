@@ -74,7 +74,8 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
 
     override func loadView() {
         super.loadView()
-        view.backgroundColor = UIColor.msr_materialGray200()
+        let theme = SettingsManager.defaultManager.currentTheme
+        view.backgroundColor = theme.backgroundColorA
         tableView.delaysContentTouches = false
         tableView.msr_wrapperView?.delaysContentTouches = false
         tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
@@ -295,7 +296,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .Default
+        return SettingsManager.defaultManager.currentTheme.statusBarStyle
     }
     
     deinit {

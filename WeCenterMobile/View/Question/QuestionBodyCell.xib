@@ -60,6 +60,12 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="borderA" destination="Jrj-vO-As6" id="eMc-t8-b45"/>
+                <outlet property="borderB" destination="o5S-jx-Kpu" id="6rk-VC-WAW"/>
+                <outlet property="borderC" destination="wl6-7Z-ZNN" id="Afa-a9-mbp"/>
+                <outlet property="containerView" destination="Etk-Fi-Wwc" id="0bT-bF-AVL"/>
+            </connections>
             <point key="canvasLocation" x="422" y="483.5"/>
         </tableViewCell>
     </objects>

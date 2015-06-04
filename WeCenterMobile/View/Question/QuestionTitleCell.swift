@@ -12,10 +12,18 @@ class QuestionTitleCell: UITableViewCell {
     
     @IBOutlet weak var questionTitleLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var borderA: UIView!
+    @IBOutlet weak var borderB: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         msr_scrollView?.delaysContentTouches = false
+        let theme = SettingsManager.defaultManager.currentTheme
+        containerView.backgroundColor = theme.backgroundColorB
+        questionTitleLabel.textColor = theme.titleTextColor
+        for v in [borderA, borderB] {
+            v.backgroundColor = theme.borderColorA
+        }
     }
     
     func update(#question: Question) {

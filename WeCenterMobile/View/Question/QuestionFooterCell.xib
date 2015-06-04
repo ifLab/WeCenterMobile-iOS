@@ -131,6 +131,11 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="borderA" destination="Bb7-ua-7Bx" id="Dbf-0E-2rr"/>
+                <outlet property="borderB" destination="rIl-Oh-6xO" id="DhX-Xa-r4a"/>
+                <outlet property="borderC" destination="kgI-xW-Ciz" id="9CH-ox-LMV"/>
+                <outlet property="borderD" destination="0HN-ZF-JUV" id="aJC-Sv-C0m"/>
+                <outlet property="containerView" destination="zdn-QN-RGl" id="LwM-cp-HWV"/>
                 <outlet property="focusActivityIndicatorView" destination="yM8-fA-yJG" id="0Ye-cF-Xfz"/>
                 <outlet property="focusButton" destination="Mu9-8Y-Hin" id="dQs-0z-7hX"/>
                 <outlet property="focusCountImageView" destination="plz-v8-W51" id="QXa-kT-99l"/>
