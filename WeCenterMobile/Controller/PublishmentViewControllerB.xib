@@ -149,11 +149,14 @@
             <connections>
                 <outlet property="bodyField" destination="PnK-Ba-gg9" id="cvK-bU-yhP"/>
                 <outlet property="bottomConstraint" destination="y8A-tJ-iGG" id="cTD-SR-Fyi"/>
+                <outlet property="descriptionLabel" destination="149-2t-OiF" id="nFK-Ot-Ytv"/>
                 <outlet property="dismissButton" destination="KHO-oX-kIq" id="fAR-xt-YWl"/>
                 <outlet property="headerLabel" destination="onu-Wg-EYc" id="ter-ik-o6g"/>
                 <outlet property="imageCollectionView" destination="kI9-ct-b7A" id="mUJ-uh-LNs"/>
+                <outlet property="imagesLabel" destination="9BG-Ua-UFR" id="Xqh-G6-FeN"/>
                 <outlet property="publishButton" destination="oke-sH-xSR" id="Ne8-fF-rpD"/>
                 <outlet property="scrollView" destination="jQQ-J6-fNP" id="c5i-kR-mVC"/>
+                <outlet property="separator" destination="bzn-9r-Zkk" id="iGU-W3-CGo"/>
             </connections>
             <point key="canvasLocation" x="717" y="1698"/>
         </viewController>

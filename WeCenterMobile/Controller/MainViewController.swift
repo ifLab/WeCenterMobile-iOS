@@ -120,7 +120,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentUserPropertyDidChange:", name: CurrentUserPropertyDidChangeNotificationName, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentThemeDidChange", name: CurrentThemeDidChangeNotificationName, object: nil)
     }
-    var firstAppear: Bool = true
+    var firstAppear = true
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if firstAppear {

@@ -14,7 +14,7 @@ import UIKit
 
 class ArticleHeaderView: UIView, UIToolbarDelegate {
     
-    var delegate: ArticleHeaderViewDelegate?
+    weak var delegate: ArticleHeaderViewDelegate?
     
     lazy var containerView: UIView = {
         let v = UIView()

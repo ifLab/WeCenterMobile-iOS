@@ -19,7 +19,7 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
     var user: User {
         return User.currentUser!
     }
-    var delegate: UserEditViewControllerDelegate?
+    weak var delegate: UserEditViewControllerDelegate?
     
     @IBOutlet weak var avatarImageView: MSRRoundedImageView!
     @IBOutlet weak var userNameTextField: UITextField!

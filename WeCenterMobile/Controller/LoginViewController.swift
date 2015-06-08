@@ -48,7 +48,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         userNameField.delegate = self
         passwordField.delegate = self
     }
-    var firstAppear: Bool = true
+    var firstAppear = true
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)

@@ -31,6 +31,11 @@
                                                 <state key="normal" title="丢弃">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKz-2i-U1O">
                                                 <rect key="frame" x="0.0" y="0.0" width="270" height="50"/>
@@ -42,6 +47,11 @@
                                                 <state key="normal" title="发布">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -80,6 +90,11 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="M11-uG-SPE" id="WM3-zv-3qR"/>
                                         </connections>
@@ -93,6 +108,11 @@
                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="509" placeholderIntrinsicHeight="34" translatesAutoresizingMaskIntoConstraints="NO" id="H7U-la-U0F" customClass="ZFTokenField">
                                         <rect key="frame" x="81" y="126" width="499" height="34"/>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="dataSource" destination="M11-uG-SPE" id="uhv-tH-CLB"/>
                                             <outlet property="delegate" destination="M11-uG-SPE" id="yfP-e9-TaD"/>
@@ -131,6 +151,11 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </textView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -189,13 +214,18 @@
             <connections>
                 <outlet property="bodyField" destination="1F5-53-Qap" id="dzF-3U-LnF"/>
                 <outlet property="bottomConstraint" destination="mag-2b-4CG" id="G1t-IS-y6C"/>
+                <outlet property="descriptionLabel" destination="ecg-5M-qS9" id="BE7-UI-t5Y"/>
                 <outlet property="dismissButton" destination="dYS-ag-l50" id="L03-Wr-VZw"/>
                 <outlet property="headerLabel" destination="yCT-jf-CeK" id="20N-fy-I6l"/>
                 <outlet property="imageCollectionView" destination="sfj-0J-Ww0" id="275-tW-nAe"/>
+                <outlet property="imagesLabel" destination="rNb-Rx-sR6" id="tIB-b3-ZKH"/>
                 <outlet property="publishButton" destination="kKz-2i-U1O" id="7ME-tW-Njd"/>
                 <outlet property="scrollView" destination="cNi-Yl-UG2" id="Feg-n6-mqo"/>
+                <outlet property="separator" destination="1YR-jt-9Z5" id="UKs-42-SUh"/>
                 <outlet property="tagsField" destination="H7U-la-U0F" id="TmY-IA-Nsf"/>
+                <outlet property="tagsLabel" destination="iWM-U7-lnf" id="U90-zi-SkL"/>
                 <outlet property="titleField" destination="kJ5-ii-PI4" id="4hU-5u-ey5"/>
+                <outlet property="titleLabel" destination="mT1-jc-5NN" id="yRS-sA-e4Q"/>
             </connections>
             <point key="canvasLocation" x="824" y="1756"/>
         </viewController>
