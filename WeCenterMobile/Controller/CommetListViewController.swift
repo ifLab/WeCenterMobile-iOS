@@ -63,8 +63,10 @@ class CommentListViewController: UITableViewController, UITextFieldDelegate {
         tableView = TableViewWithKeyboardBar()
         tableView.delegate = self
         tableView.dataSource = self
+        let theme = SettingsManager.defaultManager.currentTheme
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+        refreshControl!.tintColor = theme.footnoteTextColor
         tableView.delaysContentTouches = false
         tableView.msr_wrapperView?.delaysContentTouches = false
         tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
@@ -74,7 +76,7 @@ class CommentListViewController: UITableViewController, UITextFieldDelegate {
         tableView.estimatedRowHeight = 50
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.keyboardDismissMode = .Interactive
-        tableView.backgroundColor = UIColor.msr_materialGray200()
+        tableView.backgroundColor = theme.backgroundColorA
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
         keyboardBar.userAtView.removeButton.addTarget(self, action: "removeAtUser", forControlEvents: .TouchUpInside)
         keyboardBar.publishButton.addTarget(self, action: "publishComment", forControlEvents: .TouchUpInside)
@@ -213,6 +215,6 @@ class CommentListViewController: UITableViewController, UITextFieldDelegate {
             completion: nil)
     }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .Default
+        return SettingsManager.defaultManager.currentTheme.statusBarStyle
     }
 }

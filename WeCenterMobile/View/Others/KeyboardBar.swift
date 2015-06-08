@@ -25,8 +25,9 @@ import UIKit
     lazy var textField: UITextField = {
         let v = UITextField()
         v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
-        v.textColor = UIColor.blackColor().colorWithAlphaComponent(0.87)
-        v.attributedPlaceholder = NSAttributedString(string: "在此处输入评论……", attributes: [NSForegroundColorAttributeName: UIColor.blackColor().colorWithAlphaComponent(0.6)])
+        let theme = SettingsManager.defaultManager.currentTheme
+        v.textColor = theme.subtitleTextColor
+        v.attributedPlaceholder = NSAttributedString(string: "在此处输入评论……", attributes: [NSForegroundColorAttributeName: theme.footnoteTextColor])
         v.borderStyle = .None
         v.clearButtonMode = .WhileEditing
         return v
@@ -35,10 +36,13 @@ import UIKit
     lazy var publishButton: UIButton = {
         let v = UIButton()
         v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+        let theme = SettingsManager.defaultManager.currentTheme
         v.setTitle("发布", forState: .Normal) // Needs localization
-        v.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.87), forState: .Normal)
-        v.backgroundColor = UIColor.msr_materialLightBlue()
-        v.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.2), forState: .Highlighted)
+        v.setTitleColor(theme.subtitleTextColor, forState: .Normal)
+        v.backgroundColor = theme.backgroundColorB
+        v.msr_borderWidth = 0.5
+        v.msr_borderColor = theme.borderColorA
+        v.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
         return v
     }()
     
@@ -61,7 +65,7 @@ import UIKit
     
     func msr_initialize() {
         let vs = ["t": textField, "b": publishButton, "at": userAtView]
-        for (k, v) in vs {
+        for (_, v) in vs {
             addSubview(v)
         }
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-5-[t]-5-[b(==75)]|", options: nil, metrics: nil, views: vs))
@@ -70,9 +74,10 @@ import UIKit
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[at][t]", options: nil, metrics: nil, views: vs))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[at]", options: nil, metrics: nil, views: vs))
         clipsToBounds = false
-        backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .ExtraLight)) // bar
-        backgroundView!.layer.borderWidth = 0.5
-        backgroundView!.layer.borderColor = UIColor.msr_materialGray300().CGColor
+        let theme = SettingsManager.defaultManager.currentTheme
+        backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: theme.backgroundBlurEffectStyle)) // bar
+        backgroundView!.msr_borderWidth = 0.5
+        backgroundView!.msr_borderColor = theme.borderColorA
     }
     
     override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {

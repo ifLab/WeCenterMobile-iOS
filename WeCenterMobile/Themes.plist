@@ -50,6 +50,8 @@
 		<integer>127</integer>
 		<key>Tool Bar Style</key>
 		<integer>0</integer>
+		<key>Background Blur Effect Style</key>
+		<integer>0</integer>
 	</dict>
 	<key>Night</key>
 	<dict>
@@ -97,6 +99,8 @@
 		<real>4294967167</real>
 		<key>Tool Bar Style</key>
 		<integer>1</integer>
+		<key>Background Blur Effect Style</key>
+		<integer>2</integer>
 	</dict>
 </dict>
 </plist>

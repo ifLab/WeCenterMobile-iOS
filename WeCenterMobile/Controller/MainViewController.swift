@@ -110,7 +110,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         addChildViewController(contentViewController)
         view.addSubview(contentViewController.view)
         view.insertSubview(sidebar, aboveSubview: contentViewController.view)
-        let theme = SettingsManager.defaultManager.currentTheme
+        let theme = SettingsManager.defaultManager.currentTheme 
         tableView.backgroundColor = theme.backgroundColorA
         automaticallyAdjustsScrollViewInsets = false
     }

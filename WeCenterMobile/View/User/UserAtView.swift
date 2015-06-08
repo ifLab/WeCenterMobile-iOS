@@ -25,34 +25,39 @@ import UIKit
     
     lazy var atLabel: UILabel = {
         let v = UILabel()
+        let theme = SettingsManager.defaultManager.currentTheme
         v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         v.font = UIFont.systemFontOfSize(14)
         v.text = "@"
         v.textAlignment = .Center
-        v.textColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
-        v.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+        v.textColor = theme.footnoteTextColor
+        v.backgroundColor = theme.backgroundColorA
         return v
     }()
     
     lazy var userNameLabel: UILabel = {
         let v = UILabel()
+        let theme = SettingsManager.defaultManager.currentTheme
         v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         v.font = UIFont.systemFontOfSize(12)
         v.text = "用户名"
+        v.textColor = theme.subtitleTextColor
         return v
     }()
     
     lazy var removeImageView: UIImageView = {
         let v = UIImageView(image: UITextField.msr_defaltClearButton().imageForState(.Highlighted))
+        let theme = SettingsManager.defaultManager.currentTheme
         v.msr_imageRenderingMode = .AlwaysTemplate
         v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
-        v.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+        v.tintColor = theme.footnoteTextColor
         return v
     }()
     
     lazy var removeButton: UIButton = {
         let v = UIButton()
-        v.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.2), forState: .Highlighted)
+        let theme = SettingsManager.defaultManager.currentTheme
+        v.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
         v.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         return v
     }()
@@ -68,20 +73,21 @@ import UIKit
     }
     
     func wc_initialize() {
-        layer.borderWidth = 0.5
-        layer.borderColor = UIColor.lightGrayColor().CGColor
+        let theme = SettingsManager.defaultManager.currentTheme
+        msr_borderWidth = 0.5
+        msr_borderColor = theme.borderColorA
         for v in [atLabel, userNameLabel, removeImageView, removeButton] {
             addSubview(v)
         }
         let vs = ["l": userNameLabel, "x": removeImageView, "at": atLabel]
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[at(25)]-5-[l]-5-[x]-5-|", options: nil, metrics: nil, views: vs))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[at(20)]-5-[l]-5-[x]-5-|", options: nil, metrics: nil, views: vs))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(>=5)-[l]-(>=5)-|", options: nil, metrics: nil, views: vs))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(>=5)-[x]-(>=5)-|", options: nil, metrics: nil, views: vs))
         atLabel.msr_addVerticalEdgeAttachedConstraintsToSuperview()
         userNameLabel.msr_addCenterYConstraintToSuperview()
         removeImageView.msr_addCenterYConstraintToSuperview()
         removeButton.frame = bounds
-        backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: theme.backgroundBlurEffectStyle))
     }
     
 }

@@ -15,12 +15,24 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet weak var userButton: UIButton!
     @IBOutlet weak var commentButton: UIButton!
+    @IBOutlet weak var separator: UIView!
+    @IBOutlet weak var userContainerView: UIView!
+    @IBOutlet weak var commentContainerView: UIView!
+    @IBOutlet weak var containerView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        let theme = SettingsManager.defaultManager.currentTheme
         msr_scrollView?.delaysContentTouches = false
-        userButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        commentButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        containerView.msr_borderColor = theme.borderColorA
+        separator.backgroundColor = theme.borderColorA
+        for v in [userContainerView, commentContainerView] {
+            v.backgroundColor = theme.backgroundColorB
+        }
+        for v in [userButton, commentButton] {
+            v.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
+        }
+        userNameLabel.textColor = theme.titleTextColor
     }
     
     func update(#comment: Comment, updateImage: Bool) {
@@ -30,17 +42,18 @@ class CommentCell: UITableViewCell {
         }
         userNameLabel.text = comment.user?.name
         var attributedString = NSMutableAttributedString()
+        let theme = SettingsManager.defaultManager.currentTheme
         if comment.atUser?.name != nil {
             attributedString.appendAttributedString(NSAttributedString(
                 string: "@\(comment.atUser!.name!) ",
                 attributes: [
-                    NSForegroundColorAttributeName: UIColor.blackColor().colorWithAlphaComponent(0.6),
+                    NSForegroundColorAttributeName: theme.footnoteTextColor,
                     NSFontAttributeName: bodyLabel.font]))
         }
         attributedString.appendAttributedString(NSAttributedString(
             string: (comment.body ?? ""),
             attributes: [
-                NSForegroundColorAttributeName: UIColor.blackColor().colorWithAlphaComponent(0.87),
+                NSForegroundColorAttributeName: theme.bodyTextColor,
                 NSFontAttributeName: bodyLabel.font]))
         bodyLabel.attributedText = attributedString
         userButton.msr_userInfo = comment.user

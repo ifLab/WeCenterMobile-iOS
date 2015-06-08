@@ -113,6 +113,11 @@ class Theme {
         if let toolbarItemColorRawValue = (configuration["Tool Bar Item Color"] as? NSNumber)?.unsignedIntValue {
             self.toolbarItemColor = %-toolbarItemColorRawValue
         }
+        if let backgroundBlurEffectStyleRawValue = (configuration["Background Blur Effect Style"] as? NSNumber)?.integerValue {
+            if let backgroundBlurEffectStyle = UIBlurEffectStyle(rawValue: backgroundBlurEffectStyleRawValue) {
+                self.backgroundBlurEffectStyle = backgroundBlurEffectStyle
+            }
+        }
     }
     
     var name: String = "Default"
@@ -143,5 +148,7 @@ class Theme {
     var statusBarStyle: UIStatusBarStyle = .Default
     var navigationBarStyle: UIBarStyle = .Default
     var toolbarStyle: UIBarStyle = .Default
+    
+    var backgroundBlurEffectStyle: UIBlurEffectStyle = .ExtraLight
     
 }

@@ -124,8 +124,12 @@
             <connections>
                 <outlet property="bodyLabel" destination="GRx-nL-tnI" id="dMT-mJ-HL9"/>
                 <outlet property="commentButton" destination="9N2-mm-cKX" id="mBA-HH-xN0"/>
+                <outlet property="commentContainerView" destination="FYR-7C-Knl" id="ZCy-oF-Rf9"/>
+                <outlet property="containerView" destination="TAh-OH-inq" id="zv8-KK-jzJ"/>
+                <outlet property="separator" destination="P2r-Ol-MTL" id="Kh9-o5-QSb"/>
                 <outlet property="userAvatarView" destination="NsN-65-Ild" id="Mvi-WW-u10"/>
                 <outlet property="userButton" destination="52h-Bh-YG6" id="fwD-ij-Bmp"/>
+                <outlet property="userContainerView" destination="04C-aI-9TX" id="ZQm-DD-m8L"/>
                 <outlet property="userNameLabel" destination="mxl-dy-cdK" id="ddf-1R-Q6t"/>
             </connections>
             <point key="canvasLocation" x="473" y="195.5"/>
