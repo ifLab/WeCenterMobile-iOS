@@ -19,10 +19,13 @@ class TopicCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        let theme = SettingsManager.defaultManager.currentTheme
         msr_scrollView?.delaysContentTouches = false
-        containerView.layer.borderColor = UIColor.msr_materialGray300().CGColor
-        containerView.layer.borderWidth = 0.5
-        topicButtonB.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        containerView.msr_borderColor = theme.borderColorA
+        containerView.backgroundColor = theme.backgroundColorB
+        topicTitleLabel.textColor = theme.titleTextColor
+        topicDescriptionLabel.textColor = theme.subtitleTextColor
+        topicButtonB.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
     }
     
     func update(#topic: Topic, updateImage: Bool) {

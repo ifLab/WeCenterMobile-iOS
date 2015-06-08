@@ -59,9 +59,11 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func loadView() {
         super.loadView()
+        let theme = SettingsManager.defaultManager.currentTheme
         view.addSubview(bodyView)
-        view.backgroundColor = UIColor.msr_materialGray200()
+        view.backgroundColor = theme.backgroundColorA
         bodyView.msr_uiRefreshControl = UIRefreshControl()
+        bodyView.msr_uiRefreshControl!.tintColor = theme.footnoteTextColor
         bodyView.msr_uiRefreshControl!.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         bodyView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         automaticallyAdjustsScrollViewInsets = false
@@ -194,7 +196,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .Default
+        return SettingsManager.defaultManager.currentTheme.statusBarStyle
     }
     
 }

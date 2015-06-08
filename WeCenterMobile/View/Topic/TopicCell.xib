@@ -59,6 +59,11 @@
                                     <constraint firstItem="6Wf-k9-DAo" firstAttribute="top" secondItem="0wO-3q-QBc" secondAttribute="bottom" id="pel-1V-Ta7"/>
                                     <constraint firstAttribute="bottom" secondItem="mA9-Xb-P4p" secondAttribute="bottom" id="xmJ-rd-LpM"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DaT-7w-C0f">
                                 <rect key="frame" x="0.0" y="0.0" width="55" height="65"/>
@@ -94,7 +99,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="containerView" destination="mA9-Xb-P4p" id="x3V-Pu-h60"/>
+                <outlet property="containerView" destination="5V1-VT-pyO" id="jDD-8S-Qpk"/>
                 <outlet property="topicButtonA" destination="DaT-7w-C0f" id="PeU-3d-fkF"/>
                 <outlet property="topicButtonB" destination="mA9-Xb-P4p" id="uwI-JC-wcD"/>
                 <outlet property="topicDescriptionLabel" destination="6Wf-k9-DAo" id="9Li-i7-LuH"/>

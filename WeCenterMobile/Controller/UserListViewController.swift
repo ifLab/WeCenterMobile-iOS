@@ -37,7 +37,8 @@ class UserListViewController: UITableViewController {
             .UserFollowing: "\(user.name!) 关注的用户",
             .UserFollower: "\(user.name!) 的追随者"]
         self.title = titles[listType]!
-        view.backgroundColor = UIColor.msr_materialGray200()
+        let theme = SettingsManager.defaultManager.currentTheme
+        view.backgroundColor = theme.backgroundColorA
         tableView.separatorStyle = .None
         tableView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         tableView.estimatedRowHeight = 80
@@ -138,6 +139,6 @@ class UserListViewController: UITableViewController {
         }
     }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .Default
+        return SettingsManager.defaultManager.currentTheme.statusBarStyle
     }
 }

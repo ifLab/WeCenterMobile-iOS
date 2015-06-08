@@ -19,17 +19,35 @@ class AnswerCellWithQuestionTitle: UITableViewCell {
     @IBOutlet weak var answerButton: UIButton!
     @IBOutlet weak var userButton: UIButton!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var questionContainerView: UIView!
+    @IBOutlet weak var userContainerView: UIView!
+    @IBOutlet weak var answerContainerView: UIView!
+    @IBOutlet weak var separatorA: UIView!
+    @IBOutlet weak var separatorB: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        let theme = SettingsManager.defaultManager.currentTheme
         msr_scrollView?.delaysContentTouches = false
-        containerView.layer.borderColor = UIColor.msr_materialGray300().CGColor
-        containerView.layer.borderWidth = 0.5
-        answerAgreementCountLabel.layer.borderColor = UIColor.msr_materialGray300().CGColor
-        answerAgreementCountLabel.layer.borderWidth = 0.5
-        questionButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        answerButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        userButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        for v in [containerView, answerAgreementCountLabel] {
+            v.msr_borderColor = theme.borderColorA
+        }
+        for v in [separatorA, separatorB] {
+            v.backgroundColor = theme.borderColorA
+        }
+        for v in [questionContainerView, userContainerView] {
+            v.backgroundColor = theme.backgroundColorB
+        }
+        for v in [answerContainerView, answerAgreementCountLabel] {
+            v.backgroundColor = theme.backgroundColorA
+        }
+        for v in [questionButton, userButton, answerButton] {
+            v.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
+        }
+        for v in [answerBodyLabel, answerAgreementCountLabel] {
+            v.textColor = theme.subtitleTextColor
+        }
+        questionTitleLabel.textColor = theme.titleTextColor
     }
     
     func update(#answer: Answer, updateImage: Bool) {
@@ -37,13 +55,14 @@ class AnswerCellWithQuestionTitle: UITableViewCell {
         if updateImage {
             answerUserAvatarView.wc_updateWithUser(answer.user)
         }
+        let theme = SettingsManager.defaultManager.currentTheme
         let text = NSMutableAttributedString(string: answer.user?.name ?? "匿名用户", attributes: [
             NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName: UIColor.blackColor().colorWithAlphaComponent(0.87)])
+            NSForegroundColorAttributeName: theme.titleTextColor])
         if let signature = answer.user?.signature?.stringByTrimmingCharactersInSet(NSCharacterSet.newlineCharacterSet()) {
             text.appendAttributedString(NSAttributedString(string: "，" + signature, attributes: [
                 NSFontAttributeName: UIFont.systemFontOfSize(14),
-                NSForegroundColorAttributeName: UIColor.blackColor().colorWithAlphaComponent(0.6)]))
+                NSForegroundColorAttributeName: theme.footnoteTextColor]))
         }
         answerUserNameLabel.attributedText = text
         answerBodyLabel.text = answer.body!.wc_plainString

@@ -57,6 +57,11 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="bKR-Du-keo" customClass="MSRRoundedImageView" customModule="WeCenterMobile" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -183,6 +188,11 @@
                             <constraint firstAttribute="bottom" secondItem="VZs-KJ-d8h" secondAttribute="bottom" id="v6t-y0-zQm"/>
                             <constraint firstItem="N2j-S7-Cp1" firstAttribute="leading" secondItem="qLG-sU-ygQ" secondAttribute="trailing" id="wi8-DA-sfs"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -198,12 +208,17 @@
                 <outlet property="answerAgreementCountLabel" destination="46n-F5-Pmo" id="Mec-Sm-O0g"/>
                 <outlet property="answerBodyLabel" destination="J2k-v6-R1d" id="I82-5V-qfN"/>
                 <outlet property="answerButton" destination="vGz-52-6Hn" id="Dyi-qq-zM5"/>
+                <outlet property="answerContainerView" destination="VZs-KJ-d8h" id="t30-qA-kKn"/>
                 <outlet property="answerUserAvatarView" destination="bKR-Du-keo" id="tTw-Wd-gRD"/>
                 <outlet property="answerUserNameLabel" destination="1mX-yj-fcf" id="8pp-Z6-aAm"/>
                 <outlet property="containerView" destination="3TS-8k-SgY" id="cgQ-Nu-3pN"/>
                 <outlet property="questionButton" destination="fK2-dJ-qyZ" id="Nd4-TN-TZM"/>
+                <outlet property="questionContainerView" destination="O52-uZ-ly7" id="zwi-hH-vOL"/>
                 <outlet property="questionTitleLabel" destination="vaF-iH-5IN" id="ClY-Hq-9xu"/>
+                <outlet property="separatorA" destination="N2j-S7-Cp1" id="uMJ-mg-Tsu"/>
+                <outlet property="separatorB" destination="nkU-jp-LFC" id="Xrb-S4-O1C"/>
                 <outlet property="userButton" destination="8u2-LS-kEG" id="j1r-OW-046"/>
+                <outlet property="userContainerView" destination="qLG-sU-ygQ" id="JQ3-ZA-rSy"/>
             </connections>
             <point key="canvasLocation" x="445" y="293.5"/>
         </tableViewCell>

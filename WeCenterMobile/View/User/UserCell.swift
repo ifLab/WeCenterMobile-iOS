@@ -19,10 +19,13 @@ class UserCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        let theme = SettingsManager.defaultManager.currentTheme
         msr_scrollView?.delaysContentTouches = false
-        containerView.layer.borderColor = UIColor.msr_materialGray300().CGColor
-        containerView.layer.borderWidth = 0.5
-        userButtonB.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        containerView.msr_borderColor = theme.borderColorA
+        containerView.backgroundColor = theme.backgroundColorB
+        userNameLabel.textColor = theme.titleTextColor
+        userSignatureLabel.textColor = theme.subtitleTextColor
+        userButtonB.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
     }
 
     func update(#user: User, updateImage: Bool) {

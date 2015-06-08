@@ -120,6 +120,11 @@
                             <constraint firstAttribute="bottom" secondItem="pQ3-10-JKa" secondAttribute="bottom" id="qkj-S7-3ja"/>
                             <constraint firstItem="H5A-Lv-5su" firstAttribute="leading" secondItem="7JQ-c5-Gzk" secondAttribute="trailing" id="rNf-bV-u8P"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -136,9 +141,12 @@
                 <outlet property="dateLabel" destination="rOw-1a-aMw" id="mih-xm-5AT"/>
                 <outlet property="questionBodyLabel" destination="FJb-pc-iga" id="JF7-xT-Aa7"/>
                 <outlet property="questionButton" destination="vNi-qs-2U1" id="NgA-CL-OHi"/>
+                <outlet property="questionContainerView" destination="H5A-Lv-5su" id="dLP-yO-XJU"/>
                 <outlet property="questionTitleLabel" destination="cFE-uJ-aMK" id="yGt-Sr-bn8"/>
+                <outlet property="separator" destination="7JQ-c5-Gzk" id="jyL-Fa-zNu"/>
                 <outlet property="userAvatarView" destination="gED-bV-B4W" id="xxj-8T-2pM"/>
                 <outlet property="userButton" destination="M7c-J2-bSM" id="5Pt-sZ-8Op"/>
+                <outlet property="userContainerView" destination="pQ3-10-JKa" id="dgC-YV-LaQ"/>
                 <outlet property="userNameLabel" destination="Ly4-XO-pKl" id="f17-kn-n3j"/>
             </connections>
             <point key="canvasLocation" x="628" y="220"/>

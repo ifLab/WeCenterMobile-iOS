@@ -59,6 +59,11 @@
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Sub-9L-yR3" secondAttribute="bottom" constant="10" id="f0Z-pX-lvf"/>
                                     <constraint firstAttribute="bottom" secondItem="L3s-fc-GCB" secondAttribute="bottom" id="tbV-uQ-MkT"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0zA-zP-m2S">
                                 <rect key="frame" x="0.0" y="0.0" width="55" height="65"/>

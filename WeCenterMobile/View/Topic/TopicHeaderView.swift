@@ -23,9 +23,10 @@ class TopicHeaderView: UIView, UIToolbarDelegate {
     }
     
     lazy var backButton: UIButton = {
+        let theme = SettingsManager.defaultManager.currentTheme
         let v = UIButton()
         v.setImage(UIImage(named: "Arrow-Left")!.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
-        v.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+        v.tintColor = theme.navigationItemColor
         return v
     }()
     
@@ -35,16 +36,18 @@ class TopicHeaderView: UIView, UIToolbarDelegate {
     }()
     
     lazy var topicTitleLabel: UILabel = {
+        let theme = SettingsManager.defaultManager.currentTheme
         let v = UILabel()
-        v.textColor = UIColor.blackColor().colorWithAlphaComponent(0.87)
+        v.textColor = theme.titleTextColor
         v.font = UIFont.systemFontOfSize(17)
         return v
     }()
     
     lazy var topicDescriptionLabel: UILabel = {
+        let theme = SettingsManager.defaultManager.currentTheme
         let v = UILabel()
         v.numberOfLines = 0
-        v.textColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
+        v.textColor = theme.subtitleTextColor
         v.font = UIFont.systemFontOfSize(15)
         return v
     }()
@@ -62,8 +65,10 @@ class TopicHeaderView: UIView, UIToolbarDelegate {
     }()
     
     lazy var focusButtonActivityIndicatorView: UIActivityIndicatorView = {
+        let theme = SettingsManager.defaultManager.currentTheme
         let v = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         v.stopAnimating()
+        v.color = theme.footnoteTextColor
         v.hidesWhenStopped = true
         v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         v.contentScaleFactor = 0.5
@@ -89,8 +94,10 @@ class TopicHeaderView: UIView, UIToolbarDelegate {
         addSubview(topicTitleLabel)
         addSubview(topicDescriptionLabel)
         addSubview(focusButton)
+        let theme = SettingsManager.defaultManager.currentTheme
         let bar = UIToolbar()
         bar.delegate = self
+        bar.barStyle = theme.navigationBarStyle
         backgroundView = bar
     }
     
@@ -100,14 +107,14 @@ class TopicHeaderView: UIView, UIToolbarDelegate {
         topicTitleLabel.sizeToFit()
         topicDescriptionLabel.text = topic.introduction ?? ""
         topicDescriptionLabel.sizeToFit()
+        let theme = SettingsManager.defaultManager.currentTheme
         if let focused = topic.focused {
             focusButtonActivityIndicatorView.stopAnimating()
-            focusButtonActivityIndicatorView.color = focused ? UIColor.whiteColor().colorWithAlphaComponent(0.4) : UIColor.blackColor().colorWithAlphaComponent(0.4)
             focusButton.setTitle(focused ? "已关注" : "关注", forState: .Normal)
-            focusButton.setBackgroundImage(UIImage.msr_imageWithColor(focused ? UIColor.blackColor().colorWithAlphaComponent(0.4)   : UIColor.clearColor()), forState: .Normal)
-            focusButton.setTitleColor(focused ? UIColor.whiteColor().colorWithAlphaComponent(0.6) : UIColor.blackColor().colorWithAlphaComponent(0.4), forState: .Normal)
-            focusButton.layer.borderWidth = focused ? 0 : 1
-            focusButton.layer.borderColor = UIColor.blackColor().colorWithAlphaComponent(0.4).CGColor
+            focusButton.setBackgroundImage(UIImage.msr_imageWithColor(focused ? theme.borderColorB : UIColor.clearColor()), forState: .Normal)
+            focusButton.setTitleColor(focused ? theme.subtitleTextColor : theme.titleTextColor, forState: .Normal)
+            focusButton.msr_borderWidth = focused ? 0 : 1
+            focusButton.msr_borderColor = theme.borderColorB
         } else {
             focusButtonActivityIndicatorView.startAnimating()
             focusButton.setTitle("", forState: .Normal)

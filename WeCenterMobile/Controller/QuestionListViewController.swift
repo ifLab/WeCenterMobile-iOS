@@ -38,7 +38,8 @@ class QuestionListViewController: UITableViewController {
     override func loadView() {
         super.loadView()
         title = "\(user.name!) 的提问"
-        view.backgroundColor = UIColor.msr_materialGray200()
+        let theme = SettingsManager.defaultManager.currentTheme
+        view.backgroundColor = theme.backgroundColorA
         tableView.separatorStyle = .None
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -149,7 +150,7 @@ class QuestionListViewController: UITableViewController {
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .Default
+        return SettingsManager.defaultManager.currentTheme.statusBarStyle
     }
     
 }

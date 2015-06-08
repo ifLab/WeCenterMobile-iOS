@@ -18,6 +18,9 @@ class ArticleCell: UITableViewCell {
     @IBOutlet weak var articleButton: UIButton!
     @IBOutlet weak var userAvatarView: MSRRoundedImageView!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var userContainerView: UIView!
+    @IBOutlet weak var articleContainerView: UIView!
+    @IBOutlet weak var separator: UIView!
     
     lazy var dateFormatter: NSDateFormatter = {
         let f = NSDateFormatter()
@@ -29,10 +32,20 @@ class ArticleCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         msr_scrollView?.delaysContentTouches = false
-        containerView.layer.borderColor = UIColor.msr_materialGray300().CGColor
-        containerView.layer.borderWidth = 0.5
-        userButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        articleButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        let theme = SettingsManager.defaultManager.currentTheme
+        containerView.msr_borderColor = theme.borderColorA
+        separator.backgroundColor = theme.borderColorA
+        for v in [userContainerView, articleContainerView] {
+            v.backgroundColor = theme.backgroundColorB
+        }
+        for v in [userButton, articleButton] {
+            v.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
+        }
+        for v in [userNameLabel, articleTitleLabel] {
+            v.textColor = theme.titleTextColor
+        }
+        dateLabel.textColor = theme.footnoteTextColor
+        articleBodyLabel.textColor = theme.subtitleTextColor
     }
     
     func update(#article: Article, updateImage: Bool) {

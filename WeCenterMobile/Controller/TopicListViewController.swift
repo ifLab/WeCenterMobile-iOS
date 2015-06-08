@@ -38,7 +38,8 @@ class TopicListViewController: UITableViewController {
     override func loadView() {
         super.loadView()
         title = listType == .User ? "\(user!.name!) 关注的话题" : "话题"
-        view.backgroundColor = UIColor.msr_materialGray200()
+        let theme = SettingsManager.defaultManager.currentTheme
+        view.backgroundColor = theme.backgroundColorA
         tableView.separatorStyle = .None
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -143,6 +144,6 @@ class TopicListViewController: UITableViewController {
         }
     }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .Default
+        return SettingsManager.defaultManager.currentTheme.statusBarStyle
     }
 }
