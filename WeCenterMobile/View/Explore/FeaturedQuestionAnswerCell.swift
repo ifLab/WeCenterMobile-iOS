@@ -23,20 +23,38 @@ class FeaturedQuestionAnswerCell: UITableViewCell {
     @IBOutlet weak var questionUserButton: UIButton!
     @IBOutlet weak var answerUserButton: UIButton?
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var separatorA: UIView!
+    @IBOutlet weak var separatorB: UIView?
+    @IBOutlet weak var separatorC: UIView?
+    @IBOutlet weak var questionUserContainerView: UIView!
+    @IBOutlet weak var questionContainerView: UIView!
+    @IBOutlet weak var answerUserContainerView: UIView?
+    @IBOutlet weak var answerContainerView: UIView?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         msr_scrollView?.delaysContentTouches = false
-        containerView.layer.borderColor = UIColor.msr_materialGray300().CGColor
-        containerView.layer.borderWidth = 0.5
-        questionBadgeLabel.layer.borderColor = UIColor.msr_materialGray300().CGColor
-        questionBadgeLabel.layer.borderWidth = 0.5
-        answerBadgeLabel?.layer.borderColor = UIColor.msr_materialGray300().CGColor
-        answerBadgeLabel?.layer.borderWidth = 0.5
-        questionButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        questionUserButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        answerButton?.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        answerUserButton?.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        let theme = SettingsManager.defaultManager.currentTheme
+        for v in [containerView, questionBadgeLabel, answerBadgeLabel] {
+            v?.msr_borderColor = theme.borderColorA
+        }
+        for v in [separatorA, separatorB, separatorC] {
+            v?.backgroundColor = theme.borderColorA
+        }
+        for v in [questionButton, questionUserButton, answerButton, answerUserButton] {
+            v?.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
+        }
+        for v in [questionUserContainerView, questionContainerView, answerUserContainerView, answerContainerView] {
+            v?.backgroundColor = theme.backgroundColorB
+        }
+        for v in [questionBadgeLabel, answerBadgeLabel] {
+            v?.backgroundColor = theme.backgroundColorA
+            v?.textColor = theme.footnoteTextColor
+        }
+        for v in [questionUserNameLabel, questionTitleLabel, answerUserNameLabel] {
+            v?.textColor = theme.titleTextColor
+        }
+        answerBodyLabel?.textColor = theme.subtitleTextColor
     }
     
     func update(#object: FeaturedObject, updateImage: Bool) {

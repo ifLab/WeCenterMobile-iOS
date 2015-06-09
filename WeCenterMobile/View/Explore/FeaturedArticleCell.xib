@@ -76,6 +76,11 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="veI-Z7-TB7">
                                         <rect key="frame" x="0.0" y="0.0" width="253" height="82"/>
@@ -114,6 +119,11 @@
                             <constraint firstAttribute="bottom" secondItem="GPm-qd-hOK" secondAttribute="bottom" id="tg2-p5-9nA"/>
                             <constraint firstItem="njx-6Z-ydi" firstAttribute="top" secondItem="RTf-ST-zJi" secondAttribute="top" id="xrG-Ng-1Cp"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <constraints>
@@ -126,12 +136,15 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="articleButton" destination="veI-Z7-TB7" id="BFg-Qs-DTq"/>
+                <outlet property="articleContainerView" destination="5fW-dV-jD4" id="7fQ-Ig-m1c"/>
                 <outlet property="articleTagLabel" destination="rVe-AQ-tq4" id="rGY-vW-qIV"/>
-                <outlet property="articleTitle" destination="kCQ-1T-F3s" id="3AK-Gp-jHk"/>
+                <outlet property="articleTitleLabel" destination="kCQ-1T-F3s" id="6V2-Ra-ZnE"/>
                 <outlet property="articleUserButton" destination="you-0V-NqI" id="B5j-cT-uyJ"/>
                 <outlet property="badgeLabel" destination="rVe-AQ-tq4" id="TJ2-oE-M2v"/>
                 <outlet property="containerView" destination="RTf-ST-zJi" id="Kzk-nj-jyg"/>
+                <outlet property="separator" destination="njx-6Z-ydi" id="4gA-AX-IlM"/>
                 <outlet property="userAvatarView" destination="l65-9S-X3U" id="zaO-71-Rqz"/>
+                <outlet property="userContainerView" destination="GPm-qd-hOK" id="sR8-1f-tLi"/>
                 <outlet property="userNameLabel" destination="uZ8-5m-EGy" id="KK4-x2-lL3"/>
             </connections>
             <point key="canvasLocation" x="373" y="387.5"/>

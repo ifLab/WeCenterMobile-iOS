@@ -16,13 +16,14 @@ class ExploreViewController: MSRSegmentedViewController, MSRSegmentedViewControl
     
     override func loadView() {
         super.loadView()
+        let theme = SettingsManager.defaultManager.currentTheme
         segmentedControl.indicator = MSRSegmentedControlUnderlineIndicator()
-        segmentedControl.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.87)
-        segmentedControl.indicator.tintColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
-        (segmentedControl.backgroundView as! UIToolbar).barStyle = .Default
-        view.backgroundColor = UIColor.msr_materialGray200()
+        segmentedControl.tintColor = theme.titleTextColor
+        segmentedControl.indicator.tintColor = theme.subtitleTextColor
+        (segmentedControl.backgroundView as! UIToolbar).barStyle = theme.toolbarStyle
+        view.backgroundColor = theme.backgroundColorA
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List"), style: .Plain, target: self, action: "showSidebar")
-        msr_navigationBar!.barStyle = .Default
+        msr_navigationBar!.barStyle = theme.navigationBarStyle
         scrollView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         scrollView.delaysContentTouches = false
         scrollView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
@@ -56,7 +57,7 @@ class ExploreViewController: MSRSegmentedViewController, MSRSegmentedViewControl
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .Default
+        return SettingsManager.defaultManager.currentTheme.statusBarStyle
     }
     
     func showSidebar() {

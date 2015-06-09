@@ -79,6 +79,11 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FeL-XR-SC0">
                                                 <rect key="frame" x="0.0" y="0.0" width="253" height="78"/>
@@ -122,10 +127,10 @@
                                 <rect key="frame" x="0.0" y="79" width="304" height="96"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="76F-bq-YGe">
-                                        <rect key="frame" x="254" y="0.0" width="0.0" height="96"/>
+                                        <rect key="frame" x="253" y="0.0" width="1" height="96"/>
                                         <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="0.5" id="T2p-tV-Baa"/>
+                                            <constraint firstAttribute="width" constant="0.5" id="cya-S6-I00"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="meX-lT-NW6">
@@ -157,7 +162,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BwE-cF-D6R">
-                                        <rect key="frame" x="0.0" y="0.0" width="254" height="96"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="253" height="96"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="回答" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MV-wY-crM">
                                                 <rect key="frame" x="0.0" y="10" width="50" height="17"/>
@@ -169,21 +174,26 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZS-rd-0VC">
-                                                <rect key="frame" x="202" y="10" width="42" height="17"/>
+                                                <rect key="frame" x="201" y="10" width="42" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="213-o0-miT">
-                                                <rect key="frame" x="0.0" y="0.0" width="254" height="96"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="253" height="96"/>
                                                 <state key="normal">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里是问题回答，可能会很长很长很长很长很长很长很长很长很长，但最多显示三行。" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1br-UJ-VWx" customClass="MSRMultilineLabel" customModule="WeCenterMobile" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="32" width="234" height="54"/>
+                                                <rect key="frame" x="10" y="32" width="233" height="54"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -212,7 +222,7 @@
                                     <constraint firstItem="76F-bq-YGe" firstAttribute="top" secondItem="p4l-Jg-hoE" secondAttribute="top" id="4g2-Hh-bf7"/>
                                     <constraint firstAttribute="bottom" secondItem="BwE-cF-D6R" secondAttribute="bottom" id="51V-G5-IO8"/>
                                     <constraint firstAttribute="bottom" secondItem="76F-bq-YGe" secondAttribute="bottom" id="56n-DF-uQC"/>
-                                    <constraint firstItem="meX-lT-NW6" firstAttribute="leading" secondItem="BwE-cF-D6R" secondAttribute="trailing" id="Wlh-lO-YM2"/>
+                                    <constraint firstItem="76F-bq-YGe" firstAttribute="leading" secondItem="BwE-cF-D6R" secondAttribute="trailing" id="MjS-A7-GjU"/>
                                     <constraint firstItem="BwE-cF-D6R" firstAttribute="leading" secondItem="p4l-Jg-hoE" secondAttribute="leading" id="bR3-mU-T40"/>
                                     <constraint firstAttribute="bottom" secondItem="meX-lT-NW6" secondAttribute="bottom" id="eg0-na-4D4"/>
                                     <constraint firstItem="BwE-cF-D6R" firstAttribute="top" secondItem="p4l-Jg-hoE" secondAttribute="top" id="p6j-qE-EiQ"/>
@@ -241,6 +251,11 @@
                             <constraint firstItem="XZr-Gu-tLG" firstAttribute="top" secondItem="Zyq-OL-oog" secondAttribute="top" id="wAk-LZ-TQ8"/>
                             <constraint firstItem="p4l-Jg-hoE" firstAttribute="leading" secondItem="Zyq-OL-oog" secondAttribute="leading" id="y3j-F4-U0n"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pUW-1d-LZi">
                         <rect key="frame" x="67" y="285" width="196" height="17"/>
@@ -258,16 +273,23 @@
                 <outlet property="answerBadgeLabel" destination="0MV-wY-crM" id="bf1-fY-6SD"/>
                 <outlet property="answerBodyLabel" destination="1br-UJ-VWx" id="iPf-7S-Xn5"/>
                 <outlet property="answerButton" destination="213-o0-miT" id="NQS-ys-hj4"/>
+                <outlet property="answerContainerView" destination="BwE-cF-D6R" id="IOE-E6-3Dm"/>
                 <outlet property="answerUserAvatarView" destination="hcY-l0-NzG" id="EFc-zy-sCx"/>
                 <outlet property="answerUserButton" destination="sPU-I6-KUS" id="tQ8-W3-GNy"/>
+                <outlet property="answerUserContainerView" destination="meX-lT-NW6" id="mwQ-Xi-V2y"/>
                 <outlet property="answerUserNameLabel" destination="YZS-rd-0VC" id="pcT-OK-JhY"/>
                 <outlet property="containerView" destination="Zyq-OL-oog" id="xkM-dK-84M"/>
                 <outlet property="questionBadgeLabel" destination="tnH-tc-kcA" id="mxU-Cl-JLE"/>
                 <outlet property="questionButton" destination="FeL-XR-SC0" id="2Xr-Vv-e0x"/>
+                <outlet property="questionContainerView" destination="ohq-Wx-cLU" id="g8Y-3D-s98"/>
                 <outlet property="questionTitleLabel" destination="GYQ-jA-Sg4" id="BXV-Xy-B2Z"/>
                 <outlet property="questionUserAvatarView" destination="dnq-hY-STP" id="hMF-g1-sKI"/>
                 <outlet property="questionUserButton" destination="uFg-25-ziQ" id="VOD-pE-0vx"/>
+                <outlet property="questionUserContainerView" destination="7p0-Fg-bv1" id="oSA-t0-Gc6"/>
                 <outlet property="questionUserNameLabel" destination="5Fl-2B-3Go" id="DeJ-lB-Csj"/>
+                <outlet property="separatorA" destination="U9Y-TH-Rp5" id="cXD-oL-TB2"/>
+                <outlet property="separatorB" destination="6Fz-aO-2PR" id="gF8-9E-N4O"/>
+                <outlet property="separatorC" destination="76F-bq-YGe" id="WI6-Yf-M2g"/>
             </connections>
             <point key="canvasLocation" x="480" y="288"/>
         </tableViewCell>

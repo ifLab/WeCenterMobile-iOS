@@ -76,6 +76,11 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M0d-NI-jjI">
                                         <rect key="frame" x="0.0" y="0.0" width="253" height="82"/>
@@ -114,6 +119,11 @@
                             <constraint firstItem="UGj-ts-JeZ" firstAttribute="leading" secondItem="GDB-Wp-hCH" secondAttribute="leading" id="ilV-ul-fTM"/>
                             <constraint firstAttribute="bottom" secondItem="8Ph-ic-xv1" secondAttribute="bottom" id="n4Z-Qz-vu7"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <constraints>
@@ -128,10 +138,13 @@
                 <outlet property="containerView" destination="GDB-Wp-hCH" id="wHA-25-520"/>
                 <outlet property="questionBadgeLabel" destination="lMB-vy-BTn" id="WRT-9u-GcZ"/>
                 <outlet property="questionButton" destination="M0d-NI-jjI" id="sBa-Ha-i8I"/>
+                <outlet property="questionContainerView" destination="8Ph-ic-xv1" id="IYd-JP-4VA"/>
                 <outlet property="questionTitleLabel" destination="8rA-At-kzc" id="rXO-z4-gv2"/>
                 <outlet property="questionUserAvatarView" destination="3za-yP-SK5" id="y4i-4S-9bl"/>
                 <outlet property="questionUserButton" destination="MaQ-PF-ZXF" id="cJk-FM-cb2"/>
+                <outlet property="questionUserContainerView" destination="UGj-ts-JeZ" id="lhG-Ff-Hpi"/>
                 <outlet property="questionUserNameLabel" destination="2xi-CV-YYb" id="dFB-LE-shR"/>
+                <outlet property="separatorA" destination="VHc-YB-Fad" id="Dv9-d9-W8h"/>
             </connections>
             <point key="canvasLocation" x="373" y="387.5"/>
         </tableViewCell>

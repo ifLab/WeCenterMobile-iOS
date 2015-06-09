@@ -12,22 +12,35 @@ class FeaturedArticleCell: UITableViewCell {
     
     @IBOutlet weak var userAvatarView: MSRRoundedImageView!
     @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var articleTitle: UILabel!
+    @IBOutlet weak var articleTitleLabel: UILabel!
     @IBOutlet weak var articleTagLabel: UILabel!
     @IBOutlet weak var articleUserButton: UIButton!
     @IBOutlet weak var articleButton: UIButton!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var badgeLabel: UILabel!
+    @IBOutlet weak var separator: UIView!
+    @IBOutlet weak var userContainerView: UIView!
+    @IBOutlet weak var articleContainerView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         msr_scrollView?.delaysContentTouches = false
-        containerView.layer.borderColor = UIColor.msr_materialGray300().CGColor
-        containerView.layer.borderWidth = 0.5
-        badgeLabel.layer.borderColor = UIColor.msr_materialGray300().CGColor
-        badgeLabel.layer.borderWidth = 0.5
-        articleUserButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        articleButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        let theme = SettingsManager.defaultManager.currentTheme
+        for v in [userContainerView, articleContainerView] {
+            v.backgroundColor = theme.backgroundColorB
+        }
+        badgeLabel.backgroundColor = theme.backgroundColorA
+        for v in [containerView, badgeLabel] {
+            v.msr_borderColor = theme.borderColorA
+        }
+        separator.backgroundColor = theme.borderColorA
+        for v in [articleUserButton, articleButton] {
+            v.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
+        }
+        for v in [userNameLabel, articleTitleLabel] {
+            v.textColor = theme.titleTextColor
+        }
+        badgeLabel.textColor = theme.footnoteTextColor
     }
     
     func update(#object: FeaturedObject, updateImage: Bool) {
@@ -37,7 +50,7 @@ class FeaturedArticleCell: UITableViewCell {
             userAvatarView.wc_updateWithUser(article.user)
         }
         userNameLabel.text = article.user?.name ?? "匿名用户"
-        articleTitle.text = article.title
+        articleTitleLabel.text = article.title
         articleButton.msr_userInfo = article
         articleUserButton.msr_userInfo = article.user
         setNeedsLayout()
