@@ -141,11 +141,13 @@ class FeaturedObjectListViewController: UITableViewController {
         FeaturedObject.fetchFeaturedObjects(page: page + 1, count: count, type: type,
             success: {
                 [weak self] objects in
-                if self?.shouldReloadAfterLoadingMore ?? false {
-                    self?.page = self!.page + 1
-                    self?.objects.extend(objects)
-                    self?.tableView.reloadData()
-                    self?.tableView.footer.endRefreshing()
+                if let self_ = self {
+                    if self_.shouldReloadAfterLoadingMore {
+                        ++self_.page
+                        self_.objects.extend(objects)
+                        self_.tableView.reloadData()
+                        self_.tableView.footer.endRefreshing()
+                    }
                 }
                 return
             },

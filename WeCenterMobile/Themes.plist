@@ -37,8 +37,6 @@
 		<key>Control Color B</key>
 		<real>3772834047</real>
 		<key>Highlight Color</key>
-		<integer>127</integer>
-		<key>Highlight Color For Sidebar</key>
 		<integer>31</integer>
 		<key>Navigation Item Color</key>
 		<integer>127</integer>
@@ -86,9 +84,7 @@
 		<key>Control Color B</key>
 		<real>1633772031</real>
 		<key>Highlight Color</key>
-		<real>4294967167</real>
-		<key>Highlight Color For Sidebar</key>
-		<integer>4294967071</integer>
+		<real>4294967071</real>
 		<key>Navigation Item Color</key>
 		<real>4294967167</real>
 		<key>Navigation Bar Style</key>

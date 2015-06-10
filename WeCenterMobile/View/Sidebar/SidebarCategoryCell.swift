@@ -30,7 +30,7 @@ class SidebarCategoryCell: UITableViewCell {
         let theme = SettingsManager.defaultManager.currentTheme
         categoryImageView.tintColor = theme.titleTextColor
         categoryTitleLabel.textColor = theme.titleTextColor
-        selectedBackgroundView.backgroundColor = theme.highlightColorForSidebar
+        selectedBackgroundView.backgroundColor = theme.highlightColor
     }
     
 }

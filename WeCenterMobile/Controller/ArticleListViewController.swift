@@ -126,12 +126,14 @@ class ArticleListViewController: UITableViewController {
         shouldReloadAfterLoadingMore = true
         let success: ([Article]) -> Void = {
             [weak self] Articles in
-            if self?.shouldReloadAfterLoadingMore ?? false {
-                self?.page = self!.page + 1
-                self?.articles.extend(Articles)
-                self?.tableView.reloadData()
+            if let self_ = self {
+                if self_.shouldReloadAfterLoadingMore {
+                    ++self_.page
+                    self_.articles.extend(Articles)
+                    self_.tableView.reloadData()
+                }
+                self_.tableView.footer.endRefreshing()
             }
-            self?.tableView.footer.endRefreshing()
         }
         let failure: (NSError) -> Void = {
             [weak self] error in

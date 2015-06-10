@@ -24,6 +24,7 @@ class ExploreViewController: MSRSegmentedViewController, MSRSegmentedViewControl
         view.backgroundColor = theme.backgroundColorA
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List"), style: .Plain, target: self, action: "showSidebar")
         msr_navigationBar!.barStyle = theme.navigationBarStyle
+        msr_navigationBar!.msr_shadowImageView?.hidden = true
         scrollView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         scrollView.delaysContentTouches = false
         scrollView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)

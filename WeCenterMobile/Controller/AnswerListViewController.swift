@@ -133,12 +133,14 @@ class AnswerListViewController: UITableViewController {
         shouldReloadAfterLoadingMore = true
         let success: ([Answer]) -> Void = {
             [weak self] answers in
-            if self?.shouldReloadAfterLoadingMore ?? false {
-                self?.page = self!.page + 1
-                self?.answers.extend(answers)
-                self?.tableView.reloadData()
+            if let self_ = self {
+                if self_.shouldReloadAfterLoadingMore {
+                    ++self_.page
+                    self_.answers.extend(answers)
+                    self_.tableView.reloadData()
+                }
+                self_.tableView.footer.endRefreshing()
             }
-            self?.tableView.footer.endRefreshing()
         }
         let failure: (NSError) -> Void = {
             [weak self] error in

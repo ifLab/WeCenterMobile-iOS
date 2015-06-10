@@ -125,12 +125,14 @@ class TopicListViewController: UITableViewController {
                 count: count,
                 success: {
                     [weak self] topics in
-                    if self?.shouldReloadAfterLoadingMore ?? false {
-                        self?.page = self!.page + 1
-                        self?.topics.extend(topics)
-                        self?.tableView.reloadData()
+                    if let self_ = self {
+                        if self_.shouldReloadAfterLoadingMore {
+                            ++self_.page
+                            self_.topics.extend(topics)
+                            self_.tableView.reloadData()
+                        }
+                        self_.tableView.footer.endRefreshing()
                     }
-                    self?.tableView.footer.endRefreshing()
                     return
                 },
                 failure: {

@@ -128,10 +128,12 @@ class QuestionListViewController: UITableViewController {
         shouldReloadAfterLoadingMore = true
         let success: ([Question]) -> Void = {
             [weak self] questions in
-            if self?.shouldReloadAfterLoadingMore ?? false {
-                self?.page = self!.page + 1
-                self?.questions.extend(questions)
-                self?.tableView.reloadData()
+            if let self_ = self {
+                if self_.shouldReloadAfterLoadingMore {
+                    ++self_.page
+                    self_.questions.extend(questions)
+                    self_.tableView.reloadData()
+                }
             }
             self?.tableView.footer.endRefreshing()
         }

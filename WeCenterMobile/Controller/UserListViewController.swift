@@ -115,12 +115,14 @@ class UserListViewController: UITableViewController {
         shouldReloadAfterLoadingMore = true
         let success: ([User]) -> Void = {
             [weak self] users in
-            if self?.shouldReloadAfterLoadingMore ?? false {
-                self?.page = self!.page + 1
-                self?.users.extend(users)
-                self?.tableView.reloadData()
+            if let self_ = self {
+                if self_.shouldReloadAfterLoadingMore {
+                    ++self_.page
+                    self_.users.extend(users)
+                    self_.tableView.reloadData()
+                }
+                self_.tableView.footer.endRefreshing()
             }
-            self?.tableView.footer.endRefreshing()
         }
         let failure: (NSError) -> Void = {
             [weak self] error in

@@ -77,9 +77,6 @@ class Theme {
         if let highlightColorRGBA = (configuration["Highlight Color"] as? NSNumber)?.unsignedIntValue {
             self.highlightColor = %-highlightColorRGBA
         }
-        if let highlightColorForSidebarRGBA = (configuration["Highlight Color For Sidebar"] as? NSNumber)?.unsignedIntValue {
-            self.highlightColorForSidebar = %-highlightColorForSidebarRGBA
-        }
         if let titleTextColorRGBA = (configuration["Title Text Color"] as? NSNumber)?.unsignedIntValue {
             self.titleTextColor = %-titleTextColorRGBA
         }
@@ -143,7 +140,6 @@ class Theme {
     var toolbarItemColor: UIColor = %-0x00000042
     
     var highlightColor: UIColor = %-0x0000007f
-    var highlightColorForSidebar: UIColor = %-0x0000000f
     
     var statusBarStyle: UIStatusBarStyle = .Default
     var navigationBarStyle: UIBarStyle = .Default

@@ -91,6 +91,7 @@ class ArticleHeaderView: UIView, UIToolbarDelegate {
         let v = UIView()
         let theme = SettingsManager.defaultManager.currentTheme
         v.backgroundColor = theme.borderColorB
+        v.hidden = true
         return v
     }()
     
