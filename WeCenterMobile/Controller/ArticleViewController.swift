@@ -121,7 +121,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "attributedTextContentViewDidFinishLayout:", name: DTAttributedTextContentViewDidFinishLayoutNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "attributedTextContentViewDidFinishLayout:", name: DTAttributedTextContentViewDidFinishLayoutNotification, object: bodyView.attributedTextContentView)
         reloadData()
         bodyView.msr_uiRefreshControl!.beginRefreshing()
         refresh()

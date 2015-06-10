@@ -46,7 +46,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         if let self_ = self {
             c.lazyImageViewDelegate = self_
             c.linkButtonDelegate = self_
-            NSNotificationCenter.defaultCenter().addObserver(self_, selector: "attributedTextContentViewDidFinishLayout:", name: DTAttributedTextContentViewDidFinishLayoutNotification, object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self_, selector: "attributedTextContentViewDidFinishLayout:", name: DTAttributedTextContentViewDidFinishLayoutNotification, object: c.attributedTextContextView)
         }
         return c
     }()
