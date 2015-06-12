@@ -24,7 +24,20 @@ class Topic: DataObject {
     var focused: Bool? = nil
     
     var imageURL: String? {
-        return (imageURI == nil) ? nil : NetworkManager.defaultManager!.website + NetworkManager.defaultManager!.paths["Topic Image"]! + imageURI!
+        get {
+            return (imageURI == nil) ? nil : NetworkManager.defaultManager!.website + NetworkManager.defaultManager!.paths["Topic Image"]! + imageURI!
+        }
+        set {
+            if let replacedString = newValue?.stringByReplacingOccurrencesOfString(NetworkManager.defaultManager!.website + NetworkManager.defaultManager!.paths["Topic Image"]!, withString: "") {
+                if replacedString != newValue {
+                    imageURI = replacedString
+                } else {
+                    imageURI = nil
+                }
+            } else {
+                imageURI = nil
+            }
+        }
     }
     
     var image: UIImage? {

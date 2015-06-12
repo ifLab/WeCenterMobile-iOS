@@ -76,6 +76,8 @@
 		<string>?/question/ajax/answer_vote/</string>
 		<key>Evaluate Article</key>
 		<string>?/article/ajax/article_vote/</string>
+		<key>Search</key>
+		<string>?/api/search/</string>
 	</dict>
 	<key>Success Code</key>
 	<integer>1</integer>

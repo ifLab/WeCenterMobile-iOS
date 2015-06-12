@@ -33,7 +33,7 @@ class UserCell: UITableViewCell {
             userAvatarView.wc_updateWithUser(user)
         }
         userNameLabel.text = user.name
-        /// @TODO: [Back-End][Bug] \n!!!
+        /// @TODO: [Bug][Back-End] \n!!!
         userSignatureLabel.text = user.signature?.stringByTrimmingCharactersInSet(NSCharacterSet.newlineCharacterSet())
         userButtonA.msr_userInfo = user
         userButtonB.msr_userInfo = user

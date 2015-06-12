@@ -1106,8 +1106,8 @@
 				954A76AA1AFD0323002A72A9 /* PublishmentViewControllerB.xib */,
 				950FE1371A1DA2B300167D09 /* QuestionListViewController.swift */,
 				9520AB141AC2C94600637C84 /* QuestionViewController.swift */,
-				9515766B1B1A055400E5BE8E /* SettingsViewController.swift */,
 				9515766D1B1B4A5300E5BE8E /* SettingsViewController.storyboard */,
+				9515766B1B1A055400E5BE8E /* SettingsViewController.swift */,
 				950FE1341A1DA2B300167D09 /* TopicListViewController.swift */,
 				950FE1351A1DA2B300167D09 /* TopicViewController.swift */,
 				950FE1361A1DA2B300167D09 /* UserListViewController.swift */,
@@ -1175,20 +1175,20 @@
 		950FE7E11A1DA52500167D09 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				9554D8FE1ADF392700C94061 /* MessageUI.framework */,
 				9554D8F11ADE2E2100C94061 /* CoreMotion.framework */,
-				9554D8EE1ADE2DAA00C94061 /* Security.framework */,
-				9554D8EC1ADE2DA000C94061 /* libicucore.dylib */,
-				9554D8E91ADE2D8800C94061 /* SystemConfiguration.framework */,
-				9554D8E71ADE2C8C00C94061 /* libstdc++.dylib */,
 				9554D8E51ADE2C5F00C94061 /* CoreTelephony.framework */,
 				950FE7DF1A1DA52000167D09 /* CoreText.framework */,
 				950FE7DB1A1DA51400167D09 /* Foundation.framework */,
 				950FE7D71A1DA50600167D09 /* ImageIO.framework */,
+				9554D8FE1ADF392700C94061 /* MessageUI.framework */,
 				950FE7D91A1DA50D00167D09 /* MobileCoreServices.framework */,
 				950FE7D51A1DA4FF00167D09 /* QuartzCore.framework */,
+				9554D8EE1ADE2DAA00C94061 /* Security.framework */,
+				9554D8E91ADE2D8800C94061 /* SystemConfiguration.framework */,
 				950FE7DD1A1DA51900167D09 /* UIKit.framework */,
+				9554D8EC1ADE2DA000C94061 /* libicucore.dylib */,
 				950FE7D11A1DA4F300167D09 /* libsqlite3.dylib */,
+				9554D8E71ADE2C8C00C94061 /* libstdc++.dylib */,
 				950FE7D31A1DA4F900167D09 /* libxml2.dylib */,
 				950FE7CF1A1DA4EC00167D09 /* libz.dylib */,
 			);
@@ -1675,9 +1675,9 @@
 			children = (
 				9531D6D81AF3E4AC00E6549D /* ArticleCell.swift */,
 				9531D6D91AF3E4AC00E6549D /* ArticleCell.xib */,
-				95D153A61AF4CEF800C1617D /* ArticleHeaderView.swift */,
 				95DB722A1AF548EC0072C77E /* ArticleFooterView.swift */,
 				95DB722D1AF5490A0072C77E /* ArticleFooterView.xib */,
+				95D153A61AF4CEF800C1617D /* ArticleHeaderView.swift */,
 			);
 			path = Article;
 			sourceTree = "<group>";
@@ -1727,12 +1727,12 @@
 			children = (
 				9531D6F81AF3E4AC00E6549D /* QuestionBodyCell.swift */,
 				9531D6F91AF3E4AC00E6549D /* QuestionBodyCell.xib */,
+				9531D6FE1AF3E4AC00E6549D /* QuestionCell.swift */,
+				9531D6FF1AF3E4AC00E6549D /* QuestionCell.xib */,
 				9531D6FA1AF3E4AC00E6549D /* QuestionFooterCell.swift */,
 				9531D6FB1AF3E4AC00E6549D /* QuestionFooterCell.xib */,
 				9531D6FC1AF3E4AC00E6549D /* QuestionHeaderCell.swift */,
 				9531D6FD1AF3E4AC00E6549D /* QuestionHeaderCell.xib */,
-				9531D6FE1AF3E4AC00E6549D /* QuestionCell.swift */,
-				9531D6FF1AF3E4AC00E6549D /* QuestionCell.xib */,
 				9531D7001AF3E4AC00E6549D /* QuestionTagListCell.swift */,
 				9531D7011AF3E4AC00E6549D /* QuestionTagListCell.xib */,
 				9531D7021AF3E4AC00E6549D /* QuestionTitleCell.swift */,
@@ -1782,9 +1782,9 @@
 			isa = PBXGroup;
 			children = (
 				9531D7651AF3E85900E6549D /* ImageUploadingProgressBar.xib */,
-				9531D7661AF3E85900E6549D /* UIImageView+DataObject.swift */,
 				9550A2961AF8B6D0005F81F7 /* KeyboardBar.swift */,
 				956EF0771B16F9FE00C9DA2A /* TableViewWithKeyboardBar.swift */,
+				9531D7661AF3E85900E6549D /* UIImageView+DataObject.swift */,
 				951E12EF1B202D7C00F076FE /* UITableView+Refresh.swift */,
 			);
 			path = Others;
@@ -1829,10 +1829,10 @@
 		9531D77F1AF3E8E400E6549D /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				9531D7801AF3E8E400E6549D /* String+PlainString.swift */,
-				9531D7811AF3E8E400E6549D /* TintColor.swift */,
 				95DC570F1AF785040075C3CB /* Evalation.swift */,
+				9531D7801AF3E8E400E6549D /* String+PlainString.swift */,
 				95D784091B1C5306008EB241 /* Theme.swift */,
+				9531D7811AF3E8E400E6549D /* TintColor.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";

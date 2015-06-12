@@ -33,7 +33,7 @@ class TopicCell: UITableViewCell {
             topicImageView.wc_updateWithTopic(topic)
         }
         topicTitleLabel.text = topic.title
-        /// @TODO: [Back-End][Bug] \n!!!
+        /// @TODO: [Bug][Back-End] \n!!!
         topicDescriptionLabel.text = topic.introduction?.stringByTrimmingCharactersInSet(NSCharacterSet.newlineCharacterSet())
         topicButtonA.msr_userInfo = topic
         topicButtonB.msr_userInfo = topic

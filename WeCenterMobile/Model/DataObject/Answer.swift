@@ -119,8 +119,8 @@ class Answer: DataObject {
             failure: failure)!
     }
     
-    /// @TODO: Tell back-end to provide 'agreementCount' & 'evaluation' in return value.
-    /// @TODO: Better Evaluation.None parameter support.
+    /// @TODO: [Feature][Back-End] Add 'agreementCount' & 'evaluation' in return value.
+    /// @TODO: [Feature][Front-End] Better Evaluation.None parameter support.
     func evaluate(#value: Evaluation, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         let originalValue = evaluation
         if originalValue == nil {
@@ -147,7 +147,7 @@ class Answer: DataObject {
                 if let self_ = self {
                     self_.evaluation = value
                     if let count = self_.agreementCount?.integerValue {
-                        /// @TODO: This property should be provided by back-end.
+                        /// @TODO: [Feature][Back-End] This property should be provided by back-end.
                         self_.agreementCount = originalValue == .Up ? count - 1 : value == .Up ? count + 1 : count
                     }
                     success?()

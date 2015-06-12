@@ -86,14 +86,22 @@ class User: DataObject {
         }
     }
     
-    var followed: Bool? = nil
+    var following: Bool? = nil
     
     var avatarURL: String? {
         get {
             return (avatarURI == nil) ? nil : NetworkManager.defaultManager!.website + NetworkManager.defaultManager!.paths["User Avatar"]! + avatarURI!
         }
         set {
-            avatarURI = newValue?.stringByReplacingOccurrencesOfString(NetworkManager.defaultManager!.website + NetworkManager.defaultManager!.paths["User Avatar"]!, withString: "")
+            if let replacedString = newValue?.stringByReplacingOccurrencesOfString(NetworkManager.defaultManager!.website + NetworkManager.defaultManager!.paths["User Avatar"]!, withString: "") {
+                if replacedString != newValue {
+                    avatarURI = replacedString
+                } else {
+                    avatarURI = nil
+                }
+            } else {
+                avatarURI = nil
+            }
         }
     }
     
@@ -118,7 +126,7 @@ class User: DataObject {
                 user.agreementCount = Int(msr_object: data["agree_count"])
                 user.thankCount = Int(msr_object: data["thanks_count"])
                 user.answerFavoriteCount = Int(msr_object: data["answer_favorite_count"])
-                user.followed = (data["has_focus"] as! NSNumber == 1)
+                user.following = (data["has_focus"] as! NSNumber == 1)
                 success?(user)
             },
             failure: failure)
@@ -287,7 +295,7 @@ class User: DataObject {
             parameters: [
                 "uid": id,
                 "page": page,
-                "per_page": count /// @TODO: [Back-End][Bug] Calculation error.
+                "per_page": count /// @TODO: [Bug][Back-End] Calculation error.
             ],
             success: {
                 [weak self] data in
@@ -474,7 +482,7 @@ class User: DataObject {
             ],
             success: {
                 [weak self] data in
-                self?.followed = (data["type"] as! String == "add")
+                self?.following = (data["type"] as! String == "add")
                 success?()
             },
             failure: failure)

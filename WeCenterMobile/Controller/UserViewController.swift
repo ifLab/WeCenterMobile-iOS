@@ -158,9 +158,9 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
                 cell.textLabel.textColor = UIColor.whiteColor()
                 cell.activityIndicatorView.stopAnimating()
             } else {
-                if let followed = user.followed {
-                    cell.textLabel.text = followed ? "已关注" : "关注"
-                    cell.textLabel.textColor = followed ? UIColor.lightTextColor() : UIColor.whiteColor()
+                if let following = user.following {
+                    cell.textLabel.text = following ? "已关注" : "关注"
+                    cell.textLabel.textColor = following ? UIColor.lightTextColor() : UIColor.whiteColor()
                     cell.activityIndicatorView.stopAnimating()
                 } else {
                     cell.textLabel.text = ""
@@ -226,8 +226,8 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
                 uevc.delegate = self
                 showDetailViewController(uevc, sender: self)
             } else {
-                let followed = user.followed
-                user.followed = nil
+                let following = user.following
+                user.following = nil
                 collectionView.reloadItemsAtIndexPaths([indexPath])
                 user.toggleFollow(
                     success: {
@@ -236,7 +236,7 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
                     },
                     failure: {
                         [weak self] error in
-                        self?.user.followed = followed
+                        self?.user.following = following
                         collectionView.reloadItemsAtIndexPaths([indexPath])
                         return
                     })
@@ -247,7 +247,7 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
         if indexPath.section == 1 {
-            return user.followed != nil || user.isCurrentUser
+            return user.following != nil || user.isCurrentUser
         }
         return true
     }
