@@ -50,9 +50,13 @@ class QuestionCell: UITableViewCell {
     
     func update(#question: Question, updateImage: Bool) {
         questionTitleLabel.text = question.title
-        questionBodyLabel.text = question.body!.wc_plainString
+        questionBodyLabel.text = question.body?.wc_plainString ?? ""
         userNameLabel.text = question.user?.name ?? "匿名用户"
-        dateLabel.text = dateFormatter.stringFromDate(question.date!)
+        if let date = question.date {
+            dateLabel.text = dateFormatter.stringFromDate(date)
+        } else {
+            dateLabel.text = ""
+        }
         if updateImage {
             userAvatarView.wc_updateWithUser(question.user)
         }

@@ -355,6 +355,7 @@
 		95DFA7051B1224BC00DF1C0E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DFA7031B1224BC00DF1C0E /* LoginViewController.swift */; };
 		95DFA7061B1224BC00DF1C0E /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95DFA7041B1224BC00DF1C0E /* LoginViewController.xib */; };
 		95E5355A1A49DCFD00D7B76B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535591A49DCFD00D7B76B /* HomeViewController.swift */; };
+		95EBCF3D1B2BF0810088FC2C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBCF3C1B2BF0810088FC2C /* SearchViewController.swift */; };
 		95ED5EF11B084D0500CDB225 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5EDF1B084D0500CDB225 /* AFHTTPRequestOperation.m */; };
 		95ED5EF21B084D0500CDB225 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5EE11B084D0500CDB225 /* AFHTTPRequestOperationManager.m */; };
 		95ED5EF31B084D0500CDB225 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5EE31B084D0500CDB225 /* AFHTTPSessionManager.m */; };
@@ -983,6 +984,7 @@
 		95DFA7031B1224BC00DF1C0E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		95DFA7041B1224BC00DF1C0E /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		95E535591A49DCFD00D7B76B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HomeViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		95EBCF3C1B2BF0810088FC2C /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		95ED5EDE1B084D0500CDB225 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		95ED5EDF1B084D0500CDB225 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		95ED5EE01B084D0500CDB225 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -1106,6 +1108,7 @@
 				954A76AA1AFD0323002A72A9 /* PublishmentViewControllerB.xib */,
 				950FE1371A1DA2B300167D09 /* QuestionListViewController.swift */,
 				9520AB141AC2C94600637C84 /* QuestionViewController.swift */,
+				95EBCF3C1B2BF0810088FC2C /* SearchViewController.swift */,
 				9515766D1B1B4A5300E5BE8E /* SettingsViewController.storyboard */,
 				9515766B1B1A055400E5BE8E /* SettingsViewController.swift */,
 				950FE1341A1DA2B300167D09 /* TopicListViewController.swift */,
@@ -2553,6 +2556,7 @@
 				9531D7321AF3E4AC00E6549D /* AnswerAgreementActionCell.swift in Sources */,
 				95ED5F301B084D5100CDB225 /* UIImage+UzysExtension.m in Sources */,
 				951D1E841ACD1E4E0072D555 /* DTCoreTextLayouter.m in Sources */,
+				95EBCF3D1B2BF0810088FC2C /* SearchViewController.swift in Sources */,
 				951D1F801ACD1E750072D555 /* DTSidePanelControllerSegue.m in Sources */,
 				951D1EAD1ACD1E4E0072D555 /* NSString+CSS.m in Sources */,
 				951D1E881ACD1E4E0072D555 /* DTCoreTextLayoutLine.m in Sources */,

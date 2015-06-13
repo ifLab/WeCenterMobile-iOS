@@ -183,7 +183,7 @@ class HomeViewController: UITableViewController {
             success: {
                 [weak self] actions in
                 if let self_ = self {
-                    if self_.shouldReloadAfterLoadingMore ?? false {
+                    if self_.shouldReloadAfterLoadingMore {
                         ++self_.page
                         self_.actions.extend(actions)
                         self_.tableView.reloadData()

@@ -120,7 +120,7 @@ class Answer: DataObject {
     }
     
     /// @TODO: [Feature][Back-End] Add 'agreementCount' & 'evaluation' in return value.
-    /// @TODO: [Feature][Front-End] Better Evaluation.None parameter support.
+    /// @TODO: [Feature] Better Evaluation.None parameter support.
     func evaluate(#value: Evaluation, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         let originalValue = evaluation
         if originalValue == nil {

@@ -50,9 +50,13 @@ class ArticleCell: UITableViewCell {
     
     func update(#article: Article, updateImage: Bool) {
         articleTitleLabel.text = article.title
-        articleBodyLabel.text = article.body!.wc_plainString
+        articleBodyLabel.text = article.body?.wc_plainString ?? ""
         userNameLabel.text = article.user?.name ?? "匿名用户"
-        dateLabel.text = dateFormatter.stringFromDate(article.date!)
+        if let date = article.date {
+            dateLabel.text = dateFormatter.stringFromDate(date)
+        } else {
+            dateLabel.text = ""
+        }
         if updateImage {
             userAvatarView.wc_updateWithUser(article.user)
         }
