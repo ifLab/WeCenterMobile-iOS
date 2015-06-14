@@ -337,7 +337,6 @@
 		95C2EA421AB0516800F2A326 /* UIImage+MSRShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2EA191AB0516800F2A326 /* UIImage+MSRShape.swift */; };
 		95C2EA431AB0516800F2A326 /* UINavigationBar+MSRAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2EA1A1AB0516800F2A326 /* UINavigationBar+MSRAccessor.swift */; };
 		95C2EA441AB0516800F2A326 /* UIView+MSREasyAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2EA1B1AB0516800F2A326 /* UIView+MSREasyAutoLayout.swift */; };
-		95C2EA451AB0516800F2A326 /* UIView+MSRKeyboardUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2EA1C1AB0516800F2A326 /* UIView+MSRKeyboardUtility.swift */; };
 		95C47D4B1AC9C2BE00A56879 /* UIButton+MSRSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C47D4A1AC9C2BE00A56879 /* UIButton+MSRSetter.swift */; };
 		95C893771AC7365D00B7B385 /* MSRSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C893761AC7365D00B7B385 /* MSRSidebar.swift */; };
 		95D153A41AF4BB3000C1617D /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D153A31AF4BB3000C1617D /* ArticleViewController.swift */; };
@@ -966,7 +965,6 @@
 		95C2EA191AB0516800F2A326 /* UIImage+MSRShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+MSRShape.swift"; sourceTree = "<group>"; };
 		95C2EA1A1AB0516800F2A326 /* UINavigationBar+MSRAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+MSRAccessor.swift"; sourceTree = "<group>"; };
 		95C2EA1B1AB0516800F2A326 /* UIView+MSREasyAutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+MSREasyAutoLayout.swift"; sourceTree = "<group>"; };
-		95C2EA1C1AB0516800F2A326 /* UIView+MSRKeyboardUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+MSRKeyboardUtility.swift"; sourceTree = "<group>"; };
 		95C47D4A1AC9C2BE00A56879 /* UIButton+MSRSetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+MSRSetter.swift"; sourceTree = "<group>"; };
 		95C893761AC7365D00B7B385 /* MSRSidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRSidebar.swift; sourceTree = "<group>"; };
 		95D153A31AF4BB3000C1617D /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ArticleViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2109,7 +2107,6 @@
 				95DC57121AF89F790075C3CB /* UITextField+MSRGetter.swift */,
 				958600811B17308C0054DAA8 /* UIView+MSRAccessor.swift */,
 				95C2EA1B1AB0516800F2A326 /* UIView+MSREasyAutoLayout.swift */,
-				95C2EA1C1AB0516800F2A326 /* UIView+MSRKeyboardUtility.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2421,7 +2418,6 @@
 				95ED5EF61B084D0500CDB225 /* AFURLConnectionOperation.m in Sources */,
 				95ED5EF41B084D0500CDB225 /* AFNetworkReachabilityManager.m in Sources */,
 				95C2EA381AB0516800F2A326 /* MSRSegmentedControlOverlineIndicator.swift in Sources */,
-				95C2EA451AB0516800F2A326 /* UIView+MSRKeyboardUtility.swift in Sources */,
 				9531D7691AF3E85900E6549D /* UIImageView+DataObject.swift in Sources */,
 				951D1E871ACD1E4E0072D555 /* DTCoreTextLayoutFrameAccessibilityElementGenerator.m in Sources */,
 				95DC57131AF89F790075C3CB /* UITextField+MSRGetter.swift in Sources */,

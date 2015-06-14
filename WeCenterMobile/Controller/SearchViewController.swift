@@ -43,8 +43,15 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         tableView.delaysContentTouches = false
+        tableView.keyboardDismissMode = .OnDrag
         tableView.msr_wrapperView?.delaysContentTouches = false
         tableView.wc_addLegendHeaderWithRefreshingTarget(self, action: "refresh")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "sidebarDidBecomeVisible:", name: SidebarDidBecomeVisibleNotificationName, object: appDelegate.mainViewController.sidebar)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "sidebarDidBecomeInvisible:", name: SidebarDidBecomeInvisibleNotificationName, object: appDelegate.mainViewController.sidebar)
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -182,8 +189,20 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         appDelegate.mainViewController.sidebar.expand()
     }
     
+    func sidebarDidBecomeVisible(notification: NSNotification) {
+        if msr_navigationController?.topViewController === self {
+            searchBar.endEditing(true)
+        }
+    }
+    
+    func sidebarDidBecomeInvisible(notification: NSNotification) {}
+    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return SettingsManager.defaultManager.currentTheme.statusBarStyle
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
 }

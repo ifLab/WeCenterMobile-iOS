@@ -84,6 +84,8 @@ class CommentListViewController: UITableViewController, UITextFieldDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "sidebarDidBecomeVisible:", name: SidebarDidBecomeVisibleNotificationName, object: appDelegate.mainViewController.sidebar)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "sidebarDidBecomeInvisible:", name: SidebarDidBecomeInvisibleNotificationName, object: appDelegate.mainViewController.sidebar)
         refreshControl!.beginRefreshing()
         refresh()
     }
@@ -214,7 +216,21 @@ class CommentListViewController: UITableViewController, UITextFieldDelegate {
             animations: animations,
             completion: nil)
     }
+    func sidebarDidBecomeVisible(notification: NSNotification) {
+        if msr_navigationController?.topViewController === self {
+            keyboardBar.textField.resignFirstResponder()
+            tableView.resignFirstResponder()
+        }
+    }
+    func sidebarDidBecomeInvisible(notification: NSNotification) {
+        if msr_navigationController?.topViewController === self {
+            tableView.becomeFirstResponder()
+        }
+    }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return SettingsManager.defaultManager.currentTheme.statusBarStyle
+    }
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }

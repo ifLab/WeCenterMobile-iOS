@@ -9,6 +9,9 @@
 import GBDeviceInfo
 import UIKit
 
+let SidebarDidBecomeVisibleNotificationName = "SidebarDidBecomeVisibleNotification"
+let SidebarDidBecomeInvisibleNotificationName = "SidebarDidBecomeInvisibleNotification"
+
 class _SidebarBackgroundView: UIView {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -184,8 +187,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func msr_sidebarDidExpand(sidebar: MSRSidebar) {
         setNeedsStatusBarAppearanceUpdate()
     }
+    var sidebarIsVisible: Bool = false {
+        didSet {
+            if sidebarIsVisible != oldValue {
+                NSNotificationCenter.defaultCenter().postNotificationName(sidebarIsVisible ? SidebarDidBecomeVisibleNotificationName : SidebarDidBecomeInvisibleNotificationName, object: sidebar)
+            }
+        }
+    }
     func msr_sidebar(sidebar: MSRSidebar, didShowAtPercentage percentage: CGFloat) {
         sidebar.backgroundView!.msr_shadowOpacity = percentage > 0 ? 1 : 0
+        sidebarIsVisible = percentage > 0
     }
     func currentUserPropertyDidChange(notification: NSNotification) {
         let key = notification.userInfo![KeyUserInfoKey] as! String

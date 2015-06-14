@@ -77,7 +77,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func login() {
-        scrollView.msr_resignFirstResponderOfAllSubviews()
+        scrollView.endEditing(true)
         loginButton.hidden = true
         loginButtonLabel.hidden = true
         loginActivityIndicatorView.startAnimating()
@@ -148,7 +148,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func didTouchBlankArea() {
-        view.msr_resignFirstResponderOfAllSubviews()
+        view.endEditing(true)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
