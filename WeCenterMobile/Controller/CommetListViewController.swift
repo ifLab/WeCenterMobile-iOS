@@ -106,7 +106,7 @@ class CommentListViewController: UITableViewController, UITextFieldDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let comment = comments[indexPath.row]
         var cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! CommentCell
-        cell.update(comment: comment, updateImage: true)
+        cell.update(comment: comment)
         cell.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
         cell.commentButton.addTarget(self, action: "didPressCommentButton:", forControlEvents: .TouchUpInside)
         return cell

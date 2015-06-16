@@ -9,17 +9,15 @@
 import MJRefresh
 import UIKit
 
-@objc protocol FeaturedObjectCellProtocol {
+@objc protocol FeaturedObjectCell: class {
     optional var questionUserButton: UIButton! { get }
     optional var questionButton: UIButton! { get }
     optional var answerUserButton: UIButton? { get }
     optional var answerButton: UIButton? { get }
     optional var articleButton: UIButton! { get }
     optional var articleUserButton: UIButton! { get }
-    func update(#object: FeaturedObject, updateImage: Bool)
+    func update(#object: FeaturedObject)
 }
-
-typealias FeaturedObjectCell = protocol<FeaturedObjectCellProtocol, TableViewCellProtocol>
 
 extension FeaturedArticleCell: FeaturedObjectCell {}
 extension FeaturedQuestionAnswerCell: FeaturedObjectCell {}
@@ -31,7 +29,7 @@ class FeaturedObjectListViewController: UITableViewController {
     var objects: [FeaturedObject] = []
     var shouldReloadAfterLoadingMore = true
     let count = 10
-    let objectTypes = [FeaturedQuestionAnswer.self, FeaturedQuestionAnswer.self, FeaturedArticle.self]
+    let objectTypes: [FeaturedObject.Type] = [FeaturedQuestionAnswer.self, FeaturedQuestionAnswer.self, FeaturedArticle.self]
     let identifiers = ["FeaturedQuestionAnswerCellA", "FeaturedQuestionAnswerCellB", "FeaturedArticleCell"]
     let nibNames = ["FeaturedQuestionAnswerCellA", "FeaturedQuestionAnswerCellB", "FeaturedArticleCell"]
     init(type: FeaturedObjectListType) {
@@ -69,22 +67,22 @@ class FeaturedObjectListViewController: UITableViewController {
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let object = objects[indexPath.row]
-        var index = objectTypes.indexOfObject(object.classForCoder)
-        if index >= objectTypes.count {
+        if var index = find(map(objectTypes) { object.classForCoder === $0 }, true) {
+            if let o = object as? FeaturedQuestionAnswer {
+                index += o.answers.count == 0 ? 1 : 0
+            }
+            let cell = tableView.dequeueReusableCellWithIdentifier(identifiers[index], forIndexPath: indexPath) as! FeaturedObjectCell
+            cell.answerButton??.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
+            cell.answerUserButton??.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
+            cell.articleButton?.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
+            cell.articleUserButton?.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
+            cell.questionButton?.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
+            cell.questionUserButton?.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
+            cell.update(object: object)
+            return cell as! UITableViewCell
+        } else {
             return UITableViewCell() // Needs specification
         }
-        if let o = object as? FeaturedQuestionAnswer {
-            index += o.answers.count == 0 ? 1 : 0
-        }
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifiers[index], forIndexPath: indexPath) as! FeaturedObjectCell
-        cell.answerButton??.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
-        cell.answerUserButton??.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
-        cell.articleButton?.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
-        cell.articleUserButton?.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
-        cell.questionButton?.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
-        cell.questionUserButton?.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
-        cell.update(object: object, updateImage: true)
-        return cell as! UITableViewCell
     }
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false

@@ -39,11 +39,9 @@ class ArticlePublishmentActionCell: UITableViewCell {
         typeLabel.textColor = theme.subtitleTextColor
     }
     
-    func update(#action: Action, updateImage: Bool) {
+    func update(#action: Action) {
         let action = action as! ArticlePublishmentAction
-        if updateImage {
-            userAvatarView.wc_updateWithUser(action.user)
-        }
+        userAvatarView.wc_updateWithUser(action.user)
         userNameLabel.text = action.user?.name ?? "匿名用户"
         articleTitleLabel.text = action.article!.title
         userButton.msr_userInfo = action.user

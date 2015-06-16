@@ -64,7 +64,7 @@ class UserListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! UserCell
         cell.userButtonA.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
         cell.userButtonB.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
-        cell.update(user: users[indexPath.row], updateImage: true)
+        cell.update(user: users[indexPath.row])
         return cell
     }
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {

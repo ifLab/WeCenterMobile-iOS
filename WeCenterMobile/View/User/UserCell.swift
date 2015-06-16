@@ -28,10 +28,8 @@ class UserCell: UITableViewCell {
         userButtonB.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
     }
 
-    func update(#user: User, updateImage: Bool) {
-        if updateImage {
-            userAvatarView.wc_updateWithUser(user)
-        }
+    func update(#user: User) {
+        userAvatarView.wc_updateWithUser(user)
         userNameLabel.text = user.name
         /// @TODO: [Bug][Back-End] \n!!!
         userSignatureLabel.text = user.signature?.stringByTrimmingCharactersInSet(NSCharacterSet.newlineCharacterSet())

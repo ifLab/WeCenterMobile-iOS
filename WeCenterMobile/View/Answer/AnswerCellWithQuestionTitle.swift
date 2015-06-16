@@ -50,11 +50,9 @@ class AnswerCellWithQuestionTitle: UITableViewCell {
         questionTitleLabel.textColor = theme.titleTextColor
     }
     
-    func update(#answer: Answer, updateImage: Bool) {
+    func update(#answer: Answer) {
         questionTitleLabel.text = answer.question!.title
-        if updateImage {
-            answerUserAvatarView.wc_updateWithUser(answer.user)
-        }
+        answerUserAvatarView.wc_updateWithUser(answer.user)
         let theme = SettingsManager.defaultManager.currentTheme
         let text = NSMutableAttributedString(string: answer.user?.name ?? "匿名用户", attributes: [
             NSFontAttributeName: UIFont.systemFontOfSize(14),

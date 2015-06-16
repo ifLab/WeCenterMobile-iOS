@@ -65,7 +65,7 @@ class AnswerListViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! AnswerCellWithQuestionTitle
-        cell.update(answer: answers[indexPath.row], updateImage: true)
+        cell.update(answer: answers[indexPath.row])
         cell.questionButton.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
         cell.answerButton.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
         cell.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)

@@ -48,7 +48,7 @@ class ArticleCell: UITableViewCell {
         articleBodyLabel.textColor = theme.subtitleTextColor
     }
     
-    func update(#article: Article, updateImage: Bool) {
+    func update(#article: Article) {
         articleTitleLabel.text = article.title
         articleBodyLabel.text = article.body?.wc_plainString ?? ""
         userNameLabel.text = article.user?.name ?? "匿名用户"
@@ -57,9 +57,7 @@ class ArticleCell: UITableViewCell {
         } else {
             dateLabel.text = ""
         }
-        if updateImage {
-            userAvatarView.wc_updateWithUser(article.user)
-        }
+        userAvatarView.wc_updateWithUser(article.user)
         userButton.msr_userInfo = article.user
         articleButton.msr_userInfo = article
         setNeedsLayout()

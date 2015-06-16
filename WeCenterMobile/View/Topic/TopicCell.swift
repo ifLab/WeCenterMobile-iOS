@@ -28,10 +28,8 @@ class TopicCell: UITableViewCell {
         topicButtonB.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
     }
     
-    func update(#topic: Topic, updateImage: Bool) {
-        if updateImage {
-            topicImageView.wc_updateWithTopic(topic)
-        }
+    func update(#topic: Topic) {
+        topicImageView.wc_updateWithTopic(topic)
         topicTitleLabel.text = topic.title
         /// @TODO: [Bug][Back-End] \n!!!
         topicDescriptionLabel.text = topic.introduction?.stringByTrimmingCharactersInSet(NSCharacterSet.newlineCharacterSet())

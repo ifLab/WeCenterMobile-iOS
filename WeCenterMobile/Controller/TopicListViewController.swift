@@ -67,7 +67,7 @@ class TopicListViewController: UITableViewController {
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! TopicCell
-        cell.update(topic: topics[indexPath.row], updateImage: true)
+        cell.update(topic: topics[indexPath.row])
         cell.topicButtonA.addTarget(self, action: "didPressTopicButton:", forControlEvents: .TouchUpInside)
         cell.topicButtonB.addTarget(self, action: "didPressTopicButton:", forControlEvents: .TouchUpInside)
         return cell

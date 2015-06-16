@@ -84,7 +84,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     lazy var userView: SidebarUserView = {
         [weak self] in
         let v = NSBundle.mainBundle().loadNibNamed("SidebarUserView", owner: nil, options: nil).first as! SidebarUserView
-        v.update(user: User.currentUser, updateImage: true)
+        v.update(user: User.currentUser)
         return v
     }()
     lazy var cells: [SidebarCategoryCell] = {
@@ -201,7 +201,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func currentUserPropertyDidChange(notification: NSNotification) {
         let key = notification.userInfo![KeyUserInfoKey] as! String
         if key == "avatarData" || key == "name" || key == "signature" {
-            userView.update(user: User.currentUser, updateImage: key == "avatarData")
+            userView.update(user: User.currentUser)
         }
     }
     func currentThemeDidChange() {

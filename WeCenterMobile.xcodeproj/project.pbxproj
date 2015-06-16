@@ -259,7 +259,6 @@
 		9531D7A11AF3E8E400E6549D /* WeChatShareItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9531D7871AF3E8E400E6549D /* WeChatShareItem.swift */; };
 		95331E261B039FE100DFBB5F /* UIScrollView+MSRTouchCancelling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95331E251B039FE100DFBB5F /* UIScrollView+MSRTouchCancelling.swift */; };
 		95331E291B03C5C900DFBB5F /* MSRValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95331E281B03C5C900DFBB5F /* MSRValue.swift */; };
-		95331E2B1B03D45C00DFBB5F /* NSObject+MSRClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95331E2A1B03D45C00DFBB5F /* NSObject+MSRClass.swift */; };
 		95387BFF1ABEA456004DF8EB /* String+MSREncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95387BFE1ABEA456004DF8EB /* String+MSREncryption.swift */; };
 		954A76A91AFC399D002A72A9 /* DataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A76A81AFC399D002A72A9 /* DataObject.swift */; };
 		954A76AB1AFD0323002A72A9 /* PublishmentViewControllerB.xib in Resources */ = {isa = PBXBuildFile; fileRef = 954A76AA1AFD0323002A72A9 /* PublishmentViewControllerB.xib */; };
@@ -355,6 +354,15 @@
 		95DFA7061B1224BC00DF1C0E /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95DFA7041B1224BC00DF1C0E /* LoginViewController.xib */; };
 		95E5355A1A49DCFD00D7B76B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535591A49DCFD00D7B76B /* HomeViewController.swift */; };
 		95EBCF3D1B2BF0810088FC2C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBCF3C1B2BF0810088FC2C /* SearchViewController.swift */; };
+		95EBCF411B2DB2770088FC2C /* UserSearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBCF401B2DB2770088FC2C /* UserSearchResultCell.swift */; };
+		95EBCF431B2DB2A20088FC2C /* TopicSearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBCF421B2DB2A20088FC2C /* TopicSearchResultCell.swift */; };
+		95EBCF451B2DB33E0088FC2C /* QuestionSearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBCF441B2DB33E0088FC2C /* QuestionSearchResultCell.swift */; };
+		95EBCF471B2DB34F0088FC2C /* ArticleSearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBCF461B2DB34F0088FC2C /* ArticleSearchResultCell.swift */; };
+		95EBCF491B2DB40D0088FC2C /* ArticleSearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95EBCF481B2DB40D0088FC2C /* ArticleSearchResultCell.xib */; };
+		95EBCF4B1B2DB41F0088FC2C /* QuestionSearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95EBCF4A1B2DB41F0088FC2C /* QuestionSearchResultCell.xib */; };
+		95EBCF4D1B2DB42E0088FC2C /* TopicSearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95EBCF4C1B2DB42E0088FC2C /* TopicSearchResultCell.xib */; };
+		95EBCF4F1B2DB4430088FC2C /* UserSearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95EBCF4E1B2DB4430088FC2C /* UserSearchResultCell.xib */; };
+		95EBCF511B2EA0FB0088FC2C /* DataObject+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBCF501B2EA0FB0088FC2C /* DataObject+Search.swift */; };
 		95ED5EF11B084D0500CDB225 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5EDF1B084D0500CDB225 /* AFHTTPRequestOperation.m */; };
 		95ED5EF21B084D0500CDB225 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5EE11B084D0500CDB225 /* AFHTTPRequestOperationManager.m */; };
 		95ED5EF31B084D0500CDB225 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5EE31B084D0500CDB225 /* AFHTTPSessionManager.m */; };
@@ -844,7 +852,6 @@
 		9531D7871AF3E8E400E6549D /* WeChatShareItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatShareItem.swift; sourceTree = "<group>"; };
 		95331E251B039FE100DFBB5F /* UIScrollView+MSRTouchCancelling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+MSRTouchCancelling.swift"; sourceTree = "<group>"; };
 		95331E281B03C5C900DFBB5F /* MSRValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRValue.swift; sourceTree = "<group>"; };
-		95331E2A1B03D45C00DFBB5F /* NSObject+MSRClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+MSRClass.swift"; sourceTree = "<group>"; };
 		95387BFE1ABEA456004DF8EB /* String+MSREncryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MSREncryption.swift"; sourceTree = "<group>"; };
 		954A76A81AFC399D002A72A9 /* DataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataObject.swift; sourceTree = "<group>"; };
 		954A76AA1AFD0323002A72A9 /* PublishmentViewControllerB.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishmentViewControllerB.xib; sourceTree = "<group>"; };
@@ -983,6 +990,15 @@
 		95DFA7041B1224BC00DF1C0E /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		95E535591A49DCFD00D7B76B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HomeViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		95EBCF3C1B2BF0810088FC2C /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		95EBCF401B2DB2770088FC2C /* UserSearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchResultCell.swift; sourceTree = "<group>"; };
+		95EBCF421B2DB2A20088FC2C /* TopicSearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicSearchResultCell.swift; sourceTree = "<group>"; };
+		95EBCF441B2DB33E0088FC2C /* QuestionSearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionSearchResultCell.swift; sourceTree = "<group>"; };
+		95EBCF461B2DB34F0088FC2C /* ArticleSearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleSearchResultCell.swift; sourceTree = "<group>"; };
+		95EBCF481B2DB40D0088FC2C /* ArticleSearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleSearchResultCell.xib; sourceTree = "<group>"; };
+		95EBCF4A1B2DB41F0088FC2C /* QuestionSearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionSearchResultCell.xib; sourceTree = "<group>"; };
+		95EBCF4C1B2DB42E0088FC2C /* TopicSearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicSearchResultCell.xib; sourceTree = "<group>"; };
+		95EBCF4E1B2DB4430088FC2C /* UserSearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSearchResultCell.xib; sourceTree = "<group>"; };
+		95EBCF501B2EA0FB0088FC2C /* DataObject+Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataObject+Search.swift"; sourceTree = "<group>"; };
 		95ED5EDE1B084D0500CDB225 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		95ED5EDF1B084D0500CDB225 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		95ED5EE01B084D0500CDB225 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -1166,6 +1182,7 @@
 				9531D6E51AF3E4AC00E6549D /* Home */,
 				9531D7631AF3E85900E6549D /* Others */,
 				9531D6F71AF3E4AC00E6549D /* Question */,
+				95EBCF3F1B2DB24F0088FC2C /* Search */,
 				9531D7041AF3E4AC00E6549D /* Sidebar */,
 				9531D7091AF3E4AC00E6549D /* Topic */,
 				9531D70E1AF3E4AC00E6549D /* User */,
@@ -1805,6 +1822,7 @@
 				9531D7731AF3E8E400E6549D /* ArticlePublishmentAction.swift */,
 				955E2A051AF75C2100A04791 /* Comment.swift */,
 				954A76A81AFC399D002A72A9 /* DataObject.swift */,
+				95EBCF501B2EA0FB0088FC2C /* DataObject+Search.swift */,
 				9531D7741AF3E8E400E6549D /* FeaturedArticle.swift */,
 				9531D7751AF3E8E400E6549D /* FeaturedObject.swift */,
 				9531D7761AF3E8E400E6549D /* FeaturedQuestionAnswer.swift */,
@@ -2047,7 +2065,6 @@
 				95331E281B03C5C900DFBB5F /* MSRValue.swift */,
 				95C2E9F41AB0516800F2A326 /* MSRWeak.swift */,
 				95C2E9F51AB0516800F2A326 /* NSManagedObjectContext+MSROperations.swift */,
-				95331E2A1B03D45C00DFBB5F /* NSObject+MSRClass.swift */,
 				95DC57181AF8AAFA0075C3CB /* NSObject+MSRClone.swift */,
 				95DC571A1AF8AD4D0075C3CB /* NSObject+MSRUserInfo.swift */,
 				95C2E9F61AB0516800F2A326 /* Numeric+MSRInitializer.swift */,
@@ -2118,6 +2135,21 @@
 				95C2E9FE1AB0516800F2A326 /* MSRSegmentWrapper.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		95EBCF3F1B2DB24F0088FC2C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				95EBCF461B2DB34F0088FC2C /* ArticleSearchResultCell.swift */,
+				95EBCF481B2DB40D0088FC2C /* ArticleSearchResultCell.xib */,
+				95EBCF441B2DB33E0088FC2C /* QuestionSearchResultCell.swift */,
+				95EBCF4A1B2DB41F0088FC2C /* QuestionSearchResultCell.xib */,
+				95EBCF421B2DB2A20088FC2C /* TopicSearchResultCell.swift */,
+				95EBCF4C1B2DB42E0088FC2C /* TopicSearchResultCell.xib */,
+				95EBCF401B2DB2770088FC2C /* UserSearchResultCell.swift */,
+				95EBCF4E1B2DB4430088FC2C /* UserSearchResultCell.xib */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		95ED5EDD1B084D0500CDB225 /* AFNetworking */ = {
@@ -2352,6 +2384,7 @@
 				95ED5F341B084D5100CDB225 /* UzysAssetsPickerController.xib in Resources */,
 				9531D7501AF3E4AC00E6549D /* TopicCell.xib in Resources */,
 				95B6E6B91A232E2400F31BE3 /* LaunchScreen.xib in Resources */,
+				95EBCF4D1B2DB42E0088FC2C /* TopicSearchResultCell.xib in Resources */,
 				95DB722E1AF5490A0072C77E /* ArticleFooterView.xib in Resources */,
 				9531D7561AF3E4AC00E6549D /* UserCell.xib in Resources */,
 				9531D7211AF3E4AC00E6549D /* AnswerCellWithQuestionTitle.xib in Resources */,
@@ -2362,6 +2395,7 @@
 				951D2F821AB7F85500DCB678 /* MJRefresh.bundle in Resources */,
 				951D1E741ACD1E4E0072D555 /* default.css in Resources */,
 				9531D7581AF3E4AC00E6549D /* UserFooterCell.xib in Resources */,
+				95EBCF4F1B2DB4430088FC2C /* UserSearchResultCell.xib in Resources */,
 				951D2F8F1AB7F8C000DCB678 /* Images.xcassets in Resources */,
 				9531D72E1AF3E4AC00E6549D /* FeaturedQuestionAnswerCellB.xib in Resources */,
 				95ED5F1C1B084D3900CDB225 /* SVProgressHUD.bundle in Resources */,
@@ -2374,6 +2408,7 @@
 				9531D7681AF3E85900E6549D /* ImageUploadingProgressBar.xib in Resources */,
 				9531D7331AF3E4AC00E6549D /* AnswerAgreementActionCell.xib in Resources */,
 				9531D7441AF3E4AC00E6549D /* QuestionHeaderCell.xib in Resources */,
+				95EBCF4B1B2DB41F0088FC2C /* QuestionSearchResultCell.xib in Resources */,
 				9568F3A21AEC74AB00B201A8 /* UserEditViewController.xib in Resources */,
 				9515766E1B1B4A5300E5BE8E /* SettingsViewController.storyboard in Resources */,
 				950FE1261A1DA2A400167D09 /* User.strings in Resources */,
@@ -2384,6 +2419,7 @@
 				9531D7401AF3E4AC00E6549D /* QuestionBodyCell.xib in Resources */,
 				95DFA7061B1224BC00DF1C0E /* LoginViewController.xib in Resources */,
 				9531D7291AF3E4AC00E6549D /* FeaturedArticleCell.xib in Resources */,
+				95EBCF491B2DB40D0088FC2C /* ArticleSearchResultCell.xib in Resources */,
 				9531D7271AF3E4AC00E6549D /* CommentCell.xib in Resources */,
 				9531D75A1AF3E4AC00E6549D /* UserHeaderView.xib in Resources */,
 				95ED5F321B084D5100CDB225 /* UzysAssetPickerController.bundle in Resources */,
@@ -2483,6 +2519,7 @@
 				95C2EA421AB0516800F2A326 /* UIImage+MSRShape.swift in Sources */,
 				951D1EA81ACD1E4E0072D555 /* NSCoder+DTCompatibility.m in Sources */,
 				951D1EAE1ACD1E4E0072D555 /* NSString+HTML.m in Sources */,
+				95EBCF431B2DB2A20088FC2C /* TopicSearchResultCell.swift in Sources */,
 				9531D7971AF3E8E400E6549D /* Topic.swift in Sources */,
 				9531D6A21AF0A27100E6549D /* AnswerListViewController.swift in Sources */,
 				9531D79B1AF3E8E400E6549D /* String+PlainString.swift in Sources */,
@@ -2543,6 +2580,7 @@
 				95D153A71AF4CEF800C1617D /* ArticleHeaderView.swift in Sources */,
 				95ED5F381B084D5100CDB225 /* UzysWrapperPickerController.m in Sources */,
 				95A3AAFB1B047F3F00ADF705 /* GBDeviceInfo_Common.m in Sources */,
+				95EBCF451B2DB33E0088FC2C /* QuestionSearchResultCell.swift in Sources */,
 				951D1F5F1ACD1E750072D555 /* DTExtendedFileAttributes.m in Sources */,
 				9531D79E1AF3E8E400E6549D /* SinaWeiboShareItem.swift in Sources */,
 				95ED5F1B1B084D3900CDB225 /* SVIndefiniteAnimatedView.m in Sources */,
@@ -2560,6 +2598,7 @@
 				951D1F6A1ACD1E750072D555 /* NSString+DTUTI.m in Sources */,
 				958FF4D71AC270820073022F /* String+MSROperations.swift in Sources */,
 				95ED5EF21B084D0500CDB225 /* AFHTTPRequestOperationManager.m in Sources */,
+				95EBCF411B2DB2770088FC2C /* UserSearchResultCell.swift in Sources */,
 				9531D7571AF3E4AC00E6549D /* UserFooterCell.swift in Sources */,
 				95331E261B039FE100DFBB5F /* UIScrollView+MSRTouchCancelling.swift in Sources */,
 				951D1F901ACD1E750072D555 /* NSMutableArray+DTMoving.m in Sources */,
@@ -2595,7 +2634,6 @@
 				95ED5F1D1B084D3900CDB225 /* SVProgressHUD.m in Sources */,
 				951DA7551AEAACD300F0E3A7 /* UIImage+MSRGetter.swift in Sources */,
 				95ED5F401B084F7500CDB225 /* RMActionController.m in Sources */,
-				95331E2B1B03D45C00DFBB5F /* NSObject+MSRClass.swift in Sources */,
 				951D1E8B1ACD1E4E0072D555 /* DTCSSStylesheet.m in Sources */,
 				951D1E8E1ACD1E4E0072D555 /* DTHorizontalRuleHTMLElement.m in Sources */,
 				9531D7361AF3E4AC00E6549D /* ArticlePublishmentActionCell.swift in Sources */,
@@ -2665,6 +2703,7 @@
 				9531D71A1AF3E4AC00E6549D /* AnswerAdditionCell.swift in Sources */,
 				9531D7381AF3E4AC00E6549D /* QuestionFocusingActionCell.swift in Sources */,
 				951D1F591ACD1E750072D555 /* DTASN1Serialization.m in Sources */,
+				95EBCF511B2EA0FB0088FC2C /* DataObject+Search.swift in Sources */,
 				951D1F711ACD1E750072D555 /* mztools.c in Sources */,
 				9588F5E91A1D9D1C001BC426 /* AppDelegate.swift in Sources */,
 				951D1F931ACD1E750072D555 /* NSString+DTURLEncoding.m in Sources */,
@@ -2721,6 +2760,7 @@
 				951D1EAF1ACD1E4E0072D555 /* NSString+Paragraphs.m in Sources */,
 				951D1E901ACD1E4E0072D555 /* DTHTMLElement.m in Sources */,
 				9531D7341AF3E4AC00E6549D /* ArticleAgreementActionCell.swift in Sources */,
+				95EBCF471B2DB34F0088FC2C /* ArticleSearchResultCell.swift in Sources */,
 				95ED5EF31B084D0500CDB225 /* AFHTTPSessionManager.m in Sources */,
 				951D1F881ACD1E750072D555 /* UIApplication+DTNetworkActivity.m in Sources */,
 				9531D79D1AF3E8E400E6549D /* SinaWeiboActivity.swift in Sources */,

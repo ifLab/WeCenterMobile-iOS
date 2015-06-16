@@ -65,7 +65,7 @@ class ArticleListViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! ArticleCell
-        cell.update(article: articles[indexPath.row], updateImage: true)
+        cell.update(article: articles[indexPath.row])
         cell.articleButton.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
         cell.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
         return cell

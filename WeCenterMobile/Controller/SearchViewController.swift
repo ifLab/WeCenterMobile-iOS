@@ -8,14 +8,27 @@
 
 import UIKit
 
+@objc protocol SearchResultCell: class {
+    optional var articleButton: UIButton! { get }
+    optional var questionButton: UIButton! { get }
+    optional var topicButton: UIButton! { get }
+    optional var userButton: UIButton! { get }
+    func update(#dataObject: DataObject)
+}
+
+extension ArticleSearchResultCell: SearchResultCell {}
+extension QuestionSearchResultCell: SearchResultCell {}
+extension TopicSearchResultCell: SearchResultCell {}
+extension UserSearchResultCell: SearchResultCell {}
+
 class SearchViewController: UITableViewController, UISearchBarDelegate {
     
-    let objectTypes = [Article.self, Question.self, Topic.self, User.self]
-    let nibNames = ["ArticleCell", "QuestionCell", "TopicCell", "UserCell"]
-    let identifiers = ["ArticleCell", "QuestionCell", "TopicCell", "UserCell"]
+    let objectTypes: [DataObject.Type] = [Article.self, Question.self, Topic.self, User.self]
+    let nibNames = ["ArticleSearchResultCell", "QuestionSearchResultCell", "TopicSearchResultCell", "UserSearchResultCell"]
+    let identifiers = ["ArticleSearchResultCell", "QuestionSearchResultCell", "TopicSearchResultCell", "UserSearchResultCell"]
     
-    var objects: [DataObject] = []
-    var keyword: String = ""
+    var objects = [DataObject]()
+    var keyword = ""
     var page = 1
     var shouldReloadAfterLoadingMore = true
     
@@ -64,38 +77,21 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let object = objects[indexPath.row]
-        let index = objectTypes.indexOfObject(object.classForCoder)
-        let identifier = identifiers[index]
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! UITableViewCell
-        let userButtonAction: Selector = "didPressUserButton:"
-        let topicButtonAction: Selector = "didPressTopicButton:"
-        let articleButtonAction: Selector = "didPressArticleButton:"
-        let questionButtonAction: Selector = "didPressQuestionButton:"
-        switch cell {
-        case let cell as ArticleCell:
-            cell.update(article: object as! Article, updateImage: true)
-            cell.userButton.addTarget(self, action: userButtonAction, forControlEvents: .TouchUpInside)
-            cell.articleButton.addTarget(self, action: articleButtonAction, forControlEvents: .TouchUpInside)
-            break
-        case let cell as QuestionCell:
-            cell.update(question: object as! Question, updateImage: true)
-            cell.userButton.addTarget(self, action: userButtonAction, forControlEvents: .TouchUpInside)
-            cell.questionButton.addTarget(self, action: questionButtonAction, forControlEvents: .TouchUpInside)
-            break
-        case let cell as TopicCell:
-            cell.update(topic: object as! Topic, updateImage: true)
-            cell.topicButtonA.addTarget(self, action: topicButtonAction, forControlEvents: .TouchUpInside)
-            cell.topicButtonB.addTarget(self, action: topicButtonAction, forControlEvents: .TouchUpInside)
-            break
-        case let cell as UserCell:
-            cell.update(user: object as! User, updateImage: true)
-            cell.userButtonA.addTarget(self, action: userButtonAction, forControlEvents: .TouchUpInside)
-            cell.userButtonB.addTarget(self, action: userButtonAction, forControlEvents: .TouchUpInside)
-            break
-        default:
-            break
+        if let index = find(map(objectTypes) { object.classForCoder === $0 }, true) {
+            let cell = tableView.dequeueReusableCellWithIdentifier(identifiers[index], forIndexPath: indexPath) as! SearchResultCell
+            cell.update(dataObject: object)
+            cell.articleButton?.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
+            cell.questionButton?.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
+            cell.topicButton?.addTarget(self, action: "didPressTopicButton:", forControlEvents: .TouchUpInside)
+            cell.userButton?.addTarget(self, action: "didPressUserButtton:", forControlEvents: .TouchUpInside)
+            return cell as! UITableViewCell
+        } else {
+            return UITableViewCell() // Needs specification
         }
-        return cell
+    }
+    
+    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {

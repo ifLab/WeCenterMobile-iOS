@@ -9,25 +9,20 @@
 import MJRefresh
 import UIKit
 
-@objc protocol ActionCellProtocol {
+@objc protocol ActionCell: class {
     optional var userButton: UIButton! { get }
     optional var questionButton: UIButton! { get }
     optional var answerButton: UIButton! { get }
     optional var articleButton: UIButton! { get }
-    func update(#action: Action, updateImage: Bool)
+    func update(#action: Action)
 }
 
-@objc protocol TableViewCellProtocol {}
-extension UITableViewCell: TableViewCellProtocol {}
-
-typealias ActionCell = protocol<ActionCellProtocol, TableViewCellProtocol>
-
-extension AnswerActionCell: ActionCellProtocol {}
-extension QuestionPublishmentActionCell: ActionCellProtocol {}
-extension QuestionFocusingActionCell: ActionCellProtocol {}
-extension AnswerAgreementActionCell: ActionCellProtocol {}
-extension ArticlePublishmentActionCell: ActionCellProtocol {}
-extension ArticleAgreementActionCell: ActionCellProtocol {}
+extension AnswerActionCell: ActionCell {}
+extension QuestionPublishmentActionCell: ActionCell {}
+extension QuestionFocusingActionCell: ActionCell {}
+extension AnswerAgreementActionCell: ActionCell {}
+extension ArticlePublishmentActionCell: ActionCell {}
+extension ArticleAgreementActionCell: ActionCell {}
 
 class HomeViewController: UITableViewController {
     
@@ -38,7 +33,7 @@ class HomeViewController: UITableViewController {
     let user: User
     var actions = [Action]()
     
-    let actionTypes = [AnswerAction.self, QuestionPublishmentAction.self, QuestionFocusingAction.self, AnswerAgreementAction.self, ArticlePublishmentAction.self, ArticleAgreementAction.self]
+    let actionTypes: [Action.Type] = [AnswerAction.self, QuestionPublishmentAction.self, QuestionFocusingAction.self, AnswerAgreementAction.self, ArticlePublishmentAction.self, ArticleAgreementAction.self]
     let identifiers = ["AnswerActionCell", "QuestionPublishmentActionCell", "QuestionFocusingActionCell", "AnswerAgreementActionCell", "ArticlePublishmentActionCell", "ArticleAgreementActionCell"]
     let nibNames = ["AnswerActionCell", "QuestionPublishmentActionCell", "QuestionFocusingActionCell", "AnswerAgreementActionCell", "ArticlePublishmentActionCell", "ArticleAgreementActionCell"]
     
@@ -84,17 +79,18 @@ class HomeViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let action = actions[indexPath.row]
-        let index = actionTypes.indexOfObject(action.classForCoder)
-        if index >= identifiers.count {
+        if let index = find(map(actionTypes) { action.classForCoder === $0 }, true) {
+            let cell = tableView.dequeueReusableCellWithIdentifier(identifiers[index], forIndexPath: indexPath) as! ActionCell
+            cell.update(action: action)
+            cell.userButton?.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
+            cell.questionButton?.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
+            cell.answerButton?.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
+            cell.articleButton?.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
+            return cell as! UITableViewCell
+        } else {
             return UITableViewCell() // Needs specification
         }
-        var cell = tableView.dequeueReusableCellWithIdentifier(identifiers[index], forIndexPath: indexPath) as! ActionCell
-        cell.update(action: action, updateImage: true)
-        cell.userButton?.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
-        cell.questionButton?.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
-        cell.answerButton?.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
-        cell.articleButton?.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
-        return cell as! UITableViewCell
+        
     }
     
     func showSidebar() {

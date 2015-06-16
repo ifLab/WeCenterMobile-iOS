@@ -57,14 +57,12 @@ class FeaturedQuestionAnswerCell: UITableViewCell {
         answerBodyLabel?.textColor = theme.subtitleTextColor
     }
     
-    func update(#object: FeaturedObject, updateImage: Bool) {
+    func update(#object: FeaturedObject) {
         let object = object as! FeaturedQuestionAnswer
         let question = object.question!
         let answer = object.answers.first
-        if updateImage {
-            questionUserAvatarView.wc_updateWithUser(question.user)
-            answerUserAvatarView?.wc_updateWithUser(answer?.user)
-        }
+        questionUserAvatarView.wc_updateWithUser(question.user)
+        answerUserAvatarView?.wc_updateWithUser(answer?.user)
         questionUserNameLabel.text = question.user?.name
         questionTitleLabel.text = question.title
         answerUserNameLabel?.text = answer?.user?.name ?? "匿名用户"

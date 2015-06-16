@@ -35,11 +35,9 @@ class CommentCell: UITableViewCell {
         userNameLabel.textColor = theme.titleTextColor
     }
     
-    func update(#comment: Comment, updateImage: Bool) {
+    func update(#comment: Comment) {
         msr_userInfo = comment
-        if updateImage {
-            userAvatarView.wc_updateWithUser(comment.user)
-        }
+        userAvatarView.wc_updateWithUser(comment.user)
         userNameLabel.text = comment.user?.name
         var attributedString = NSMutableAttributedString()
         let theme = SettingsManager.defaultManager.currentTheme

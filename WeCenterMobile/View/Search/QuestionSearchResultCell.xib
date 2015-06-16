@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="oC0-9p-hL1" customClass="QuestionSearchResultCell" customModule="WeCenterMobile" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oC0-9p-hL1" id="6Sq-gQ-ZoK">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ti8-bT-hDv">
+                        <rect key="frame" x="8" y="8" width="304" height="59"/>
+                        <subviews>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="问题" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9i-Bm-3wP">
+                                <rect key="frame" x="0.0" y="21" width="50" height="17"/>
+                                <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="SFK-YC-9XO"/>
+                                    <constraint firstAttribute="height" constant="17" id="SSL-RX-hwY"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="YZp-dJ-pnC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里是问题标题，可能会很长，但最多显示两行。" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKE-Kv-A54">
+                                <rect key="frame" x="60" y="12" width="234" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x0P-4S-oZu">
+                                <rect key="frame" x="0.0" y="0.0" width="304" height="59"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="x0P-4S-oZu" firstAttribute="top" secondItem="ti8-bT-hDv" secondAttribute="top" id="0A9-sz-1nO"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fKE-Kv-A54" secondAttribute="bottom" constant="10" id="6kq-bH-UHo"/>
+                            <constraint firstAttribute="centerY" secondItem="Y9i-Bm-3wP" secondAttribute="centerY" id="7Kf-5p-69a"/>
+                            <constraint firstAttribute="centerY" secondItem="fKE-Kv-A54" secondAttribute="centerY" id="9zS-eK-t8r"/>
+                            <constraint firstAttribute="trailing" secondItem="x0P-4S-oZu" secondAttribute="trailing" id="AFA-fE-IHX"/>
+                            <constraint firstAttribute="bottom" secondItem="x0P-4S-oZu" secondAttribute="bottom" id="F4c-1I-6Zf"/>
+                            <constraint firstItem="x0P-4S-oZu" firstAttribute="leading" secondItem="ti8-bT-hDv" secondAttribute="leading" id="Fnc-iK-qMx"/>
+                            <constraint firstAttribute="trailing" secondItem="fKE-Kv-A54" secondAttribute="trailing" constant="10" id="FtN-qo-Agr"/>
+                            <constraint firstItem="fKE-Kv-A54" firstAttribute="leading" secondItem="Y9i-Bm-3wP" secondAttribute="trailing" constant="10" id="PfA-fX-Qel"/>
+                            <constraint firstItem="Y9i-Bm-3wP" firstAttribute="leading" secondItem="ti8-bT-hDv" secondAttribute="leading" id="x0X-yz-REz"/>
+                            <constraint firstItem="fKE-Kv-A54" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ti8-bT-hDv" secondAttribute="top" constant="10" id="xNi-ui-CYD"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="msr_borderWidth">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ti8-bT-hDv" firstAttribute="top" secondItem="6Sq-gQ-ZoK" secondAttribute="top" constant="8" id="fze-9q-WqE"/>
+                    <constraint firstItem="ti8-bT-hDv" firstAttribute="leading" secondItem="6Sq-gQ-ZoK" secondAttribute="leading" constant="8" id="g2A-w1-eO1"/>
+                    <constraint firstAttribute="trailing" secondItem="ti8-bT-hDv" secondAttribute="trailing" constant="8" id="gzb-60-vFY"/>
+                    <constraint firstAttribute="bottom" secondItem="ti8-bT-hDv" secondAttribute="bottom" id="kl3-oE-rUr"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="badgeLabel" destination="Y9i-Bm-3wP" id="UyJ-Wx-PPG"/>
+                <outlet property="containerView" destination="ti8-bT-hDv" id="ofD-Ca-cdc"/>
+                <outlet property="questionButton" destination="x0P-4S-oZu" id="ftv-Pe-wZR"/>
+                <outlet property="questionTitleLabel" destination="fKE-Kv-A54" id="J9W-v6-qfX"/>
+            </connections>
+            <point key="canvasLocation" x="685" y="416"/>
+        </tableViewCell>
+    </objects>
+</document>
