@@ -66,19 +66,6 @@ module SVProgressHUD {
     use UIKit
 }
 
-module UzysAssetsPickerController {
-    header "UzysAssetsPickerController/UzysAssetsPickerController/Library/UIImage+UzysExtension.h"
-    header "UzysAssetsPickerController/UzysAssetsPickerController/Library/UzysAppearanceConfig.h"
-    header "UzysAssetsPickerController/UzysAssetsPickerController/Library/UzysAssetsPickerController_Configuration.h"
-    header "UzysAssetsPickerController/UzysAssetsPickerController/Library/UzysAssetsPickerController.h"
-    header "UzysAssetsPickerController/UzysAssetsPickerController/Library/UzysAssetsViewCell.h"
-    header "UzysAssetsPickerController/UzysAssetsPickerController/Library/UzysGroupPickerView.h"
-    header "UzysAssetsPickerController/UzysAssetsPickerController/Library/UzysGroupViewCell.h"
-    header "UzysAssetsPickerController/UzysAssetsPickerController/Library/UzysWrapperPickerController.h"
-    requires objc, objc_arc
-    use UIKit
-}
-
 module ZFTokenField {
     umbrella header "ZFTokenField/Classes/ZFTokenField.h"
     requires objc, objc_arc

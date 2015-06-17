@@ -11,7 +11,7 @@ import MJRefresh
 import SVProgressHUD
 import UIKit
 
-class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, QuestionBodyCellLinkButtonDelegate {
+class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, QuestionBodyCellLinkButtonDelegate, PublishmentViewControllerDelegate {
     
     var question: Question {
         didSet {
@@ -223,9 +223,14 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         let answer = Answer.temporaryObject()
         answer.question = Question.temporaryObject()
         answer.question!.id = question.id
+        apc.delegate = self
         apc.dataObject = answer
         apc.headerLabel.text = "发布回答"
         showDetailViewController(apc, sender: self)
+    }
+    
+    func publishmentViewControllerDidSuccessfullyPublishDataObject(publishmentViewController: PublishmentViewController) {
+        tableView.header.beginRefreshing()
     }
     
     func toggleFocus() {

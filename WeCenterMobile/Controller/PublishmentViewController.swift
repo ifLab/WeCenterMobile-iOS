@@ -11,7 +11,6 @@ import AssetsLibrary
 import EAColourfulProgressView
 import SVProgressHUD
 import UIKit
-import UzysAssetsPickerController
 import ZFTokenField
 
 @objc protocol PublishmentViewControllerPresentable {
@@ -36,7 +35,11 @@ extension Answer: PublishmentViewControllerPresentable {
 }
 extension Article: PublishmentViewControllerPresentable {}
 
-class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTokenFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UzysAssetsPickerControllerDelegate {
+@objc protocol PublishmentViewControllerDelegate: class {
+    optional func publishmentViewControllerDidSuccessfullyPublishDataObject(publishmentViewController: PublishmentViewController)
+}
+
+class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTokenFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var publishButton: UIButton!
@@ -54,6 +57,8 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
     @IBOutlet weak var separator: UIView!
     
     typealias SelfType = PublishmentViewController
+    
+    var delegate: PublishmentViewControllerDelegate?
     
     var dataObject: PublishmentViewControllerPresentable! {
         didSet {
@@ -290,29 +295,19 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
         return true
     }
     
-    // MARK: - UzysAssetsPickerControllerDelegate
+    // MARK: - UIImagePickerControllerDelegate
     
-    func uzysAssetsPickerController(picker: UzysAssetsPickerController!, didFinishPickingAssets assets: [AnyObject]!) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         SVProgressHUD.showWithMaskType(.Gradient)
+        picker.dismissViewControllerAnimated(true, completion: nil)
         converting = true
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             [weak self] in
             if let self_ = self {
-                let rs = map(assets, { ($0 as! ALAsset).defaultRepresentation() })
-                var images = [UIImage]()
-                var uploadingProgress = [Int]()
-                var uploaded = [Bool]()
-                var attachIDs = [Int]()
-                for r in rs {
-                    let image = UIImage(
-                        CGImage: r.fullResolutionImage().takeUnretainedValue(),
-                        scale: CGFloat(r.scale()),
-                        orientation: UIImageOrientation(rawValue: r.orientation().rawValue)!)!
-                    images.append(image)
-                    uploadingProgress.append(0)
-                    uploaded.append(false)
-                    attachIDs.append(SelfType.notAnAttachID)
-                }
+                var images = [info[UIImagePickerControllerOriginalImage] as! UIImage]
+                var uploadingProgress = [0]
+                var uploaded = [false]
+                var attachIDs = [SelfType.notAnAttachID]
                 let jpegs = map(images) {
                     return UIImageJPEGRepresentation($0, 0.5)
                 }
@@ -380,23 +375,11 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
         }
     }
     
-    func uzysAssetsPickerControllerDidExceedMaximumNumberOfSelection(picker: UzysAssetsPickerController!) {
-        let ac = UIAlertController(title: "已达到上限", message: "您一次最多勾选\(picker.maximumNumberOfSelectionPhoto)张图片。", preferredStyle: .Alert)
-        ac.addAction(UIAlertAction(title: "好", style: .Default, handler: nil)) // Needs localization
-        picker.presentViewController(ac, animated: true, completion: nil)
-    }
-    
     func showPickerController() {
-        let c = UzysAppearanceConfig()
-        c.cameraImageName = "Camera-Line"
-        c.closeImageName = "X"
-        c.finishSelectionButtonColor = UIColor.msr_materialBlueGray()
-        UzysAssetsPickerController.setUpAppearanceConfig(c)
-        let pc = MediaPickerController()
-        pc.delegate = self
-        pc.maximumNumberOfSelectionPhoto = 5
-        pc.maximumNumberOfSelectionVideo = 0
-        presentViewController(pc, animated: true, completion: nil)
+        let ipc = UIImagePickerController()
+        ipc.delegate = self
+        ipc.sourceType = .PhotoLibrary
+        presentViewController(ipc, animated: true, completion: nil)
     }
     
     func removeDataAtIndex(index: Int) {
@@ -482,6 +465,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
                                         SVProgressHUD.showSuccessWithStatus("已发布", maskType: .Gradient)
                                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC / 2)), dispatch_get_main_queue()) {
                                             SVProgressHUD.dismiss()
+                                            self_.delegate?.publishmentViewControllerDidSuccessfullyPublishDataObject?(self_)
                                             self_.dismissViewControllerAnimated(true, completion: nil)
                                         }
                                     },

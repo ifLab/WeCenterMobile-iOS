@@ -24,7 +24,7 @@ extension AnswerAgreementActionCell: ActionCell {}
 extension ArticlePublishmentActionCell: ActionCell {}
 extension ArticleAgreementActionCell: ActionCell {}
 
-class HomeViewController: UITableViewController {
+class HomeViewController: UITableViewController, PublishmentViewControllerDelegate {
     
     let count = 20
     var page = 1
@@ -97,11 +97,16 @@ class HomeViewController: UITableViewController {
         appDelegate.mainViewController.sidebar.expand()
     }
     
+    func publishmentViewControllerDidSuccessfullyPublishDataObject(publishmentViewController: PublishmentViewController) {
+        tableView.header.beginRefreshing()
+    }
+    
     func didPressPublishButton() {
         let ac = UIAlertController(title: "发布什么？", message: "选择发布的内容种类。", preferredStyle: .ActionSheet)
         let presentPublishmentViewController: (String, PublishmentViewControllerPresentable) -> Void = {
             [weak self] title, object in
             let vc = NSBundle.mainBundle().loadNibNamed("PublishmentViewControllerA", owner: self, options: nil).first as! PublishmentViewController
+            vc.delegate = self
             vc.dataObject = object
             vc.headerLabel.text = title
             self?.presentViewController(vc, animated: true, completion: nil)
@@ -193,7 +198,9 @@ class HomeViewController: UITableViewController {
                 return
             })
     }
+    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return SettingsManager.defaultManager.currentTheme.statusBarStyle
     }
+    
 }

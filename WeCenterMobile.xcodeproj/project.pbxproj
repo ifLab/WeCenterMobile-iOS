@@ -300,7 +300,6 @@
 		959FCB621AEE4EB300299AA6 /* UIColor+MSRGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959FCB611AEE4EB300299AA6 /* UIColor+MSRGetter.swift */; };
 		95A3AAFB1B047F3F00ADF705 /* GBDeviceInfo_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A3AAF01B047F3E00ADF705 /* GBDeviceInfo_Common.m */; };
 		95A3AAFC1B047F3F00ADF705 /* GBDeviceInfo_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A3AAF21B047F3E00ADF705 /* GBDeviceInfo_iOS.m */; };
-		95B1D9DA1ABE0CF200BEC8BD /* MediaPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B1D9D91ABE0CF200BEC8BD /* MediaPickerController.swift */; };
 		95B6E6B91A232E2400F31BE3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9588F5F41A1D9D1C001BC426 /* LaunchScreen.xib */; };
 		95B9BDC31ABAA67900692889 /* PublishmentViewControllerA.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95B9BDC21ABAA67900692889 /* PublishmentViewControllerA.xib */; };
 		95B9BE681ABAEF1A00692889 /* ZFTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B9BE671ABAEF1A00692889 /* ZFTokenField.m */; };
@@ -383,15 +382,6 @@
 		95ED5F1B1B084D3900CDB225 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5F161B084D3900CDB225 /* SVIndefiniteAnimatedView.m */; };
 		95ED5F1C1B084D3900CDB225 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 95ED5F181B084D3900CDB225 /* SVProgressHUD.bundle */; };
 		95ED5F1D1B084D3900CDB225 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5F1A1B084D3900CDB225 /* SVProgressHUD.m */; };
-		95ED5F301B084D5100CDB225 /* UIImage+UzysExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5F201B084D5100CDB225 /* UIImage+UzysExtension.m */; };
-		95ED5F311B084D5100CDB225 /* UzysAppearanceConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5F221B084D5100CDB225 /* UzysAppearanceConfig.m */; };
-		95ED5F321B084D5100CDB225 /* UzysAssetPickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 95ED5F231B084D5100CDB225 /* UzysAssetPickerController.bundle */; };
-		95ED5F331B084D5100CDB225 /* UzysAssetsPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5F251B084D5100CDB225 /* UzysAssetsPickerController.m */; };
-		95ED5F341B084D5100CDB225 /* UzysAssetsPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95ED5F261B084D5100CDB225 /* UzysAssetsPickerController.xib */; };
-		95ED5F351B084D5100CDB225 /* UzysAssetsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5F291B084D5100CDB225 /* UzysAssetsViewCell.m */; };
-		95ED5F361B084D5100CDB225 /* UzysGroupPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5F2B1B084D5100CDB225 /* UzysGroupPickerView.m */; };
-		95ED5F371B084D5100CDB225 /* UzysGroupViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5F2D1B084D5100CDB225 /* UzysGroupViewCell.m */; };
-		95ED5F381B084D5100CDB225 /* UzysWrapperPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5F2F1B084D5100CDB225 /* UzysWrapperPickerController.m */; };
 		95ED5F3C1B084DD600CDB225 /* RMDateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5F3B1B084DD600CDB225 /* RMDateSelectionViewController.m */; };
 		95ED5F401B084F7500CDB225 /* RMActionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5F3F1B084F7500CDB225 /* RMActionController.m */; };
 		95F380BB1AB269690070A7FB /* FeaturedObjectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F380BA1AB269690070A7FB /* FeaturedObjectListViewController.swift */; };
@@ -936,7 +926,6 @@
 		95A3AAF71B047F3F00ADF705 /* GBDeviceInfoTypes_Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBDeviceInfoTypes_Common.h; sourceTree = "<group>"; };
 		95A3AAF81B047F3F00ADF705 /* GBDeviceInfoTypes_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBDeviceInfoTypes_iOS.h; sourceTree = "<group>"; };
 		95A3AAFE1B04801100ADF705 /* GBDeviceInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBDeviceInfo.h; sourceTree = "<group>"; };
-		95B1D9D91ABE0CF200BEC8BD /* MediaPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPickerController.swift; sourceTree = "<group>"; };
 		95B9BDC21ABAA67900692889 /* PublishmentViewControllerA.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishmentViewControllerA.xib; sourceTree = "<group>"; };
 		95B9BE661ABAEF1A00692889 /* ZFTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFTokenField.h; sourceTree = "<group>"; };
 		95B9BE671ABAEF1A00692889 /* ZFTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFTokenField.m; sourceTree = "<group>"; };
@@ -1041,23 +1030,6 @@
 		95ED5F181B084D3900CDB225 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		95ED5F191B084D3900CDB225 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		95ED5F1A1B084D3900CDB225 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
-		95ED5F1F1B084D5100CDB225 /* UIImage+UzysExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+UzysExtension.h"; sourceTree = "<group>"; };
-		95ED5F201B084D5100CDB225 /* UIImage+UzysExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+UzysExtension.m"; sourceTree = "<group>"; };
-		95ED5F211B084D5100CDB225 /* UzysAppearanceConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysAppearanceConfig.h; sourceTree = "<group>"; };
-		95ED5F221B084D5100CDB225 /* UzysAppearanceConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysAppearanceConfig.m; sourceTree = "<group>"; };
-		95ED5F231B084D5100CDB225 /* UzysAssetPickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UzysAssetPickerController.bundle; sourceTree = "<group>"; };
-		95ED5F241B084D5100CDB225 /* UzysAssetsPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysAssetsPickerController.h; sourceTree = "<group>"; };
-		95ED5F251B084D5100CDB225 /* UzysAssetsPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysAssetsPickerController.m; sourceTree = "<group>"; };
-		95ED5F261B084D5100CDB225 /* UzysAssetsPickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UzysAssetsPickerController.xib; sourceTree = "<group>"; };
-		95ED5F271B084D5100CDB225 /* UzysAssetsPickerController_Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysAssetsPickerController_Configuration.h; sourceTree = "<group>"; };
-		95ED5F281B084D5100CDB225 /* UzysAssetsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysAssetsViewCell.h; sourceTree = "<group>"; };
-		95ED5F291B084D5100CDB225 /* UzysAssetsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysAssetsViewCell.m; sourceTree = "<group>"; };
-		95ED5F2A1B084D5100CDB225 /* UzysGroupPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysGroupPickerView.h; sourceTree = "<group>"; };
-		95ED5F2B1B084D5100CDB225 /* UzysGroupPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysGroupPickerView.m; sourceTree = "<group>"; };
-		95ED5F2C1B084D5100CDB225 /* UzysGroupViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysGroupViewCell.h; sourceTree = "<group>"; };
-		95ED5F2D1B084D5100CDB225 /* UzysGroupViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysGroupViewCell.m; sourceTree = "<group>"; };
-		95ED5F2E1B084D5100CDB225 /* UzysWrapperPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysWrapperPickerController.h; sourceTree = "<group>"; };
-		95ED5F2F1B084D5100CDB225 /* UzysWrapperPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysWrapperPickerController.m; sourceTree = "<group>"; };
 		95ED5F3A1B084DD600CDB225 /* RMDateSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDateSelectionViewController.h; sourceTree = "<group>"; };
 		95ED5F3B1B084DD600CDB225 /* RMDateSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDateSelectionViewController.m; sourceTree = "<group>"; };
 		95ED5F3E1B084F7500CDB225 /* RMActionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMActionController.h; sourceTree = "<group>"; };
@@ -1116,7 +1088,6 @@
 				95DFA7031B1224BC00DF1C0E /* LoginViewController.swift */,
 				95DFA7041B1224BC00DF1C0E /* LoginViewController.xib */,
 				950FE12F1A1DA2B300167D09 /* MainViewController.swift */,
-				95B1D9D91ABE0CF200BEC8BD /* MediaPickerController.swift */,
 				958CB5BA1AB98DC3002ECCF4 /* PublishmentViewController.swift */,
 				95B9BDC21ABAA67900692889 /* PublishmentViewControllerA.xib */,
 				954A76AA1AFD0323002A72A9 /* PublishmentViewControllerB.xib */,
@@ -1155,7 +1126,6 @@
 				95ED5F391B084DD600CDB225 /* RMDateSelectionViewController */,
 				9580ED981AE4DEE000EBF5FE /* SinaWeiboSDK */,
 				95ED5F141B084D3900CDB225 /* SVProgressHUD */,
-				95ED5F1E1B084D5100CDB225 /* UzysAssetsPickerController */,
 				95B9BE651ABAEF1A00692889 /* ZFTokenField */,
 			);
 			path = External;
@@ -2219,31 +2189,6 @@
 			path = SVProgressHUD/SVProgressHUD;
 			sourceTree = "<group>";
 		};
-		95ED5F1E1B084D5100CDB225 /* UzysAssetsPickerController */ = {
-			isa = PBXGroup;
-			children = (
-				95ED5F1F1B084D5100CDB225 /* UIImage+UzysExtension.h */,
-				95ED5F201B084D5100CDB225 /* UIImage+UzysExtension.m */,
-				95ED5F211B084D5100CDB225 /* UzysAppearanceConfig.h */,
-				95ED5F221B084D5100CDB225 /* UzysAppearanceConfig.m */,
-				95ED5F231B084D5100CDB225 /* UzysAssetPickerController.bundle */,
-				95ED5F241B084D5100CDB225 /* UzysAssetsPickerController.h */,
-				95ED5F251B084D5100CDB225 /* UzysAssetsPickerController.m */,
-				95ED5F261B084D5100CDB225 /* UzysAssetsPickerController.xib */,
-				95ED5F271B084D5100CDB225 /* UzysAssetsPickerController_Configuration.h */,
-				95ED5F281B084D5100CDB225 /* UzysAssetsViewCell.h */,
-				95ED5F291B084D5100CDB225 /* UzysAssetsViewCell.m */,
-				95ED5F2A1B084D5100CDB225 /* UzysGroupPickerView.h */,
-				95ED5F2B1B084D5100CDB225 /* UzysGroupPickerView.m */,
-				95ED5F2C1B084D5100CDB225 /* UzysGroupViewCell.h */,
-				95ED5F2D1B084D5100CDB225 /* UzysGroupViewCell.m */,
-				95ED5F2E1B084D5100CDB225 /* UzysWrapperPickerController.h */,
-				95ED5F2F1B084D5100CDB225 /* UzysWrapperPickerController.m */,
-			);
-			name = UzysAssetsPickerController;
-			path = UzysAssetsPickerController/UzysAssetsPickerController/Library;
-			sourceTree = "<group>";
-		};
 		95ED5F391B084DD600CDB225 /* RMDateSelectionViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2381,7 +2326,6 @@
 				950FE1251A1DA2A400167D09 /* Discovery.strings in Resources */,
 				9531D7251AF3E4AC00E6549D /* ArticleCell.xib in Resources */,
 				9531D7421AF3E4AC00E6549D /* QuestionFooterCell.xib in Resources */,
-				95ED5F341B084D5100CDB225 /* UzysAssetsPickerController.xib in Resources */,
 				9531D7501AF3E4AC00E6549D /* TopicCell.xib in Resources */,
 				95B6E6B91A232E2400F31BE3 /* LaunchScreen.xib in Resources */,
 				95EBCF4D1B2DB42E0088FC2C /* TopicSearchResultCell.xib in Resources */,
@@ -2422,7 +2366,6 @@
 				95EBCF491B2DB40D0088FC2C /* ArticleSearchResultCell.xib in Resources */,
 				9531D7271AF3E4AC00E6549D /* CommentCell.xib in Resources */,
 				9531D75A1AF3E4AC00E6549D /* UserHeaderView.xib in Resources */,
-				95ED5F321B084D5100CDB225 /* UzysAssetPickerController.bundle in Resources */,
 				9561400A1AE2E6080077FBA0 /* read_me.txt in Resources */,
 				9531D73B1AF3E4AC00E6549D /* QuestionPublishmentActionCell.xib in Resources */,
 				9580EDA51AE4DEE000EBF5FE /* WeiboSDK.bundle in Resources */,
@@ -2578,7 +2521,6 @@
 				951D1EAC1ACD1E4E0072D555 /* NSScanner+HTML.m in Sources */,
 				95054E221ACBC2D900C1848B /* String+MSREncoding.swift in Sources */,
 				95D153A71AF4CEF800C1617D /* ArticleHeaderView.swift in Sources */,
-				95ED5F381B084D5100CDB225 /* UzysWrapperPickerController.m in Sources */,
 				95A3AAFB1B047F3F00ADF705 /* GBDeviceInfo_Common.m in Sources */,
 				95EBCF451B2DB33E0088FC2C /* QuestionSearchResultCell.swift in Sources */,
 				951D1F5F1ACD1E750072D555 /* DTExtendedFileAttributes.m in Sources */,
@@ -2588,7 +2530,6 @@
 				951D1F6E1ACD1E750072D555 /* DTZipArchiveNode.m in Sources */,
 				9531D78E1AF3E8E400E6549D /* ArticleAgreementAction.swift in Sources */,
 				9531D7321AF3E4AC00E6549D /* AnswerAgreementActionCell.swift in Sources */,
-				95ED5F301B084D5100CDB225 /* UIImage+UzysExtension.m in Sources */,
 				951D1E841ACD1E4E0072D555 /* DTCoreTextLayouter.m in Sources */,
 				95EBCF3D1B2BF0810088FC2C /* SearchViewController.swift in Sources */,
 				951D1F801ACD1E750072D555 /* DTSidePanelControllerSegue.m in Sources */,
@@ -2670,7 +2611,6 @@
 				955770721AD68E960060A120 /* UIImageView+MSRSetter.swift in Sources */,
 				951D1F791ACD1E750072D555 /* DTActivityTitleView.m in Sources */,
 				95C2EA3A1AB0516800F2A326 /* MSRSegmentedControlUnderlineIndicator.swift in Sources */,
-				95ED5F331B084D5100CDB225 /* UzysAssetsPickerController.m in Sources */,
 				95C2EA201AB0516800F2A326 /* NSManagedObjectContext+MSROperations.swift in Sources */,
 				95C2EA221AB0516800F2A326 /* UnsafePointer+MSRInitializer.swift in Sources */,
 				951D1E8D1ACD1E4E0072D555 /* DTDictationPlaceholderView.m in Sources */,
@@ -2678,7 +2618,6 @@
 				951D1F581ACD1E750072D555 /* DTASN1Parser.m in Sources */,
 				951E12F01B202D7C00F076FE /* UITableView+Refresh.swift in Sources */,
 				95C2EA431AB0516800F2A326 /* UINavigationBar+MSRAccessor.swift in Sources */,
-				95ED5F351B084D5100CDB225 /* UzysAssetsViewCell.m in Sources */,
 				958600821B17308C0054DAA8 /* UIView+MSRAccessor.swift in Sources */,
 				951D1F8A1ACD1E750072D555 /* UIView+DTFoundation.m in Sources */,
 				9531D7A01AF3E8E400E6549D /* WeChatSessionActivity.swift in Sources */,
@@ -2698,7 +2637,6 @@
 				951D1E891ACD1E4E0072D555 /* DTCoreTextParagraphStyle.m in Sources */,
 				9531D7491AF3E4AC00E6549D /* QuestionTitleCell.swift in Sources */,
 				9531D7531AF3E4AC00E6549D /* UserBodyCell.swift in Sources */,
-				95ED5F371B084D5100CDB225 /* UzysGroupViewCell.m in Sources */,
 				951D1F731ACD1E750072D555 /* zip.c in Sources */,
 				9531D71A1AF3E4AC00E6549D /* AnswerAdditionCell.swift in Sources */,
 				9531D7381AF3E4AC00E6549D /* QuestionFocusingActionCell.swift in Sources */,
@@ -2730,7 +2668,6 @@
 				95DB722B1AF548EC0072C77E /* ArticleFooterView.swift in Sources */,
 				951D1F8D1ACD1E750072D555 /* NSData+DTCrypto.m in Sources */,
 				951D1E9F1ACD1E4E0072D555 /* DTTextHTMLElement.m in Sources */,
-				95B1D9DA1ABE0CF200BEC8BD /* MediaPickerController.swift in Sources */,
 				955E2A061AF75C2100A04791 /* Comment.swift in Sources */,
 				951D1EA31ACD1E4E0072D555 /* NSAttributedString+DTDebug.m in Sources */,
 				954A76A91AFC399D002A72A9 /* DataObject.swift in Sources */,
@@ -2743,7 +2680,6 @@
 				9531D7201AF3E4AC00E6549D /* AnswerCellWithQuestionTitle.swift in Sources */,
 				958600871B187CB50054DAA8 /* SidebarUserView.swift in Sources */,
 				9531D79A1AF3E8E400E6549D /* NetworkManager.swift in Sources */,
-				95ED5F311B084D5100CDB225 /* UzysAppearanceConfig.m in Sources */,
 				95C2EA2B1AB0516800F2A326 /* MSRAlertView.swift in Sources */,
 				95C2EA351AB0516800F2A326 /* MSRSegmentedControlBlockIndicator.swift in Sources */,
 				951D1E9E1ACD1E4E0072D555 /* DTTextBlock.m in Sources */,
@@ -2755,7 +2691,6 @@
 				9531D79F1AF3E8E400E6549D /* WeChatMomentsActivity.swift in Sources */,
 				951D1F861ACD1E750072D555 /* DTStripedLayerTile.m in Sources */,
 				951D1E801ACD1E4E0072D555 /* DTCoreTextFontCollection.m in Sources */,
-				95ED5F361B084D5100CDB225 /* UzysGroupPickerView.m in Sources */,
 				951D2F841AB7F85500DCB678 /* MJRefreshConst.m in Sources */,
 				951D1EAF1ACD1E4E0072D555 /* NSString+Paragraphs.m in Sources */,
 				951D1E901ACD1E4E0072D555 /* DTHTMLElement.m in Sources */,
