@@ -16,7 +16,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     lazy var contentViewController: MSRNavigationController = {
         [weak self] in
         let vc = MSRNavigationController(rootViewController: HomeViewController(user: User.currentUser!))
-        vc.view.backgroundColor = UIColor.whiteColor()
+        let theme = SettingsManager.defaultManager.currentTheme
+        vc.view.backgroundColor = theme.backgroundColorA
         return vc
     }()
     lazy var sidebar: MSRSidebar = {

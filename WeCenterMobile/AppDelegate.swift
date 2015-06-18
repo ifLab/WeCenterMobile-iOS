@@ -82,6 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MSRWeChatAPIDelegate {
     
     func updateTheme() {
         let theme = SettingsManager.defaultManager.currentTheme
+        mainViewController?.contentViewController.view.backgroundColor = theme.backgroundColorA
         UINavigationBar.appearance().barStyle = theme.navigationBarStyle
         UINavigationBar.appearance().tintColor = theme.navigationItemColor
     }
