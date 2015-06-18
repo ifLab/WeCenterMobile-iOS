@@ -12,28 +12,6 @@ import UIKit
 let SidebarDidBecomeVisibleNotificationName = "SidebarDidBecomeVisibleNotification"
 let SidebarDidBecomeInvisibleNotificationName = "SidebarDidBecomeInvisibleNotification"
 
-class _SidebarBackgroundView: UIView {
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        msr_initialize()
-    }
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        msr_initialize()
-    }
-    func msr_initialize() {
-        backgroundColor = UIColor.msr_materialGray200()
-        msr_shadowColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
-        msr_shadowOffset = CGPointZero
-        msr_shadowRadius = 5
-        msr_shadowOpacity = 0
-    }
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        msr_shadowPath = UIBezierPath(rect: bounds)
-    }
-}
-
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MSRSidebarDelegate {
     lazy var contentViewController: MSRNavigationController = {
         [weak self] in
@@ -52,7 +30,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             .DisplayiPhone47Inch: 260,
             .DisplayiPhone55Inch: 300]
         let v = MSRSidebar(width: widths[display]!, edge: .Left)
-        v.backgroundView = _SidebarBackgroundView()
+        v.animationDuration = 0.3
         v.enableBouncing = false
         v.overlay = UIView()
         v.overlay!.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
@@ -113,8 +91,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         addChildViewController(contentViewController)
         view.addSubview(contentViewController.view)
         view.insertSubview(sidebar, aboveSubview: contentViewController.view)
-        let theme = SettingsManager.defaultManager.currentTheme 
-        tableView.backgroundColor = theme.backgroundColorA
+        let theme = SettingsManager.defaultManager.currentTheme
+        sidebar.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: theme.backgroundBlurEffectStyle))
         automaticallyAdjustsScrollViewInsets = false
     }
     override func viewDidLoad() {
@@ -195,7 +173,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     func msr_sidebar(sidebar: MSRSidebar, didShowAtPercentage percentage: CGFloat) {
-        sidebar.backgroundView!.msr_shadowOpacity = percentage > 0 ? 1 : 0
         sidebarIsVisible = percentage > 0
     }
     func currentUserPropertyDidChange(notification: NSNotification) {
@@ -206,7 +183,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     func currentThemeDidChange() {
         let theme = SettingsManager.defaultManager.currentTheme
-        tableView.backgroundColor = theme.backgroundColorA
+        sidebar.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: theme.backgroundBlurEffectStyle))
         let indexPath = tableView.indexPathForSelectedRow()
         tableView.reloadData()
         tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)

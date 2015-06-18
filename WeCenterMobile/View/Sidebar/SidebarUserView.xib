@@ -29,7 +29,7 @@
                             <integer key="value" value="5"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="msr_shadowColor">
-                            <color key="value" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
+                            <color key="value" white="0.0" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="point" keyPath="msr_shadowOffset">
                             <point key="value" x="0.0" y="0.0"/>
