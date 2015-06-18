@@ -126,7 +126,7 @@
                                     <color key="titleColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="showImagePicker" destination="vyf-y1-D6i" eventType="touchUpInside" id="I0t-Fh-Vcs"/>
+                                    <action selector="showImagePickerController" destination="vyf-y1-D6i" eventType="touchUpInside" id="Ws6-d5-H8z"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="点击以选择" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jir-FP-YAI">

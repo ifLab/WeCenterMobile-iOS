@@ -140,12 +140,12 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
         return true
     }
     
-    @IBAction func showImagePicker() {
+    @IBAction func showImagePickerController() {
         let ipc = UIImagePickerController()
         ipc.delegate = self
         ipc.allowsEditing = true
         ipc.sourceType = .PhotoLibrary
-        showViewController(ipc, sender: self)
+        showDetailViewController(ipc, sender: self)
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
@@ -154,8 +154,8 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         picker.dismissViewControllerAnimated(true, completion: nil)
-        let avatar = info[UIImagePickerControllerEditedImage] as! UIImage
-        beforeUploading()
+        var avatar = info[UIImagePickerControllerEditedImage] as! UIImage
+        println(info[UIImagePickerControllerCropRect])
         User.uploadAvatar(avatar,
             success: {
                 [weak self] in

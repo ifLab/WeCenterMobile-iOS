@@ -74,6 +74,8 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
     static let buttonTag = 23335
     static let overlayViewTag = 23336
     static let notAnAttachID = -1
+    static let maxImageSideLength: CGFloat = 1920
+    static let imageCompressionQuality: CGFloat = 0.7
     
     var converting = false
     var tags = [String]()
@@ -263,7 +265,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
                 button.imageView!.tintColor = theme.backgroundColorB
                 button.adjustsImageWhenHighlighted = false
                 button.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
-                button.addTarget(self, action: "showPickerController", forControlEvents: .TouchUpInside)
+                button.addTarget(self, action: "showImagePickerController", forControlEvents: .TouchUpInside)
             }
         }
         return cell
@@ -304,12 +306,17 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             [weak self] in
             if let self_ = self {
-                var images = [info[UIImagePickerControllerOriginalImage] as! UIImage]
+                var images = map([info[UIImagePickerControllerOriginalImage] as! UIImage]) {
+                    (image: UIImage) -> UIImage in
+                    let scale = min(1, min(SelfType.maxImageSideLength / image.size.width, SelfType.maxImageSideLength / image.size.height))
+                    let size = CGSize(width: image.size.width * scale, height: image.size.height * scale)
+                    return image.msr_imageOfSize(size)
+                }
                 var uploadingProgress = [0]
                 var uploaded = [false]
                 var attachIDs = [SelfType.notAnAttachID]
                 let jpegs = map(images) {
-                    return UIImageJPEGRepresentation($0, 0.5)
+                    return UIImageJPEGRepresentation($0, SelfType.imageCompressionQuality)
                 }
                 dispatch_async(dispatch_get_main_queue()) {
                     [weak self] in
@@ -375,11 +382,24 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
         }
     }
     
-    func showPickerController() {
+    @IBAction func showImagePickerController() {
+        let ac = UIAlertController(title: "您想从哪里获取头像？", message: nil, preferredStyle: .ActionSheet)
         let ipc = UIImagePickerController()
         ipc.delegate = self
-        ipc.sourceType = .PhotoLibrary
-        presentViewController(ipc, animated: true, completion: nil)
+        ac.addAction(UIAlertAction(title: "相机", style: .Default) {
+            [weak self] _ in
+            ipc.sourceType = .Camera
+            self?.showDetailViewController(ipc, sender: self)
+            return
+        })
+        ac.addAction(UIAlertAction(title: "相簿", style: .Default) {
+            [weak self] _ in
+            ipc.sourceType = .PhotoLibrary
+            self?.showDetailViewController(ipc, sender: self)
+            return
+        })
+        ac.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        showDetailViewController(ac, sender: self)
     }
     
     func removeDataAtIndex(index: Int) {

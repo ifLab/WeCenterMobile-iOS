@@ -349,6 +349,7 @@
 		95DC57151AF8A38D0075C3CB /* UserAtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC57141AF8A38D0075C3CB /* UserAtView.swift */; };
 		95DC57191AF8AAFA0075C3CB /* NSObject+MSRClone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC57181AF8AAFA0075C3CB /* NSObject+MSRClone.swift */; };
 		95DC571B1AF8AD4D0075C3CB /* NSObject+MSRUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC571A1AF8AD4D0075C3CB /* NSObject+MSRUserInfo.swift */; };
+		95DF651C1B32B3CC008CBFE3 /* UIImage+MSRClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DF651B1B32B3CC008CBFE3 /* UIImage+MSRClip.swift */; };
 		95DFA7051B1224BC00DF1C0E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DFA7031B1224BC00DF1C0E /* LoginViewController.swift */; };
 		95DFA7061B1224BC00DF1C0E /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95DFA7041B1224BC00DF1C0E /* LoginViewController.xib */; };
 		95E5355A1A49DCFD00D7B76B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535591A49DCFD00D7B76B /* HomeViewController.swift */; };
@@ -975,6 +976,7 @@
 		95DC57141AF8A38D0075C3CB /* UserAtView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAtView.swift; sourceTree = "<group>"; };
 		95DC57181AF8AAFA0075C3CB /* NSObject+MSRClone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+MSRClone.swift"; sourceTree = "<group>"; };
 		95DC571A1AF8AD4D0075C3CB /* NSObject+MSRUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+MSRUserInfo.swift"; sourceTree = "<group>"; };
+		95DF651B1B32B3CC008CBFE3 /* UIImage+MSRClip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+MSRClip.swift"; sourceTree = "<group>"; };
 		95DFA7031B1224BC00DF1C0E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		95DFA7041B1224BC00DF1C0E /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		95E535591A49DCFD00D7B76B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HomeViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2080,6 +2082,7 @@
 				95C2EA151AB0516800F2A326 /* UIColor+MSRMaterialColor.swift */,
 				95C2EA161AB0516800F2A326 /* UIColor+MSRRandomColor.swift */,
 				95C2EA171AB0516800F2A326 /* UIColor+MSRRGBA.swift */,
+				95DF651B1B32B3CC008CBFE3 /* UIImage+MSRClip.swift */,
 				955770771AD757B30060A120 /* UIImage+MSRColor.swift */,
 				951DA7541AEAACD300F0E3A7 /* UIImage+MSRGetter.swift */,
 				95C2EA181AB0516800F2A326 /* UIImage+MSRResize.swift */,
@@ -2550,6 +2553,7 @@
 				95C2EA2A1AB0516800F2A326 /* MSRAlertAction.swift in Sources */,
 				95891E5B1AD82E7E007D5DF7 /* MSRLinearInterpolation.swift in Sources */,
 				951D1F9D1ACD1E750072D555 /* DTObjectBlockExecutor.m in Sources */,
+				95DF651C1B32B3CC008CBFE3 /* UIImage+MSRClip.swift in Sources */,
 				951D1E7D1ACD1E4E0072D555 /* DTColor+Compatibility.m in Sources */,
 				9531D7881AF3E8E400E6549D /* Action.swift in Sources */,
 				9531D7591AF3E4AC00E6549D /* UserHeaderView.swift in Sources */,

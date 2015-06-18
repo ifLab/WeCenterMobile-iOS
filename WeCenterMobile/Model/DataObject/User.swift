@@ -444,7 +444,11 @@ class User: DataObject {
     
     class func uploadAvatar(avatar: UIImage, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-            let jpeg = UIImageJPEGRepresentation(avatar, 1)
+            let maxLength: CGFloat = 256
+            let scale = min(1, max(maxLength / avatar.size.width, maxLength / avatar.size.height))
+            var image = avatar.msr_imageOfSize(CGSize(width: avatar.size.width * scale, height: avatar.size.height * scale))
+            image = image.msr_imageByClippingToRect(CGRect(x: (image.size.width - maxLength) / 2, y: (image.size.height - maxLength), width: maxLength, height: maxLength))
+            let jpeg = UIImageJPEGRepresentation(image, 1)
             dispatch_async(dispatch_get_main_queue()) {
                 self.avatarUploadingOperation = NetworkManager.defaultManager!.request("Upload User Avatar",
                     GETParameters: nil,
@@ -457,7 +461,7 @@ class User: DataObject {
                     success: {
                         data in
                         self.avatarUploadingOperation = nil
-                        self.currentUser?.avatar = avatar
+                        self.currentUser?.avatar = image
                         self.currentUser?.avatarURL = (data["preview"] as! String)
                         success?()
                         return
