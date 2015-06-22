@@ -42,7 +42,53 @@
                                                 <constraint firstAttribute="width" id="oRM-D4-UxI"/>
                                             </constraints>
                                         </view>
-                                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ca0-jd-EQE" userLabel="User Name Text Field Vibrancy Left View">
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Own-P2-rzR" userLabel="Email Text Field Vibrancy Left View">
+                                            <rect key="frame" x="180" y="248" width="20" height="20"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ceD-gx-RG9" userLabel="Container">
+                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Message_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Gdj-2Z-S9K" userLabel="Image View">
+                                                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="Gdj-2Z-S9K" secondAttribute="trailing" id="2Wh-kd-3fW"/>
+                                                    <constraint firstItem="Gdj-2Z-S9K" firstAttribute="top" secondItem="ceD-gx-RG9" secondAttribute="top" id="7l2-OU-Wq5"/>
+                                                    <constraint firstItem="Gdj-2Z-S9K" firstAttribute="leading" secondItem="ceD-gx-RG9" secondAttribute="leading" id="OjF-A0-Wc6"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Gdj-2Z-S9K" secondAttribute="bottom" id="ltp-Tj-6nz"/>
+                                                </constraints>
+                                            </view>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="03y-Ub-wSA"/>
+                                                <constraint firstAttribute="width" secondItem="Own-P2-rzR" secondAttribute="height" multiplier="1:1" id="Zpe-p4-6TJ"/>
+                                            </constraints>
+                                            <vibrancyEffect>
+                                                <blurEffect style="dark"/>
+                                            </vibrancyEffect>
+                                        </visualEffectView>
+                                        <textField opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="teP-bV-SJY" userLabel="Email Text Field">
+                                            <rect key="frame" x="212" y="245" width="208" height="28"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                        </textField>
+                                        <visualEffectView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aA4-iu-e4v" userLabel="Email Text Field Vibrancy Underline View">
+                                            <rect key="frame" x="175" y="279" width="250" height="1"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="8MY-pv-KTa" userLabel="Container">
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="1"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </view>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="0.5" id="ssE-1O-e1j"/>
+                                            </constraints>
+                                            <vibrancyEffect>
+                                                <blurEffect style="dark"/>
+                                            </vibrancyEffect>
+                                        </visualEffectView>
+                                        <visualEffectView opaque="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="ca0-jd-EQE" userLabel="User Name Text Field Vibrancy Left View">
                                             <rect key="frame" x="180" y="298" width="20" height="20"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="bDf-Bg-Q2q" userLabel="Container">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -94,7 +140,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lock_icon" translatesAutoresizingMaskIntoConstraints="NO" id="pN7-74-iLI" userLabel="Image View">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lock_icon" translatesAutoresizingMaskIntoConstraints="NO" id="pN7-74-iLI" userLabel="Image View">
                                                         <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                         <color key="tintColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                                     </imageView>
@@ -196,15 +242,29 @@
                                                 <blurEffect style="dark"/>
                                             </vibrancyEffect>
                                         </visualEffectView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i8U-7s-aQi">
+                                            <rect key="frame" x="240" y="495" width="120" height="27"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <state key="normal" title="没有账号？现在注册！">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="changeState" destination="ClP-AV-xmq" eventType="touchUpInside" id="9zW-f0-789"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="teP-bV-SJY" firstAttribute="leading" secondItem="Own-P2-rzR" secondAttribute="trailing" constant="12" id="2IW-ac-Tow"/>
                                         <constraint firstItem="b96-0o-LfR" firstAttribute="leading" secondItem="xNo-9M-oLj" secondAttribute="leading" id="32i-dA-trp"/>
                                         <constraint firstItem="WIT-5W-JNf" firstAttribute="trailing" secondItem="QDq-u0-G2S" secondAttribute="trailing" id="4O1-z7-L6i"/>
                                         <constraint firstAttribute="bottom" secondItem="yW5-jY-fWl" secondAttribute="bottom" id="8BG-Oa-tmG"/>
+                                        <constraint firstItem="Own-P2-rzR" firstAttribute="leading" secondItem="aA4-iu-e4v" secondAttribute="leading" constant="5" id="97k-gW-UL6"/>
                                         <constraint firstItem="ca0-jd-EQE" firstAttribute="leading" secondItem="IVK-wE-vao" secondAttribute="leading" constant="5" id="9A9-bd-WE9"/>
                                         <constraint firstItem="WIT-5W-JNf" firstAttribute="top" secondItem="rMi-4B-gzc" secondAttribute="bottom" constant="6" id="C8r-hJ-nCZ"/>
                                         <constraint firstItem="QDq-u0-G2S" firstAttribute="trailing" secondItem="Dvc-PF-fid" secondAttribute="trailing" id="CHy-4R-IMd"/>
+                                        <constraint firstItem="i8U-7s-aQi" firstAttribute="top" secondItem="QDq-u0-G2S" secondAttribute="bottom" constant="15" id="Dhx-9F-WwV"/>
                                         <constraint firstItem="udd-FZ-fBL" firstAttribute="leading" secondItem="ca0-jd-EQE" secondAttribute="trailing" constant="12" id="ECN-5t-uv9"/>
+                                        <constraint firstItem="aA4-iu-e4v" firstAttribute="top" secondItem="Own-P2-rzR" secondAttribute="bottom" constant="11" id="EqE-ZB-PEg"/>
                                         <constraint firstItem="WIT-5W-JNf" firstAttribute="leading" secondItem="QDq-u0-G2S" secondAttribute="leading" id="KUk-4b-5GM"/>
                                         <constraint firstAttribute="height" secondItem="yW5-jY-fWl" secondAttribute="height" id="NLF-0s-jnD"/>
                                         <constraint firstItem="yW5-jY-fWl" firstAttribute="leading" secondItem="xNo-9M-oLj" secondAttribute="leading" id="NmK-Pb-oAM"/>
@@ -215,21 +275,27 @@
                                         <constraint firstItem="IVK-wE-vao" firstAttribute="trailing" secondItem="QDq-u0-G2S" secondAttribute="trailing" id="TEb-KK-8Lu"/>
                                         <constraint firstItem="IVK-wE-vao" firstAttribute="top" secondItem="ca0-jd-EQE" secondAttribute="bottom" constant="11" id="Urt-aq-plz"/>
                                         <constraint firstItem="yW5-jY-fWl" firstAttribute="top" secondItem="b96-0o-LfR" secondAttribute="bottom" id="V8T-VA-yjV"/>
+                                        <constraint firstItem="Dvc-PF-fid" firstAttribute="top" secondItem="aA4-iu-e4v" secondAttribute="bottom" constant="160" id="WOG-Hv-Hif"/>
                                         <constraint firstItem="QDq-u0-G2S" firstAttribute="top" secondItem="IVK-wE-vao" secondAttribute="bottom" constant="110" id="Wv5-lK-iiT"/>
                                         <constraint firstItem="WIT-5W-JNf" firstAttribute="top" secondItem="LgQ-wj-5QD" secondAttribute="bottom" constant="11" id="Zas-Vy-Sjw"/>
                                         <constraint firstItem="QDq-u0-G2S" firstAttribute="top" secondItem="WIT-5W-JNf" secondAttribute="bottom" constant="60" id="bmU-NA-FgM"/>
                                         <constraint firstItem="rMi-4B-gzc" firstAttribute="leading" secondItem="LgQ-wj-5QD" secondAttribute="trailing" constant="12" id="d1n-jE-ETk"/>
                                         <constraint firstItem="QDq-u0-G2S" firstAttribute="bottom" secondItem="Dvc-PF-fid" secondAttribute="bottom" id="eK2-t1-wMN"/>
+                                        <constraint firstAttribute="centerX" secondItem="i8U-7s-aQi" secondAttribute="centerX" id="eyf-tk-VZP"/>
                                         <constraint firstItem="QDq-u0-G2S" firstAttribute="top" secondItem="bAZ-cG-20t" secondAttribute="bottom" constant="280" id="f3C-Ii-MTS"/>
+                                        <constraint firstItem="aA4-iu-e4v" firstAttribute="trailing" secondItem="QDq-u0-G2S" secondAttribute="trailing" id="fJj-5L-Mft"/>
+                                        <constraint firstItem="aA4-iu-e4v" firstAttribute="leading" secondItem="QDq-u0-G2S" secondAttribute="leading" id="j27-ct-DdR"/>
                                         <constraint firstAttribute="centerY" secondItem="Dvc-PF-fid" secondAttribute="centerY" constant="-160" id="j3G-Ch-j6H"/>
                                         <constraint firstItem="b96-0o-LfR" firstAttribute="top" secondItem="xNo-9M-oLj" secondAttribute="top" id="jbi-Hp-8NN"/>
                                         <constraint firstAttribute="centerX" secondItem="bAZ-cG-20t" secondAttribute="centerX" id="jeS-Qb-wWv"/>
                                         <constraint firstAttribute="trailing" secondItem="b96-0o-LfR" secondAttribute="trailing" id="km0-nW-bUW"/>
+                                        <constraint firstItem="aA4-iu-e4v" firstAttribute="trailing" secondItem="teP-bV-SJY" secondAttribute="trailing" constant="5" id="mLT-UG-CUM"/>
                                         <constraint firstItem="IVK-wE-vao" firstAttribute="trailing" secondItem="udd-FZ-fBL" secondAttribute="trailing" constant="5" id="mgH-Gf-M3n"/>
                                         <constraint firstItem="IVK-wE-vao" firstAttribute="top" secondItem="udd-FZ-fBL" secondAttribute="bottom" constant="6" id="nIc-lF-pb4"/>
                                         <constraint firstItem="QDq-u0-G2S" firstAttribute="leading" secondItem="Dvc-PF-fid" secondAttribute="leading" id="qAS-Bf-KZo"/>
                                         <constraint firstAttribute="width" secondItem="b96-0o-LfR" secondAttribute="width" id="sWc-ES-CdD"/>
                                         <constraint firstItem="LgQ-wj-5QD" firstAttribute="leading" secondItem="WIT-5W-JNf" secondAttribute="leading" constant="5" id="wVu-Pd-iwM"/>
+                                        <constraint firstItem="aA4-iu-e4v" firstAttribute="top" secondItem="teP-bV-SJY" secondAttribute="bottom" constant="6" id="wrH-zA-og4"/>
                                         <constraint firstAttribute="centerX" secondItem="Dvc-PF-fid" secondAttribute="centerX" id="zhG-bK-UuQ"/>
                                     </constraints>
                                 </scrollView>
@@ -257,6 +323,11 @@
                 </constraints>
             </view>
             <connections>
+                <outlet property="changeStateButton" destination="i8U-7s-aQi" id="8mU-D8-IfF"/>
+                <outlet property="emailField" destination="teP-bV-SJY" id="x6M-uE-l6R"/>
+                <outlet property="emailFieldUnderline" destination="aA4-iu-e4v" id="pZT-8H-5uI"/>
+                <outlet property="emailImageView" destination="Gdj-2Z-S9K" id="pQm-ni-NfO"/>
+                <outlet property="emailImageViewContainerView" destination="Own-P2-rzR" id="TOS-8V-7rk"/>
                 <outlet property="loginActivityIndicatorView" destination="afB-0D-eON" id="WIb-2u-0uE"/>
                 <outlet property="loginButton" destination="Tl7-4e-iot" id="Dh2-Nl-23k"/>
                 <outlet property="loginButtonLabel" destination="QDq-u0-G2S" id="loV-gh-l0g"/>
@@ -278,6 +349,7 @@
     <resources>
         <image name="Lock_icon" width="150" height="146"/>
         <image name="LoginViewBackground" width="351" height="511"/>
+        <image name="Message_icon" width="171" height="146"/>
         <image name="User_icon" width="150" height="146"/>
     </resources>
 </document>

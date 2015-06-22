@@ -9,31 +9,75 @@
 import AFViewShaker
 import UIKit
 
+enum LoginViewControllerState: Int {
+    case Login
+    case Registration
+}
+
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var emailImageView: UIImageView!
     @IBOutlet weak var userNameImageView: UIImageView!
     @IBOutlet weak var passwordImageView: UIImageView!
+    @IBOutlet weak var emailImageViewContainerView: UIVisualEffectView!
     @IBOutlet weak var userNameImageViewContainerView: UIVisualEffectView!
     @IBOutlet weak var passwordImageViewContainerView: UIVisualEffectView!
+    @IBOutlet weak var emailFieldUnderline: UIVisualEffectView!
     @IBOutlet weak var userNameFieldUnderline: UIVisualEffectView!
     @IBOutlet weak var passwordFieldUnderline: UIVisualEffectView!
+    
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var loginButtonLabel: UILabel!
     @IBOutlet weak var loginActivityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var titleLabelContainerView: UIVisualEffectView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var changeStateButton: UIButton!
+    
+    var state: LoginViewControllerState = .Login {
+        didSet {
+            UIView.animateWithDuration(0.5,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 0.7,
+                options: .BeginFromCurrentState,
+                animations: {
+                    [weak self] in
+                    if let self_ = self {
+                        if self_.state == .Login {
+                            self_.emailImageView.alpha = 0
+                            self_.emailFieldUnderline.contentView.backgroundColor = UIColor.clearColor()
+                            self_.emailField.alpha = 0
+                            self_.loginButtonLabel.text = "登录"
+                            self_.changeStateButton.setTitle("没有账号？现在注册！", forState: .Normal)
+                        } else {
+                            self_.emailField.text = ""
+                            self_.emailImageView.alpha = 1
+                            self_.emailFieldUnderline.contentView.backgroundColor = UIColor.lightTextColor()
+                            self_.emailField.alpha = 1
+                            self_.loginButtonLabel.text = "注册"
+                            self_.changeStateButton.setTitle("已有账号？马上登录！", forState: .Normal)
+                        }
+                    }
+                },
+                completion: nil)
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         scrollView.delaysContentTouches = false
         scrollView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIControl.self)
+        emailImageView.msr_imageRenderingMode = .AlwaysTemplate
         userNameImageView.msr_imageRenderingMode = .AlwaysTemplate
         passwordImageView.msr_imageRenderingMode = .AlwaysTemplate
+        emailField.attributedPlaceholder = NSAttributedString(string: emailField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])
         userNameField.attributedPlaceholder = NSAttributedString(string: userNameField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])
         passwordField.attributedPlaceholder = NSAttributedString(string: passwordField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])
+        emailField.tintColor = UIColor.lightTextColor()
         userNameField.tintColor = UIColor.lightTextColor()
         passwordField.tintColor = UIColor.lightTextColor()
         loginButton.msr_setBackgroundImageWithColor(UIColor.whiteColor())
@@ -45,6 +89,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         scrollView.addGestureRecognizer(tap)
         scrollView.addGestureRecognizer(pan)
         pan.requireGestureRecognizerToFail(tap)
+        emailField.delegate = self
         userNameField.delegate = self
         passwordField.delegate = self
     }
@@ -52,6 +97,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        emailField.text = ""
         userNameField.text = ""
         passwordField.text = ""
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillChangeFrame:", name: UIKeyboardWillChangeFrameNotification, object: nil)
@@ -103,7 +149,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         self_.loginButtonLabel.hidden = false
                         self_.loginActivityIndicatorView.stopAnimating()
                     }
-                    let s = AFViewShaker(viewsArray: [self_.userNameImageViewContainerView, self_.userNameField, self_.passwordImageViewContainerView, self_.passwordField, self_.userNameFieldUnderline, self_.passwordFieldUnderline])
+                    let s = AFViewShaker(viewsArray: [self_.userNameImageViewContainerView, self_.userNameField, self_.passwordImageViewContainerView, self_.passwordField, self_.userNameFieldUnderline, self_.passwordFieldUnderline, self_.emailImageViewContainerView, self_.emailField, self_.emailFieldUnderline])
                     s.shake()
                 }
             })
@@ -116,10 +162,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if textField === userNameField {
+        if textField === emailField {
+            userNameField.becomeFirstResponder()
+        } else if textField === userNameField {
             passwordField.becomeFirstResponder()
         } else if textField === passwordField {
-            passwordField.resignFirstResponder()
+            passwordField.endEditing(true)
             login()
         }
         return true
@@ -149,6 +197,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func didTouchBlankArea() {
         view.endEditing(true)
+    }
+    
+    @IBAction func changeState() {
+        state = state == .Login ? .Registration : .Login
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
