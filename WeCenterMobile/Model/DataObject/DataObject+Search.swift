@@ -74,7 +74,7 @@ extension DataObject {
                             user.name = (objectData["name"] as! String)
                             if let detailData = objectData["detail"] as? NSDictionary {
                                 user.avatarURL = (detailData["avatar_file"] as! String)
-                                user.signature = (detailData["signature"] as! String)
+                                user.signature = detailData["signature"] as? String // Might be NSNull
                                 user.agreementCount = Int(msr_object: detailData["agree_count"])!
                                 user.thankCount = Int(msr_object: detailData["thanks_count"])!
                             }

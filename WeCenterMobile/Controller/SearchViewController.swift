@@ -83,7 +83,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             cell.articleButton?.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
             cell.questionButton?.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
             cell.topicButton?.addTarget(self, action: "didPressTopicButton:", forControlEvents: .TouchUpInside)
-            cell.userButton?.addTarget(self, action: "didPressUserButtton:", forControlEvents: .TouchUpInside)
+            cell.userButton?.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
             return cell as! UITableViewCell
         } else {
             return UITableViewCell() // Needs specification
