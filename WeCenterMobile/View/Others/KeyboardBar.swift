@@ -30,6 +30,7 @@ import UIKit
         v.attributedPlaceholder = NSAttributedString(string: "在此处输入评论……", attributes: [NSForegroundColorAttributeName: theme.footnoteTextColor])
         v.borderStyle = .None
         v.clearButtonMode = .WhileEditing
+        v.keyboardAppearance = theme.keyboardAppearance
         return v
     }()
     

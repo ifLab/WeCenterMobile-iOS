@@ -115,9 +115,9 @@ class Theme {
                 self.backgroundBlurEffectStyle = backgroundBlurEffectStyle
             }
         }
-        if let keyboardAppearenceRawValue = (configuration["Keyboard Appearence"] as? NSNumber)?.integerValue {
-            if let keyboardAppearence = UIKeyboardAppearance(rawValue: keyboardAppearenceRawValue) {
-                self.keyboardAppearence = keyboardAppearence
+        if let keyboardAppearanceRawValue = (configuration["Keyboard Appearance"] as? NSNumber)?.integerValue {
+            if let keyboardAppearance = UIKeyboardAppearance(rawValue: keyboardAppearanceRawValue) {
+                self.keyboardAppearance = keyboardAppearance
             }
         }
     }
@@ -152,6 +152,6 @@ class Theme {
     
     var backgroundBlurEffectStyle: UIBlurEffectStyle = .ExtraLight
     
-    var keyboardAppearence: UIKeyboardAppearance = .Default
+    var keyboardAppearance: UIKeyboardAppearance = .Default
     
 }

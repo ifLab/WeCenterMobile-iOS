@@ -85,8 +85,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MSRWeChatAPIDelegate {
         mainViewController?.contentViewController.view.backgroundColor = theme.backgroundColorA
         UINavigationBar.appearance().barStyle = theme.navigationBarStyle
         UINavigationBar.appearance().tintColor = theme.navigationItemColor
-        UITextField.appearance().keyboardAppearance = theme.keyboardAppearence
-        UITextView.appearance().keyboardAppearance = theme.keyboardAppearence
     }
     
 }

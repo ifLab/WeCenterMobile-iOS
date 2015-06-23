@@ -119,6 +119,15 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
             v.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
             v.msr_borderColor = theme.borderColorA
         }
+//        for v in [UITextInputTraits?](arrayLiteral: titleField, tagsField?.textField, bodyField) {
+//            'v?.keyboardAppearance = theme.keyboardAppearance'
+//            // 'Optional Protocol Setter Requirements' is not supported in Swift 1.2.
+//            // See The Swift Programming Language book - Optional Protocol Requirements
+//        }
+        tagsField?.textField.keyboardAppearance = theme.keyboardAppearance
+        for v in [UITextView?](arrayLiteral: titleField, bodyField) {
+            v?.keyboardAppearance = theme.keyboardAppearance
+        }
         scrollView.alwaysBounceVertical = false
         scrollView.delaysContentTouches = false
         scrollView.scrollIndicatorInsets.top = 20
