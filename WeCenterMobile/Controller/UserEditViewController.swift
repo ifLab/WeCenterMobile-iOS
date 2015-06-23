@@ -14,7 +14,7 @@ import UIKit
     optional func userEditViewControllerDidUpdateUserProfile(uevc: UserEditViewController)
 }
 
-class UserEditViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class UserEditViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var user: User {
         return User.currentUser!
@@ -22,7 +22,7 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
     weak var delegate: UserEditViewControllerDelegate?
     
     @IBOutlet weak var avatarImageView: MSRRoundedImageView!
-    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var userNameTextView: UITextView!
     @IBOutlet weak var genderSegmentedControl: MSRSegmentedControl!
     @IBOutlet weak var signatureTextView: UITextView!
     @IBOutlet weak var birthdayTextField: UITextField!
@@ -31,6 +31,14 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
     @IBOutlet weak var uploadButton: UIButton!
     @IBOutlet weak var uploadActivityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var avatarLabel: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var signatureLabel: UILabel!
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var birthdayLabel: UILabel!
+    @IBOutlet weak var separator: UIView!
     
     lazy var dateFormatter: NSDateFormatter = {
         let f = NSDateFormatter()
@@ -41,43 +49,54 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        scrollView.alwaysBounceVertical = true
+        let theme = SettingsManager.defaultManager.currentTheme
+        view.backgroundColor = theme.backgroundColorA
+        scrollView.scrollIndicatorInsets.top = 20
         signatureTextView.textContainerInset = UIEdgeInsets(top: 8, left: 5, bottom: 8, right: 5)
-        uploadButton.layer.masksToBounds = true
-        uploadButton.layer.cornerRadius = uploadButton.bounds.width / 2
-        uploadButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
-        doneButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
-        dismissButton.msr_setBackgroundImageWithColor(UIColor.whiteColor(), forState: .Highlighted)
-        userNameTextField.attributedPlaceholder = NSAttributedString(string: userNameTextField.placeholder ?? "", attributes: [
-            NSFontAttributeName: userNameTextField.font,
-            NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.4)])
-        birthdayTextField.attributedPlaceholder = NSAttributedString(string: birthdayTextField.placeholder ?? "", attributes: [
-            NSFontAttributeName: userNameTextField.font,
-            NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.4)])
+        for v in [userNameTextView, signatureTextView] {
+            v.keyboardAppearance = theme.keyboardAppearance
+        }
+        for v in [uploadButton, doneButton, dismissButton] {
+            v.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
+        }
+        titleLabel.textColor = theme.titleTextColor
+        for v in [avatarLabel, userNameLabel, signatureLabel, genderLabel, birthdayLabel] {
+            v.textColor = theme.subtitleTextColor
+        }
+        separator.backgroundColor = theme.borderColorA
+        for v in [userNameTextView, signatureTextView, birthdayTextField, doneButton, dismissButton] {
+            v.msr_borderColor = theme.borderColorA
+        }
+        for v in [userNameTextView, signatureTextView, doneButton, birthdayTextField, doneButton] {
+            v.backgroundColor = theme.backgroundColorB
+        }
+        for v in [userNameTextView, signatureTextView] {
+            v.textColor = theme.subtitleTextColor
+        }
+        birthdayTextField.textColor = theme.subtitleTextColor
+        doneButton.setTitleColor(theme.titleTextColor, forState: .Normal)
         genderSegmentedControl.indicator = MSRSegmentedControlCircleIndicator()
         let maleSegment = MSRDefaultSegment(title: nil, image: UIImage(named: "Male"))
         let secretSegment = MSRDefaultSegment(title: "保密", image: nil)
         let femaleSegment = MSRDefaultSegment(title: nil, image: UIImage(named: "Female"))
         genderSegmentedControl.setSegments([maleSegment, secretSegment, femaleSegment], animated: false)
-        genderSegmentedControl.indicator.tintColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+        genderSegmentedControl.indicator.tintColor = theme.highlightColor
         maleSegment.tintColor = UIColor.msr_materialBlue()
-        secretSegment.tintColor = UIColor.whiteColor()
+        secretSegment.tintColor = theme.subtitleTextColor
         secretSegment.titleLabel.font = UIFont.systemFontOfSize(12)
         femaleSegment.tintColor = UIColor.msr_materialPink()
         let tap = UITapGestureRecognizer(target: self, action: "didTouchBlankArea")
-        let pan = UIPanGestureRecognizer(target: self, action: "didTouchBlankArea")
         scrollView.addGestureRecognizer(tap)
-        scrollView.addGestureRecognizer(pan)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillChangeFrame:", name: UIKeyboardWillChangeFrameNotification, object: nil)
         reloadData()
     }
     
     func reloadData() {
         avatarImageView.image = user.avatar
-        userNameTextField.text = user.name
+        userNameTextView.text = user.name
         signatureTextView.text = user.signature
         birthdayTextField.text = dateFormatter.stringFromDate(user.birthday ?? NSDate())
         genderSegmentedControl.selectedSegmentIndex = user.gender == nil || user.gender == .Secret ? 1 : user.gender == .Male ? 0 : 2
-        scrollView.backgroundColor = TintColorFromColor(user.avatar?.msr_averageColorWithAccuracy(0.5)).colorWithAlphaComponent(0.3)
     }
     
     @IBAction func finish() {
@@ -89,7 +108,7 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
         }
         let user = User.temporaryObject()
         user.id = self.user.id
-        user.name = userNameTextField.text
+        user.name = userNameTextView.text
         let genders: [User.Gender] = [.Male, .Secret, .Female]
         user.gender = genders[genderSegmentedControl.selectedSegmentIndex!]
         user.signature = signatureTextView.text
@@ -195,7 +214,24 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return SettingsManager.defaultManager.currentTheme.statusBarStyle
+    }
+    
+    func keyboardWillChangeFrame(notification: NSNotification) {
+        let info = MSRAnimationInfo(keyboardNotification: notification)
+        info.animate() {
+            [weak self] in
+            if let self_ = self {
+                let bottom = UIScreen.mainScreen().bounds.height - info.frameEnd.minY
+                self_.bottomConstraint.constant = bottom
+                self_.view.layoutIfNeeded()
+            }
+            return
+        }
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
 }

@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQQ-J6-fNP">
+                    <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="jQQ-J6-fNP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <subviews>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="600" translatesAutoresizingMaskIntoConstraints="NO" id="22q-oV-n1I">
@@ -127,7 +127,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="22q-oV-n1I" firstAttribute="leading" secondItem="jQQ-J6-fNP" secondAttribute="leading" id="2v0-ie-cLa"/>
                             <constraint firstAttribute="bottom" secondItem="22q-oV-n1I" secondAttribute="bottom" id="Ax7-tt-eRI"/>
@@ -138,7 +138,7 @@
                         </constraints>
                     </scrollView>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="jQQ-J6-fNP" secondAttribute="bottom" id="Csb-x0-iMq"/>
                     <constraint firstItem="jQQ-J6-fNP" firstAttribute="leading" secondItem="QaW-5W-6TK" secondAttribute="leading" id="J9r-bv-1qq"/>
@@ -148,7 +148,7 @@
             </view>
             <connections>
                 <outlet property="bodyField" destination="PnK-Ba-gg9" id="cvK-bU-yhP"/>
-                <outlet property="bottomConstraint" destination="y8A-tJ-iGG" id="cTD-SR-Fyi"/>
+                <outlet property="bottomConstraint" destination="Csb-x0-iMq" id="m6A-E5-PaE"/>
                 <outlet property="descriptionLabel" destination="149-2t-OiF" id="nFK-Ot-Ytv"/>
                 <outlet property="dismissButton" destination="KHO-oX-kIq" id="fAR-xt-YWl"/>
                 <outlet property="headerLabel" destination="onu-Wg-EYc" id="ter-ik-o6g"/>

@@ -39,7 +39,7 @@ extension Article: PublishmentViewControllerPresentable {}
     optional func publishmentViewControllerDidSuccessfullyPublishDataObject(publishmentViewController: PublishmentViewController)
 }
 
-class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTokenFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTokenFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
     
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var publishButton: UIButton!
@@ -49,12 +49,12 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var titleField: UITextView?
     @IBOutlet weak var bodyField: UITextView!
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var tagsLabel: UILabel?
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var imagesLabel: UILabel!
     @IBOutlet weak var separator: UIView!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     typealias SelfType = PublishmentViewController
     
@@ -97,7 +97,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
     override func awakeFromNib() {
         super.awakeFromNib()
         let theme = SettingsManager.defaultManager.currentTheme
-        scrollView.backgroundColor = theme.backgroundColorA
+        view.backgroundColor = theme.backgroundColorA
         for v in [UIView?](arrayLiteral: titleField, tagsField, bodyField) {
             v?.msr_borderColor = theme.borderColorA
             v?.backgroundColor = theme.backgroundColorB
@@ -128,14 +128,11 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
         for v in [UITextView?](arrayLiteral: titleField, bodyField) {
             v?.keyboardAppearance = theme.keyboardAppearance
         }
-        scrollView.alwaysBounceVertical = false
         scrollView.delaysContentTouches = false
         scrollView.scrollIndicatorInsets.top = 20
         scrollView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         let tap = UITapGestureRecognizer(target: self, action: "didTouchBlankArea")
-        let pan = UIPanGestureRecognizer(target: self, action: "didTouchBlankArea")
         scrollView.addGestureRecognizer(tap)
-        scrollView.addGestureRecognizer(pan)
         for identifier in SelfType.identifiers {
             imageCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: identifier)
         }
@@ -530,9 +527,8 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
             [weak self] in
             if let self_ = self {
                 let bottom = UIScreen.mainScreen().bounds.height - info.frameEnd.minY
-                self_.bottomConstraint.constant = bottom + 20
-                self_.scrollView.scrollIndicatorInsets.bottom = bottom
-                self_.scrollView.layoutIfNeeded()
+                self_.bottomConstraint.constant = bottom
+                self_.view.layoutIfNeeded()
             }
             return
         }

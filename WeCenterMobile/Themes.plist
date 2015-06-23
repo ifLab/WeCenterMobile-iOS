@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Current</key>
-	<string>Night</string>
+	<string>Day</string>
 	<key>Day</key>
 	<dict>
 		<key>Title Font Name</key>
@@ -29,7 +29,7 @@
 		<key>Background Color B</key>
 		<real>4126537215</real>
 		<key>Border Color A</key>
-		<integer>3772834047</integer>
+		<real>3772834047</real>
 		<key>Border Color B</key>
 		<integer>2661195519</integer>
 		<key>Control Color A</key>
