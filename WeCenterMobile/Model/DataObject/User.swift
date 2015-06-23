@@ -325,6 +325,23 @@ class User: DataObject {
             failure: failure)
     }
     
+    class func registerWithEmail(email: String, name: String, password: String, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
+        NetworkManager.defaultManager!.POST("User Registration",
+            parameters: [
+                "user_name": name,
+                "email": email,
+                "password": password
+            ],
+            success: {
+                data in
+                let userID = Int(msr_object: data["uid"])!
+                let user = User.cachedObjectWithID(userID)
+                user.name = name
+                success?(user)
+            },
+            failure: failure)
+    }
+    
     class func loginWithCookiesAndCacheInStorage(#success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
         let defaults = NSUserDefaults.standardUserDefaults()
         let data = defaults.objectForKey(UserDefaultsCookiesKey) as? NSData

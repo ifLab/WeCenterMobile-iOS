@@ -34,7 +34,7 @@
 		<string>api/profile.php</string>
 		<key>User Extra Information</key>
 		<string>?/api/account/get_userinfo/</string>
-		<key>User Register</key>
+		<key>User Registration</key>
 		<string>?/api/account/register_process/</string>
 		<key>User Avatar</key>
 		<string>uploads/avatar/</string>

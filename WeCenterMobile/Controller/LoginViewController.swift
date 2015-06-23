@@ -35,6 +35,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var loginActivityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var titleLabelContainerView: UIVisualEffectView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var errorMessageLabel: UILabel!
     @IBOutlet weak var changeStateButton: UIButton!
     
     var state: LoginViewControllerState = .Login {
@@ -47,10 +48,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 animations: {
                     [weak self] in
                     if let self_ = self {
+                        self_.errorMessageLabel.text = ""
                         if self_.state == .Login {
                             self_.emailImageView.alpha = 0
                             self_.emailFieldUnderline.contentView.backgroundColor = UIColor.clearColor()
                             self_.emailField.alpha = 0
+                            self_.loginButton.removeTarget(self, action: "register", forControlEvents: .TouchUpInside)
+                            self_.loginButton.addTarget(self, action: "login", forControlEvents: .TouchUpInside)
                             self_.loginButtonLabel.text = "登录"
                             self_.changeStateButton.setTitle("没有账号？现在注册！", forState: .Normal)
                         } else {
@@ -58,6 +62,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             self_.emailImageView.alpha = 1
                             self_.emailFieldUnderline.contentView.backgroundColor = UIColor.lightTextColor()
                             self_.emailField.alpha = 1
+                            self_.loginButton.removeTarget(self, action: "login", forControlEvents: .TouchUpInside)
+                            self_.loginButton.addTarget(self, action: "register", forControlEvents: .TouchUpInside)
                             self_.loginButtonLabel.text = "注册"
                             self_.changeStateButton.setTitle("已有账号？马上登录！", forState: .Normal)
                         }
@@ -123,9 +129,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func login() {
-        scrollView.endEditing(true)
+        view.endEditing(true)
         loginButton.hidden = true
         loginButtonLabel.hidden = true
+        changeStateButton.hidden = true
         loginActivityIndicatorView.startAnimating()
         User.loginWithName(userNameField.text,
             password: passwordField.text,
@@ -136,6 +143,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     UIView.animateWithDuration(0.5) {
                         self_.loginButton.hidden = false
                         self_.loginButtonLabel.hidden = false
+                        self_.changeStateButton.hidden = false
                         self_.loginActivityIndicatorView.stopAnimating()
                     }
                     self_.presentMainViewController()
@@ -147,8 +155,49 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     UIView.animateWithDuration(0.5) {
                         self_.loginButton.hidden = false
                         self_.loginButtonLabel.hidden = false
+                        self_.changeStateButton.hidden = false
                         self_.loginActivityIndicatorView.stopAnimating()
                     }
+                    self_.errorMessageLabel.text = (error.userInfo?[NSLocalizedDescriptionKey] as? String) ?? "未知错误"
+                    let s = AFViewShaker(viewsArray: [self_.userNameImageViewContainerView, self_.userNameField, self_.passwordImageViewContainerView, self_.passwordField, self_.userNameFieldUnderline, self_.passwordFieldUnderline])
+                    s.shake()
+                }
+            })
+    }
+    
+    @IBAction func register() {
+        view.endEditing(true)
+        loginButton.hidden = true
+        loginButtonLabel.hidden = true
+        changeStateButton.hidden = true
+        errorMessageLabel.text = ""
+        loginActivityIndicatorView.startAnimating()
+        User.registerWithEmail(emailField.text ?? "",
+            name: userNameField.text ?? "",
+            password: passwordField.text ?? "",
+            success: {
+                [weak self] user in
+                User.currentUser = user
+                if let self_ = self {
+                    UIView.animateWithDuration(0.5) {
+                        self_.loginButton.hidden = false
+                        self_.loginButtonLabel.hidden = false
+                        self_.changeStateButton.hidden = false
+                        self_.loginActivityIndicatorView.stopAnimating()
+                    }
+                    self_.presentMainViewController()
+                }
+            },
+            failure: {
+                [weak self] error in
+                if let self_ = self {
+                    UIView.animateWithDuration(0.5) {
+                        self_.loginButton.hidden = false
+                        self_.loginButtonLabel.hidden = false
+                        self_.changeStateButton.hidden = false
+                        self_.loginActivityIndicatorView.stopAnimating()
+                    }
+                    self_.errorMessageLabel.text = (error.userInfo?[NSLocalizedDescriptionKey] as? String) ?? "未知错误"
                     let s = AFViewShaker(viewsArray: [self_.userNameImageViewContainerView, self_.userNameField, self_.passwordImageViewContainerView, self_.passwordField, self_.userNameFieldUnderline, self_.passwordFieldUnderline, self_.emailImageViewContainerView, self_.emailField, self_.emailFieldUnderline])
                     s.shake()
                 }
@@ -159,6 +208,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         appDelegate.mainViewController = MainViewController()
         appDelegate.mainViewController.modalTransitionStyle = .CrossDissolve
         presentViewController(appDelegate.mainViewController, animated: true, completion: nil)
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        errorMessageLabel.text = ""
+        return true
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

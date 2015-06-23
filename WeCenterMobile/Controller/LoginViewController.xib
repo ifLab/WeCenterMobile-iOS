@@ -180,6 +180,12 @@
                                                 <blurEffect style="dark"/>
                                             </vibrancyEffect>
                                         </visualEffectView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKk-2W-Wrv" userLabel="Error Message Label">
+                                            <rect key="frame" x="300" y="425" width="0.0" height="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="1" green="0.32156862745098042" blue="0.32156862745098042" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dvc-PF-fid" userLabel="Login Button Vibrancy View">
                                             <rect key="frame" x="175" y="440" width="250" height="40"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cCS-yF-qZn" userLabel="Container">
@@ -269,7 +275,9 @@
                                         <constraint firstAttribute="height" secondItem="yW5-jY-fWl" secondAttribute="height" id="NLF-0s-jnD"/>
                                         <constraint firstItem="yW5-jY-fWl" firstAttribute="leading" secondItem="xNo-9M-oLj" secondAttribute="leading" id="NmK-Pb-oAM"/>
                                         <constraint firstItem="QDq-u0-G2S" firstAttribute="top" secondItem="Dvc-PF-fid" secondAttribute="top" id="OrJ-RG-q4x"/>
+                                        <constraint firstItem="QDq-u0-G2S" firstAttribute="top" secondItem="cKk-2W-Wrv" secondAttribute="bottom" constant="15" id="PKg-eQ-trc"/>
                                         <constraint firstItem="IVK-wE-vao" firstAttribute="leading" secondItem="QDq-u0-G2S" secondAttribute="leading" id="Pcy-oU-QlK"/>
+                                        <constraint firstAttribute="centerX" secondItem="cKk-2W-Wrv" secondAttribute="centerX" id="Q7t-bA-i3B"/>
                                         <constraint firstItem="WIT-5W-JNf" firstAttribute="trailing" secondItem="rMi-4B-gzc" secondAttribute="trailing" constant="5" id="QnJ-Jl-OrV"/>
                                         <constraint firstAttribute="centerX" secondItem="Dvc-PF-fid" secondAttribute="centerX" id="RdE-aM-KTH"/>
                                         <constraint firstItem="IVK-wE-vao" firstAttribute="trailing" secondItem="QDq-u0-G2S" secondAttribute="trailing" id="TEb-KK-8Lu"/>
@@ -328,6 +336,7 @@
                 <outlet property="emailFieldUnderline" destination="aA4-iu-e4v" id="pZT-8H-5uI"/>
                 <outlet property="emailImageView" destination="Gdj-2Z-S9K" id="pQm-ni-NfO"/>
                 <outlet property="emailImageViewContainerView" destination="Own-P2-rzR" id="TOS-8V-7rk"/>
+                <outlet property="errorMessageLabel" destination="cKk-2W-Wrv" id="7uo-is-aB8"/>
                 <outlet property="loginActivityIndicatorView" destination="afB-0D-eON" id="WIb-2u-0uE"/>
                 <outlet property="loginButton" destination="Tl7-4e-iot" id="Dh2-Nl-23k"/>
                 <outlet property="loginButtonLabel" destination="QDq-u0-G2S" id="loV-gh-l0g"/>
