@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Current</key>
-	<string>Day</string>
+	<string>Night</string>
 	<key>Day</key>
 	<dict>
 		<key>Title Font Name</key>
@@ -50,6 +50,8 @@
 		<integer>0</integer>
 		<key>Background Blur Effect Style</key>
 		<integer>0</integer>
+		<key>Keyboard Appearence</key>
+		<integer>2</integer>
 	</dict>
 	<key>Night</key>
 	<dict>
@@ -97,6 +99,8 @@
 		<integer>1</integer>
 		<key>Background Blur Effect Style</key>
 		<integer>2</integer>
+		<key>Keyboard Appearence</key>
+		<integer>1</integer>
 	</dict>
 </dict>
 </plist>

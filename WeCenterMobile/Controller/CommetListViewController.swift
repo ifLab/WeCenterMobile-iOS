@@ -75,7 +75,7 @@ class CommentListViewController: UITableViewController, UITextFieldDelegate {
         tableView.contentInset.bottom = 8
         tableView.estimatedRowHeight = 50
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.keyboardDismissMode = .Interactive
+        tableView.keyboardDismissMode = .OnDrag
         tableView.backgroundColor = theme.backgroundColorA
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
         keyboardBar.userAtView.removeButton.addTarget(self, action: "removeAtUser", forControlEvents: .TouchUpInside)
