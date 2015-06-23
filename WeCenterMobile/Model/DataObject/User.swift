@@ -337,7 +337,13 @@ class User: DataObject {
                 let userID = Int(msr_object: data["uid"])!
                 let user = User.cachedObjectWithID(userID)
                 user.name = name
-                success?(user)
+                let cookies = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies as! [NSHTTPCookie]
+                let cookiesData = NSKeyedArchiver.archivedDataWithRootObject(cookies)
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(cookiesData, forKey: UserDefaultsCookiesKey)
+                defaults.setObject(user.id, forKey: UserDefaultsUserIDKey)
+                defaults.synchronize()
+                self.loginWithCookiesAndCacheInStorage(success: success, failure: failure)
             },
             failure: failure)
     }
