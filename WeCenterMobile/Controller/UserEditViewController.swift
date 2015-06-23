@@ -64,6 +64,10 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
         secretSegment.tintColor = UIColor.whiteColor()
         secretSegment.titleLabel.font = UIFont.systemFontOfSize(12)
         femaleSegment.tintColor = UIColor.msr_materialPink()
+        let tap = UITapGestureRecognizer(target: self, action: "didTouchBlankArea")
+        let pan = UIPanGestureRecognizer(target: self, action: "didTouchBlankArea")
+        scrollView.addGestureRecognizer(tap)
+        scrollView.addGestureRecognizer(pan)
         reloadData()
     }
     
@@ -184,6 +188,10 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
         uploadButton.enabled = true
         uploadButton.setTitle("上传", forState: .Normal)
         uploadActivityIndicatorView.stopAnimating()
+    }
+    
+    func didTouchBlankArea() {
+        view.endEditing(true)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

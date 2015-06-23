@@ -132,6 +132,10 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
         scrollView.delaysContentTouches = false
         scrollView.scrollIndicatorInsets.top = 20
         scrollView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
+        let tap = UITapGestureRecognizer(target: self, action: "didTouchBlankArea")
+        let pan = UIPanGestureRecognizer(target: self, action: "didTouchBlankArea")
+        scrollView.addGestureRecognizer(tap)
+        scrollView.addGestureRecognizer(pan)
         for identifier in SelfType.identifiers {
             imageCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: identifier)
         }
@@ -424,6 +428,10 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return SettingsManager.defaultManager.currentTheme.statusBarStyle
+    }
+    
+    func didTouchBlankArea() {
+        view.endEditing(true)
     }
     
     func dismiss() {
