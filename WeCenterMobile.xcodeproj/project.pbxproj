@@ -262,6 +262,8 @@
 		95387BFF1ABEA456004DF8EB /* String+MSREncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95387BFE1ABEA456004DF8EB /* String+MSREncryption.swift */; };
 		954A76A91AFC399D002A72A9 /* DataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A76A81AFC399D002A72A9 /* DataObject.swift */; };
 		954A76AB1AFD0323002A72A9 /* PublishmentViewControllerB.xib in Resources */ = {isa = PBXBuildFile; fileRef = 954A76AA1AFD0323002A72A9 /* PublishmentViewControllerB.xib */; };
+		954D3BD81B3AA8FA000F81EC /* MSRWeChatSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 954D3BD61B3AA84C000F81EC /* MSRWeChatSDK.framework */; };
+		954D3BD91B3AA8FA000F81EC /* MSRWeChatSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 954D3BD61B3AA84C000F81EC /* MSRWeChatSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9550A2971AF8B6D0005F81F7 /* KeyboardBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9550A2961AF8B6D0005F81F7 /* KeyboardBar.swift */; };
 		955770721AD68E960060A120 /* UIImageView+MSRSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955770711AD68E960060A120 /* UIImageView+MSRSetter.swift */; };
 		955770781AD757B30060A120 /* UIImage+MSRColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955770771AD757B30060A120 /* UIImage+MSRColor.swift */; };
@@ -273,7 +275,6 @@
 		9568F3A41AECBE7300B201A8 /* MSRSegmentedControlCircleIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9568F3A31AECBE7300B201A8 /* MSRSegmentedControlCircleIndicator.swift */; };
 		956E70EF1AAFC4E100A3FD7D /* WeCenterMobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 956E70ED1AAFC4E100A3FD7D /* WeCenterMobile.xcdatamodeld */; };
 		956EF0781B16F9FE00C9DA2A /* TableViewWithKeyboardBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EF0771B16F9FE00C9DA2A /* TableViewWithKeyboardBar.swift */; };
-		9573514E1B3A855400BC5D11 /* MSRWeChatSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9573514D1B3A855400BC5D11 /* MSRWeChatSDK.framework */; };
 		9580EDA41AE4DEE000EBF5FE /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9580ED991AE4DEE000EBF5FE /* libWeiboSDK.a */; };
 		9580EDA51AE4DEE000EBF5FE /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9580EDA11AE4DEE000EBF5FE /* WeiboSDK.bundle */; };
 		9583E3351AB6812400067F37 /* MSRLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583E3341AB6812400067F37 /* MSRLayoutGuide.swift */; };
@@ -401,6 +402,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				954D3BD91B3AA8FA000F81EC /* MSRWeChatSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -819,6 +821,7 @@
 		95387BFE1ABEA456004DF8EB /* String+MSREncryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MSREncryption.swift"; sourceTree = "<group>"; };
 		954A76A81AFC399D002A72A9 /* DataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataObject.swift; sourceTree = "<group>"; };
 		954A76AA1AFD0323002A72A9 /* PublishmentViewControllerB.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishmentViewControllerB.xib; sourceTree = "<group>"; };
+		954D3BD61B3AA84C000F81EC /* MSRWeChatSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MSRWeChatSDK.framework; path = External/Generated/MSRWeChatSDK.framework; sourceTree = "<group>"; };
 		9550A2961AF8B6D0005F81F7 /* KeyboardBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardBar.swift; sourceTree = "<group>"; };
 		9554D8E51ADE2C5F00C94061 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		9554D8E71ADE2C8C00C94061 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
@@ -839,7 +842,6 @@
 		9568F3A31AECBE7300B201A8 /* MSRSegmentedControlCircleIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRSegmentedControlCircleIndicator.swift; sourceTree = "<group>"; };
 		956E70EE1AAFC4E100A3FD7D /* WeCenterMobile.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeCenterMobile.xcdatamodel; sourceTree = "<group>"; };
 		956EF0771B16F9FE00C9DA2A /* TableViewWithKeyboardBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewWithKeyboardBar.swift; sourceTree = "<group>"; };
-		9573514D1B3A855400BC5D11 /* MSRWeChatSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MSRWeChatSDK.framework; path = External/Generated/MSRWeChatSDK.framework; sourceTree = "<group>"; };
 		9580ED991AE4DEE000EBF5FE /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		9580ED9A1AE4DEE000EBF5FE /* WBHttpRequest+WeiboShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboShare.h"; sourceTree = "<group>"; };
 		9580ED9B1AE4DEE000EBF5FE /* WBHttpRequest+WeiboToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboToken.h"; sourceTree = "<group>"; };
@@ -1004,10 +1006,10 @@
 			files = (
 				956140171AE2E92E0077FBA0 /* libz.dylib in Frameworks */,
 				956140151AE2E8DC0077FBA0 /* libsqlite3.dylib in Frameworks */,
-				9573514E1B3A855400BC5D11 /* MSRWeChatSDK.framework in Frameworks */,
 				950FE7E21A1DA53A00167D09 /* CoreText.framework in Frameworks */,
 				9580EDA41AE4DEE000EBF5FE /* libWeiboSDK.a in Frameworks */,
 				950FE7E31A1DA53A00167D09 /* UIKit.framework in Frameworks */,
+				954D3BD81B3AA8FA000F81EC /* MSRWeChatSDK.framework in Frameworks */,
 				950FE7E41A1DA53A00167D09 /* Foundation.framework in Frameworks */,
 				950FE7E71A1DA53A00167D09 /* QuartzCore.framework in Frameworks */,
 				950FE7E81A1DA53A00167D09 /* libxml2.dylib in Frameworks */,
@@ -1128,7 +1130,7 @@
 				950FE7D71A1DA50600167D09 /* ImageIO.framework */,
 				9554D8FE1ADF392700C94061 /* MessageUI.framework */,
 				950FE7D91A1DA50D00167D09 /* MobileCoreServices.framework */,
-				9573514D1B3A855400BC5D11 /* MSRWeChatSDK.framework */,
+				954D3BD61B3AA84C000F81EC /* MSRWeChatSDK.framework */,
 				950FE7D51A1DA4FF00167D09 /* QuartzCore.framework */,
 				9554D8EE1ADE2DAA00C94061 /* Security.framework */,
 				9554D8E91ADE2D8800C94061 /* SystemConfiguration.framework */,
@@ -2749,7 +2751,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
-					"$(PROJECT_DIR)/WeCenterMobile/External/MSRWeChatSDK/MSRWeChatSDK/OfficialSDK",
 					"$(PROJECT_DIR)/WeCenterMobile/External/SinaWeiboSDK/libWeiboSDK",
 					"$(PROJECT_DIR)/WeCenterMobile/External/SinaWeiboSDK/WeiboSDKDemo/libWeiboSDK",
 				);
@@ -2787,7 +2788,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
-					"$(PROJECT_DIR)/WeCenterMobile/External/MSRWeChatSDK/MSRWeChatSDK/OfficialSDK",
 					"$(PROJECT_DIR)/WeCenterMobile/External/SinaWeiboSDK/libWeiboSDK",
 					"$(PROJECT_DIR)/WeCenterMobile/External/SinaWeiboSDK/WeiboSDKDemo/libWeiboSDK",
 				);

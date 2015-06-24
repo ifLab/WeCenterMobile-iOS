@@ -6,15 +6,23 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		8iRMa3ekARc8hge3TNHek0KsH74=
+		3v0u7a8XOxQIx8ztlqbDKr5zvng=
 		</data>
 		<key>Headers/MSRWeChatSDK-Swift.h</key>
 		<data>
-		LxmPEoDcWyeHqHtTD2NkzoQeu9c=
+		ZI1wTFWTtCJEodsEllBdSrHu8Lw=
 		</data>
 		<key>Headers/MSRWeChatSDK.h</key>
 		<data>
-		lO2PSlwaXXKrmR+mFaOe+Viy/2o=
+		uT+zoJZF6eLrP/Lmrw3zBQHqlcg=
+		</data>
+		<key>Headers/WXApi.h</key>
+		<data>
+		+3TZ+MR6EqqLDLyZWyacXV8WfCM=
+		</data>
+		<key>Headers/WXApiObject.h</key>
+		<data>
+		5CyRFsWjkotsit3OdGrdVUhVNik=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -26,19 +34,11 @@
 		</data>
 		<key>Modules/MSRWeChatSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		LCIfgD+TlqBZ+Gdjffr58fO37QU=
+		fGSQzKB+0nu4D5u7Gj8Cp2qVe80=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
 		BZZvLnPKNenzePX72rHjwiP4Wfw=
-		</data>
-		<key>PrivateHeaders/WXApi.h</key>
-		<data>
-		+3TZ+MR6EqqLDLyZWyacXV8WfCM=
-		</data>
-		<key>PrivateHeaders/WXApiObject.h</key>
-		<data>
-		5CyRFsWjkotsit3OdGrdVUhVNik=
 		</data>
 		<key>read_me.txt</key>
 		<data>
@@ -49,15 +49,23 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		8iRMa3ekARc8hge3TNHek0KsH74=
+		3v0u7a8XOxQIx8ztlqbDKr5zvng=
 		</data>
 		<key>Headers/MSRWeChatSDK-Swift.h</key>
 		<data>
-		LxmPEoDcWyeHqHtTD2NkzoQeu9c=
+		ZI1wTFWTtCJEodsEllBdSrHu8Lw=
 		</data>
 		<key>Headers/MSRWeChatSDK.h</key>
 		<data>
-		lO2PSlwaXXKrmR+mFaOe+Viy/2o=
+		uT+zoJZF6eLrP/Lmrw3zBQHqlcg=
+		</data>
+		<key>Headers/WXApi.h</key>
+		<data>
+		+3TZ+MR6EqqLDLyZWyacXV8WfCM=
+		</data>
+		<key>Headers/WXApiObject.h</key>
+		<data>
+		5CyRFsWjkotsit3OdGrdVUhVNik=
 		</data>
 		<key>Modules/MSRWeChatSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -65,19 +73,11 @@
 		</data>
 		<key>Modules/MSRWeChatSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		LCIfgD+TlqBZ+Gdjffr58fO37QU=
+		fGSQzKB+0nu4D5u7Gj8Cp2qVe80=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
 		BZZvLnPKNenzePX72rHjwiP4Wfw=
-		</data>
-		<key>PrivateHeaders/WXApi.h</key>
-		<data>
-		+3TZ+MR6EqqLDLyZWyacXV8WfCM=
-		</data>
-		<key>PrivateHeaders/WXApiObject.h</key>
-		<data>
-		5CyRFsWjkotsit3OdGrdVUhVNik=
 		</data>
 		<key>read_me.txt</key>
 		<data>

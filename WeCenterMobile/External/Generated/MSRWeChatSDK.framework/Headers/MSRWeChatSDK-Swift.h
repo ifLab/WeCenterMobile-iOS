@@ -84,9 +84,9 @@ typedef struct _NSZone NSZone;
 #endif
 #if defined(__has_feature) && __has_feature(modules)
 @import ObjectiveC;
-@import MSRWeChatScope;
-@import WeChatSDK;
 #endif
+
+#import <MSRWeChatSDK/MSRWeChatSDK.h>
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
@@ -94,11 +94,10 @@ enum MSRWeChatScene : NSInteger;
 @class UIImage;
 @class NSData;
 @class NSURL;
-@class UIViewController;
-@protocol MSRWeChatAPIDelegate;
 @class MSRWeChatCard;
 enum MSRWeChatProfileType : NSInteger;
 enum MSRWeChatWebviewType : NSInteger;
+@protocol MSRWeChatAPIDelegate;
 
 SWIFT_CLASS("_TtC12MSRWeChatSDK12MSRWeChatAPI")
 @interface MSRWeChatAPI : NSObject
@@ -127,7 +126,6 @@ SWIFT_CLASS("_TtC12MSRWeChatSDK12MSRWeChatAPI")
 + (void)sendRequestToScene:(enum MSRWeChatScene)scene emoticonData:(NSData * __nonnull)emoticonData completion:(void (^ __nullable)(BOOL))completion;
 + (void)sendRequestToScene:(enum MSRWeChatScene)scene emoticonData:(NSData * __nonnull)emoticonData title:(NSString * __nullable)title description:(NSString * __nullable)description thumbnailImage:(UIImage * __nullable)thumbnailImage completion:(void (^ __nullable)(BOOL))completion;
 + (void)sendRequestToScene:(enum MSRWeChatScene)scene emoticonData:(NSData * __nonnull)emoticonData title:(NSString * __nullable)title description:(NSString * __nullable)description thumbnailImage:(UIImage * __nullable)thumbnailImage tagName:(NSString * __nullable)tagName extraMessage:(NSString * __nullable)extraMessage action:(NSString * __nullable)action completion:(void (^ __nullable)(BOOL))completion;
-+ (void)sendAuthorizationRequestWithScope:(MSRWeChatScope)scope openID:(NSString * __nonnull)openID mark:(NSString * __nullable)mark currentViewController:(UIViewController * __nonnull)currentViewController delegate:(id <MSRWeChatAPIDelegate> __nonnull)delegate completion:(void (^ __nullable)(BOOL))completion;
 + (void)sendCardsAddingRequestWithCards:(NSArray * __nonnull)cards completion:(void (^ __nullable)(BOOL))completion;
 + (void)sendBusinessProfilePresentingRequestWithProfileType:(enum MSRWeChatProfileType)profileType username:(NSString * __nonnull)username extraMessage:(NSString * __nullable)extraMessage completion:(void (^ __nullable)(BOOL))completion;
 + (void)sendBusinessWebviewPresentingRequestWithWebviewType:(enum MSRWeChatWebviewType)webviewType username:(NSString * __nonnull)username extraMessage:(NSString * __nullable)extraMessage completion:(void (^ __nullable)(BOOL))completion;
