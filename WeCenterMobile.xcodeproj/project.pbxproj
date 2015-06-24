@@ -2894,7 +2894,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "\"${SDK_DIR}\"/usr/include/libxml2";
+				USER_HEADER_SEARCH_PATHS = "\"${SDK_DIR}\"/usr/include/libxml2 $(PROJECT_DIR)/WeCenterMobile/External/RMActionController/";
 			};
 			name = Debug;
 		};
@@ -2929,7 +2929,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "\"${SDK_DIR}\"/usr/include/libxml2";
+				USER_HEADER_SEARCH_PATHS = "\"${SDK_DIR}\"/usr/include/libxml2 $(PROJECT_DIR)/WeCenterMobile/External/RMActionController/";
 			};
 			name = Release;
 		};

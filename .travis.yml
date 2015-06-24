@@ -1,0 +1,4 @@
+language: objective-c
+xcode_project: WeCenterMobile.xcodeproj
+xcode_scheme: WeCenterMobile
+
