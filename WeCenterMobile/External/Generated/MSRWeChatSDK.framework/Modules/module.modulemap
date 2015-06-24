@@ -1,0 +1,10 @@
+framework module MSRWeChatSDK {
+  umbrella header "MSRWeChatSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module MSRWeChatSDK.Swift {
+    header "MSRWeChatSDK-Swift.h"
+}

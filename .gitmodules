@@ -16,9 +16,6 @@
 [submodule "WeCenterMobile/External/DTCoreText"]
 	path = WeCenterMobile/External/DTCoreText
 	url = https://github.com/Cocoanetics/DTCoreText.git
-[submodule "WeCenterMobile/External/MSRWeChatSDK"]
-	path = WeCenterMobile/External/MSRWeChatSDK
-	url = https://github.com/Msr-B/MSRWeChatSDK.git
 [submodule "WeCenterMobile/External/SinaWeiboSDK"]
 	path = WeCenterMobile/External/SinaWeiboSDK
 	url = https://github.com/sinaweibosdk/weibo_ios_sdk.git

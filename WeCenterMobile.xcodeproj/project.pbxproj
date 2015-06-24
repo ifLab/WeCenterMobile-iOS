@@ -266,20 +266,14 @@
 		955770721AD68E960060A120 /* UIImageView+MSRSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955770711AD68E960060A120 /* UIImageView+MSRSetter.swift */; };
 		955770781AD757B30060A120 /* UIImage+MSRColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955770771AD757B30060A120 /* UIImage+MSRColor.swift */; };
 		955E2A061AF75C2100A04791 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955E2A051AF75C2100A04791 /* Comment.swift */; };
-		956140021AE2E6080077FBA0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 95613FEB1AE2E6080077FBA0 /* .gitignore */; };
-		956140031AE2E6080077FBA0 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 95613FEC1AE2E6080077FBA0 /* LICENSE */; };
-		956140041AE2E6080077FBA0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95613FEE1AE2E6080077FBA0 /* Info.plist */; };
-		9561400A1AE2E6080077FBA0 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 95613FF71AE2E6080077FBA0 /* read_me.txt */; };
-		9561400B1AE2E6080077FBA0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95613FFF1AE2E6080077FBA0 /* Info.plist */; };
 		956140151AE2E8DC0077FBA0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7D11A1DA4F300167D09 /* libsqlite3.dylib */; };
 		956140171AE2E92E0077FBA0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE7CF1A1DA4EC00167D09 /* libz.dylib */; };
-		9561401B1AE2EA870077FBA0 /* MSRWeChatSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 956140111AE2E6080077FBA0 /* MSRWeChatSDK.framework */; };
-		9561401C1AE2EA870077FBA0 /* MSRWeChatSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 956140111AE2E6080077FBA0 /* MSRWeChatSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9568F39F1AEC748A00B201A8 /* UserEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9568F39E1AEC748A00B201A8 /* UserEditViewController.swift */; };
 		9568F3A21AEC74AB00B201A8 /* UserEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9568F3A11AEC74AB00B201A8 /* UserEditViewController.xib */; };
 		9568F3A41AECBE7300B201A8 /* MSRSegmentedControlCircleIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9568F3A31AECBE7300B201A8 /* MSRSegmentedControlCircleIndicator.swift */; };
 		956E70EF1AAFC4E100A3FD7D /* WeCenterMobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 956E70ED1AAFC4E100A3FD7D /* WeCenterMobile.xcdatamodeld */; };
 		956EF0781B16F9FE00C9DA2A /* TableViewWithKeyboardBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EF0771B16F9FE00C9DA2A /* TableViewWithKeyboardBar.swift */; };
+		9573514E1B3A855400BC5D11 /* MSRWeChatSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9573514D1B3A855400BC5D11 /* MSRWeChatSDK.framework */; };
 		9580EDA41AE4DEE000EBF5FE /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9580ED991AE4DEE000EBF5FE /* libWeiboSDK.a */; };
 		9580EDA51AE4DEE000EBF5FE /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9580EDA11AE4DEE000EBF5FE /* WeiboSDK.bundle */; };
 		9583E3351AB6812400067F37 /* MSRLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583E3341AB6812400067F37 /* MSRLayoutGuide.swift */; };
@@ -391,27 +385,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		956140101AE2E6080077FBA0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 95613FFB1AE2E6080077FBA0 /* MSRWeChatSDK.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9507CE171ADCEEA7001E1D33;
-			remoteInfo = MSRWeChatSDK;
-		};
-		956140121AE2E6080077FBA0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 95613FFB1AE2E6080077FBA0 /* MSRWeChatSDK.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9507CE221ADCEEA8001E1D33;
-			remoteInfo = MSRWeChatSDKTests;
-		};
-		9561401D1AE2EA870077FBA0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 95613FFB1AE2E6080077FBA0 /* MSRWeChatSDK.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9507CE161ADCEEA7001E1D33;
-			remoteInfo = MSRWeChatSDK;
-		};
 		9588F5FC1A1D9D1C001BC426 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9588F5DB1A1D9D1C001BC426 /* Project object */;
@@ -428,7 +401,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				9561401C1AE2EA870077FBA0 /* MSRWeChatSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -862,29 +834,12 @@
 		955770711AD68E960060A120 /* UIImageView+MSRSetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+MSRSetter.swift"; sourceTree = "<group>"; };
 		955770771AD757B30060A120 /* UIImage+MSRColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+MSRColor.swift"; sourceTree = "<group>"; };
 		955E2A051AF75C2100A04791 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		95613FEB1AE2E6080077FBA0 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		95613FEC1AE2E6080077FBA0 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		95613FEE1AE2E6080077FBA0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		95613FEF1AE2E6080077FBA0 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		95613FF01AE2E6080077FBA0 /* MSRWeChatScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSRWeChatScope.h; sourceTree = "<group>"; };
-		95613FF11AE2E6080077FBA0 /* MSRWeChatSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSRWeChatSDK.h; sourceTree = "<group>"; };
-		95613FF21AE2E6080077FBA0 /* MSRWeChatSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRWeChatSDK.swift; sourceTree = "<group>"; };
-		95613FF31AE2E6080077FBA0 /* MSRWeChatSDK.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MSRWeChatSDK.xcassets; sourceTree = "<group>"; };
-		95613FF51AE2E6080077FBA0 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
-		95613FF61AE2E6080077FBA0 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		95613FF71AE2E6080077FBA0 /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
-		95613FF81AE2E6080077FBA0 /* WeChatSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatSDK.h; sourceTree = "<group>"; };
-		95613FF91AE2E6080077FBA0 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
-		95613FFA1AE2E6080077FBA0 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
-		95613FFB1AE2E6080077FBA0 /* MSRWeChatSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = MSRWeChatSDK.xcodeproj; sourceTree = "<group>"; };
-		95613FFF1AE2E6080077FBA0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		956140001AE2E6080077FBA0 /* MSRWeChatSDKTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRWeChatSDKTests.swift; sourceTree = "<group>"; };
-		956140011AE2E6080077FBA0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9568F39E1AEC748A00B201A8 /* UserEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEditViewController.swift; sourceTree = "<group>"; };
 		9568F3A11AEC74AB00B201A8 /* UserEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserEditViewController.xib; sourceTree = "<group>"; };
 		9568F3A31AECBE7300B201A8 /* MSRSegmentedControlCircleIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRSegmentedControlCircleIndicator.swift; sourceTree = "<group>"; };
 		956E70EE1AAFC4E100A3FD7D /* WeCenterMobile.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeCenterMobile.xcdatamodel; sourceTree = "<group>"; };
 		956EF0771B16F9FE00C9DA2A /* TableViewWithKeyboardBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewWithKeyboardBar.swift; sourceTree = "<group>"; };
+		9573514D1B3A855400BC5D11 /* MSRWeChatSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MSRWeChatSDK.framework; path = External/Generated/MSRWeChatSDK.framework; sourceTree = "<group>"; };
 		9580ED991AE4DEE000EBF5FE /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		9580ED9A1AE4DEE000EBF5FE /* WBHttpRequest+WeiboShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboShare.h"; sourceTree = "<group>"; };
 		9580ED9B1AE4DEE000EBF5FE /* WBHttpRequest+WeiboToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboToken.h"; sourceTree = "<group>"; };
@@ -1048,8 +1003,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				956140171AE2E92E0077FBA0 /* libz.dylib in Frameworks */,
-				9561401B1AE2EA870077FBA0 /* MSRWeChatSDK.framework in Frameworks */,
 				956140151AE2E8DC0077FBA0 /* libsqlite3.dylib in Frameworks */,
+				9573514E1B3A855400BC5D11 /* MSRWeChatSDK.framework in Frameworks */,
 				950FE7E21A1DA53A00167D09 /* CoreText.framework in Frameworks */,
 				9580EDA41AE4DEE000EBF5FE /* libWeiboSDK.a in Frameworks */,
 				950FE7E31A1DA53A00167D09 /* UIKit.framework in Frameworks */,
@@ -1125,7 +1080,6 @@
 				95A3AAEB1B047F3E00ADF705 /* GBDeviceInfo */,
 				951D2F691AB7F85500DCB678 /* MJRefresh */,
 				95C2E9F01AB0516800F2A326 /* Msr */,
-				95613FEA1AE2E6080077FBA0 /* MSRWeChatSDK */,
 				95ED5F3D1B084F7500CDB225 /* RMActionController */,
 				95ED5F391B084DD600CDB225 /* RMDateSelectionViewController */,
 				9580ED981AE4DEE000EBF5FE /* SinaWeiboSDK */,
@@ -1174,6 +1128,7 @@
 				950FE7D71A1DA50600167D09 /* ImageIO.framework */,
 				9554D8FE1ADF392700C94061 /* MessageUI.framework */,
 				950FE7D91A1DA50D00167D09 /* MobileCoreServices.framework */,
+				9573514D1B3A855400BC5D11 /* MSRWeChatSDK.framework */,
 				950FE7D51A1DA4FF00167D09 /* QuartzCore.framework */,
 				9554D8EE1ADE2DAA00C94061 /* Security.framework */,
 				9554D8E91ADE2D8800C94061 /* SystemConfiguration.framework */,
@@ -1842,64 +1797,6 @@
 			path = Sharing;
 			sourceTree = "<group>";
 		};
-		95613FEA1AE2E6080077FBA0 /* MSRWeChatSDK */ = {
-			isa = PBXGroup;
-			children = (
-				95613FEB1AE2E6080077FBA0 /* .gitignore */,
-				95613FEC1AE2E6080077FBA0 /* LICENSE */,
-				95613FED1AE2E6080077FBA0 /* MSRWeChatSDK */,
-				95613FFB1AE2E6080077FBA0 /* MSRWeChatSDK.xcodeproj */,
-				95613FFE1AE2E6080077FBA0 /* MSRWeChatSDKTests */,
-				956140011AE2E6080077FBA0 /* README.md */,
-			);
-			path = MSRWeChatSDK;
-			sourceTree = "<group>";
-		};
-		95613FED1AE2E6080077FBA0 /* MSRWeChatSDK */ = {
-			isa = PBXGroup;
-			children = (
-				95613FEE1AE2E6080077FBA0 /* Info.plist */,
-				95613FEF1AE2E6080077FBA0 /* module.modulemap */,
-				95613FF01AE2E6080077FBA0 /* MSRWeChatScope.h */,
-				95613FF11AE2E6080077FBA0 /* MSRWeChatSDK.h */,
-				95613FF21AE2E6080077FBA0 /* MSRWeChatSDK.swift */,
-				95613FF31AE2E6080077FBA0 /* MSRWeChatSDK.xcassets */,
-				95613FF41AE2E6080077FBA0 /* OfficialSDK */,
-			);
-			path = MSRWeChatSDK;
-			sourceTree = "<group>";
-		};
-		95613FF41AE2E6080077FBA0 /* OfficialSDK */ = {
-			isa = PBXGroup;
-			children = (
-				95613FF51AE2E6080077FBA0 /* libWeChatSDK.a */,
-				95613FF61AE2E6080077FBA0 /* module.modulemap */,
-				95613FF71AE2E6080077FBA0 /* read_me.txt */,
-				95613FF81AE2E6080077FBA0 /* WeChatSDK.h */,
-				95613FF91AE2E6080077FBA0 /* WXApi.h */,
-				95613FFA1AE2E6080077FBA0 /* WXApiObject.h */,
-			);
-			path = OfficialSDK;
-			sourceTree = "<group>";
-		};
-		95613FFC1AE2E6080077FBA0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				956140111AE2E6080077FBA0 /* MSRWeChatSDK.framework */,
-				956140131AE2E6080077FBA0 /* MSRWeChatSDKTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		95613FFE1AE2E6080077FBA0 /* MSRWeChatSDKTests */ = {
-			isa = PBXGroup;
-			children = (
-				95613FFF1AE2E6080077FBA0 /* Info.plist */,
-				956140001AE2E6080077FBA0 /* MSRWeChatSDKTests.swift */,
-			);
-			path = MSRWeChatSDKTests;
-			sourceTree = "<group>";
-		};
 		9580ED981AE4DEE000EBF5FE /* SinaWeiboSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -2230,7 +2127,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				9561401E1AE2EA870077FBA0 /* PBXTargetDependency */,
 			);
 			name = WeCenterMobile;
 			productName = WeCenterMobile;
@@ -2287,12 +2183,6 @@
 			mainGroup = 9588F5DA1A1D9D1C001BC426;
 			productRefGroup = 9588F5E41A1D9D1C001BC426 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 95613FFC1AE2E6080077FBA0 /* Products */;
-					ProjectRef = 95613FFB1AE2E6080077FBA0 /* MSRWeChatSDK.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				9588F5E21A1D9D1C001BC426 /* WeCenterMobile */,
@@ -2300,23 +2190,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		956140111AE2E6080077FBA0 /* MSRWeChatSDK.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = MSRWeChatSDK.framework;
-			remoteRef = 956140101AE2E6080077FBA0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		956140131AE2E6080077FBA0 /* MSRWeChatSDKTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = MSRWeChatSDKTests.xctest;
-			remoteRef = 956140121AE2E6080077FBA0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9588F5E11A1D9D1C001BC426 /* Resources */ = {
@@ -2326,7 +2199,6 @@
 				9531D7461AF3E4AC00E6549D /* QuestionCell.xib in Resources */,
 				9531D71F1AF3E4AC00E6549D /* AnswerCell.xib in Resources */,
 				950FE1241A1DA2A400167D09 /* Configuration.plist in Resources */,
-				956140021AE2E6080077FBA0 /* .gitignore in Resources */,
 				9531D74C1AF3E4AC00E6549D /* SidebarCategoryCell.xib in Resources */,
 				9531D72C1AF3E4AC00E6549D /* FeaturedQuestionAnswerCellA.xib in Resources */,
 				950FE1251A1DA2A400167D09 /* Discovery.strings in Resources */,
@@ -2354,7 +2226,6 @@
 				954A76AB1AFD0323002A72A9 /* PublishmentViewControllerB.xib in Resources */,
 				95B9BDC31ABAA67900692889 /* PublishmentViewControllerA.xib in Resources */,
 				9531D7481AF3E4AC00E6549D /* QuestionTagListCell.xib in Resources */,
-				9561400B1AE2E6080077FBA0 /* Info.plist in Resources */,
 				9531D7681AF3E85900E6549D /* ImageUploadingProgressBar.xib in Resources */,
 				9531D7331AF3E4AC00E6549D /* AnswerAgreementActionCell.xib in Resources */,
 				9531D7441AF3E4AC00E6549D /* QuestionHeaderCell.xib in Resources */,
@@ -2362,8 +2233,6 @@
 				9568F3A21AEC74AB00B201A8 /* UserEditViewController.xib in Resources */,
 				9515766E1B1B4A5300E5BE8E /* SettingsViewController.storyboard in Resources */,
 				950FE1261A1DA2A400167D09 /* User.strings in Resources */,
-				956140041AE2E6080077FBA0 /* Info.plist in Resources */,
-				956140031AE2E6080077FBA0 /* LICENSE in Resources */,
 				9531D7351AF3E4AC00E6549D /* ArticleAgreementActionCell.xib in Resources */,
 				95D7840E1B1C7821008EB241 /* Themes.plist in Resources */,
 				9531D7401AF3E4AC00E6549D /* QuestionBodyCell.xib in Resources */,
@@ -2372,7 +2241,6 @@
 				95EBCF491B2DB40D0088FC2C /* ArticleSearchResultCell.xib in Resources */,
 				9531D7271AF3E4AC00E6549D /* CommentCell.xib in Resources */,
 				9531D75A1AF3E4AC00E6549D /* UserHeaderView.xib in Resources */,
-				9561400A1AE2E6080077FBA0 /* read_me.txt in Resources */,
 				9531D73B1AF3E4AC00E6549D /* QuestionPublishmentActionCell.xib in Resources */,
 				9580EDA51AE4DEE000EBF5FE /* WeiboSDK.bundle in Resources */,
 				9531D74A1AF3E4AC00E6549D /* QuestionTitleCell.xib in Resources */,
@@ -2724,11 +2592,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9561401E1AE2EA870077FBA0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MSRWeChatSDK;
-			targetProxy = 9561401D1AE2EA870077FBA0 /* PBXContainerItemProxy */;
-		};
 		9588F5FD1A1D9D1C001BC426 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9588F5E21A1D9D1C001BC426 /* WeCenterMobile */;
@@ -2869,7 +2732,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WeCenterMobile/External/Generated",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${PROJECT_DIR}/WeCenterMobile/WeCenterMobile.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2904,7 +2770,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WeCenterMobile/External/Generated",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${PROJECT_DIR}/WeCenterMobile/WeCenterMobile.pch";
 				HEADER_SEARCH_PATHS = (
