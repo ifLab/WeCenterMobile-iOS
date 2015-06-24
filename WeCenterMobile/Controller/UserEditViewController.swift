@@ -52,10 +52,13 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UITextViewD
         let theme = SettingsManager.defaultManager.currentTheme
         view.backgroundColor = theme.backgroundColorA
         scrollView.scrollIndicatorInsets.top = 20
+        scrollView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         signatureTextView.textContainerInset = UIEdgeInsets(top: 8, left: 5, bottom: 8, right: 5)
         for v in [userNameTextView, signatureTextView] {
             v.keyboardAppearance = theme.keyboardAppearance
         }
+        uploadButton.backgroundColor = theme.backgroundColorA.colorWithAlphaComponent(0.5)
+        uploadButton.setTitleColor(theme.subtitleTextColor, forState: .Normal)
         for v in [uploadButton, doneButton, dismissButton] {
             v.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
         }
@@ -75,12 +78,15 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UITextViewD
         }
         birthdayTextField.textColor = theme.subtitleTextColor
         doneButton.setTitleColor(theme.titleTextColor, forState: .Normal)
-        genderSegmentedControl.indicator = MSRSegmentedControlCircleIndicator()
+        let indicator = MSRSegmentedControlCircleIndicator()
+        indicator.fillColor = theme.backgroundColorB
+        indicator.borderColor = theme.borderColorA
+        indicator.borderWidth = 0.5
+        genderSegmentedControl.indicator = indicator
         let maleSegment = MSRDefaultSegment(title: nil, image: UIImage(named: "Male"))
         let secretSegment = MSRDefaultSegment(title: "保密", image: nil)
         let femaleSegment = MSRDefaultSegment(title: nil, image: UIImage(named: "Female"))
         genderSegmentedControl.setSegments([maleSegment, secretSegment, femaleSegment], animated: false)
-        genderSegmentedControl.indicator.tintColor = theme.highlightColor
         maleSegment.tintColor = UIColor.msr_materialBlue()
         secretSegment.tintColor = theme.subtitleTextColor
         secretSegment.titleLabel.font = UIFont.systemFontOfSize(12)
