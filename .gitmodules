@@ -16,9 +16,6 @@
 [submodule "WeCenterMobile/External/DTCoreText"]
 	path = WeCenterMobile/External/DTCoreText
 	url = https://github.com/Cocoanetics/DTCoreText.git
-[submodule "WeCenterMobile/External/SinaWeiboSDK"]
-	path = WeCenterMobile/External/SinaWeiboSDK
-	url = https://github.com/sinaweibosdk/weibo_ios_sdk.git
 [submodule "WeCenterMobile/External/RMDateSelectionViewController"]
 	path = WeCenterMobile/External/RMDateSelectionViewController
 	url = https://github.com/CooperRS/RMDateSelectionViewController.git
@@ -34,3 +31,6 @@
 [submodule "WeCenterMobile/External/ZFTokenField"]
 	path = WeCenterMobile/External/ZFTokenField
 	url = https://github.com/Msr-B/ZFTokenField
+[submodule "WeCenterMobile/External/SinaWeiboSDK"]
+	path = WeCenterMobile/External/SinaWeiboSDK
+	url = https://github.com/sinaweibosdk/weibo_ios_sdk.git

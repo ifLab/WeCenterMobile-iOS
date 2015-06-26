@@ -66,6 +66,13 @@ module SVProgressHUD {
     use UIKit
 }
 
+module WeChatSDK {
+    umbrella header "WeChatSDK/WeChatSDK.h"
+    requires objc, objc_arc
+    use UIKit
+    link "WeChatSDK"
+}
+
 module ZFTokenField {
     umbrella header "ZFTokenField/Classes/ZFTokenField.h"
     requires objc, objc_arc

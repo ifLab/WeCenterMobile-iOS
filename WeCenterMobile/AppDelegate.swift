@@ -10,9 +10,9 @@ import AFNetworking
 import CoreData
 import DTCoreText
 import DTFoundation
-import MSRWeChatSDK
 import SinaWeiboSDK
 import UIKit
+import WeChatSDK
 
 let userStrings: (String) -> String = {
     return NSLocalizedString($0, tableName: "User", comment: "")
@@ -31,27 +31,28 @@ var appDelegate: AppDelegate {
 }
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, MSRWeChatAPIDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     
     lazy var window: UIWindow? = {
         let v = UIWindow(frame: UIScreen.mainScreen().bounds)
         return v
     }()
+    
     lazy var loginViewController: LoginViewController = {
         let vc = NSBundle.mainBundle().loadNibNamed("LoginViewController", owner: nil, options: nil).first as! LoginViewController
         return vc
     }()
+    
     var mainViewController: MainViewController!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-//        clearCaches()
-        AFNetworkActivityIndicatorManager.sharedManager().enabled = true
+        // clearCaches()
         UIScrollView.msr_installPanGestureTranslationAdjustmentExtension()
         UIScrollView.msr_installTouchesCancellingExtension()
+        AFNetworkActivityIndicatorManager.sharedManager().enabled = true
         DTAttributedTextContentView.setLayerClass(DTTiledLayerWithoutFade.self)
-        MSRWeChatAPI.registerAppWithID("wx4dc4b980c462893b")
         WeiboSDK.registerApp("3758958382")
-        WeiboSDK.enableDebugMode(true)
+        WXApi.registerApp("wx4dc4b980c462893b")
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTheme", name: CurrentThemeDidChangeNotificationName, object: nil)
         updateTheme()
         window!.rootViewController = loginViewController
@@ -65,11 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MSRWeChatAPIDelegate {
     }
     
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
-        return MSRWeChatAPI.handleOpenURL(url, withDelegate: self)
-    }
-    
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        return MSRWeChatAPI.handleOpenURL(url, withDelegate: self)
+        return WeiboSDK.handleOpenURL(url, delegate: nil) || WXApi.handleOpenURL(url, delegate: nil)
     }
     
     func clearCaches() {

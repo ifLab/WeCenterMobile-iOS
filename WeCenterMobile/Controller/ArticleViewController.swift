@@ -290,18 +290,11 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
     func didPressShareButton() {
         let title = dataObject.title!
         let image = dataObject.user?.avatar ?? defaultUserAvatar
-        let body = dataObject.body!
+        let body = dataObject.body!.wc_plainString
         let url = NetworkManager.defaultManager!.website
         let vc = UIActivityViewController(
-            activityItems: [
-                title, image, body, NSURL(string: url)!,
-                WeChatShareItem(title: title, body: body, image: image, url: url),
-                SinaWeiboShareItem(title: title, body: body, image: image, url: url)
-            ],
-            applicationActivities: [
-                WeChatSessionActivity(),
-                WeChatMomentsActivity(),
-                SinaWeiboActivity()])
+            activityItems: [title, image, body, NSURL(string: url)!],
+            applicationActivities: [SinaWeiboActivity(), WeChatSessionActivity(), WeChatTimelineActivity()])
         showDetailViewController(vc, sender: self)
     }
     

@@ -1,34 +1,22 @@
 //
-//  SinaWeiboActivity.swift
+//  WeChatActivity.swift
 //  WeCenterMobile
 //
-//  Created by Darren Liu on 15/4/21.
+//  Created by Darren Liu on 15/6/26.
 //  Copyright (c) 2015年 Beijing Information Science and Technology University. All rights reserved.
 //
 
 import UIKit
-import SinaWeiboSDK
+import WeChatSDK
 
-class SinaWeiboActivity: UIActivity {
+class WeChatActivity: UIActivity {
     
     override class func activityCategory() -> UIActivityCategory {
         return .Share
     }
     
-    override func activityType() -> String? {
-        return NSStringFromClass(SinaWeiboActivity.self)
-    }
-    
-    override func activityTitle() -> String? {
-        return "新浪微博"
-    }
-    
-    override func activityImage() -> UIImage? {
-        return UIImage(named: "SinaWeibo")
-    }
-    
     override func canPerformWithActivityItems(activityItems: [AnyObject]) -> Bool {
-        if WeiboSDK.isWeiboAppInstalled() && WeiboSDK.isCanShareInWeiboAPP() {
+        if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
             for item in activityItems {
                 if item is String {
                     return true
@@ -38,10 +26,10 @@ class SinaWeiboActivity: UIActivity {
         return false
     }
     
-    var message: WBMessageObject!
+    var message: WXMediaMessage!
     
     override func prepareWithActivityItems(activityItems: [AnyObject]) {
-        message = WBMessageObject()
+        message = WXMediaMessage()
         var url: NSURL? = nil
         var title: String? = nil
         var body = ""
@@ -64,19 +52,12 @@ class SinaWeiboActivity: UIActivity {
                 break
             }
         }
-        let webpageObject = WBWebpageObject()
+        let webpageObject = WXWebpageObject()
         webpageObject.webpageUrl = url?.absoluteString ?? NetworkManager.defaultManager!.website
-        webpageObject.objectID = NSBundle.mainBundle().bundleIdentifier
-        webpageObject.title = title
-        webpageObject.description = body
-        webpageObject.thumbnailData = image?.msr_imageOfSize(CGSize(width: 100, height: 100)).dataForPNGRepresentation()
+        message.title = title
+        message.description = body
+        message.thumbData = image?.msr_imageOfSize(CGSize(width: 100, height: 100)).dataForPNGRepresentation()
         message.mediaObject = webpageObject
-    }
-    
-    override func performActivity() {
-        let request = WBSendMessageToWeiboRequest.requestWithMessage(message) as! WBSendMessageToWeiboRequest
-        WeiboSDK.sendRequest(request)
-        activityDidFinish(true)
     }
     
 }
