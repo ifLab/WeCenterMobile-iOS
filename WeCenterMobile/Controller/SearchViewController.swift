@@ -58,7 +58,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         tableView.delaysContentTouches = false
         tableView.keyboardDismissMode = .OnDrag
         tableView.msr_wrapperView?.delaysContentTouches = false
-        tableView.wc_addLegendHeaderWithRefreshingTarget(self, action: "refresh")
+        tableView.wc_addRefreshingHeaderWithTarget(self, action: "refresh")
     }
     
     override func viewDidLoad() {
@@ -141,7 +141,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
                     self_.tableView.reloadData()
                     self_.tableView.header.endRefreshing()
                     if self_.tableView.footer == nil {
-                        self_.tableView.wc_addLegendFooterWithRefreshingTarget(self_, action: "loadMore")
+                        self_.tableView.wc_addRefreshingFooterWithTarget(self_, action: "loadMore")
                     }
                 }
                 return

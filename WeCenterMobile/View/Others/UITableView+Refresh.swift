@@ -55,24 +55,31 @@ extension UITableView {
             return objc_getAssociatedObject(self, _UITableViewWCFooterActivityIndicatorViewAssociationKey) as? UIActivityIndicatorView
         }
     }
-    func wc_addLegendHeaderWithRefreshingTarget(target: AnyObject, action: Selector) -> MJRefreshLegendHeader {
-        let header = addLegendHeaderWithRefreshingTarget(target, refreshingAction: action)
+    func wc_addRefreshingHeaderWithTarget(target: AnyObject, action: Selector) -> MJRefreshNormalHeader {
         let theme = SettingsManager.defaultManager.currentTheme
-        header.textColor = theme.footnoteTextColor
-        wc_headerImageView = header.valueForKey("arrowImage") as! UIImageView
+        let header = MJRefreshNormalHeader(refreshingTarget: target, refreshingAction: action)
+        self.header = header
+        header.autoChangeAlpha = true
+        header.lastUpdatedTimeLabel.textColor = theme.footnoteTextColor
+        header.lastUpdatedTimeLabel.font = UIFont.boldSystemFontOfSize(12)
+        header.stateLabel.textColor = theme.footnoteTextColor
+        header.stateLabel.font = UIFont.boldSystemFontOfSize(12)
+        wc_headerImageView = header.valueForKey("arrowView") as! UIImageView
         wc_headerImageView.tintColor = theme.footnoteTextColor
         wc_headerImageView.msr_imageRenderingMode = .AlwaysTemplate
-        wc_headerActivityIndicatorView = header.valueForKey("activityView") as! UIActivityIndicatorView
+        wc_headerActivityIndicatorView = header.valueForKey("loadingView") as! UIActivityIndicatorView
         wc_headerActivityIndicatorView.activityIndicatorViewStyle = .White
         wc_headerActivityIndicatorView.color = theme.footnoteTextColor
         return header
     }
-    func wc_addLegendFooterWithRefreshingTarget(target: AnyObject, action: Selector) -> MJRefreshLegendFooter {
+    func wc_addRefreshingFooterWithTarget(target: AnyObject, action: Selector) -> MJRefreshAutoNormalFooter {
         let theme = SettingsManager.defaultManager.currentTheme
-        let footer = addLegendFooterWithRefreshingTarget(target, refreshingAction: action)
-        footer.textColor = theme.footnoteTextColor
+        let footer = MJRefreshAutoNormalFooter(refreshingTarget: target, refreshingAction: action)
+        self.footer = footer
+        footer.stateLabel.textColor = theme.footnoteTextColor
+        footer.stateLabel.font = UIFont.boldSystemFontOfSize(12)
         footer.automaticallyRefresh = false
-        wc_footerActivityIndicatorView = footer.valueForKey("activityView") as! UIActivityIndicatorView
+        wc_footerActivityIndicatorView = footer.valueForKey("loadingView") as! UIActivityIndicatorView
         wc_footerActivityIndicatorView.activityIndicatorViewStyle = .White
         wc_footerActivityIndicatorView.color = theme.footnoteTextColor
         return footer

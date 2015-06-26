@@ -83,7 +83,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         tableView.registerNib(UINib(nibName: answerCellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: answerCellIdentifier)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(msr_navigationController!.interactivePopGestureRecognizer)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
-        tableView.wc_addLegendHeaderWithRefreshingTarget(self, action: "refresh")
+        tableView.wc_addRefreshingHeaderWithTarget(self, action: "refresh")
         title = "问题详情" // Needs localization
     }
     

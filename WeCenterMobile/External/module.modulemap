@@ -36,9 +36,16 @@ module GBDeviceInfo {
 }
 
 module MJRefresh {
-    umbrella header "MJRefresh/MJRefreshExample/MJRefreshExample/MJRefresh/MJRefresh.h"
-    header "MJRefresh/MJRefreshExample/MJRefreshExample/MJRefresh/UIView+MJExtension.h"
-    header "MJRefresh/MJRefreshExample/MJRefreshExample/MJRefresh/UIScrollView+MJExtension.h"
+    umbrella header "MJRefresh/MJRefresh/MJRefresh.h"
+    header "MJRefresh/MJRefresh/Custom/Header/MJRefreshGifHeader.h"
+    header "MJRefresh/MJRefresh/Custom/Header/MJRefreshNormalHeader.h"
+    header "MJRefresh/MJRefresh/Custom/Header/MJRefreshStateHeader.h"
+    header "MJRefresh/MJRefresh/Custom/Footer/Auto/MJRefreshAutoGifFooter.h"
+    header "MJRefresh/MJRefresh/Custom/Footer/Auto/MJRefreshAutoNormalFooter.h"
+    header "MJRefresh/MJRefresh/Custom/Footer/Auto/MJRefreshAutoStateFooter.h"
+    header "MJRefresh/MJRefresh/Custom/Footer/Back/MJRefreshBackGifFooter.h"
+    header "MJRefresh/MJRefresh/Custom/Footer/Back/MJRefreshBackNormalFooter.h"
+    header "MJRefresh/MJRefresh/Custom/Footer/Back/MJRefreshBackStateFooter.h"
     requires objc, objc_arc
     use UIKit
 }

@@ -48,7 +48,7 @@ class FeaturedObjectListViewController: UITableViewController {
         tableView.separatorStyle = .None
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.wc_addLegendHeaderWithRefreshingTarget(self, action: "refresh")
+        tableView.wc_addRefreshingHeaderWithTarget(self, action: "refresh")
         for i in 0..<nibNames.count {
             tableView.registerNib(UINib(nibName: nibNames[i], bundle: NSBundle.mainBundle()), forCellReuseIdentifier: identifiers[i])
         }
@@ -119,7 +119,7 @@ class FeaturedObjectListViewController: UITableViewController {
                     self_.tableView.reloadData()
                     self_.tableView.header.endRefreshing()
                     if self_.tableView.footer == nil {
-                        self_.tableView.wc_addLegendFooterWithRefreshingTarget(self_, action: "loadMore")
+                        self_.tableView.wc_addRefreshingFooterWithTarget(self_, action: "loadMore")
                     }
                 }
                 return

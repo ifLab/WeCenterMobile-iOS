@@ -48,7 +48,7 @@ class UserListViewController: UITableViewController {
         tableView.delaysContentTouches = false
         tableView.msr_wrapperView?.delaysContentTouches = false
         tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
-        tableView.wc_addLegendHeaderWithRefreshingTarget(self, action: "refresh")
+        tableView.wc_addRefreshingHeaderWithTarget(self, action: "refresh")
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +86,7 @@ class UserListViewController: UITableViewController {
                 self_.tableView.header.endRefreshing()
                 self_.tableView.reloadData()
                 if self_.tableView.footer == nil {
-                    self_.tableView.wc_addLegendFooterWithRefreshingTarget(self_, action: "loadMore")
+                    self_.tableView.wc_addRefreshingFooterWithTarget(self_, action: "loadMore")
                 }
             }
         }
