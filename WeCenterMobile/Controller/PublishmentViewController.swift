@@ -391,7 +391,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
     }
     
     @IBAction func showImagePickerController() {
-        let ac = UIAlertController(title: "您想从哪里获取头像？", message: nil, preferredStyle: .ActionSheet)
+        let ac = UIAlertController(title: "您想从哪里获取图片？", message: nil, preferredStyle: .ActionSheet)
         let ipc = UIImagePickerController()
         ipc.delegate = self
         ac.addAction(UIAlertAction(title: "相机", style: .Default) {
