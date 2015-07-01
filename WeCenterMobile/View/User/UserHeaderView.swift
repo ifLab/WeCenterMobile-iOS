@@ -55,8 +55,8 @@ class UserHeaderView: UIView {
         return v
     }()
     
-    var maxHeight: CGFloat = 200
-    var minHeight: CGFloat = 64
+    let maxHeight: CGFloat = 180
+    let minHeight: CGFloat = 64
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -99,7 +99,7 @@ class UserHeaderView: UIView {
         let userAvatarViewEndSize = CGSize(width: 80, height: 80)
         let titleBeginWidth = userAvatarViewBeginSize.width + 10 + userNameLabel.bounds.width
         let backButtonBeginFrame = CGRect(x: 10, y: 20, width: 30, height: minHeight - 20)
-        var backButtonEndFrame = CGRect(x: 10, y: 20, width: 30, height: maxHeight - 20 - 60)
+        var backButtonEndFrame = CGRect(x: 10, y: 30, width: 30, height: maxHeight - 30 - 60)
         let userAvatarViewBeginFrame = CGRect(origin: CGPoint(x: bounds.msr_center.x - titleBeginWidth / 2, y: backButtonBeginFrame.msr_center.y - userAvatarViewBeginSize.height / 2), size: userAvatarViewBeginSize)
         var userAvatarViewEndFrame = CGRect(origin: CGPoint(x: backButtonEndFrame.msr_right + 10, y: backButtonEndFrame.msr_center.y - userAvatarViewEndSize.height / 2), size: userAvatarViewEndSize)
         let userNameLabelBeginFrame = CGRect(origin: CGPoint(x: userAvatarViewBeginFrame.msr_right + 10, y: userAvatarViewBeginFrame.msr_center.y - userNameLabel.bounds.height / 2), size: userNameLabel.bounds.size)

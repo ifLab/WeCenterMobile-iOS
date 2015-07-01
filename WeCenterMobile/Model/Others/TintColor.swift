@@ -12,11 +12,8 @@ func TintColorFromColor(color: UIColor?) -> UIColor {
     if color != nil {
         let hue = color!.msr_hue
         let saturation = color!.msr_saturation
-        if saturation < 0.1 {
-            return UIColor.msr_materialGray()
-        }
-        return UIColor(hue: hue, saturation: 0.5, brightness: 0.3, alpha: 1)
+        return UIColor(hue: hue, saturation: saturation, brightness: 0.3, alpha: 1)
     } else {
-        return UIColor.msr_materialGray()
+        return UIColor.blackColor()
     }
 }
