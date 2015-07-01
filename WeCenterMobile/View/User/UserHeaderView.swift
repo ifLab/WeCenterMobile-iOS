@@ -74,7 +74,7 @@ class UserHeaderView: UIView {
     
     func update(#user: User) {
         userAvatarView.wc_updateWithUser(user)
-        backgroundImageView.wc_updateWithUser(user)
+        backgroundImageView.wc_updateWithUser(user, withPlaceholder: false)
         userNameLabel.text = user.name ?? "加载中……"
         userNameLabel.sizeToFit()
         userSignatureLabel.text = user.signature ?? ""

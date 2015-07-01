@@ -13,9 +13,9 @@ let defaultTopicImage = UIImage(named: "Topic-DefaultImage")
 
 extension UIImageView {
     
-    func wc_updateWithUser(user: User?) {
+    func wc_updateWithUser(user: User?, withPlaceholder flag: Bool = true) {
         msr_userInfo = user
-        image = defaultUserAvatar
+        image = flag ? defaultUserAvatar : nil
         if user?.avatar != nil {
             image = user!.avatar!
         }
@@ -37,9 +37,9 @@ extension UIImageView {
         }
     }
     
-    func wc_updateWithTopic(topic: Topic?) {
+    func wc_updateWithTopic(topic: Topic?, withPlaceholder flag: Bool = true) {
         msr_userInfo = topic
-        image = defaultTopicImage
+        image = flag ? defaultTopicImage : nil
         if topic?.image != nil {
             image = topic!.image!
         }
