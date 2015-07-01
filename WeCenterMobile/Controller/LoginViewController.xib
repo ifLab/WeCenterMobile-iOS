@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LoginViewBackground" translatesAutoresizingMaskIntoConstraints="NO" id="1bi-dr-Hxk">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login-Background" translatesAutoresizingMaskIntoConstraints="NO" id="1bi-dr-Hxk">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     </imageView>
                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CCS-z5-wBK" userLabel="Dark Blur Effect View">
@@ -48,9 +48,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Message_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Gdj-2Z-S9K" userLabel="Image View">
+                                                    <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login-Mail" translatesAutoresizingMaskIntoConstraints="NO" id="Gdj-2Z-S9K" userLabel="Image View">
                                                         <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </imageView>
                                                 </subviews>
                                                 <constraints>
@@ -94,9 +94,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User_icon" translatesAutoresizingMaskIntoConstraints="NO" id="BdF-S1-7uz" userLabel="Image View">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login-User" translatesAutoresizingMaskIntoConstraints="NO" id="BdF-S1-7uz" userLabel="Image View">
                                                         <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </imageView>
                                                 </subviews>
                                                 <constraints>
@@ -140,9 +140,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lock_icon" translatesAutoresizingMaskIntoConstraints="NO" id="pN7-74-iLI" userLabel="Image View">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login-Password" translatesAutoresizingMaskIntoConstraints="NO" id="pN7-74-iLI" userLabel="Image View">
                                                         <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </imageView>
                                                 </subviews>
                                                 <constraints>
@@ -356,9 +356,9 @@
         </viewController>
     </objects>
     <resources>
-        <image name="Lock_icon" width="150" height="146"/>
-        <image name="LoginViewBackground" width="351" height="511"/>
-        <image name="Message_icon" width="171" height="146"/>
-        <image name="User_icon" width="150" height="146"/>
+        <image name="Login-Background" width="703" height="1022"/>
+        <image name="Login-Mail" width="20" height="20"/>
+        <image name="Login-Password" width="20" height="20"/>
+        <image name="Login-User" width="20" height="20"/>
     </resources>
 </document>

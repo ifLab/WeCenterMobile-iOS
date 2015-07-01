@@ -19,7 +19,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rEy-xw-rE9">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="119"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="rJF-lu-2nd" customClass="MSRRoundedImageView" customModule="WeCenterMobile" customModuleProvider="target">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User-DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="rJF-lu-2nd" customClass="MSRRoundedImageView" customModule="WeCenterMobile" customModuleProvider="target">
                                         <rect key="frame" x="10" y="45" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="rJF-lu-2nd" secondAttribute="height" multiplier="1:1" id="Uzh-HM-kvh"/>
@@ -153,6 +153,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="DefaultAvatar" width="62" height="62"/>
+        <image name="User-DefaultAvatar" width="125" height="125"/>
     </resources>
 </document>

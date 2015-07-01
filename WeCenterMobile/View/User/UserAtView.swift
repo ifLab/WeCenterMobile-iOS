@@ -48,7 +48,6 @@ import UIKit
     lazy var removeImageView: UIImageView = {
         let v = UIImageView(image: UITextField.msr_defaltClearButton().imageForState(.Highlighted))
         let theme = SettingsManager.defaultManager.currentTheme
-        v.msr_imageRenderingMode = .AlwaysTemplate
         v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
         v.tintColor = theme.footnoteTextColor
         return v

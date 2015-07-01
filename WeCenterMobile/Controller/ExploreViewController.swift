@@ -22,7 +22,7 @@ class ExploreViewController: MSRSegmentedViewController, MSRSegmentedViewControl
         segmentedControl.indicator.tintColor = theme.subtitleTextColor
         (segmentedControl.backgroundView as! UIToolbar).barStyle = theme.toolbarStyle
         view.backgroundColor = theme.backgroundColorA
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List"), style: .Plain, target: self, action: "showSidebar")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Navigation-Root"), style: .Plain, target: self, action: "showSidebar")
         msr_navigationBar!.msr_shadowImageView?.hidden = true
         scrollView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         scrollView.delaysContentTouches = false

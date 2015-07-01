@@ -20,7 +20,7 @@ class WeChatTimelineActivity: WeChatActivity {
     }
     
     override func activityImage() -> UIImage? {
-        return UIImage(named: "WeChatMoments")
+        return UIImage(named: "Share-WeChatMoments")
     }
     
     override func performActivity() {

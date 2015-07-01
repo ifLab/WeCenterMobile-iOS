@@ -13,13 +13,12 @@
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="JLT-ZM-FJL">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
-                <barButtonItem image="Action-Line" width="30" id="nB4-c7-NRN"/>
+                <barButtonItem image="Share-Button" width="30" id="nB4-c7-NRN"/>
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="MwP-u1-0CS">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
                 <barButtonItem style="plain" id="8yS-Px-ETx">
                     <view key="customView" contentMode="scaleToFill" id="Hq4-bP-5DT">
-                        <rect key="frame" x="98" y="6" width="1" height="33"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -27,7 +26,7 @@
                 <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="H7M-In-04w">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
-                <barButtonItem image="Like-Normal" id="ULR-pv-Qfn"/>
+                <barButtonItem image="Evaluation-Like-Highlighted" id="ULR-pv-Qfn"/>
                 <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="ZJ3-s0-WSN">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
@@ -35,13 +34,12 @@
                 <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="JL4-Ns-9Ms">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
-                <barButtonItem image="Dislike-Normal" id="pep-yf-I5h"/>
+                <barButtonItem image="Evaluation-Dislike-Normal" id="pep-yf-I5h"/>
                 <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="VeR-BE-GQx">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
                 <barButtonItem style="plain" id="EU2-ly-6NO">
                     <view key="customView" contentMode="scaleToFill" id="UiA-yz-UJx">
-                        <rect key="frame" x="98" y="6" width="1" height="33"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -49,7 +47,7 @@
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="8S4-Je-W0q">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
-                <barButtonItem image="Conversation-Line" width="30" id="Do0-gx-Quo"/>
+                <barButtonItem image="Comment-Button" width="30" id="Do0-gx-Quo"/>
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="Ml6-0J-6gl">
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                 </barButtonItem>
@@ -65,12 +63,11 @@
             </connections>
             <point key="canvasLocation" x="575" y="429"/>
         </toolbar>
-        <barButtonItem style="plain" systemItem="flexibleSpace" id="j6S-92-KuJ"/>
     </objects>
     <resources>
-        <image name="Action-Line" width="22" height="29"/>
-        <image name="Conversation-Line" width="30" height="24"/>
-        <image name="Dislike-Normal" width="20" height="20"/>
-        <image name="Like-Normal" width="20" height="20"/>
+        <image name="Comment-Button" width="30" height="24"/>
+        <image name="Evaluation-Dislike-Normal" width="20" height="20"/>
+        <image name="Evaluation-Like-Highlighted" width="20" height="20"/>
+        <image name="Share-Button" width="22" height="29"/>
     </resources>
 </document>

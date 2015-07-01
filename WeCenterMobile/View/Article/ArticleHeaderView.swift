@@ -25,7 +25,7 @@ class ArticleHeaderView: UIView, UIToolbarDelegate {
     
     lazy var backButton: UIButton = {
         let v = UIButton()
-        v.setImage(UIImage(named: "Arrow-Left")!.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+        v.setImage(UIImage(named: "Navigation-Back"), forState: .Normal)
         let theme = SettingsManager.defaultManager.currentTheme
         v.tintColor = theme.navigationItemColor
         return v

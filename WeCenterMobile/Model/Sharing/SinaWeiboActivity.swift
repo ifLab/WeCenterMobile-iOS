@@ -24,7 +24,7 @@ class SinaWeiboActivity: UIActivity {
     }
     
     override func activityImage() -> UIImage? {
-        return UIImage(named: "SinaWeibo")
+        return UIImage(named: "Share-SinaWeibo")
     }
     
     override func canPerformWithActivityItems(activityItems: [AnyObject]) -> Bool {

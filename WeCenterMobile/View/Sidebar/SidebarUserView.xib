@@ -11,14 +11,14 @@
             <rect key="frame" x="0.0" y="0.0" width="240" height="160"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SidebarBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Odc-cp-IpF" userLabel="Background Image View">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sidebar-Background" translatesAutoresizingMaskIntoConstraints="NO" id="Odc-cp-IpF" userLabel="Background Image View">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="160"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T7i-l7-BIK" userLabel="Background Overlay">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="160"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.70000000000000007" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="1cY-ZW-2ye" customClass="MSRRoundedImageView" customModule="WeCenterMobile" customModuleProvider="target">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="User-DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="1cY-ZW-2ye" customClass="MSRRoundedImageView" customModule="WeCenterMobile" customModuleProvider="target">
                     <rect key="frame" x="88" y="26" width="64" height="64"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="1cY-ZW-2ye" secondAttribute="height" multiplier="1:1" id="hQn-H0-9UQ"/>
@@ -82,7 +82,7 @@
         </view>
     </objects>
     <resources>
-        <image name="DefaultAvatar" width="62" height="62"/>
-        <image name="SidebarBackground" width="1920" height="1200"/>
+        <image name="Sidebar-Background" width="1920" height="1200"/>
+        <image name="User-DefaultAvatar" width="125" height="125"/>
     </resources>
 </document>

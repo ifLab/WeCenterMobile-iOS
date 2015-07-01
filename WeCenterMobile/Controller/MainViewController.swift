@@ -18,6 +18,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let vc = MSRNavigationController(rootViewController: HomeViewController(user: User.currentUser!))
         let theme = SettingsManager.defaultManager.currentTheme
         vc.view.backgroundColor = theme.backgroundColorA
+        vc.backButtonImage = UIImage(named: "Navigation-Back")
         return vc
     }()
     lazy var sidebar: MSRSidebar = {
@@ -79,7 +80,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             ("Settings", "设置"),
             ("About", "关于")]) {
                 let cell = NSBundle.mainBundle().loadNibNamed("SidebarCategoryCell", owner: self?.tableView, options: nil).first as! SidebarCategoryCell
-                cell.update(image: UIImage(named: "Sidebar" + $0.0)!.imageWithRenderingMode(.AlwaysTemplate), title: $0.1)
+                cell.update(image: UIImage(named: "Sidebar-" + $0.0), title: $0.1)
                 return cell
             }
     }()

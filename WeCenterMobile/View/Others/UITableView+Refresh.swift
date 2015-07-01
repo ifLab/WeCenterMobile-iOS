@@ -66,7 +66,6 @@ extension UITableView {
         header.stateLabel.font = UIFont.boldSystemFontOfSize(12)
         wc_headerImageView = header.valueForKey("arrowView") as! UIImageView
         wc_headerImageView.tintColor = theme.footnoteTextColor
-        wc_headerImageView.msr_imageRenderingMode = .AlwaysTemplate
         wc_headerActivityIndicatorView = header.valueForKey("loadingView") as! UIActivityIndicatorView
         wc_headerActivityIndicatorView.activityIndicatorViewStyle = .White
         wc_headerActivityIndicatorView.color = theme.footnoteTextColor

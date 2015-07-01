@@ -19,8 +19,8 @@ class SidebarCategoryCell: UITableViewCell {
         msr_scrollView?.delaysContentTouches = false
     }
     
-    func update(#image: UIImage, title: String) {
-        categoryImageView.image = image.imageWithRenderingMode(.AlwaysTemplate)
+    func update(#image: UIImage?, title: String) {
+        categoryImageView.image = image
         categoryTitleLabel.text = title
         setNeedsLayout()
         layoutIfNeeded()

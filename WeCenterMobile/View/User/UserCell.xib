@@ -16,7 +16,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ff6-gJ-x3T">
                         <rect key="frame" x="0.0" y="8" width="312" height="65"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Ia-OR-BIM" customClass="MSRRoundedImageView" customModule="WeCenterMobile" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User-DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="6Ia-OR-BIM" customClass="MSRRoundedImageView" customModule="WeCenterMobile" customModuleProvider="target">
                                 <rect key="frame" x="10" y="10" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="6Ia-OR-BIM" secondAttribute="height" multiplier="1:1" id="ce8-12-dir"/>
@@ -109,4 +109,7 @@
             <point key="canvasLocation" x="208" y="291"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="User-DefaultAvatar" width="125" height="125"/>
+    </resources>
 </document>

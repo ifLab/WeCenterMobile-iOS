@@ -16,11 +16,11 @@ class WeChatSessionActivity: WeChatActivity {
     }
     
     override func activityTitle() -> String? {
-        return "微信"
+        return "微信好友"
     }
     
     override func activityImage() -> UIImage? {
-        return UIImage(named: "WeChatSession")
+        return UIImage(named: "Share-WeChatSession")
     }
     
     override func performActivity() {

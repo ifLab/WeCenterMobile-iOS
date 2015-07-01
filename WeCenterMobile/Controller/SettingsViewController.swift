@@ -41,7 +41,7 @@ class SettingsViewController: UITableViewController {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "List"), style: .Plain, target: self, action: "showSidebar")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Navigation-Root"), style: .Plain, target: self, action: "showSidebar")
         tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         tableView.delaysContentTouches = false
         tableView.msr_wrapperView?.delaysContentTouches = false

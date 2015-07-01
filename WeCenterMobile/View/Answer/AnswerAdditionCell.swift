@@ -23,7 +23,6 @@ class AnswerAdditionCell: UITableViewCell {
         super.awakeFromNib()
         msr_scrollView?.delaysContentTouches = false
         let theme = SettingsManager.defaultManager.currentTheme
-        answerAdditionImageView.msr_imageRenderingMode = .AlwaysTemplate
         answerAdditionImageView.tintColor = theme.subtitleTextColor
         answerAdditionLabel.textColor = theme.subtitleTextColor
         answerAdditionButton.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)

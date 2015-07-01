@@ -16,7 +16,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NjE-ws-DoJ">
                         <rect key="frame" x="8" y="11" width="304" height="50"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="dRY-Ng-QXy" customClass="MSRRoundedImageView" customModule="WeCenterMobile" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User-DefaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="dRY-Ng-QXy" customClass="MSRRoundedImageView" customModule="WeCenterMobile" customModuleProvider="target">
                                 <rect key="frame" x="10" y="10" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dRY-Ng-QXy" secondAttribute="height" multiplier="1:1" id="Det-8R-Xc3"/>
@@ -125,6 +125,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="DefaultAvatar" width="62" height="62"/>
+        <image name="User-DefaultAvatar" width="125" height="125"/>
     </resources>
 </document>

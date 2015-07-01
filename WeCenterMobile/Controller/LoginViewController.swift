@@ -29,7 +29,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailFieldUnderline: UIVisualEffectView!
     @IBOutlet weak var userNameFieldUnderline: UIVisualEffectView!
     @IBOutlet weak var passwordFieldUnderline: UIVisualEffectView!
-    
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var loginButtonLabel: UILabel!
     @IBOutlet weak var loginActivityIndicatorView: UIActivityIndicatorView!
@@ -75,11 +74,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        // Manually inform image view to update it's appearences.
+        emailImageView.tintColorDidChange()
+        userNameImageView.tintColorDidChange()
+        passwordImageView.tintColorDidChange()
         scrollView.delaysContentTouches = false
         scrollView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIControl.self)
-        emailImageView.msr_imageRenderingMode = .AlwaysTemplate
-        userNameImageView.msr_imageRenderingMode = .AlwaysTemplate
-        passwordImageView.msr_imageRenderingMode = .AlwaysTemplate
         emailField.attributedPlaceholder = NSAttributedString(string: emailField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])
         userNameField.attributedPlaceholder = NSAttributedString(string: userNameField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])
         passwordField.attributedPlaceholder = NSAttributedString(string: passwordField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.lightTextColor().colorWithAlphaComponent(0.3)])
@@ -99,6 +99,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         userNameField.delegate = self
         passwordField.delegate = self
     }
+    
     var firstAppear = true
     
     override func viewWillAppear(animated: Bool) {

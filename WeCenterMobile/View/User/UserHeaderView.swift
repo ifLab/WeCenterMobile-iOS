@@ -23,7 +23,7 @@ class UserHeaderView: UIView {
     
     lazy var backButton: UIButton = {
         let v = UIButton()
-        v.setImage(UIImage(named: "Arrow-Left")!.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+        v.setImage(UIImage(named: "Navigation-Back"), forState: .Normal)
         v.tintColor = UIColor.whiteColor()
         return v
     }()
@@ -60,15 +60,16 @@ class UserHeaderView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        // Manually inform image view to update it's appearences.
+        thankCountImageView.tintColorDidChange()
+        likeCountImageView.tintColorDidChange()
+        markCountImageView.tintColorDidChange()
+        agreementCountImageView.tintColorDidChange()
         addSubview(backButton)
         addSubview(userAvatarView)
         addSubview(userNameLabel)
         addSubview(userSignatureLabel)
         addSubview(userGenderImageView)
-        thankCountImageView.msr_imageRenderingMode = .AlwaysTemplate
-        likeCountImageView.msr_imageRenderingMode = .AlwaysTemplate
-        markCountImageView.msr_imageRenderingMode = .AlwaysTemplate
-        agreementCountImageView.msr_imageRenderingMode = .AlwaysTemplate
     }
     
     func update(#user: User) {
@@ -79,7 +80,7 @@ class UserHeaderView: UIView {
         userSignatureLabel.text = user.signature ?? ""
         userSignatureLabel.sizeToFit()
         if user.gender != nil && user.gender != .Secret {
-            userGenderImageView.image = UIImage(named: user.gender! == .Male ? "Male" : "Female")!.imageWithRenderingMode(.AlwaysTemplate)
+            userGenderImageView.image = UIImage(named: user.gender! == .Male ? "User-Gender-Male" : "User-Gender-Female")
             userGenderImageView.tintColor = user.gender! == .Male ? UIColor.msr_materialBlue() : UIColor.msr_materialPink()
         } else {
             userGenderImageView.image = nil

@@ -8,10 +8,10 @@
 
 import UIKit
 
-let normalAgreeImage = UIImage(named: "Like-Normal")
-let highlightedAgreeImage = UIImage(named: "Like-Highlighted")
-let normalDisagreeImage = UIImage(named: "Dislike-Normal")
-let highlightedDisagreeImage = UIImage(named: "Dislike-Highlighted")
+let normalAgreeImage = UIImage(named: "Evaluation-Like-Normal")
+let highlightedAgreeImage = UIImage(named: "Evaluation-Like-Highlighted")
+let normalDisagreeImage = UIImage(named: "Evaluation-Dislike-Normal")
+let highlightedDisagreeImage = UIImage(named: "Evaluation-Dislike-Highlighted")
 
 class ArticleFooterView: UIToolbar {
     

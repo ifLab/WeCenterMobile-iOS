@@ -27,28 +27,28 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="View_icon" translatesAutoresizingMaskIntoConstraints="NO" id="UB0-Zo-Ww5">
-                                <rect key="frame" x="10" y="15" width="20" height="20"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Question-Focus" translatesAutoresizingMaskIntoConstraints="NO" id="UB0-Zo-Ww5">
+                                <rect key="frame" x="96" y="17" width="17" height="17"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="g2w-kg-jiV"/>
+                                    <constraint firstAttribute="width" constant="17" id="g2w-kg-jiV"/>
                                     <constraint firstAttribute="width" secondItem="UB0-Zo-Ww5" secondAttribute="height" multiplier="1:1" id="mTs-WC-AlB"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23333" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGs-Qd-1Sh">
-                                <rect key="frame" x="40" y="17" width="40" height="17"/>
+                                <rect key="frame" x="123" y="17" width="40" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23333" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M27-gc-u5L">
-                                <rect key="frame" x="115" y="17" width="40" height="17"/>
+                                <rect key="frame" x="41" y="17" width="40" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Contact_book_icon" translatesAutoresizingMaskIntoConstraints="NO" id="plz-v8-W51">
-                                <rect key="frame" x="90" y="18" width="15" height="15"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Question-Bookmark" translatesAutoresizingMaskIntoConstraints="NO" id="plz-v8-W51">
+                                <rect key="frame" x="16" y="18" width="15" height="15"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="W0U-YI-mJH"/>
@@ -98,15 +98,16 @@
                             <constraint firstItem="Bb7-ua-7Bx" firstAttribute="top" secondItem="zdn-QN-RGl" secondAttribute="top" id="LqQ-GK-8nS"/>
                             <constraint firstAttribute="bottom" secondItem="rIl-Oh-6xO" secondAttribute="bottom" id="M80-Py-JVQ"/>
                             <constraint firstItem="M27-gc-u5L" firstAttribute="centerY" secondItem="plz-v8-W51" secondAttribute="centerY" id="NEj-ts-3HQ"/>
+                            <constraint firstItem="plz-v8-W51" firstAttribute="leading" secondItem="Bb7-ua-7Bx" secondAttribute="trailing" constant="15" id="NZ5-gY-xC7"/>
                             <constraint firstItem="HGs-Qd-1Sh" firstAttribute="centerY" secondItem="UB0-Zo-Ww5" secondAttribute="centerY" id="ONZ-GW-nCU"/>
                             <constraint firstItem="rIl-Oh-6xO" firstAttribute="leading" secondItem="zdn-QN-RGl" secondAttribute="leading" id="Qsw-X9-I5u"/>
                             <constraint firstAttribute="bottom" secondItem="kgI-xW-Ciz" secondAttribute="bottom" id="TnZ-Gp-0a7"/>
                             <constraint firstAttribute="centerY" secondItem="plz-v8-W51" secondAttribute="centerY" id="Zfj-HZ-jKd"/>
                             <constraint firstAttribute="bottom" secondItem="Mu9-8Y-Hin" secondAttribute="bottom" id="aFO-8c-gET"/>
-                            <constraint firstItem="plz-v8-W51" firstAttribute="leading" secondItem="HGs-Qd-1Sh" secondAttribute="trailing" constant="10" id="ajj-Ra-udM"/>
                             <constraint firstItem="Mu9-8Y-Hin" firstAttribute="top" secondItem="yM8-fA-yJG" secondAttribute="top" id="bYE-va-9XR"/>
                             <constraint firstAttribute="trailing" secondItem="kgI-xW-Ciz" secondAttribute="trailing" id="bs3-yf-MYu"/>
                             <constraint firstAttribute="trailing" secondItem="rIl-Oh-6xO" secondAttribute="trailing" id="eO1-9a-70R"/>
+                            <constraint firstItem="UB0-Zo-Ww5" firstAttribute="leading" secondItem="M27-gc-u5L" secondAttribute="trailing" constant="15" id="fNv-YZ-PXE"/>
                             <constraint firstItem="HGs-Qd-1Sh" firstAttribute="leading" secondItem="UB0-Zo-Ww5" secondAttribute="trailing" constant="10" id="hCL-gc-aAK"/>
                             <constraint firstAttribute="bottom" secondItem="0HN-ZF-JUV" secondAttribute="bottom" id="hFL-Et-xo8"/>
                             <constraint firstItem="M27-gc-u5L" firstAttribute="leading" secondItem="plz-v8-W51" secondAttribute="trailing" constant="10" id="hi6-u2-r5m"/>
@@ -114,7 +115,6 @@
                             <constraint firstAttribute="centerY" secondItem="UB0-Zo-Ww5" secondAttribute="centerY" id="kPZ-bU-g5b"/>
                             <constraint firstAttribute="height" constant="50" id="lZp-do-BoS"/>
                             <constraint firstItem="Bb7-ua-7Bx" firstAttribute="leading" secondItem="zdn-QN-RGl" secondAttribute="leading" id="q5j-lS-a7e"/>
-                            <constraint firstItem="UB0-Zo-Ww5" firstAttribute="leading" secondItem="zdn-QN-RGl" secondAttribute="leading" constant="10" id="qfw-xo-phd"/>
                             <constraint firstItem="kgI-xW-Ciz" firstAttribute="top" secondItem="zdn-QN-RGl" secondAttribute="top" id="rkp-QB-maF"/>
                             <constraint firstItem="Mu9-8Y-Hin" firstAttribute="bottom" secondItem="yM8-fA-yJG" secondAttribute="bottom" id="tYf-e0-Ix0"/>
                             <constraint firstItem="Mu9-8Y-Hin" firstAttribute="top" secondItem="zdn-QN-RGl" secondAttribute="top" id="u8K-VY-FeM"/>
@@ -147,7 +147,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Contact_book_icon" width="150" height="146"/>
-        <image name="View_icon" width="156" height="146"/>
+        <image name="Question-Bookmark" width="25" height="25"/>
+        <image name="Question-Focus" width="25" height="25"/>
     </resources>
 </document>

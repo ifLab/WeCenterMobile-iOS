@@ -292,8 +292,12 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
         let image = dataObject.user?.avatar ?? defaultUserAvatar
         let body = dataObject.body!.wc_plainString
         let url = NetworkManager.defaultManager!.website
+        var items = [title, body, NSURL(string: url)!]
+        if image != nil {
+            items.append(image!)
+        }
         let vc = UIActivityViewController(
-            activityItems: [title, image, body, NSURL(string: url)!],
+            activityItems: items,
             applicationActivities: [SinaWeiboActivity(), WeChatSessionActivity(), WeChatTimelineActivity()])
         showDetailViewController(vc, sender: self)
     }

@@ -83,9 +83,9 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UITextViewD
         indicator.borderColor = theme.borderColorA
         indicator.borderWidth = 0.5
         genderSegmentedControl.indicator = indicator
-        let maleSegment = MSRDefaultSegment(title: nil, image: UIImage(named: "Male"))
+        let maleSegment = MSRDefaultSegment(title: nil, image: UIImage(named: "User-Gender-Male"))
         let secretSegment = MSRDefaultSegment(title: "保密", image: nil)
-        let femaleSegment = MSRDefaultSegment(title: nil, image: UIImage(named: "Female"))
+        let femaleSegment = MSRDefaultSegment(title: nil, image: UIImage(named: "User-Gender-Female"))
         genderSegmentedControl.setSegments([maleSegment, secretSegment, femaleSegment], animated: false)
         maleSegment.tintColor = UIColor.msr_materialBlue()
         secretSegment.tintColor = theme.subtitleTextColor

@@ -13,7 +13,7 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FOO-ub-sSG" id="hGa-fi-04N">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SidebarTest" translatesAutoresizingMaskIntoConstraints="NO" id="bSh-0f-Cvq">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sidebar-Test" translatesAutoresizingMaskIntoConstraints="NO" id="bSh-0f-Cvq">
                         <rect key="frame" x="20" y="15" width="20" height="20"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -45,6 +45,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="SidebarTest" width="20" height="20"/>
+        <image name="Sidebar-Test" width="20" height="20"/>
     </resources>
 </document>

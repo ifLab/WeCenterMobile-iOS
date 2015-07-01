@@ -92,7 +92,6 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
     }
     var allUploaded = NSCondition()
     let maxProgress = 100
-    var imageAdditonButton = UIButton()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -136,7 +135,6 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
         for identifier in SelfType.identifiers {
             imageCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: identifier)
         }
-        imageAdditonButton.setImage(UIImage(named: "AddButton"), forState: .Normal)
     }
     
     override func viewDidLoad() {
@@ -271,7 +269,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
                 cell.contentView.addSubview(button)
                 button.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
                 button.msr_addAllEdgeAttachedConstraintsToSuperview()
-                button.setImage(UIImage(named: "MSRAddButton")!.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+                button.setImage(UIImage(named: "Publishment-Attachment"), forState: .Normal)
                 button.imageView!.tintColor = theme.backgroundColorB
                 button.adjustsImageWhenHighlighted = false
                 button.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)

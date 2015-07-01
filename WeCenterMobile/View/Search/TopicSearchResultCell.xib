@@ -45,7 +45,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User_Follow" translatesAutoresizingMaskIntoConstraints="NO" id="0ib-Fo-enI" customClass="MSRRoundedImageView" customModule="WeCenterMobile" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Topic-DefaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="0ib-Fo-enI" customClass="MSRRoundedImageView" customModule="WeCenterMobile" customModuleProvider="target">
                                 <rect key="frame" x="60" y="13" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="wpy-Rv-PgG"/>
@@ -105,6 +105,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="User_Follow" width="100" height="100"/>
+        <image name="Topic-DefaultImage" width="200" height="200"/>
     </resources>
 </document>

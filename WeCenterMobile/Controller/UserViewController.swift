@@ -60,7 +60,7 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         bodyView.registerNib(UINib(nibName: bodyCellNibName, bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: bodyCellReuseIdentifier)
         bodyView.registerNib(UINib(nibName: footerCellNibName, bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: footerCellReuseIdentifier)
         if msr_navigationController!.viewControllers.count == 1 {
-            header.backButton.setImage(UIImage(named: "List")!.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+            header.backButton.setImage(UIImage(named: "Navigation-Root"), forState: .Normal)
             header.backButton.addTarget(self, action: "didPressMenuButton", forControlEvents: .TouchUpInside)
         } else {
             header.backButton.addTarget(self, action: "didPressBackButton", forControlEvents: .TouchUpInside)

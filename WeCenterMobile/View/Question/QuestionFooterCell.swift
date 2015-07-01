@@ -26,9 +26,7 @@ class QuestionFooterCell: UITableViewCell {
         super.awakeFromNib()
         msr_scrollView?.delaysContentTouches = false
         let theme = SettingsManager.defaultManager.currentTheme
-        viewCountImageView.msr_imageRenderingMode = .AlwaysTemplate
         viewCountImageView.tintColor = theme.subtitleTextColor
-        focusCountImageView.msr_imageRenderingMode = .AlwaysTemplate
         focusCountImageView.tintColor = theme.subtitleTextColor
         focusButton.msr_setBackgroundImageWithColor(theme.backgroundColorA, forState: .Highlighted)
         focusButton.setTitle(nil, forState: .Normal)

@@ -8,8 +8,8 @@
 
 import UIKit
 
-let defaultUserAvatar = UIImage(named: "DefaultAvatar")!
-let defaultTopicImage = UIImage(named: "User_Follow")!
+let defaultUserAvatar = UIImage(named: "User-DefaultAvatar")
+let defaultTopicImage = UIImage(named: "Topic-DefaultImage")
 
 extension UIImageView {
     

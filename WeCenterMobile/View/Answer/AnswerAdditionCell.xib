@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -23,14 +24,18 @@
                                 </state>
                             </button>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B9q-Xm-jRD">
-                                <rect key="frame" x="105" y="0.0" width="94" height="50"/>
+                                <rect key="frame" x="112" y="0.0" width="81" height="50"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Conversation-Filled" translatesAutoresizingMaskIntoConstraints="NO" id="Tvw-NC-gwW">
-                                        <rect key="frame" x="0.0" y="14" width="28" height="22"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Publishment-Answer" translatesAutoresizingMaskIntoConstraints="NO" id="Tvw-NC-gwW">
+                                        <rect key="frame" x="0.0" y="18" width="15" height="15"/>
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Tvw-NC-gwW" secondAttribute="height" multiplier="1:1" id="8JC-6s-qoJ"/>
+                                            <constraint firstAttribute="width" constant="15" id="dZ3-GN-26Y"/>
+                                        </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加回答" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jX-NK-Gwc">
-                                        <rect key="frame" x="38" y="17" width="56" height="17"/>
+                                        <rect key="frame" x="25" y="17" width="56" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -121,6 +126,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Conversation-Filled" width="28" height="22"/>
+        <image name="Publishment-Answer" width="26" height="26"/>
     </resources>
 </document>
