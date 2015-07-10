@@ -8,9 +8,6 @@
 
 #ifdef __OBJC__
 
-@import CoreText;
 @import UIKit;
-
-#import "DTFoundation.h"
 
 #endif

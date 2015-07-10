@@ -11,19 +11,6 @@ module AFViewShaker {
     use UIKit
 }
 
-module DTCoreText {
-    header "DTCoreText.h"
-    requires objc, objc_arc
-    use UIKit
-    use DTFoundation
-}
-
-module DTFoundation {
-    header "DTFoundation.h"
-    requires objc, objc_arc
-    use UIKit
-}
-
 module EAColourfulProgressView {
     umbrella header "EAColourfulProgressView/EAColourfulProgressView/EAColourfulProgressView.h"
     requires objc, objc_arc
