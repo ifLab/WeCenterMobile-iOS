@@ -2511,7 +2511,6 @@
 					"$(SDKROOT)/usr/lib/system",
 					"$(PROJECT_DIR)/WeCenterMobile/External/SinaWeiboSDK/libWeiboSDK",
 					"$(PROJECT_DIR)/WeCenterMobile/External/WeChatSDK",
-					"$(PROJECT_DIR)/WeCenterMobile/External/DTCoreText/Externals/DTFoundation/build/Debug",
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2545,7 +2544,6 @@
 					"$(SDKROOT)/usr/lib/system",
 					"$(PROJECT_DIR)/WeCenterMobile/External/SinaWeiboSDK/libWeiboSDK",
 					"$(PROJECT_DIR)/WeCenterMobile/External/WeChatSDK",
-					"$(PROJECT_DIR)/WeCenterMobile/External/DTCoreText/Externals/DTFoundation/build/Debug",
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
