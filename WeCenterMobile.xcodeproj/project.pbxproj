@@ -150,6 +150,8 @@
 		95A3AAFC1B047F3F00ADF705 /* GBDeviceInfo_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A3AAF21B047F3E00ADF705 /* GBDeviceInfo_iOS.m */; };
 		95B9BDC31ABAA67900692889 /* PublishmentViewControllerA.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95B9BDC21ABAA67900692889 /* PublishmentViewControllerA.xib */; };
 		95B9BE681ABAEF1A00692889 /* ZFTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B9BE671ABAEF1A00692889 /* ZFTokenField.m */; };
+		95BA9BA71B5181F6009FC61F /* DTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95BA9BA01B5181C4009FC61F /* DTFoundation.framework */; };
+		95BA9BA81B5181F6009FC61F /* DTFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 95BA9BA01B5181C4009FC61F /* DTFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		95C2EA1E1AB0516800F2A326 /* Array+MSRAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2E9F31AB0516800F2A326 /* Array+MSRAccessor.swift */; };
 		95C2EA1F1AB0516800F2A326 /* MSRWeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2E9F41AB0516800F2A326 /* MSRWeak.swift */; };
 		95C2EA201AB0516800F2A326 /* NSManagedObjectContext+MSROperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2E9F51AB0516800F2A326 /* NSManagedObjectContext+MSROperations.swift */; };
@@ -345,6 +347,188 @@
 			remoteGlobalIDString = A79BA6201B46A1FB0086C2F6;
 			remoteInfo = "DTCoreText (iOS)";
 		};
+		95BA9B711B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A70B4CE71486637E00873A4A;
+			remoteInfo = "Static Library";
+		};
+		95BA9B731B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A710A5001607556000437D36;
+			remoteInfo = "Static Library (Mac)";
+		};
+		95BA9B751B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7AC21AF196417830009E1B9;
+			remoteInfo = "DTAnimatedGIF (iOS)";
+		};
+		95BA9B771B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A79D999C1792D1F50082BC06;
+			remoteInfo = "DTAWS (iOS)";
+		};
+		95BA9B791B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FA9CB80C17ABDEF200A596C5;
+			remoteInfo = "DTASN1 (iOS)";
+		};
+		95BA9B7B1B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7E383C2160DFEDB00CF72D6;
+			remoteInfo = "DTHTMLParser (iOS)";
+		};
+		95BA9B7D1B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D7CE547166613B60028D339;
+			remoteInfo = "DTHTMLParser (Mac)";
+		};
+		95BA9B7F1B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F88FF6801920A83300120808;
+			remoteInfo = "DTProgressHUD (iOS)";
+		};
+		95BA9B811B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A72121DA173BFFB1003C6F0A;
+			remoteInfo = "DTReachability (iOS)";
+		};
+		95BA9B831B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A72121EA173BFFED003C6F0A;
+			remoteInfo = "DTReachability (Mac)";
+		};
+		95BA9B851B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7C92B7A174FB8900019D70A;
+			remoteInfo = "DTSQLite (iOS)";
+		};
+		95BA9B871B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7C92B8C174FB9720019D70A;
+			remoteInfo = "DTSQLite (Mac)";
+		};
+		95BA9B891B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A78220BA168060CA005B602D;
+			remoteInfo = "DTUTI (iOS)";
+		};
+		95BA9B8B1B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7E889A416A9B190009EF0DF;
+			remoteInfo = "DTUTI (Mac)";
+		};
+		95BA9B8D1B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7E383DA160DFF8600CF72D6;
+			remoteInfo = "DTZipArchive (iOS)";
+		};
+		95BA9B8F1B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7D8C7C21723174600025675;
+			remoteInfo = "DTZipArchive (Mac)";
+		};
+		95BA9B911B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A78381C31963F8D700AF09D3;
+			remoteInfo = "DTAnimatedGIF Demo";
+		};
+		95BA9B931B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F88FF6A51920AAB600120808;
+			remoteInfo = "DTProgressHUD Demo";
+		};
+		95BA9B951B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7D9D62D1758C89800C29B6F;
+			remoteInfo = "DTReachability Demo";
+		};
+		95BA9B971B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A70D74D01743AFBC00E6E626;
+			remoteInfo = "DTSidePanels Demo";
+		};
+		95BA9B991B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FAF37A2017AFDD93009AC27C;
+			remoteInfo = "DTZipArchive Demo";
+		};
+		95BA9B9B1B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FAC284E619B84B5F0010C385;
+			remoteInfo = "DTActionSheet Demo";
+		};
+		95BA9B9D1B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7917C77191A312600964D63;
+			remoteInfo = "Unit Tests";
+		};
+		95BA9B9F1B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7EA07B81A2B2F6A00B61CCE;
+			remoteInfo = "DTFoundation (iOS)";
+		};
+		95BA9BA11B5181C4009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7EA07391A2B215200B61CCE;
+			remoteInfo = "DTFoundation (OSX)";
+		};
+		95BA9BA91B5181F6009FC61F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A7EA07B71A2B2F6A00B61CCE;
+			remoteInfo = "DTFoundation (iOS)";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -355,6 +539,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				957C0C291B4F403D00FF8CAF /* DTCoreText.framework in Embed Frameworks */,
+				95BA9BA81B5181F6009FC61F /* DTFoundation.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -542,6 +727,7 @@
 		95B9BDC21ABAA67900692889 /* PublishmentViewControllerA.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishmentViewControllerA.xib; sourceTree = "<group>"; };
 		95B9BE661ABAEF1A00692889 /* ZFTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFTokenField.h; sourceTree = "<group>"; };
 		95B9BE671ABAEF1A00692889 /* ZFTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFTokenField.m; sourceTree = "<group>"; };
+		95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DTFoundation.xcodeproj; path = DTCoreText/Externals/DTFoundation/DTFoundation.xcodeproj; sourceTree = "<group>"; };
 		95C2E9F31AB0516800F2A326 /* Array+MSRAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+MSRAccessor.swift"; sourceTree = "<group>"; };
 		95C2E9F41AB0516800F2A326 /* MSRWeak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRWeak.swift; sourceTree = "<group>"; };
 		95C2E9F51AB0516800F2A326 /* NSManagedObjectContext+MSROperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+MSROperations.swift"; sourceTree = "<group>"; };
@@ -718,6 +904,7 @@
 				95EAF68D1B3B212600863F19 /* CoreTelephony.framework in Frameworks */,
 				95EAF68E1B3B212600863F19 /* CoreText.framework in Frameworks */,
 				957C0C281B4F403D00FF8CAF /* DTCoreText.framework in Frameworks */,
+				95BA9BA71B5181F6009FC61F /* DTFoundation.framework in Frameworks */,
 				95EAF68F1B3B212600863F19 /* Foundation.framework in Frameworks */,
 				95EAF6901B3B212600863F19 /* ImageIO.framework in Frameworks */,
 				95EAF6911B3B212600863F19 /* MessageUI.framework in Frameworks */,
@@ -796,6 +983,7 @@
 				95ED5EDD1B084D0500CDB225 /* AFNetworking */,
 				9586033D1B0A28CE009601D2 /* AFViewShaker */,
 				95A9D5481B4E5FF500880A1B /* DTCoreText */,
+				95BA9B041B5181A1009FC61F /* DTFoundation */,
 				951FAC731ABFCEA30083E221 /* EAColourfulProgressView */,
 				95A3AAEB1B047F3E00ADF705 /* GBDeviceInfo */,
 				951D2F691AB7F85500DCB678 /* MJRefresh */,
@@ -1210,6 +1398,46 @@
 			path = ZFTokenField/Classes;
 			sourceTree = "<group>";
 		};
+		95BA9B041B5181A1009FC61F /* DTFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */,
+			);
+			name = DTFoundation;
+			sourceTree = "<group>";
+		};
+		95BA9B551B5181C4009FC61F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				95BA9B721B5181C4009FC61F /* libDTFoundation.a */,
+				95BA9B741B5181C4009FC61F /* libDTFoundation_Mac.a */,
+				95BA9B761B5181C4009FC61F /* libDTAnimatedGIF.a */,
+				95BA9B781B5181C4009FC61F /* libDTAWS.a */,
+				95BA9B7A1B5181C4009FC61F /* libDTASN1.a */,
+				95BA9B7C1B5181C4009FC61F /* libDTHTMLParser_iOS.a */,
+				95BA9B7E1B5181C4009FC61F /* libDTHTMLParser_Mac.a */,
+				95BA9B801B5181C4009FC61F /* libDTProgressHUD_iOS.a */,
+				95BA9B821B5181C4009FC61F /* libDTReachability_iOS.a */,
+				95BA9B841B5181C4009FC61F /* libDTReachability_Mac.a */,
+				95BA9B861B5181C4009FC61F /* libDTSQLite_iOS.a */,
+				95BA9B881B5181C4009FC61F /* libDTSQLite_Mac.a */,
+				95BA9B8A1B5181C4009FC61F /* libDTUTI_iOS.a */,
+				95BA9B8C1B5181C4009FC61F /* libDTUTI_Mac.a */,
+				95BA9B8E1B5181C4009FC61F /* libDTZipArchive_iOS.a */,
+				95BA9B901B5181C4009FC61F /* libDTZipArchive_Mac.a */,
+				95BA9B921B5181C4009FC61F /* DTAnimatedGIF Demo.app */,
+				95BA9B941B5181C4009FC61F /* DTProgressHUD Demo.app */,
+				95BA9B961B5181C4009FC61F /* DTReachability Demo.app */,
+				95BA9B981B5181C4009FC61F /* DTSidePanels Demo.app */,
+				95BA9B9A1B5181C4009FC61F /* DTZipArchive.app */,
+				95BA9B9C1B5181C4009FC61F /* DTActionSheet Demo.app */,
+				95BA9B9E1B5181C4009FC61F /* Unit Tests.xctest */,
+				95BA9BA01B5181C4009FC61F /* DTFoundation.framework */,
+				95BA9BA21B5181C4009FC61F /* DTFoundation.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		95C2E9F01AB0516800F2A326 /* Msr */ = {
 			isa = PBXGroup;
 			children = (
@@ -1526,6 +1754,7 @@
 			);
 			dependencies = (
 				957C0C2B1B4F403D00FF8CAF /* PBXTargetDependency */,
+				95BA9BAA1B5181F6009FC61F /* PBXTargetDependency */,
 			);
 			name = WeCenterMobile;
 			productName = WeCenterMobile;
@@ -1586,6 +1815,10 @@
 				{
 					ProductGroup = 95A9D54A1B4E5FFF00880A1B /* Products */;
 					ProjectRef = 95A9D5491B4E5FFF00880A1B /* DTCoreText.xcodeproj */;
+				},
+				{
+					ProductGroup = 95BA9B551B5181C4009FC61F /* Products */;
+					ProjectRef = 95BA9B541B5181C4009FC61F /* DTFoundation.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1651,6 +1884,181 @@
 			fileType = wrapper.framework;
 			path = DTCoreText.framework;
 			remoteRef = 95A9D5641B4E600000880A1B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B721B5181C4009FC61F /* libDTFoundation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTFoundation.a;
+			remoteRef = 95BA9B711B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B741B5181C4009FC61F /* libDTFoundation_Mac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTFoundation_Mac.a;
+			remoteRef = 95BA9B731B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B761B5181C4009FC61F /* libDTAnimatedGIF.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTAnimatedGIF.a;
+			remoteRef = 95BA9B751B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B781B5181C4009FC61F /* libDTAWS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTAWS.a;
+			remoteRef = 95BA9B771B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B7A1B5181C4009FC61F /* libDTASN1.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTASN1.a;
+			remoteRef = 95BA9B791B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B7C1B5181C4009FC61F /* libDTHTMLParser_iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTHTMLParser_iOS.a;
+			remoteRef = 95BA9B7B1B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B7E1B5181C4009FC61F /* libDTHTMLParser_Mac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTHTMLParser_Mac.a;
+			remoteRef = 95BA9B7D1B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B801B5181C4009FC61F /* libDTProgressHUD_iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTProgressHUD_iOS.a;
+			remoteRef = 95BA9B7F1B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B821B5181C4009FC61F /* libDTReachability_iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTReachability_iOS.a;
+			remoteRef = 95BA9B811B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B841B5181C4009FC61F /* libDTReachability_Mac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTReachability_Mac.a;
+			remoteRef = 95BA9B831B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B861B5181C4009FC61F /* libDTSQLite_iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTSQLite_iOS.a;
+			remoteRef = 95BA9B851B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B881B5181C4009FC61F /* libDTSQLite_Mac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTSQLite_Mac.a;
+			remoteRef = 95BA9B871B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B8A1B5181C4009FC61F /* libDTUTI_iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTUTI_iOS.a;
+			remoteRef = 95BA9B891B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B8C1B5181C4009FC61F /* libDTUTI_Mac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTUTI_Mac.a;
+			remoteRef = 95BA9B8B1B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B8E1B5181C4009FC61F /* libDTZipArchive_iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTZipArchive_iOS.a;
+			remoteRef = 95BA9B8D1B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B901B5181C4009FC61F /* libDTZipArchive_Mac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTZipArchive_Mac.a;
+			remoteRef = 95BA9B8F1B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B921B5181C4009FC61F /* DTAnimatedGIF Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "DTAnimatedGIF Demo.app";
+			remoteRef = 95BA9B911B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B941B5181C4009FC61F /* DTProgressHUD Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "DTProgressHUD Demo.app";
+			remoteRef = 95BA9B931B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B961B5181C4009FC61F /* DTReachability Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "DTReachability Demo.app";
+			remoteRef = 95BA9B951B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B981B5181C4009FC61F /* DTSidePanels Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "DTSidePanels Demo.app";
+			remoteRef = 95BA9B971B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B9A1B5181C4009FC61F /* DTZipArchive.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = DTZipArchive.app;
+			remoteRef = 95BA9B991B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B9C1B5181C4009FC61F /* DTActionSheet Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "DTActionSheet Demo.app";
+			remoteRef = 95BA9B9B1B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9B9E1B5181C4009FC61F /* Unit Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Unit Tests.xctest";
+			remoteRef = 95BA9B9D1B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9BA01B5181C4009FC61F /* DTFoundation.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DTFoundation.framework;
+			remoteRef = 95BA9B9F1B5181C4009FC61F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95BA9BA21B5181C4009FC61F /* DTFoundation.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DTFoundation.framework;
+			remoteRef = 95BA9BA11B5181C4009FC61F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1943,6 +2351,11 @@
 			target = 9588F5E21A1D9D1C001BC426 /* WeCenterMobile */;
 			targetProxy = 9588F5FC1A1D9D1C001BC426 /* PBXContainerItemProxy */;
 		};
+		95BA9BAA1B5181F6009FC61F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "DTFoundation (iOS)";
+			targetProxy = 95BA9BA91B5181F6009FC61F /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -2082,11 +2495,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = NO;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/WeCenterMobile/External/DTCoreText/Externals/DTFoundation/build/Debug",
-					"$(PROJECT_DIR)/WeCenterMobile/External/DTCoreText/Externals/DTFoundation/build/Debug-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${PROJECT_DIR}/WeCenterMobile/WeCenterMobile.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2102,6 +2511,7 @@
 					"$(SDKROOT)/usr/lib/system",
 					"$(PROJECT_DIR)/WeCenterMobile/External/SinaWeiboSDK/libWeiboSDK",
 					"$(PROJECT_DIR)/WeCenterMobile/External/WeChatSDK",
+					"$(PROJECT_DIR)/WeCenterMobile/External/DTCoreText/Externals/DTFoundation/build/Debug",
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2119,11 +2529,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = NO;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/WeCenterMobile/External/DTCoreText/Externals/DTFoundation/build/Debug",
-					"$(PROJECT_DIR)/WeCenterMobile/External/DTCoreText/Externals/DTFoundation/build/Debug-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${PROJECT_DIR}/WeCenterMobile/WeCenterMobile.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2139,6 +2545,7 @@
 					"$(SDKROOT)/usr/lib/system",
 					"$(PROJECT_DIR)/WeCenterMobile/External/SinaWeiboSDK/libWeiboSDK",
 					"$(PROJECT_DIR)/WeCenterMobile/External/WeChatSDK",
+					"$(PROJECT_DIR)/WeCenterMobile/External/DTCoreText/Externals/DTFoundation/build/Debug",
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
