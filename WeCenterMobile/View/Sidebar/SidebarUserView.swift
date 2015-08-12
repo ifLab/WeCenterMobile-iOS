@@ -14,6 +14,7 @@ class SidebarUserView: UIView {
     @IBOutlet weak var userAvatarView: MSRRoundedImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userSignatureLabel: UILabel!
+    @IBOutlet weak var overlay: UIView!
     
     func update(#user: User?) {
         userAvatarView.wc_updateWithUser(user)

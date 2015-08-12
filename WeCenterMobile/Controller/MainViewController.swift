@@ -12,7 +12,7 @@ import UIKit
 let SidebarDidBecomeVisibleNotificationName = "SidebarDidBecomeVisibleNotification"
 let SidebarDidBecomeInvisibleNotificationName = "SidebarDidBecomeInvisibleNotification"
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MSRSidebarDelegate {
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MSRSidebarDelegate, UserEditViewControllerDelegate {
     lazy var contentViewController: MSRNavigationController = {
         [weak self] in
         let vc = MSRNavigationController(rootViewController: HomeViewController(user: User.currentUser!))
@@ -65,6 +65,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         [weak self] in
         let v = NSBundle.mainBundle().loadNibNamed("SidebarUserView", owner: nil, options: nil).first as! SidebarUserView
         v.update(user: User.currentUser)
+        if let self_ = self {
+            let tgr = UITapGestureRecognizer(target: self_, action: "didTapSignatureLabel:")
+            v.overlay.addGestureRecognizer(tgr)
+        }
         return v
     }()
     lazy var cells: [SidebarCategoryCell] = {
@@ -176,6 +180,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     func msr_sidebar(sidebar: MSRSidebar, didShowAtPercentage percentage: CGFloat) {
         sidebarIsVisible = percentage > 0
+    }
+    func didTapSignatureLabel(recognizer: UITapGestureRecognizer) {
+        if recognizer.state == .Ended {
+            sidebar.collapse()
+            let uevc = NSBundle.mainBundle().loadNibNamed("UserEditViewController", owner: nil, options: nil).first as! UserEditViewController
+            uevc.delegate = self
+            showDetailViewController(uevc, sender: self)
+        }
     }
     func currentUserPropertyDidChange(notification: NSNotification) {
         let key = notification.userInfo![KeyUserInfoKey] as! String
