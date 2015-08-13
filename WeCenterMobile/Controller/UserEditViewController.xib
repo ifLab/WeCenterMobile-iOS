@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -93,7 +93,7 @@
                                             <constraint firstAttribute="width" constant="1" id="O1t-49-zQM"/>
                                         </constraints>
                                     </view>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="纯白色蝴蝶" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="D4r-qb-dTk">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="纯白色蝴蝶" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="D4r-qb-dTk" customClass="MSRTextView" customModule="WeCenterMobile" customModuleProvider="target">
                                         <rect key="frame" x="81" y="173" width="499" height="33"/>
                                         <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
@@ -106,6 +106,7 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="msr_borderColor">
                                                 <color key="value" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="昵称"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="vyf-y1-D6i" id="uVJ-7p-MDZ"/>
@@ -214,7 +215,7 @@
                                             <constraint firstItem="Hxq-gl-rOn" firstAttribute="leading" secondItem="MjO-q6-nKH" secondAttribute="leading" id="t0r-c8-14U"/>
                                         </constraints>
                                     </view>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Creating a world of pure white." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hFv-OU-aSm">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Creating a world of pure white." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hFv-OU-aSm" customClass="MSRTextView" customModule="WeCenterMobile" customModuleProvider="target">
                                         <rect key="frame" x="81" y="226" width="499" height="33"/>
                                         <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
@@ -227,6 +228,7 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="msr_borderColor">
                                                 <color key="value" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="个人签名"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="vyf-y1-D6i" id="lWQ-uj-eCM"/>
