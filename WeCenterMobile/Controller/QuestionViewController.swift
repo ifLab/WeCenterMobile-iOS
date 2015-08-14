@@ -85,6 +85,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
         tableView.wc_addRefreshingHeaderWithTarget(self, action: "refresh")
         title = "问题详情" // Needs localization
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Share-Button"), style: .Plain, target: self, action: "didPressShareButton")
     }
     
     override func viewDidLoad() {
@@ -285,6 +286,21 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     
     func reloadQuestionFooterCell() {
         tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 4)], withRowAnimation: .None)
+    }
+    
+    func didPressShareButton() {
+        let title = question.title!
+        let image = question.user?.avatar ?? defaultUserAvatar
+        let body = question.body!.wc_plainString
+        let url = NetworkManager.defaultManager!.website
+        var items = [title, body, NSURL(string: url)!]
+        if image != nil {
+            items.append(image!)
+        }
+        let vc = UIActivityViewController(
+            activityItems: items,
+            applicationActivities: [SinaWeiboActivity(), WeChatSessionActivity(), WeChatTimelineActivity()])
+        showDetailViewController(vc, sender: self)
     }
     
     func didPressTagsButton(sender: UIButton) {
