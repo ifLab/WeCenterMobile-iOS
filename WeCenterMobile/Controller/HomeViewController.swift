@@ -105,7 +105,7 @@ class HomeViewController: UITableViewController, PublishmentViewControllerDelega
         let ac = UIAlertController(title: "发布什么？", message: "选择发布的内容种类。", preferredStyle: .ActionSheet)
         let presentPublishmentViewController: (String, PublishmentViewControllerPresentable) -> Void = {
             [weak self] title, object in
-            let vc = NSBundle.mainBundle().loadNibNamed("PublishmentViewControllerA", owner: self, options: nil).first as! PublishmentViewController
+            let vc = NSBundle.mainBundle().loadNibNamed("PublishmentViewControllerA", owner: nil, options: nil).first as! PublishmentViewController
             vc.delegate = self
             vc.dataObject = object
             vc.headerLabel.text = title

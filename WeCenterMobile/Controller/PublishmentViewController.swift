@@ -254,7 +254,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
             }
             var progressView: EAColourfulProgressView! = cell.contentView.viewWithTag(SelfType.progressViewTag) as? EAColourfulProgressView
             if progressView == nil {
-                progressView = NSBundle.mainBundle().loadNibNamed("ImageUploadingProgressBar", owner: self, options: nil).first as! EAColourfulProgressView
+                progressView = NSBundle.mainBundle().loadNibNamed("ImageUploadingProgressBar", owner: nil, options: nil).first as! EAColourfulProgressView
                 progressView.tag = SelfType.progressViewTag
                 progressView.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
                 progressView.msr_addHeightConstraintWithValue(8)

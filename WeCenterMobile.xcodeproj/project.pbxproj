@@ -149,6 +149,7 @@
 		959FCB621AEE4EB300299AA6 /* UIColor+MSRGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959FCB611AEE4EB300299AA6 /* UIColor+MSRGetter.swift */; };
 		95A3AAFB1B047F3F00ADF705 /* GBDeviceInfo_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A3AAF01B047F3E00ADF705 /* GBDeviceInfo_Common.m */; };
 		95A3AAFC1B047F3F00ADF705 /* GBDeviceInfo_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A3AAF21B047F3E00ADF705 /* GBDeviceInfo_iOS.m */; };
+		95A7BA681B7F5AE100FB91AE /* SidebarCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A7BA671B7F5AE100FB91AE /* SidebarCategory.swift */; };
 		95B9BDC31ABAA67900692889 /* PublishmentViewControllerA.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95B9BDC21ABAA67900692889 /* PublishmentViewControllerA.xib */; };
 		95B9BE681ABAEF1A00692889 /* ZFTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B9BE671ABAEF1A00692889 /* ZFTokenField.m */; };
 		95BA9BA71B5181F6009FC61F /* DTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95BA9BA01B5181C4009FC61F /* DTFoundation.framework */; };
@@ -186,6 +187,8 @@
 		95C2EA431AB0516800F2A326 /* UINavigationBar+MSRAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2EA1A1AB0516800F2A326 /* UINavigationBar+MSRAccessor.swift */; };
 		95C2EA441AB0516800F2A326 /* UIView+MSREasyAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2EA1B1AB0516800F2A326 /* UIView+MSREasyAutoLayout.swift */; };
 		95C47D4B1AC9C2BE00A56879 /* UIButton+MSRSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C47D4A1AC9C2BE00A56879 /* UIButton+MSRSetter.swift */; };
+		95C73C751B7F6AEB003D3072 /* SidebarLogoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C73C741B7F6AEB003D3072 /* SidebarLogoutCell.xib */; };
+		95C73C981B7F6B04003D3072 /* SidebarLogoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C73C971B7F6B04003D3072 /* SidebarLogoutCell.swift */; };
 		95C893771AC7365D00B7B385 /* MSRSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C893761AC7365D00B7B385 /* MSRSidebar.swift */; };
 		95D153A41AF4BB3000C1617D /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D153A31AF4BB3000C1617D /* ArticleViewController.swift */; };
 		95D153A71AF4CEF800C1617D /* ArticleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D153A61AF4CEF800C1617D /* ArticleHeaderView.swift */; };
@@ -725,6 +728,7 @@
 		95A3AAF71B047F3F00ADF705 /* GBDeviceInfoTypes_Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBDeviceInfoTypes_Common.h; sourceTree = "<group>"; };
 		95A3AAF81B047F3F00ADF705 /* GBDeviceInfoTypes_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBDeviceInfoTypes_iOS.h; sourceTree = "<group>"; };
 		95A3AAFE1B04801100ADF705 /* GBDeviceInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBDeviceInfo.h; sourceTree = "<group>"; };
+		95A7BA671B7F5AE100FB91AE /* SidebarCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarCategory.swift; sourceTree = "<group>"; };
 		95A9D5491B4E5FFF00880A1B /* DTCoreText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DTCoreText.xcodeproj; path = DTCoreText/DTCoreText.xcodeproj; sourceTree = "<group>"; };
 		95B9BDC21ABAA67900692889 /* PublishmentViewControllerA.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishmentViewControllerA.xib; sourceTree = "<group>"; };
 		95B9BE661ABAEF1A00692889 /* ZFTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFTokenField.h; sourceTree = "<group>"; };
@@ -763,6 +767,8 @@
 		95C2EA1A1AB0516800F2A326 /* UINavigationBar+MSRAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+MSRAccessor.swift"; sourceTree = "<group>"; };
 		95C2EA1B1AB0516800F2A326 /* UIView+MSREasyAutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+MSREasyAutoLayout.swift"; sourceTree = "<group>"; };
 		95C47D4A1AC9C2BE00A56879 /* UIButton+MSRSetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+MSRSetter.swift"; sourceTree = "<group>"; };
+		95C73C741B7F6AEB003D3072 /* SidebarLogoutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarLogoutCell.xib; sourceTree = "<group>"; };
+		95C73C971B7F6B04003D3072 /* SidebarLogoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarLogoutCell.swift; sourceTree = "<group>"; };
 		95C893761AC7365D00B7B385 /* MSRSidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSRSidebar.swift; sourceTree = "<group>"; };
 		95D153A31AF4BB3000C1617D /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ArticleViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		95D153A61AF4CEF800C1617D /* ArticleHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ArticleHeaderView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -1173,6 +1179,8 @@
 			children = (
 				9531D7051AF3E4AC00E6549D /* SidebarCategoryCell.swift */,
 				9531D7061AF3E4AC00E6549D /* SidebarCategoryCell.xib */,
+				95C73C971B7F6B04003D3072 /* SidebarLogoutCell.swift */,
+				95C73C741B7F6AEB003D3072 /* SidebarLogoutCell.xib */,
 				958600861B187CB50054DAA8 /* SidebarUserView.swift */,
 				958600881B187CC50054DAA8 /* SidebarUserView.xib */,
 			);
@@ -1257,6 +1265,7 @@
 		9531D77F1AF3E8E400E6549D /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				95A7BA671B7F5AE100FB91AE /* SidebarCategory.swift */,
 				95DC570F1AF785040075C3CB /* Evalation.swift */,
 				9531D7801AF3E8E400E6549D /* String+PlainString.swift */,
 				95D784091B1C5306008EB241 /* Theme.swift */,
@@ -2097,6 +2106,7 @@
 				95ED5F1C1B084D3900CDB225 /* SVProgressHUD.bundle in Resources */,
 				9531D7371AF3E4AC00E6549D /* ArticlePublishmentActionCell.xib in Resources */,
 				9531D71B1AF3E4AC00E6549D /* AnswerAdditionCell.xib in Resources */,
+				95C73C751B7F6AEB003D3072 /* SidebarLogoutCell.xib in Resources */,
 				954A76AB1AFD0323002A72A9 /* PublishmentViewControllerB.xib in Resources */,
 				95B9BDC31ABAA67900692889 /* PublishmentViewControllerA.xib in Resources */,
 				9531D7481AF3E4AC00E6549D /* QuestionTagListCell.xib in Resources */,
@@ -2229,6 +2239,7 @@
 				95C2EA3F1AB0516800F2A326 /* UIColor+MSRRandomColor.swift in Sources */,
 				958FF4D71AC270820073022F /* String+MSROperations.swift in Sources */,
 				95ED5EF21B084D0500CDB225 /* AFHTTPRequestOperationManager.m in Sources */,
+				95C73C981B7F6B04003D3072 /* SidebarLogoutCell.swift in Sources */,
 				95EBCF411B2DB2770088FC2C /* UserSearchResultCell.swift in Sources */,
 				9531D7571AF3E4AC00E6549D /* UserFooterCell.swift in Sources */,
 				95331E261B039FE100DFBB5F /* UIScrollView+MSRTouchCancelling.swift in Sources */,
@@ -2328,6 +2339,7 @@
 				9531D7341AF3E4AC00E6549D /* ArticleAgreementActionCell.swift in Sources */,
 				95EBCF471B2DB34F0088FC2C /* ArticleSearchResultCell.swift in Sources */,
 				95ED5EF31B084D0500CDB225 /* AFHTTPSessionManager.m in Sources */,
+				95A7BA681B7F5AE100FB91AE /* SidebarCategory.swift in Sources */,
 				9531D79D1AF3E8E400E6549D /* SinaWeiboActivity.swift in Sources */,
 				95C2EA211AB0516800F2A326 /* Numeric+MSRInitializer.swift in Sources */,
 				95DC57151AF8A38D0075C3CB /* UserAtView.swift in Sources */,

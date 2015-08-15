@@ -73,20 +73,20 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }()
     lazy var cells: [SidebarCategoryCell] = {
         [weak self] in
-        return map([
-            ("User", "个人中心"),
-            ("Home", "首页"),
-            ("Explore", "发现"),
-            ("Drafts", "草稿"),
-            ("Search", "搜索"),
-            ("ReadingList", "阅读列表"),
-            ("History", "历史记录"),
-            ("Settings", "设置"),
-            ("About", "关于")]) {
-                let cell = NSBundle.mainBundle().loadNibNamed("SidebarCategoryCell", owner: self?.tableView, options: nil).first as! SidebarCategoryCell
-                cell.update(image: UIImage(named: "Sidebar-" + $0.0), title: $0.1)
+        if let self_ = self {
+            return map(SidebarCategory.allValues) {
+                let cell = NSBundle.mainBundle().loadNibNamed("SidebarCategoryCell", owner: nil, options: nil).first as! SidebarCategoryCell
+                cell.update(category: $0)
                 return cell
             }
+        } else {
+            return []
+        }
+    }()
+    lazy var logoutCell: SidebarLogoutCell = {
+        [weak self] in
+        let cell = NSBundle.mainBundle().loadNibNamed("SidebarLogoutCell", owner: nil, options: nil).first as! SidebarLogoutCell
+        return cell
     }()
     convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -116,14 +116,20 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cells.count
+        return [cells.count, 1][section]
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = cells[indexPath.row]
-        cell.updateTheme()
+        let cell: UITableViewCell
+        if indexPath.section == 0 {
+            let c = cells[indexPath.row]
+            c.updateTheme()
+            cell = c
+        } else {
+            cell = logoutCell
+        }
         return cell
     }
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
@@ -134,30 +140,40 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         sidebar.collapse()
-        if indexPath.section == 0 {
-            switch indexPath.row {
-            case 0:
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        if let category = (cell as? SidebarCategoryCell)?.category {
+            switch category {
+            case .User:
                 contentViewController.setViewControllers([UserViewController(user: User.currentUser!)], animated: true)
                 break
-            case 1:
+            case .Home:
                 contentViewController.setViewControllers([HomeViewController(user: User.currentUser!)], animated: true)
                 break
-            case 2:
+            case .Explore:
                 contentViewController.setViewControllers([ExploreViewController()], animated: true)
                 break
-            case 4:
+            case .Search:
                 contentViewController.setViewControllers([SearchViewController()], animated: true)
                 break
-            case 7:
+            case .Settings:
                 let svc = UIStoryboard(name: "SettingsViewController", bundle: NSBundle.mainBundle()).instantiateInitialViewController() as! SettingsViewController
                 contentViewController.setViewControllers([svc], animated: true)
+                break
             default:
                 break
             }
+        } else if cell is SidebarLogoutCell {
+            dismissViewControllerAnimated(true, completion: nil)
         }
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 50
+        return [50, 50][indexPath.section]
+    }
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return [0, 10][section]
     }
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let offset = scrollView.contentOffset.y

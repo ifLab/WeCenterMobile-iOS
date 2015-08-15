@@ -13,15 +13,19 @@ class SidebarCategoryCell: UITableViewCell {
     @IBOutlet weak var categoryImageView: UIImageView!
     @IBOutlet weak var categoryTitleLabel: UILabel!
     
+    var category: SidebarCategory?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         selectedBackgroundView = UIView()
         msr_scrollView?.delaysContentTouches = false
     }
     
-    func update(#image: UIImage?, title: String) {
-        categoryImageView.image = image
-        categoryTitleLabel.text = title
+    func update(#category: SidebarCategory) {
+        self.category = category
+        categoryImageView.image = imageFromSidebarCategory(category)
+        categoryTitleLabel.text = localizedStringFromSidebarCategory(category)
+        updateTheme()
         setNeedsLayout()
         layoutIfNeeded()
     }
@@ -31,6 +35,10 @@ class SidebarCategoryCell: UITableViewCell {
         categoryImageView.tintColor = theme.titleTextColor
         categoryTitleLabel.textColor = theme.titleTextColor
         selectedBackgroundView.backgroundColor = theme.highlightColor
+    }
+    
+    override func prepareForReuse() {
+        category = nil
     }
     
 }

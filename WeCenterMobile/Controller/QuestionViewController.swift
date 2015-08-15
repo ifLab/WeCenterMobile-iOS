@@ -137,7 +137,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         dispatch_once(&_Static.id) {
             [weak self] in
             if let self_ = self {
-                _Static.answerCell = NSBundle.mainBundle().loadNibNamed(self_.answerCellNibName, owner: self_.tableView, options: nil).first as! AnswerCell
+                _Static.answerCell = NSBundle.mainBundle().loadNibNamed(self_.answerCellNibName, owner: nil, options: nil).first as! AnswerCell
             }
         }
         switch indexPath.section {
