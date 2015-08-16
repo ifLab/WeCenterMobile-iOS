@@ -19,7 +19,6 @@ class SettingsManager: NSObject {
     var currentTheme: Theme = {
         if let path = NSBundle.mainBundle().pathForResource("Themes", ofType: "plist") {
             if let infos = NSDictionary(contentsOfFile: path) {
-                println("Load: \(infos) from \(path)")
                 let defaults = NSUserDefaults.standardUserDefaults()
                 if let current = defaults.objectForKey(UserDefaultsCurrentThemeNameKey) as? String {
                     return Theme(name: current, configuration: infos[current] as? NSDictionary ?? [:])

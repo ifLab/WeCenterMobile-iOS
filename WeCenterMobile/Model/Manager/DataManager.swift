@@ -37,8 +37,30 @@ class DataManager: NSObject {
             managedObjectContext!.persistentStoreCoordinator = persistentStoreCoordinator
         }
     }
-    static var defaultManager = DataManager(name: "WeCenterMobile") // for creating cached objects
-    static var temporaryManager = DataManager(name: nil) // for creating temporary objects
+    private static var _defaultManager: DataManager! = nil
+    private static var _temporaryManager: DataManager! = nil
+    static var defaultManager: DataManager! { // for creating cached objects
+        get {
+            if _defaultManager == nil {
+                _defaultManager = DataManager(name: "WeCenterMobile")
+            }
+            return _defaultManager
+        }
+        set {
+            _defaultManager = newValue
+        }
+    }
+    static var temporaryManager: DataManager! { // for creating temporary objects
+        get {
+            if _temporaryManager == nil {
+                _temporaryManager = DataManager(name: nil)
+            }
+            return _temporaryManager
+        }
+        set {
+            _temporaryManager = newValue
+        }
+    }
     func create(entityName: String) -> DataObject {
         let entity = managedObjectModel.entitiesByName[entityName] as! NSEntityDescription
         return DataObject(entity: entity, insertIntoManagedObjectContext: managedObjectContext)
@@ -85,6 +107,6 @@ class DataManager: NSObject {
             managedObjectContext?.save(error)
         }
     }
-    private var managedObjectModel: NSManagedObjectModel!
-    private var managedObjectContext: NSManagedObjectContext?
+    var managedObjectModel: NSManagedObjectModel!
+    var managedObjectContext: NSManagedObjectContext?
 }

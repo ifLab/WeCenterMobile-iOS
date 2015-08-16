@@ -185,7 +185,6 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UITextViewD
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         picker.dismissViewControllerAnimated(true, completion: nil)
         var avatar = info[UIImagePickerControllerEditedImage] as! UIImage
-        println(info[UIImagePickerControllerCropRect])
         User.uploadAvatar(avatar,
             success: {
                 [weak self] in

@@ -43,6 +43,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return vc
     }()
     
+    var cacheFileURL: NSURL {
+        let directory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last as! NSURL
+        let url = directory.URLByAppendingPathComponent("WeCenterMobile.sqlite")
+        return url
+    }
+    
     var mainViewController: MainViewController!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
@@ -70,11 +76,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func clearCaches() {
-        NSURLCache.setSharedURLCache(NSURLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil))
         NetworkManager.clearCookies()
-        let directory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last as! NSURL
-        let url = directory.URLByAppendingPathComponent("WeCenterMobile.sqlite")
-        NSFileManager.defaultManager().removeItemAtURL(url, error: nil)
+        NSFileManager.defaultManager().removeItemAtURL(cacheFileURL, error: nil)
+        DataManager.defaultManager = nil
+        DataManager.temporaryManager = nil
     }
     
     func updateTheme() {

@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 Beijing Information Science and Technology University. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 class SettingsViewController: UITableViewController {
@@ -19,7 +20,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var cacheSizeLabel: UILabel!
     @IBOutlet weak var cacheSizeCalculationActivityIndicatorView: UIActivityIndicatorView!
-    @IBOutlet weak var clearCacheButton: UIButton!
+    @IBOutlet weak var clearCachesButton: UIButton!
     
     @IBOutlet weak var noImagesModeView: UIView!
     @IBOutlet weak var nightModeView: UIView!
@@ -37,7 +38,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var weiboAccountConnectionLabel: UILabel!
     @IBOutlet weak var qqAccountConnectionLabel: UILabel!
     @IBOutlet weak var updateServerConfigurationsLabel: UILabel!
-    @IBOutlet weak var clearCacheLabel: UILabel!
+    @IBOutlet weak var clearCachesLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -48,7 +49,7 @@ class SettingsViewController: UITableViewController {
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.contentViewController.interactivePopGestureRecognizer)
         tableView.panGestureRecognizer.requireGestureRecognizerToFail(appDelegate.mainViewController.sidebar.screenEdgePanGestureRecognizer)
         logoutButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        clearCacheButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        clearCachesButton.msr_setBackgroundImageWithColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
     }
     
     override func viewDidLoad() {
@@ -93,6 +94,13 @@ class SettingsViewController: UITableViewController {
     func reloadData() {
         let manager = SettingsManager.defaultManager
         nightModeSwitch.on = manager.currentTheme.name == "Night"
+        var bytes: UInt64 = 0
+        let stores = DataManager.defaultManager?.managedObjectContext?.persistentStoreCoordinator?.persistentStores as? [NSPersistentStore] ?? []
+        for store in stores {
+            let path = store.URL!.path!
+            bytes += (NSFileManager.defaultManager().attributesOfItemAtPath(path, error: nil)?[NSFileSize] as? NSNumber ?? 0).unsignedLongLongValue
+        }
+        cacheSizeLabel.text = "\(bytes / 1024 / 1024) MB"
     }
     
     func updateTheme() {
@@ -123,7 +131,7 @@ class SettingsViewController: UITableViewController {
             weiboAccountConnectionLabel,
             qqAccountConnectionLabel,
             updateServerConfigurationsLabel,
-            clearCacheLabel]
+            clearCachesLabel]
         for label in labels {
             label.textColor = theme.titleTextColor
         }
@@ -144,6 +152,17 @@ class SettingsViewController: UITableViewController {
             slider.tintColor = theme.controlColorB
         }
         cacheSizeLabel.textColor = theme.subtitleTextColor
+    }
+    
+    @IBAction func clearCaches() {
+        let ac = UIAlertController(title: "注意", message: "此操作需要您重新登录。", preferredStyle: .ActionSheet)
+        ac.addAction(UIAlertAction(title: "好的", style: .Default) {
+            _ in
+            appDelegate.clearCaches()
+            appDelegate.mainViewController.dismissViewControllerAnimated(true, completion: nil)
+        })
+        ac.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        presentViewController(ac, animated: true, completion: nil)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

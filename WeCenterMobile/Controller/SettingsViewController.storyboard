@@ -373,6 +373,9 @@
                                                             <state key="normal">
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="clearCaches" destination="JYD-Da-XZq" eventType="touchUpInside" id="gED-dG-ofb"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -463,9 +466,9 @@
                     <connections>
                         <outlet property="cacheSizeCalculationActivityIndicatorView" destination="dIe-L1-frr" id="4Wt-N4-PID"/>
                         <outlet property="cacheSizeLabel" destination="mmZ-6E-Kll" id="61l-ll-Sab"/>
-                        <outlet property="clearCacheButton" destination="EE4-Ls-QEY" id="2Xt-gu-y1k"/>
-                        <outlet property="clearCacheLabel" destination="MzB-ja-FxG" id="l7M-Yd-C8X"/>
-                        <outlet property="clearCacheView" destination="t45-4b-2qY" id="3UI-8m-GsF"/>
+                        <outlet property="clearCacheView" destination="t45-4b-2qY" id="hzC-q2-v22"/>
+                        <outlet property="clearCachesButton" destination="EE4-Ls-QEY" id="IWu-X8-xka"/>
+                        <outlet property="clearCachesLabel" destination="MzB-ja-FxG" id="x13-Av-JQW"/>
                         <outlet property="fontSizeLabel" destination="Nvs-jG-pP5" id="6qR-ZD-6bZ"/>
                         <outlet property="fontSizeSlider" destination="ani-7N-M4U" id="29F-rC-9YV"/>
                         <outlet property="fontSizeView" destination="ld3-T4-JID" id="1BT-Tu-ayD"/>
