@@ -38,6 +38,7 @@ class AnswerListViewController: UITableViewController {
         title = "\(user.name!) 的回答"
         let theme = SettingsManager.defaultManager.currentTheme
         view.backgroundColor = theme.backgroundColorA
+        tableView.indicatorStyle = theme.scrollViewIndicatorStyle
         tableView.separatorStyle = .None
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension

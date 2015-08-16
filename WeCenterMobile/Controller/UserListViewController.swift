@@ -39,6 +39,7 @@ class UserListViewController: UITableViewController {
         self.title = titles[listType]!
         let theme = SettingsManager.defaultManager.currentTheme
         view.backgroundColor = theme.backgroundColorA
+        tableView.indicatorStyle = theme.scrollViewIndicatorStyle
         tableView.separatorStyle = .None
         tableView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
         tableView.estimatedRowHeight = 80

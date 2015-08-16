@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Current</key>
-	<string>Day</string>
 	<key>Day</key>
 	<dict>
 		<key>Title Font Name</key>
@@ -52,6 +50,8 @@
 		<integer>0</integer>
 		<key>Keyboard Appearance</key>
 		<integer>2</integer>
+		<key>Scroll View Indicator Style</key>
+		<integer>1</integer>
 	</dict>
 	<key>Night</key>
 	<dict>
@@ -101,6 +101,8 @@
 		<integer>2</integer>
 		<key>Keyboard Appearance</key>
 		<integer>1</integer>
+		<key>Scroll View Indicator Style</key>
+		<integer>2</integer>
 	</dict>
 </dict>
 </plist>

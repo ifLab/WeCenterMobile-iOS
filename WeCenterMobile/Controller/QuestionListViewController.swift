@@ -40,6 +40,7 @@ class QuestionListViewController: UITableViewController {
         title = "\(user.name!) 的提问"
         let theme = SettingsManager.defaultManager.currentTheme
         view.backgroundColor = theme.backgroundColorA
+        tableView.indicatorStyle = theme.scrollViewIndicatorStyle
         tableView.separatorStyle = .None
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension

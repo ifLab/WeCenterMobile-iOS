@@ -120,6 +120,11 @@ class Theme {
                 self.keyboardAppearance = keyboardAppearance
             }
         }
+        if let scrollViewIndicatorStyleRawValue = (configuration["Scroll View Indicator Style"] as? NSNumber)?.integerValue {
+            if let scrollViewIndicatorStyle = UIScrollViewIndicatorStyle(rawValue: scrollViewIndicatorStyleRawValue) {
+                self.scrollViewIndicatorStyle = scrollViewIndicatorStyle
+            }
+        }
     }
     
     var name: String = "Default"
@@ -153,5 +158,7 @@ class Theme {
     var backgroundBlurEffectStyle: UIBlurEffectStyle = .ExtraLight
     
     var keyboardAppearance: UIKeyboardAppearance = .Default
+    
+    var scrollViewIndicatorStyle: UIScrollViewIndicatorStyle = .Default
     
 }

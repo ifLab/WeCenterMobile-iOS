@@ -41,7 +41,9 @@ class FeaturedObjectListViewController: UITableViewController {
     }
     override func loadView() {
         super.loadView()
+        let theme = SettingsManager.defaultManager.currentTheme
         view.backgroundColor = UIColor.clearColor()
+        tableView.indicatorStyle = theme.scrollViewIndicatorStyle
         tableView.delaysContentTouches = false
         tableView.msr_wrapperView?.delaysContentTouches = false
         tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)

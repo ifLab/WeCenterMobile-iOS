@@ -71,6 +71,7 @@ class CommentListViewController: UITableViewController, UITextFieldDelegate {
         tableView.msr_wrapperView?.delaysContentTouches = false
         tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         tableView.registerNib(UINib(nibName: cellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellReuseIdentifier)
+        tableView.indicatorStyle = theme.scrollViewIndicatorStyle
         tableView.separatorStyle = .None
         tableView.contentInset.bottom = 8
         tableView.estimatedRowHeight = 50

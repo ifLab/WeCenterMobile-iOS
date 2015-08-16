@@ -14,6 +14,7 @@ enum SidebarCategory: String {
     case Explore = "Explore"
     case Drafts = "Drafts"
     case Search = "Search"
+    case Publishment = "Publishment"
     case ReadingList = "ReadingList"
     case History = "History"
     case Settings = "Settings"
@@ -24,6 +25,7 @@ enum SidebarCategory: String {
         .Explore,
 //        .Drafts,
         .Search,
+        .Publishment,
 //        .ReadingList,
 //        .History,
         .Settings,
@@ -37,6 +39,7 @@ func localizedStringFromSidebarCategory(category: SidebarCategory) -> String {
         .Explore: "发现",
         .Drafts: "草稿",
         .Search: "搜索",
+        .Publishment: "发布",
         .ReadingList: "阅读列表",
         .History: "历史记录",
         .Settings: "设置",

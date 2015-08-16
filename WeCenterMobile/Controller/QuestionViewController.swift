@@ -76,6 +76,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         super.loadView()
         let theme = SettingsManager.defaultManager.currentTheme
         view.backgroundColor = theme.backgroundColorA
+        tableView.indicatorStyle = theme.scrollViewIndicatorStyle
         tableView.delaysContentTouches = false
         tableView.msr_wrapperView?.delaysContentTouches = false
         tableView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)

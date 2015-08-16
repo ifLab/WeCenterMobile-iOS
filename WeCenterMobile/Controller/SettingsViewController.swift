@@ -100,6 +100,7 @@ class SettingsViewController: UITableViewController {
         msr_navigationBar!.barStyle = theme.navigationBarStyle /// @TODO: Wrong behaviour will occur if put it into the animation block. This might be produced by the reinstallation of navigation bar background view.
         msr_navigationBar!.tintColor = theme.navigationItemColor
         setNeedsStatusBarAppearanceUpdate()
+        tableView.indicatorStyle = theme.scrollViewIndicatorStyle
         tableView.backgroundColor = theme.backgroundColorA
         let views = [
             noImagesModeView,

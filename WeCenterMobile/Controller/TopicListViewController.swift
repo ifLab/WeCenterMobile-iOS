@@ -40,6 +40,7 @@ class TopicListViewController: UITableViewController {
         title = listType == .User ? "\(user!.name!) 关注的话题" : "话题"
         let theme = SettingsManager.defaultManager.currentTheme
         view.backgroundColor = theme.backgroundColorA
+        tableView.indicatorStyle = theme.scrollViewIndicatorStyle
         tableView.separatorStyle = .None
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension

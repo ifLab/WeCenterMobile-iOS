@@ -94,6 +94,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
         view.addSubview(footer)
         bodyView.addSubview(header)
         bodyView.bringSubviewToFront(header)
+        bodyView.indicatorStyle = theme.scrollViewIndicatorStyle
         bodyView.frame = view.bounds
         bodyView.delegate = self
         bodyView.msr_uiRefreshControl = UIRefreshControl()

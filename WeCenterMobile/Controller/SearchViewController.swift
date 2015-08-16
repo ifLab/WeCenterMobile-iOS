@@ -39,6 +39,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         v.delegate = self
         v.placeholder = "搜索用户和内容"
         v.barStyle = theme.navigationBarStyle
+        v.keyboardAppearance = theme.keyboardAppearance
         return v
     }()
     
@@ -51,6 +52,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         }
         let theme = SettingsManager.defaultManager.currentTheme
         view.backgroundColor = theme.backgroundColorA
+        tableView.indicatorStyle = theme.scrollViewIndicatorStyle
         tableView.separatorStyle = .None
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -128,6 +130,10 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func refresh() {
+        if keyword == "" {
+            tableView.header.endRefreshing()
+            return
+        }
         shouldReloadAfterLoadingMore = false
         tableView.footer?.endRefreshing()
         DataObject.fetchSearchResultsWithKeyword(keyword,

@@ -51,6 +51,7 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UITextViewD
         super.awakeFromNib()
         let theme = SettingsManager.defaultManager.currentTheme
         view.backgroundColor = theme.backgroundColorA
+        scrollView.indicatorStyle = theme.scrollViewIndicatorStyle
         scrollView.scrollIndicatorInsets.top = 20
         scrollView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)
         signatureTextView.textContainerInset = UIEdgeInsets(top: 8, left: 5, bottom: 8, right: 5)
@@ -117,7 +118,7 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UITextViewD
         user.name = userNameTextView.text
         let genders: [User.Gender] = [.Male, .Secret, .Female]
         user.gender = genders[genderSegmentedControl.selectedSegmentIndex!]
-        user.signature = signatureTextView.text
+        user.signature = signatureTextView.text ?? ""
         user.birthday = dateFormatter.dateFromString(birthdayTextField.text)
         SVProgressHUD.showWithMaskType(.Gradient)
         user.updateProfileForCurrentUser(

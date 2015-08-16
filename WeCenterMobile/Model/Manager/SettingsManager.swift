@@ -8,7 +8,9 @@
 
 import UIKit
 
-var CurrentThemeDidChangeNotificationName = "CurrentThemeDidChangeNotification"
+let CurrentThemeDidChangeNotificationName = "CurrentThemeDidChangeNotification"
+
+let UserDefaultsCurrentThemeNameKey = "UserDefaultsCurrentThemeName"
 
 class SettingsManager: NSObject {
     
@@ -17,21 +19,25 @@ class SettingsManager: NSObject {
     var currentTheme: Theme = {
         if let path = NSBundle.mainBundle().pathForResource("Themes", ofType: "plist") {
             if let infos = NSDictionary(contentsOfFile: path) {
-                if let current = infos["Current"] as? String {
+                println("Load: \(infos) from \(path)")
+                let defaults = NSUserDefaults.standardUserDefaults()
+                if let current = defaults.objectForKey(UserDefaultsCurrentThemeNameKey) as? String {
                     return Theme(name: current, configuration: infos[current] as? NSDictionary ?? [:])
                 } else {
-                    return Theme()
+                    if let name = infos.allKeys.first as? String {
+                        return Theme(name: name, configuration: infos[name] as? NSDictionary ?? [:])
+                    }
                 }
-            } else {
-                return Theme()
             }
-        } else {
-            return Theme()
         }
+        return Theme()
     }() {
         didSet {
             if currentTheme !== oldValue {
                 NSNotificationCenter.defaultCenter().postNotificationName(CurrentThemeDidChangeNotificationName, object: nil)
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(currentTheme.name, forKey: UserDefaultsCurrentThemeNameKey)
+                defaults.synchronize()
             }
         }
     }

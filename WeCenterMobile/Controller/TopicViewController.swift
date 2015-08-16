@@ -33,10 +33,12 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     lazy var bodyView: UITableView = {
         [weak self] in
+        let theme = SettingsManager.defaultManager.currentTheme
         let v = UITableView()
         v.frame = self!.view.bounds
         v.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         v.alwaysBounceVertical = true
+        v.indicatorStyle = theme.scrollViewIndicatorStyle
         v.contentInset.top = UIApplication.sharedApplication().statusBarFrame.height
         v.scrollIndicatorInsets.top = self!.header.minHeight
         v.contentOffset.y = -v.contentInset.top

@@ -135,6 +135,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
         for v in [UITextView?](arrayLiteral: titleField, bodyField) {
             v?.keyboardAppearance = theme.keyboardAppearance
         }
+        scrollView.indicatorStyle = theme.scrollViewIndicatorStyle
         scrollView.delaysContentTouches = false
         scrollView.scrollIndicatorInsets.top = 20
         scrollView.msr_setTouchesShouldCancel(true, inContentViewWhichIsKindOfClass: UIButton.self)

@@ -136,6 +136,31 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         if tableView.indexPathForSelectedRow() == indexPath {
             return nil
         }
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        if let category = (cell as? SidebarCategoryCell)?.category {
+            if category == .Publishment {
+                let ac = UIAlertController(title: "发布什么？", message: "选择发布的内容种类。", preferredStyle: .ActionSheet)
+                let presentPublishmentViewController: (String, PublishmentViewControllerPresentable) -> Void = {
+                    [weak self] title, object in
+                    let vc = NSBundle.mainBundle().loadNibNamed("PublishmentViewControllerA", owner: nil, options: nil).first as! PublishmentViewController
+                    vc.dataObject = object
+                    vc.headerLabel.text = title
+                    self?.presentViewController(vc, animated: true, completion: nil)
+                    self?.sidebar.collapse()
+                }
+                ac.addAction(UIAlertAction(title: "问题", style: .Default) {
+                    action in
+                    presentPublishmentViewController("发布问题", Question.temporaryObject())
+                })
+                ac.addAction(UIAlertAction(title: "文章", style: .Default) {
+                    action in
+                    presentPublishmentViewController("发布文章", Article.temporaryObject())
+                })
+                ac.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+                presentViewController(ac, animated: true, completion: nil)
+                return nil
+            }
+        }
         return indexPath
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
