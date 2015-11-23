@@ -119,8 +119,8 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UITextViewD
         let genders: [User.Gender] = [.Male, .Secret, .Female]
         user.gender = genders[genderSegmentedControl.selectedSegmentIndex!]
         user.signature = signatureTextView.text ?? ""
-        user.birthday = dateFormatter.dateFromString(birthdayTextField.text)
-        SVProgressHUD.showWithMaskType(.Gradient)
+        user.birthday = dateFormatter.dateFromString(birthdayTextField.text ?? "")
+        SVProgressHUD.show()
         user.updateProfileForCurrentUser(
             success: {
                 [weak self] in
@@ -131,7 +131,7 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UITextViewD
             failure: {
                 [weak self] error in
                 SVProgressHUD.dismiss()
-                let body = (error.userInfo?[NSLocalizedDescriptionKey] as? String) ?? "未知错误"
+                let body = (error.userInfo[NSLocalizedDescriptionKey] as? String) ?? "未知错误"
                 let ac = UIAlertController(title: "错误", message: body, preferredStyle: .Alert)
                 ac.addAction(UIAlertAction(title: "好", style: .Default, handler: nil))
                 self?.showDetailViewController(ac, sender: self)
@@ -158,12 +158,12 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UITextViewD
                     self?.birthdayTextField.text = self!.dateFormatter.stringFromDate(controller.datePicker.date)
                     return
                 },
-                andCancelAction: RMAction(title: "取消", style: .Cancel) { _ in })
+                andCancelAction: RMAction(title: "取消", style: .Cancel) { _ in })!
             dsvc.disableBouncingEffects = true
             dsvc.disableMotionEffects = false
             dsvc.disableBlurEffects = false
             dsvc.datePicker.datePickerMode = .Date
-            dsvc.datePicker.date = dateFormatter.dateFromString(birthdayTextField.text)!
+            dsvc.datePicker.date = dateFormatter.dateFromString(birthdayTextField.text ?? "")!
             showDetailViewController(dsvc, sender: self)
             return false
         }
@@ -182,9 +182,9 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UITextViewD
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(true, completion: nil)
-        var avatar = info[UIImagePickerControllerEditedImage] as! UIImage
+        let avatar = info[UIImagePickerControllerEditedImage] as! UIImage
         User.uploadAvatar(avatar,
             success: {
                 [weak self] in
@@ -195,7 +195,7 @@ class UserEditViewController: UIViewController, UITextFieldDelegate, UITextViewD
             failure: {
                 [weak self] error in
                 self?.afterUploading()
-                let body = (error.userInfo?[NSLocalizedDescriptionKey] as? String) ?? "未知错误"
+                let body = (error.userInfo[NSLocalizedDescriptionKey] as? String) ?? "未知错误"
                 let ac = UIAlertController(title: "图片上传失败", message: body, preferredStyle: .Alert)
                 ac.addAction(UIAlertAction(title: "好", style: .Default, handler: nil))
                 self?.showDetailViewController(ac, sender: self)

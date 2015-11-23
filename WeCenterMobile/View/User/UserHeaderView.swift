@@ -72,7 +72,7 @@ class UserHeaderView: UIView {
         addSubview(userGenderImageView)
     }
     
-    func update(#user: User) {
+    func update(user user: User) {
         userAvatarView.wc_updateWithUser(user)
         backgroundImageView.wc_updateWithUser(user, withPlaceholder: false)
         userNameLabel.text = user.name ?? "加载中……"
@@ -110,9 +110,9 @@ class UserHeaderView: UIView {
         userSignatureLabel.alpha = CGFloat(max(0, progress * 2 - 1))
         userGenderImageView.alpha = CGFloat(max(0, progress * 2 - 1))
         if progress <= 1 {
-            backButton.frame = MSRLinearInterpolation(backButtonBeginFrame, backButtonEndFrame, progress)
-            userAvatarView.frame = MSRLinearInterpolation(userAvatarViewBeginFrame, userAvatarViewEndFrame, progress)
-            userNameLabel.frame = MSRLinearInterpolation(userNameLabelBeginFrame, userNameLabelEndFrame, progress)
+            backButton.frame = MSRLinearInterpolation(a: backButtonBeginFrame, b: backButtonEndFrame, progress: progress)
+            userAvatarView.frame = MSRLinearInterpolation(a: userAvatarViewBeginFrame, b: userAvatarViewEndFrame, progress: progress)
+            userNameLabel.frame = MSRLinearInterpolation(a: userNameLabelBeginFrame, b: userNameLabelEndFrame, progress: progress)
         } else {
             let offset = bounds.height - maxHeight
             backButtonEndFrame.origin.y += offset

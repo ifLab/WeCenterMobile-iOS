@@ -41,7 +41,7 @@ class QuestionBodyCell: DTAttributedTextCell, DTAttributedTextContentViewDelegat
         }
     }
 
-    func update(#question: Question?) {
+    func update(question question: Question?) {
         if question?.body != nil {
             let theme = SettingsManager.defaultManager.currentTheme
             setHTMLString(question?.body ?? "加载中……",

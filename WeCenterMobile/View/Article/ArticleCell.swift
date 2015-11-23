@@ -48,7 +48,7 @@ class ArticleCell: UITableViewCell {
         articleBodyLabel.textColor = theme.subtitleTextColor
     }
     
-    func update(#article: Article) {
+    func update(article article: Article) {
         articleTitleLabel.text = article.title
         articleBodyLabel.text = article.body?.wc_plainString ?? ""
         userNameLabel.text = article.user?.name ?? "匿名用户"

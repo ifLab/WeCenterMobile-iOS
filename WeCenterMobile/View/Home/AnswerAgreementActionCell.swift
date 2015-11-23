@@ -53,7 +53,7 @@ class AnswerAgreementActionCell: UITableViewCell {
         }
     }
     
-    func update(#action: Action) {
+    func update(action action: Action) {
         let action = action as! AnswerAgreementAction
         userAvatarView.wc_updateWithUser(action.user)
         userNameLabel.text = action.user?.name ?? "匿名用户"

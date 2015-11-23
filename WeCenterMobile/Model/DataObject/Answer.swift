@@ -35,7 +35,7 @@ class Answer: DataObject {
     
     var evaluation: Evaluation? = nil
     
-    class func fetch(#ID: NSNumber, success: ((Answer) -> Void)?, failure: ((NSError) -> Void)?) {
+    class func fetch(ID ID: NSNumber, success: ((Answer) -> Void)?, failure: ((NSError) -> Void)?) {
         let answer = Answer.cachedObjectWithID(ID)
         NetworkManager.defaultManager!.GET("Answer Detail",
             parameters: [
@@ -58,7 +58,7 @@ class Answer: DataObject {
             failure: failure)
     }
     
-    func fetchComments(#success: (([AnswerComment]) -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchComments(success success: (([AnswerComment]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("Answer Comment List",
             parameters: [
                 "id": id
@@ -121,10 +121,10 @@ class Answer: DataObject {
     
     /// @TODO: [Feature][Back-End] Add 'agreementCount' & 'evaluation' in return value.
     /// @TODO: [Feature] Better Evaluation.None parameter support.
-    func evaluate(#value: Evaluation, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func evaluate(value value: Evaluation, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         let originalValue = evaluation
         if originalValue == nil {
-            var userInfo = [
+            let userInfo = [
                 NSLocalizedDescriptionKey: "Couldn't evaluate answer now.",
                 NSLocalizedFailureReasonErrorKey: "Current user evaluation data equals to nil. (answer.evaluation == nil)"
             ]
@@ -157,7 +157,7 @@ class Answer: DataObject {
             failure: failure)
     }
     
-    func post(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func post(success success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         let questionID = question!.id.integerValue
         let body = self.body!
         NetworkManager.defaultManager!.POST("Post Answer",
@@ -167,7 +167,7 @@ class Answer: DataObject {
                 "attach_access_key": attachmentKey!
             ],
             success: {
-                [weak self] data in
+                _ in
                 success?()
                 return
             },

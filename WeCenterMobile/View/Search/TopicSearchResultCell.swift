@@ -31,7 +31,7 @@ class TopicSearchResultCell: UITableViewCell {
         topicButton.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
     }
     
-    func update(#dataObject: DataObject) {
+    func update(dataObject dataObject: DataObject) {
         let topic = dataObject as! Topic
         topicTitleLabel.text = topic.title
         topicDescriptionLabel.text = topic.introduction ?? ""

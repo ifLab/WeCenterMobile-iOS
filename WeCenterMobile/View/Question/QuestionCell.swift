@@ -48,7 +48,7 @@ class QuestionCell: UITableViewCell {
         questionBodyLabel.textColor = theme.subtitleTextColor
     }
     
-    func update(#question: Question) {
+    func update(question question: Question) {
         questionTitleLabel.text = question.title
         questionBodyLabel.text = question.body?.wc_plainString ?? ""
         userNameLabel.text = question.user?.name ?? "匿名用户"

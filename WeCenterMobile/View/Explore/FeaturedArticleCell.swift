@@ -43,7 +43,7 @@ class FeaturedArticleCell: UITableViewCell {
         badgeLabel.textColor = theme.footnoteTextColor
     }
     
-    func update(#object: FeaturedObject) {
+    func update(object object: FeaturedObject) {
         let object = object as! FeaturedArticle
         let article = object.article!
         userAvatarView.wc_updateWithUser(article.user)

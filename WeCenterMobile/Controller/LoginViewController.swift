@@ -135,8 +135,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginButtonLabel.hidden = true
         changeStateButton.hidden = true
         loginActivityIndicatorView.startAnimating()
-        User.loginWithName(userNameField.text,
-            password: passwordField.text,
+        User.loginWithName(userNameField.text ?? "",
+            password: passwordField.text ?? "",
             success: {
                 [weak self] user in
                 User.currentUser = user
@@ -159,7 +159,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         self_.changeStateButton.hidden = false
                         self_.loginActivityIndicatorView.stopAnimating()
                     }
-                    self_.errorMessageLabel.text = (error.userInfo?[NSLocalizedDescriptionKey] as? String) ?? "未知错误"
+                    self_.errorMessageLabel.text = (error.userInfo[NSLocalizedDescriptionKey] as? String) ?? "未知错误"
                     let s = AFViewShaker(viewsArray: [self_.userNameImageViewContainerView, self_.userNameField, self_.passwordImageViewContainerView, self_.passwordField, self_.userNameFieldUnderline, self_.passwordFieldUnderline])
                     s.shake()
                 }
@@ -198,7 +198,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         self_.changeStateButton.hidden = false
                         self_.loginActivityIndicatorView.stopAnimating()
                     }
-                    self_.errorMessageLabel.text = (error.userInfo?[NSLocalizedDescriptionKey] as? String) ?? "未知错误"
+                    self_.errorMessageLabel.text = (error.userInfo[NSLocalizedDescriptionKey] as? String) ?? "未知错误"
                     let s = AFViewShaker(viewsArray: [self_.userNameImageViewContainerView, self_.userNameField, self_.passwordImageViewContainerView, self_.passwordField, self_.userNameFieldUnderline, self_.passwordFieldUnderline, self_.emailImageViewContainerView, self_.emailField, self_.emailFieldUnderline])
                     s.shake()
                 }

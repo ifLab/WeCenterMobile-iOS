@@ -16,7 +16,7 @@ import UIKit
     optional var answerButton: UIButton? { get }
     optional var articleButton: UIButton! { get }
     optional var articleUserButton: UIButton! { get }
-    func update(#object: FeaturedObject)
+    func update(object object: FeaturedObject)
 }
 
 extension FeaturedArticleCell: FeaturedObjectCell {}
@@ -58,7 +58,7 @@ class FeaturedObjectListViewController: UITableViewController {
     func segmentedViewControllerDidSelectSelf(segmentedViewController: MSRSegmentedViewController) {
         if firstSelected {
             firstSelected = false
-            tableView.header.beginRefreshing()
+            tableView.mj_header.beginRefreshing()
         }
     }
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -69,7 +69,7 @@ class FeaturedObjectListViewController: UITableViewController {
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let object = objects[indexPath.row]
-        if var index = find(map(objectTypes) { object.classForCoder === $0 }, true) {
+        if var index = (objectTypes.map { object.classForCoder === $0 }).indexOf(true) {
             if let o = object as? FeaturedQuestionAnswer {
                 index += o.answers.count == 0 ? 1 : 0
             }
@@ -111,7 +111,7 @@ class FeaturedObjectListViewController: UITableViewController {
     }
     func refresh() {
         shouldReloadAfterLoadingMore = false
-        tableView.footer?.endRefreshing()
+        tableView.mj_footer?.endRefreshing()
         FeaturedObject.fetchFeaturedObjects(page: 1, count: count, type: type,
             success: {
                 [weak self] objects in
@@ -119,8 +119,8 @@ class FeaturedObjectListViewController: UITableViewController {
                     self_.page = 1
                     self_.objects = objects
                     self_.tableView.reloadData()
-                    self_.tableView.header.endRefreshing()
-                    if self_.tableView.footer == nil {
+                    self_.tableView.mj_header.endRefreshing()
+                    if self_.tableView.mj_footer == nil {
                         self_.tableView.wc_addRefreshingFooterWithTarget(self_, action: "loadMore")
                     }
                 }
@@ -128,13 +128,13 @@ class FeaturedObjectListViewController: UITableViewController {
             },
             failure: {
                 [weak self] error in
-                self?.tableView.header.endRefreshing()
+                self?.tableView.mj_header.endRefreshing()
                 return
             })
     }
     func loadMore() {
-        if tableView.header.isRefreshing() {
-            tableView.footer.endRefreshing()
+        if tableView.mj_header.isRefreshing() {
+            tableView.mj_footer.endRefreshing()
             return
         }
         shouldReloadAfterLoadingMore = true
@@ -144,16 +144,16 @@ class FeaturedObjectListViewController: UITableViewController {
                 if let self_ = self {
                     if self_.shouldReloadAfterLoadingMore {
                         ++self_.page
-                        self_.objects.extend(objects)
+                        self_.objects.appendContentsOf(objects)
                         self_.tableView.reloadData()
-                        self_.tableView.footer.endRefreshing()
+                        self_.tableView.mj_footer.endRefreshing()
                     }
                 }
                 return
             },
             failure: {
                 [weak self] error in
-                self?.tableView.footer.endRefreshing()
+                self?.tableView.mj_footer.endRefreshing()
                 return
             })
     }

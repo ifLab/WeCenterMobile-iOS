@@ -31,7 +31,7 @@ class UserSearchResultCell: UITableViewCell {
         userButton.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
     }
     
-    func update(#dataObject: DataObject) {
+    func update(dataObject dataObject: DataObject) {
         let user = dataObject as! User
         userNameLabel.text = user.name
         userSignatureLabel.text = user.signature ?? ""

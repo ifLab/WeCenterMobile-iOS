@@ -57,7 +57,7 @@ class FeaturedQuestionAnswerCell: UITableViewCell {
         answerBodyLabel?.textColor = theme.subtitleTextColor
     }
     
-    func update(#object: FeaturedObject) {
+    func update(object object: FeaturedObject) {
         let object = object as! FeaturedQuestionAnswer
         let question = object.question!
         let answer = object.answers.first

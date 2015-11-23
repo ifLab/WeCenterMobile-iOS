@@ -17,6 +17,6 @@ class Comment: DataObject {
     @NSManaged var atUser: User?
     @NSManaged var user: User?
     
-    func post(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {}
+    func post(success success: (() -> Void)?, failure: ((NSError) -> Void)?) {}
 
 }

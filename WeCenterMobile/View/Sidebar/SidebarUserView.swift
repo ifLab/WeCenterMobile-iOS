@@ -16,7 +16,7 @@ class SidebarUserView: UIView {
     @IBOutlet weak var userSignatureLabel: UILabel!
     @IBOutlet weak var overlay: UIView!
     
-    func update(#user: User?) {
+    func update(user user: User?) {
         userAvatarView.wc_updateWithUser(user)
         userNameLabel.text = user?.name ?? "加载中……"
         userSignatureLabel.text = user?.signature ?? "说点什么吧……"

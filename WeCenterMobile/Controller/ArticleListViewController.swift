@@ -26,7 +26,7 @@ class ArticleListViewController: UITableViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    required init!(coder aDecoder: NSCoder!) {
+    required init!(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -53,7 +53,7 @@ class ArticleListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.header.beginRefreshing()
+        tableView.mj_header.beginRefreshing()
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -92,60 +92,56 @@ class ArticleListViewController: UITableViewController {
     
     internal func refresh() {
         shouldReloadAfterLoadingMore = false
-        tableView.footer?.endRefreshing()
+        tableView.mj_footer?.endRefreshing()
         let success: ([Article]) -> Void = {
             [weak self] articles in
             if let self_ = self {
                 self_.page = 1
                 self_.articles = articles
-                self_.tableView.header.endRefreshing()
+                self_.tableView.mj_header.endRefreshing()
                 self_.tableView.reloadData()
-                if self_.tableView.footer == nil {
+                if self_.tableView.mj_footer == nil {
                     self_.tableView.wc_addRefreshingFooterWithTarget(self_, action: "loadMore")
                 }
             }
         }
         let failure: (NSError) -> Void = {
             [weak self] error in
-            self?.tableView.header.endRefreshing()
+            self?.tableView.mj_header.endRefreshing()
             return
         }
         switch listType {
         case .User:
             user.fetchArticles(page: 1, count: count, success: success, failure: failure)
             break
-        default:
-            break
         }
     }
     
     internal func loadMore() {
-        if tableView.header.isRefreshing() {
-            tableView.footer.endRefreshing()
+        if tableView.mj_header.isRefreshing() {
+            tableView.mj_footer.endRefreshing()
             return
         }
         shouldReloadAfterLoadingMore = true
         let success: ([Article]) -> Void = {
-            [weak self] Articles in
+            [weak self] articles in
             if let self_ = self {
                 if self_.shouldReloadAfterLoadingMore {
                     ++self_.page
-                    self_.articles.extend(Articles)
+                    self_.articles.appendContentsOf(articles)
                     self_.tableView.reloadData()
                 }
-                self_.tableView.footer.endRefreshing()
+                self_.tableView.mj_footer.endRefreshing()
             }
         }
         let failure: (NSError) -> Void = {
             [weak self] error in
-            self?.tableView.footer.endRefreshing()
+            self?.tableView.mj_footer.endRefreshing()
             return
         }
         switch listType {
         case .User:
             user.fetchArticles(page: page + 1, count: count, success: success, failure: failure)
-            break
-        default:
             break
         }
     }

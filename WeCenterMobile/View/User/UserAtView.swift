@@ -16,9 +16,9 @@ import UIKit
             if backgroundView != nil {
                 addSubview(backgroundView!)
                 sendSubviewToBack(backgroundView!)
-                backgroundView!.msr_shouldTranslateAutoresizingMaskIntoConstraints = true
+                backgroundView!.translatesAutoresizingMaskIntoConstraints = true
                 backgroundView!.frame = bounds
-                backgroundView!.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+                backgroundView!.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
             }
         }
     }
@@ -26,7 +26,7 @@ import UIKit
     lazy var atLabel: UILabel = {
         let v = UILabel()
         let theme = SettingsManager.defaultManager.currentTheme
-        v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+        v.translatesAutoresizingMaskIntoConstraints = false
         v.font = UIFont.systemFontOfSize(14)
         v.text = "@"
         v.textAlignment = .Center
@@ -38,7 +38,7 @@ import UIKit
     lazy var userNameLabel: UILabel = {
         let v = UILabel()
         let theme = SettingsManager.defaultManager.currentTheme
-        v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+        v.translatesAutoresizingMaskIntoConstraints = false
         v.font = UIFont.systemFontOfSize(12)
         v.text = "用户名"
         v.textColor = theme.subtitleTextColor
@@ -48,7 +48,7 @@ import UIKit
     lazy var removeImageView: UIImageView = {
         let v = UIImageView(image: UITextField.msr_defaltClearButton().imageForState(.Highlighted))
         let theme = SettingsManager.defaultManager.currentTheme
-        v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+        v.translatesAutoresizingMaskIntoConstraints = false
         v.tintColor = theme.footnoteTextColor
         return v
     }()
@@ -57,11 +57,11 @@ import UIKit
         let v = UIButton()
         let theme = SettingsManager.defaultManager.currentTheme
         v.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
-        v.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        v.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         return v
     }()
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         wc_initialize()
     }
@@ -79,9 +79,9 @@ import UIKit
             addSubview(v)
         }
         let vs = ["l": userNameLabel, "x": removeImageView, "at": atLabel]
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[at(20)]-5-[l]-5-[x]-5-|", options: nil, metrics: nil, views: vs))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(>=5)-[l]-(>=5)-|", options: nil, metrics: nil, views: vs))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(>=5)-[x]-(>=5)-|", options: nil, metrics: nil, views: vs))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[at(20)]-5-[l]-5-[x]-5-|", options: [], metrics: nil, views: vs))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(>=5)-[l]-(>=5)-|", options: [], metrics: nil, views: vs))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(>=5)-[x]-(>=5)-|", options: [], metrics: nil, views: vs))
         atLabel.msr_addVerticalEdgeAttachedConstraintsToSuperview()
         userNameLabel.msr_addCenterYConstraintToSuperview()
         removeImageView.msr_addCenterYConstraintToSuperview()

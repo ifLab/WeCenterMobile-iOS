@@ -57,7 +57,7 @@ class TopicListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if listType == .User {
-            tableView.header.beginRefreshing()
+            tableView.mj_header.beginRefreshing()
         }
     }
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -84,7 +84,7 @@ class TopicListViewController: UITableViewController {
     var shouldReloadAfterLoadingMore = true
     func refresh() {
         shouldReloadAfterLoadingMore = false
-        tableView.footer?.endRefreshing()
+        tableView.mj_footer?.endRefreshing()
         switch listType {
         case .User:
             user!.fetchTopics(
@@ -96,8 +96,8 @@ class TopicListViewController: UITableViewController {
                         self_.page = 1
                         self_.topics = topics
                         self_.tableView.reloadData()
-                        self_.tableView.header.endRefreshing()
-                        if self_.tableView.footer == nil {
+                        self_.tableView.mj_header.endRefreshing()
+                        if self_.tableView.mj_footer == nil {
                             self_.tableView.wc_addRefreshingFooterWithTarget(self_, action: "loadMore")
                         }
                     }
@@ -105,7 +105,7 @@ class TopicListViewController: UITableViewController {
                 },
                 failure: {
                     [weak self] error in
-                    self?.tableView.header.endRefreshing()
+                    self?.tableView.mj_header.endRefreshing()
                     return
                 })
             break
@@ -114,8 +114,8 @@ class TopicListViewController: UITableViewController {
         }
     }
     func loadMore() {
-        if tableView.header.isRefreshing() {
-            tableView.footer!.endRefreshing()
+        if tableView.mj_header.isRefreshing() {
+            tableView.mj_footer!.endRefreshing()
             return
         }
         shouldReloadAfterLoadingMore = true
@@ -129,16 +129,16 @@ class TopicListViewController: UITableViewController {
                     if let self_ = self {
                         if self_.shouldReloadAfterLoadingMore {
                             ++self_.page
-                            self_.topics.extend(topics)
+                            self_.topics.appendContentsOf(topics)
                             self_.tableView.reloadData()
                         }
-                        self_.tableView.footer.endRefreshing()
+                        self_.tableView.mj_footer.endRefreshing()
                     }
                     return
                 },
                 failure: {
                     [weak self] error in
-                    self?.tableView.footer.endRefreshing()
+                    self?.tableView.mj_footer.endRefreshing()
                     return
                 })
             break

@@ -39,7 +39,7 @@ class ArticleAgreementActionCell: UITableViewCell {
         typeLabel.textColor = theme.subtitleTextColor
     }
     
-    func update(#action: Action) {
+    func update(action action: Action) {
         let action = action as! ArticleAgreementAction
         userAvatarView.wc_updateWithUser(action.user)
         userNameLabel.text = action.user?.name ?? "匿名用户"

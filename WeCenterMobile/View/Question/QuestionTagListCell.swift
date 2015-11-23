@@ -35,8 +35,8 @@ class QuestionTagListCell: UITableViewCell, ZFTokenFieldDataSource, ZFTokenField
         }
     }
     
-    func update(#question: Question) {
-        topics = sorted(question.topics) {
+    func update(question question: Question) {
+        topics = question.topics.sort {
             $0.title! < $1.title
         }
         tagsField.reloadData()

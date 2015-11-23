@@ -14,7 +14,7 @@ import UIKit
         didSet {
             oldValue?.removeFromSuperview()
             if backgroundView != nil {
-                backgroundView!.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+                backgroundView!.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
                 backgroundView!.frame = bounds
                 addSubview(backgroundView!)
                 sendSubviewToBack(backgroundView!)
@@ -24,7 +24,7 @@ import UIKit
     
     lazy var textField: UITextField = {
         let v = UITextField()
-        v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+        v.translatesAutoresizingMaskIntoConstraints = false
         let theme = SettingsManager.defaultManager.currentTheme
         v.textColor = theme.subtitleTextColor
         v.attributedPlaceholder = NSAttributedString(string: "在此处输入评论……", attributes: [NSForegroundColorAttributeName: theme.footnoteTextColor])
@@ -36,7 +36,7 @@ import UIKit
     
     lazy var publishButton: UIButton = {
         let v = UIButton()
-        v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+        v.translatesAutoresizingMaskIntoConstraints = false
         let theme = SettingsManager.defaultManager.currentTheme
         v.setTitle("发布", forState: .Normal) // Needs localization
         v.setTitleColor(theme.subtitleTextColor, forState: .Normal)
@@ -49,7 +49,7 @@ import UIKit
     
     lazy var userAtView: UserAtView = {
         let v = UserAtView()
-        v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+        v.translatesAutoresizingMaskIntoConstraints = false
         v.hidden = true
         return v
     }()
@@ -59,7 +59,7 @@ import UIKit
         msr_initialize()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         msr_initialize()
     }
@@ -69,11 +69,11 @@ import UIKit
         for (_, v) in vs {
             addSubview(v)
         }
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-5-[t]-5-[b(==75)]|", options: nil, metrics: nil, views: vs))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[t]|", options: nil, metrics: nil, views: vs))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[b]|", options: nil, metrics: nil, views: vs))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[at][t]", options: nil, metrics: nil, views: vs))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[at]", options: nil, metrics: nil, views: vs))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-5-[t]-5-[b(==75)]|", options: [], metrics: nil, views: vs))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[t]|", options: [], metrics: nil, views: vs))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[b]|", options: [], metrics: nil, views: vs))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[at][t]", options: [], metrics: nil, views: vs))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[at]", options: [], metrics: nil, views: vs))
         clipsToBounds = false
         let theme = SettingsManager.defaultManager.currentTheme
         backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: theme.backgroundBlurEffectStyle)) // bar

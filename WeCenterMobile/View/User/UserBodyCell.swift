@@ -16,7 +16,7 @@ class UserBodyCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectedBackgroundView = UIView()
-        selectedBackgroundView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+        selectedBackgroundView!.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
     }
     
 }

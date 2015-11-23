@@ -18,14 +18,14 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.init(nibName: nil, bundle: nil)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     lazy var header: TopicHeaderView = {
         [weak self] in
         let v = TopicHeaderView()
-        v.autoresizingMask = .FlexibleBottomMargin | .FlexibleWidth
+        v.autoresizingMask = [.FlexibleBottomMargin, .FlexibleWidth]
         v.focusButton.addTarget(self, action: "focus", forControlEvents: .TouchUpInside)
         v.backButton.addTarget(self, action: "didPressBackButton", forControlEvents: .TouchUpInside)
         return v
@@ -36,7 +36,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let theme = SettingsManager.defaultManager.currentTheme
         let v = UITableView()
         v.frame = self!.view.bounds
-        v.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        v.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         v.alwaysBounceVertical = true
         v.indicatorStyle = theme.scrollViewIndicatorStyle
         v.contentInset.top = UIApplication.sharedApplication().statusBarFrame.height

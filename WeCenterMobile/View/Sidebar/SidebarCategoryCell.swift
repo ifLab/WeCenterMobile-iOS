@@ -21,7 +21,7 @@ class SidebarCategoryCell: UITableViewCell {
         msr_scrollView?.delaysContentTouches = false
     }
     
-    func update(#category: SidebarCategory) {
+    func update(category category: SidebarCategory) {
         self.category = category
         categoryImageView.image = imageFromSidebarCategory(category)
         categoryTitleLabel.text = localizedStringFromSidebarCategory(category)
@@ -34,7 +34,7 @@ class SidebarCategoryCell: UITableViewCell {
         let theme = SettingsManager.defaultManager.currentTheme
         categoryImageView.tintColor = theme.titleTextColor
         categoryTitleLabel.textColor = theme.titleTextColor
-        selectedBackgroundView.backgroundColor = theme.highlightColor
+        selectedBackgroundView!.backgroundColor = theme.highlightColor
     }
     
     override func prepareForReuse() {

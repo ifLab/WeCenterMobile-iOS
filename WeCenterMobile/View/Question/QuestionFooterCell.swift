@@ -40,7 +40,7 @@ class QuestionFooterCell: UITableViewCell {
         focusActivityIndicatorView.color = theme.footnoteTextColor
     }
     
-    func update(#question: Question) {
+    func update(question question: Question) {
         let theme = SettingsManager.defaultManager.currentTheme
         viewCountLabel.text = "\(question.viewCount ?? 0)"
         focusCountLabel.text = "\(question.focusCount ?? 0)"

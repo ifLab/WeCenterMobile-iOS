@@ -28,7 +28,7 @@ class UserCell: UITableViewCell {
         userButtonB.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
     }
 
-    func update(#user: User) {
+    func update(user user: User) {
         userAvatarView.wc_updateWithUser(user)
         userNameLabel.text = user.name
         /// @TODO: [Bug][Back-End] \n!!!

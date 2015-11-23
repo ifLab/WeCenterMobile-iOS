@@ -95,10 +95,10 @@ class SettingsViewController: UITableViewController {
         let manager = SettingsManager.defaultManager
         nightModeSwitch.on = manager.currentTheme.name == "Night"
         var bytes: UInt64 = 0
-        let stores = DataManager.defaultManager?.managedObjectContext?.persistentStoreCoordinator?.persistentStores as? [NSPersistentStore] ?? []
+        let stores = DataManager.defaultManager?.managedObjectContext?.persistentStoreCoordinator?.persistentStores ?? []
         for store in stores {
             let path = store.URL!.path!
-            bytes += (NSFileManager.defaultManager().attributesOfItemAtPath(path, error: nil)?[NSFileSize] as? NSNumber ?? 0).unsignedLongLongValue
+            bytes += ((try? NSFileManager.defaultManager().attributesOfItemAtPath(path)[NSFileSize]) as? NSNumber ?? 0).unsignedLongLongValue
         }
         cacheSizeLabel.text = "\(bytes / 1024 / 1024) MB"
     }

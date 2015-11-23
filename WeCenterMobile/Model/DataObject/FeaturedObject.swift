@@ -25,7 +25,7 @@ class FeaturedObject: DataObject {
 
     @NSManaged var date: NSDate?
     
-    class func fetchFeaturedObjects(#page: Int, count: Int, type: FeaturedObjectListType, success: (([FeaturedObject]) -> Void)?, failure: ((NSError) -> Void)?) {
+    class func fetchFeaturedObjects(page page: Int, count: Int, type: FeaturedObjectListType, success: (([FeaturedObject]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("Explore List",
             parameters: [
                 "page": page,
@@ -38,7 +38,7 @@ class FeaturedObject: DataObject {
                 let dataManager = DataManager.temporaryManager! // @TODO: Will move to DataManager.defaultManager in future.
                 var featuredObjects = [FeaturedObject]()
                 if Int(msr_object: data["total_rows"]!!) <= 0 {
-                    failure?(NSError()) // Needs specification
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                     return
                 }
                 for object in data["rows"] as! [NSDictionary] {
@@ -68,6 +68,7 @@ class FeaturedObject: DataObject {
                                 for topicInfo in topicsInfo {
                                     let topic = dataManager.autoGenerate("Topic", ID: Int(msr_object: topicInfo["topic_id"]!)!) as! Topic
                                     topic.title = (topicInfo["topic_title"] as! String)
+                                    topics.insert(topic)
                                 }
                             }
                             question.topics = topics
@@ -141,7 +142,7 @@ class FeaturedObject: DataObject {
                         }
                         featuredObjects.append(featuredObject)
                     } else {
-                        failure?(NSError()) // Needs specification
+                        failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                         return
                     }
                 }

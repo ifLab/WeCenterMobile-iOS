@@ -1,28 +1,50 @@
 module AFNetworking {
+    
+    requires objc, objc_arc
+    
+    use UIKit
+    
     header "AFNetworking/AFNetworking/AFNetworking.h"
     header "AFNetworking/UIKit+AFNetworking/UIKit+AFNetworking.h"
-    requires objc, objc_arc
-    use UIKit
+    
 }
 
 module AFViewShaker {
-    header "AFViewShaker/AFViewShaker/AFViewShaker.h"
+    
     requires objc, objc_arc
+    
     use UIKit
+    
+    header "AFViewShaker/AFViewShaker/AFViewShaker.h"
+    
 }
 
 module EAColourfulProgressView {
-    umbrella header "EAColourfulProgressView/EAColourfulProgressView/EAColourfulProgressView.h"
+    
     requires objc, objc_arc
+    
     use UIKit
+    
+    umbrella header "EAColourfulProgressView/EAColourfulProgressView/EAColourfulProgressView.h"
+    
 }
 
 module GBDeviceInfo {
-    header "GBDeviceInfo.h"
+    
+    requires objc, objc_arc
+    
     use UIKit
+    
+    header "GBDeviceInfo.h"
+    
 }
 
 module MJRefresh {
+    
+    requires objc, objc_arc
+    
+    use UIKit
+    
     umbrella header "MJRefresh/MJRefresh/MJRefresh.h"
     header "MJRefresh/MJRefresh/Custom/Header/MJRefreshGifHeader.h"
     header "MJRefresh/MJRefresh/Custom/Header/MJRefreshNormalHeader.h"
@@ -33,42 +55,53 @@ module MJRefresh {
     header "MJRefresh/MJRefresh/Custom/Footer/Back/MJRefreshBackGifFooter.h"
     header "MJRefresh/MJRefresh/Custom/Footer/Back/MJRefreshBackNormalFooter.h"
     header "MJRefresh/MJRefresh/Custom/Footer/Back/MJRefreshBackStateFooter.h"
-    requires objc, objc_arc
-    use UIKit
+    
 }
 
 module RMDateSelectionViewController {
-    header "RMActionController/RMActionController/RMActionController.h"
-    header "RMDateSelectionViewController/RMDateSelectionViewController/RMDateSelectionViewController.h"
+    
     requires objc, objc_arc
+    
     use UIKit
     use QuartzCore
+    
+    header "RMActionController/RMActionController/RMActionController.h"
+    header "RMDateSelectionViewController/RMDateSelectionViewController/RMDateSelectionViewController.h"
+    
 }
 
 module SinaWeiboSDK {
+    
+    requires objc, objc_arc
+    
+    use UIKit
+    
     umbrella header "SinaWeiboSDK/libWeiboSDK/WeiboSDK.h"
     header "SinaWeiboSDK/libWeiboSDK/WeiboUser.h"
-    requires objc, objc_arc
-    use UIKit
+    
     link "WeiboSDK"
-}
-
-module SVProgressHUD {
-    umbrella header "SVProgressHUD/SVProgressHUD/SVProgressHUD.h"
-    header "SVProgressHUD/SVProgressHUD/SVIndefiniteAnimatedView.h"
-    requires objc, objc_arc
-    use UIKit
+    
 }
 
 module WeChatSDK {
-    umbrella header "WeChatSDK/WeChatSDK.h"
+    
     requires objc, objc_arc
+    
     use UIKit
+    
+    umbrella header "WeChatSDK/WeChatSDK.h"
+    header "WeChatSDK/WechatAuthSDK.h"
+    
     link "WeChatSDK"
+    
 }
 
 module ZFTokenField {
-    umbrella header "ZFTokenField/Classes/ZFTokenField.h"
+    
     requires objc, objc_arc
+    
     use UIKit
+    
+    umbrella header "ZFTokenField/Classes/ZFTokenField.h"
+    
 }

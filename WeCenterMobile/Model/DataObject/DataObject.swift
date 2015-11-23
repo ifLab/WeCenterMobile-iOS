@@ -30,11 +30,11 @@ class DataObject: NSManagedObject {
     }
     
     class func allCachedObjects() -> [DataObject] /* [Self] in not supported. */ {
-        return DataManager.defaultManager!.fetchAll(entityName, error: nil)
+        return try! DataManager.defaultManager!.fetchAll(entityName)
     }
     
     class func deleteAllCachedObjects() {
-        DataManager.defaultManager!.deleteAllObjectsWithEntityName(entityName)
+        try! DataManager.defaultManager!.deleteAllObjectsWithEntityName(entityName)
     }
     
     class func temporaryObject() -> Self {
@@ -43,7 +43,7 @@ class DataObject: NSManagedObject {
     
     class var entityName: String {
         let s = NSStringFromClass(self)
-        return split(s) { $0 == "." }.last ?? s
+        return s.characters.split { $0 == "." }.map { String($0) }.last ?? s
     }
     
 }

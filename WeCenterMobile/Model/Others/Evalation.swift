@@ -6,6 +6,8 @@
 //  Copyright (c) 2015年 Beijing Information Science and Technology University. All rights reserved.
 //
 
+import Foundation
+
 @objc enum Evaluation: Int {
     case None = 0
     case Up = 1

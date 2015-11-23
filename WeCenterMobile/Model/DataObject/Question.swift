@@ -28,7 +28,7 @@ class Question: DataObject {
     
     var focusing: Bool? = nil
     
-    class func fetch(#ID: NSNumber, success: ((Question) -> Void)?, failure: ((NSError) -> Void)?) {
+    class func fetch(ID ID: NSNumber, success: ((Question) -> Void)?, failure: ((NSError) -> Void)?) {
         let question = Question.cachedObjectWithID(ID)
         NetworkManager.defaultManager!.GET("Question Detail",
             parameters: [
@@ -42,9 +42,9 @@ class Question: DataObject {
                 question.body = value["question_detail"] as? String
                 question.focusCount = Int(msr_object: value["focus_count"])
                 question.focusing = (Int(msr_object: value["has_focus"]) == 1)
-                for (key, value) in data["answers"] as? [String: NSDictionary] ?? [:] {
+                for (_, value) in data["answers"] as? [String: NSDictionary] ?? [:] {
                     let answerID = value["answer_id"] as! NSNumber
-                    var answer: Answer! = filter(question.answers) { $0.id == answerID }.first
+                    var answer: Answer! = question.answers.filter { $0.id == answerID }.first
                     if answer == nil {
                         answer = Answer.cachedObjectWithID(answerID)
                         question.answers.insert(answer)
@@ -69,7 +69,7 @@ class Question: DataObject {
             failure: failure)
     }
     
-    func toggleFocus(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func toggleFocus(success success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("Focus Question",
             parameters: [
                 "question_id": id
@@ -106,13 +106,13 @@ class Question: DataObject {
             failure: failure)!
     }
     
-    func post(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func post(success success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         let topics = [Topic](self.topics)
         var topicsParameter = ""
         if topics.count == 1 {
             topicsParameter = topics[0].title!
         } else if topics.count > 1 {
-            topicsParameter = join(",", map(topics, { $0.title! }))
+            topicsParameter = topics.map({ $0.title! }).joinWithSeparator(",")
         }
         let title = self.title!
         let body = self.body!
@@ -124,7 +124,7 @@ class Question: DataObject {
                 "topics": topicsParameter
             ],
             success: {
-                [weak self] data in
+                _ in
                 success?()
                 return
             },

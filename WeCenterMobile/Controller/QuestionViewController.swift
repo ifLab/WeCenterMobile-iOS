@@ -16,7 +16,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     var question: Question {
         didSet {
             let defaultDate = NSDate(timeIntervalSince1970: 0)
-            answers = sorted(question.answers) { ($0.date ?? defaultDate).timeIntervalSince1970 >= ($1.date ?? defaultDate).timeIntervalSince1970 }
+            answers = question.answers.sort { ($0.date ?? defaultDate).timeIntervalSince1970 >= ($1.date ?? defaultDate).timeIntervalSince1970 }
         }
     }
     var answers = [Answer]()
@@ -91,7 +91,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.header.beginRefreshing()
+        tableView.mj_header.beginRefreshing()
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -198,9 +198,9 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
             UIApplication.sharedApplication().openURL(URL)
         })
         ac.addAction(UIAlertAction(title: "复制到剪贴板", style: .Default) {
-            [weak self] action in
+            action in
             UIPasteboard.generalPasteboard().string = URL.absoluteString
-            SVProgressHUD.showSuccessWithStatus("已复制", maskType: .Gradient)
+            SVProgressHUD.showSuccessWithStatus("已复制")
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC / 2)), dispatch_get_main_queue()) {
                 SVProgressHUD.dismiss()
             }
@@ -233,11 +233,11 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
     }
     
     func publishmentViewControllerDidSuccessfullyPublishDataObject(publishmentViewController: PublishmentViewController) {
-        tableView.header.beginRefreshing()
+        tableView.mj_header.beginRefreshing()
     }
     
     func toggleFocus() {
-        var focusing = question.focusing
+        let focusing = question.focusing
         question.focusing = nil
         reloadQuestionFooterCell()
         question.toggleFocus(
@@ -264,23 +264,23 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
                     if let user = question.user {
                         user.fetchProfile(
                             success: {
-                                self_.tableView.header.endRefreshing()
+                                self_.tableView.mj_header.endRefreshing()
                                 self_.tableView.reloadData()
                             },
                             failure: {
                                 error in
-                                self_.tableView.header.endRefreshing()
+                                self_.tableView.mj_header.endRefreshing()
                                 return
                             })
                     } else {
-                        self_.tableView.header.endRefreshing()
+                        self_.tableView.mj_header.endRefreshing()
                     }
                 }
                 return
             },
             failure: {
                 [weak self] error in
-                self?.tableView.header.endRefreshing()
+                self?.tableView.mj_header.endRefreshing()
                 return
             })
     }

@@ -28,7 +28,7 @@ class ArticleSearchResultCell: UITableViewCell {
         articleButton.msr_setBackgroundImageWithColor(theme.highlightColor, forState: .Highlighted)
     }
     
-    func update(#dataObject: DataObject) {
+    func update(dataObject dataObject: DataObject) {
         let article = dataObject as! Article
         articleTitleLabel.text = article.title ?? ""
         articleButton.msr_userInfo = article

@@ -17,7 +17,7 @@ class TopicHeaderView: UIView, UIToolbarDelegate {
                 addSubview(backgroundView!)
                 sendSubviewToBack(backgroundView!)
                 backgroundView!.frame = bounds
-                backgroundView!.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+                backgroundView!.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
             }
         }
     }
@@ -70,7 +70,7 @@ class TopicHeaderView: UIView, UIToolbarDelegate {
         v.stopAnimating()
         v.color = theme.footnoteTextColor
         v.hidesWhenStopped = true
-        v.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+        v.translatesAutoresizingMaskIntoConstraints = false
         v.contentScaleFactor = 0.5
         return v
     }()
@@ -83,7 +83,7 @@ class TopicHeaderView: UIView, UIToolbarDelegate {
         wc_initialize()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         wc_initialize()
     }
@@ -101,7 +101,7 @@ class TopicHeaderView: UIView, UIToolbarDelegate {
         backgroundView = bar
     }
     
-    func update(#topic: Topic) {
+    func update(topic topic: Topic) {
         topicImageView.wc_updateWithTopic(topic)
         topicTitleLabel.text = topic.title ?? "加载中……"
         topicTitleLabel.sizeToFit()
@@ -139,10 +139,10 @@ class TopicHeaderView: UIView, UIToolbarDelegate {
         let progress = Double((max(bounds.height, minHeight) - minHeight) / (maxHeight - minHeight))
         topicDescriptionLabel.alpha = CGFloat(max(0, progress * 2 - 1))
         if progress <= 1 {
-            backButton.frame = MSRLinearInterpolation(backButtonBeginFrame, backButtonEndFrame, progress)
-            topicImageView.frame = MSRLinearInterpolation(topicImageViewBeginFrame, topicImageViewEndFrame, progress)
-            topicTitleLabel.frame = MSRLinearInterpolation(topicTitleLabelBeginFrame, topicTitleLabelEndFrame, progress)
-            focusButton.frame = MSRLinearInterpolation(focusButtonBeginFrame, focusButtonEndFrame, progress)
+            backButton.frame = MSRLinearInterpolation(a: backButtonBeginFrame, b: backButtonEndFrame, progress: progress)
+            topicImageView.frame = MSRLinearInterpolation(a: topicImageViewBeginFrame, b: topicImageViewEndFrame, progress: progress)
+            topicTitleLabel.frame = MSRLinearInterpolation(a: topicTitleLabelBeginFrame, b: topicTitleLabelEndFrame, progress: progress)
+            focusButton.frame = MSRLinearInterpolation(a: focusButtonBeginFrame, b: focusButtonEndFrame, progress: progress)
         } else {
             let offset = bounds.height - maxHeight
             backButtonEndFrame.origin.y += offset

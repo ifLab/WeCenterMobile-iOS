@@ -18,7 +18,7 @@ import ZFTokenField
     var title: String? { get set }
     var body: String? { get set }
     var attachmentKey: String? { get set }
-    func post(#success: (() -> Void)?, failure: ((NSError) -> Void)?)
+    func post(success success: (() -> Void)?, failure: ((NSError) -> Void)?)
     func uploadImageWithJPEGData(jpegData: NSData, success: ((Int) -> Void)?, failure: ((NSError) -> Void)?) -> AFHTTPRequestOperation
 }
 
@@ -109,14 +109,14 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
         titleField?.attributedPlaceholder = NSAttributedString(string: titleField!.placeholder ?? "",
             attributes: [
                 NSForegroundColorAttributeName: theme.footnoteTextColor,
-                NSFontAttributeName: titleField!.font])
+                NSFontAttributeName: titleField!.font!])
         tagsField?.textField.textColor = theme.subtitleTextColor
         tagsField?.textField.font = UIFont.systemFontOfSize(14)
         bodyField.textColor = theme.bodyTextColor
         bodyField.attributedPlaceholder = NSAttributedString(string: bodyField.placeholder ?? "",
             attributes: [
                 NSForegroundColorAttributeName: theme.footnoteTextColor,
-                NSFontAttributeName: bodyField.font])
+                NSFontAttributeName: bodyField.font!])
         separator.backgroundColor = theme.borderColorA
         publishButton.addTarget(self, action: "publish", forControlEvents: .TouchUpInside)
         dismissButton.addTarget(self, action: "dismiss", forControlEvents: .TouchUpInside)
@@ -232,7 +232,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
             let image = images[indexPath.item]
             let maxProgress = self.maxProgress
             let uploadingProgress = Int(uploadingProgresses[indexPath.item])
-            cell = imageCollectionView.dequeueReusableCellWithReuseIdentifier(SelfType.identifiers[0], forIndexPath: indexPath) as! UICollectionViewCell
+            cell = imageCollectionView.dequeueReusableCellWithReuseIdentifier(SelfType.identifiers[0], forIndexPath: indexPath) 
             var imageView: UIImageView! = cell.contentView.viewWithTag(SelfType.imageViewTag) as? UIImageView
             if imageView == nil {
                 imageView = UIImageView()
@@ -240,16 +240,16 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
                 cell.contentView.addSubview(imageView)
                 imageView.contentMode = .ScaleAspectFill
                 imageView.clipsToBounds = true
-                imageView.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+                imageView.translatesAutoresizingMaskIntoConstraints = false
                 imageView.msr_addAllEdgeAttachedConstraintsToSuperview()
             }
-            imageView!.image = images[indexPath.item]
+            imageView!.image = image
             var overlayView: UIView! = cell.contentView.viewWithTag(SelfType.overlayViewTag)
             if overlayView == nil {
                 overlayView = UIView()
                 overlayView.tag = SelfType.overlayViewTag
                 cell.contentView.insertSubview(overlayView, aboveSubview: imageView)
-                overlayView.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+                overlayView.translatesAutoresizingMaskIntoConstraints = false
                 overlayView.msr_addAllEdgeAttachedConstraintsToSuperview()
                 overlayView.backgroundColor = scrollView.backgroundColor!.colorWithAlphaComponent(0.7)
             }
@@ -257,7 +257,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
             if progressView == nil {
                 progressView = NSBundle.mainBundle().loadNibNamed("ImageUploadingProgressBar", owner: nil, options: nil).first as! EAColourfulProgressView
                 progressView.tag = SelfType.progressViewTag
-                progressView.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+                progressView.translatesAutoresizingMaskIntoConstraints = false
                 progressView.msr_addHeightConstraintWithValue(8)
                 cell.contentView.insertSubview(progressView, aboveSubview: overlayView)
                 progressView.msr_addHorizontalEdgeAttachedConstraintsToSuperview()
@@ -268,7 +268,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
             progressView.alpha = uploadingProgress == maxProgress ? 0 : 1
             progressView.updateToCurrentValue(maxProgress - uploadingProgress, animated: false)
         } else {
-            cell = imageCollectionView.dequeueReusableCellWithReuseIdentifier(SelfType.identifiers[1], forIndexPath: indexPath) as! UICollectionViewCell
+            cell = imageCollectionView.dequeueReusableCellWithReuseIdentifier(SelfType.identifiers[1], forIndexPath: indexPath) 
             var button: UIButton! = cell.contentView.viewWithTag(SelfType.buttonTag) as? UIButton
             if button == nil {
                 button = UIButton()
@@ -276,7 +276,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
                 button.msr_borderWidth = 0.5
                 button.tag = SelfType.buttonTag
                 cell.contentView.addSubview(button)
-                button.msr_shouldTranslateAutoresizingMaskIntoConstraints = false
+                button.translatesAutoresizingMaskIntoConstraints = false
                 button.msr_addAllEdgeAttachedConstraintsToSuperview()
                 button.setImage(UIImage(named: "Publishment-Attachment"), forState: .Normal)
                 button.imageView!.tintColor = theme.backgroundColorB
@@ -300,7 +300,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
             /* handler: */ {
                 [weak self] action in
                 if let self_ = self {
-                    if let index = find(self_.images, image) {
+                    if let index = self_.images.indexOf(image) {
                         self_.removeDataAtIndex(index)
                         self_.imageCollectionView.deleteItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
                     }
@@ -316,40 +316,39 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
     
     // MARK: - UIImagePickerControllerDelegate
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        SVProgressHUD.showWithMaskType(.Gradient)
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        SVProgressHUD.show()
         picker.dismissViewControllerAnimated(true, completion: nil)
         converting = true
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            [weak self] in
-            if let self_ = self {
-                var images = map([info[UIImagePickerControllerOriginalImage] as! UIImage]) {
-                    (image: UIImage) -> UIImage in
-                    let scale = min(1, min(SelfType.maxImageSideLength / image.size.width, SelfType.maxImageSideLength / image.size.height))
-                    let size = CGSize(width: image.size.width * scale, height: image.size.height * scale)
-                    return image.msr_imageOfSize(size)
-                }
-                var uploadingProgress = [0]
-                var uploaded = [false]
-                var attachIDs = [SelfType.notAnAttachID]
-                let jpegs = map(images) {
-                    return UIImageJPEGRepresentation($0, SelfType.imageCompressionQuality)
-                }
-                dispatch_async(dispatch_get_main_queue()) {
-                    [weak self] in
-                    self_.images.extend(images)
-                    self_.uploadingProgresses.extend(uploadingProgress)
+            var images = [info[UIImagePickerControllerOriginalImage] as! UIImage].map {
+                (image: UIImage) -> UIImage in
+                let scale = min(1, min(SelfType.maxImageSideLength / image.size.width, SelfType.maxImageSideLength / image.size.height))
+                let size = CGSize(width: image.size.width * scale, height: image.size.height * scale)
+                return image.msr_imageOfSize(size)
+            }
+            let uploadingProgress = [0]
+            let uploaded = [false]
+            let attachIDs = [SelfType.notAnAttachID]
+            let jpegs = images.map {
+                return UIImageJPEGRepresentation($0, SelfType.imageCompressionQuality)
+            }
+            dispatch_async(dispatch_get_main_queue()) {
+                [weak self] in
+                if let self_ = self {
+                    self_.images.appendContentsOf(images)
+                    self_.uploadingProgresses.appendContentsOf(uploadingProgress)
                     self_.allUploaded.lock()
-                    self_.uploaded.extend(uploaded)
+                    self_.uploaded.appendContentsOf(uploaded)
                     self_.allUploaded.unlock()
-                    self_.attachIDs.extend(attachIDs)
+                    self_.attachIDs.appendContentsOf(attachIDs)
                     for i in 0..<images.count {
                         let image = images[i]
                         let jpeg = jpegs[i]
-                        let operation = self_.dataObject.uploadImageWithJPEGData(jpeg,
+                        let operation = self_.dataObject.uploadImageWithJPEGData(jpeg!,
                             success: {
                                 attachID in
-                                if let index = find(self_.images, image) {
+                                if let index = self_.images.indexOf(image) {
                                     self_.attachIDs[index] = attachID
                                     self_.allUploaded.lock()
                                     self_.uploaded[index] = true
@@ -361,7 +360,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
                             },
                             failure: {
                                 error in
-                                var message = error.userInfo?[NSLocalizedDescriptionKey] as? String
+                                var message = error.userInfo[NSLocalizedDescriptionKey] as? String
                                 if message == nil && error.code != NSURLErrorCancelled {
                                     message = "未知错误。"
                                 }
@@ -370,15 +369,15 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
                                     ac.addAction(UIAlertAction(title: "好", style: .Default, handler: nil))
                                     self_.presentViewController(ac, animated: true, completion: nil)
                                 }
-                                if let index = find(self_.images, image) {
+                                if let index = self_.images.indexOf(image) {
                                     self_.removeDataAtIndex(index)
                                     self_.imageCollectionView.deleteItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
                                 }
                                 return
-                            })
+                        })
                         operation.setUploadProgressBlock() {
                             bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
-                            if let index = find(self_.images, image) {
+                            if let index = self_.images.indexOf(image) {
                                 if totalBytesWritten == totalBytesExpectedToWrite {
                                     self_.allUploaded.lock()
                                     self_.uploaded[index] = true
@@ -466,7 +465,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
             /* handler: */ {
                 [weak self] action in
                 if let self_ = self {
-                    SVProgressHUD.showWithMaskType(.Gradient)
+                    SVProgressHUD.show()
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
                         self_.allUploaded.lock()
                         let count = self_.uploaded.count
@@ -503,7 +502,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
                                     success: {
                                         question in
                                         SVProgressHUD.dismiss()
-                                        SVProgressHUD.showSuccessWithStatus("已发布", maskType: .Gradient)
+                                        SVProgressHUD.showSuccessWithStatus("已发布")
                                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC / 2)), dispatch_get_main_queue()) {
                                             SVProgressHUD.dismiss()
                                             self_.delegate?.publishmentViewControllerDidSuccessfullyPublishDataObject?(self_)
@@ -513,7 +512,7 @@ class PublishmentViewController: UIViewController, ZFTokenFieldDataSource, ZFTok
                                     failure: {
                                         error in
                                         SVProgressHUD.dismiss()
-                                        let ac = UIAlertController(title: "发布失败", message: error.userInfo?[NSLocalizedDescriptionKey] as? String ?? "未知错误。", preferredStyle: .Alert)
+                                        let ac = UIAlertController(title: "发布失败", message: error.userInfo[NSLocalizedDescriptionKey] as? String ?? "未知错误。", preferredStyle: .Alert)
                                         ac.addAction(UIAlertAction(title: "好", style: .Default, handler: nil))
                                         self_.presentViewController(ac, animated: true, completion: nil)
                                     })

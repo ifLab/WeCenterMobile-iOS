@@ -27,7 +27,7 @@ class WeChatTimelineActivity: WeChatActivity {
         let request = SendMessageToWXReq()
         request.bText = false
         request.message = message
-        request.scene = Int32(WXSceneTimeline.value)
+        request.scene = Int32(WXSceneTimeline.rawValue)
         WXApi.sendReq(request)
         activityDidFinish(true)
     }

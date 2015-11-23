@@ -18,7 +18,7 @@ class ArticleHeaderView: UIView, UIToolbarDelegate {
     
     lazy var containerView: UIView = {
         let v = UIView()
-        v.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        v.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         v.clipsToBounds = true
         return v
     }()
@@ -102,7 +102,7 @@ class ArticleHeaderView: UIView, UIToolbarDelegate {
                 addSubview(backgroundView!)
                 sendSubviewToBack(backgroundView!)
                 backgroundView!.frame = bounds
-                backgroundView!.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+                backgroundView!.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
             }
         }
     }
@@ -115,7 +115,7 @@ class ArticleHeaderView: UIView, UIToolbarDelegate {
         }
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         wc_initialize()
     }
@@ -138,7 +138,7 @@ class ArticleHeaderView: UIView, UIToolbarDelegate {
         }
     }
     
-    func update(#dataObject: ArticleViewControllerPresentable) {
+    func update(dataObject dataObject: ArticleViewControllerPresentable) {
         userAvatarViewA.wc_updateWithUser(dataObject.user)
         userAvatarViewB.wc_updateWithUser(dataObject.user)
         titleLabelA.text = dataObject.title
@@ -179,7 +179,7 @@ class ArticleHeaderView: UIView, UIToolbarDelegate {
             separator.alpha = 0
         } else if bounds.height <= maxHeight {
             let progress = (bounds.height - normalHeight) / (maxHeight - normalHeight)
-            backButton.frame = MSRLinearInterpolation(backButtonBeginFrame, backButtonEndFrame, Double(progress))
+            backButton.frame = MSRLinearInterpolation(a: backButtonBeginFrame, b: backButtonEndFrame, progress: Double(progress))
             let alphaA = CGFloat(max(0, progress * -2 + 1))
             let alphaB = CGFloat(max(0, progress * 2 - 1))
             userAvatarViewA.alpha = alphaA

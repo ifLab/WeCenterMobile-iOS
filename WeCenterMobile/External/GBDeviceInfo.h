@@ -8,4 +8,5 @@
 
 @import UIKit;
 
-#import "GBDeviceInfo/GBDeviceInfo/GBDeviceInfo.h"
+#import "GBDeviceInfo/GBDeviceInfo/GBDeviceInfo_iOS.h"
+

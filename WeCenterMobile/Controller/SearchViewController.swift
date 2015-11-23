@@ -13,7 +13,7 @@ import UIKit
     optional var questionButton: UIButton! { get }
     optional var topicButton: UIButton! { get }
     optional var userButton: UIButton! { get }
-    func update(#dataObject: DataObject)
+    func update(dataObject dataObject: DataObject)
 }
 
 extension ArticleSearchResultCell: SearchResultCell {}
@@ -79,7 +79,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let object = objects[indexPath.row]
-        if let index = find(map(objectTypes) { object.classForCoder === $0 }, true) {
+        if let index = (objectTypes.map { object.classForCoder === $0 }).indexOf(true) {
             let cell = tableView.dequeueReusableCellWithIdentifier(identifiers[index], forIndexPath: indexPath) as! SearchResultCell
             cell.update(dataObject: object)
             cell.articleButton?.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
@@ -101,7 +101,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         let text = searchBar.text ?? ""
         if text != "" {
             keyword = searchBar.text ?? ""
-            tableView.header.beginRefreshing()
+            tableView.mj_header.beginRefreshing()
         }
     }
     
@@ -131,11 +131,11 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     func refresh() {
         if keyword == "" {
-            tableView.header.endRefreshing()
+            tableView.mj_header.endRefreshing()
             return
         }
         shouldReloadAfterLoadingMore = false
-        tableView.footer?.endRefreshing()
+        tableView.mj_footer?.endRefreshing()
         DataObject.fetchSearchResultsWithKeyword(keyword,
             type: .All,
             page: 1,
@@ -145,8 +145,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
                     self_.page = 1
                     self_.objects = objects
                     self_.tableView.reloadData()
-                    self_.tableView.header.endRefreshing()
-                    if self_.tableView.footer == nil {
+                    self_.tableView.mj_header.endRefreshing()
+                    if self_.tableView.mj_footer == nil {
                         self_.tableView.wc_addRefreshingFooterWithTarget(self_, action: "loadMore")
                     }
                 }
@@ -154,14 +154,14 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             },
             failure: {
                 [weak self] error in
-                self?.tableView.header.endRefreshing()
+                self?.tableView.mj_header.endRefreshing()
                 return
             })
     }
     
     func loadMore() {
-        if tableView.header.isRefreshing() {
-            tableView.footer.endRefreshing()
+        if tableView.mj_header.isRefreshing() {
+            tableView.mj_footer.endRefreshing()
             return
         }
         shouldReloadAfterLoadingMore = true
@@ -173,16 +173,16 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
                 if let self_ = self {
                     if self_.shouldReloadAfterLoadingMore {
                         ++self_.page
-                        self_.objects.extend(objects)
+                        self_.objects.appendContentsOf(objects)
                         self_.tableView.reloadData()
                     }
-                    self_.tableView.footer.endRefreshing()
+                    self_.tableView.mj_footer.endRefreshing()
                 }
                 return
             },
             failure: {
                 [weak self] error in
-                self?.tableView.footer.endRefreshing()
+                self?.tableView.mj_footer.endRefreshing()
                 return
             })
     }

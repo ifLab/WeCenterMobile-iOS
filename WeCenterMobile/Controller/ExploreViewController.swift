@@ -43,12 +43,12 @@ class ExploreViewController: MSRSegmentedViewController, MSRSegmentedViewControl
                 (.New, "最新"),
                 (.Unsolved, "等待回答")]
             // [FeaturedObjectListType: String] is not SequenceType
-            var vcs: [UIViewController] = map(titles, {
+            let vcs: [UIViewController] = titles.map {
                 (type, title) in
                 let vc = FeaturedObjectListViewController(type: type)
                 vc.title = title
                 return vc
-            })
+            }
             setViewControllers(vcs, animated: false)
         }
     }

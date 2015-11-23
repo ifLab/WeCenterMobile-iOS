@@ -12,13 +12,13 @@ import UIKit
 
 protocol CommentListViewControllerPresentable {
     var commentsForCommentListViewController: Set<Comment> { get }
-    func fetchCommentsForCommentListViewController(#success: (([Comment]) -> Void)?, failure: ((NSError) -> Void)?)
+    func fetchCommentsForCommentListViewController(success success: (([Comment]) -> Void)?, failure: ((NSError) -> Void)?)
     func temporaryComment() -> Comment
 }
 
 extension Answer: CommentListViewControllerPresentable {
     var commentsForCommentListViewController: Set<Comment> { return comments }
-    func fetchCommentsForCommentListViewController(#success: (([Comment]) -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchCommentsForCommentListViewController(success success: (([Comment]) -> Void)?, failure: ((NSError) -> Void)?) {
         fetchComments(success: { success?($0) }, failure: failure)
     }
     func temporaryComment() -> Comment {
@@ -31,7 +31,7 @@ extension Answer: CommentListViewControllerPresentable {
 
 extension Article: CommentListViewControllerPresentable {
     var commentsForCommentListViewController: Set<Comment> { return comments }
-    func fetchCommentsForCommentListViewController(#success: (([Comment]) -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchCommentsForCommentListViewController(success success: (([Comment]) -> Void)?, failure: ((NSError) -> Void)?) {
         fetchComments(success: { success?($0) }, failure: failure)
     }
     func temporaryComment() -> Comment {
@@ -106,7 +106,7 @@ class CommentListViewController: UITableViewController, UITextFieldDelegate {
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let comment = comments[indexPath.row]
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! CommentCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! CommentCell
         cell.update(comment: comment)
         cell.userButton.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
         cell.commentButton.addTarget(self, action: "didPressCommentButton:", forControlEvents: .TouchUpInside)
@@ -162,12 +162,12 @@ class CommentListViewController: UITableViewController, UITextFieldDelegate {
             let comment = dataObject.temporaryComment()
             comment.body = keyboardBar.textField.text
             comment.atUser = keyboardBar.userAtView.msr_userInfo as? User
-            SVProgressHUD.showWithMaskType(.Gradient)
+            SVProgressHUD.show()
             comment.post(
                 success: {
                     [weak self] in
                     SVProgressHUD.dismiss()
-                    SVProgressHUD.showSuccessWithStatus("已发布", maskType: .Gradient)
+                    SVProgressHUD.showSuccessWithStatus("已发布")
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC / 2)), dispatch_get_main_queue()) {
                         SVProgressHUD.dismiss()
                     }
@@ -179,7 +179,7 @@ class CommentListViewController: UITableViewController, UITextFieldDelegate {
                 failure: {
                     [weak self] error in
                     SVProgressHUD.dismiss()
-                    let ac = UIAlertController(title: (error.userInfo?[NSLocalizedDescriptionKey] as? String) ?? "",
+                    let ac = UIAlertController(title: (error.userInfo[NSLocalizedDescriptionKey] as? String) ?? "",
                         message: nil,
                         preferredStyle: .Alert)
                     ac.addAction(UIAlertAction(title: "好", style: .Default, handler: nil))

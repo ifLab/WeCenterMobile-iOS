@@ -14,7 +14,7 @@ import UIKit
     optional var questionButton: UIButton! { get }
     optional var answerButton: UIButton! { get }
     optional var articleButton: UIButton! { get }
-    func update(#action: Action)
+    func update(action action: Action)
 }
 
 extension AnswerActionCell: ActionCell {}
@@ -67,7 +67,7 @@ class HomeViewController: UITableViewController, PublishmentViewControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.header.beginRefreshing()
+        tableView.mj_header.beginRefreshing()
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -80,7 +80,7 @@ class HomeViewController: UITableViewController, PublishmentViewControllerDelega
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let action = actions[indexPath.row]
-        if let index = find(map(actionTypes) { action.classForCoder === $0 }, true) {
+        if let index = (actionTypes.map { action.classForCoder === $0 }).indexOf(true) {
             let cell = tableView.dequeueReusableCellWithIdentifier(identifiers[index], forIndexPath: indexPath) as! ActionCell
             cell.update(action: action)
             cell.userButton?.addTarget(self, action: "didPressUserButton:", forControlEvents: .TouchUpInside)
@@ -99,7 +99,7 @@ class HomeViewController: UITableViewController, PublishmentViewControllerDelega
     }
     
     func publishmentViewControllerDidSuccessfullyPublishDataObject(publishmentViewController: PublishmentViewController) {
-        tableView.header.beginRefreshing()
+        tableView.mj_header.beginRefreshing()
     }
     
     func didPressPublishButton() {
@@ -150,7 +150,7 @@ class HomeViewController: UITableViewController, PublishmentViewControllerDelega
     
     internal func refresh() {
         shouldReloadAfterLoadingMore = false
-        tableView.footer?.endRefreshing()
+        tableView.mj_footer?.endRefreshing()
         user.fetchRelatedActions(
             page: 1,
             count: count,
@@ -160,22 +160,22 @@ class HomeViewController: UITableViewController, PublishmentViewControllerDelega
                     self_.page = 1
                     self_.actions = actions
                     self_.tableView.reloadData()
-                    self_.tableView.header.endRefreshing()
-                    if self_.tableView.footer == nil {
+                    self_.tableView.mj_header.endRefreshing()
+                    if self_.tableView.mj_footer == nil {
                         self_.tableView.wc_addRefreshingFooterWithTarget(self_, action: "loadMore")
                     }
                 }
             },
             failure: {
                 [weak self] error in
-                self?.tableView.header.endRefreshing()
+                self?.tableView.mj_header.endRefreshing()
                 return
             })
     }
     
     internal func loadMore() {
-        if tableView.header.isRefreshing() {
-            tableView.footer.endRefreshing()
+        if tableView.mj_header.isRefreshing() {
+            tableView.mj_footer.endRefreshing()
             return
         }
         shouldReloadAfterLoadingMore = true
@@ -187,15 +187,15 @@ class HomeViewController: UITableViewController, PublishmentViewControllerDelega
                 if let self_ = self {
                     if self_.shouldReloadAfterLoadingMore {
                         ++self_.page
-                        self_.actions.extend(actions)
+                        self_.actions.appendContentsOf(actions)
                         self_.tableView.reloadData()
                     }
-                    self_.tableView.footer.endRefreshing()
+                    self_.tableView.mj_footer.endRefreshing()
                 }
             },
             failure: {
                 [weak self] error in
-                self?.tableView.footer.endRefreshing()
+                self?.tableView.mj_footer.endRefreshing()
                 return
             })
     }

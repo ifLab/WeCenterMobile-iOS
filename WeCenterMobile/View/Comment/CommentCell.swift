@@ -35,11 +35,11 @@ class CommentCell: UITableViewCell {
         userNameLabel.textColor = theme.titleTextColor
     }
     
-    func update(#comment: Comment) {
+    func update(comment comment: Comment) {
         msr_userInfo = comment
         userAvatarView.wc_updateWithUser(comment.user)
         userNameLabel.text = comment.user?.name
-        var attributedString = NSMutableAttributedString()
+        let attributedString = NSMutableAttributedString()
         let theme = SettingsManager.defaultManager.currentTheme
         if comment.atUser?.name != nil {
             attributedString.appendAttributedString(NSAttributedString(

@@ -26,7 +26,7 @@ class QuestionTitleCell: UITableViewCell {
         }
     }
     
-    func update(#question: Question) {
+    func update(question question: Question) {
         questionTitleLabel.text = question.title ?? "加载中"
         setNeedsLayout()
         layoutIfNeeded()

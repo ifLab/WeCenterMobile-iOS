@@ -27,7 +27,7 @@ class Article: DataObject {
 
     var evaluation: Evaluation? = nil
     
-    class func fetch(#ID: NSNumber, success: ((Article) -> Void)?, failure: ((NSError) -> Void)?) {
+    class func fetch(ID ID: NSNumber, success: ((Article) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("Article Detail",
             parameters: [
                 "id": ID
@@ -61,7 +61,7 @@ class Article: DataObject {
             failure: failure)
     }
     
-    func fetchComments(#success: (([ArticleComment]) -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchComments(success success: (([ArticleComment]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("Article Comment List",
             parameters: [
                 "id": id
@@ -93,7 +93,7 @@ class Article: DataObject {
                     }
                     success?(comments)
                 } else {
-                    failure?(NSError()) // Needs specification
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
             },
             failure: failure)
@@ -118,10 +118,10 @@ class Article: DataObject {
             failure: failure)!
     }
     
-    func evaluate(#value: Evaluation, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func evaluate(value value: Evaluation, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         let originalValue = evaluation
         if originalValue == nil {
-            var userInfo = [
+            let userInfo = [
                 NSLocalizedDescriptionKey: "Couldn't evaluate article now.",
                 NSLocalizedFailureReasonErrorKey: "Current user evaluation data equals to nil. (article.evaluation == nil)"
             ]
@@ -154,13 +154,13 @@ class Article: DataObject {
             failure: failure)
     }
     
-    func post(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func post(success success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         let topics = [Topic](self.topics)
         var topicsParameter = ""
         if topics.count == 1 {
             topicsParameter = topics[0].title!
         } else if topics.count > 1 {
-            topicsParameter = join(",", map(topics, { $0.title! }))
+            topicsParameter = topics.map({ $0.title! }).joinWithSeparator(",")
         }
         let title = self.title!
         let body = self.body!
@@ -172,7 +172,7 @@ class Article: DataObject {
                 "topics": topicsParameter
             ],
             success: {
-                [weak self] data in
+                _ in
                 success?()
                 return
             },

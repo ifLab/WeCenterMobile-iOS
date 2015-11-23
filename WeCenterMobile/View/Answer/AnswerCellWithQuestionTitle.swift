@@ -50,7 +50,7 @@ class AnswerCellWithQuestionTitle: UITableViewCell {
         questionTitleLabel.textColor = theme.titleTextColor
     }
     
-    func update(#answer: Answer) {
+    func update(answer answer: Answer) {
         questionTitleLabel.text = answer.question!.title
         answerUserAvatarView.wc_updateWithUser(answer.user)
         let theme = SettingsManager.defaultManager.currentTheme

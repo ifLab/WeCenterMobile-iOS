@@ -45,11 +45,11 @@ class Topic: DataObject {
             return (imageData == nil) ? nil : UIImage(data: imageData!)
         }
         set {
-            imageData = UIImagePNGRepresentation(newValue)
+            imageData = newValue == nil ? nil : UIImagePNGRepresentation(newValue!)
         }
     }
     
-    class func fetch(#ID: NSNumber, success: ((Topic) -> Void)?, failure: ((NSError) -> Void)?) {
+    class func fetch(ID ID: NSNumber, success: ((Topic) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("Topic Detail",
             parameters: [
                 "uid": User.currentUser!.id,
@@ -68,7 +68,7 @@ class Topic: DataObject {
             failure: failure)
     }
     
-    func toggleFocus(#userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func toggleFocus(userID userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         if focused != nil {
             if focused! {
                 cancleFocus(userID: userID, success: success, failure: failure)
@@ -76,11 +76,11 @@ class Topic: DataObject {
                 focus(userID: userID, success: success, failure: failure)
             }
         } else {
-            failure?(NSError()) // Needs specification
+            failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
         }
     }
     
-    func cancleFocus(#userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func cancleFocus(userID userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.POST("Focus Topic",
             parameters: [
                 "uid": userID,
@@ -95,7 +95,7 @@ class Topic: DataObject {
             failure: failure)
     }
     
-    func focus(#userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func focus(userID userID: NSNumber, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.POST("Focus Topic",
             parameters: [
                 "uid": userID,
@@ -110,7 +110,7 @@ class Topic: DataObject {
             failure: failure)
     }
     
-    func fetchOutstandingAnswers(#success: (([Answer]) -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchOutstandingAnswers(success success: (([Answer]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("Topic Outstanding Answer List",
             parameters: [
                 "id": id
@@ -138,7 +138,7 @@ class Topic: DataObject {
                     }
                     success?(answers)
                 } else {
-                    failure?(NSError()) // Needs specification
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
             },
             failure: failure)
@@ -146,7 +146,7 @@ class Topic: DataObject {
     
     private let imageView = UIImageView()
     
-    func fetchImage(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchImage(success success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         if imageURL != nil {
             let request = NSMutableURLRequest(URL: NSURL(string: imageURL!)!)
             request.addValue("image/*", forHTTPHeaderField:"Accept")
@@ -166,7 +166,7 @@ class Topic: DataObject {
                     return
             })
         } else {
-            failure?(NSError()) // Needs specification
+            failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
         }
     }
 

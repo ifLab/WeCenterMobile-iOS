@@ -13,7 +13,7 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     lazy var header: UserHeaderView = {
         let v =  NSBundle.mainBundle().loadNibNamed("UserHeaderView", owner: nil, options: nil).first as! UserHeaderView
         v.frame = CGRect(x: 0, y: 0, width: 0, height: v.maxHeight)
-        v.autoresizingMask = .FlexibleBottomMargin | .FlexibleWidth
+        v.autoresizingMask = [.FlexibleBottomMargin, .FlexibleWidth]
         return v
     }()
     
@@ -33,7 +33,7 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         v.scrollIndicatorInsets.top = self?.header.minHeight ?? 0
         v.contentOffset.y = -v.contentInset.top
         v.backgroundColor = UIColor.clearColor()
-        v.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        v.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         v.delegate = self
         v.dataSource = self
         return v
@@ -46,7 +46,7 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         super.init(nibName: nil, bundle: nil)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -145,7 +145,7 @@ class UserViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         if indexPath.section == 0 {
             let cell = bodyView.dequeueReusableCellWithReuseIdentifier(bodyCellReuseIdentifier, forIndexPath: indexPath) as! UserBodyCell
             let titles = ["提问", "回答", "文章", "话题", "关注中", "追随者"]
-            let counts = map([user.questionCount, user.answerCount, user.articleCount, user.topicFocusCount, user.followingCount, user.followerCount]) {
+            let counts = [user.questionCount, user.answerCount, user.articleCount, user.topicFocusCount, user.followingCount, user.followerCount].map {
                 return $0?.description ?? "0"
             }
             cell.titleLabel.text = titles[indexPath.item]

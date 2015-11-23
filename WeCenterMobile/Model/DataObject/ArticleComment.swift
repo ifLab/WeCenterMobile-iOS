@@ -16,7 +16,7 @@ class ArticleComment: Comment {
     
     var evaluation: Evaluation?
     
-    override func post(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    override func post(success success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         super.post(success: success, failure: failure)
         var parameters: [NSObject: AnyObject] = [
             "article_id": article!.id,
@@ -27,7 +27,7 @@ class ArticleComment: Comment {
         NetworkManager.defaultManager!.POST("Post Article Comment",
             parameters: parameters,
             success: {
-                [weak self] data in
+                _ in
                 success?()
                 return
             },

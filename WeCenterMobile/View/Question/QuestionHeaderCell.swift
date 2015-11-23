@@ -33,7 +33,7 @@ class QuestionHeaderCell: UITableViewCell {
         userSignatureLabel.textColor = theme.subtitleTextColor
     }
     
-    func update(#user: User?, updateImage: Bool) {
+    func update(user user: User?, updateImage: Bool) {
         if updateImage {
             userAvatarView.wc_updateWithUser(user)
         }

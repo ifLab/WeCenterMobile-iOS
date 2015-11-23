@@ -13,7 +13,7 @@ class AnswerComment: Comment {
 
     @NSManaged var answer: Answer?
     
-    override func post(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    override func post(success success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         super.post(success: success, failure: failure)
         var body = self.body!
         if let user = atUser {
@@ -24,7 +24,7 @@ class AnswerComment: Comment {
             POSTParameters: ["message": body],
             constructingBodyWithBlock: nil,
             success: {
-                [weak self] data in
+                _ in
                 success?()
                 return
             },

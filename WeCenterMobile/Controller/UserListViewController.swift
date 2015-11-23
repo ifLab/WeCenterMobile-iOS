@@ -53,7 +53,7 @@ class UserListViewController: UITableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.header.beginRefreshing()
+        tableView.mj_header.beginRefreshing()
     }
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -78,22 +78,22 @@ class UserListViewController: UITableViewController {
     }
     func refresh() {
         shouldReloadAfterLoadingMore = false
-        tableView.footer?.endRefreshing()
+        tableView.mj_footer?.endRefreshing()
         let success: ([User]) -> Void = {
             [weak self] users in
             if let self_ = self {
                 self_.page = 1
                 self_.users = users
-                self_.tableView.header.endRefreshing()
+                self_.tableView.mj_header.endRefreshing()
                 self_.tableView.reloadData()
-                if self_.tableView.footer == nil {
+                if self_.tableView.mj_footer == nil {
                     self_.tableView.wc_addRefreshingFooterWithTarget(self_, action: "loadMore")
                 }
             }
         }
         let failure: (NSError) -> Void = {
             [weak self] error in
-            self?.tableView.header.endRefreshing()
+            self?.tableView.mj_header.endRefreshing()
             return
         }
         switch listType {
@@ -109,8 +109,8 @@ class UserListViewController: UITableViewController {
     }
     var shouldReloadAfterLoadingMore = true
     func loadMore() {
-        if tableView.header.isRefreshing() {
-            tableView.footer.endRefreshing()
+        if tableView.mj_header.isRefreshing() {
+            tableView.mj_footer.endRefreshing()
             return
         }
         shouldReloadAfterLoadingMore = true
@@ -119,15 +119,15 @@ class UserListViewController: UITableViewController {
             if let self_ = self {
                 if self_.shouldReloadAfterLoadingMore {
                     ++self_.page
-                    self_.users.extend(users)
+                    self_.users.appendContentsOf(users)
                     self_.tableView.reloadData()
                 }
-                self_.tableView.footer.endRefreshing()
+                self_.tableView.mj_footer.endRefreshing()
             }
         }
         let failure: (NSError) -> Void = {
             [weak self] error in
-            self?.tableView.footer.endRefreshing()
+            self?.tableView.mj_footer.endRefreshing()
             return
         }
         switch listType {

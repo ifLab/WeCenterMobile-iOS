@@ -82,7 +82,7 @@ class User: DataObject {
             }
         }
         set {
-            avatarData = UIImagePNGRepresentation(newValue)
+            avatarData = newValue == nil ? nil : UIImagePNGRepresentation(newValue!)
         }
     }
     
@@ -105,7 +105,7 @@ class User: DataObject {
         }
     }
     
-    class func fetch(#ID: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
+    class func fetch(ID ID: NSNumber, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("User Extra Information",
             parameters: [
                 "uid": ID
@@ -132,7 +132,7 @@ class User: DataObject {
             failure: failure)
     }
     
-    func fetchFollowings(#page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchFollowings(page page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("User Following List",
             parameters: [
                 "uid": id,
@@ -154,13 +154,13 @@ class User: DataObject {
                     }
                     success?(users)
                 } else {
-                    failure?(NSError()) // Needs specification
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
             },
             failure: failure)
     }
     
-    func fetchFollowers(#page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchFollowers(page page: Int, count: Int, success: (([User]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("User Follower List",
             parameters: [
                 "uid": id,
@@ -182,13 +182,13 @@ class User: DataObject {
                     }
                     success?(users)
                 } else {
-                    failure?(NSError()) // Needs specification
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
             },
             failure: failure)
     }
     
-    func fetchTopics(#page: Int, count: Int, success: (([Topic]) -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchTopics(page page: Int, count: Int, success: (([Topic]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("User Topic List",
             parameters: [
                 "uid": id,
@@ -210,14 +210,14 @@ class User: DataObject {
                     }
                     success?(topics)
                 } else {
-                    failure?(NSError()) // Needs specification
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
                 return
             },
             failure: failure)
     }
     
-    func fetchQuestions(#page: Int, count: Int, success: (([Question]) -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchQuestions(page page: Int, count: Int, success: (([Question]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("User Question List",
             parameters: [
                 "uid": id,
@@ -246,13 +246,13 @@ class User: DataObject {
                     }
                     success?(questions)
                 } else {
-                    failure?(NSError()) // Needs specification
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
             },
             failure: failure)
     }
     
-    func fetchAnswers(#page: Int, count: Int, success: (([Answer]) -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchAnswers(page page: Int, count: Int, success: (([Answer]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("User Answer List",
             parameters: [
                 "uid": id,
@@ -284,13 +284,13 @@ class User: DataObject {
                     }
                     success?(answers)
                 } else {
-                    failure?(NSError()) // Needs specification
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
             },
             failure: failure)
     }
     
-    func fetchArticles(#page: Int, count: Int, success: (([Article]) -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchArticles(page page: Int, count: Int, success: (([Article]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("User Article List",
             parameters: [
                 "uid": id,
@@ -319,7 +319,7 @@ class User: DataObject {
                     }
                     success?(articles)
                 } else {
-                    failure?(NSError()) // Needs specification
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
             },
             failure: failure)
@@ -337,7 +337,7 @@ class User: DataObject {
                 let userID = Int(msr_object: data["uid"])!
                 let user = User.cachedObjectWithID(userID)
                 user.name = name
-                let cookies = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies as! [NSHTTPCookie]
+                let cookies = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies!
                 let cookiesData = NSKeyedArchiver.archivedDataWithRootObject(cookies)
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setObject(cookiesData, forKey: UserDefaultsCookiesKey)
@@ -348,13 +348,12 @@ class User: DataObject {
             failure: failure)
     }
     
-    class func loginWithCookiesAndCacheInStorage(#success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
+    class func loginWithCookiesAndCacheInStorage(success success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
         let defaults = NSUserDefaults.standardUserDefaults()
         let data = defaults.objectForKey(UserDefaultsCookiesKey) as? NSData
         let userID = defaults.objectForKey(UserDefaultsUserIDKey) as? NSNumber
-        var error: NSError? = nil
         if data == nil || userID == nil {
-            var userInfo = [
+            let userInfo = [
                 NSLocalizedDescriptionKey: "Could not find any cookies or cache in storage.",
                 NSLocalizedFailureReasonErrorKey: "You've never logged in before or cookies and cache have been cleared."
             ]
@@ -368,21 +367,21 @@ class User: DataObject {
             for cookie in cookies {
                 storage.setCookie(cookie)
             }
-            if let user = DataManager.defaultManager?.fetch("User", ID: userID!, error: &error) as? User {
+            do {
+                let user = try DataManager.defaultManager?.fetch("User", ID: userID!) as! User
                 success?(user)
-            } else {
-                var userInfo: NSMutableDictionary = [
+                
+            } catch let error as NSError {
+                let userInfo = [
                     NSLocalizedDescriptionKey: "Cookies and user ID were found, but no such user in cache.",
                     NSLocalizedFailureReasonErrorKey: "Caches have been cleared before.",
-                    NSLocalizedRecoverySuggestionErrorKey: "By accessing \"User Basic Information\" with cookies in header, you can get the basic infomation of current user. Cookies have been set into header."
+                    NSLocalizedRecoverySuggestionErrorKey: "By accessing \"User Basic Information\" with cookies in header, you can get the basic infomation of current user. Cookies have been set into header.",
+                    NSUnderlyingErrorKey: error
                 ]
-                if error != nil {
-                    userInfo[NSUnderlyingErrorKey] = error
-                }
                 failure?(NSError(
                     domain: NetworkManager.defaultManager!.website,
                     code: NetworkManager.defaultManager!.internalErrorCode.integerValue,
-                    userInfo: userInfo as [NSObject: AnyObject]))
+                    userInfo: userInfo))
             }
         }
     }
@@ -391,12 +390,12 @@ class User: DataObject {
         NetworkManager.clearCookies()
         NetworkManager.defaultManager!.POST("User Login",
             parameters: [
-                "user_name": name.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!,
-                "password": password.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+                "user_name": name.stringByRemovingPercentEncoding!,
+                "password": password.stringByRemovingPercentEncoding!
             ],
             success: {
                 data in
-                let cookies = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies as! [NSHTTPCookie]
+                let cookies = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies!
                 let cookiesData = NSKeyedArchiver.archivedDataWithRootObject(cookies)
                 let user = User.cachedObjectWithID(Int(msr_object: (data as! NSDictionary)["uid"])!)
                 user.name = data["user_name"] as? String
@@ -411,7 +410,7 @@ class User: DataObject {
     }
     
     // Needs to be modified
-    func fetchProfile(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchProfile(success success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("User Basic Information",
             parameters: [
                 "uid": id
@@ -434,13 +433,13 @@ class User: DataObject {
             failure: failure)
     }
     
-    func updateProfileForCurrentUser(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func updateProfileForCurrentUser(success success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         let id = self.id
         let name = self.name
         let gender = self.gender!
         let signature = self.signature
         let birthday = self.birthday
-        var parameters: NSMutableDictionary = ["uid": id]
+        let parameters: NSMutableDictionary = ["uid": id]
         parameters["user_name"] = name
         parameters["sex"] = gender.rawValue
         parameters["signature"] = signature
@@ -448,7 +447,7 @@ class User: DataObject {
         NetworkManager.defaultManager!.POST("Update Profile",
             parameters: parameters,
             success: {
-                [weak self] data in
+                data in
                 if data as! String == "success" {
                     User.currentUser!.id = id
                     User.currentUser!.name = name
@@ -457,7 +456,7 @@ class User: DataObject {
                     User.currentUser!.birthday = birthday
                     success?()
                 } else {
-                    failure?(NSError()) // Needs specification
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
             },
             failure: failure)
@@ -502,7 +501,7 @@ class User: DataObject {
         avatarUploadingOperation?.cancel()
     }
     
-    func toggleFollow(#success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func toggleFollow(success success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("Follow User",
             parameters: [
                 "uid": id
@@ -517,12 +516,12 @@ class User: DataObject {
     
     private let imageView = UIImageView()
     
-    func fetchAvatar(#forced: Bool, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchAvatar(forced forced: Bool, success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         if avatarURL != nil {
             let request = NSMutableURLRequest(URL: NSURL(string: avatarURL!)!)
             request.addValue("image/*", forHTTPHeaderField:"Accept")
             if forced {
-                (UIImageView.sharedImageCache() as! NSCache).removeObjectForKey(request.URL!.absoluteString!)
+                (UIImageView.sharedImageCache() as! NSCache).removeObjectForKey(request.URL!.absoluteString)
             }
             imageView.setImageWithURLRequest(request,
                 placeholderImage: nil,
@@ -535,23 +534,23 @@ class User: DataObject {
                     return
                 },
                 failure: {
-                    [weak self] request, response, error in
+                    _, _, error in
                     failure?(error)
                     return
             })
         } else {
-            failure?(NSError()) // Needs specification
+            failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
         }
     }
     
-    func fetchRelatedActions(#page: Int, count: Int, success: (([Action]) -> Void)?, failure: ((NSError) -> Void)?) {
+    func fetchRelatedActions(page page: Int, count: Int, success: (([Action]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("Home List",
             parameters: [
                 "page": page - 1,
                 "per_page": count
             ],
             success: {
-                [weak self] data in
+                data in
                 let rows = data["total_rows"] as! Int
                 if rows > 0 {
                     var actions = [Action]()
@@ -675,14 +674,12 @@ class User: DataObject {
                             action.article!.title = (articleInfo["title"] as! String)
                             action.article!.user = action.user
                             break
-                        default:
-                            break
                         }
                         actions.append(action_)
                     }
                     success?(actions)
                 } else {
-                    failure?(NSError()) // Needs specification
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
             },
             failure: failure)

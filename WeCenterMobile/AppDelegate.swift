@@ -11,6 +11,7 @@ import CoreData
 import DTCoreText
 import DTFoundation
 import SinaWeiboSDK
+import SVProgressHUD
 import UIKit
 import WeChatSDK
 
@@ -44,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
     
     var cacheFileURL: NSURL {
-        let directory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last as! NSURL
+        let directory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last!
         let url = directory.URLByAppendingPathComponent("WeCenterMobile.sqlite")
         return url
     }
@@ -57,6 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIScrollView.msr_installTouchesCancellingExtension()
         AFNetworkActivityIndicatorManager.sharedManager().enabled = true
         DTAttributedTextContentView.setLayerClass(DTTiledLayerWithoutFade.self)
+        SVProgressHUD.setDefaultMaskType(.Gradient)
         WeiboSDK.registerApp("3758958382")
         WXApi.registerApp("wx4dc4b980c462893b")
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTheme", name: CurrentThemeDidChangeNotificationName, object: nil)
@@ -68,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(application: UIApplication) {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        DataManager.defaultManager!.saveChanges(nil)
+        try! DataManager.defaultManager!.saveChanges()
     }
     
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
@@ -77,7 +79,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func clearCaches() {
         NetworkManager.clearCookies()
-        NSFileManager.defaultManager().removeItemAtURL(cacheFileURL, error: nil)
+        do {
+            try NSFileManager.defaultManager().removeItemAtURL(cacheFileURL)
+        } catch _ {
+        }
         DataManager.defaultManager = nil
         DataManager.temporaryManager = nil
     }

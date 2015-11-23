@@ -33,7 +33,7 @@ private var _UITableViewWCFooterActivityIndicatorViewAssociationKey: UnsafePoint
 extension UITableView {
     private var wc_headerImageView: UIImageView! /* For keeping the weak property in header. */ {
         set {
-            objc_setAssociatedObject(self, _UITableViewWCHeaderImageViewAssociationKey, newValue, objc_AssociationPolicy())
+            objc_setAssociatedObject(self, _UITableViewWCHeaderImageViewAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
         get {
             return objc_getAssociatedObject(self, _UITableViewWCHeaderImageViewAssociationKey) as? UIImageView
@@ -41,7 +41,7 @@ extension UITableView {
     }
     private var wc_headerActivityIndicatorView: UIActivityIndicatorView! /* For keeping the weak property in header. */ {
         set {
-            objc_setAssociatedObject(self, _UITableViewWCHeaderActivityIndicatorViewAssociationKey, newValue, objc_AssociationPolicy())
+            objc_setAssociatedObject(self, _UITableViewWCHeaderActivityIndicatorViewAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
         get {
             return objc_getAssociatedObject(self, _UITableViewWCHeaderActivityIndicatorViewAssociationKey) as? UIActivityIndicatorView
@@ -49,7 +49,7 @@ extension UITableView {
     }
     private var wc_footerActivityIndicatorView: UIActivityIndicatorView! /* For keeping the weak property in footer. */ {
         set {
-            objc_setAssociatedObject(self, _UITableViewWCFooterActivityIndicatorViewAssociationKey, newValue, objc_AssociationPolicy())
+            objc_setAssociatedObject(self, _UITableViewWCFooterActivityIndicatorViewAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
         get {
             return objc_getAssociatedObject(self, _UITableViewWCFooterActivityIndicatorViewAssociationKey) as? UIActivityIndicatorView
@@ -58,12 +58,12 @@ extension UITableView {
     func wc_addRefreshingHeaderWithTarget(target: AnyObject, action: Selector) -> MJRefreshNormalHeader {
         let theme = SettingsManager.defaultManager.currentTheme
         let header = MJRefreshNormalHeader(refreshingTarget: target, refreshingAction: action)
-        self.header = header
-        header.autoChangeAlpha = true
-        header.lastUpdatedTimeLabel.textColor = theme.footnoteTextColor
-        header.lastUpdatedTimeLabel.font = UIFont.boldSystemFontOfSize(12)
-        header.stateLabel.textColor = theme.footnoteTextColor
-        header.stateLabel.font = UIFont.boldSystemFontOfSize(12)
+        self.mj_header = header
+        header.automaticallyChangeAlpha = true
+        header.lastUpdatedTimeLabel!.textColor = theme.footnoteTextColor
+        header.lastUpdatedTimeLabel!.font = UIFont.boldSystemFontOfSize(12)
+        header.stateLabel!.textColor = theme.footnoteTextColor
+        header.stateLabel!.font = UIFont.boldSystemFontOfSize(12)
         wc_headerImageView = header.valueForKey("arrowView") as! UIImageView
         wc_headerImageView.tintColor = theme.footnoteTextColor
         wc_headerActivityIndicatorView = header.valueForKey("loadingView") as! UIActivityIndicatorView
@@ -74,9 +74,9 @@ extension UITableView {
     func wc_addRefreshingFooterWithTarget(target: AnyObject, action: Selector) -> MJRefreshAutoNormalFooter {
         let theme = SettingsManager.defaultManager.currentTheme
         let footer = MJRefreshAutoNormalFooter(refreshingTarget: target, refreshingAction: action)
-        self.footer = footer
-        footer.stateLabel.textColor = theme.footnoteTextColor
-        footer.stateLabel.font = UIFont.boldSystemFontOfSize(12)
+        self.mj_footer = footer
+        footer.stateLabel!.textColor = theme.footnoteTextColor
+        footer.stateLabel!.font = UIFont.boldSystemFontOfSize(12)
         footer.automaticallyRefresh = false
         wc_footerActivityIndicatorView = footer.valueForKey("loadingView") as! UIActivityIndicatorView
         wc_footerActivityIndicatorView.activityIndicatorViewStyle = .White

@@ -27,7 +27,7 @@ class WeChatSessionActivity: WeChatActivity {
         let request = SendMessageToWXReq()
         request.bText = false
         request.message = message
-        request.scene = Int32(WXSceneSession.value)
+        request.scene = Int32(WXSceneSession.rawValue)
         WXApi.sendReq(request)
         activityDidFinish(true)
     }
