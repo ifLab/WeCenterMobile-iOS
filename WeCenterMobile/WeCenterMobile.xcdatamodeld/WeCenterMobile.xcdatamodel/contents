@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Automatic">
     <entity name="Action" representedClassName="WeCenterMobile.Action" isAbstract="YES" parentEntity="DataObject" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="actions" inverseEntity="User" syncable="YES"/>
@@ -48,8 +48,12 @@
     <entity name="ArticleComment" representedClassName="WeCenterMobile.ArticleComment" parentEntity="Comment" syncable="YES">
         <attribute name="agreementCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="comments" inverseEntity="Article" syncable="YES"/>
+        <relationship name="articleCommentaryActions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ArticleCommentaryAction" inverseName="comment" inverseEntity="ArticleCommentaryAction" syncable="YES"/>
         <relationship name="atUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="articleCommentsMentioned" inverseEntity="User" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="articleComments" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="ArticleCommentaryAction" representedClassName="WeCenterMobile.ArticleCommentaryAction" parentEntity="Action" syncable="YES">
+        <relationship name="comment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ArticleComment" inverseName="articleCommentaryActions" inverseEntity="ArticleComment" syncable="YES"/>
     </entity>
     <entity name="ArticlePublishmentAction" representedClassName="WeCenterMobile.ArticlePublishmentAction" parentEntity="Action" syncable="YES">
         <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="articlePublishmentActions" inverseEntity="Article" syncable="YES"/>
@@ -136,24 +140,25 @@
         <relationship name="topics" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Topic" inverseName="users" inverseEntity="Topic" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Action" positionX="315" positionY="108" width="128" height="73"/>
+        <element name="Action" positionX="214" positionY="63" width="128" height="73"/>
         <element name="Answer" positionX="451" positionY="378" width="128" height="208"/>
-        <element name="AnswerAction" positionX="315" positionY="225" width="128" height="60"/>
-        <element name="AnswerAgreementAction" positionX="315" positionY="288" width="128" height="60"/>
+        <element name="AnswerAction" positionX="216" positionY="144" width="128" height="60"/>
+        <element name="AnswerAgreementAction" positionX="216" positionY="207" width="128" height="60"/>
         <element name="AnswerComment" positionX="583" positionY="743" width="128" height="88"/>
         <element name="Article" positionX="584" positionY="378" width="128" height="223"/>
-        <element name="ArticleAgreementAction" positionX="449" positionY="288" width="128" height="60"/>
-        <element name="ArticleComment" positionX="718" positionY="743" width="128" height="103"/>
-        <element name="ArticlePublishmentAction" positionX="449" positionY="225" width="128" height="60"/>
+        <element name="ArticleAgreementAction" positionX="351" positionY="207" width="128" height="60"/>
+        <element name="ArticleComment" positionX="718" positionY="743" width="128" height="118"/>
+        <element name="ArticlePublishmentAction" positionX="351" positionY="144" width="128" height="60"/>
         <element name="Comment" positionX="648" positionY="635" width="128" height="88"/>
         <element name="DataObject" positionX="448" positionY="-9" width="128" height="58"/>
-        <element name="FeaturedArticle" positionX="584" positionY="225" width="128" height="58"/>
-        <element name="FeaturedObject" positionX="651" positionY="108" width="128" height="58"/>
-        <element name="FeaturedQuestionAnswer" positionX="719" positionY="225" width="128" height="88"/>
+        <element name="FeaturedArticle" positionX="675" positionY="180" width="128" height="58"/>
+        <element name="FeaturedObject" positionX="747" positionY="95" width="128" height="58"/>
+        <element name="FeaturedQuestionAnswer" positionX="810" positionY="180" width="128" height="88"/>
         <element name="Question" positionX="315" positionY="378" width="128" height="238"/>
-        <element name="QuestionFocusingAction" positionX="180" positionY="288" width="128" height="60"/>
-        <element name="QuestionPublishmentAction" positionX="180" positionY="225" width="128" height="60"/>
+        <element name="QuestionFocusingAction" positionX="81" positionY="207" width="128" height="60"/>
+        <element name="QuestionPublishmentAction" positionX="81" positionY="144" width="128" height="60"/>
         <element name="Topic" positionX="720" positionY="378" width="128" height="163"/>
         <element name="User" positionX="180" positionY="377" width="128" height="478"/>
+        <element name="ArticleCommentaryAction" positionX="81" positionY="270" width="128" height="58"/>
     </elements>
 </model>

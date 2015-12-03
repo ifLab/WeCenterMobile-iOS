@@ -16,6 +16,7 @@ enum ActionTypeID: Int {
     case AnswerAgreement = 204
     case ArticlePublishment = 501
     case ArticleAgreement = 502
+    case ArticleCommentary = 503
 }
 
 class Action: DataObject {

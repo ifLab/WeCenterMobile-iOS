@@ -51,7 +51,12 @@ class CommentListViewController: UITableViewController, UITextFieldDelegate {
         return tableView.inputAccessoryView as! KeyboardBar
     }
     init(dataObject: CommentListViewControllerPresentable) {
-        self.dataObject = dataObject
+        /// @TODO: DELETE THIS.
+        if let article = dataObject as? Article {
+            self.dataObject = Article.cachedObjectWithID(article.id)
+        } else {
+            self.dataObject = dataObject
+        }
         super.init(nibName: nil, bundle: nil)
     }
     required init(coder aDecoder: NSCoder) {

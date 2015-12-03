@@ -52,8 +52,7 @@ class Topic: DataObject {
     class func fetch(ID ID: NSNumber, success: ((Topic) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("Topic Detail",
             parameters: [
-                "uid": User.currentUser!.id,
-                "topic_id": ID
+                "id": ID
             ],
             success: {
                 data in
@@ -63,6 +62,7 @@ class Topic: DataObject {
                 topic.imageURI = data["topic_pic"] as? String
                 topic.focusCount = Int(msr_object: data["focus_count"]!!)
                 topic.focused = Int(msr_object: data["has_focus"]) == 1
+                _ = try? DataManager.defaultManager.saveChanges()
                 success?(topic)
             },
             failure: failure)
@@ -89,8 +89,13 @@ class Topic: DataObject {
             ],
             success: {
                 [weak self] data in
-                self?.focused = false
-                success?()
+                if let self_ = self {
+                    self_.focused = false
+                    _ = try? DataManager.defaultManager.saveChanges()
+                    success?()
+                } else {
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
+                }
             },
             failure: failure)
     }
@@ -104,8 +109,13 @@ class Topic: DataObject {
             ],
             success: {
                 [weak self] data in
-                self?.focused = true
-                success?()
+                if let self_ = self {
+                    self_.focused = true
+                    _ = try? DataManager.defaultManager.saveChanges()
+                    success?()
+                } else {
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
+                }
             },
             failure: failure)
     }
@@ -113,30 +123,37 @@ class Topic: DataObject {
     func fetchOutstandingAnswers(success success: (([Answer]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("Topic Outstanding Answer List",
             parameters: [
-                "id": id
+                "topic_id": id,
+                "page": 1
             ],
             success: {
                 [weak self] data in
-                if Int(msr_object: data["total_rows"]!!) > 0 {
-                    var answers = [Answer]()
-                    for value in data["rows"] as! [NSDictionary] {
-                        let questionValue = value["question_info"] as! NSDictionary
-                        let questionID = questionValue["question_id"] as! NSNumber
-                        let question = Question.cachedObjectWithID(questionID)
-                        self?.questions.insert(question)
-                        question.title = questionValue["question_content"] as? String
-                        let answerValue = value["answer_info"] as! NSDictionary
-                        let answerID = answerValue["answer_id"] as! NSNumber
-                        let answer = Answer.cachedObjectWithID(answerID)
-                        question.answers.insert(answer)
-                        answer.body = answerValue["answer_content"] as? String
-                        answer.agreementCount = answerValue["agree_count"] as? NSNumber
-                        let userID = answerValue["uid"] as! NSNumber
-                        answer.user = User.cachedObjectWithID(userID)
-                        answer.user!.avatarURI = answerValue["avatar_file"] as? String
-                        answers.append(answer)
+                if let self_ = self {
+                    if Int(msr_object: data["total_rows"]!!) > 0 {
+                        var answers = [Answer]()
+                        for (_,value) in data["rows"] as! NSDictionary {
+                            let questionValue = value["question_info"] as! NSDictionary
+                            let questionID = questionValue["question_id"] as! NSNumber
+                            let question = Question.cachedObjectWithID(questionID)
+                            self_.questions.insert(question)
+                            question.title = questionValue["question_content"] as? String
+                            let answerValue = value["answer_info"] as! NSDictionary
+                            let answerID = answerValue["answer_id"] as! NSNumber
+                            let answer = Answer.cachedObjectWithID(answerID)
+                            question.answers.insert(answer)
+                            answer.body = answerValue["answer_content"] as? String
+                            answer.agreementCount = answerValue["agree_count"] as? NSNumber
+                            let userValue = value["user_info"] as! NSDictionary
+                            let userID = userValue["uid"] as! NSNumber
+                            answer.user = User.cachedObjectWithID(userID)
+                            answer.user!.avatarURL = userValue["avatar_file"] as? String
+                            answers.append(answer)
+                        }
+                        _ = try? DataManager.defaultManager.saveChanges()
+                        success?(answers)
+                    } else {
+                        failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                     }
-                    success?(answers)
                 } else {
                     failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
@@ -157,14 +174,14 @@ class Topic: DataObject {
                     if self?.image == nil || response != nil {
                         self?.image = image
                     }
+                    _ = try? DataManager.defaultManager.saveChanges()
                     success?()
-                    return
                 },
                 failure: {
                     request, response, error in
                     failure?(error)
                     return
-            })
+                })
         } else {
             failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
         }

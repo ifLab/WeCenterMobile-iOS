@@ -45,6 +45,9 @@ class ArticleFooterView: UIToolbar {
         for v in [separatorAItem, separatorBItem] {
             v.customView!.backgroundColor = theme.borderColorA
         }
+        for item in items ?? [] {
+            item.tintColor = theme.toolbarItemColor
+        }
         let s = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         s.alignment = .Center
         addSubview(activityIndicatorView)

@@ -22,34 +22,35 @@ class NetworkManager: NSObject {
     }
     static var defaultManager = NetworkManager(configuration: NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("Configuration", ofType: "plist")!)!)
     func GET(key: String,
-        parameters: NSDictionary?,
+        parameters: [String: AnyObject],
         success: ((AnyObject) -> Void)?,
         failure: ((NSError) -> Void)?) -> AFHTTPRequestOperation? {
             return request(key,
                 GETParameters: parameters,
-                POSTParameters: nil,
+                POSTParameters: [:],
                 constructingBodyWithBlock: nil,
                 success: success,
                 failure: failure)
     }
     func POST(key: String,
-        parameters: NSDictionary?,
+        parameters: [String: AnyObject],
         success: ((AnyObject) -> Void)?,
         failure: ((NSError) -> Void)?) -> AFHTTPRequestOperation? {
             return request(key,
-                GETParameters: nil,
+                GETParameters: [:],
                 POSTParameters: parameters,
                 constructingBodyWithBlock: nil,
                 success: success,
                 failure: failure)
     }
     func request(key: String,
-        GETParameters: NSDictionary?,
-        POSTParameters: NSDictionary?,
+        var GETParameters: [String: AnyObject],
+        POSTParameters: [String: AnyObject],
         constructingBodyWithBlock block: ((AFMultipartFormData?) -> Void)?,
         success: ((AnyObject) -> Void)?,
         failure: ((NSError) -> Void)?) -> AFHTTPRequestOperation? {
             do {
+                GETParameters["mobile_sign"] = getMobileSignWithPath(paths[key]!)
                 let URLString = try manager.requestSerializer.requestWithMethod("GET", URLString: paths[key]!, parameters: GETParameters, error: ()).URL!.absoluteString
                 return manager.POST(URLString,
                     parameters: POSTParameters,
@@ -99,7 +100,7 @@ class NetworkManager: NSObject {
         let data = object as! NSDictionary
         if data["errno"] as! NSNumber == successCode {
             let info: AnyObject = data["rsm"]!
-//            NSLog("\(operation.response.URL!)\n\(info)")
+            NSLog("\(operation.response.URL!)\n\(info)")
             success?(info)
             _ = try? DataManager.defaultManager!.saveChanges() // It's not a good idea to be placed here, but this could reduce duplicate codes.
         } else {
@@ -124,6 +125,9 @@ class NetworkManager: NSObject {
     }
     var paths: [String: String] {
         return configuration["Path"] as! [String: String]
+    }
+    var appSecret: String? {
+        return configuration["App Secret"] as? String
     }
     private lazy var manager: AFHTTPRequestOperationManager = {
         [weak self] in

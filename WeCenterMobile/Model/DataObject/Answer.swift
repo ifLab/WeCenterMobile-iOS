@@ -39,20 +39,23 @@ class Answer: DataObject {
         let answer = Answer.cachedObjectWithID(ID)
         NetworkManager.defaultManager!.GET("Answer Detail",
             parameters: [
-                "id": ID
+                "answer_id": ID
             ],
             success: {
                 data in
-                answer.id = data["answer_id"] as! NSNumber
-                answer.body = data["answer_content"] as? String
-                answer.date = NSDate(timeIntervalSince1970: NSTimeInterval(data["add_time"] as! NSNumber))
-                answer.agreementCount = data["agree_count"] as? NSNumber
-                answer.commentCount = data["comment_count"] as? NSNumber
-                answer.evaluation = Evaluation(rawValue: Int(msr_object: data["vote_value"]!!) ?? 0)
-                answer.user = User.cachedObjectWithID(Int(msr_object: (data as! NSDictionary)["uid"])!)
-                answer.user!.name = data["user_name"] as? String
-                answer.user!.avatarURI = data["avatar_file"] as? String
-                answer.user!.signature = data["signature"] as? String
+                let answerData = data["answer"] as! NSDictionary
+                answer.id = answerData["answer_id"] as! NSNumber
+                answer.body = answerData["answer_content"] as? String
+                answer.date = NSDate(timeIntervalSince1970: NSTimeInterval(answerData["add_time"] as! NSNumber))
+                answer.agreementCount = answerData["agree_count"] as? NSNumber
+                answer.commentCount = answerData["comment_count"] as? NSNumber
+                answer.evaluation = Evaluation(rawValue: Int(msr_object: answerData["user_vote_status"]!) ?? 0)
+                let userInfo = answerData["user_info"] as! NSDictionary
+                answer.user = User.cachedObjectWithID(Int(msr_object: userInfo["uid"])!)
+                answer.user!.name = userInfo["user_name"] as? String
+                answer.user!.avatarURL = userInfo["avatar_file"] as? String
+                answer.user!.signature = userInfo["signature"] as? String
+                _ = try? DataManager.defaultManager.saveChanges()
                 success?(answer)
             },
             failure: failure)
@@ -61,41 +64,46 @@ class Answer: DataObject {
     func fetchComments(success success: (([AnswerComment]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("Answer Comment List",
             parameters: [
-                "id": id
+                "answer_id": id
             ],
             success: {
                 [weak self] data in
-                var commentsData = [NSDictionary]()
-                if data is [NSDictionary] {
-                    commentsData = data as! [NSDictionary]
+                if let self_ = self {
+                    var commentsData = [NSDictionary]()
+                    if data is [NSDictionary] {
+                        commentsData = data as! [NSDictionary]
+                    }
+                    var comments = [AnswerComment]()
+                    for commentData in commentsData {
+                        print(commentData)
+                        let commentID = Int(msr_object: commentData["id"])!
+                        let comment = AnswerComment.cachedObjectWithID(commentID)
+                        if commentData["uid"] != nil {
+                            let userID = Int(msr_object: commentData["uid"])!
+                            comment.user = User.cachedObjectWithID(userID)
+                            let userInfo = commentData["user_info"] as! NSDictionary
+                            comment.user!.name = userInfo["user_name"] as? String
+                        }
+                        comment.body = commentData["message"] as? String
+                        let timeInterval = commentData["time"] as? NSTimeInterval
+                        if timeInterval != nil {
+                            comment.date = NSDate(timeIntervalSince1970: timeInterval!)
+                        }
+                        comment.answer = self_
+                        /// @TODO: [Bug][Back-End] commentData["at_user"] shouldn't be a nested dictionary.
+                        let atUserData = (commentData["at_user"] as? [NSObject: [String: AnyObject]])?.values.first
+                        if let atID = Int(msr_object: atUserData?["uid"]) {
+                            comment.atUser = User.cachedObjectWithID(atID)
+                            comment.atUser!.name = (atUserData?["user_name"] as! String)
+                        }
+                        self_.comments.insert(comment)
+                        comments.append(comment)
+                    }
+                    _ = try? DataManager.defaultManager.saveChanges()
+                    success?(comments)
+                } else {
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
-                var comments = [AnswerComment]()
-                for commentData in commentsData {
-                    let commentID = Int(msr_object: commentData["id"])!
-                    let comment = AnswerComment.cachedObjectWithID(commentID)
-                    if commentData["uid"] != nil {
-                        let userID = Int(msr_object: commentData["uid"])!
-                        comment.user = User.cachedObjectWithID(userID)
-                        comment.user!.name = commentData["user_name"] as? String
-                    }
-                    comment.body = commentData["content"] as? String
-                    let timeInterval = commentData["add_time"] as? NSTimeInterval
-                    if timeInterval != nil {
-                        comment.date = NSDate(timeIntervalSince1970: timeInterval!)
-                    }
-                    comment.answer = self
-                    var atID: NSNumber? = nil
-                    if let atIDString = commentData["at_user"]?["uid"] as? String {
-                        atID = Int(msr_object: atIDString)
-                    }
-                    if atID != nil {
-                        comment.atUser = User.cachedObjectWithID(atID!)
-                        comment.atUser!.name = (commentData["at_user"]?["user_name"] as! String)
-                    }
-                    self?.comments.insert(comment)
-                    comments.append(comment)
-                }
-                success?(comments)
             },
             failure: failure)
     }
@@ -105,7 +113,7 @@ class Answer: DataObject {
             GETParameters: [
                 "id": "answer",
                 "attach_access_key": attachmentKey!],
-            POSTParameters: nil,
+            POSTParameters: [:],
             constructingBodyWithBlock: {
                 data in
                 data?.appendPartWithFileData(jpegData, name: "qqfile", fileName: "image.jpg", mimeType: "image/jpeg")
@@ -150,9 +158,11 @@ class Answer: DataObject {
                         /// @TODO: [Feature][Back-End] This property should be provided by back-end.
                         self_.agreementCount = originalValue == .Up ? count - 1 : value == .Up ? count + 1 : count
                     }
+                    _ = try? DataManager.defaultManager.saveChanges()
                     success?()
+                } else {
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
-                return
             },
             failure: failure)
     }

@@ -30,7 +30,7 @@ class FeaturedObject: DataObject {
             parameters: [
                 "page": page,
                 "per_page": count,
-                // "day": 30,
+                "day": 30,
                 "is_recommend": type == .Recommended ? 1 : 0,
                 "sort_type": type.rawValue],
             success: {
@@ -53,13 +53,13 @@ class FeaturedObject: DataObject {
                             featuredQuestionAnswer.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: object["add_time"])!)
                             question.date = featuredQuestionAnswer.date
                             question.title = (object["question_content"] as! String)
-                            question.updatedDate = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: object["update_time"])!)
+//                            question.updatedDate = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: object["update_time"])!)
                             question.viewCount = Int(msr_object: object["view_count"])
-                            question.focusCount = Int(msr_object: object["focus_count"])
+//                            question.focusCount = Int(msr_object: object["focus_count"])
                             if let userInfo = object["user_info"] as? NSDictionary {
                                 question.user = (dataManager.autoGenerate("User", ID: Int(msr_object: userInfo["uid"])!) as! User)
                                 question.user!.name = (userInfo["user_name"] as! String)
-                                question.user!.avatarURI = userInfo["avatar_file"] as? String
+                                question.user!.avatarURL = userInfo["avatar_file"] as? String
                             } else {
                                 question.user = nil
                             }
@@ -76,9 +76,7 @@ class FeaturedObject: DataObject {
                             for (userID, userInfo) in object["answer_users"] as? [String: NSDictionary] ?? [:] {
                                 let user = dataManager.autoGenerate("User", ID: Int(msr_object: userID)!) as! User
                                 user.name = userInfo["user_name"] as? String ?? ""
-                                var avatarURI = userInfo["avatar_file"] as? String
-                                avatarURI = avatarURI == "" ? nil : avatarURI
-                                user.avatarURI = avatarURI
+                                user.avatarURL = userInfo["avatar_file"] as? String
                                 featuredUsers.insert(user)
                             }
                             featuredQuestionAnswer.answerUsers = featuredUsers
@@ -98,9 +96,7 @@ class FeaturedObject: DataObject {
                                     if let userInfo = answerInfo["user_info"] as? NSDictionary {
                                         answer.user = (dataManager.autoGenerate("User", ID: Int(msr_object: userInfo["uid"])!) as! User)
                                         answer.user!.name = (userInfo["user_name"] as! String)
-                                        var avatarURI = userInfo["avatar_file"] as? String // Might be NSNull or "" here.
-                                        avatarURI = avatarURI == "" ? nil : avatarURI
-                                        answer.user!.avatarURI = avatarURI
+                                        answer.user!.avatarURI = userInfo["avatar_file"] as? String // Might be NSNull or "" here.
                                         featuredAnswers.insert(answer)
                                     } else {
                                         answer.user = nil
@@ -131,9 +127,7 @@ class FeaturedObject: DataObject {
                             if let userInfo = object["user_info"] as? NSDictionary {
                                 let user = dataManager.autoGenerate("User", ID: Int(msr_object: userInfo["uid"])!) as! User
                                 user.name = (userInfo["user_name"] as! String)
-                                var avatarURI = userInfo["avatar_file"] as? String
-                                avatarURI = avatarURI == "" ? nil : avatarURI
-                                user.avatarURI = avatarURI
+                                user.avatarURL = userInfo["avatar_file"] as? String
                                 article.user = user
                             } else {
                                 article.user = nil
@@ -146,6 +140,7 @@ class FeaturedObject: DataObject {
                         return
                     }
                 }
+                _ = try? DataManager.defaultManager.saveChanges()
                 success?(featuredObjects)
             },
             failure: failure)

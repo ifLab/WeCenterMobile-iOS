@@ -13,12 +13,13 @@ class ArticleComment: Comment {
     
     @NSManaged var article: Article?
     @NSManaged var agreementCount: NSNumber?
+    @NSManaged var articleCommentaryActions: Set<ArticleCommentaryAction>
     
     var evaluation: Evaluation?
     
     override func post(success success: (() -> Void)?, failure: ((NSError) -> Void)?) {
         super.post(success: success, failure: failure)
-        var parameters: [NSObject: AnyObject] = [
+        var parameters = [
             "article_id": article!.id,
             "message": body!]
         if atUser != nil {

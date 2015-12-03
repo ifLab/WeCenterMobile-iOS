@@ -20,7 +20,7 @@ extension DataObject {
             success: {
                 data in
                 var objects = [DataObject]()
-                for objectData in data as? [NSDictionary] ?? [] {
+                for objectData in data["rows"] as? [NSDictionary] ?? [] {
                     if let typeRawValue = objectData["type"] as? String {
                         switch SearchType(rawValue: typeRawValue) {
                         case .Some(.Article):
@@ -88,6 +88,7 @@ extension DataObject {
                         }
                     }
                 }
+                _ = try? DataManager.defaultManager.saveChanges()
                 success?(objects)
             },
             failure: failure)

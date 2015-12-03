@@ -14,6 +14,7 @@ import UIKit
     optional var questionButton: UIButton! { get }
     optional var answerButton: UIButton! { get }
     optional var articleButton: UIButton! { get }
+    optional var commentButton: UIButton! { get }
     func update(action action: Action)
 }
 
@@ -23,6 +24,7 @@ extension QuestionFocusingActionCell: ActionCell {}
 extension AnswerAgreementActionCell: ActionCell {}
 extension ArticlePublishmentActionCell: ActionCell {}
 extension ArticleAgreementActionCell: ActionCell {}
+extension ArticleCommentaryActionCell: ActionCell {}
 
 class HomeViewController: UITableViewController, PublishmentViewControllerDelegate {
     
@@ -33,9 +35,9 @@ class HomeViewController: UITableViewController, PublishmentViewControllerDelega
     let user: User
     var actions = [Action]()
     
-    let actionTypes: [Action.Type] = [AnswerAction.self, QuestionPublishmentAction.self, QuestionFocusingAction.self, AnswerAgreementAction.self, ArticlePublishmentAction.self, ArticleAgreementAction.self]
-    let identifiers = ["AnswerActionCell", "QuestionPublishmentActionCell", "QuestionFocusingActionCell", "AnswerAgreementActionCell", "ArticlePublishmentActionCell", "ArticleAgreementActionCell"]
-    let nibNames = ["AnswerActionCell", "QuestionPublishmentActionCell", "QuestionFocusingActionCell", "AnswerAgreementActionCell", "ArticlePublishmentActionCell", "ArticleAgreementActionCell"]
+    let actionTypes: [Action.Type] = [AnswerAction.self, QuestionPublishmentAction.self, QuestionFocusingAction.self, AnswerAgreementAction.self, ArticlePublishmentAction.self, ArticleAgreementAction.self, ArticleCommentaryAction.self]
+    let identifiers = ["AnswerActionCell", "QuestionPublishmentActionCell", "QuestionFocusingActionCell", "AnswerAgreementActionCell", "ArticlePublishmentActionCell", "ArticleAgreementActionCell", "ArticleCommentaryActionCell"]
+    let nibNames = ["AnswerActionCell", "QuestionPublishmentActionCell", "QuestionFocusingActionCell", "AnswerAgreementActionCell", "ArticlePublishmentActionCell", "ArticleAgreementActionCell", "ArticleCommentaryActionCell"]
     
     init(user: User) {
         self.user = user
@@ -87,6 +89,7 @@ class HomeViewController: UITableViewController, PublishmentViewControllerDelega
             cell.questionButton?.addTarget(self, action: "didPressQuestionButton:", forControlEvents: .TouchUpInside)
             cell.answerButton?.addTarget(self, action: "didPressAnswerButton:", forControlEvents: .TouchUpInside)
             cell.articleButton?.addTarget(self, action: "didPressArticleButton:", forControlEvents: .TouchUpInside)
+            cell.commentButton?.addTarget(self, action: "didPressCommentButton:", forControlEvents: .TouchUpInside)
             return cell as! UITableViewCell
         } else {
             return UITableViewCell() // Needs specification
@@ -145,6 +148,14 @@ class HomeViewController: UITableViewController, PublishmentViewControllerDelega
     func didPressArticleButton(sender: UIButton) {
         if let article = sender.msr_userInfo as? Article {
             msr_navigationController!.pushViewController(ArticleViewController(dataObject: article), animated: true)
+        }
+    }
+    
+    func didPressCommentButton(sender: UIButton) {
+        if let article = (sender.msr_userInfo as? ArticleComment)?.article {
+            msr_navigationController!.pushViewController(CommentListViewController(dataObject: article), animated: true)
+        } else if let answer = (sender.msr_userInfo as? AnswerComment)?.answer {
+            msr_navigationController!.pushViewController(CommentListViewController(dataObject: answer), animated: true)
         }
     }
     

@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var mainViewController: MainViewController!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-        // clearCaches()
+//        clearCaches()
         UIScrollView.msr_installPanGestureTranslationAdjustmentExtension()
         UIScrollView.msr_installTouchesCancellingExtension()
         AFNetworkActivityIndicatorManager.sharedManager().enabled = true

@@ -49,6 +49,7 @@ class AnswerListViewController: UITableViewController {
         tableView.delaysContentTouches = false
         tableView.msr_wrapperView?.delaysContentTouches = false
         tableView.wc_addRefreshingHeaderWithTarget(self, action: "refresh")
+        tableView.wc_addRefreshingFooterWithTarget(self, action: "loadMore")
     }
     
     override func viewDidLoad() {

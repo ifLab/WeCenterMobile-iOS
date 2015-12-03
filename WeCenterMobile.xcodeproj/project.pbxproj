@@ -163,6 +163,7 @@
 		95EBCF4F1B2DB4430088FC2C /* UserSearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95EBCF4E1B2DB4430088FC2C /* UserSearchResultCell.xib */; };
 		95EBCF511B2EA0FB0088FC2C /* DataObject+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBCF501B2EA0FB0088FC2C /* DataObject+Search.swift */; };
 		95F380BB1AB269690070A7FB /* FeaturedObjectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F380BA1AB269690070A7FB /* FeaturedObjectListViewController.swift */; };
+		A9039B6C1C03ED6900A658EC /* AppSecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9039B6B1C03ED6900A658EC /* AppSecret.swift */; };
 		A955A1FA1C02FD49002501CE /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A955A14F1C02FD49002501CE /* AFHTTPRequestOperation.m */; };
 		A955A1FB1C02FD49002501CE /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A955A1511C02FD49002501CE /* AFHTTPRequestOperationManager.m */; };
 		A955A1FC1C02FD49002501CE /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A955A1531C02FD49002501CE /* AFHTTPSessionManager.m */; };
@@ -271,6 +272,9 @@
 		A955A3B31C02FEB7002501CE /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = A955A39E1C02FEB7002501CE /* UIScrollView+MJExtension.m */; };
 		A955A3B41C02FEB7002501CE /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = A955A3A01C02FEB7002501CE /* UIScrollView+MJRefresh.m */; };
 		A955A3B51C02FEB7002501CE /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = A955A3A21C02FEB7002501CE /* UIView+MJExtension.m */; };
+		A973D07A1C106D4300DCF94D /* ArticleCommentaryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A973D0791C106D4300DCF94D /* ArticleCommentaryAction.swift */; };
+		A973D0A11C1070A400DCF94D /* ArticleCommentaryActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A973D0A01C1070A400DCF94D /* ArticleCommentaryActionCell.swift */; };
+		A973D0A31C1070C400DCF94D /* ArticleCommentaryActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A973D0A21C1070C400DCF94D /* ArticleCommentaryActionCell.xib */; };
 		A982404F1C0307F900F73E9A /* GBDeviceInfo-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A98240411C0307F900F73E9A /* GBDeviceInfo-Info.plist */; };
 		A98240501C0307F900F73E9A /* GBDeviceInfo_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = A98240451C0307F900F73E9A /* GBDeviceInfo_Common.m */; };
 		A98240511C0307F900F73E9A /* GBDeviceInfo_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = A98240471C0307F900F73E9A /* GBDeviceInfo_iOS.m */; };
@@ -720,6 +724,7 @@
 		95EBCF4E1B2DB4430088FC2C /* UserSearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSearchResultCell.xib; sourceTree = "<group>"; };
 		95EBCF501B2EA0FB0088FC2C /* DataObject+Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataObject+Search.swift"; sourceTree = "<group>"; };
 		95F380BA1AB269690070A7FB /* FeaturedObjectListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedObjectListViewController.swift; sourceTree = "<group>"; };
+		A9039B6B1C03ED6900A658EC /* AppSecret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSecret.swift; sourceTree = "<group>"; };
 		A955A14E1C02FD49002501CE /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		A955A14F1C02FD49002501CE /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		A955A1501C02FD49002501CE /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -890,6 +895,9 @@
 		A955A3A11C02FEB7002501CE /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		A955A3A21C02FEB7002501CE /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		A955A4221C03041A002501CE /* DTCoreText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DTCoreText.xcodeproj; path = DTCoreText/DTCoreText.xcodeproj; sourceTree = "<group>"; };
+		A973D0791C106D4300DCF94D /* ArticleCommentaryAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCommentaryAction.swift; sourceTree = "<group>"; };
+		A973D0A01C1070A400DCF94D /* ArticleCommentaryActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCommentaryActionCell.swift; sourceTree = "<group>"; };
+		A973D0A21C1070C400DCF94D /* ArticleCommentaryActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleCommentaryActionCell.xib; sourceTree = "<group>"; };
 		A98240411C0307F900F73E9A /* GBDeviceInfo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GBDeviceInfo-Info.plist"; sourceTree = "<group>"; };
 		A98240421C0307F900F73E9A /* GBDeviceInfo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GBDeviceInfo-Prefix.pch"; sourceTree = "<group>"; };
 		A98240441C0307F900F73E9A /* GBDeviceInfo_Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBDeviceInfo_Common.h; sourceTree = "<group>"; };
@@ -1116,6 +1124,8 @@
 				9531D6EA1AF3E4AC00E6549D /* AnswerAgreementActionCell.xib */,
 				9531D6EB1AF3E4AC00E6549D /* ArticleAgreementActionCell.swift */,
 				9531D6EC1AF3E4AC00E6549D /* ArticleAgreementActionCell.xib */,
+				A973D0A01C1070A400DCF94D /* ArticleCommentaryActionCell.swift */,
+				A973D0A21C1070C400DCF94D /* ArticleCommentaryActionCell.xib */,
 				9531D6ED1AF3E4AC00E6549D /* ArticlePublishmentActionCell.swift */,
 				9531D6EE1AF3E4AC00E6549D /* ArticlePublishmentActionCell.xib */,
 				9531D6EF1AF3E4AC00E6549D /* QuestionFocusingActionCell.swift */,
@@ -1207,6 +1217,7 @@
 				9531D7701AF3E8E400E6549D /* Article.swift */,
 				9531D7711AF3E8E400E6549D /* ArticleAgreementAction.swift */,
 				9531D7721AF3E8E400E6549D /* ArticleComment.swift */,
+				A973D0791C106D4300DCF94D /* ArticleCommentaryAction.swift */,
 				9531D7731AF3E8E400E6549D /* ArticlePublishmentAction.swift */,
 				955E2A051AF75C2100A04791 /* Comment.swift */,
 				954A76A81AFC399D002A72A9 /* DataObject.swift */,
@@ -1241,6 +1252,7 @@
 				9531D7801AF3E8E400E6549D /* String+PlainString.swift */,
 				95D784091B1C5306008EB241 /* Theme.swift */,
 				9531D7811AF3E8E400E6549D /* TintColor.swift */,
+				A9039B6B1C03ED6900A658EC /* AppSecret.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -2092,6 +2104,7 @@
 				950FE1251A1DA2A400167D09 /* Discovery.strings in Resources */,
 				9531D7251AF3E4AC00E6549D /* ArticleCell.xib in Resources */,
 				9531D7421AF3E4AC00E6549D /* QuestionFooterCell.xib in Resources */,
+				A973D0A31C1070C400DCF94D /* ArticleCommentaryActionCell.xib in Resources */,
 				9531D7501AF3E4AC00E6549D /* TopicCell.xib in Resources */,
 				95EBCF4D1B2DB42E0088FC2C /* TopicSearchResultCell.xib in Resources */,
 				95DB722E1AF5490A0072C77E /* ArticleFooterView.xib in Resources */,
@@ -2244,12 +2257,15 @@
 				A955A3AF1C02FEB7002501CE /* MJRefreshNormalHeader.m in Sources */,
 				9531D7901AF3E8E400E6549D /* ArticlePublishmentAction.swift in Sources */,
 				9531D7911AF3E8E400E6549D /* FeaturedArticle.swift in Sources */,
+				A9039B6C1C03ED6900A658EC /* AppSecret.swift in Sources */,
 				A955A3B51C02FEB7002501CE /* UIView+MJExtension.m in Sources */,
+				A973D07A1C106D4300DCF94D /* ArticleCommentaryAction.swift in Sources */,
 				A955A31C1C02FD9D002501CE /* MSRLayoutGuide.swift in Sources */,
 				A955A30C1C02FD9D002501CE /* String+MSREncryption.swift in Sources */,
 				A955A3041C02FD9D002501CE /* MSRNull.swift in Sources */,
 				A955A3B01C02FEB7002501CE /* MJRefreshStateHeader.m in Sources */,
 				9531D7881AF3E8E400E6549D /* Action.swift in Sources */,
+				A973D0A11C1070A400DCF94D /* ArticleCommentaryActionCell.swift in Sources */,
 				9531D7591AF3E4AC00E6549D /* UserHeaderView.swift in Sources */,
 				950FE50D1A1DA2B500167D09 /* UserListViewController.swift in Sources */,
 				A955A3351C02FD9D002501CE /* UIImage+MSRColor.swift in Sources */,

@@ -19,10 +19,9 @@ class AnswerComment: Comment {
         if let user = atUser {
             body = "@" + user.name! + ":" + body
         }
-        NetworkManager.defaultManager!.request("Post Answer Comment",
-            GETParameters: ["answer_id": answer!.id],
-            POSTParameters: ["message": body],
-            constructingBodyWithBlock: nil,
+        NetworkManager.defaultManager!.POST("Post Answer Comment",
+            parameters: ["answer_id": answer!.id,
+                "message": body],
             success: {
                 _ in
                 success?()

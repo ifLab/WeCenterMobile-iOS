@@ -116,7 +116,7 @@ class User: DataObject {
                 let user = User.cachedObjectWithID(ID)
                 user.id = ID
                 user.name = data["user_name"] as? String
-                user.avatarURI = data["avatar_file"] as? String
+                user.avatarURL = data["avatar_file"] as? String
                 user.followerCount = Int(msr_object: data["fans_count"])
                 user.followingCount = Int(msr_object: data["friend_count"])
                 user.questionCount = Int(msr_object: data["question_count"])
@@ -127,6 +127,7 @@ class User: DataObject {
                 user.thankCount = Int(msr_object: data["thanks_count"])
                 user.answerFavoriteCount = Int(msr_object: data["answer_favorite_count"])
                 user.following = (data["has_focus"] as! NSNumber == 1)
+                _ = try? DataManager.defaultManager.saveChanges()
                 success?(user)
             },
             failure: failure)
@@ -136,23 +137,29 @@ class User: DataObject {
         NetworkManager.defaultManager!.GET("User Following List",
             parameters: [
                 "uid": id,
+                "type": "follows",
                 "page": page,
                 "per_page": count
             ],
             success: {
                 [weak self] data in
-                if Int(msr_object: data["total_rows"]!!) > 0 {
-                    var users = [User]()
-                    for value in data["rows"] as! [NSDictionary] {
-                        let userID = Int(msr_object: value["uid"])
-                        let user = User.cachedObjectWithID(userID!)
-                        user.name = value["user_name"] as? String
-                        user.avatarURI = value["avatar_file"] as? String
-                        user.signature = value["signature"] as? String
-                        self?.followings.insert(user)
-                        users.append(user)
+                if let self_ = self {
+                    if Int(msr_object: data["total_rows"]!!) > 0 && data["rows"] is [NSDictionary] {
+                        var users = [User]()
+                        for value in data["rows"] as! [NSDictionary] {
+                            let userID = Int(msr_object: value["uid"])
+                            let user = User.cachedObjectWithID(userID!)
+                            user.name = value["user_name"] as? String
+                            user.avatarURL = value["avatar_file"] as? String
+                            user.signature = value["signature"] as? String
+                            self_.followings.insert(user)
+                            users.append(user)
+                        }
+                        _ = try? DataManager.defaultManager.saveChanges()
+                        success?(users)
+                    } else {
+                        failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                     }
-                    success?(users)
                 } else {
                     failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
@@ -164,23 +171,29 @@ class User: DataObject {
         NetworkManager.defaultManager!.GET("User Follower List",
             parameters: [
                 "uid": id,
+                "type": "fans",
                 "page": page,
                 "per_page": count
             ],
             success: {
                 [weak self] data in
-                if Int(msr_object: data["total_rows"]!!) > 0 {
-                    var users = [User]()
-                    for value in data["rows"] as! [NSDictionary] {
-                        let userID = Int(msr_object: value["uid"])!
-                        let user = User.cachedObjectWithID(userID)
-                        user.name = value["user_name"] as? String
-                        user.avatarURI = value["avatar_file"] as? String
-                        user.signature = value["signature"] as? String
-                        self?.followers.insert(user)
-                        users.append(user)
+                if let self_ = self {
+                    if Int(msr_object: data["total_rows"]!!) > 0 {
+                        var users = [User]()
+                        for value in data["rows"] as! [NSDictionary] {
+                            let userID = Int(msr_object: value["uid"])!
+                            let user = User.cachedObjectWithID(userID)
+                            user.name = value["user_name"] as? String
+                            user.avatarURL = value["avatar_file"] as? String
+                            user.signature = value["signature"] as? String
+                            self_.followers.insert(user)
+                            users.append(user)
+                        }
+                        _ = try? DataManager.defaultManager.saveChanges()
+                        success?(users)
+                    } else {
+                        failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                     }
-                    success?(users)
                 } else {
                     failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
@@ -192,27 +205,30 @@ class User: DataObject {
         NetworkManager.defaultManager!.GET("User Topic List",
             parameters: [
                 "uid": id,
-                "page": page,
-                "per_page": count
+                "page": page
             ],
             success: {
                 [weak self] data in
-                if Int(msr_object: data["total_rows"]!!) > 0 {
-                    var topics = [Topic]()
-                    for value in data["rows"] as! [NSDictionary] {
-                        let topicID = Int(msr_object: value["topic_id"])!
-                        let topic = Topic.cachedObjectWithID(topicID)
-                        topic.title = value["topic_title"] as? String
-                        topic.introduction = value["topic_description"] as? String
-                        topic.imageURI = value["topic_pic"] as? String
-                        self?.topics.insert(topic)
-                        topics.append(topic)
+                if let self_ = self {
+                    if Int(msr_object: data["total_rows"]!!) > 0 {
+                        var topics = [Topic]()
+                        for value in data["rows"] as! [NSDictionary] {
+                            let topicID = Int(msr_object: value["topic_id"])!
+                            let topic = Topic.cachedObjectWithID(topicID)
+                            topic.title = value["topic_title"] as? String
+                            topic.introduction = value["topic_description"] as? String
+                            topic.imageURL = value["topic_pic"] as? String
+                            self_.topics.insert(topic)
+                            topics.append(topic)
+                        }
+                        _ = try? DataManager.defaultManager.saveChanges()
+                        success?(topics)
+                    } else {
+                        failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                     }
-                    success?(topics)
                 } else {
                     failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
-                return
             },
             failure: failure)
     }
@@ -220,31 +236,38 @@ class User: DataObject {
     func fetchQuestions(page page: Int, count: Int, success: (([Question]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("User Question List",
             parameters: [
+                "actions":101,
                 "uid": id,
                 "page": page,
                 "per_page": count
             ],
             success: {
                 [weak self] data in
-                if !MSRIsNilOrNull(data["rows"]) && Int(msr_object: data["total_rows"]) > 0 {
-                    let questionsData: [NSDictionary]
-                    if data["rows"] is NSDictionary {
-                        questionsData = [data["rows"] as! NSDictionary]
+                if let self_ = self {
+                    if !MSRIsNilOrNull(data["rows"]) && Int(msr_object: data["total_rows"]) > 0 {
+                        let questionsData: [NSDictionary]
+                        if data["rows"] is NSArray {
+                            questionsData = data["rows"] as! [NSDictionary]
+                        } else {
+                            questionsData = [data["rows"] as! NSDictionary]
+                        }
+                        var questions = [Question]()
+                        for questionData in questionsData {
+                            let questionInfo = questionData["question_info"] as! NSDictionary
+                            let questionID = Int(msr_object: questionInfo["question_id"])!
+                            let question = Question.cachedObjectWithID(questionID)
+                            question.user = self
+                            question.title = (questionInfo["question_content"] as! String)
+                            question.body = (questionInfo["message"] as? String)
+                            question.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: questionInfo["add_time"])!)
+                            self_.questions.insert(question)
+                            questions.append(question)
+                        }
+                        _ = try? DataManager.defaultManager.saveChanges()
+                        success?(questions)
                     } else {
-                        questionsData = data["rows"] as! [NSDictionary]
+                        failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                     }
-                    var questions = [Question]()
-                    for questionData in questionsData {
-                        let questionID = Int(msr_object: questionData["id"])!
-                        let question = Question.cachedObjectWithID(questionID)
-                        question.user = self
-                        question.title = (questionData["title"] as! String)
-                        question.body = (questionData["detail"] as! String)
-                        question.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: questionData["add_time"])!)
-                        self?.questions.insert(question)
-                        questions.append(question)
-                    }
-                    success?(questions)
                 } else {
                     failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
@@ -255,34 +278,42 @@ class User: DataObject {
     func fetchAnswers(page page: Int, count: Int, success: (([Answer]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("User Answer List",
             parameters: [
+                "actions":201,
                 "uid": id,
                 "page": page,
                 "per_page": count
             ],
             success: {
                 [weak self] data in
-                if !MSRIsNilOrNull(data["rows"]) && Int(msr_object: data["total_rows"]) > 0 {
-                    let answersData: [NSDictionary]
-                    if data["rows"] is NSDictionary {
-                        answersData = [data["rows"] as! NSDictionary]
+                if let self_ = self {
+                    if !MSRIsNilOrNull(data["rows"]) && Int(msr_object: data["total_rows"]) > 0 {
+                        let answersData: [NSDictionary]
+                        if data["rows"] is NSDictionary {
+                            answersData = [data["rows"] as! NSDictionary]
+                        } else {
+                            answersData = data["rows"] as! [NSDictionary]
+                        }
+                        var answers = [Answer]()
+                        for answerData in answersData {
+                            let answerInfo = answerData["answer_info"] as! NSDictionary
+                            let questionInfo = answerData["question_info"] as! NSDictionary
+                            let answerID = Int(msr_object: answerInfo["answer_id"])!
+                            let questionID = Int(msr_object: questionInfo["question_id"])!
+                            let answer = Answer.cachedObjectWithID(answerID)
+                            answer.question = Question.cachedObjectWithID(questionID)
+                            answer.user = self
+                            answer.user?.avatarURL = answerData["avatar_file"] as? String
+                            answer.body = (answerInfo["answer_content"] as! String)
+                            answer.agreementCount = Int(msr_object: answerInfo["agree_count"])
+                            answer.question!.title = (questionInfo["question_content"] as! String)
+                            self_.answers.insert(answer)
+                            answers.append(answer)
+                        }
+                        _ = try? DataManager.defaultManager.saveChanges()
+                        success?(answers)
                     } else {
-                        answersData = data["rows"] as! [NSDictionary]
+                        failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                     }
-                    var answers = [Answer]()
-                    for answerData in answersData {
-                        let answerID = Int(msr_object: answerData["answer_id"])!
-                        let questionID = Int(msr_object: answerData["question_id"])!
-                        let answer = Answer.cachedObjectWithID(answerID)
-                        answer.question = Question.cachedObjectWithID(questionID)
-                        answer.user = self
-                        answer.user?.avatarURI = answerData["avatar_file"] as? String
-                        answer.body = (answerData["answer_content"] as! String)
-                        answer.agreementCount = Int(msr_object: answerData["agree_count"])
-                        answer.question!.title = (answerData["question_title"] as! String)
-                        self?.answers.insert(answer)
-                        answers.append(answer)
-                    }
-                    success?(answers)
                 } else {
                     failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
@@ -293,31 +324,38 @@ class User: DataObject {
     func fetchArticles(page page: Int, count: Int, success: (([Article]) -> Void)?, failure: ((NSError) -> Void)?) {
         NetworkManager.defaultManager!.GET("User Article List",
             parameters: [
+                "actions":501,
                 "uid": id,
                 "page": page,
-                "per_page": count /// @TODO: [Bug][Back-End] Calculation error.
+                "per_page": count
             ],
             success: {
                 [weak self] data in
-                if !MSRIsNilOrNull(data["rows"]) && Int(msr_object: data["total_rows"]) > 0 {
-                    let articlesData: [NSDictionary]
-                    if data["rows"] is NSDictionary {
-                        articlesData = [data["rows"] as! NSDictionary]
+                if let self_ = self {
+                    if !MSRIsNilOrNull(data["rows"]) && Int(msr_object: data["total_rows"]) > 0 {
+                        let articlesData: [NSDictionary]
+                        if data["rows"] is NSDictionary {
+                            articlesData = [data["rows"] as! NSDictionary]
+                        } else {
+                            articlesData = data["rows"] as! [NSDictionary]
+                        }
+                        var articles = [Article]()
+                        for articleData in articlesData {
+                            let articleInfo = articleData["article_info"] as! NSDictionary
+                            let articleID = Int(msr_object: articleInfo["id"])!
+                            let article: Article = Article.cachedObjectWithID(articleID)
+                            article.user = self
+                            article.title = (articleInfo["title"] as! String)
+                            article.body = (articleInfo["message"] as! String)
+                            article.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: articleData["add_time"])!)
+                            self_.articles.insert(article)
+                            articles.append(article)
+                        }
+                        _ = try? DataManager.defaultManager.saveChanges()
+                        success?(articles)
                     } else {
-                        articlesData = data["rows"] as! [NSDictionary]
+                        failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                     }
-                    var articles = [Article]()
-                    for articleData in articlesData {
-                        let articleID = Int(msr_object: articleData["id"])!
-                        let article: Article = Article.cachedObjectWithID(articleID)
-                        article.user = self
-                        article.title = (articleData["title"] as! String)
-                        article.body = (articleData["message"] as! String)
-                        article.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: articleData["add_time"])!)
-                        self?.articles.insert(article)
-                        articles.append(article)
-                    }
-                    success?(articles)
                 } else {
                     failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
@@ -343,6 +381,7 @@ class User: DataObject {
                 defaults.setObject(cookiesData, forKey: UserDefaultsCookiesKey)
                 defaults.setObject(user.id, forKey: UserDefaultsUserIDKey)
                 defaults.synchronize()
+                _ = try? DataManager.defaultManager.saveChanges()
                 self.loginWithCookiesAndCacheInStorage(success: success, failure: failure)
             },
             failure: failure)
@@ -399,11 +438,12 @@ class User: DataObject {
                 let cookiesData = NSKeyedArchiver.archivedDataWithRootObject(cookies)
                 let user = User.cachedObjectWithID(Int(msr_object: (data as! NSDictionary)["uid"])!)
                 user.name = data["user_name"] as? String
-                user.avatarURI = data["avatar_file"] as? String
+                user.avatarURL = data["avatar_file"] as? String
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setObject(cookiesData, forKey: UserDefaultsCookiesKey)
                 defaults.setObject(user.id, forKey: UserDefaultsUserIDKey)
                 defaults.synchronize()
+                _ = try? DataManager.defaultManager.saveChanges()
                 self.loginWithCookiesAndCacheInStorage(success: success, failure: failure)
             },
             failure: failure)
@@ -427,8 +467,11 @@ class User: DataObject {
                     }
                     self_.jobID = Int(msr_object: value["job_id"])
                     self_.signature = value["signature"] as? String
+                    _ = try? DataManager.defaultManager.saveChanges()
+                    success?()
+                } else {
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
-                success?()
             },
             failure: failure)
     }
@@ -439,11 +482,20 @@ class User: DataObject {
         let gender = self.gender!
         let signature = self.signature
         let birthday = self.birthday
-        let parameters: NSMutableDictionary = ["uid": id]
-        parameters["user_name"] = name
+        let fmt = NSDateFormatter()
+        fmt.locale = NSLocale(localeIdentifier: "zh_CN")
+        fmt.dateFormat = "yyyy"
+        let birthdayY =  Int(msr_object: fmt.stringFromDate(birthday!))!
+        fmt.dateFormat = "MM"
+        let birthdayM =  Int(msr_object: fmt.stringFromDate(birthday!))!
+        fmt.dateFormat = "dd"
+        let birthdayD =  Int(msr_object: fmt.stringFromDate(birthday!))!
+        var parameters: [String: AnyObject] = ["user_name": name!]
         parameters["sex"] = gender.rawValue
         parameters["signature"] = signature
-        parameters["birthday"] = birthday?.timeIntervalSince1970
+        parameters["birthday_y"] = birthdayY
+        parameters["birthday_m"] = birthdayM
+        parameters["birthday_d"] = birthdayD
         NetworkManager.defaultManager!.POST("Update Profile",
             parameters: parameters,
             success: {
@@ -454,6 +506,7 @@ class User: DataObject {
                     User.currentUser!.gender = gender
                     User.currentUser!.signature = signature
                     User.currentUser!.birthday = birthday
+                    _ = try? DataManager.defaultManager.saveChanges()
                     success?()
                 } else {
                     failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
@@ -473,8 +526,8 @@ class User: DataObject {
             let jpeg = UIImageJPEGRepresentation(image, 1)
             dispatch_async(dispatch_get_main_queue()) {
                 self.avatarUploadingOperation = NetworkManager.defaultManager!.request("Upload User Avatar",
-                    GETParameters: nil,
-                    POSTParameters: nil,
+                    GETParameters: [:],
+                    POSTParameters: [:],
                     constructingBodyWithBlock: {
                         data in
                         data?.appendPartWithFileData(jpeg, name: "user_avatar", fileName: "avatar.jpg", mimeType: "image/png")
@@ -482,15 +535,15 @@ class User: DataObject {
                     },
                     success: {
                         data in
-                        self.avatarUploadingOperation = nil
-                        self.currentUser?.avatar = image
-                        self.currentUser?.avatarURL = (data["preview"] as! String)
+                        User.avatarUploadingOperation = nil
+                        User.currentUser?.avatar = image
+                        User.currentUser?.avatarURL = (data["preview"] as! String)
+                        _ = try? DataManager.defaultManager.saveChanges()
                         success?()
-                        return
                     },
                     failure: {
                         error in
-                        self.avatarUploadingOperation = nil
+                        User.avatarUploadingOperation = nil
                         failure?(error)
                     })
             }
@@ -502,14 +555,19 @@ class User: DataObject {
     }
     
     func toggleFollow(success success: (() -> Void)?, failure: ((NSError) -> Void)?) {
-        NetworkManager.defaultManager!.GET("Follow User",
+        NetworkManager.defaultManager!.POST("Follow User",
             parameters: [
                 "uid": id
             ],
             success: {
                 [weak self] data in
-                self?.following = (data["type"] as! String == "add")
-                success?()
+                if let self_ = self {
+                    self_.following = (data["type"] as! String == "add")
+                    _ = try? DataManager.defaultManager.saveChanges()
+                    success?()
+                } else {
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
+                }
             },
             failure: failure)
     }
@@ -527,11 +585,17 @@ class User: DataObject {
                 placeholderImage: nil,
                 success: {
                     [weak self] request, response, image in
-                    if self?.avatar == nil || response != nil {
-                        self?.avatar = image
+                    if let self_ = self {
+                        if self_.avatar == nil || response != nil {
+                            self_.avatar = image
+                            _ = try? DataManager.defaultManager.saveChanges()
+                            success?()
+                        } else {
+                            failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
+                        }
+                    } else {
+                        failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                     }
-                    success?()
-                    return
                 },
                 failure: {
                     _, _, error in
@@ -551,32 +615,31 @@ class User: DataObject {
             ],
             success: {
                 data in
+                print(data)
                 let rows = data["total_rows"] as! Int
                 if rows > 0 {
                     var actions = [Action]()
                     let objects = data["rows"] as! [[String: AnyObject]]
                     for object in objects {
-                        let typeID = ActionTypeID(rawValue: Int(msr_object: object["associate_action"])!)!
+                        let typeID = ActionTypeID(rawValue: Int(msr_object: object["associate_action"])!)
+                        if typeID == nil { print("ActionTypeID got a nil"); continue }
                         var action_: Action!
-                        switch typeID {
+                        switch typeID! {
                         case .AnswerAgreement:
                             let action = AnswerAgreementAction.cachedObjectWithID(Int(msr_object: object["history_id"]!)!)
                             action_ = action
                             action.date = NSDate(timeIntervalSince1970: (object["add_time"] as! NSNumber).doubleValue)
-                            let userInfo = object["user_info"] as? NSDictionary
-                            if userInfo != nil {
-                                action.user = User.cachedObjectWithID(Int(msr_object: userInfo!["uid"])!)
-                                action.user!.name = (userInfo!["user_name"] as! String)
-                                action.user!.avatarURI = (userInfo!["avatar_file"] as! String)
+                            if let userInfo = object["user_info"] as? [String: AnyObject] {
+                                action.user = User.cachedObjectWithID(Int(msr_object: userInfo["uid"])!)
+                                action.user!.name = (userInfo["user_name"] as! String)
+                                action.user!.avatarURL = userInfo["avatar_file"] as? String
                             } else {
                                 action.user = nil
                             }
                             let answerInfo = object["answer_info"] as! NSDictionary
                             action.answer = Answer.cachedObjectWithID(Int(msr_object: answerInfo["answer_id"])!)
-                            action.answer!.question = Question.cachedObjectWithID(Int(msr_object: answerInfo["question_id"])!)
                             action.answer!.body = (answerInfo["answer_content"] as! String)
                             action.answer!.agreementCount = (answerInfo["agree_count"] as! NSNumber)
-                            action.answer!.evaluation = Evaluation(rawValue: Int(msr_object: answerInfo["agree_status"])!)!
                             /// @TODO: [Bug][Back-End] object["question_info"] is NSNull
                             if let questionInfo = object["question_info"] as? NSDictionary {
                                 action.answer!.question = Question.cachedObjectWithID(Int(msr_object: questionInfo["question_id"])!)
@@ -590,11 +653,10 @@ class User: DataObject {
                             let action = QuestionFocusingAction.cachedObjectWithID(Int(msr_object: object["history_id"])!)
                             action_ = action
                             action.date = NSDate(timeIntervalSince1970: (object["add_time"] as! NSNumber).doubleValue)
-                            let userInfo = object["user_info"] as? NSDictionary
-                            if userInfo != nil {
-                                action.user = User.cachedObjectWithID(Int(msr_object: userInfo!["uid"])!)
-                                action.user!.name = (userInfo!["user_name"] as! String)
-                                action.user!.avatarURI = (userInfo!["avatar_file"] as! String)
+                            if let userInfo = object["user_info"] as? NSDictionary {
+                                action.user = User.cachedObjectWithID(Int(msr_object: userInfo["uid"])!)
+                                action.user!.name = (userInfo["user_name"] as! String)
+                                action.user!.avatarURL = userInfo["avatar_file"] as? String
                             } else {
                                 action.user = nil
                             }
@@ -606,11 +668,10 @@ class User: DataObject {
                             let action = QuestionPublishmentAction.cachedObjectWithID(Int(msr_object: object["history_id"])!)
                             action_ = action
                             action.date = NSDate(timeIntervalSince1970: (object["add_time"] as! NSNumber).doubleValue)
-                            let userInfo = object["user_info"] as? NSDictionary
-                            if userInfo != nil {
-                                action.user = User.cachedObjectWithID(Int(msr_object: userInfo!["uid"])!)
-                                action.user!.name = (userInfo!["user_name"] as! String)
-                                action.user!.avatarURI = (userInfo!["avatar_file"] as! String)
+                            if let userInfo = object["user_info"] as? NSDictionary {
+                                action.user = User.cachedObjectWithID(Int(msr_object: userInfo["uid"])!)
+                                action.user!.name = (userInfo["user_name"] as! String)
+                                action.user!.avatarURL = userInfo["avatar_file"] as? String
                             } else {
                                 action.user = nil
                             }
@@ -623,11 +684,10 @@ class User: DataObject {
                             let action = ArticleAgreementAction.cachedObjectWithID(Int(msr_object: object["history_id"])!)
                             action_ = action
                             action.date = NSDate(timeIntervalSince1970: (object["add_time"] as! NSNumber).doubleValue)
-                            let userInfo = object["user_info"] as? NSDictionary
-                            if userInfo != nil {
-                                action.user = User.cachedObjectWithID(Int(msr_object: userInfo!["uid"])!)
-                                action.user!.name = (userInfo!["user_name"] as! String)
-                                action.user!.avatarURI = (userInfo!["avatar_file"] as! String)
+                            if let userInfo = object["user_info"] as? NSDictionary {
+                                action.user = User.cachedObjectWithID(Int(msr_object: userInfo["uid"])!)
+                                action.user!.name = (userInfo["user_name"] as! String)
+                                action.user!.avatarURL = userInfo["avatar_file"] as? String
                             } else {
                                 action.user = nil
                             }
@@ -639,11 +699,10 @@ class User: DataObject {
                             let action = AnswerAction.cachedObjectWithID(Int(msr_object: object["history_id"])!)
                             action_ = action
                             action.date = NSDate(timeIntervalSince1970: (object["add_time"] as! NSNumber).doubleValue)
-                            let userInfo = object["user_info"] as? NSDictionary
-                            if userInfo != nil {
-                                action.user = User.cachedObjectWithID(Int(msr_object: userInfo!["uid"])!)
-                                action.user!.name = (userInfo!["user_name"] as! String)
-                                action.user!.avatarURI = (userInfo!["avatar_file"] as! String)
+                            if let userInfo = object["user_info"] as? NSDictionary {
+                                action.user = User.cachedObjectWithID(Int(msr_object: userInfo["uid"])!)
+                                action.user!.name = (userInfo["user_name"] as! String)
+                                action.user!.avatarURL = userInfo["avatar_file"] as? String
                             } else {
                                 action.user = nil
                             }
@@ -651,7 +710,6 @@ class User: DataObject {
                             action.answer = Answer.cachedObjectWithID(Int(msr_object: answerInfo["answer_id"])!)
                             action.answer!.body = (answerInfo["answer_content"] as! String)
                             action.answer!.agreementCount = (answerInfo["agree_count"] as! NSNumber)
-                            action.answer!.evaluation = Evaluation(rawValue: Int(msr_object: answerInfo["agree_status"])!)!
                             let questionInfo = object["question_info"] as! NSDictionary
                             action.answer!.question = Question.cachedObjectWithID(Int(msr_object: questionInfo["question_id"])!)
                             action.answer!.question!.title = (questionInfo["question_content"] as! String)
@@ -661,11 +719,10 @@ class User: DataObject {
                             let action = ArticlePublishmentAction.cachedObjectWithID(Int(msr_object: object["history_id"])!)
                             action_ = action
                             action.date = NSDate(timeIntervalSince1970: (object["add_time"] as! NSNumber).doubleValue)
-                            let userInfo = object["user_info"] as? NSDictionary
-                            if userInfo != nil {
-                                action.user = User.cachedObjectWithID(Int(msr_object: userInfo!["uid"])!)
-                                action.user!.name = (userInfo!["user_name"] as! String)
-                                action.user!.avatarURI = (userInfo!["avatar_file"] as! String)
+                            if let userInfo = object["user_info"] as? NSDictionary {
+                                action.user = User.cachedObjectWithID(Int(msr_object: userInfo["uid"])!)
+                                action.user!.name = (userInfo["user_name"] as! String)
+                                action.user!.avatarURL = userInfo["avatar_file"] as? String
                             } else {
                                 action.user = nil
                             }
@@ -674,9 +731,32 @@ class User: DataObject {
                             action.article!.title = (articleInfo["title"] as! String)
                             action.article!.user = action.user
                             break
+                        case .ArticleCommentary:
+                            /// @TODO: temporaryObject -> cachedObject
+                            let action = ArticleCommentaryAction.temporaryObject() // ArticleCommentaryAction.cachedObjectWithID(Int(msr_object: object["history_id"]!)!)
+                            action_ = action
+                            action.date = NSDate(timeIntervalSince1970: (object["add_time"] as! NSNumber).doubleValue)
+                            if let userInfo = object["user_info"] as? [String: AnyObject] {
+                                action.user = User.temporaryObject() // User.cachedObjectWithID(Int(msr_object: userInfo["uid"])!)
+                                action.user!.id = Int(msr_object: userInfo["uid"])!
+                                action.user!.name = (userInfo["user_name"] as! String)
+                                action.user!.avatarURL = userInfo["avatar_file"] as? String
+                            } else {
+                                action.user = nil
+                            }
+                            action.comment = ArticleComment.temporaryObject()
+//                            let commentInfo = object["comment_info"] as! [String: AnyObject]
+                            action.comment!.body = "lalala"
+                            let articleInfo = object["article_info"] as! [String: AnyObject]
+                            action.comment!.article = Article.temporaryObject() // Article.cachedObjectWithID(Int(msr_object: articleInfo["id"])!)
+                            action.comment!.article!.id = Int(msr_object: articleInfo["id"])!
+                            action.comment!.article!.title = (articleInfo["title"] as! String)
+                            action.comment!.article!.body = (articleInfo["message"] as! String)
+                            break
                         }
                         actions.append(action_)
                     }
+                    _ = try? DataManager.defaultManager.saveChanges()
                     success?(actions)
                 } else {
                     failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification

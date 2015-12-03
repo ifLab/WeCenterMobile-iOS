@@ -41,8 +41,9 @@ class Question: DataObject {
                 question.title = value["question_content"] as? String
                 question.body = value["question_detail"] as? String
                 question.focusCount = Int(msr_object: value["focus_count"])
-                question.focusing = (Int(msr_object: value["has_focus"]) == 1)
-                for (_, value) in data["answers"] as? [String: NSDictionary] ?? [:] {
+                question.focusing = (Int(msr_object: value["user_question_focus"]) == 1)
+                
+                for value in (data["answers"] as! [NSDictionary] ) {
                     let answerID = value["answer_id"] as! NSNumber
                     var answer: Answer! = question.answers.filter { $0.id == answerID }.first
                     if answer == nil {
@@ -55,8 +56,9 @@ class Question: DataObject {
                     if answer.user == nil {
                         answer.user = User.cachedObjectWithID(Int(msr_object: value["uid"])!)
                     }
-                    answer.user!.name = value["user_name"] as? String
-                    answer.user!.avatarURI = value["avatar_file"] as? String
+                    let userInfo = value["user_info"] as! NSDictionary
+                    answer.user!.name = userInfo["user_name"] as? String
+                    answer.user!.avatarURL = userInfo["avatar_file"] as? String
                 }
                 for value in data["question_topics"] as! [NSDictionary] {
                     let topicID = value["topic_id"] as! NSNumber
@@ -64,13 +66,14 @@ class Question: DataObject {
                     topic.title = value["topic_title"] as? String
                     question.topics.insert(topic)
                 }
+                _ = try? DataManager.defaultManager.saveChanges()
                 success?(question)
             },
             failure: failure)
     }
     
     func toggleFocus(success success: (() -> Void)?, failure: ((NSError) -> Void)?) {
-        NetworkManager.defaultManager!.GET("Focus Question",
+        NetworkManager.defaultManager!.POST("Focus Question",
             parameters: [
                 "question_id": id
             ],
@@ -81,8 +84,11 @@ class Question: DataObject {
                     if self_.focusCount != nil {
                         self_.focusCount = self_.focusCount!.integerValue + (self!.focusing! ? 1 : -1)
                     }
+                    _ = try? DataManager.defaultManager.saveChanges()
+                    success?()
+                } else {
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
-                success?()
             },
             failure: failure)
     }
@@ -92,7 +98,7 @@ class Question: DataObject {
             GETParameters: [
                 "id": "question",
                 "attach_access_key": attachmentKey!],
-            POSTParameters: nil,
+            POSTParameters: [:],
             constructingBodyWithBlock: {
                 data in
                 data?.appendPartWithFileData(jpegData, name: "qqfile", fileName: "image.jpg", mimeType: "image/jpeg")

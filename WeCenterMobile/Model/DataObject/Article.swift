@@ -39,14 +39,19 @@ class Article: DataObject {
                 article.id = Int(msr_object: info["id"])!
                 if let userID = Int(msr_object: info["uid"]) {
                     article.user = User.cachedObjectWithID(userID)
-                    article.user!.name = (info["user_name"] as! String)
-                    article.user!.signature = info["signature"] as? String
-                    article.user!.avatarURI = info["avatar_file"] as? String
+                    let userInfo = info["user_info"] as! NSDictionary
+                    article.user!.name = (userInfo["user_name"] as! String)
+                    article.user!.signature = userInfo["signature"] as? String
+                    article.user!.avatarURL = userInfo["avatar_file"] as? String
                 }
                 article.title = (info["title"] as! String)
                 article.body = (info["message"] as! String)
                 article.agreementCount = Int(msr_object: info["votes"])
-                article.evaluation = Evaluation(rawValue: Int(msr_object: info["vote_value"])!)
+                if let voteInfo = info["vote_info"] as? [String: AnyObject] {
+                    article.evaluation = Evaluation(rawValue: Int(msr_object: voteInfo["rating"])!)
+                } else {
+                    article.evaluation = Evaluation.None
+                }
                 article.topics = Set()
                 if let topicsInfo = data["article_topics"] as? [NSDictionary] {
                     for topicInfo in topicsInfo {
@@ -56,6 +61,7 @@ class Article: DataObject {
                         article.topics.insert(topic)
                     }
                 }
+                _ = try? DataManager.defaultManager.saveChanges()
                 success?(article)
             },
             failure: failure)
@@ -77,20 +83,21 @@ class Article: DataObject {
                         comment.body = (info["message"] as! String)
                         comment.date = NSDate(timeIntervalSince1970: NSTimeInterval(msr_object: info["add_time"])!)
                         comment.agreementCount = Int(msr_object: info["votes"])
-                        comment.evaluation = Evaluation(rawValue: Int(msr_object: info["vote_value"])!)
+//                        comment.evaluation = Evaluation(rawValue: Int(msr_object: info["vote_value"])!)
                         if let userInfo = info["user_info"] as? NSDictionary {
                             comment.user = User.cachedObjectWithID(Int(msr_object: userInfo["uid"])!)
                             comment.user!.name = (userInfo["user_name"] as! String)
-                            comment.user!.avatarURI = userInfo["avatar_file"] as? String
+                            comment.user!.avatarURL = userInfo["avatar_file"] as? String
                         }
                         if let atUserInfo = info["at_user_info"] as? NSDictionary {
                             comment.atUser = User.cachedObjectWithID(Int(msr_object: atUserInfo["uid"])!)
                             comment.atUser!.name = (atUserInfo["user_name"] as! String)
-                            comment.atUser!.avatarURI = atUserInfo["avatar_file"] as? String
+                            comment.atUser!.avatarURL = atUserInfo["avatar_file"] as? String
                         }
                         comments.append(comment)
                         self?.comments.insert(comment)
                     }
+                    _ = try? DataManager.defaultManager.saveChanges()
                     success?(comments)
                 } else {
                     failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
@@ -104,7 +111,7 @@ class Article: DataObject {
             GETParameters: [
                 "id": "article",
                 "attach_access_key": attachmentKey!],
-            POSTParameters: nil,
+            POSTParameters: [:],
             constructingBodyWithBlock: {
                 data in
                 data?.appendPartWithFileData(jpegData, name: "qqfile", fileName: "image.jpg", mimeType: "image/jpeg")
@@ -147,9 +154,11 @@ class Article: DataObject {
                     if let count = self_.agreementCount?.integerValue {
                         self_.agreementCount = originalValue == .Up ? count - 1 : value == .Up ? count + 1 : count
                     }
+                    _ = try? DataManager.defaultManager.saveChanges()
                     success?()
+                } else {
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
                 }
-                return
             },
             failure: failure)
     }
@@ -166,8 +175,8 @@ class Article: DataObject {
         let body = self.body!
         NetworkManager.defaultManager!.POST("Post Article",
             parameters: [
-                "article_content": title,
-                "article_detail": body,
+                "title": title,
+                "message": body,
                 "attach_access_key": attachmentKey!,
                 "topics": topicsParameter
             ],

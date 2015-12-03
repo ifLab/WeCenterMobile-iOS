@@ -3,85 +3,87 @@
 <plist version="1.0">
 <dict>
 	<key>Website</key>
-	<string>http://we.bistu.edu.cn/</string>
+	<string>http://wecenter.dev.hihwei.com/</string>
 	<key>Path</key>
 	<dict>
 		<key>Topic Detail</key>
-		<string>api/topic.php</string>
+		<string>api/topic/topic/</string>
 		<key>Topic Image</key>
 		<string>uploads/topic/</string>
 		<key>User Topic List</key>
-		<string>api/my_focus_topic_ios.php</string>
+		<string>api/people/topics/</string>
 		<key>Topic Outstanding Answer List</key>
-		<string>?/api/topic/topic_best_answer/</string>
+		<string>api/topic/topic_best_answer_list/</string>
 		<key>Focus Topic</key>
-		<string>api/focus_topic.php</string>
+		<string>topic/ajax/focus_topic/</string>
 		<key>Answer Detail</key>
-		<string>?/api/question/answer_detail/</string>
+		<string>api/question/answer/</string>
 		<key>Explore List</key>
-		<string>?/api/explore/</string>
+		<string>api/explore/</string>
 		<key>Upload Attachment</key>
-		<string>?/api/publish/attach_upload/</string>
+		<string>api/publish/attach_upload/</string>
 		<key>Question Detail</key>
-		<string>?/api/question/question/</string>
+		<string>api/question/</string>
 		<key>Focus Question</key>
-		<string>?/question/ajax/focus/</string>
+		<string>question/ajax/focus/</string>
 		<key>User Login</key>
-		<string>?/api/account/login_process/</string>
+		<string>api/account/login_process/</string>
 		<key>User UID</key>
-		<string>?/api/account/get_uid/</string>
+		<string>api/account/get_uid/</string>
 		<key>User Basic Information</key>
-		<string>api/profile.php</string>
+		<string>api/profile.php/</string>
 		<key>User Extra Information</key>
-		<string>?/api/account/get_userinfo/</string>
+		<string>api/account/get_userinfo/</string>
 		<key>User Registration</key>
-		<string>?/api/account/register_process/</string>
+		<string>api/account/register_process/</string>
 		<key>User Avatar</key>
 		<string>uploads/avatar/</string>
 		<key>Upload User Avatar</key>
-		<string>?/api/account/avatar_upload/</string>
+		<string>api/account/avatar_upload/</string>
 		<key>Follow User</key>
-		<string>?/follow/ajax/follow_people/</string>
+		<string>follow/ajax/follow_people/</string>
 		<key>User Following List</key>
-		<string>api/my_focus_user.php</string>
+		<string>api/people/follows/</string>
 		<key>User Follower List</key>
-		<string>api/my_fans_user.php</string>
+		<string>api/people/follows/</string>
 		<key>Answer Comment List</key>
-		<string>api/answer_comment.php</string>
+		<string>api/question/answer_comments/</string>
 		<key>Article Comment List</key>
-		<string>?/api/article/comment/</string>
+		<string>api/article/article_comments/</string>
 		<key>Article Detail</key>
-		<string>?/api/article/article/</string>
+		<string>api/article/</string>
 		<key>Update Profile</key>
-		<string>api/profile_setting.php</string>
+		<string>api/people/profile_setting/</string>
 		<key>Home List</key>
-		<string>?/api/home/</string>
+		<string>api/home/</string>
 		<key>User Question List</key>
-		<string>api/my_question.php</string>
+		<string>api/people/user_actions/</string>
 		<key>User Answer List</key>
-		<string>api/my_answer.php</string>
+		<string>api/people/user_actions/</string>
 		<key>User Article List</key>
-		<string>api/my_article.php</string>
+		<string>api/people/user_actions/</string>
 		<key>Post Answer Comment</key>
-		<string>?/question/ajax/save_answer_comment/</string>
+		<string>api/question/save_answer_comment/</string>
 		<key>Post Article Comment</key>
-		<string>?/api/publish/save_comment/</string>
+		<string>api/article/save_comment/</string>
 		<key>Post Question</key>
-		<string>?/api/publish/publish_question/</string>
+		<string>api/publish/publish_question/</string>
 		<key>Post Answer</key>
-		<string>?/api/publish/save_answer/</string>
+		<string>api/publish/save_answer/</string>
 		<key>Post Article</key>
-		<string>?/api/publish/publish_article/</string>
+		<string>api/publish/publish_article/</string>
 		<key>Evaluate Answer</key>
-		<string>?/question/ajax/answer_vote/</string>
+		<string>question/ajax/answer_vote/</string>
 		<key>Evaluate Article</key>
-		<string>?/article/ajax/article_vote/</string>
+		<string>article/ajax/article_vote/</string>
 		<key>Search</key>
-		<string>?/api/search/</string>
+		<string>api/search/</string>
 	</dict>
+	<key>App Secret</key>
+	<string>12884789df747d7affbcd6a7cadd9359</string>
 	<key>Success Code</key>
 	<integer>1</integer>
 	<key>Internal Error Code</key>
-	<integer>23333</integer>
+	<real>23333</real>
 </dict>
 </plist>
