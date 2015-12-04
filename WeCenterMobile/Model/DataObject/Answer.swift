@@ -75,7 +75,6 @@ class Answer: DataObject {
                     }
                     var comments = [AnswerComment]()
                     for commentData in commentsData {
-                        print(commentData)
                         let commentID = Int(msr_object: commentData["id"])!
                         let comment = AnswerComment.cachedObjectWithID(commentID)
                         if commentData["uid"] != nil {

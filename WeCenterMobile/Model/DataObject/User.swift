@@ -500,7 +500,7 @@ class User: DataObject {
             parameters: parameters,
             success: {
                 data in
-                if data as! String == "success" {
+                if data as! String == "个人资料保存成功" {
                     User.currentUser!.id = id
                     User.currentUser!.name = name
                     User.currentUser!.gender = gender
@@ -615,7 +615,6 @@ class User: DataObject {
             ],
             success: {
                 data in
-                print(data)
                 let rows = data["total_rows"] as! Int
                 if rows > 0 {
                     var actions = [Action]()
@@ -732,24 +731,28 @@ class User: DataObject {
                             action.article!.user = action.user
                             break
                         case .ArticleCommentary:
-                            /// @TODO: temporaryObject -> cachedObject
-                            let action = ArticleCommentaryAction.temporaryObject() // ArticleCommentaryAction.cachedObjectWithID(Int(msr_object: object["history_id"]!)!)
+                            let action = ArticleCommentaryAction.cachedObjectWithID(Int(msr_object: object["history_id"]!)!)
                             action_ = action
                             action.date = NSDate(timeIntervalSince1970: (object["add_time"] as! NSNumber).doubleValue)
                             if let userInfo = object["user_info"] as? [String: AnyObject] {
-                                action.user = User.temporaryObject() // User.cachedObjectWithID(Int(msr_object: userInfo["uid"])!)
+                                action.user = User.cachedObjectWithID(Int(msr_object: userInfo["uid"])!)
                                 action.user!.id = Int(msr_object: userInfo["uid"])!
                                 action.user!.name = (userInfo["user_name"] as! String)
                                 action.user!.avatarURL = userInfo["avatar_file"] as? String
                             } else {
                                 action.user = nil
                             }
-                            action.comment = ArticleComment.temporaryObject()
-//                            let commentInfo = object["comment_info"] as! [String: AnyObject]
-                            action.comment!.body = "lalala"
+                            let commentInfo = object["comment_info"] as! [String: AnyObject]
+                            action.comment = ArticleComment.cachedObjectWithID(Int(msr_object: commentInfo["id"]!)!)
+                            action.comment!.body = commentInfo["message"] as? String
+                            action.comment!.agreementCount = Int(msr_object: commentInfo["votes"]!)
+                            if let atID = Int(msr_object: commentInfo["at_uid"]) {
+                                if atID != 0 {
+                                    action.comment!.atUser = User.cachedObjectWithID(atID)
+                                }
+                            }
                             let articleInfo = object["article_info"] as! [String: AnyObject]
-                            action.comment!.article = Article.temporaryObject() // Article.cachedObjectWithID(Int(msr_object: articleInfo["id"])!)
-                            action.comment!.article!.id = Int(msr_object: articleInfo["id"])!
+                            action.comment!.article = Article.cachedObjectWithID(Int(msr_object: articleInfo["id"])!)
                             action.comment!.article!.title = (articleInfo["title"] as! String)
                             action.comment!.article!.body = (articleInfo["message"] as! String)
                             break
