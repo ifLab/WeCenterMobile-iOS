@@ -56,6 +56,8 @@
 		<string>api/people/profile_setting/</string>
 		<key>Home List</key>
 		<string>api/home/</string>
+		<key>Hot Topic List</key>
+		<string>api/topic/hot_topics/</string>
 		<key>User Question List</key>
 		<string>api/people/user_actions/</string>
 		<key>User Answer List</key>

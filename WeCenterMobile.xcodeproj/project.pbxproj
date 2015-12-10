@@ -278,6 +278,8 @@
 		A982404F1C0307F900F73E9A /* GBDeviceInfo-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A98240411C0307F900F73E9A /* GBDeviceInfo-Info.plist */; };
 		A98240501C0307F900F73E9A /* GBDeviceInfo_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = A98240451C0307F900F73E9A /* GBDeviceInfo_Common.m */; };
 		A98240511C0307F900F73E9A /* GBDeviceInfo_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = A98240471C0307F900F73E9A /* GBDeviceInfo_iOS.m */; };
+		A9BC4CBF1C1848F4009F5468 /* HotTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC4CBE1C1848F4009F5468 /* HotTopicViewController.swift */; };
+		A9BC4CE61C1858E5009F5468 /* HotTopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC4CE51C1858E5009F5468 /* HotTopicListViewController.swift */; };
 		A9C0083C1C03209F000CBB15 /* DTCoreText.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A955A43C1C03041A002501CE /* DTCoreText.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A9C0083D1C0320B1000CBB15 /* SVProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A955A36B1C02FE14002501CE /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A9C009411C03215A000CBB15 /* DTFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A9C009401C03214D000CBB15 /* DTFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -909,6 +911,8 @@
 		A982404C1C0307F900F73E9A /* GBDeviceInfoTypes_Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBDeviceInfoTypes_Common.h; sourceTree = "<group>"; };
 		A982404D1C0307F900F73E9A /* GBDeviceInfoTypes_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBDeviceInfoTypes_iOS.h; sourceTree = "<group>"; };
 		A98240531C03091900F73E9A /* GBDeviceInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBDeviceInfo.h; sourceTree = "<group>"; };
+		A9BC4CBE1C1848F4009F5468 /* HotTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotTopicViewController.swift; sourceTree = "<group>"; };
+		A9BC4CE51C1858E5009F5468 /* HotTopicListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotTopicListViewController.swift; sourceTree = "<group>"; };
 		A9C008F21C03214D000CBB15 /* DTFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DTFoundation.xcodeproj; path = DTCoreText/Externals/DTFoundation/DTFoundation.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -970,6 +974,8 @@
 				950FE12D1A1DA2B300167D09 /* ExploreViewController.swift */,
 				95F380BA1AB269690070A7FB /* FeaturedObjectListViewController.swift */,
 				95E535591A49DCFD00D7B76B /* HomeViewController.swift */,
+				A9BC4CBE1C1848F4009F5468 /* HotTopicViewController.swift */,
+				A9BC4CE51C1858E5009F5468 /* HotTopicListViewController.swift */,
 				95DFA7031B1224BC00DF1C0E /* LoginViewController.swift */,
 				95DFA7041B1224BC00DF1C0E /* LoginViewController.xib */,
 				950FE12F1A1DA2B300167D09 /* MainViewController.swift */,
@@ -2260,6 +2266,7 @@
 				A9039B6C1C03ED6900A658EC /* AppSecret.swift in Sources */,
 				A955A3B51C02FEB7002501CE /* UIView+MJExtension.m in Sources */,
 				A973D07A1C106D4300DCF94D /* ArticleCommentaryAction.swift in Sources */,
+				A9BC4CE61C1858E5009F5468 /* HotTopicListViewController.swift in Sources */,
 				A955A31C1C02FD9D002501CE /* MSRLayoutGuide.swift in Sources */,
 				A955A30C1C02FD9D002501CE /* String+MSREncryption.swift in Sources */,
 				A955A3041C02FD9D002501CE /* MSRNull.swift in Sources */,
@@ -2313,6 +2320,7 @@
 				9531D7531AF3E4AC00E6549D /* UserBodyCell.swift in Sources */,
 				A955A30D1C02FD9D002501CE /* String+MSROperations.swift in Sources */,
 				9531D71A1AF3E4AC00E6549D /* AnswerAdditionCell.swift in Sources */,
+				A9BC4CBF1C1848F4009F5468 /* HotTopicViewController.swift in Sources */,
 				9531D7381AF3E4AC00E6549D /* QuestionFocusingActionCell.swift in Sources */,
 				A955A3291C02FD9D002501CE /* MSRSegmentedControlRainbowBlockIndicator.swift in Sources */,
 				95EBCF511B2EA0FB0088FC2C /* DataObject+Search.swift in Sources */,

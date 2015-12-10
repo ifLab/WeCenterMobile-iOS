@@ -10,6 +10,12 @@ import AFNetworking
 import CoreData
 import UIKit
 
+enum TopicObjectListType: String {
+    case Month = "month"
+    case Week = "weeek"
+    case All = "all"
+}
+
 class Topic: DataObject {
 
     @NSManaged var focusCount: NSNumber?
@@ -64,6 +70,37 @@ class Topic: DataObject {
                 topic.focused = Int(msr_object: data["has_focus"]) == 1
                 _ = try? DataManager.defaultManager.saveChanges()
                 success?(topic)
+            },
+            failure: failure)
+    }
+    
+    class func fetchHotTopic(page page: Int, count: Int, type: TopicObjectListType, success: (([Topic]) -> Void)?, failure: ((NSError) -> Void)?) {
+        var parameters: [String: AnyObject] = [
+        "page": page,
+        "count": count
+        ]
+        if type.rawValue != "all" {
+            parameters["day"] = type.rawValue
+        }
+        NetworkManager.defaultManager!.GET("Hot Topic List",
+            parameters: parameters,
+            success: {
+                data in
+                if Int(msr_object: data["total_rows"]) > 0 {
+                    var topics = [Topic]()
+                    for object in data["rows"] as! [[String: AnyObject]] {
+                        let topic = Topic.cachedObjectWithID(Int(msr_object: object["topic_id"]!)!)
+                        topic.title = object["topic_title"] as? String
+                        topic.introduction = object["topic_description"] as? String
+                        topic.imageURI = object["topic_pic"] as? String
+                        topic.focusCount = Int(msr_object: object["focus_count"]!)!
+                        topics.append(topic)
+                    }
+                    _ = try? DataManager.defaultManager.saveChanges()
+                    success?(topics)
+                } else {
+                    failure?(NSError(domain: NetworkManager.defaultManager!.website, code: NetworkManager.defaultManager!.internalErrorCode.integerValue, userInfo: nil)) // Needs specification
+                }
             },
             failure: failure)
     }
@@ -131,7 +168,7 @@ class Topic: DataObject {
                 if let self_ = self {
                     if Int(msr_object: data["total_rows"]!!) > 0 {
                         var answers = [Answer]()
-                        for (_,value) in data["rows"] as! NSDictionary {
+                        for value in data["rows"] as! [NSDictionary] {
                             let questionValue = value["question_info"] as! NSDictionary
                             let questionID = questionValue["question_id"] as! NSNumber
                             let question = Question.cachedObjectWithID(questionID)

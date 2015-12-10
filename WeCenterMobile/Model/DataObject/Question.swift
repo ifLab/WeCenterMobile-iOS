@@ -32,7 +32,8 @@ class Question: DataObject {
         let question = Question.cachedObjectWithID(ID)
         NetworkManager.defaultManager!.GET("Question Detail",
             parameters: [
-                "id": ID
+                "id": ID,
+                "sort": "DESC"/// @TODO 倒叙
             ],
             success: {
                 data in
