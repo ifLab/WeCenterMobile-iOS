@@ -14,6 +14,7 @@ enum TopicObjectListType: String {
     case Month = "month"
     case Week = "weeek"
     case All = "all"
+    case Focus = "focus"
 }
 
 class Topic: DataObject {

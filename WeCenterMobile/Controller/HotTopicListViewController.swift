@@ -74,25 +74,50 @@ class HotTopicListViewController: UITableViewController {
     func refresh() {
         shouldReloadAfterLoadingMore = false
         tableView.mj_footer?.endRefreshing()
-        Topic.fetchHotTopic(page: 1, count: count, type: type,
-            success: {
-                [weak self] topics in
-                if let self_ = self {
-                    self_.page = 1
-                    self_.topics = topics
-                    self_.tableView.reloadData()
-                    self_.tableView.mj_header.endRefreshing()
-                    if self_.tableView.mj_footer == nil {
-                        self_.tableView.wc_addRefreshingFooterWithTarget(self_, action: "loadMore")
+        if type == .Focus {
+            let user = User.currentUser!
+            user.fetchTopics(
+                page: 1,
+                count: count,
+                success: {
+                    [weak self] topics in
+                    if let self_ = self {
+                        self_.page = 1
+                        self_.topics = topics
+                        self_.tableView.reloadData()
+                        self_.tableView.mj_header.endRefreshing()
+                        if self_.tableView.mj_footer == nil {
+                            self_.tableView.wc_addRefreshingFooterWithTarget(self_, action: "loadMore")
+                        }
                     }
-                }
-                return
-            },
-            failure: {
-                [weak self] error in
-                self?.tableView.mj_header.endRefreshing()
-                return
-            })
+                    return
+                },
+                failure: {
+                    [weak self] error in
+                    self?.tableView.mj_header.endRefreshing()
+                    return
+                })
+        } else {
+            Topic.fetchHotTopic(page: 1, count: count, type: type,
+                success: {
+                    [weak self] topics in
+                    if let self_ = self {
+                        self_.page = 1
+                        self_.topics = topics
+                        self_.tableView.reloadData()
+                        self_.tableView.mj_header.endRefreshing()
+                        if self_.tableView.mj_footer == nil {
+                            self_.tableView.wc_addRefreshingFooterWithTarget(self_, action: "loadMore")
+                        }
+                    }
+                    return
+                },
+                failure: {
+                    [weak self] error in
+                    self?.tableView.mj_header.endRefreshing()
+                    return
+                })
+        }
     }
     func loadMore() {
         if tableView.mj_header.isRefreshing() {
@@ -100,23 +125,47 @@ class HotTopicListViewController: UITableViewController {
             return
         }
         shouldReloadAfterLoadingMore = true
-        Topic.fetchHotTopic(page: page + 1, count: count, type: type,
-            success: {
-                [weak self] topics in
-                if let self_ = self {
-                    if self_.shouldReloadAfterLoadingMore {
-                        ++self_.page
-                        self_.topics.appendContentsOf(topics)
-                        self_.tableView.reloadData()
+        if type == .Focus {
+            let user = User.currentUser!
+            user.fetchTopics(
+                page: page + 1,
+                count: count,
+                success: {
+                    [weak self] topics in
+                    if let self_ = self {
+                        if self_.shouldReloadAfterLoadingMore {
+                            ++self_.page
+                            self_.topics.appendContentsOf(topics)
+                            self_.tableView.reloadData()
+                        }
                         self_.tableView.mj_footer.endRefreshing()
                     }
-                }
-                return
-            },
-            failure: {
-                [weak self] error in
-                self?.tableView.mj_header.endRefreshing()
-                return
-            })
+                    return
+                },
+                failure: {
+                    [weak self] error in
+                    self?.tableView.mj_footer.endRefreshing()
+                    return
+                })
+        } else {
+            Topic.fetchHotTopic(page: page + 1, count: count, type: type,
+                success: {
+                    [weak self] topics in
+                    if let self_ = self {
+                        if self_.shouldReloadAfterLoadingMore {
+                            ++self_.page
+                            self_.topics.appendContentsOf(topics)
+                            self_.tableView.reloadData()
+                            self_.tableView.mj_footer.endRefreshing()
+                        }
+                    }
+                    return
+                },
+                failure: {
+                    [weak self] error in
+                    self?.tableView.mj_header.endRefreshing()
+                    return
+                })
+        }
     }
 }

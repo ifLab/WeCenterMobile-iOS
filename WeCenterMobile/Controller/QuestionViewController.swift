@@ -293,7 +293,7 @@ class QuestionViewController: UITableViewController, DTLazyImageViewDelegate, Qu
         let title = question.title!
         let image = question.user?.avatar ?? defaultUserAvatar
         let body = question.body!.wc_plainString
-        let url = NetworkManager.defaultManager!.website
+        let url = "\(NetworkManager.defaultManager!.website)?/question/\(question.id)"
         var items = [title, body, NSURL(string: url)!]
         if image != nil {
             items.append(image!)

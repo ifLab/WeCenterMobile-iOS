@@ -38,6 +38,7 @@ class HotTopicViewController: MSRSegmentedViewController, MSRSegmentedViewContro
         if firstAppear {
             firstAppear = false
             let titles: [(TopicObjectListType, String)] = [
+                (.Focus, "我关注的"),
                 (.All, "全部"),
                 (.Month, "最近30天"),
                 (.Week, "最近7天")]

@@ -15,6 +15,7 @@ import UIKit
     /* @TODO: optional */ var date: NSDate? { get }
     /* @TODO: optional */ var body: String? { get }
     var user: User? { get }
+    var id: NSNumber { get }
     var title: String? { get }
     var agreementCount: NSNumber? { get set }
     var evaluationRawValue: NSNumber? { get }
@@ -292,7 +293,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, ArticleHead
         let title = dataObject.title!
         let image = dataObject.user?.avatar ?? defaultUserAvatar
         let body = dataObject.body!.wc_plainString
-        let url = NetworkManager.defaultManager!.website
+        let url: String = (dataObject is Answer) ? "\(NetworkManager.defaultManager!.website)?/question/\((dataObject as! Answer).question!.id)" : "\(NetworkManager.defaultManager!.website)?/article/\(dataObject.id)"
         var items = [title, body, NSURL(string: url)!]
         if image != nil {
             items.append(image!)
