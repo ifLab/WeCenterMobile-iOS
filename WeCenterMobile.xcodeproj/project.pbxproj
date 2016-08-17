@@ -163,7 +163,6 @@
 		95EBCF4F1B2DB4430088FC2C /* UserSearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95EBCF4E1B2DB4430088FC2C /* UserSearchResultCell.xib */; };
 		95EBCF511B2EA0FB0088FC2C /* DataObject+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBCF501B2EA0FB0088FC2C /* DataObject+Search.swift */; };
 		95F380BB1AB269690070A7FB /* FeaturedObjectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F380BA1AB269690070A7FB /* FeaturedObjectListViewController.swift */; };
-		A9039B6C1C03ED6900A658EC /* AppSecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9039B6B1C03ED6900A658EC /* AppSecret.swift */; };
 		A955A1FA1C02FD49002501CE /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A955A14F1C02FD49002501CE /* AFHTTPRequestOperation.m */; };
 		A955A1FB1C02FD49002501CE /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A955A1511C02FD49002501CE /* AFHTTPRequestOperationManager.m */; };
 		A955A1FC1C02FD49002501CE /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A955A1531C02FD49002501CE /* AFHTTPSessionManager.m */; };
@@ -726,7 +725,6 @@
 		95EBCF4E1B2DB4430088FC2C /* UserSearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSearchResultCell.xib; sourceTree = "<group>"; };
 		95EBCF501B2EA0FB0088FC2C /* DataObject+Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataObject+Search.swift"; sourceTree = "<group>"; };
 		95F380BA1AB269690070A7FB /* FeaturedObjectListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedObjectListViewController.swift; sourceTree = "<group>"; };
-		A9039B6B1C03ED6900A658EC /* AppSecret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSecret.swift; sourceTree = "<group>"; };
 		A955A14E1C02FD49002501CE /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		A955A14F1C02FD49002501CE /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		A955A1501C02FD49002501CE /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -1258,7 +1256,6 @@
 				9531D7801AF3E8E400E6549D /* String+PlainString.swift */,
 				95D784091B1C5306008EB241 /* Theme.swift */,
 				9531D7811AF3E8E400E6549D /* TintColor.swift */,
-				A9039B6B1C03ED6900A658EC /* AppSecret.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -2263,7 +2260,6 @@
 				A955A3AF1C02FEB7002501CE /* MJRefreshNormalHeader.m in Sources */,
 				9531D7901AF3E8E400E6549D /* ArticlePublishmentAction.swift in Sources */,
 				9531D7911AF3E8E400E6549D /* FeaturedArticle.swift in Sources */,
-				A9039B6C1C03ED6900A658EC /* AppSecret.swift in Sources */,
 				A955A3B51C02FEB7002501CE /* UIView+MJExtension.m in Sources */,
 				A973D07A1C106D4300DCF94D /* ArticleCommentaryAction.swift in Sources */,
 				A9BC4CE61C1858E5009F5468 /* HotTopicListViewController.swift in Sources */,

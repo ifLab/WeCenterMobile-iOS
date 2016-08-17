@@ -8,6 +8,7 @@
 
 import AFNetworking
 import Foundation
+import CommonCrypto
 
 class NetworkManager: NSObject {
     required init?(configuration: NSDictionary) {
@@ -52,6 +53,7 @@ class NetworkManager: NSObject {
             do {
                 GETParameters["mobile_sign"] = getMobileSignWithPath(paths[key]!)
                 let URLString = try manager.requestSerializer.requestWithMethod("GET", URLString: paths[key]!, parameters: GETParameters, error: ()).URL!.absoluteString
+                print(URLString)
                 return manager.POST(URLString,
                     parameters: POSTParameters,
                     constructingBodyWithBlock: block,
@@ -119,6 +121,33 @@ class NetworkManager: NSObject {
             failure?(error)
         }
     }
+    
+    func getMobileSignWithPath(path: String) -> String {
+        var path = path
+        if let questionMarkIndex = path.rangeOfString("?")?.startIndex {
+            path.removeAtIndex(questionMarkIndex)
+            path.removeAtIndex(questionMarkIndex)
+        }
+        let firstSlash = path.rangeOfString("/")?.startIndex
+        path.removeRange(path.startIndex...firstSlash!)
+        let secondSlash = path.rangeOfString("/")?.startIndex
+        if secondSlash != nil {
+            path.removeRange(secondSlash!..<path.endIndex)
+        }
+        path = path + ((NetworkManager.defaultManager?.appSecret) ?? "")
+        let str = path.cStringUsingEncoding(NSUTF8StringEncoding)
+        let strLen = CC_LONG(path.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+        let digestLen = Int(CC_MD5_DIGEST_LENGTH)
+        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
+        CC_MD5(str!, strLen, result)
+        let hash = NSMutableString()
+        for i in 0..<digestLen {
+            hash.appendFormat("%02x", result[i])
+        }
+        result.dealloc(digestLen)    
+        return String(format: hash as String)
+    }
+    
     private let configuration: NSDictionary
     var website: String {
         return configuration["Website"] as! String
